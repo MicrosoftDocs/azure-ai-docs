@@ -1,7 +1,7 @@
 ---
 title: .NET Samples
 description: Find Azure AI Search demo C# code samples that use the .NET client libraries.
-ms.date: 06/08/2026
+ms.date: 08/19/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -50,6 +50,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query an index using sample data. |
 | [quickstart-semantic-ranking](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-semantic-ranking/) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
+| [image-serving-example](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/image-serving-example) | [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md) | Run managed ingestion and A/B retrieval and independently query and download an indexed image reference from Azure Blob Storage. |
 | [search-website](https://github.com/Azure-Samples/azure-search-static-web-app) | [Tutorial: Add search to web apps](tutorial-csharp-overview.md) | Build an end-to-end search app that uses the push API for bulk upload and a rich client for hosting the app and handling search requests. |
 | [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md) | Create a skillset that iterates over Azure blobs to extract information and infer structure. |
 | [multiple-data-sources](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-data-sources) | [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md) | Merge content from two data sources into one index. |
@@ -65,7 +66,6 @@ A demo repo provides proof-of-concept source code for examples or scenarios show
 | Sample | Description |
 | --- | --- |
 | [covid19search](https://github.com/liamca/covid19search) | Source code repo for the Azure AI Search-based Covid-19 search app. |
-| [AzureSearch_JFK_Files](https://github.com/Microsoft/AzureSearch_JFK_Files) | Source code repo for the Azure AI Search-based JFK files solution. |
 
 ## Other samples
 

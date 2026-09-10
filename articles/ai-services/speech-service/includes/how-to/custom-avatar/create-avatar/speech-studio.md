@@ -4,6 +4,7 @@ ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
 ms.date: 08/07/2025
+ai-usage: ai-assisted
 ---
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
@@ -26,7 +27,7 @@ You need video recordings of your avatar talent as training data. You upload the
 
 To create a custom avatar project, follow these steps:
 1. Sign in to the [Speech Studio](https://speech.microsoft.com) and select your subscription and Speech resource. 
-1. Select **Custom avatar (preview)**.
+1. Select **Custom avatar**.
 
     :::image type="content" source="../../../../media/custom-avatar/speech-studio/select-custom-avatar-tile.png" alt-text="Screenshot of the tile to select custom avatar among other tiles." lightbox="../../../../media/custom-avatar/speech-studio/select-custom-avatar-tile.png":::
 
@@ -157,4 +158,3 @@ To remove your deployment, follow these steps:
 
 > [!TIP]
 > Once a deployment is removed, you no longer pay for its hosting. Deleting a deployment doesn't cause any deletion of your model. If you want to use the model again, create a new deployment. 
-

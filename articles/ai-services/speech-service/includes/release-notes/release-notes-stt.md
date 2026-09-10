@@ -3,11 +3,48 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 05/22/2026
+ms.date: 08/25/2026
 ms.author: pafarley
-ms.custom: references_regions
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
+
+### August 2026 release
+
+#### Speech-to-text model update for 10 languages
+
+We updated the speech-to-text model for Czech (`cs-CZ`), Greek (`el-GR`), Finnish (`fi-FI`), Indonesian (`id-ID`), Dutch (`nl-NL`), Polish (`pl-PL`), Russian (`ru-RU`), Swedish (`sv-SE`), Thai (`th-TH`), and Turkish (`tr-TR`). English is supported alongside these languages for bilingual experiences. The update improves transcription quality, entity recognition rate, and delivers more accurate results for multilingual speech-to-text scenarios across these languages.
+
+For more information, see [How to recognize speech](../../how-to-recognize-speech.md) and [Speech to text supported languages](../../language-support.md?tabs=stt).
+
+#### Expanded monolingual post-stream refinement availability
+
+Monolingual post-stream refinement now supports 29 locales. This update adds Czech (`cs-CZ`), Greek (`el-GR`), Finnish (`fi-FI`), Indonesian (`id-ID`), Dutch (`nl-NL`), Polish (`pl-PL`), Russian (`ru-RU`), Swedish (`sv-SE`), Thai (`th-TH`), and Turkish (`tr-TR`).
+
+For the complete locale list, see [Speech to text supported languages](../../language-support.md?tabs=stt).
+
+#### Improved pronunciation assessment models
+
+We updated the pronunciation assessment models for `en-US`, `zh-CN`, `es-ES`, `es-MX`, `fr-FR`, and `pt-BR`. These updates improve the Pearson correlation coefficients (PCC) for more precise and dependable evaluations.
+
+You can use the updated models through the API and the Microsoft Foundry playground.
+
+### July 2026 release
+
+#### Real-time multichannel speech to text (public preview)
+
+Real-time multichannel speech to text is now available in public preview with Speech SDK version
+1.51.0 or later. Transcribe up to two channels from stereo audio independently, with each
+recognition result tagged by its source channel. For more information, see
+[How to transcribe multichannel audio in real time](../../how-to-recognize-speech-multichannel.md).
+
+#### Monolingual post-stream refinement general availability
+
+Monolingual post-stream refinement is now generally available for real-time speech to text. It improves final transcript accuracy by running a second recognition pass in parallel with real-time streaming, without affecting first-token latency. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
+
+#### Multilingual post-stream refinement (public preview)
+
+Multilingual post-stream refinement is now available in public preview for real-time speech to text. A single recognition session can transcribe multiple supported languages, including language switching, while maintaining low-latency intermediate results. Enable post-stream refinement and use open-range automatic language detection with Speech SDK version 1.50 or later. For more information, see [Post-stream refinement](../../how-to-recognize-speech.md#post-stream-refinement) and [How to use post-processing](../../how-to-post-processing.md).
 
 ### May 2026 release
 
@@ -15,9 +52,9 @@ ai-usage: ai-assisted
 
 The custom speech fine-tuning workflow is now documented for the Microsoft Foundry (new) portal. The wizard-driven experience walks you through project creation, data upload, data inspection, model training, evaluation, and endpoint deployment. For more information, see [Create a custom speech project](../../how-to-custom-speech-create-project.md).
 
-#### LLM Speech API Generally Availability
+#### LLM Speech API general availability
 
-LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multi-lingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md). 
+LLM Speech API is now generally available, delivering state-of-the-art LLM-powered transcription and translation for audio files, with multilingual support across 25 languages (90+ locales), improved accuracy, and enhanced prompt-tuning capabilities. For more information, see [LLM speech](../../llm-speech.md).
 
 #### Speech Transcription SDK general availability
 
@@ -38,7 +75,7 @@ The updated model is ready to use through the API and the Microsoft Foundry play
 ### March 2026 release
 
 * MAI-Transcribe-1 model public preview available in Azure Speech LLM Speech API. For more information, see [MAI-Transcribe-1](../../mai-transcribe.md).
-* [Fast Transcription API](../../fast-transcription-create.md?) and [LLM Speech API](../../llm-speech.md) now support up to 5 hours per audio file input.
+* [Fast Transcription API](../../fast-transcription-create.md) and [LLM Speech API](../../llm-speech.md) now support up to five hours per audio file input.
 
 
 ### February 2026 release
@@ -48,7 +85,7 @@ The speech-to-text playground in the Microsoft Foundry new portal now supports t
 ### December 2025 release
 
 Speech to text 5.1.0
-- General availability of real time diarization using the speech to text container.
+- General availability of real-time diarization using the speech-to-text container.
 - Resolved vulnerabilities
 
 ### November 2025 release
@@ -57,7 +94,7 @@ Speech to text 5.1.0
    - `transcribe`: Convert pre-recorded audio into text.
    - `translate`: Convert pre-recorded audio into text in a specified target language.
 
-  For more information, see [LLM speech](../../llm-speech.md). 
+  For more information, see [LLM speech](../../llm-speech.md).
 * Fast transcription is generally available. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 * To transcribe multi-lingual contents continuously and accurately in an audio file, you can now use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
 * Video translation is now available in the Azure Speech service. For more information, see [What is video translation?](../../video-translation-overview.md)
@@ -78,7 +115,7 @@ You can now control the influence of phrase lists on speech recognition results 
 
 Speech to text 5.0.3-preview
 - Fixed vulnerabilities
-- Support user set redis endpoint for diarization.
+- Support user set Redis endpoint for diarization.
 - STT backend/frontend engine update
 - Added coverage of locales previously supported in version 4.12.
 
@@ -309,9 +346,9 @@ Automatic multi-lingual speech translation is available in public preview. This 
 
 For a detailed introduction, visit [Speech translation overview](../../speech-translation.md). Additionally, you can refer to the code samples at [how to translate speech](../../how-to-translate-speech.md). This new feature is fully supported by all SDK versions from 1.37.0 onwards.
 
-#### Real-time speech to text with diariazation (GA)
+#### Real-time speech to text with diarization (GA)
 
-Real-time speech to text with diariazation is now generally available.
+Real-time speech to text with diarization is now generally available.
 
 You can create speech to text applications that use diarization to distinguish between the different speakers who participate in the conversation. For more information about real-time diarization, Check out the [real-time diarization quickstart](../../get-started-stt-diarization.md).
 
@@ -325,9 +362,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Whisper general availability (GA)
 
-The Whisper speech to text model with Azure Speech is now generally available.
+The Whisper speech-to-text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models.
+To learn more about when to use Azure Speech versus Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 ### February 2024 release
 
@@ -346,11 +383,11 @@ We're thrilled to unveil a groundbreaking addition to our real-time speech model
 
 Key Highlights:
 - Bilingual Support: With our latest release, users can seamlessly switch between English and Spanish or between English and French during real-time speech interactions. This functionality is tailored to accommodate bilingual speakers who frequently transition between these two languages.
-- Enhanced User Experience: Bilingual speakers, whether at work, home, or in various community settings, will find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
+- Enhanced user experience: Bilingual speakers, whether at work, home, or in various community settings, find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
 
 How to Use:
 
-Choose es-US (Spanish and English) or fr-CA (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together—the model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
+Choose `es-US` (Spanish and English) or `fr-CA` (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together. The model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
 
 It's time to elevate your communication game with our latest feature release—seamless, multi-lingual communication at your fingertips!
 
@@ -388,7 +425,7 @@ Azure Speech now supports OpenAI's Whisper model via the batch transcription API
 > [!NOTE]
 > Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI.
+To learn more about when to use Azure Speech vs. Azure OpenAI, see [What are OpenAI transcription models?](../../transcribe-overview.md)
 
 #### Speech to text REST API v3.2 public preview
 
@@ -398,7 +435,7 @@ Speech to text REST API v3.2 is available in preview. [Speech to text REST API](
 
 #### New Speech to text-locales:
 
-Speech to text supports two new locales as shown in the following table. Refer to the complete language list [here](../../language-support.md?tabs=stt).
+Speech to text supports two new locales as shown in the following table. Refer to the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -424,8 +461,8 @@ Speech to text supports two new locales as shown in the following table. Refer t
 - Added sample codes showing how to use Pronunciation Assessment in streaming mode in your own application.
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
-  - **java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
-  - **javascript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
+  - **Java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
+  - **JavaScript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
   - **Objective-C**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L831).
   - **Python**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#L915).
   - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios).
@@ -452,14 +489,14 @@ The Speech to text REST API version 3.1 is generally available. Version 3.0 of t
 
 #### New speech to text locale
 
-Added support for Malayalam (India) with the `ml-IN` locale. See the complete language list [here](../../language-support.md?tabs=stt).
+Added support for Malayalam (India) with the `ml-IN` locale. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 
 ### July 2022 release
 
 #### New Speech to text-locales:
 
-Added 7 new locales as shown in the following table. See the complete language list [here](../../language-support.md?tabs=stt).
+Added seven new locales as shown in the following table. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -476,7 +513,7 @@ Added 7 new locales as shown in the following table. See the complete language l
 
 #### New Speech to text-locales:
 
-Added 10 new locales as shown in the following table. See the complete language list [here](../../language-support.md?tabs=stt).
+Added 10 new locales as shown in the following table. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -496,7 +533,7 @@ Added 10 new locales as shown in the following table. See the complete language 
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete language list [here](../../language-support.md?tabs=stt).
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -507,7 +544,7 @@ Below is a list of the new locales. See the complete language list [here](../../
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete language list [here](../../language-support.md?tabs=stt).
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -535,7 +572,7 @@ Below is a list of the new locales. See the complete language list [here](../../
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete language list [here](../../language-support.md?tabs=stt).
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -563,7 +600,7 @@ Below is a list of the new locales. See the complete language list [here](../../
 
 #### New Speech to text-locales:
 
-Below is a list of the new locales. See the complete language list [here](../../language-support.md?tabs=stt).
+The following list shows the new locales. See the complete list of [Speech to text supported languages](../../language-support.md?tabs=stt).
 
 | Locale  | Language                          |
 |---------|-----------------------------------|
@@ -588,7 +625,7 @@ Below is a list of the new locales. See the complete language list [here](../../
 ### August 2020 Release
 
 #### New speech to text locales:
-Speech to text released 26 new locales in August: 2 European languages `cs-CZ` and `hu-HU`, 5 English locales and 19 Spanish locales that cover most South American countries/regions. Below is a list of the new locales. See the complete language list [here](../../language-support.md?tabs=stt).
+Speech-to-text added 26 new locales in August: two European languages `cs-CZ` and `hu-HU`, five English locales, and 19 Spanish locales that cover most South American countries and regions. The following list shows the new locales. See the complete [Speech to text supported languages](../../language-support.md?tabs=stt) list.
 
 | Locale  | Language                          |
 |---------|-----------------------------------|

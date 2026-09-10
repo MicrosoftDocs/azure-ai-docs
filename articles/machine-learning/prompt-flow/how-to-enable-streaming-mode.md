@@ -1,5 +1,5 @@
 ---
-title: How to use streaming endpoints deployed from prompt Flow
+title: How to use streaming endpoints deployed from prompt flow
 titleSuffix: Azure Machine Learning
 description: Learn how use streaming when you consume the endpoints in Azure Machine Learning prompt flow.
 services: machine-learning
@@ -12,15 +12,16 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# How to use streaming endpoints deployed from prompt Flow
+# How to use streaming endpoints deployed from prompt flow
 
 [!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
-In prompt Flow, you can [deploy flow to an Azure Machine Learning managed online endpoint](how-to-deploy-for-real-time-inference.md) for real-time inference.
+In prompt flow, you can [deploy flow to an Azure Machine Learning managed online endpoint](how-to-deploy-for-real-time-inference.md) for real-time inference.
 
 When you consume the endpoint by sending a request, the default behavior is that the online endpoint keeps waiting until the whole response is ready, and then sends it back to the client. This behavior can cause a long delay for the client and a poor user experience.
 
@@ -76,10 +77,9 @@ To use the streaming mode, you need to deploy your flow as an online endpoint. W
 For more information about deploying your flow as an online endpoint, see [Deploy a flow to online endpoint for real-time inference with CLI](./how-to-deploy-to-code.md).
 
 > [!NOTE]
-> 
-> Deploy with Runtime environment version later than version `20230816.v10`.
+> Streaming requires a runtime environment version later than `20230816.v10`. Because prompt flow runtime images no longer receive updates, verify that your existing deployment already uses a compatible version. If it doesn't, migrate the flow to [Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md) instead of relying on a new prompt flow runtime image.
 
-You can check your runtime version and update runtime in the run time detail page.
+Check the runtime version on the runtime details page.
 
 :::image type="content" source="./media/how-to-enable-streaming-mode/runtime-version.png" alt-text="Screenshot of Azure Machine Learning studio showing the runtime environment." lightbox = "./media/how-to-enable-streaming-mode/runtime-version.png":::
 

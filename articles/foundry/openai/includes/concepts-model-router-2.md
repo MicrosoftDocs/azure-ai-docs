@@ -6,8 +6,9 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/23/2026
+ms.date: 09/09/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Model subset
@@ -22,7 +23,9 @@ Model router now includes built-in automatic failover. When using the default de
 
 For custom deployment configurations:
 - Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
-- Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+- Your configured model subset also works as your fallback set to prevent your prompts from getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+
+To inspect ordered model attempts and determine whether fallback occurred for an individual Chat Completions request, see [Monitor model router](../how-to/monitor-model-router.md).
 
 ## Prompt caching
 
@@ -30,21 +33,11 @@ Model router supports prompt caching because requests are processed by the under
 
 Cache behavior depends on which underlying model the router selects for a given request. Because routing decisions might vary, caching benefits apply only when the same model handles consecutive requests with overlapping prompt prefixes.
 
+For stateless Chat Completions conversations, you can use [session affinity](../how-to/model-router.md#keep-chat-completions-requests-on-the-same-model-preview) to ask model router to attempt the same eligible model across related turns. This behavior can improve the opportunity for cache reuse, but it doesn't inspect cache state, guarantee a cache hit, or adaptively switch models based on cache savings.
+
 For details on how prompt caching works and which models support it, see [Prompt caching](../how-to/prompt-caching.md).
 
 ## Limitations
-
-### Resource limitations
-
-| Region | Deployment types supported |
-|------|-----------|
-| Australia East | Global Standard, Data Zone Standard |
-| East US 2 | Global Standard, Data Zone Standard |
-| South India | Global Standard, Data Zone Standard |
-| Sweden Central | Global Standard, Data Zone Standard |
-| West US 3 | Global Standard, Data Zone Standard |
-
-Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
 
 To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
@@ -78,8 +71,8 @@ Model router doesn't process audio input.
 ## Troubleshooting
 
 | Issue | Resolution |
-|-------|------------|
-| Deployment fails | Verify your Foundry resource is in a supported region: Australia East, East US 2, South India, Sweden Central, or West US 3. |
+| ------- | ------------ |
+| Deployment fails | Verify your Foundry resource is in a [supported region](../concepts/model-router.md#supported-regions). |
 | Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
 | Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
 | Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |

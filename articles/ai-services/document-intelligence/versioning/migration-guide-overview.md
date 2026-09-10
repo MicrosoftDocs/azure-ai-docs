@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 05/21/2026
+ms.date: 08/11/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ai-usage: ai-assisted
@@ -18,6 +18,7 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 >
+> * **Document Intelligence REST preview API versions (2024-07-31-preview, 2024-02-29-preview, 2023-10-31-preview)** reach end of support on **June 30, 2026**.
 > * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
 > * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**. 
 > * To avoid production disruption, use this migration guide to move to **Azure Document Intelligence 2024-11-30 v4.0** before these dates.

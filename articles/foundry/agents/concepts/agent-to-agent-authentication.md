@@ -1,12 +1,12 @@
 ---
 title: "Agent2Agent (A2A) authentication"
-description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service."
+description: "Learn about the authentication methods available for the Agent2Agent tool in Foundry Agent Service, including key-based, Microsoft Entra ID, and OAuth passthrough."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/26/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -93,22 +93,38 @@ When the agent invokes the A2A endpoint, Agent Service retrieves the credentials
 
 Use Microsoft Entra ID authentication when the A2A endpoint and its underlying service accept Microsoft Entra ID tokens. This method eliminates the need to manage secrets because Azure handles token acquisition and renewal automatically.
 
+Set the Foundry project as the active project before you create an
+identity-based A2A connection:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+azd ai project set "$PROJECT_ENDPOINT"
+```
+
 ### Agent identity
 
 Use your agent's managed identity to authenticate with A2A endpoints that support Microsoft Entra ID authentication. When you create an agent in Agent Service, the agent automatically receives a managed identity.
 
 **Identity lifecycle:**
 
-- **Before publishing**: All agents in the same project share a common identity. This simplifies development and testing.
-- **After publishing**: Each published agent receives a unique identity. This provides isolation and enables granular access control.
+- **Before publishing**: All agents in the same project share a common identity. This setup simplifies development and testing.
+- **After publishing**: Each published agent receives a unique identity. This setup provides isolation and enables granular access control.
 
-For more information about agent identity lifecycle, see [Agent identity concepts in Microsoft Foundry](agent-identity.md).
+For more information about the agent identity lifecycle, see [Agent identity concepts in Microsoft Foundry](agent-identity.md).
 
 **To configure agent identity authentication:**
 
 1. Identify the underlying service that powers the A2A endpoint (for example, Azure Cosmos DB or Azure Storage).
 1. Assign the required roles to the agent identity on that service. The specific roles depend on the service and the operations your agent needs to perform.
 1. Configure the A2A connection to use agent identity authentication.
+
+```bash
+azd ai connection create my-a2a-connection \
+  --kind remote-a2a \
+  --target https://<a2a-endpoint> \
+  --auth-type agentic-identity \
+  --audience "<entra-audience>"
+```
 
 When the agent invokes the A2A endpoint, Agent Service uses the agent identity to request an authorization token from Microsoft Entra ID and includes it in the request.
 
@@ -122,12 +138,30 @@ Use your Foundry project's managed identity to authenticate with A2A endpoints. 
 1. Assign the required roles to the project's managed identity on that service.
 1. Configure the A2A connection to use project managed identity authentication.
 
+```bash
+azd ai connection create my-a2a-connection \
+  --kind remote-a2a \
+  --target https://<a2a-endpoint> \
+  --auth-type project-managed-identity \
+  --audience "<entra-audience>"
+```
+
+
 When the agent invokes the A2A endpoint, Agent Service uses the project's managed identity to request an authorization token from Microsoft Entra ID and includes it in the request.
 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Foundry Agent Consumer** role on the project. Prefer this role for least-privilege access. The **Foundry User** role also works but is intended for developers building agents and includes permissions beyond what consumers need.
+> To use OAuth identity passthrough, users interacting with your agent need the
+> [**Foundry Agent Consumer** role](../../concepts/rbac-foundry.md#agent-scope-role-assignments)
+> on the Foundry project or agent hosting the calling agent. Prefer this
+> role for least-privilege access. The **Foundry User** role also works but is
+> intended for developers building agents and includes permissions beyond
+> what consumers need.
+>
+> If the remote A2A endpoint is another Foundry agent, users also need access
+> to the remote target project or agent. See
+> [Grant access to the A2A endpoint](../how-to/enable-agent-to-agent-endpoint.md#grant-access-to-the-a2a-endpoint).
 
 OAuth identity passthrough enables your agent to act on behalf of individual users. Use this method when actions should be scoped to each user's permissions, such as accessing their personal files, repositories, or other protected resources.
 
@@ -149,7 +183,7 @@ OAuth uses two types of tokens:
 | **Access token** | Authorizes API calls to the underlying service | Short-lived (typically 1 hour) to limit exposure if compromised |
 | **Refresh token** | Obtains new access tokens without requiring the user to sign in again | Longer-lived (hours to weeks, or until revoked) |
 
-OAuth scopes define what the agent can access and do on the user's behalf. The scopes are specified when you configure the connection and are presented to the user during the consent flow. For more information about OAuth, see the [Microsoft security documentation](https://www.microsoft.com/security/business/security-101/what-is-oauth). 
+OAuth scopes define what the agent can access and do on the user's behalf. You specify the scopes when you configure the connection, and the user sees them during the consent flow. For more information about OAuth, see the [Microsoft security documentation](https://www.microsoft.com/security/business/security-101/what-is-oauth). 
 
 ### Managed OAuth vs. custom OAuth
 
@@ -199,6 +233,28 @@ Follow these steps to configure authentication for an A2A connection:
 
 1. **Add the A2A tool to your agent**. Reference the project connection you created and configure which tools from the A2A endpoint your agent can invoke.
 
+## Credentials for the agent card request
+
+Before your agent can invoke an A2A endpoint, Agent Service fetches the remote agent's agent card. Whichever authentication method you choose, it applies only to tool calls by default, so the agent card fetch goes out anonymously. Most endpoints publish the agent card publicly, so that fetch succeeds.
+
+Some endpoints protect the agent card path itself and reject unauthenticated requests. For these endpoints, set `send_credentials_for_agent_card` to `true` in the A2A tool definition. Agent Service then sends the connection's credentials on the agent card request as well as on later tool calls.
+
+```json
+{
+  "type": "a2a_preview",
+  "base_url": "https://<a2a-endpoint>",
+  "project_connection_id": "<connection-id>",
+  "send_credentials_for_agent_card": true
+}
+```
+
+The `send_credentials_for_agent_card` property is optional and defaults to `false`, so existing tools keep fetching the agent card anonymously.
+
+Credentials go only to the host in `base_url`, and only over HTTPS. If the endpoint uses HTTP, or if you set the optional `agent_card_path` property to a full URL on a different host, Agent Service ignores this setting and fetches the agent card anonymously.
+
+> [!NOTE]
+> Enable this option only when the endpoint publisher confirms that the agent card path requires authentication. Sending credentials when the endpoint doesn't need them widens the exposure of your shared secret.
+
 ## Validate authentication
 
 After you configure authentication, test the connection to confirm it works correctly.
@@ -211,14 +267,14 @@ After you configure authentication, test the connection to confirm it works corr
 
 ### Validate OAuth identity passthrough
 
-1. Open your agent in the Foundry portal using a test user account that hasn't previously consented.
+1. Open your agent in the Foundry portal by using a test user account that you didn't previously consent.
 1. Start a conversation and trigger an action that invokes the A2A tool.
 1. Confirm that a consent link appears in the agent's response.
-1. Open the consent link and sign in with the test user's credentials.
+1. Open the consent link and sign in by using the test user's credentials.
 1. Authorize the requested permissions.
 1. Return to the agent and trigger the A2A tool again.
-1. Confirm the tool call completes successfully using the test user's credentials.
-1. (Optional) Test with another user account to confirm consent flows work for multiple users.
+1. Confirm the tool call completes successfully by using the test user's credentials.
+1. (Optional) Test by using another user account to confirm consent flows work for multiple users.
 
 ## Troubleshooting
 
@@ -228,12 +284,13 @@ Use the following table to diagnose and resolve common authentication issues:
 | --- | --- | --- |
 | Key-based authentication fails with 401 Unauthorized | Invalid or expired token | Regenerate the token from the endpoint publisher and update the project connection. |
 | Key-based authentication fails with 400 Bad Request | Incorrect header name or value format | Check the endpoint documentation for the expected header format. Common formats include `Authorization: Bearer <token>` and `x-api-key: <key>`. |
+| Agent card fetch fails with 401 Unauthorized and `Failed to fetch agent card` | The endpoint requires authentication on the agent card path, but the A2A tool doesn't enable `send_credentials_for_agent_card` | Set `send_credentials_for_agent_card` to `true` in the A2A tool definition. See [Credentials for the agent card request](#credentials-for-the-agent-card-request). |
 | Microsoft Entra ID authentication fails with 403 Forbidden | The identity doesn't have the required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service. Role assignment changes can take up to 10 minutes to propagate. |
 | Microsoft Entra ID authentication fails with 401 Unauthorized | The underlying service doesn't accept Microsoft Entra ID tokens, or the audience is incorrect | Confirm the underlying service supports Microsoft Entra ID authentication. Check that the A2A endpoint is configured to accept tokens for the correct audience. |
-| Consent completes but tool calls fail | The user doesn't have permissions in the underlying service | Confirm the user has the required permissions in the underlying service. Also confirm the user has at least the **Foundry User** role on the Foundry project. |
+| Consent completes but tool calls fail | The user doesn't have the required access to the calling agent or remote service | Confirm the user has the **Foundry Agent Consumer** role on the Foundry project or agent that hosts the calling agent. Also confirm the user has the required permissions in the remote service. If the remote endpoint is another Foundry agent, confirm the user has access to the [remote target project or agent](../how-to/enable-agent-to-agent-endpoint.md#grant-access-to-the-a2a-endpoint). |
 | No consent link appears for OAuth | OAuth identity passthrough isn't configured, or the agent didn't invoke the A2A tool | Verify the project connection is configured for OAuth identity passthrough. Trigger an action that invokes the A2A tool. |
 | Consent link appears but sign-in fails | Custom OAuth configuration is incorrect | For custom OAuth, verify the authorization URL, client ID, and redirect URL are correct. Confirm the redirect URL is added to your OAuth app registration. |
-| Refresh token expired | User hasn't interacted with the agent for an extended period | The user needs to go through the consent flow again. This is expected behavior for security. |
+| Refresh token expired | User didn't interact with the agent for an extended period | The user needs to go through the consent flow again. This behavior is expected for security. |
 
 ## Related content
 

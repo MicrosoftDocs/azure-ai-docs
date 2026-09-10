@@ -12,7 +12,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 08/11/2026
 ai-usage: ai-assisted
 ---
 
@@ -23,10 +23,9 @@ ai-usage: ai-assisted
 ## Create a storage connection
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-1. Select **Operate** in the upper-right navigation.
-1. Select **Admin** in the left pane.
-1. Select your project name in the **Manage all projects** list.
-1. Select **Add connection** in the upper-right corner.
+1. Select **Manage** in the upper-right navigation.
+1. Select **Project details** in the left pane.
+1. Select the **Connected resources** tab, and then select **Add connection**.
 1. In the list of available services, select **Azure Storage**.
 1. Browse for and select your Azure Storage account, choose an **Authentication** type, and then select **Add connection**.
 

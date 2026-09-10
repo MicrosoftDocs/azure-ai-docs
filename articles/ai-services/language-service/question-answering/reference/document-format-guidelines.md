@@ -5,7 +5,7 @@ ms.service: azure-language-foundry-tools
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 05/30/2026
+ms.date: 06/30/2026
 ---
 
 # Format guidelines for custom question answering

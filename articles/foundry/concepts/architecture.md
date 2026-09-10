@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 04/06/2026
+ms.date: 08/21/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -75,7 +75,7 @@ Workloads run in logically isolated environments per Foundry resource. Customer 
 
 ### Content safety and guardrails
 
-Foundry integrates content safety controls into the model and agent inference pipeline. Guardrails define risks to detect, intervention points to scan (user input, output, tool calls (preview), and tool responses (preview)), and response actions when a risk is detected. Content filters run inline with model requests and can be configured per deployment. For more information, see [Guardrails and controls overview](../guardrails/guardrails-overview.md) and [Content filtering severity levels](../openai/concepts/content-filter-severity-levels.md).
+Foundry integrates content safety controls into the model and agent inference pipeline. Guardrails define risks to detect, intervention points to scan, and response actions when a risk is detected. Intervention points include user input, output, tool calls (preview), and tool responses (preview). Content filters run inline with model requests and can be configured per deployment. For more information, see [Guardrails and controls overview](../guardrails/guardrails-overview.md) and [Content filtering severity levels](../openai/concepts/content-filter-severity-levels.md).
 
 ### Regional availability
 

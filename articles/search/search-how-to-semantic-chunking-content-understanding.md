@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -73,7 +73,7 @@ Upload your files to the supported data source. You can use the Azure portal, RE
 The following minimal request creates the data source used throughout this walkthrough.
 
 ```http
-POST {endpoint}/datasources?api-version=2026-05-01-preview
+POST {endpoint}/datasources?api-version=2026-08-01-preview
 
 {
   "name": "my_blob_datasource",
@@ -216,7 +216,7 @@ The skillset uses `indexProjections` to map each chunk to a separate search docu
 Before you send the request, replace `<subdomain>` with your Azure OpenAI subdomain, `<Azure OpenAI api key>` with the embedding-resource key, and `<Foundry resource key>` with the key for the Foundry resource attached to the skillset.
 
 ```http
-POST {endpoint}/skillsets?api-version=2026-05-01-preview
+POST {endpoint}/skillsets?api-version=2026-08-01-preview
 
 {
   "name": "my_content_understanding_skillset",
@@ -338,7 +338,7 @@ Create and run an indexer that reads from your data source, calls the skillset, 
 You don't need `outputFieldMappings` in this scenario. The `indexProjections` block in the skillset already maps each chunk to the target index fields.
 
 ```http
-POST {endpoint}/indexers?api-version=2026-05-01-preview
+POST {endpoint}/indexers?api-version=2026-08-01-preview
 
 {
   "name": "my_content_understanding_indexer",
@@ -365,7 +365,7 @@ When the indexer runs, the Content Understanding skill chunks each document, opt
 Before you query, confirm the indexer run finished:
 
 ```http
-GET {endpoint}/indexers/my_content_understanding_indexer/status?api-version=2026-05-01-preview
+GET {endpoint}/indexers/my_content_understanding_indexer/status?api-version=2026-08-01-preview
 ```
 
 Verify that `lastResult.status` is `success`. If it's `transientFailure` with `itemsProcessed` higher than `0`, the run is a partial success, and you can still query the populated chunks. For more information, see [Monitor indexer status](search-monitor-indexers.md).
@@ -377,7 +377,7 @@ Query the index to verify that the chunks contain the expected content and that 
 The following request runs a hybrid query (keyword search on `chunk` and a vector query against `text_vector`) to confirm that both the chunked text and the embeddings are populated.
 
 ```http
-POST /indexes/my_content_understanding_index/docs/search?api-version=2026-05-01-preview
+POST /indexes/my_content_understanding_index/docs/search?api-version=2026-08-01-preview
 {
   "search": "copay for in-network providers",
   "count": true,
@@ -431,7 +431,7 @@ The `image_path` values stored in the index are pointers into the skill's enrich
 
 This step is optional. Add it only if your client app needs to display or download the extracted images.
 
-Add the following property to the skillset payload from the previous section. The skillset request uses `api-version=2026-05-01-preview`.
+Add the following property to the skillset payload from the previous section. The skillset request uses `api-version=2026-08-01-preview`.
 
 ```json
 "knowledgeStore": {

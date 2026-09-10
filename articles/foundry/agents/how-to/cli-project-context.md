@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 08/25/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -33,7 +33,7 @@ The `azd ai` commands run in two contexts: inside an `azd` project (the typical 
 
 The resource commands (`azd ai connection`, `azd ai toolbox`, `azd ai skill`, and `azd ai routine`) operate on a single Foundry project, so they need a project endpoint resolved from one of these contexts before they can run.
 
-The `azd ai agent` commands (such as `run`, `invoke`, and `optimize`) aren't standalone. They require an `azd` project for `azure.yaml` and environment resolution. Use `--agent-endpoint` on `azd ai agent invoke` to call a deployed agent without an `azd` project on disk.
+Some `azd ai agent` commands require an `azd` project because they operate on local service definitions. Other commands support standalone use. For example, `azd ai agent optimize` can target an existing deployed agent when you provide its name and resolve the Foundry project endpoint from global config, an explicit flag, or an environment variable. Use `--agent-endpoint` on `azd ai agent invoke` to call a deployed agent without an `azd` project on disk.
 
 ## How endpoint resolution works
 
@@ -125,3 +125,4 @@ This behavior is intentional. Project-level environment values are part of the t
 * [Quickstart: Deploy your first hosted agent](../quickstarts/quickstart-hosted-agent.md)
 * [Install the Azure Developer CLI Foundry extensions](install-cli-foundry-extensions.md)
 * [Initialize a hosted agent project with the Azure Developer CLI](init-agent-project.md)
+* [Optimize an existing agent without AZD project files](optimize-agent-targets.md#optimize-an-existing-agent-without-azd-project-files)

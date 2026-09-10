@@ -1,9 +1,9 @@
 ---
 title: Azure SQL Indexer
-description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
+description: Set up a search indexer to index tables in Azure SQL Database for vector and full-text search in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ms.custom:
@@ -69,7 +69,7 @@ Use these instructions to create and load a table in Azure SQL Database for test
    CREATE TABLE tbl_hotels
     (
         Id TINYINT PRIMARY KEY NONCLUSTERED,
-        Modified DateTime NULL DEFAULT '0000-00-00 00:00:00',
+        Modified DateTime NULL DEFAULT CURRENT_TIMESTAMP,
         IsDeleted TINYINT,
         HotelName VARCHAR(40),
         Category VARCHAR(20),
@@ -108,7 +108,7 @@ Use these instructions to create and load a table in Azure SQL Database for test
 
    :::image type="content" source="media/search-how-to-index-sql-database/tsql-query-results.png" alt-text="Screenshot of query results showing the description field.":::
 
-The Description field provides the most verbose content. You should target this field for full text search and optional vectorization.
+The Description field provides the most verbose content. You should target this field for full-text search and optional vectorization.
 
 Now that you have a database table, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
@@ -174,10 +174,9 @@ The data source definition specifies the data to index, credentials, and policie
         "description" : "A database for testing Azure AI Search indexes.",
         "type" : "azuresql",
         "credentials" : { "connectionString" : "Server=tcp:<your server>.database.windows.net,1433;Database=<your database>;User ID=<your user name>;Password=<your password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" },
-        "container" : { 
-            "name" : "name of the table or view that you want to index",
-            "query" : null (not supported in the Azure SQL indexer)
-            },
+        "container" : {
+            "name" : "name of the table or view that you want to index"
+        },
         "dataChangeDetectionPolicy": null,
         "dataDeletionDetectionPolicy": null,
         "encryptionKey": null,
@@ -187,7 +186,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 1. Provide a unique name for the data source that follows Azure AI Search [naming conventions](/rest/api/searchservice/naming-rules).
 
-1. Set "type" to `"azuresql"` (required).
+1. Set `type` to `"azuresql"` (required) and set `container.name` to the table or view that you want to index. Azure SQL indexers don't support `container.query`.
 
 1. Set "credentials" to a connection string:
 
@@ -410,7 +409,7 @@ When using SQL integrated change tracking policy, don't specify a separate data 
 
 ### High water mark change detection policy
 
-This change detection policy relies on a "high water mark" column in your table or view that captures the version or time when a row was last updated. If you're using a view, you must use a high water mark policy. 
+This change detection policy relies on a "high water mark" column in your table or view that captures the version or time when a row was last updated. If you're using a view, you must use a high water mark policy.
 
 The high water mark column must meet the following requirements:
 
@@ -445,50 +444,58 @@ api-key: admin-key
 
 <a name="convertHighWaterMarkToRowVersion"></a>
 
-##### convertHighWaterMarkToRowVersion
+#### convertHighWaterMarkToRowVersion
 
-If you're using a [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) data type for the high water mark column, consider setting the `convertHighWaterMarkToRowVersion` property in indexer configuration. Setting this property to true results in the following behaviors: 
+If you're using a [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) data type for the high water mark column, consider setting the `convertHighWaterMarkToRowVersion` property in indexer configuration. Setting this property to true results in the following behaviors:
 
 + Uses the rowversion data type for the high water mark column in the indexer SQL query. Using the correct data type improves indexer query performance.
 
 + Subtracts one from the rowversion value before the indexer query runs. Views with one-to-many joins might have rows with duplicate rowversion values. Subtracting one ensures the indexer query doesn't miss these rows.
 
-To enable this property, create or update the indexer with the following configuration:
+To enable this property, add the following `parameters` property when you create or update the indexer:
 
-```http
-    {
-      ... other indexer definition properties
-     "parameters" : {
-            "configuration" : { "convertHighWaterMarkToRowVersion" : true } }
+```json
+{
+    "parameters": {
+        "configuration": {
+            "convertHighWaterMarkToRowVersion": true
+        }
     }
+}
 ```
 
 <a name="queryTimeout"></a>
 
-##### queryTimeout
+#### queryTimeout
 
-If you encounter timeout errors, set the `queryTimeout` indexer configuration setting to a value higher than the default 5-minute timeout. For example, to set the timeout to 10 minutes, create or update the indexer with the following configuration:
+If you encounter timeout errors, set the `queryTimeout` indexer configuration setting to a value higher than the default 5-minute timeout. For example, to set the timeout to 10 minutes, add the following `parameters` property when you create or update the indexer:
 
-```http
-    {
-      ... other indexer definition properties
-     "parameters" : {
-            "configuration" : { "queryTimeout" : "00:10:00" } }
+```json
+{
+    "parameters": {
+        "configuration": {
+            "queryTimeout": "00:10:00"
+        }
     }
+}
 ```
 
 <a name="disableOrderByHighWaterMarkColumn"></a>
 
-##### disableOrderByHighWaterMarkColumn
+#### disableOrderByHighWaterMarkColumn
 
-You can also disable the `ORDER BY [High Water Mark Column]` clause. However, this isn't recommended because if the indexer execution is interrupted by an error, the indexer has to reprocess all rows if it runs later, even if the indexer has already processed almost all the rows at the time it was interrupted. To disable the `ORDER BY` clause, use the `disableOrderByHighWaterMarkColumn` setting in the indexer definition:  
+You can also disable the `ORDER BY [High Water Mark Column]` clause. However, this action isn't recommended because if the indexer execution is interrupted by an error, the indexer has to reprocess all rows if it runs later, even if the indexer already processed almost all the rows at the time it was interrupted.
 
-```http
-    {
-     ... other indexer definition properties
-     "parameters" : {
-            "configuration" : { "disableOrderByHighWaterMarkColumn" : true } }
+To disable the `ORDER BY` clause, add the following `parameters` property when you create or update the indexer:
+
+```json
+{
+    "parameters": {
+        "configuration": {
+            "disableOrderByHighWaterMarkColumn": true
+        }
     }
+}
 ```
 
 ### Soft delete column deletion detection policy
@@ -497,17 +504,16 @@ When rows are deleted from the source table, you probably want to delete those r
 
 If the rows are physically removed from the table, Azure AI Search has no way to infer the presence of records that no longer exist. However, you can use the “soft-delete” technique to logically delete rows without removing them from the table. Add a column to your table or view and mark rows as deleted using that column.
 
-When using the soft-delete technique, you can specify the soft delete policy as follows when creating or updating the data source:
+When you use the soft-delete technique, add the following `dataDeletionDetectionPolicy` property when you create or update the data source:
 
-```http
-    {
-        …,
-        "dataDeletionDetectionPolicy" : {
-           "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
-           "softDeleteColumnName" : "[a column name]",
-           "softDeleteMarkerValue" : "[the value that indicates that a row is deleted]"
-        }
+```json
+{
+    "dataDeletionDetectionPolicy": {
+        "@odata.type": "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
+        "softDeleteColumnName": "[a column name]",
+        "softDeleteMarkerValue": "[the value that indicates that a row is deleted]"
     }
+}
 ```
 
 The **softDeleteMarkerValue** must be a string in the JSON representation of your data source. Use the string representation of your actual value. For example, if you have an integer column where deleted rows are marked with the value 1, use `"1"`. If you have a BIT column where deleted rows are marked with the Boolean true value, use the string literal `"True"` or `"true"`, the case doesn't matter.
@@ -534,7 +540,7 @@ It depends. For full indexing of a table or view, you can use a secondary replic
 
 For incremental indexing, Azure AI Search supports two change detection policies: SQL integrated change tracking and High Water Mark.
 
-On read-only replicas, SQL Database doesn't support integrated change tracking. Therefore, you must use High Water Mark policy. 
+On read-only replicas, SQL Database doesn't support integrated change tracking. Therefore, you must use the High Water Mark policy.
 
 Our standard recommendation is to use the rowversion data type for the high water mark column. However, using rowversion relies on the `MIN_ACTIVE_ROWVERSION` function, which isn't supported on read-only replicas. Therefore, you must point the indexer to a primary replica if you're using rowversion.
 

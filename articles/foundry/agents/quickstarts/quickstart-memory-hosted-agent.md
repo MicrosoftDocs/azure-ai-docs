@@ -4,7 +4,7 @@ description: "Provision a Foundry memory store, then deploy a Python hosted agen
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 07/09/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -32,6 +32,8 @@ You complete two parts:
 
 The agent code, memory provider, and authentication come from the Foundry
 memory sample, so you focus on the workflow rather than the implementation.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help provision the memory store, wire it to your hosted agent, and test recall behavior.
 
 ## Prerequisites
 
@@ -160,7 +162,7 @@ azd env set MEMORY_STORE_NAME "<your-store-name>"
 
 ## Step 5: Deploy to Foundry Agent Service
 
-Build and deploy the agent container. The `postprovision` hook already writes `MEMORY_STORE_NAME` into `azure.yaml`, so the deployed container reads the same store:
+Deploy the agent source code. `azd` packages the source as a ZIP file and uploads it to Foundry, which resolves dependencies and builds the hosted agent remotely. The `postprovision` hook already writes `MEMORY_STORE_NAME` into `azure.yaml`, so the deployed agent reads the same store:
 
 ```powershell
 azd deploy
@@ -505,7 +507,7 @@ asyncio.run(delete())
 Delete the agent and its Azure resources:
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```powershell
 azd down

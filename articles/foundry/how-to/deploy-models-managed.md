@@ -142,7 +142,7 @@ Managed compute quota is granted per accelerator family per region through the F
 
 To request more quota:
 
-1. Select **Operate** in the upper-right navigation, then **Quota** in the left pane.
+1. Select **Manage** in the upper-right navigation, and then select **Quota** in the left pane.
 1. Select the **Managed compute** tab. The table lists current allocations grouped by accelerator family and region.
 1. Select **Request quota** in the upper-right corner.
 1. In the request form, choose the accelerator family (A100, H100, or MI300X), the target region, and the requested quota. Submit the request.

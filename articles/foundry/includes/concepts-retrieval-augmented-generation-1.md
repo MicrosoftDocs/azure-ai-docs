@@ -1,6 +1,7 @@
 ---
 title: Include file
 description: Include file
+ai-usage: ai-assisted
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
@@ -20,7 +21,7 @@ LLMs are trained on public data available at training time. If you need answers 
 
 ## What is RAG?
 
-Large language models (LLMs) like ChatGPT are trained on public internet data that was available when the model was trained. The public data might not be sufficient for your needs. For example, you might want answers based on private documents, or you might need up-to-date information.
+Large language models (LLMs) are trained on public internet data that was available when the model was trained. The public data might not be sufficient for your needs. For example, you might want answers based on private documents, or you might need up-to-date information.
 
 RAG addresses this by retrieving relevant content from your data and including it in the model input. The model can then generate responses grounded in the retrieved content.
 
@@ -41,7 +42,7 @@ RAG follows a three-step flow:
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Diagram that shows a user query, retrieval from a data store, and a grounded model response." lightbox="../media/index-retrieve/rag-pattern.png":::
 
-## What is an index and why do I need it?
+## What is an index and why you need one
 
 RAG works best when you can retrieve relevant content quickly and consistently. An index helps by organizing your content for efficient retrieval.
 
@@ -66,10 +67,10 @@ Traditional RAG patterns often use a single query to retrieve information from y
 
 Agentic retrieval provides several advantages over classic RAG:
 
-* **Context-aware query planning** - Uses conversation history to understand context and intent. Follow-up questions retain the context of earlier exchanges, making multi-turn conversations more natural.
-* **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
-* **Structured responses** - Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
-* **Built-in semantic ranking** - Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
-* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response. Alternatively, you can choose to return raw, verbatim passages for your application to process.
+- **Context-aware query planning**: Uses conversation history to understand context and intent. Follow-up questions retain the context of earlier exchanges, making multi-turn conversations more natural.
+- **Parallel execution**: Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
+- **Structured responses**: Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
+- **Built-in semantic ranking**: Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
+- **Optional answer synthesis**: Can include LLM-formulated answers directly in the query response. Alternatively, you can choose to return raw, verbatim passages for your application to process.
 
 If you're using Azure AI Search as your retrieval engine, see [Agentic retrieval](/azure/search/agentic-retrieval-overview) and [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md).

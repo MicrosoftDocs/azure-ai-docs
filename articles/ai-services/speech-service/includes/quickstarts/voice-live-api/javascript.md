@@ -46,7 +46,24 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. Create a **package.json** file with the following content:
 
-    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
+    ```json
+    {
+      "name": "voice-live-quickstart",
+      "version": "1.0.0",
+      "type": "module",
+      "dependencies": {
+        "@azure/ai-voicelive": "^1.0.0",
+        "@azure/core-auth": "^1.0.0",
+        "@azure/identity": "^4.0.0",
+        "dotenv": "^16.0.0",
+        "node-record-lpcm16": "^1.0.1",
+        "speaker": "^0.5.5"
+      }
+    }
+    ```
+
+    > [!NOTE]
+    > The `node-record-lpcm16` and `speaker` packages are optional audio packages for microphone input and audio playback. They require [SoX](https://sox.sourceforge.io/) and native build tools. If you want to connect without audio hardware, use the `--no-audio` flag when running the sample.
 
 1. Install the dependencies:
 
@@ -437,8 +454,6 @@ The sample connects to Voice Live and configures the session with these fields:
         this._session = null;
         this._subscription = null;
         this._audio = new AudioProcessor(!options.noAudio, options.audioInputDevice);
-        this._activeResponse = false;
-        this._responseApiDone = false;
         this._greetingSent = false;
       }
 
@@ -494,26 +509,10 @@ The sample connects to Voice Live and configures the session with these fields:
           onInputAudioBufferSpeechStarted: async () => {
             console.log("🎤 Listening...");
             this._audio.skipPendingAudio();
-
-            if (this._activeResponse && !this._responseApiDone) {
-              try {
-                await session.sendEvent({ type: "response.cancel" });
-              } catch (err) {
-                const msg = err?.message ?? "";
-                if (!msg.toLowerCase().includes("no active response")) {
-                  console.warn("[barge-in] Cancel failed:", msg);
-                }
-              }
-            }
           },
 
           onInputAudioBufferSpeechStopped: async () => {
             console.log("🤔 Processing...");
-          },
-
-          onResponseCreated: async () => {
-            this._activeResponse = true;
-            this._responseApiDone = false;
           },
 
           onResponseAudioDelta: async (event) => {
@@ -528,15 +527,10 @@ The sample connects to Voice Live and configures the session with these fields:
 
           onResponseDone: async () => {
             console.log("✅ Response complete");
-            this._activeResponse = false;
-            this._responseApiDone = true;
           },
 
           onServerError: async (event) => {
             const msg = event.error?.message ?? "";
-            if (msg.includes("Cancellation failed: no active response")) {
-              return;
-            }
             console.error(`❌ VoiceLive error: ${msg}`);
           },
 

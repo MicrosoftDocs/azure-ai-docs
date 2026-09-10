@@ -9,7 +9,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026 
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 07/31/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: mcleans
@@ -364,10 +364,10 @@ Use Microsoft Agent Framework for most workflows. The orchestration you build vi
 
 ### Option 2: Azure Logic Apps
 
-If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Logic Apps lets you combine deterministic steps - connectors, conditions, approvals, and hundreds of prebuilt actions - with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, instead of rebuilding them from scratch.
+If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Azure Logic Apps lets you combine deterministic steps, including prebuilt built-in actions, APIs, and MCP servers, with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, rather than rebuild them from scratch.
 
 - Build automated workflows with the visual designer: [Azure Logic Apps overview](/azure/logic-apps/logic-apps-overview)
-- Call and orchestrate Foundry agents from a workflow: [Run automated workflows from Foundry agents](/azure/logic-apps/add-agent-action-create-run-workflow?pivots=portal)
+- Call and orchestrate Foundry agents from a workflow: [Automate Foundry agents with workflows in Azure Logic Apps](/azure/logic-apps/automate-foundry-agents-with-workflows)
 
 ### Option 3: Connect agents directly with A2A
 

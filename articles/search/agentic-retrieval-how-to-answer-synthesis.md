@@ -15,9 +15,9 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -29,11 +29,17 @@ You can instead enable *answer synthesis* (preview), which uses the LLM specifie
 
 You can set this property in a knowledge base or a retrieve request. The knowledge base setting establishes the default for all queries, while the retrieve request setting overrides the default on a query-by-query basis.
 
+### Usage support
+
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 
 + An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that specifies an LLM.
 
-+ Permissions to update knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to update knowledge bases. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 + For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
@@ -41,17 +47,23 @@ You can set this property in a knowledge base or a retrieve request. The knowled
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
+
 :::zone-end
 
 :::zone pivot="python"
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
 :::zone-end
 
 :::zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 :::zone-end
 
@@ -67,19 +79,19 @@ This section demonstrates how to enable answer synthesis in an existing knowledg
 
 :::zone pivot="csharp"
 
-Set `OutputMode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `AnswerInstructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
+Set `OutputMode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `AnswerInstructions` to customize the answer output. The following example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```csharp
 var aoaiParams = new AzureOpenAIVectorizerParameters
 {
-    ResourceUri = new Uri(aoaiEndpoint),
-    DeploymentName = aoaiGptDeployment,
-    ModelName = aoaiGptModel,
+    ResourceUri = new Uri("<aoai-endpoint>"),
+    DeploymentName = "<aoai-gpt-deployment>",
+    ModelName = "<aoai-gpt-model>",
 };
 
 var knowledgeBase = new KnowledgeBase(
-    name: knowledgeBaseName,
-    knowledgeSources: new[] { new KnowledgeSourceReference(knowledgeSourceName) })
+    name: "<knowledge-base-name>",
+    knowledgeSources: new[] { new KnowledgeSourceReference("<knowledge-source-name>") })
 {
     Models = { new KnowledgeBaseAzureOpenAIModel(aoaiParams) },
     OutputMode = "answerSynthesis",
@@ -95,7 +107,7 @@ await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
 
 :::zone pivot="python"
 
-Set `output_mode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `answer_instructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
+Set `output_mode` to `"answerSynthesis"` on the `KnowledgeBase` definition. Optionally, set `answer_instructions` to customize the answer output. The following example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
@@ -107,15 +119,15 @@ from azure.search.documents.indexes.models import (
 )
 
 aoai_params = AzureOpenAIVectorizerParameters(
-    resource_url=aoai_endpoint,
-    deployment_name=aoai_gpt_deployment,
-    model_name=aoai_gpt_model,
+    resource_url="<aoai-endpoint>",
+    deployment_name="<aoai-gpt-deployment>",
+    model_name="<aoai-gpt-model>",
 )
 
 knowledge_base = KnowledgeBase(
-    name=knowledge_base_name,
+    name="<knowledge-base-name>",
     models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
-    knowledge_sources=[KnowledgeSourceReference(name=knowledge_source_name)],
+    knowledge_sources=[KnowledgeSourceReference(name="<knowledge-source-name>")],
     output_mode="answerSynthesis",
     answer_instructions="Use concise bulleted lists",
 )
@@ -130,13 +142,13 @@ index_client.create_or_update_knowledge_base(knowledge_base)
 
 :::zone pivot="rest"
 
-Set `outputMode` to `"answerSynthesis"` on the knowledge base definition. Optionally, set `answerInstructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
+Set `outputMode` to `"answerSynthesis"` on the knowledge base definition. Optionally, set `answerInstructions` to customize the answer output. The following example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```http
 ### Enable answer synthesis in a knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-05-01-preview
+PUT {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2026-08-01-preview
 Content-Type: application/json
-api-key: {{api-key}}
+Authorization: Bearer {{search-access-token}}
 
 {
     "name": "{{knowledge-base-name}}",
@@ -147,7 +159,7 @@ api-key: {{api-key}}
 }
 ```
 
-**Reference:** [Knowledge Base - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Base - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 :::zone-end
 
@@ -222,9 +234,9 @@ Set `outputMode` to `"answerSynthesis"` on a retrieve request.
 
 ```http
 ### Enable answer synthesis in a retrieve request
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+POST {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-08-01-preview
 Content-Type: application/json
-api-key: {{api-key}}
+Authorization: Bearer {{search-access-token}}
 
 {
     "messages": [
@@ -242,7 +254,7 @@ api-key: {{api-key}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 :::zone-end
 
@@ -250,7 +262,7 @@ api-key: {{api-key}}
 
 When answer synthesis is enabled, the knowledge base returns a natural-language answer based on the instructions you optionally specified in the knowledge base. Citations to your knowledge sources are formatted as `[ref_id:<number>]`.
 
-For example, if your instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response might look like this:
+For example, if your instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response should be similar to the following example.
 
 ```json
 {

@@ -4,8 +4,9 @@ description: Learn which elevated roles are required for administrator tasks in 
 author: sdgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
+ms.subservice: foundry-platform
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 08/21/2026
 ai-usage: ai-assisted
 #customer intent: As an IT administrator, I want to understand which elevated roles are required for each area of Microsoft Foundry so that I can plan role assignments and troubleshoot permission errors.
 ---
@@ -44,7 +45,7 @@ When you provision a new Foundry environment, the tasks follow this general orde
 1. **Enable monitoring**.
 
 > [!TIP]
-> **Small team (1-5 developers)?** Assign **Owner** to yourself at the resource group scope and **Foundry User** to each developer at the Foundry resource scope. This assignment covers most administrative tasks. For larger teams, use Microsoft Entra groups and scope roles per project.
+> **Small team (1-5 developers)?** Assign **Owner** to yourself at the resource group scope and **Foundry User** to each developer at the Foundry resource scope. This assignment covers most administrative tasks. You also need **Foundry Account Owner** on the Foundry resource to deploy models and manage quotas, guardrails, and content blocklists. For larger teams, use Microsoft Entra groups and scope roles per project.
 
 The remaining sections explain the role requirements for each area. For a summary of all elevated roles, see [Quick reference: role summary](#quick-reference-role-summary).
 
@@ -101,7 +102,7 @@ Agent setup is the most permission-intensive area in Foundry. The required roles
 | **[Hosted](#hosted-agent-setup)** | You want the fastest path with minimal setup | None — Foundry provisions backing resources for you | Foundry manages backing resources; less networking control |
 | **[BYO resources](#bring-your-own-resources)** | You already have Cosmos DB, Search, or Storage with specific compliance requirements | Existing Cosmos DB, AI Search, or Storage resources with network access configured | You attach existing resources and manage their RBAC |
 
-Review the subsection that matches your setup option. Skip the others - you can return to them later if your requirements change.
+Review the subsection that matches your setup option. Skip the others. You can return to them later if your requirements change.
 
 ### Standard agent setup
 
@@ -122,7 +123,7 @@ Assign the following data-plane roles to the Foundry project managed identity on
 | Azure Storage (`agents-blobstore`) | **Storage Blob Data Owner** |
 
 > [!NOTE]
-> **Cosmos DB Built-in Data Contributor** is a Cosmos DB data-plane role. Assign it through the Azure CLI (`az cosmosdb sql role assignment create`) or Bicep - not through the standard **Access control (IAM)** blade. For details, see [Configure role-based access control for Azure Cosmos DB](/azure/cosmos-db/how-to-connect-role-based-access-control).
+> **Cosmos DB Built-in Data Contributor** is a Cosmos DB data-plane role. Assign it through the Azure CLI (`az cosmosdb sql role assignment create`) or Bicep — not through the standard **Access control (IAM)** blade. For details, see [Configure role-based access control for Azure Cosmos DB](/azure/cosmos-db/how-to-connect-role-based-access-control).
 
 For the full provisioning procedure and Bicep templates, see [Standard agent setup](../agents/concepts/standard-agent-setup.md).
 
@@ -144,7 +145,7 @@ Hosted agent setup is still the fastest path for agent runtime infrastructure, b
 
 For detailed instructions on hosted agent permissions, see [Hosted agent permissions reference](../agents/concepts/hosted-agent-permissions.md).
 
-For step-by-step instructions, see [Deploy a hosted agent](../agents/how-to/deploy-hosted-agent.md). 
+For step-by-step instructions, see [Deploy a hosted agent](../agents/how-to/deploy-hosted-agent.md).
 
 ### Bring your own resources
 
@@ -184,10 +185,12 @@ Several agent tools require **Contributor** or higher to provision or configure 
 
 Publishing promotes an agent from a development asset inside a Foundry project into a managed Agent Application resource with a stable endpoint. To publish an agent, you need the **Foundry Project Manager** role on the Foundry resource scope.
 
+The agent publishing experience is changing. The role requirements in this section apply to the Agent Application publishing model. To learn what changes in the newer agent object model, see [Migrate from agent applications to the new agent endpoint and publishing experience](../agents/how-to/migrate-agent-applications.md).
+
 | Task | Minimum role | Scope | Details |
 |------|-------------|-------|---------|
-| Publish an agent as an Agent Application | **Foundry Project Manager** | Foundry resource | [Publish and share agents](../agents/how-to/publish-agent.md) |
-| Invoke a published Agent Application | **Foundry User** | Agent Application resource | [Invoke Agent Applications](../agents/how-to/publish-responses.md) |
+| Publish an agent as an Agent Application | **Foundry Project Manager** | Foundry resource | [Agent applications](../agents/how-to/agent-applications.md) |
+| Invoke a published Agent Application | **Foundry User** | Agent Application resource | [Invoke your Agent Application](../agents/how-to/agent-applications.md#invoke-your-agent-application) |
 | Publish an agent to Microsoft 365 and Teams | **Foundry Project Manager** | Foundry project | [Publish agents to Microsoft 365 and Teams](../agents/how-to/publish-copilot.md) |
 | Reassign RBAC to published agent identity | **Owner** *or* **User Access Administrator** | Target resource | [Agent identity concepts](../agents/concepts/agent-identity.md) |
 
@@ -213,7 +216,7 @@ To deploy a model, you need the **Foundry Account Owner** role on the Foundry re
 | Edit quotas | **Foundry Account Owner** | Foundry resource and subscription | [Manage quotas](../how-to/quota.md) |
 | Create content blocklists | **Foundry Account Owner** | Azure OpenAI resource | [Use blocklists](../openai/how-to/use-blocklists.md) |
 
-Marketplace model deployments require subscription-level access because they create billing agreements. Fine-tuning requires **Foundry Owner** because it creates training jobs that consume compute and storage. Before deploying any model, verify that your subscription has sufficient quota for the target model and region - see [Manage quotas](../how-to/quota.md).
+Marketplace model deployments require subscription-level access because they create billing agreements. Fine-tuning requires **Foundry Owner** because it creates training jobs that consume compute and storage. Before deploying any model, verify that your subscription has sufficient quota for the target model and region — see [Manage quotas](../how-to/quota.md).
 
 
 For step-by-step deployment instructions, see [Create model deployments](../foundry-models/how-to/create-model-deployments.md).
@@ -289,7 +292,7 @@ For a walkthrough of creating your first guardrail, see [Create guardrails](../g
 
 ## Manage compliance and monitoring
 
-Compliance and monitoring tasks span Azure RBAC roles and Microsoft Entra directory roles. Understanding the distinction is important - you assign directory roles in the [Microsoft Entra admin center](https://entra.microsoft.com), not in the Azure portal's **Access control (IAM)** blade.
+Compliance and monitoring tasks span Azure RBAC roles and Microsoft Entra directory roles. Understanding the distinction is important — you assign directory roles in the [Microsoft Entra admin center](https://entra.microsoft.com), not in the Azure portal's **Access control (IAM)** blade.
 
 | Task | Minimum role | Scope | Details |
 |------|-------------|-------|---------|
@@ -307,7 +310,7 @@ For step-by-step monitoring setup, see [Monitor models](../foundry-models/how-to
 
 ## Configure storage and data-plane access
 
-Foundry agents, evaluations, and several tools require data-plane roles on storage and search resources. Assign these roles to the Foundry project managed identity - not to human users - so the service can access backing resources at runtime.
+Foundry agents, evaluations, and several tools require data-plane roles on storage and search resources. Assign these roles to the Foundry project managed identity — not to human users — so the service can access backing resources at runtime.
 
 The following table includes an **Assigned to** column because these roles apply to managed identities rather than to human users.
 

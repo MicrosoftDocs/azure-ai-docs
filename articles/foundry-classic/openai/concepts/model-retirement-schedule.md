@@ -4,7 +4,7 @@ description: Retirement dates and replacement models for Microsoft Foundry Model
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 04/23/2026
+ms.date: 08/26/2026
 ms.custom:
   - classic-and-new
 manager: mcleans

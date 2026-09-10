@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 05/23/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -16,7 +16,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 :::moniker range=">=doc-intel-3.0.0"
 
-[!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]   ![blue-checkmark](../media/blue-yes-icon.png) [v2.1](?view=doc-intel-2.1.0&preserve-view=true)
+[!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]   🟦 [v2.1](?view=doc-intel-2.1.0&preserve-view=true)
 
 Document Intelligence custom models require a handful of training documents to get started. If you have at least five documents, you can get started training a custom model. You can train either a [custom template model (custom form)](../train/custom-template.md) or a [custom neural model (custom document)](../train/custom-neural.md). This document walks you through the process of training the custom models.
 
@@ -128,7 +128,7 @@ Congratulations you learned to train a custom model in the Document Intelligence
 
 ::: moniker range="doc-intel-2.1.0"
 
-**Applies to:** ![Document Intelligence v2.1 checkmark](../media/yes-icon.png) **v2.1**. **Other versions:** [v3.0](../how-to-guides/build-a-custom-model.md?view=doc-intel-3.0.0&preserve-view=true?view=doc-intel-3.0.0&preserve-view=true)
+**Applies to:** 🟩 **v2.1**. **Other versions:** [v3.0](../how-to-guides/build-a-custom-model.md?view=doc-intel-3.0.0&preserve-view=true?view=doc-intel-3.0.0&preserve-view=true)
 
 When you use the Document Intelligence custom model, you provide your own training data to the [Train Custom Model](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) operation, so that the model can train to your industry-specific forms. Follow this guide to learn how to collect and prepare data to train the model effectively.
 

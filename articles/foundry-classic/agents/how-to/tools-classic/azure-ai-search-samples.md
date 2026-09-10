@@ -1,17 +1,20 @@
 ---
 title: "How to use Azure AI Search in Foundry Agent Service (classic)"
-description: "Learn how to ground Azure AI Agents with content indexed in Azure AI Search. (classic)"
+description: "Learn how to ground classic Foundry agents with content from an existing Azure AI Search index by using supported SDK and REST API samples."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 08/05/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.custom: azure-ai-agents
+ms.custom:
+    - azure-ai-agents
+    - doc-kit-assisted
+ai-usage: ai-assisted
 zone_pivot_groups: selection-azure-ai-search
 ---
 
@@ -21,13 +24,20 @@ zone_pivot_groups: selection-azure-ai-search
 > This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Azure AI Search tool documentation](../../../../foundry/agents/how-to/tools/ai-search.md).
-> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
+> Agents (classic) are deprecated and retire on March 31, 2027. Use the new agents in the generally available [Foundry Agent Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 
 ## Prerequisites
 
 + Completion of the [Azure AI Search tool setup](./azure-ai-search.md?pivot=overview-azure-ai-search).
++ Sign in locally by using `az login` so `DefaultAzureCredential` can authenticate.
++ Install the classic-compatible packages for your language:
+
+    - Python 3.9 or later: `pip install "azure-ai-projects==1.0.0" "azure-ai-agents==1.1.0" azure-identity`.
+    - .NET 8 or later: `dotnet add package Azure.AI.Agents.Persistent --version 1.1.0` and `dotnet add package Azure.Identity`.
+    - Node.js 20 or later: `npm install @azure/ai-agents@1.1.0 @azure/identity`.
+    - Java: `com.azure:azure-ai-agents-persistent:1.0.0-beta.2` and `com.azure:azure-identity:1.18.4`.
 
 :::zone pivot="portal"
 
@@ -39,11 +49,7 @@ This article explains how to use an existing search index with the [Azure AI Sea
 
 1. Select your agent from the list, and then select **Knowledge** > **Add**.
 
-    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
-
 1. Select **Azure AI Search**. 
-
-    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
 1. Follow the prompts to add the Azure AI Search tool.
 
@@ -51,19 +57,27 @@ This article explains how to use an existing search index with the [Azure AI Sea
 
 :::zone pivot="python"
 
-## Create an Azure AI Client
+## Set environment variables
 
-First, create an Azure AI Client using the endpoint of your Foundry project.
+Set the project endpoint, model deployment name, and existing search index name:
+
+```bash
+export PROJECT_ENDPOINT="<your-project-endpoint>"
+export MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>"
+export AZURE_AI_SEARCH_INDEX_NAME="<your-index-name>"
+```
+
+## Create a project client
+
+Create a project client by using the endpoint of your Foundry project.
 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-# Retrieve the endpoint from environment variables
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
 
-# Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
     credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)
@@ -80,9 +94,9 @@ from azure.ai.projects.models import ConnectionType
 
 # Define the Azure AI Search connection ID and index name
 azure_ai_conn_id = project_client.connections.get_default(ConnectionType.AZURE_AI_SEARCH).id
+print(f"Search connection ID: {azure_ai_conn_id}")
 
-# Find the index name on the Search Management > Indexes page of your Azure AI Search service
-index_name = "sample_index"
+index_name = os.environ["AZURE_AI_SEARCH_INDEX_NAME"]
 
 # Initialize the Azure AI Search tool
 ai_search = AzureAISearchTool(
@@ -130,7 +144,7 @@ message = project_client.agents.messages.create(
     role=MessageRole.USER,
     content="What is the temperature rating of the cozynights sleeping bag?",
 )
-print(f"Created message, ID: {message['id']}")
+print(f"Created message, ID: {message.id}")
 
 # Create and process a run with the specified thread and agent
 run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
@@ -146,19 +160,44 @@ for message in messages.data:
     print(f"Role: {message.role}, Content: {message.content}")
 ```
 
+### Expected output
+
+The answer depends on your index. A successful run produces output similar to:
+
+```output
+Search connection ID: <connection-id>
+Created agent, ID: <agent-id>
+Created thread, ID: <thread-id>
+Created message, ID: <message-id>
+Run finished with status: RunStatus.COMPLETED
+Role: MessageRole.AGENT, Content: <answer grounded in the search index>
+```
+
 ## Clean up resources
 
-After you complete these operations, delete the agent to clean up resources.
+After you verify the response, delete the thread and agent, and then close the project client.
 
 ```python
-# Delete the agent
+project_client.agents.threads.delete(thread.id)
 project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+project_client.close()
+print("Deleted thread and agent, and closed the project client")
 ```
 
 :::zone-end
 
 :::zone pivot="csharp"
+
+## Set environment variables
+
+Set the values that the sample reads at runtime.
+
+```powershell
+$env:PROJECT_ENDPOINT = "<your-project-endpoint>"
+$env:MODEL_DEPLOYMENT_NAME = "<your-model-deployment-name>"
+$env:AZURE_AI_SEARCH_CONNECTION_ID = "<your-search-connection-id>"
+$env:AZURE_AI_SEARCH_INDEX_NAME = "<your-index-name>"
+```
 
 ## Create a project client
 
@@ -168,19 +207,14 @@ Create a client object that contains the endpoint of your Foundry project, which
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading;
 
-// Get connection information from app configuration
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
-
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
-var azureAiSearchConnectionId = configuration["AzureAiSearchConnectionId"];
+var projectEndpoint = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var azureAiSearchConnectionId = Environment.GetEnvironmentVariable(
+    "AZURE_AI_SEARCH_CONNECTION_ID");
+var indexName = Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX_NAME");
 
 // Create the agent client
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
@@ -193,7 +227,7 @@ Using the connection ID of your Azure AI Search service, configure the Azure AI 
 ```csharp
 AzureAISearchToolResource searchResource = new(
     indexConnectionId: azureAiSearchConnectionId,
-    indexName: "sample_index",
+    indexName: indexName,
     topK: 5,
     filter: "category eq 'sleeping bag'",
     queryType: AzureAISearchQueryType.Simple
@@ -216,6 +250,7 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
     tools: [new AzureAISearchToolDefinition()],
     toolResources: toolResource
 );
+Console.WriteLine($"Created agent, ID: {agent.Id}");
 
 ```
 
@@ -226,6 +261,7 @@ Now that the agent is created, you can ask it questions about the data in your s
 ```csharp
 // Create thread for communication
 PersistentAgentThread thread = agentClient.Threads.CreateThread();
+Console.WriteLine($"Created thread, ID: {thread.Id}");
 
 // Create message and run the agent
 PersistentThreadMessage message = agentClient.Messages.CreateMessage(
@@ -233,6 +269,7 @@ PersistentThreadMessage message = agentClient.Messages.CreateMessage(
     MessageRole.User,
     "What is the temperature rating of the cozynights sleeping bag?");
 ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+Console.WriteLine($"Created run, ID: {run.Id}");
 
 ```
 
@@ -249,6 +286,8 @@ do
 }
 while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.InProgress);
+
+Console.WriteLine($"Run finished with status: {run.Status}");
 
 // Confirm that the run completed successfully
 if (run.Status != RunStatus.Completed)
@@ -301,6 +340,18 @@ foreach (PersistentThreadMessage threadMessage in messages)
 }
 ```
 
+### Expected output
+
+The answer and citations depend on your index. A successful run produces output similar to:
+
+```output
+Created agent, ID: <agent-id>
+Created thread, ID: <thread-id>
+Created run, ID: <run-id>
+Run finished with status: Completed
+<timestamp> - Agent: <answer grounded in the search index> [see <source title>] (<source URL>)
+```
+
 ## Optionally output the run steps used by the agent
 
 ```csharp
@@ -318,7 +369,7 @@ foreach (var step in runSteps)
     }
     else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
     {
-        // This agent only has the Azure AI Search tool, so we can cast it directly
+        // This agent only has the Azure AI Search tool, so cast it directly
         foreach (RunStepAzureAISearchToolCall toolCall in toolCallDetails.ToolCalls)
         {
             Console.WriteLine($"   Tool Call Details: {toolCall.GetType()}");
@@ -340,22 +391,40 @@ Delete the resources from this sample.
 // Clean up resources
 agentClient.Threads.DeleteThread(thread.Id);
 agentClient.Administration.DeleteAgent(agent.Id);
-
+Console.WriteLine("Deleted thread and agent");
 ```
 
 :::zone-end
 
 :::zone pivot="javascript"
 
-## Create an Azure AI Client
+## Set environment variables
 
-First, create an Azure AI Client using the endpoint of your Foundry project.
+Set the values that the sample reads at runtime.
+
+```bash
+export PROJECT_ENDPOINT="<your-project-endpoint>"
+export MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>"
+export AZURE_AI_CONNECTION_ID="<your-search-connection-id>"
+export AZURE_AI_SEARCH_INDEX_NAME="<your-index-name>"
+```
+
+## Create a client
+
+Create an agents client by using the endpoint of your Foundry project.
 
 ```javascript
-const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { delay } = require("@azure/core-util");
 
-if (!projectString) {
-  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"];
+const connectionId = process.env["AZURE_AI_CONNECTION_ID"];
+const indexName = process.env["AZURE_AI_SEARCH_INDEX_NAME"];
+
+if (!projectEndpoint || !modelDeploymentName || !connectionId || !indexName) {
+    throw new Error("Set all environment variables listed in this section");
 }
 
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
@@ -366,15 +435,11 @@ const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 Using the connection ID of your Azure AI Search service, configure the Azure AI Search tool to use your search index.
 
 ```javascript
-const connectionId = process.env["AZURE_AI_CONNECTION_ID"] || "<connection-name>";
-
-const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, "ai-search-sample", {
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, indexName, {
     queryType: "simple",
     topK: 3,
     filter: "",
-    indexConnectionId: "",
-    indexName: "",
-  });
+});
 
 ```
 
@@ -384,7 +449,7 @@ Change the model to the one deployed in your project. You can find the model nam
 
 ```javascript
 
-const agent = await client.agents.createAgent("gpt-4o-mini", {
+const agent = await client.createAgent(modelDeploymentName, {
   name: "my-agent",
   instructions: "You are a helpful agent",
   tools: [azureAISearchTool.definition],
@@ -399,8 +464,8 @@ Now that the agent is created, you can ask it questions about the data in your s
 
 ```javascript
 // Create thread for communication
-  const thread = await client.threads.create();
-  console.log(`Created thread, thread ID: ${thread.id}`);
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
 
 // Create message to thread
 const message = await client.messages.create(
@@ -444,10 +509,6 @@ for await (const step of runSteps) {
   }
 }
 
-// Delete the assistant when done
-await client.deleteAgent(agent.id);
-console.log(`Deleted agent, agent ID: ${agent.id}`);
-
 // Fetch and log all messages
 const messagesIterator = client.messages.list(thread.id);
 console.log(`Messages:`);
@@ -465,117 +526,180 @@ for await (const m of messagesIterator) {
 }
 ```
 
+### Expected output
+
+The answer depends on your index. A successful run produces output similar to:
+
+```output
+Created agent, agent ID: <agent-id>
+Created thread, thread ID: <thread-id>
+Created message, message ID: <message-id>
+Run finished with status: completed
+Text Message Content - <answer grounded in the search index>
+```
+
+## Clean up resources
+
+Delete the thread and agent after you verify the response:
+
+```javascript
+await client.threads.delete(thread.id);
+await client.deleteAgent(agent.id);
+console.log("Deleted thread and agent");
+```
+
 :::zone-end
 
 :::zone pivot="rest"
 
-+ Completion of the [REST API quickstart](../../quickstart.md?pivots=rest-api) to get values for the `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION` environment variables.
++ Complete the [REST API quickstart](../../quickstart.md?pivots=rest-api) to set `AGENT_TOKEN` and `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`.
++ Install [`jq`](https://jqlang.github.io/jq/download/) to create request bodies, capture IDs, and inspect responses.
 
-## Get the connection ID for the Azure AI Search resource
-
-To get the connection ID:
-
-1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
-
-1. On the **Overview** page, select **Open in management center**.
-
-1. From the left pane, select **Connected resources**, and then select your Azure AI Search service.
-
-    :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
-
-1. Copy everything that comes after `wsid=` in the browser URL.
-
-    :::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
-
-## Configure the Azure AI Search tool
-
-Using the connection ID you got in the previous step, configure the Azure AI Search tool to use your search index.
+This classic tool requires the `2025-05-15-preview` API. Set the remaining values for the sample:
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-        "instructions": "You are a helpful agent.",
-        "name": "my-agent",
-        "tools": [
-          {"type": "azure_ai_search"}
-        ],
-        "model": "gpt-4o-mini",
-        "tool_resources": {
-            "azure_ai_search": {
-              "indexes": [
-                  {
-                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.CognitiveServices/accounts/<your-foundry-name>/projects/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
-                      "index_name": "<your-index-name>",
-                      "query_type": "semantic"
-                  }
-              ]
-            }
-        }
-      }'
+export API_VERSION="2025-05-15-preview"
+export MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>"
+export AZURE_AI_SEARCH_CONNECTION_ID="/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/projects/<project>/connections/<search-connection>"
+export AZURE_AI_SEARCH_INDEX_NAME="<your-index-name>"
 ```
 
-### Ask the agent questions about data in the index
+Get the full connection ID from **Management center** > **Connected resources** in the Foundry portal. The calling identity must have access to the project connection and search index.
 
-Now that the agent is created, you can ask it questions about the data in your search index.
+## Create an agent
 
-#### Create a thread
+Create an agent with the Azure AI Search tool, and capture its ID from the response:
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d ''
+AGENT_ID=$(
+    jq -n \
+        --arg model "$MODEL_DEPLOYMENT_NAME" \
+        --arg connection "$AZURE_AI_SEARCH_CONNECTION_ID" \
+        --arg index "$AZURE_AI_SEARCH_INDEX_NAME" \
+        '{instructions:"Answer only from the search index and cite sources.",
+            name:"my-search-agent", model:$model,
+            tools:[{type:"azure_ai_search"}],
+            tool_resources:{azure_ai_search:{indexes:[{
+                index_connection_id:$connection, index_name:$index,
+                query_type:"semantic"}]}}}' |
+    curl --silent --show-error --fail-with-body --request POST \
+        --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION" \
+        -H "Authorization: Bearer $AGENT_TOKEN" \
+        -H "Content-Type: application/json" \
+        --data-binary @- |
+    jq -r '.id'
+)
+printf 'Agent ID: %s\n' "$AGENT_ID"
 ```
 
-#### Add a user question to the thread
+## Create a thread and add a question
+
+Create a thread, capture its ID, and add a question that your index can answer:
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-      "role": "user",
-      "content": "what are my health insurance plan coverage types?"
-    }'
-```
-#### Run the thread
+THREAD_ID=$(
+    curl --silent --show-error --fail-with-body --request POST \
+        --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION" \
+        -H "Authorization: Bearer $AGENT_TOKEN" \
+        -H "Content-Type: application/json" \
+        --data '{}' |
+    jq -r '.id'
+)
 
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_id": "asst_abc123",
-  }'
+curl --silent --show-error --fail-with-body --request POST \
+    --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/$THREAD_ID/messages?api-version=$API_VERSION" \
+    -H "Authorization: Bearer $AGENT_TOKEN" \
+    -H "Content-Type: application/json" \
+    --data '{"role":"user","content":"What is the temperature rating of the cozynights sleeping bag?"}' \
+    | jq -r '"Message ID: \(.id)"'
 ```
 
-#### Retrieve the status of the run
+## Run the agent
+
+Start a run, capture its ID, and poll until the run reaches a terminal state:
 
 ```bash
-curl --request GET \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN"
+RUN_ID=$(
+    jq -n --arg agent "$AGENT_ID" '{assistant_id:$agent}' |
+    curl --silent --show-error --fail-with-body --request POST \
+        --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/$THREAD_ID/runs?api-version=$API_VERSION" \
+        -H "Authorization: Bearer $AGENT_TOKEN" \
+        -H "Content-Type: application/json" \
+        --data-binary @- |
+    jq -r '.id'
+)
+
+while true; do
+    RUN_STATUS=$(curl --silent --show-error --fail-with-body \
+        --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/$THREAD_ID/runs/$RUN_ID?api-version=$API_VERSION" \
+        -H "Authorization: Bearer $AGENT_TOKEN" | jq -r '.status')
+    [[ "$RUN_STATUS" != "queued" && "$RUN_STATUS" != "in_progress" ]] && break
+    sleep 1
+done
+printf 'Run status: %s\n' "$RUN_STATUS"
 ```
 
-#### Retrieve the agent response
+## Verify the response and citations
+
+Retrieve the messages and print the grounded answer followed by its URL citations:
 
 ```bash
-curl --request GET \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN"
+MESSAGES=$(
+    curl --silent --show-error --fail-with-body \
+        --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/$THREAD_ID/messages?api-version=$API_VERSION" \
+        -H "Authorization: Bearer $AGENT_TOKEN"
+)
+
+jq -r '.data[] | select(.role == "assistant") | .content[] |
+    select(.type == "text") | "Answer: \(.text.value)",
+    (.text.annotations[]? | select(.type == "url_citation") |
+    "Citation: [\(.url_citation.title)](\(.url_citation.url))")' \
+    <<< "$MESSAGES"
+```
+
+Expected output resembles the following example. The answer and citations depend on your index:
+
+```output
+Agent ID: <agent-id>
+Message ID: <message-id>
+Run status: completed
+Answer: <answer grounded in the search index>
+Citation: [<source title>](<source URL>)
+```
+
+## Clean up resources
+
+Delete the thread and agent after you verify the response:
+
+```bash
+curl --silent --show-error --fail-with-body --request DELETE \
+    --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/$THREAD_ID?api-version=$API_VERSION" \
+    -H "Authorization: Bearer $AGENT_TOKEN"
+
+curl --silent --show-error --fail-with-body --request DELETE \
+    --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants/$AGENT_ID?api-version=$API_VERSION" \
+    -H "Authorization: Bearer $AGENT_TOKEN"
+printf 'Deleted thread and agent.\n'
 ```
 
 :::zone-end
 
 :::zone pivot="java"
 
-## Code example
+## Set environment variables
+
+Set the values that the sample reads at runtime.
+
+```bash
+export PROJECT_ENDPOINT="<your-project-endpoint>"
+export MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>"
+export AZURE_AI_CONNECTION_ID="<your-search-connection-id>"
+export AZURE_AI_SEARCH_INDEX_NAME="<your-index-name>"
+```
+
+## Run the Java sample
+
+The sample creates an agent and thread, runs a grounded question, prints the response, and deletes the resources in a `finally` block.
 
 ```java
 package com.example.agents;
@@ -604,22 +728,17 @@ import com.azure.ai.agents.persistent.models.MessageContent;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 
-import java.net.URL;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.util.Arrays;
 
 public class AgentExample {
 
-    public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+    public static void main(String[] args) {
 
         // variables for authenticating requests to the agent service 
         String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
         String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
         String aiSearchConnectionId = System.getenv("AZURE_AI_CONNECTION_ID");
-        String indexName = "my-index";
+        String indexName = System.getenv("AZURE_AI_SEARCH_INDEX_NAME");
         
         PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
             .credential(new DefaultAzureCredentialBuilder().build());
@@ -643,12 +762,15 @@ public class AgentExample {
             .setTools(Arrays.asList(new AzureAISearchToolDefinition()))
             .setToolResources(toolResources);
         PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+        System.out.printf("Created agent, ID: %s%n", agent.getId());
 
         PersistentAgentThread thread = threadsClient.createThread();
+        System.out.printf("Created thread, ID: %s%n", thread.getId());
         ThreadMessage createdMessage = messagesClient.createMessage(
             thread.getId(),
             MessageRole.USER,
             "<question about information in search index>");
+        System.out.printf("Created message, ID: %s%n", createdMessage.getId());
 
         try {
             //run agent
@@ -656,7 +778,9 @@ public class AgentExample {
                 .setAdditionalInstructions("");
             ThreadRun threadRun = runsClient.createRun(createRunOptions);
 
-            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            threadRun = waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            System.out.printf("Run finished with status: %s, ID: %s%n",
+                threadRun.getStatus(), threadRun.getId());
             printRunMessages(messagesClient, thread.getId());
 
         } catch (InterruptedException e) {
@@ -665,6 +789,7 @@ public class AgentExample {
             //cleanup
             threadsClient.deleteThread(thread.getId());
             administrationClient.deleteAgent(agent.getId());
+            System.out.println("Deleted thread and agent");
         }
     }
     // A helper function to print messages from the agent
@@ -686,7 +811,8 @@ public class AgentExample {
     }
 
     // a helper function to wait until a run has completed running
-    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+    public static ThreadRun waitForRunCompletion(
+        String threadId, ThreadRun threadRun, RunsClient runsClient)
         throws InterruptedException {
 
         do {
@@ -701,15 +827,21 @@ public class AgentExample {
         if (threadRun.getStatus() == RunStatus.FAILED) {
             System.out.println(threadRun.getLastError().getMessage());
         }
-    }
-    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
-        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
-        if (resource == null) {
-            throw new FileNotFoundException("File not found");
-        }
-        File file = new File(resource.toURI());
-        return file.toPath();
+        return threadRun;
     }
 }
+```
+
+### Expected output
+
+The answer depends on your index. A successful run produces output similar to:
+
+```output
+Created agent, ID: <agent-id>
+Created thread, ID: <thread-id>
+Created message, ID: <message-id>
+Run finished with status: COMPLETED, ID: <run-id>
+<timestamp> - AGENT : <answer grounded in the search index>
+Deleted thread and agent
 ```
 :::zone-end

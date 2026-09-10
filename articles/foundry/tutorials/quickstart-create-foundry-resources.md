@@ -9,7 +9,7 @@ ms.custom:
   - devx-track-azurecli
   - doc-kit-assisted
 ms.topic: quickstart
-ms.date: 04/13/2026
+ms.date: 08/25/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -32,11 +32,16 @@ In this quickstart, you create a [Microsoft Foundry](https://ai.azure.com) proje
     - [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
     - A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
 
+If you use the Azure CLI instead of the portal, the **Contributor** or **Owner** role on the resource group is enough to create the resource and project. You still need a role that can assign roles, such as **Owner**, to grant access to team members.
+
 Select your preferred method by using the following tabs:
 
 # [Azure CLI](#tab/azurecli)
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli) version 2.67.0 or later (check with `az version`).
+- Install the [Azure CLI](/cli/azure/install-azure-cli) version 2.80.0 or later. Check your version with `az version`, and run `az upgrade` if you need a newer one.
+
+  Version 2.80.0 added the `az cognitiveservices account project` commands that these steps use. On an earlier version, the commands fail with `unrecognized arguments` or `'project' is misspelled or not recognized by the system`.
+
 - Sign in to Azure:
 
   ```azurecli
@@ -80,44 +85,58 @@ Create a Foundry project to organize your work. The project contains models, age
 
 ## Deploy a model
 
-Deploy a model that you can use. This example uses **gpt-5.1-mini**, but you can choose any available model.
+Deploy a model that you can use. This example uses **gpt-5-mini**, but you can choose any available model.
 
 > [!TIP]
 > To try an [instant access model (preview)](../concepts/instant-models.md), you can skip this step.
 
 # [Azure CLI](#tab/azurecli)
 
-```azurecli
-az cognitiveservices account deployment create \
-    --name my-foundry-resource \
-    --resource-group my-foundry-rg \
-    --deployment-name gpt-5.1-mini \
-    --model-name gpt-5.1-mini \
-    --model-version "2025-04-14" \
-    --model-format OpenAI \
-    --sku-capacity 10 \
-    --sku-name Standard
-```
+1. List the models available in your region so you can confirm the model name and version:
 
-Verify the deployment succeeded:
+   ```azurecli
+   az cognitiveservices model list \
+       --location eastus \
+       --query "[?model.name=='gpt-5-mini'].{version:model.version,skus:join(',',model.skus[].name)}" \
+       --output table
+   ```
 
-```azurecli
-az cognitiveservices account deployment show \
-    --name my-foundry-resource \
-    --resource-group my-foundry-rg \
-    --deployment-name gpt-5.1-mini
-```
+1. Deploy the model:
 
-When the deployment is ready, the output shows `"provisioningState": "Succeeded"`.
+   ```azurecli
+   az cognitiveservices account deployment create \
+       --name my-foundry-resource \
+       --resource-group my-foundry-rg \
+       --deployment-name gpt-5-mini \
+       --model-name gpt-5-mini \
+       --model-version "2025-08-07" \
+       --model-format OpenAI \
+       --sku-capacity 10 \
+       --sku-name GlobalStandard
+   ```
+
+   If the command fails with `DeploymentModelNotSupported`, the model, version, or SKU isn't available in your region. Use the output of the previous step to choose a supported combination.
+
+1. Verify the deployment succeeded:
+
+   ```azurecli
+   az cognitiveservices account deployment show \
+       --name my-foundry-resource \
+       --resource-group my-foundry-rg \
+       --deployment-name gpt-5-mini \
+       --query properties.provisioningState --output tsv
+   ```
+
+   The output shows `Succeeded` when the deployment is ready.
 
 Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservices/account/deployment)
 
 # [Foundry portal](#tab/portal)
 
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. Search for **gpt-5.1-mini**.
+1. Search for **gpt-5-mini**.
 1. Select **Deploy** > **Default settings** to add it to your project.
-1. Note the deployment name (for example, `gpt-5.1-mini`). Your team needs this name to use the model.
+1. Note the deployment name (for example, `gpt-5-mini`). Your team needs this name to use the model.
 
 ---
 
@@ -125,16 +144,32 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 You need your project endpoint to connect from code. If you're administering this project for others, send them this endpoint along with the deployment name.
 
+# [Azure CLI](#tab/azurecli)
+
+Get the project endpoint:
+
+```azurecli
+az cognitiveservices account project show \
+    --name my-foundry-resource \
+    --resource-group my-foundry-rg \
+    --project-name my-foundry-project \
+    --query 'properties.endpoints."AI Foundry API"' --output tsv
+```
+
+The output is your project endpoint, in the form `https://my-foundry-resource.services.ai.azure.com/api/projects/my-foundry-project`. Use this value in other quickstarts and tutorials.
+
+# [Foundry portal](#tab/portal)
+
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account.
 1. Select your project.
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Copy the endpoint value. You use this value in other quickstarts and tutorials.
 
+---
+
 ## For administrators - grant access
 
-If you're administering a team, assign the **Foundry User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
-
-[!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
+If you're administering a team, assign the **Foundry User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
 # [Azure CLI](#tab/azurecli)
 
@@ -146,7 +181,7 @@ If you're administering a team, assign the **Foundry User** role to team members
 
 ---
 
-### Verify team member access
+## Verify team member access
 
 [!INCLUDE [verify-team-access](../includes/verify-team-access.md)]
 
@@ -161,6 +196,14 @@ When you no longer want this project, delete the resource group to delete all re
 ```azurecli
 az group delete --name my-foundry-rg --yes --no-wait
 ```
+
+Deletion runs in the background. To confirm that the resource group is gone, run:
+
+```azurecli
+az group exists --name my-foundry-rg
+```
+
+The output shows `false` when deletion finishes.
 
 # [Foundry portal](#tab/portal)
 

@@ -219,8 +219,6 @@ class FunctionCallingAssistant {
     this._session = null;
     this._subscription = null;
     this._audio = new AudioProcessor();
-    this._activeResponse = false;
-    this._responseApiDone = false;
     this._pendingFunctionCall = null;
   }
 
@@ -243,31 +241,10 @@ class FunctionCallingAssistant {
       onInputAudioBufferSpeechStarted: async () => {
         console.log("Listening...");
         this._audio.skipPendingAudio();
-        if (this._activeResponse && !this._responseApiDone) {
-          try {
-            await session.sendEvent({
-              type: "response.cancel",
-            });
-          } catch (err) {
-            const msg = err?.message ?? "";
-            if (
-              !msg
-                .toLowerCase()
-                .includes("no active response")
-            ) {
-              console.warn("Cancel failed:", msg);
-            }
-          }
-        }
       },
 
       onInputAudioBufferSpeechStopped: async () => {
         console.log("Processing...");
-      },
-
-      onResponseCreated: async () => {
-        this._activeResponse = true;
-        this._responseApiDone = false;
       },
 
       onResponseAudioDelta: async (event) => {
@@ -282,8 +259,6 @@ class FunctionCallingAssistant {
 
       onResponseDone: async () => {
         console.log("Response complete");
-        this._activeResponse = false;
-        this._responseApiDone = true;
 
         if (this._pendingFunctionCall?.arguments) {
           await this._executeFunctionCall(

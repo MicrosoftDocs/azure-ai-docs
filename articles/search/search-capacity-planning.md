@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/06/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ---
@@ -200,7 +200,7 @@ When the search service receives a scale request, it:
 
 Scaling a service can take several minutes to several hours, depending on the size of the service and the scope of the request. Backup duration also varies based on the amount of data and number of partitions and replicas.
 
-The preceding steps aren't entirely consecutive. For example, the system starts provisioning when it can safely do so, which could be while backup is winding down.
+The steps for handling a scale request aren't entirely consecutive. For example, the system starts provisioning when it can safely do so, which could be while backup is winding down.
 
 #### Errors during scaling
 
@@ -333,7 +333,7 @@ To learn more, see [Optimize costs with the Serverless pricing model in Azure AI
 Capacity and availability can vary by the [supported region](search-region-support.md). Some regions might have constraints on provisioning new services or scaling existing ones.
 
 > [!NOTE]
-> During public preview, the Serverless pricing model is available only in a limited set of regions. See the preview notice at the beginning of this article. 
+> During public preview, the Serverless pricing model is available only in [specific regions](./search-region-support.md#features-subject-to-regional-availability).
 
 If your preferred Azure AI Search region is unavailable due to capacity constraints, see [How to handle regional capacity constraints in Azure AI Search](search-region-capacity.md).
 

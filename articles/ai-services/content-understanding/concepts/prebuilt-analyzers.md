@@ -26,12 +26,15 @@ Content Understanding provides several categories of analyzers to support differ
 - **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
 - **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.
 - **[RAG analyzers](#retrieval-augmented-generation-rag-analyzers)** - Optimized for retrieval-augmented generation scenarios with semantic analysis and markdown extraction for document ingestion, search applications, and knowledge bases.
-- **[Domain-specific analyzers](#domain-specific-analyzer-reference)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
+- **[Domain-specific analyzers](#domain-specific-analyzers-in-detail)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
 - **[Utility analyzers](#utility-analyzers)** - Specialized tools for schema generation and field extraction to discover document structure and extract key-value pairs.
 
 ### Content extraction analyzers
 
 Content extraction analyzers focus on optical character recognition and layout analysis. These analyzers are built on top of `prebuilt-document` and provide progressively richer extraction capabilities.
+
+> [!NOTE]
+> In the `2026-06-01-preview` API version, `prebuilt-read`, `prebuilt-layout`, and `prebuilt-digitalParse` return embedded document metadata, such as author, creation date, and title. In the `2025-11-01` GA version, only `prebuilt-digitalParse` returns metadata by default. For information on how different extraction operations are billed, see the [Pricing explainer](/azure/ai-services/content-understanding/pricing-explainer#document-content-extraction-meters).
 
 
 #### `prebuilt-layout`
@@ -42,6 +45,7 @@ Content extraction analyzers focus on optical character recognition and layout a
 * Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs.
 * Provides detailed layout information beyond basic text extraction.
 * Detects figure types including charts, diagrams, pictures, icons, and other images, providing location information (PDF files only).
+* Detects signatures and returns their location, along with any recognized text (`2026-06-01-preview` API version).
 
 This prebuilt doesn't require a language model or embedding model.
 
@@ -84,6 +88,7 @@ Content Understanding provides a set of analyzers optimized for retrieval-augmen
 * Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>.
 * Captures hand-written annotations and markup on the document.
 * Generates a one-paragraph summary of the entire document content.
+* Produces chunked output ready for embedding and vector indexing, preserving document structure across chunk boundaries with support for both fixed-size and layout-aware semantic chunking.
 * Supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files.
 * Recommended for document ingestion in RAG workflows.
 
@@ -112,17 +117,21 @@ Content Understanding provides a set of analyzers optimized for retrieval-augmen
 
 ### Domain-specific analyzers
 
-Domain-specific analyzers are preconfigured for common document categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats, powered by rich knowledge bases of real-world examples. 
+Domain-specific analyzers are preconfigured for common categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats, powered by rich knowledge bases of real-world examples. 
 
 Key categories include:
 
-* **Finance and tax**: Extract structured data from invoices, receipts, bank statements, credit card statements, and comprehensive US tax forms including 1040, W-2, 1099 variants, and 1098 series. Tuned schemas capture amounts, dates, tax identifiers, and financial entities. See the [financial documents](#financial-documents) and [tax documents](#tax-documents-us) sections.
-* **Identity verification**: Process passports, driver's licenses, ID cards, health insurance cards, and identity documents from multiple countries and regions with `prebuilt-idDocument` and related analyzers. Extract personal information, document numbers, and verification details with support for worldwide formats. See the [identity documents](#identity-documents) section.
-* **Mortgage and lending**: Automate extraction from US mortgage applications (Form 1003), appraisal reports (Form 1004), verification of employment (Form 1005), and closing disclosures. Capture borrower details, property information, loan terms, and financial disclosures. See the [mortgage documents](#mortgage-documents-us) section.
-* **Procurement and contracts**: Process purchase orders, contracts, procurement documents, and credit memos to extract vendor information, line items, pricing, terms, and contractual obligations. See the [procurement documents](#procurement-documents) and [legal and business documents](#legal-and-business-documents) sections.
-* **Utilities and billing**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data. See the [financial documents](#financial-documents) and [other specialized analyzers](#other-specialized-analyzers) sections.
+* **Procurement documents**: Extract structured data from procurement documents like invoices, receipts, and purchase orders. Tuned schemas capture line items, dates, and other key fields from procurement documents. See the [procurement documents](#procurement-documents) section.
+* **Tax documents (US)**: Extract data from a comprehensive set of US tax forms, including Form 1040, W-2, and many more tax forms. Tuned schemas capture tax identifiers, amounts, and other meaningful tax fields. See the [tax documents](#tax-documents-us) section.
+* **Legal documents**: Extract key information from contracts and business agreements. See the [legal and business documents](#legal-documents) section. 
+* **Identity verification**: Process passports, health insurance cards, and other identification documents from multiple countries and regions. See the [identity documents](#identity-documents) section.
+* **Financial documents**: Extract structured data from credit card statements, credit memos, and other bank statements. See the [financial documents](#financial-documents) section. 
+* **Mortgage documents (US)**: Automate extraction from US mortgage documents, like appraisals, employment verifications, underwriting summaries, and closing disclosures. Includes a composed analyzer that automatically classifies and routes a wide range of mortgage documents. See the [mortgage documents](#mortgage-documents-us) section.
+* **Personal records**: Extract information from personal documents like pay stubs, marriage certificates, and utility bills. See the [personal records](#personal-records) sections. 
+* **Other prebuilt analyzers**: Analyze specialized content, such as call center recordings to extract topics, sentiment, and key insights. See the [other specialized analyzers](#other-prebuilt-analyzers) sections.
 
-See the [complete list of domain-specific analyzers](#domain-specific-analyzer-reference) at the end of this article.
+
+See the [complete list of domain-specific analyzers](#domain-specific-analyzers-in-detail) at the end of this article.
 
 ### Utility analyzers
 
@@ -175,132 +184,136 @@ Include your modified analyzer definition in the request body. For detailed inst
 > [!IMPORTANT]
 > Prebuilt analyzer definitions can change across API versions. To ensure consistent behavior, make a copy of the prebuilt analyzer instead of relying on the prebuilt version directly in production scenarios.
 
-### Lock analyzer behavior
-
-The definition of prebuilt analyzers might change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that doesn't change with API updates, use the Copy operations by calling it as follows:
-
-```http
-POST /analyzers/myIdDocument:copy
-{
-  "source": "prebuilt-idDocument"
-}
-```
-
-This operation creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
-
-## Domain-specific analyzer reference
+## Domain-specific analyzers (in detail)
 
 The following sections list all available domain-specific analyzers for specialized document processing. These prebuilt models enable you to add intelligent domain-specific document processing to your apps and flows without having to train and build your own models.
 
 For information about supported file formats and input requirements, see [Service limits](../service-limits.md).
 
-### Financial documents
+### Procurement documents
 
-* `prebuilt-invoice` - Invoices, utility bills, sales orders, purchase orders
-* `prebuilt-receipt` - Sales receipts from retail and dining establishments
-* `prebuilt-receipt.generic` - General sales receipts
-* `prebuilt-receipt.hotel` - Hotel receipts and folios
-* `prebuilt-creditCard` - Credit card statements
-* `prebuilt-creditMemo` - Credit memos and refund documents
-* `prebuilt-check.us` - US bank checks
-* `prebuilt-bankStatement.us` - US bank statements
+* `prebuilt-procurement` - A composed prebuilt analyzer that classifies and routes a procurement document to the correct procurement analyzer for extraction. ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/procurement.md))
+* `prebuilt-invoice` - Invoices, utility bills, sales orders, purchase orders ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/invoice.md))
+* `prebuilt-receipt` - Sales receipts from retail and dining establishments ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/receipt/receipt.md))
+* `prebuilt-receipt.generic` - General sales receipts ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/receipt/receipt.generic.md))
+* `prebuilt-receipt.hotel` - Hotel receipts and folios ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/receipt/receipt.hotel.md))
+* `prebuilt-utilityBill` - Utility bills (electricity, water, gas, internet, phone) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/utilityBill.md))
+* `prebuilt-purchaseOrder` - Purchase order forms ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/purchaseOrder.md))
+* `prebuilt-creditMemo` - Credit memo documents. ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/creditMemo.md))
 
-### Identity documents
-
-* `prebuilt-idDocument` - Driver licenses, identification cards (IDs), residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India)
-* `prebuilt-idDocument.generic` - Generic identification documents from various regions
-* `prebuilt-idDocument.passport` - Passport books and passport cards (worldwide)
-* `prebuilt-healthInsuranceCard.us` - US health insurance cards
 
 ### Tax documents (US)
 
 #### Income tax forms
 
-* `prebuilt-tax.us` - General US tax forms
-* `prebuilt-tax.us.1040` - Form 1040 (US Individual Income Tax Return)
-* `prebuilt-tax.us.1040Senior` - Form 1040 for senior taxpayers
-* `prebuilt-tax.us.1040Schedule1` - Additional Income and Adjustments to Income
-* `prebuilt-tax.us.1040Schedule2` - Additional Taxes
-* `prebuilt-tax.us.1040Schedule3` - Additional Credits and Payments
-* `prebuilt-tax.us.1040Schedule8812` - Credits for Qualifying Children
-* `prebuilt-tax.us.1040ScheduleA` - Itemized Deductions
-* `prebuilt-tax.us.1040ScheduleB` - Interest and Ordinary Dividends
-* `prebuilt-tax.us.1040ScheduleC` - Profit or Loss from Business
-* `prebuilt-tax.us.1040ScheduleD` - Capital Gains and Losses
-* `prebuilt-tax.us.1040ScheduleE` - Supplemental Income and Loss
-* `prebuilt-tax.us.1040ScheduleEIC` - Earned Income Credit
-* `prebuilt-tax.us.1040ScheduleF` - Profit or Loss from Farming
-* `prebuilt-tax.us.1040ScheduleH` - Household Employment Taxes
-* `prebuilt-tax.us.1040ScheduleJ` - Income Averaging for Farmers
-* `prebuilt-tax.us.1040ScheduleR` - Credit for the Elderly or Disabled
-* `prebuilt-tax.us.1040ScheduleSE` - Self-Employment Tax
+* `prebuilt-tax.us` - A composed prebuilt analyzer that classifies and routes a US tax form to the correct tax analyzer for extraction ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.md))
+* `prebuilt-tax.us.1040` - Form 1040 (US Individual Income Tax Return) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040.md))
+* `prebuilt-tax.us.1040Senior` - Form 1040 for senior taxpayers ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040Senior.md))
+* `prebuilt-tax.us.1040Schedule1` - Additional Income and Adjustments to Income ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040Schedule1.md))
+* `prebuilt-tax.us.1040Schedule2` - Additional Taxes ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040Schedule2.md))
+* `prebuilt-tax.us.1040Schedule3` - Additional Credits and Payments ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040Schedule3.md))
+* `prebuilt-tax.us.1040Schedule8812` - Credits for Qualifying Children ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040Schedule8812.md))
+* `prebuilt-tax.us.1040ScheduleA` - Itemized Deductions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleA.md))
+* `prebuilt-tax.us.1040ScheduleB` - Interest and Ordinary Dividends ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleB.md))
+* `prebuilt-tax.us.1040ScheduleC` - Profit or Loss from Business ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleC.md))
+* `prebuilt-tax.us.1040ScheduleD` - Capital Gains and Losses ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleD.md))
+* `prebuilt-tax.us.1040ScheduleE` - Supplemental Income and Loss ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleE.md))
+* `prebuilt-tax.us.1040ScheduleEIC` - Earned Income Credit ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleEIC.md))
+* `prebuilt-tax.us.1040ScheduleF` - Profit or Loss from Farming ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleF.md))
+* `prebuilt-tax.us.1040ScheduleH` - Household Employment Taxes ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleH.md))
+* `prebuilt-tax.us.1040ScheduleJ` - Income Averaging for Farmers ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleJ.md))
+* `prebuilt-tax.us.1040ScheduleR` - Credit for the Elderly or Disabled ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleR.md))
+* `prebuilt-tax.us.1040ScheduleSE` - Self-Employment Tax ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1040ScheduleSE.md))
 
 #### Form 1099 variants
 
-* `prebuilt-tax.us.1099Combo` - Combined 1099 forms
-* `prebuilt-tax.us.1099A` - Acquisition or Abandonment of Secured Property
-* `prebuilt-tax.us.1099B` - Proceeds from Broker and Barter Exchange Transactions
-* `prebuilt-tax.us.1099C` - Cancellation of Debt
-* `prebuilt-tax.us.1099CAP` - Changes in Corporate Control and Capital Structure
-* `prebuilt-tax.us.1099DA` - Debt Cancellation from Foreclosure
-* `prebuilt-tax.us.1099DIV` - Dividends and Distributions
-* `prebuilt-tax.us.1099G` - Certain Government Payments
-* `prebuilt-tax.us.1099H` - Health Coverage Tax Credit Advance Payments
-* `prebuilt-tax.us.1099INT` - Interest Income
-* `prebuilt-tax.us.1099K` - Payment Card and Third Party Network Transactions
-* `prebuilt-tax.us.1099LS` - Reportable Life Insurance Sale
-* `prebuilt-tax.us.1099LTC` - Long-Term Care Benefits
-* `prebuilt-tax.us.1099MISC` - Miscellaneous Income
-* `prebuilt-tax.us.1099NEC` - Nonemployee Compensation
-* `prebuilt-tax.us.1099OID` - Original Issue Discount
-* `prebuilt-tax.us.1099PATR` - Taxable Distributions from Cooperatives
-* `prebuilt-tax.us.1099Q` - Payments from Qualified Education Programs
-* `prebuilt-tax.us.1099QA` - Distributions from ABLE Accounts
-* `prebuilt-tax.us.1099R` - Distributions from Pensions and Annuities
-* `prebuilt-tax.us.1099S` - Proceeds from Real Estate Transactions
-* `prebuilt-tax.us.1099SA` - Distributions from Health Savings Account (HSA) or Medical Savings Account (MSA)
-* `prebuilt-tax.us.1099SB` - Seller's Investment in Life Insurance Contract
-* `prebuilt-tax.us.1099SSA` - Social Security Benefit Statement
+* `prebuilt-tax.us.1099Combo` - Combined 1099 forms ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099Combo.md))
+* `prebuilt-tax.us.1099A` - Acquisition or Abandonment of Secured Property ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099A.md))
+* `prebuilt-tax.us.1099B` - Proceeds from Broker and Barter Exchange Transactions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099B.md))
+* `prebuilt-tax.us.1099C` - Cancellation of Debt ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099C.md))
+* `prebuilt-tax.us.1099CAP` - Changes in Corporate Control and Capital Structure ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099CAP.md))
+* `prebuilt-tax.us.1099DA` - Debt Cancellation from Foreclosure ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099DA.md))
+* `prebuilt-tax.us.1099DIV` - Dividends and Distributions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099DIV.md))
+* `prebuilt-tax.us.1099G` - Certain Government Payments ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099G.md))
+* `prebuilt-tax.us.1099H` - Health Coverage Tax Credit Advance Payments ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099H.md))
+* `prebuilt-tax.us.1099INT` - Interest Income ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099INT.md))
+* `prebuilt-tax.us.1099K` - Payment Card and Third Party Network Transactions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099K.md))
+* `prebuilt-tax.us.1099LS` - Reportable Life Insurance Sale ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099LS.md))
+* `prebuilt-tax.us.1099LTC` - Long-Term Care Benefits ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099LTC.md))
+* `prebuilt-tax.us.1099MISC` - Miscellaneous Income ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099MISC.md))
+* `prebuilt-tax.us.1099NEC` - Nonemployee Compensation ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099NEC.md))
+* `prebuilt-tax.us.1099OID` - Original Issue Discount ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099OID.md))
+* `prebuilt-tax.us.1099PATR` - Taxable Distributions from Cooperatives ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099PATR.md))
+* `prebuilt-tax.us.1099Q` - Payments from Qualified Education Programs ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099Q.md))
+* `prebuilt-tax.us.1099QA` - Distributions from ABLE Accounts ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099QA.md))
+* `prebuilt-tax.us.1099R` - Distributions from Pensions and Annuities ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099R.md))
+* `prebuilt-tax.us.1099S` - Proceeds from Real Estate Transactions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099S.md))
+* `prebuilt-tax.us.1099SA` - Distributions from Health Savings Account (HSA) or Medical Savings Account (MSA) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099SA.md))
+* `prebuilt-tax.us.1099SB` - Seller's Investment in Life Insurance Contract ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099SB.md))
+* `prebuilt-tax.us.1099SSA` - Social Security Benefit Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1099SSA.md))
 
 #### Form 1098 variants
 
-* `prebuilt-tax.us.1098` - Mortgage Interest Statement
-* `prebuilt-tax.us.1098E` - Student Loan Interest Statement
-* `prebuilt-tax.us.1098T` - Tuition Statement
+* `prebuilt-tax.us.1098` - Mortgage Interest Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1098.md))
+* `prebuilt-tax.us.1098E` - Student Loan Interest Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1098E.md))
+* `prebuilt-tax.us.1098T` - Tuition Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1098T.md))
 
 #### Form 1095 variants
 
-* `prebuilt-tax.us.1095A` - Health Insurance Marketplace Statement
-* `prebuilt-tax.us.1095C` - Employer-Provided Health Insurance
+* `prebuilt-tax.us.1095A` - Health Insurance Marketplace Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1095A.md))
+* `prebuilt-tax.us.1095C` - Employer-Provided Health Insurance ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.1095C.md))
 
 #### Employment tax forms
 
-* `prebuilt-tax.us.w2` - Wage and Tax Statement
-* `prebuilt-tax.us.w4` - Employee's Withholding Certificate
+* `prebuilt-tax.us.w2` - Wage and Tax Statement ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.w2.md))
+* `prebuilt-tax.us.w4` - Employee's Withholding Certificate ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/tax.us/tax.us.w4.md))
+
+#### Schedule K-1 tax forms (preview)
+* `prebuilt-tax.us.1041ScheduleK1` - Estate and Trust Schedule K-1 (Form 1041) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2026-06-01-preview/tax.us/tax.us.1041ScheduleK1/tax.us.1041ScheduleK1.md))
+* `prebuilt-tax.us.1120SScheduleK1` - S-Corporation Schedule K-1 (Form 1120-S) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2026-06-01-preview/tax.us/tax.us.1120SScheduleK1/tax.us.1120SScheduleK1.md))
+* `prebuilt-tax.us.1065ScheduleK1` - Partnership Schedule K-1 (Form 1065) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2026-06-01-preview/tax.us/tax.us.1065ScheduleK1/tax.us.1065ScheduleK1.md))
+* `prebuilt-tax.us.8865ScheduleK1` - Foreign Partnership Schedule K-1 (Form 8865) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2026-06-01-preview/tax.us/tax.us.8865ScheduleK1/tax.us.8865ScheduleK1.md))
+
+#### State-specific tax forms (preview)
+* `prebuilt-tax.us.mn.m1` - Minnesota Form M1 — Individual Income Tax Return ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2026-06-01-preview/tax.us.mn.m1/tax.us.mn.m1.md))
+
+### Legal documents
+
+* `prebuilt-contract` - Business contracts and agreements ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/legal/contract.md))
+
+### Identity documents
+
+* `prebuilt-idDocument` - Driver licenses, identification cards (IDs), residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/idDocument/idDocument.md))
+* `prebuilt-idDocument.generic` - Generic identification documents from various regions ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/idDocument/idDocument.generic.md))
+* `prebuilt-idDocument.passport` - Passport books and passport cards (worldwide) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/idDocument/idDocument.passport.md))
+* `prebuilt-healthInsuranceCard.us` - US health insurance cards ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/personalRecords/healthInsuranceCard.us.md))
+
+### Financial documents
+
+* `prebuilt-creditCard` - Credit card statements ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/finance/creditCard.md))
+* `prebuilt-creditMemo` - Credit memos and refund documents ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/creditMemo.md))
+* `prebuilt-check.us` - US bank checks ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/finance/check.us.md))
+* `prebuilt-bankStatement.us` - US bank statements ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/finance/bankStatement.us.md))
 
 ### Mortgage documents (US)
 
-* `prebuilt-mortgage.us` - General US mortgage documents
-* `prebuilt-mortgage.us.1003` - Uniform Residential Loan Application
-* `prebuilt-mortgage.us.1004` - Uniform Residential Appraisal Report
-* `prebuilt-mortgage.us.1005` - Verification of Employment
-* `prebuilt-mortgage.us.1008` - Uniform Underwriting and Transmittal Summary
-* `prebuilt-mortgage.us.closingDisclosure` - Closing Disclosure
+* `prebuilt-mortgage.us` - A composed prebuilt analyzer that classifies and routes a mortgage document to the correct mortgage analyzer for extraction ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.md))
+* `prebuilt-mortgage.us.1003` - Uniform Residential Loan Application ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.1003.md))
+* `prebuilt-mortgage.us.1004` - Uniform Residential Appraisal Report ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.1004.md))
+* `prebuilt-mortgage.us.1005` - Verification of Employment ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.1005.md))
+* `prebuilt-mortgage.us.1008` - Uniform Underwriting and Transmittal Summary ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.1008.md))
+* `prebuilt-mortgage.us.closingDisclosure` - Closing Disclosure ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/mortgage.us/mortgage.us.closingDisclosure.md))
 
-### Legal and business documents
+### Personal records
 
-* `prebuilt-contract` - Business contracts and agreements
-* `prebuilt-marriageCertificate.us` - US marriage certificates
+* `prebuilt-payStub.us` - US pay stubs and earnings statements ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/finance/payStub.us.md))
+* `prebuilt-marriageCertificate.us` - US marriage certificates ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/personalRecords/marriageCertificate.us.md))
+* `prebuilt-healthInsuranceCard.us` - US health insurance cards ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/personalRecords/healthInsuranceCard.us.md))
+* `prebuilt-utilityBill` - Utility bills (electricity, water, gas, internet, phone) ([schema](https://github.com/Azure/content-understanding-toolkit/blob/main/prebuilt-schema/2025-11-01/procurement/utilityBill.md))
 
-### Procurement documents
+### Other prebuilt analyzers
 
-* `prebuilt-procurement` - Purchase orders, invoices, and procurement-related documents
-* `prebuilt-purchaseOrder` - Purchase order forms
-
-### Other specialized analyzers
-
-* `prebuilt-payStub.us` - US pay stubs and earnings statements
-* `prebuilt-utilityBill` - Utility bills (electricity, water, gas, internet, phone)
+* `prebuilt-callCenter` - Call recordings to extract topics, sentiment, and key topics
 
 ## Next steps
 

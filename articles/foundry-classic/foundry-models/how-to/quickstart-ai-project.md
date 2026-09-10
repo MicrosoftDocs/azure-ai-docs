@@ -37,7 +37,7 @@ In this article, you learn how to configure your project to use Foundry Models d
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
+* An Azure subscription.
 
 * A Foundry resource. For more information, see [Create your first Foundry resource](../../../ai-services/multi-service-resource.md).
 
@@ -146,7 +146,7 @@ The following table summarizes the changes you have to introduce:
 | Credentials | One per model/endpoint. | One per Foundry resource. You can use Microsoft Entra ID too. |
 | Model parameter | None. | Required. Use the name of the model deployment. |
 
-### Clean-up existing serverless API deployments from your project
+### Clean up existing serverless API deployments from your project
 
 After you refactored your code, you might want to delete the existing serverless API deployments inside of the project (if any).
 

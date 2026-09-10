@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/01/2026
+ms.date: 08/12/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -28,16 +28,13 @@ curl -X PUT "https://management.azure.com/subscriptions/00000000-0000-0000-0000-
             "mode": "balanced",
             "models": [
                 {"format": "OpenAI", "name": "gpt-4.1", "version": "2025-04-14"},
-                {"format": "OpenAI", "name": "gpt-5.2-chat", "version": "2025-12-11"},
+                {"format": "OpenAI", "name": "gpt-5.6-sol", "version": "2026-07-09"},
                 {"format": "Meta", "name": "Llama-4-Maverick-17B-128E-Instruct-FP8", "version": "1"}
             ]
         }
     }
 }'
 ```
-
-> [!TIP]
-> For the full runnable sample and other deployment options (routing mode only, model subset only), see the [Model Router REST sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/REST/model-router/deploy-model-router-all-configs.sh) in the foundry-samples repository.
 
 > [!IMPORTANT]
 > If you include Anthropic Claude models in the `routing.models` array, you must first deploy them to the same Foundry account with a matching SKU. Otherwise the request fails with an `InvalidResourceProperties` error. Deploy Claude models from the Foundry model catalog before you reference them in a model router deployment. See [Deploy and use Claude models](../../foundry-models/how-to/use-foundry-models-claude.md).

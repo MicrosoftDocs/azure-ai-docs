@@ -4,7 +4,7 @@ description: "Build a Foundry toolbox that combines web search and the Microsoft
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 07/09/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -25,6 +25,8 @@ In this quickstart, you build a [toolbox](../how-to/tools/toolbox.md) that combi
 - The **Microsoft Learn MCP server**, which grounds responses in official Microsoft documentation. It's a public endpoint that requires no authentication.
 
 You then consume the toolbox from a [hosted agent](../concepts/hosted-agents.md) written in Python. The toolbox exposes one MCP endpoint, so the agent connects to a single URL and discovers every tool at runtime. You can change the tools later without changing agent code.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help build the toolbox endpoint, connect it to a hosted agent, and adjust the sample tools.
 
 ## Prerequisites
 
@@ -86,7 +88,7 @@ azd env set FOUNDRY_PROJECT_ENDPOINT "$(azd env get-value FOUNDRY_PROJECT_ENDPOI
 
 :::zone pivot="azd"
 
-The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
+The sample includes a [`toolbox.yaml`](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/04-foundry-toolbox/src/agent-framework-agent-with-foundry-toolbox-responses/toolbox.yaml) in `src/toolbox-agent` that defines both tools behind one endpoint. Create the toolbox from that file:
 
 ```bash
 azd ai toolbox create my-toolbox --from-file ./src/toolbox-agent/toolbox.yaml
@@ -240,12 +242,11 @@ with (
     )
     print(f"Created toolbox version {created.version} for {created.name}")
 
-    toolbox = project_client.toolboxes.get(name=toolbox_name)
     mcp_endpoint = (
-        f"{endpoint}/toolboxes/{toolbox.name}/versions/"
-        f"{toolbox.default_version}/mcp?api-version=v1"
+        f"{endpoint}/toolboxes/{created.name}/versions/"
+        f"{created.version}/mcp?api-version=v1"
     )
-    print(f"Default toolbox version: {toolbox.default_version}")
+    print(f"Toolbox version: {created.version}")
     print(f"Toolbox MCP endpoint: {mcp_endpoint}")
 ```
 
@@ -393,6 +394,8 @@ with (
                     "Use the Microsoft Learn documentation."
                 ),
             )
+            if response.status != "completed":
+                raise RuntimeError(f"Agent invocation failed: {response.error}")
             print(response.output_text)
     finally:
         if original_agent_endpoint is not None:
@@ -448,7 +451,7 @@ azd env set TOOLBOX_ENDPOINT ""
 Delete the agent and its Azure resources:
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```bash
 azd down

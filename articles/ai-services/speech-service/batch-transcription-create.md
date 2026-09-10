@@ -43,6 +43,8 @@ To create a batch transcription job, use the [Transcriptions - Submit](/rest/api
 
 For more information, see [Request configuration options](#request-configuration-options).
 
+For end-to-end guidance on language identification, fallback locales, diarization, and response verification, see [Configure language identification and diarization for speech transcription](configure-language-identification-diarization.md).
+
 > [!TIP]
 > A transcription request can contain URIs for one or more audio files. Separate short and long audio files into different requests. Long audio files require more processing time and the service might retry them multiple times due to insufficient computing resources. This condition prolongs the overall completion time of that request. However, bundling many long audio files together in a single request is a good way to save time.
 
@@ -319,7 +321,7 @@ The following example shows the usage of the `languageIdentification` property w
 Azure Speech in Foundry Tools supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
 
 > [!NOTE]
-> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What is the Whisper model?](./whisper-overview.md)
+> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What are OpenAI transcription models?](./transcribe-overview.md)
 
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 

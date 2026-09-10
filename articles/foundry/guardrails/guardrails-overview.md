@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: concept-article
-ms.date: 04/01/2026
+ms.date: 07/31/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false

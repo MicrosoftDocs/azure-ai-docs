@@ -27,6 +27,8 @@ In this article, you create a minimal Agent Framework agent, expose it through
 either the Responses or Invocations protocol, test it through HTTP, and deploy
 it to Foundry with the Azure Developer CLI.
 
+The [Microsoft Foundry Skill](use-microsoft-foundry-skill.md) can help implement the adapter, test the protocols, and deploy with `azd`.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).

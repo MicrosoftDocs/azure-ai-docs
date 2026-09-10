@@ -6,7 +6,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: sajagtap
 manager: mcleans
-ms.date: 05/13/2026
+ms.date: 08/19/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -108,7 +108,7 @@ For the full deployment walkthrough that doesn't include policy steps, see [Use 
 
 ### REST API, Azure CLI, and ARM templates
 
-When you create a model router deployment from outside the portal, Azure Policy is evaluated on the control plane. If the deployment request includes a model that isn't on the allowed list, the request is rejected with a policy violation response, and no model router deployment is created.
+When you create a model router deployment from outside the portal, Azure Policy evaluates on the control plane. If the deployment request includes a model that's not on the allowed list, the request is rejected with a policy violation response, and no model router deployment is created.
 
 To stay compliant on the command line:
 

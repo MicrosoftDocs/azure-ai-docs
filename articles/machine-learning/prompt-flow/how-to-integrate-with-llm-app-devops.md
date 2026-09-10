@@ -8,12 +8,13 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Integrate prompt flow with DevOps for LLM-based applications
@@ -39,7 +40,7 @@ The following diagram shows the interaction of local and cloud-based prompt flow
 
 - Visual Studio Code with the Python and Prompt flow extensions installed.
 
-  :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-source-file-raw-file.png" alt-text="Screenshot of the Python and Prompt flow extensions in Visual Studio Code."
+  :::image type="content" source="./media/how-to-integrate-with-llm-app-devops/flow-source-file-raw-file.png" alt-text="Screenshot of the Python and Prompt flow extensions in Visual Studio Code.":::
 
 ## Use a code-first experience in prompt flow
 
@@ -162,13 +163,13 @@ The return values are the test logs and outputs.
 <a name="submitting-runs-to-the-cloud-from-local-repository"></a>
 ### Submit runs to the cloud from a local repository
 
-When you're satisfied with the results of your local testing, use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure and code are based on the [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) in GitHub. You can clone the project repo or download the prompt flow code to your local machine.
+When you're satisfied with the results of your local testing, use the prompt flow CLI or SDK to submit runs to the cloud from the local repository. The following procedure and code are based on the [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) in GitHub. That repository is archived and read-only, so use it only as a reference for this procedure. For the current template repository, see the [GenAIOps Prompt Flow template](https://github.com/microsoft/genaiops-promptflow-template).
 
 #### Install the prompt flow SDK 
 
 Install the Azure prompt flow SDK and CLI by running `pip install promptflow[azure] promptflow-tools`.
 
-If you're using the demo project, get the SDK and other necessary packages by installing [requirements.txt](https://github.com/Azure/llmops-gha-demo/blob/main/promptflow/web-classification/requirements.txt) with<br>`pip install -r <path>/requirements.txt`.
+If you're using the archived demo project, get the SDK and other necessary packages by installing [requirements.txt](https://github.com/Azure/llmops-gha-demo/blob/main/promptflow/web-classification/requirements.txt) with<br>`pip install -r <path>/requirements.txt`.
 
 <a name="connect-to-azure-machine-learning-workspace"></a>
 #### Connect to your Azure Machine Learning workspace
@@ -445,7 +446,7 @@ When you need to share flows across different environments, push them to a cloud
 
 By following these practices, teams can create a seamless, efficient, and productive collaborative environment for prompt flow development.
 
-For example end-to-end LLMOps pipelines that execute web classification flows, see [Set up end to end GenAIOps with prompt Flow and GitHub](how-to-end-to-end-llmops-with-prompt-flow.md) and the GitHub [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification).
+For example end-to-end LLMOps pipelines that execute web classification flows, see [Set up end-to-end GenAIOps with prompt flow and GitHub](how-to-end-to-end-llmops-with-prompt-flow.md) and the current [GenAIOps Prompt Flow template](https://github.com/microsoft/genaiops-promptflow-template). The GitHub [Web Classification demo project](https://github.com/Azure/llmops-gha-demo/tree/main/promptflow/web-classification) remains available as an archived reference.
 
 ### Trigger flow runs in CI pipelines
 

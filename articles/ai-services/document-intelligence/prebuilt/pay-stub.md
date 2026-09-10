@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/11/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -14,6 +14,8 @@ monikerRange: '>=doc-intel-4.0.0'
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence payStub model
+
+This content applies to: 🟩 v4.0 (GA)
 
 The Document Intelligence payStub model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract compensation and earnings data from pay slips. The API analyzes documents and files with payroll related information; extracts key information and returns a structured JSON data representation.
 

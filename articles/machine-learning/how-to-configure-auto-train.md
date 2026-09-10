@@ -8,7 +8,7 @@ ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 08/29/2025
+ms.date: 08/21/2026
 ms.topic: how-to
 ms.custom: devx-track-python, automl, sdkv2
 ai-usage: ai-assisted
@@ -287,6 +287,7 @@ In the following table, explore the supported algorithms per machine learning ta
 | [Extremely Randomized Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees)* | [Extremely Randomized Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees)* | [Extremely Randomized Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees)* |
 | [Xgboost](/python/api/azureml-train-automl-client/azureml.train.automl.constants.supportedmodels.classification#azureml-train-automl-constants-supportedmodels-classification-xgboostclassifier)* |[Xgboost](/python/api/azureml-train-automl-client/azureml.train.automl.constants.supportedmodels.regression#azureml-train-automl-constants-supportedmodels-regression-xgboostregressor)* | [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#random-forests) |
 | [Naive Bayes](https://scikit-learn.org/stable/modules/naive_bayes.html#bernoulli-naive-bayes)* | [Xgboost](https://xgboost.readthedocs.io/en/latest/parameter.html)  | [TCNForecaster](concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster) |
+| [Multinomial Naive Bayes](https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes)* | | |
 | [Stochastic Gradient Descent (SGD)](/python/api/azureml-train-automl-client/azureml.train.automl.constants.supportedmodels.classification#azureml-train-automl-constants-supportedmodels-classification-sgdclassifier)* |[Stochastic Gradient Descent (SGD)](https://scikit-learn.org/stable/modules/sgd.html#regression) | [Gradient Boosting](https://scikit-learn.org/stable/modules/ensemble.html#regression) |
 ||| [ExponentialSmoothing](/python/api/azureml-automl-core/azureml.automl.core.shared.constants.supportedmodels.forecasting#azureml-automl-core-shared-constants-supportedmodels-forecasting-exponentialsmoothing) |
 ||| [SeasonalNaive](/python/api/azureml-automl-core/azureml.automl.core.shared.constants.supportedmodels.forecasting#azureml-train-automl-constants-supportedmodels-forecasting-seasonalnaive) |
@@ -365,6 +366,7 @@ The recommendations are similar to the recommendations for regression scenarios.
 | `normalized_root_mean_squared_error` | Price prediction (forecasting), Inventory optimization, Demand forecasting |
 | `r2_score` | Price prediction (forecasting), Inventory optimization, Demand forecasting |
 | `normalized_mean_absolute_error` | |
+| `spearman_correlation` | |
 
 #### Metrics for Image Object Detection scenarios
 
@@ -387,7 +389,7 @@ The following table shows the accepted settings for featurization.
 
 | Featurization Configuration | Description |
 |:------------- |:------------- |
-| `"mode": 'auto'` | Indicates that, as part of preprocessing, [data guardrails and featurization steps](./v1/how-to-configure-auto-features.md#featurization) are done automatically. This value is the default setting. |
+| `"mode": 'auto'` | Indicates that, as part of preprocessing, data guardrails and featurization steps are done automatically. This value is the default setting. |
 | `"mode": 'off'` | Indicates featurization step shouldn't be done automatically. |
 | `"mode":`&nbsp;`'custom'` | Indicates you should use customized featurization step. |
 
@@ -525,9 +527,7 @@ AutoML offers options for you to monitor and evaluate your training results.
 
 - For definitions and examples of the performance charts and metrics provided for each run, see [evaluate AutoML experiment results](how-to-understand-automated-ml.md).
 
-- To get a featurization summary and understand what features were added to a particular model, see [featurization transparency](./v1/how-to-configure-auto-features.md#featurization-transparency).
-
-From the Azure Machine Learning UI at the model's page, you can also view the hyper-parameters used when you train a particular model and also view and customize the internal model's training code used.
+From the Azure Machine Learning UI at the model's page, you can view a featurization summary and understand what features were added to a particular model. You can also view the hyperparameters used when you train a particular model and view and customize the internal model's training code used.
 
 ## Register and deploy models
 
@@ -574,7 +574,7 @@ def automl_classification(
             automl_output=Input(type="mlflow_model")
         ),
         command="ls ${{inputs.automl_output}}",
-        environment="AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:latest"
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest"
     )
     show_output = command_func(automl_output=classification_node.outputs.best_model)
 
@@ -645,7 +645,7 @@ jobs:
         type: command
         inputs:
             automl_output: ${{parent.jobs.classification_node.outputs.best_model}}
-        environment: "AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:latest"
+        environment: "azureml://registries/azureml/environments/sklearn-1.5/labels/latest"
         command: >-
             ls ${{inputs.automl_output}}
         
@@ -686,6 +686,9 @@ To use distributed training for classification or regression, set the `training_
 | max_nodes | The number of nodes to use for training by each trial. This setting must be greater than or equal to 4. |
 
 The following code sample shows an example of these settings for a classification job:
+
+> [!NOTE]
+> `TabularTrainingMode` is an experimental API and might change at any time.
 
 # [Python SDK](#tab/python)
 

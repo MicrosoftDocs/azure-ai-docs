@@ -19,7 +19,7 @@ ms.custom:
 
 The Azure Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were released in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
 
-This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
+This article highlights changes needed to migrate analyzers and applications that were built with preview API versions.
 
 For supported REST API versions and operations, use the [Content Understanding REST API reference](/rest/api/contentunderstanding/operation-groups). The version selector on Learn shows currently published reference versions.
 
@@ -39,7 +39,7 @@ Get the analyzer definition by calling:
 GET /analyzers/{analyzerName}
 ```
 
-The analyzer definition might look like this if it was created with the `2025-05-01-preview` API.
+The analyzer definition might look like this if you created it by using a retired preview API.
 
 ```jsonc
 {
@@ -93,7 +93,7 @@ You need to delete the existing analyzer to reuse the name.
 
 - Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [Build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [Video segmentation](../video/overview.md#segmentation-mode) for guidance.
 
-- Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
+- Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set `estimateFieldSourceAndConfidence` to `true`.
 
 - The request to get specific components of the `analyze` result is simplified. To get embedded images or content, call:
 
@@ -139,8 +139,6 @@ You need to delete the existing analyzer to reuse the name.
 
 ### Deprecated features
 
-- The GA API doesn't include Pro mode, which is still in preview (`2025-05-01-preview`). As a result, `AnalysisMode` is being deprecated and standard is the only mode supported in the GA API.
-- Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
 - The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
 
 ## Related content

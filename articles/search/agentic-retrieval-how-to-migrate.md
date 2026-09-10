@@ -1,9 +1,12 @@
 ---
 title: Migrate Agentic Retrieval Code
-description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
+description: Learn how to migrate your agentic retrieval code to the latest API version. This article focuses on breaking changes and backward compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/20/2026
+ms.custom:
+  - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -12,42 +15,193 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an earlier REST API version, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all API versions that support agentic retrieval.
+If your [agentic retrieval](agentic-retrieval-overview.md) code targets an earlier API version, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all API versions that support agentic retrieval.
 
 Migration instructions are intended to help you run an existing solution on a newer API version. The instructions in this article help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new in Azure AI Search](whats-new.md).
 
 > [!TIP]
-> Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install the latest package to begin your updates. Before you start, check the SDK changelogs to confirm API updates: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> Using an Azure SDK instead of REST? Before you upgrade the package and apply the relevant migration changes, check the [changelog for your SDK language](search-api-versions.md) to confirm support for your target API version.
 
 ## When to migrate
 
-Every version that supports agentic retrieval has introduced breaking changes. You can continue to run older code unchanged by retaining the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
+Most versions that support agentic retrieval introduced breaking changes. You can continue to run older code unchanged by retaining the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
-If your code targets a preview version, we recommend migrating to the latest stable version only if your use case is fully supported by 2026-04-01. If you rely on answer synthesis, non-minimal reasoning effort, or multi-turn messages, review [breaking and nonbreaking changes](#version-specific-changes) before you decide to migrate. Those capabilities remain in preview.
+If your code targets a preview version, we recommend migrating to the latest stable version only if your use case is fully supported by `2026-04-01`. If you rely on answer synthesis, non-minimal reasoning effort, or multi-turn messages, review [breaking and nonbreaking changes](#version-specific-changes) before you decide to migrate. Those capabilities remain in preview.
 
-## How to migrate
-
-+ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then to 2025-11-01-preview, and so on.
+## Before you migrate
 
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
-+ "Migration" means creating new, uniquely named objects that implement the behaviors of the previous version. You can't overwrite an existing object if properties are added or deleted on the API. One advantage of creating new objects is the ability to preserve existing objects while new ones are developed and tested.
++ The supported migration path is incremental. If your code targets `2025-05-01-preview`, first migrate to `2025-08-01-preview`, then continue through each subsequent version until you reach your target version.
+
++ For a side-by-side migration, create uniquely named objects that implement the behaviors of the previous version. This approach preserves existing objects while you develop and test replacements. If an object supports update in place, the version-specific steps call out that option.
 
 + For each object that you migrate, start by getting the current definition from the search service so that you can review existing properties before specifying the new one.
 
 + Delete older versions only after your migration is fully tested and deployed.
 
-### [**2026-04-01**](#tab/2026-04-01)
+## How to migrate
 
-If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), you can migrate directly to 2026-04-01. Your index and content remain unchanged. You only need to update the knowledge base schema and the retrieve request shape.
+This section covers migration steps for the following API versions:
+
++ [2026-08-01-preview](#2026-08-01-preview)
++ [2026-05-01-preview](#2026-05-01-preview)
++ [2026-04-01](#2026-04-01)
++ [2025-11-01-preview](#2025-11-01-preview)
++ [2025-08-01-preview](#2025-08-01-preview)
+
+### 2026-08-01-preview
+
+If you're migrating from [2026-05-01-preview](#2026-05-01-preview-1), you can move directly to `2026-08-01-preview`. This migration requires updates to Work IQ knowledge sources, list paging, response processing, MCP server tools, and affected generated-client calls.
+
+1. [Migrate Work IQ knowledge sources](#migrate-work-iq-knowledge-sources)
+1. [Update list paging](#update-list-paging)
+1. [Update retrieve response processing](#update-retrieve-response-processing)
+1. [Update code and clients](#update-code-and-clients-for-2026-08-01-preview)
+
+#### Migrate Work IQ knowledge sources
+
+To migrate a Work IQ knowledge source to the new authentication configuration:
+
+1. Export its current definition.
+
+1. Update the existing knowledge source by using [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true), or create a replacement with a unique name for a side-by-side migration.
+
+1. Use the `2026-08-01-preview` API version and configure `workIQParameters.entraAppAuthentication`. The `applicationId` and `federatedCredentialId` properties are required. The `tenantId` property is optional and defaults to the search service's tenant.
+
+1. If you created a replacement, update each knowledge base that references the previous knowledge source to use the replacement name.
+
+1. Update retrieve requests to pass the user assertion in the `x-ms-query-work-iq-source-authorization` header.
+
+For setup and examples, see [Create a Work IQ knowledge source (preview)](agentic-knowledge-source-how-to-work-iq.md).
+
+#### Update list paging
+
+To replace offset-based paging with cursor-based paging:
+
+1. Remove `$top`, `$skip`, and `$count` from knowledge source list requests. Set `pageSize` from 1 through 3,000 to control the page size. If you omit it, the service chooses the page size.
+
+1. To filter by name, set `search` and `searchType`. The only supported `searchType` value is `prefix`, which is also the default. The following request returns up to 100 knowledge sources whose names start with `contoso`.
+
+   ```http
+   GET {{search-endpoint}}/knowledgesources?api-version=2026-08-01-preview&pageSize=100&search=contoso&searchType=prefix
+   Authorization: Bearer {{search-access-token}}
+   ```
+
+   **Reference:** [Knowledge Sources - List](/rest/api/searchservice/knowledge-sources/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
+
+1. If the response contains `@odata.nextLink`, send that URL exactly as returned. Don't parse or modify its continuation state.
+
+#### Update retrieve response processing
+
+To process the new Work IQ reference and model-backed activity shapes:
+
+1. Remove dependencies on `attributions`, `WorkIQAttribution`, and `seeMoreWebUrl`. Read sensitivity-label metadata from `searchSensitivityLabelInfo` on the Work IQ reference.
+
+1. In query-planning, answer-synthesis, and web-summarization activity records, read `modelName` and `deploymentId` from the nested `model` object. The nested object and both properties are optional.
+
+The following fragments show the response-shape changes.
+
+```json
+{
+  "references": [
+    {
+      "type": "workIQ",
+      "id": "<reference-id>",
+      "activitySource": 1,
+      "sourceData": {},
+      "attributions": [
+        {
+          "seeMoreWebUrl": "<attribution-url>"
+        }
+      ]
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelAnswerSynthesis",
+      "id": 2,
+      "modelName": "<model-name>"
+    }
+  ]
+}
+```
+
+In `2026-08-01-preview`, the same fragments use the following shape:
+
+```json
+{
+  "references": [
+    {
+      "type": "workIQ",
+      "id": "<reference-id>",
+      "activitySource": 1,
+      "sourceData": {},
+      "searchSensitivityLabelInfo": {
+        "displayName": "<label-name>",
+        "sensitivityLabelId": "<label-id>"
+      }
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelAnswerSynthesis",
+      "id": 2,
+      "model": {
+        "modelName": "<model-name>",
+        "deploymentId": "<deployment-id>"
+      }
+    }
+  ]
+}
+```
+
+#### Update code and clients for 2026-08-01-preview
+
+To complete your migration:
+
+1. On each MCP server `tools` item, replace `inclusionMode` with `resultsProcessing`. Map `reranked` to `rerank` and `always` to `none`. The `rerank` value is the default. The `none` value bypasses reranking and preserves the tool's underlying result order. For setup, see [Configure tools for an MCP server knowledge source](agentic-knowledge-source-how-to-mcp-server.md#configure-tools).
+
+1. If you use an Azure SDK, install a package that supports `2026-08-01-preview`, and review positional list calls for parameter-order changes. REST callers aren't affected because HTTP parameters are keyed by name. In C#, prefer named arguments, such as `GetKnowledgeSourcesAsync(search: ..., pageSize: ...)`. In Python, pass list options as keyword arguments.
+
+1. Test Work IQ authentication and references, cursor paging, activity-record deserialization, MCP server result ordering, and generated-client calls before you update production.
+
+1. If you created replacement Work IQ knowledge sources, delete the earlier sources only after the migration passes all tests, your updated application is deployed, and no knowledge base references the earlier names.
+
+### 2026-05-01-preview
+
+If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to `2026-05-01-preview`. Requests, responses, and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
+
+1. Update the API version to `2026-05-01-preview` on REST requests. SDK clients use the package's default API version, so you don't need to pass an explicit `serviceVersion` argument. Instead, upgrade to the `2026-05-01-preview` SDK package.
+
+1. If you use the Python or JavaScript SDK, update the retrieve client to `KnowledgeBaseRetrievalClient` and call `retrieve(...)` instead of the legacy `retrieveKnowledge(...)`. For the full SDK shape mapping, see [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview).
+
+1. (Optional) Adopt the new `2026-05-01-preview` features, such as [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md), per-source and final-result document caps, persisted retrieve defaults, knowledge base CORS, and Purview sensitivity-label metadata in retrieve responses. None of these features are required to keep an existing solution working.
+
+#### Update code and clients for 2026-05-01-preview
+
+The `2026-05-01-preview` SDKs introduce code-shape changes across the supported languages:
+
+| Language | Migration updates |
+| --- | --- |
+| Python | Create the retrieve client as `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Construct reasoning effort instances such as `KnowledgeRetrievalLowReasoningEffort()` and pass the string `output_mode="answerSynthesis"` on the knowledge base or retrieve request. Pass `AzureOpenAIVectorizerParameters(resource_url=...)` (renamed from `resource_uri`), using the resource root endpoint rather than an `/openai/v1` endpoint. |
+| .NET | Create the retrieve client as `new KnowledgeBaseRetrievalClient(endpoint, knowledgeBaseName, credential)` and pass an `AzureKeyCredential` or token credential. To attach a key-based Azure OpenAI model to a knowledge base, set the model API key on `AzureOpenAIVectorizerParameters.ApiKey`. |
+| Java | Use `KnowledgeBaseRetrievalClientBuilder` to create the retrieve client and read results as `KnowledgeBaseRetrievalResult`. `KnowledgeBaseRetrievalOptions` now exposes `setMessages(...)` alongside `setIntents(...)`, plus `setRetrievalReasoningEffort`, `setOutputMode`, `setMaxOutputSize`, and `setMaxOutputDocuments`, so message-based retrieve and answer synthesis work without a semantic-intent workaround. `KnowledgeBase` adds `setOutputMode`, `setRetrievalReasoningEffort`, `setRetrievalInstructions`, `setAnswerInstructions`, and `setCorsOptions`. `SearchIndexKnowledgeSourceParams` adds `setAlwaysQuerySource`, `setFailOnError`, `setMaxOutputDocuments`, and `setEnableImageServing`. |
+| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve({ intents: [{ type: "semantic", search: query }] })`. The previous `retrieveKnowledge(...)` method is removed in favor of `retrieve(...)`. |
+
+After you update the client shapes, run the full flow that creates the index, uploads documents, creates a knowledge source, creates a knowledge base, issues a retrieve request, and cleans up resources to confirm the migration end to end.
+
+### 2026-04-01
+
+If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), you can migrate directly to `2026-04-01`. Your index and content remain unchanged. You only need to update the knowledge base schema and the retrieve request shape.
 
 1. [Migrate knowledge sources](#migrate-knowledge-sources)
 1. [Migrate the knowledge base](#migrate-the-knowledge-base)
@@ -57,13 +211,13 @@ If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), you can mi
 
 #### Migrate knowledge sources
 
-In 2026-04-01, the `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available. Other knowledge source types remain in preview.
+In `2026-04-01`, the `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available. Other knowledge source types remain in preview.
 
 1. Use [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) to get the current definition.
 
    ```http
    GET {{search-endpoint}}/knowledge-sources/{{knowledge-source-name}}?api-version=2025-11-01-preview
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
@@ -71,15 +225,15 @@ In 2026-04-01, the `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowl
 
    - For `searchIndex` and `web`, carry forward all property values.
 
-   - For `azureBlob` and `indexedOneLake`, carry forward all property values, but omit `ingestionPermissionOptions` from `ingestionParameters`. This property isn't supported in 2026-04-01.
+   - For `azureBlob` and `indexedOneLake`, carry forward all property values, but omit `ingestionPermissionOptions` from `ingestionParameters`. This property isn't supported in `2026-04-01`.
 
-1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the 2026-04-01 API version, and the property values from the previous step.
+1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the `2026-04-01` API version, and the property values from the previous step.
 
    The following example shows a `searchIndex` knowledge source. Use a similar pattern for `azureBlob`, `indexedOneLake`, and `web` knowledge sources.
 
    ```http
    PUT {{search-endpoint}}/knowledge-sources/{{new-knowledge-source-name}}?api-version=2026-04-01
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
 
    {
@@ -99,13 +253,13 @@ In 2026-04-01, the `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowl
 
 #### Migrate the knowledge base
 
-The 2026-04-01 knowledge base has a simpler schema than the 2025-11-01-preview version: it keeps `knowledgeSources` and drops answer generation settings. Review the current definition before you create a new object.
+The `2026-04-01` knowledge base has a simpler schema than the `2025-11-01-preview` version: it keeps `knowledgeSources` and drops answer generation settings. Review the current definition before you create a new object.
 
 1. Use [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) to get the current definition.
 
    ```http
    GET {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
@@ -113,15 +267,15 @@ The 2026-04-01 knowledge base has a simpler schema than the 2025-11-01-preview v
 
    - Note the `knowledgeSources` references. Carry these forward into the new knowledge base.
 
-   - If present, remove `outputMode`, `answerInstructions`, and `retrievalInstructions`. These properties aren't supported in 2026-04-01.
+   - If present, remove `outputMode`, `answerInstructions`, and `retrievalInstructions`. These properties aren't supported in `2026-04-01`.
 
    - If your knowledge base uses a `web` knowledge source, keep `models`. Web retrieval requires model-backed summarization. For all other knowledge source types, remove `models`.
 
-1. Use [Knowledge Bases - Create Or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge base with a unique name, the 2026-04-01 API version, and only the supported properties.
+1. Use [Knowledge Bases - Create Or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge base with a unique name, the `2026-04-01` API version, and only the supported properties.
 
    ```http
    PUT {{search-endpoint}}/knowledgebases/{{new-knowledge-base-name}}?api-version=2026-04-01
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
 
    {
@@ -135,28 +289,28 @@ The 2026-04-01 knowledge base has a simpler schema than the 2025-11-01-preview v
 
 #### Update the retrieve request
 
-The 2026-04-01 retrieve request has a different shape than the preview version:
+The `2026-04-01` retrieve request has a different shape than the preview version:
 
 + Use `intents` instead of `messages`.
 
 + Use `maxOutputSizeInTokens` instead of `maxOutputSize`.
 
-+ If present, remove `retrievalReasoningEffort` and `alwaysQuerySource`. These parameters aren't supported in 2026-04-01.
++ If present, remove `retrievalReasoningEffort` and `alwaysQuerySource`. These parameters aren't supported in `2026-04-01`.
 
-+ For follow-up questions, send a new retrieve request with a new semantic intent. 2026-04-01 doesn't maintain a running messages transcript.
++ For follow-up questions, send a new retrieve request with a new semantic intent. `2026-04-01` doesn't maintain a running messages transcript.
 
-To test your knowledge base output with a query, use the 2026-04-01 version of [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API).
+To test your knowledge base output with a query, use the `2026-04-01` version of [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API).
 
 ```http
 POST {{search-endpoint}}/knowledgebases/{{new-knowledge-base-name}}/retrieve?api-version=2026-04-01
-api-key: {{api-key}}
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
   "intents": [
     {
       "type": "semantic",
-      "search": "{{your-query-text}}"
+      "search": "{{query-text}}"
     }
   ],
   "knowledgeSourceParams": [
@@ -177,14 +331,14 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 #### Update billing consent
 
-Starting with 2026-04-01, agentic retrieval billing consent is controlled by a dedicated `knowledgeRetrieval` property that's separate from `semanticSearch`, which now applies only to semantic ranker billing. `knowledgeRetrieval` is a management plane property, so you set it through the Search Management REST API, not the Search Service REST API.
+Starting with the `2026-04-01` API version, agentic retrieval billing consent is controlled by a dedicated `knowledgeRetrieval` property that's separate from `semanticSearch`, which now applies only to semantic ranker billing. `knowledgeRetrieval` is a management plane property, so you set it through the Search Management REST API, not the Search Service REST API.
 
 Use the latest preview version of [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-management-2026-03-01-preview&preserve-view=true) (REST API) to set `knowledgeRetrieval` on your search service.
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{management-access-token}}
 
 {
   "properties": {
@@ -199,7 +353,7 @@ For valid values and billing details, see [Enable or disable agentic retrieval b
 
 To complete your migration:
 
-1. Update client calls to use the 2026-04-01 API version.
+1. Update client calls to use the `2026-04-01` API version.
 
 1. Update any hardcoded knowledge base or knowledge source names in your code to reference the new objects created during migration.
 
@@ -209,49 +363,26 @@ To complete your migration:
 
 1. Delete preview objects only after the new objects are fully validated and deployed.
 
-### [**2026-05-01-preview**](#tab/2026-05-01-preview)
-
-If you're migrating from [2026-04-01](#2026-04-01-1) or [2025-11-01-preview](#2025-11-01-preview-1), you can move directly to 2026-05-01-preview. Requests, responses, and persisted objects from those versions remain compatible. The differences are additive features and language SDK renames.
-
-1. Update the API version to `2026-05-01-preview` on REST requests. SDK clients use the package's default API version, so you don't need to pass an explicit `serviceVersion` argument. Instead, upgrade to the 2026-05-01-preview SDK package.
-
-1. If you use the Python or JavaScript SDK, update the retrieve client to `KnowledgeBaseRetrievalClient` and call `retrieve(...)` instead of the legacy `retrieveKnowledge(...)`. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
-
-1. Optionally adopt the new 2026-05-01-preview features, such as [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md), per-source and final-result document caps, persisted retrieve defaults, knowledge base CORS, and Purview sensitivity-label metadata in retrieve responses. None of these features are required to keep an existing solution working.
-
-#### Update code and clients for 2026-05-01-preview
-
-The 2026-05-01-preview language SDKs introduce code-shape changes across the supported languages.
-
-| Language | Migration updates |
-| --- | --- |
-| Python | Create the retrieve client as `KnowledgeBaseRetrievalClient(endpoint=..., credential=..., knowledge_base_name=...)`. Construct reasoning effort instances such as `KnowledgeRetrievalLowReasoningEffort()` and pass the string `output_mode="answerSynthesis"` on the knowledge base or retrieve request. Pass `AzureOpenAIVectorizerParameters(resource_url=...)` (renamed from `resource_uri`), using the resource root endpoint rather than an `/openai/v1` endpoint. |
-| .NET | Create the retrieve client as `new KnowledgeBaseRetrievalClient(endpoint, knowledgeBaseName, credential)` and pass an `AzureKeyCredential` or token credential. To attach a key-based Azure OpenAI model to a knowledge base, set the model API key on `AzureOpenAIVectorizerParameters.ApiKey`. |
-| Java | Use `KnowledgeBaseRetrievalClientBuilder` to create the retrieve client and read results as `KnowledgeBaseRetrievalResult`. `KnowledgeBaseRetrievalOptions` now exposes `setMessages(...)` alongside `setIntents(...)`, plus `setRetrievalReasoningEffort`, `setOutputMode`, `setMaxOutputSize`, and `setMaxOutputDocuments`, so message-based retrieve and answer synthesis work without a semantic-intent workaround. `KnowledgeBase` adds `setOutputMode`, `setRetrievalReasoningEffort`, `setRetrievalInstructions`, `setAnswerInstructions`, and `setCorsOptions`. `SearchIndexKnowledgeSourceParams` adds `setAlwaysQuerySource`, `setFailOnError`, `setMaxOutputDocuments`, and `setEnableImageServing`. |
-| JavaScript and TypeScript | Use `KnowledgeRetrievalClient.retrieve({ intents: [{ type: "semantic", search: query }] })`. The previous `retrieveKnowledge(...)` method is removed in favor of `retrieve(...)`. |
-
-After you update the client shapes, run the full flow that creates the index, uploads documents, creates a knowledge source, creates a knowledge base, issues a retrieve request, and cleans up resources to confirm the migration end to end.
-
-### [**2025-11-01-preview**](#tab/2025-11-01-preview)
+### 2025-11-01-preview
 
 If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), "knowledge agent" is renamed to "knowledge base," and multiple properties are relocated to different objects and levels within an object definition.
 
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source)
 1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source)
 1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base)
-1. [Update the retrieval request and send a query to test your updates](#update-and-test-the-retrieval-for-2025-11-01-preview-updates)
+1. [Update the retrieve request and send a query to test your updates](#update-and-test-the-retrieval-for-2025-11-01-preview-updates)
 1. [Update client code](#update-code-and-clients-for-2025-11-01-preview)
 
 #### Update a searchIndex knowledge source
 
-This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source at the same functional level as the previous 2025-08-01 version. The underlying index itself requires no updates.
+This procedure creates a new `2025-11-01-preview` `searchIndex` knowledge source at the same functional level as the previous `2025-08-01` version. The underlying index itself requires no updates.
 
 1. List all knowledge sources by name to find your knowledge source.
 
    ```http
    ### List all knowledge sources by name
    GET {{search-endpoint}}/knowledge-sources?api-version=2025-08-01-preview&$select=name
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
@@ -260,11 +391,11 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
    ```http
    ### Get a specific knowledge source
    GET {{search-endpoint}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
-   The response should look similar to the following example.
+   The response should be similar to the following example.
 
    ```json
    {
@@ -285,8 +416,8 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
     Start with the 08-01-preview JSON.
 
     ```http
-    POST {{url}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
-    api-key: {{key}}
+    POST {{search-endpoint}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -301,7 +432,7 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
     }
     ```
 
-   Make the following updates for a 2025-11-01-preview migration:
+   Make the following updates for a `2025-11-01-preview` migration:
 
    + Give the knowledge source a new name.
 
@@ -312,8 +443,8 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
 1. Review your updates and then send the request to create the object.
 
     ```http
-    PUT {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
-    api-key: {{key}}
+    PUT {{search-endpoint}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -330,20 +461,20 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
     }
     ```
 
-You now have a migrated `searchIndex` knowledge source that's backward compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
+You now have a migrated `searchIndex` knowledge source that's backward compatible with the previous version, using the correct property specifications for the `2025-11-01-preview`.
 
 The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 #### Update an azureBlob knowledge source
 
-This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of generated objects: data source, skillset, indexer, index.
+This procedure creates a new `2025-11-01-preview` `azureBlob` knowledge source at the same functional level as the previous `2025-08-01` version. It creates a new set of generated objects: data source, skillset, indexer, index.
 
 1. List all knowledge sources by name to find your knowledge source.
 
    ```http
    ### List all knowledge sources by name
    GET {{search-endpoint}}/knowledge-sources?api-version=2025-08-01-preview&$select=name
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
@@ -352,11 +483,11 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
    ```http
    ### Get a specific knowledge source
    GET {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
-   The response might look similar to the following example if your workflow includes a model. Notice that a response includes the names of the generated objects. These objects are fully independent of the knowledge source and remain operational even if you update or delete their knowledge source.
+   If your workflow includes a model, the response should be similar to the following example. Notice that a response includes the names of the generated objects. These objects are fully independent of the knowledge source and remain operational even if you update or delete their knowledge source.
 
    ```json
     {
@@ -411,8 +542,8 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
     Start with the 08-01-preview JSON.
 
     ```http
-    POST {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
-    api-key: {{key}}
+    POST {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -446,7 +577,7 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
     }
     ```
 
-   Make the following updates for a 2025-11-01-preview migration:
+   Make the following updates for a `2025-11-01-preview` migration:
 
    + Give the knowledge source a new name.
 
@@ -457,8 +588,8 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
 1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
     ```http
-    PUT {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
-    api-key: {{key}}
+    PUT {{search-endpoint}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -489,24 +620,24 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
     }
     ```
 
-You now have a migrated `azureBlob` knowledge source that's backward compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
+You now have a migrated `azureBlob` knowledge source that's backward compatible with the previous version, using the correct property specifications for the `2025-11-01-preview`.
 
 The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
 #### Replace knowledge agent with knowledge base
 
-1. Knowledge bases require a knowledge source. Make sure you have a knowledge source that targets 2025-11-01-preview before you start.
+1. Knowledge bases require a knowledge source. Ensure you have a knowledge source that targets `2025-11-01-preview` before you start.
 
 1. [Get the current definition](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties.
 
    ```http
    ### Get a knowledge agent by name
    GET {{search-endpoint}}/agents/earth-at-night?api-version=2025-08-01-preview
-   api-key: {{api-key}}
+   Authorization: Bearer {{search-access-token}}
    Content-Type: application/json
    ```
 
-   The response might look similar to the following example.
+   The response should be similar to the following example.
 
     ```json
     {
@@ -551,8 +682,8 @@ The response includes the full definition of the new object. For more informatio
     Start with the 08-01-preview JSON.
 
     ```http
-    PUT {{url}}/knowledgebases/earth-at-night?api-version=2025-08-01-preview  HTTP/1.1
-    api-key: {{key}}
+    PUT {{search-endpoint}}/knowledgebases/earth-at-night?api-version=2025-08-01-preview  HTTP/1.1
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -587,19 +718,19 @@ The response includes the full definition of the new object. For more informatio
     }
     ```
 
-   Make the following updates for a 2025-11-01-preview migration:
+   Make the following updates for a `2025-11-01-preview` migration:
 
-   + Replace the endpoint: `/knowledgebases/{{your-object-name}}`. Give the knowledge base a unique name.
+   + Replace the endpoint: `/knowledgebases/{{knowledge-base-name}}`. Give the knowledge base a unique name.
 
    + Change the API version to `2025-11-01-preview`.
 
-   + Delete `requestLimits`. The `maxRuntimeInSeconds` and `maxOutputSize` properties are now specified on the retrieval request object directly.
+   + Delete `requestLimits`. The `maxRuntimeInSeconds` and `maxOutputSize` properties are now specified on the retrieve request directly.
 
    + Update `knowledgeSources`:
 
-     + Delete `maxSubQueries` and replace with a retrievalReasoningEffort` (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+     + Delete `maxSubQueries` and replace it with `retrievalReasoningEffort` (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
-     + Move `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold` to the `knowledgeSourcesParams` section of a [retrieve action](agentic-retrieval-how-to-retrieve.md).
+    + Move `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold` to the `knowledgeSourceParams` section of a [retrieve action](agentic-retrieval-how-to-retrieve.md).
 
    + No changes for `models`.
 
@@ -611,13 +742,13 @@ The response includes the full definition of the new object. For more informatio
 
      + If modality is set to `answerSynthesis`, make sure you set the retrieval reasoning effort to low (default) or medium.
 
-   + Add `ingestionParameters` as a requirement for creating a 2025-11-01-preview azureBlob knowledge source.
+   + Add `ingestionParameters` as a requirement for creating a `2025-11-01-preview` azureBlob knowledge source.
 
 1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
    ```http
-    PUT {{url}}/knowledgebases/earth-at-night-11-01?api-version={{api-version}}
-    api-key: {{key}}
+    PUT {{search-endpoint}}/knowledgebases/earth-at-night-11-01?api-version={{api-version}}
+    Authorization: Bearer {{search-access-token}}
     Content-Type: application/json
 
     {
@@ -643,35 +774,34 @@ The response includes the full definition of the new object. For more informatio
       ],
       "retrievalReasoningEffort": null,
       "outputMode": "answerSynthesis",
-      "answerInstructions": "Provide a concise and accurate answer based on the retrieved information.",
-
+      "answerInstructions": "Provide a concise and accurate answer based on the retrieved information."
     }
    ```
 
-You now have a knowledge base instead of a knowledge agent, and the object is backwards compatible with the previous version. 
+You now have a knowledge base instead of a knowledge agent, and the object is backward compatible with the previous version.
 
 The response includes the full definition of the new object. For more information about new properties available to a knowledge base, which you can now do through updates, see [How to create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 #### Update and test the retrieval for 2025-11-01-preview updates
 
-The retrieval request is modified for the 2025-11-01-preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). This section explains how to update your code.
+The retrieve request is modified for the `2025-11-01-preview` to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). This section explains how to update your code.
 
 1. Change the `/agents/retrieve` endpoint to `/knowledgebases/retrieve`.
 
 1. Change the API version to `2025-11-01-preview`.
 
-1. No changes to `messages` are required if you're using a `low` or `medium` retrievalReasoningEffort. Replace messages with `intent` if you use `minimal `reasoning (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+1. No changes to `messages` are required if you're using `low` or `medium` retrieval reasoning effort. Replace `messages` with `intents` if you use `minimal` reasoning (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 1. Modify `knowledgeSourceParams` to include any properties that were removed from the agent: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`.
 
 1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, it no longer exists. Use the `retrievalReasoningEffort` setting to specify subquery processing (see [Set the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
-To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+To test your knowledge base's output with a query, use the `2025-11-01-preview` of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 ```http
 ### Send a query to the knowledge base
-POST {{url}}/knowledgebases/earth-at-night-11-01/retrieve?api-version=2025-11-01-preview
-api-key: {{key}}
+POST {{search-endpoint}}/knowledgebases/earth-at-night-11-01/retrieve?api-version=2025-11-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 
 {
@@ -701,15 +831,15 @@ To complete your migration, follow these cleanup steps:
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 
-1. Update client calls to use the 2025-11-01-preview.
+1. Update client calls to use the `2025-11-01-preview`.
 
 1. Clear or regenerate cached definitions that were created using the old shapes.
 
-### [**2025-08-01-preview**](#tab/2025-08-01-preview)
+### 2025-08-01-preview
 
 If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview), your agent's definition includes an inline `targetIndexes` array and an optional `defaultMaxDocsForReranker` property.
 
-Starting with the [2025-08-01-preview](#2025-08-01-preview-1), reusable knowledge sources replace `targetIndexes`, and `defaultMaxDocsForReranker` is no longer supported. These breaking changes require you to:
+Starting with the [2025-08-01-preview](#2025-08-01-preview-1) API version, reusable knowledge sources replace `targetIndexes`, and `defaultMaxDocsForReranker` is no longer supported. These breaking changes require you to:
 
 1. [Get the current `targetIndexes` configuration](#get-the-current-configuration)
 1. [Create an equivalent knowledge source](#create-a-knowledge-source)
@@ -719,16 +849,16 @@ Starting with the [2025-08-01-preview](#2025-08-01-preview-1), reusable knowledg
 
 #### Get the current configuration
 
-To retrieve your agent's definition, use the 2025-05-01-preview of [Knowledge Agents - Get (REST API)](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+To retrieve your agent's definition, use the `2025-05-01-preview` of [Knowledge Agents - Get (REST API)](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
 ```http
-@search-url = <YourSearchServiceUrl>
-@agent-name = <YourAgentName>
-@api-key = <YourApiKey>
+@search-endpoint = <search-endpoint>
+@agent-name = <agent-name>
+@search-access-token = <search-access-token>
 
 ### Get agent definition
-GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview  HTTP/1.1
-    api-key: {{api-key}}
+GET {{search-endpoint}}/agents/{{agent-name}}?api-version=2025-05-01-preview  HTTP/1.1
+    Authorization: Bearer {{search-access-token}}
 ```
 
 The response should be similar to the following example. Copy the `indexName`, `defaultRerankerThreshold`, and `defaultIncludeReferenceSourceData` values for use in the upcoming steps. `defaultMaxDocsForReranker` is deprecated, so you can ignore its value.
@@ -740,73 +870,72 @@ The response should be similar to the following example. Copy the `indexName`, `
   "description": "My description of the agent",
   "targetIndexes": [
     {
-      "indexName": "my-index", // Copy this value
-      "defaultRerankerThreshold": 2.5, // Copy this value
-      "defaultIncludeReferenceSourceData": true, // Copy this value
+      "indexName": "my-index",
+      "defaultRerankerThreshold": 2.5,
+      "defaultIncludeReferenceSourceData": true,
       "defaultMaxDocsForReranker": 100
     }
-  ],
-  ... // Redacted for brevity
+  ]
 }
 ```
 
 #### Create a knowledge source
 
-To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
+To create a `searchIndex` knowledge source, use the `2025-08-01-preview` of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
 
 ```http
-@source-name = <YourSourceName>
+@source-name = <source-name>
 
 ### Create a knowledge source
-PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-01-preview  HTTP/1.1
+PUT {{search-endpoint}}/knowledgeSources/{{source-name}}?api-version=2025-08-01-preview  HTTP/1.1
     Content-Type: application/json
-    api-key: {{api-key}}
+    Authorization: Bearer {{search-access-token}}
 
     {
         "name": "{{source-name}}",
         "description": "My description of the knowledge source",
         "kind": "searchIndex",
         "searchIndexParameters": {
-            "searchIndexName": "my-index" // Use the previous value
+            "searchIndexName": "my-index"
         }
     }
 ```
 
-This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](agentic-knowledge-source-overview.md).
+The previous example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](agentic-knowledge-source-overview.md).
 
 #### Update the agent
 
-To replace `targetIndexes` with `knowledgeSources` in your agent's definition, use the 2025-08-01-preview of [Knowledge Agents - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `rerankerThreshold` and `includeReferenceSourceData` to the values you previously copied.
+To replace `targetIndexes` with `knowledgeSources` in your agent's definition, use the `2025-08-01-preview` of [Knowledge Agents - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `rerankerThreshold` and `includeReferenceSourceData` to the values you previously copied.
 
 ```http
 ### Replace targetIndexes with knowledgeSources
-POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview  HTTP/1.1
+POST {{search-endpoint}}/agents/{{agent-name}}?api-version=2025-08-01-preview  HTTP/1.1
     Content-Type: application/json
-    api-key: {{api-key}}
+    Authorization: Bearer {{search-access-token}}
 
-    { 
-        "name": "{{agent-name}}", 
+    {
+        "name": "{{agent-name}}",
         "knowledgeSources": [
             {
                 "name": "{{source-name}}",
-                "rerankerThreshold": 2.5, // Use the previous value
-                "includeReferenceSourceData": true // Use the previous value
+                "rerankerThreshold": 2.5,
+                "includeReferenceSourceData": true
             }
-        ]
-    } 
+        ]
+    }
 ```
 
-This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
+The previous example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
 #### Test the retrieval for 2025-08-01-preview updates
 
-To test your agent's output with a query, use the 2025-08-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+To test your agent's output with a query, use the `2025-08-01-preview` of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
 ```http
 ### Send a query to the agent
-POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview  HTTP/1.1
+POST {{search-endpoint}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview  HTTP/1.1
     Content-Type: application/json
-    api-key: {{api-key}}
+    Authorization: Bearer {{search-access-token}}
 
     {
       "messages": [
@@ -814,7 +943,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
                 "role": "user",
                 "content" : [
                     {
-                        "text": "<YourQueryText>",
+                        "text": "<query-text>",
                         "type": "text"
                     }
                 ]
@@ -830,36 +959,79 @@ If the response has a `200 OK` HTTP code, your agent successfully retrieved cont
 To complete your migration, follow these cleanup steps:
 
 + Replace all `targetIndexes` references with `knowledgeSources` in configuration files, code, scripts, and tests.
-+ Update client calls to use the 2025-08-01-preview.
++ Update client calls to use the `2025-08-01-preview`.
 + Clear or regenerate cached agent definitions that were created using the old shape.
-
----
 
 ## Version-specific changes
 
-This section covers breaking and nonbreaking changes for the following REST API versions:
+This section covers breaking and nonbreaking changes for the following API versions:
 
++ [2026-08-01-preview](#2026-08-01-preview-1)
 + [2026-05-01-preview](#2026-05-01-preview-1)
 + [2026-04-01](#2026-04-01-1)
 + [2025-11-01-preview](#2025-11-01-preview-1)
 + [2025-08-01-preview](#2025-08-01-preview-1)
 + [2025-05-01-preview](#2025-05-01-preview)
 
-### 2026-05-01-preview
+### 2026-08-01-preview
 
-2026-05-01-preview adds knowledge base, knowledge source, and retrieve features on top of [2025-11-01-preview](#2025-11-01-preview-1) without removing previously persisted properties. Existing knowledge bases and knowledge sources that you created in earlier preview versions continue to work. This version mostly exposes new functionality and reverts a few preview-only limits.
+The `2026-08-01-preview` version builds on [2026-05-01-preview](#2026-05-01-preview-1) and includes breaking changes for applications that use Work IQ knowledge sources, offset-based list paging, model-backed activity records, MCP server result processing, or positional generated-client calls.
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for this version, select the 2026-05-01-preview API version filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) for this version, select the `2026-08-01-preview` API version filter at the top of the page.
 
 #### [**Breaking changes**](#tab/breaking)
 
-There are no breaking changes between 2025-11-01-preview and 2026-05-01-preview. Existing requests that target 2025-11-01-preview continue to work when you change the API version to 2026-05-01-preview.
++ `workIQParameters` is required on a Work IQ knowledge source and must contain `entraAppAuthentication`. Update the source in place, or create a replacement for a side-by-side migration. Pass the user assertion in the `x-ms-query-work-iq-source-authorization` header on retrieve requests.
 
-The language SDKs that ship 2026-05-01-preview support introduce code-shape changes that are breaking at the SDK layer. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
++ Work IQ references remove `attributions`, the `WorkIQAttribution` shape, and `seeMoreWebUrl`. The reshaped reference exposes `searchSensitivityLabelInfo`. Remove dependencies on the deleted fields, and update reference processing for the new sensitivity-label shape.
+
++ The preview-only `$top`, `$skip`, and `$count` parameters are removed. Collection list operations use `search`, `pageSize`, and `searchType`. Responses use `@odata.nextLink` for continuation paging. Update list requests, and follow each `@odata.nextLink` exactly as returned.
+
++ Query-planning, answer-synthesis, and web-summarization activity records remove the scalar `modelName`. The replacement `model` object contains `modelName` and `deploymentId`. Deserialize the nested `model` object for model-backed activity records.
+
++ `McpServerTool.inclusionMode` is removed. On each MCP server `tools` item, map `reranked` to `resultsProcessing: "rerank"` and `always` to `resultsProcessing: "none"`. If omitted, `resultsProcessing` defaults to `rerank`; `none` bypasses reranking and preserves the underlying result order.
+
++ The new list parameters change generated method parameter order but don't affect REST parameter binding. Review positional calls after you install an SDK package that supports `2026-08-01-preview`. Prefer named arguments or options where available.
 
 #### [**Nonbreaking changes**](#tab/nonbreaking)
 
-These nonbreaking additions are available in 2026-05-01-preview:
++ [Private network ingestion](agentic-knowledge-source-overview.md#restrict-ingestion-to-a-private-network-preview) support for blob, indexed SharePoint, indexed OneLake, and indexed Azure SQL knowledge sources.
+
++ [File knowledge source](agentic-knowledge-source-how-to-file.md) metadata, file updates, filtered file lists, and `corsOptions` configuration.
+
++ [Knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) support for `gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna` model names.
+
++ Knowledge base `retrieveDefaults` for persisted retrieve request limits.
+
++ Server-sent events (SSE) response support through the `Accept: text/event-stream` request header in the [retrieve action](agentic-retrieval-how-to-retrieve.md).
+
++ [Automatic retrieval reasoning](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) with the `auto` value for `retrievalReasoningEffort`.
+
++ Stored `queryHints` on search-index-backed knowledge source definitions and request-level `queryHintOverrides` on each applicable `knowledgeSourceParams` item.
+
++ Request-time knowledge source exclusion with `neverQuerySource`.
+
++ Per-source reranking control with `resultsProcessing`.
+
++ Service-generated `citationUrl` values on indexed knowledge source references.
+
++ Activity timing fields (`startedAt`, `completedAt`, and `elapsedMs`) in the [activity array](agentic-retrieval-how-to-retrieve.md#activity-array).
+
+---
+
+### 2026-05-01-preview
+
+`2026-05-01-preview` adds knowledge base, knowledge source, and retrieve features on top of [2025-11-01-preview](#2025-11-01-preview-1) without removing previously persisted properties. Existing knowledge bases and knowledge sources that you created in earlier preview versions continue to work. This version mostly exposes new functionality and reverts a few preview-only limits.
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) for this version, select the `2026-05-01-preview` API version filter at the top of the page.
+
+#### [**Breaking changes**](#tab/breaking)
+
+There are no breaking changes between `2025-11-01-preview` and `2026-05-01-preview`. Existing requests that target `2025-11-01-preview` continue to work when you change the API version to `2026-05-01-preview`.
+
+The language SDKs that ship `2026-05-01-preview` support introduce code-shape changes that are breaking at the SDK layer. See [Update code and clients for 2026-05-01-preview](#update-code-and-clients-for-2026-05-01-preview) for the full SDK shape mapping.
+
+#### [**Nonbreaking changes**](#tab/nonbreaking)
 
 + Freshness-aware retrieval on indexed knowledge sources through a `freshnessPolicy` on `ingestionParameters`.
 
@@ -891,26 +1063,26 @@ These nonbreaking additions are available in 2026-05-01-preview:
 
 ### 2026-04-01
 
-2026-04-01 is the first stable API version for agentic retrieval. It establishes a minimal, extractive retrieval contract and removes preview-era message-based query planning and answer synthesis capabilities.
+`2026-04-01` is the first stable API version for agentic retrieval. It establishes a minimal, extractive retrieval contract and removes preview-era message-based query planning and answer synthesis capabilities.
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) for this version, select the 2026-04-01 API version filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) for this version, select the `2026-04-01` API version filter at the top of the page.
 
 #### [**Breaking changes**](#tab/breaking)
 
 The following changes affect both the knowledge base schema and the retrieve request:
 
-  + `retrievalReasoningEffort` is removed. Knowledge bases previously configured with `low` or `medium` reasoning effort aren't compatible with 2026-04-01 and must be recreated.
-    
+  + `retrievalReasoningEffort` is removed. Knowledge bases previously configured with `low` or `medium` reasoning effort aren't compatible with `2026-04-01` and must be recreated.
+
   + `outputMode` is removed. Retrieval returns extractive grounded content by default. Answer synthesis isn't supported.
 
 The following changes affect the retrieve request only:
 
   + `intents` replaces `messages`.
-    
+
   + `alwaysQuerySource` is removed from `knowledgeSourceParams`.
-    
+
   + `maxOutputSize` is renamed to `maxOutputSizeInTokens`.
-    
+
   + Conversational state isn't maintained across requests. The `messages`-based multi-turn pattern isn't supported.
 
 The following change affects `azureBlob` and `indexedOneLake` knowledge sources:
@@ -922,9 +1094,9 @@ The following change affects `azureBlob` and `indexedOneLake` knowledge sources:
 
 #### [**Nonbreaking changes**](#tab/nonbreaking)
 
-+ `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available in 2026-04-01. Existing indexed content remains valid; migration requires recreating knowledge source objects, not rebuilding indexes.
++ `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available in `2026-04-01`. Existing indexed content remains valid; migration requires recreating knowledge source objects, not rebuilding indexes.
 
-+ Indexed and remote SharePoint knowledge sources remain in preview and aren't available in 2026-04-01.
++ Indexed and remote SharePoint knowledge sources remain in preview and aren't available in `2026-04-01`.
 
 + The knowledge source `status` operation now includes the knowledge source type directly and provides richer indexing error details.
 
@@ -936,32 +1108,32 @@ The following change affects `azureBlob` and `indexedOneLake` knowledge sources:
 
 + Retrieve responses still include `activity` and `references`, even though the request contract is narrower.
 
-+ A new management plane property, `knowledgeRetrieval`, controls agentic retrieval billing independently of `semanticSearch` on 2026-04-01 and later. The default value is `free`. To enable paid usage, set `knowledgeRetrieval` to `standard`. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
++ A new management plane property, `knowledgeRetrieval`, controls agentic retrieval billing independently of `semanticSearch` on `2026-04-01` and later. The default value is `free`. To enable paid usage, set `knowledgeRetrieval` to `standard`. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
 ---
 
 ### 2025-11-01-preview
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, select the 2025-11-01-preview API version filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, select the `2025-11-01-preview` API version filter at the top of the page.
 
 #### [**Breaking changes**](#tab/breaking)
 
 + Knowledge agent is renamed to knowledge base.
 
   | Previous route | New route |
-  |-----|-----|
+  | ----- | ----- |
   | `/agents` | `/knowledgebases` |
   | `/agents/agent-name` | `/knowledgebases/knowledge-base-name` |
   | `/agents/agent-name/retrieve` | `/knowledgebases/knowledge-base-name/retrieve` |
 
 + Knowledge agent (base) `outputConfiguration` is renamed to `outputMode` and changed from an object to a string enumerator. Several properties are impacted:
 
-  + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.
+  + `includeActivity` is moved from `outputConfiguration` onto the retrieve request directly.
   + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is the replacement.
 
-+ Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
++ Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieve request directly.
 
-+ Knowledge agent (base) `knowledgeSources` parameters now only list the names of knowledge source used by a knowledge base. Other child properties that used to be under `knowledgeSources` are moved to the `knowledgeSourceParams` properties of the retrieval request object: 
++ Knowledge agent (base) `knowledgeSources` parameters now only list the names of knowledge source used by a knowledge base. Other child properties that used to be under `knowledgeSources` are moved to the `knowledgeSourceParams` properties of the retrieve request:
 
   + `rerankerThreshold`
   + `alwaysQuerySource`
@@ -970,7 +1142,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
   The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
 
-+ Knowledge agent (base) retrieval request object: The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
++ Knowledge agent (base) retrieve request: The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
 
 + Knowledge sources for both `azureBlob` and `searchIndex`: top-level properties for `identity`, `embeddingModel`, `chatCompletionModel`, `disableImageVerbalization`, and `ingestionSchedule` are now part of an `ingestionParameters` object on the knowledge source. All knowledge sources that pull from a search index have an `ingestionParameters` object.
 
@@ -984,7 +1156,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + All knowledge sources that pull from a search index have a `status` operation, which returns the synchronization status of the knowledge source with its data source.
 
-+ The `searchIndex` knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
++ The `searchIndex` knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieve request.
 
 + The `searchIndex` knowledge source adds `sourceDataFields` and `searchDataFields` to specify which fields are used at query time and also returned in a response.
 
@@ -998,7 +1170,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 ### 2025-08-01-preview
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) for this version, select the 2025-08-01-preview API version filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) for this version, select the `2025-08-01-preview` API version filter at the top of the page.
 
 #### [**Breaking changes**](#tab/breaking)
 
@@ -1018,9 +1190,9 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 ### 2025-05-01-preview
 
-This REST API version introduces agentic retrieval and knowledge agents. Each agent definition requires a `targetIndexes` array that specifies a single index and optional properties, such as `defaultRerankerThreshold` and `defaultIncludeReferenceSourceData`.
+This API version introduces agentic retrieval and knowledge agents. Each agent definition requires a `targetIndexes` array that specifies a single index and optional properties, such as `defaultRerankerThreshold` and `defaultIncludeReferenceSourceData`.
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) for this version, select the 2025-05-01-preview API version filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) for this version, select the `2025-05-01-preview` API version filter at the top of the page.
 
 ## Related content
 

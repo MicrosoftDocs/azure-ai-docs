@@ -9,8 +9,9 @@ ms.custom:
   - ignite-2024
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 06/21/2026
+ms.date: 09/02/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 # Configure Language docker containers
 
@@ -30,7 +31,7 @@ Language provides each container with a common configuration framework, so that 
 [!INCLUDE [Container shared configuration settings table](../../includes/cognitive-services-containers-configuration-shared-settings-table.md)]
 
 > [!IMPORTANT]
-> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#end-user-license-agreement-eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container doesn't start.
+> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container doesn't start.
 
 ## ApiKey configuration setting
 
@@ -49,7 +50,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 |Yes| `Billing` | String | Billing endpoint URI. |
 
 
-## End-user license agreement (EULA) setting
+## EULA setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 
@@ -57,7 +58,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 
 [!INCLUDE [Container shared configuration fluentd settings](../../includes/cognitive-services-containers-configuration-shared-settings-fluentd.md)]
 
-## Http proxy credentials settings
+## HTTP proxy credentials settings
 
 [!INCLUDE [Container shared configuration proxy settings](../../includes/cognitive-services-containers-configuration-shared-settings-http-proxy.md)]
 

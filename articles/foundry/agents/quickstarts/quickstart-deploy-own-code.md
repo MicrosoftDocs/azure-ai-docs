@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your own code as a hosted agent"
 description: "Take your existing Python agent code, add one hosting library, and deploy to Foundry Agent Service with the Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 06/30/2026
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -17,17 +17,25 @@ ai-usage: ai-assisted
 
 In [Deploy your first hosted agent](quickstart-hosted-agent.md), you deployed a sample. In this quickstart, you deploy **your own** Python agent code to Foundry Agent Service. Your code can use any agent framework - such as Microsoft Agent Framework, LangGraph, the GitHub Copilot SDK, or the OpenAI Agents SDK - or plain Python that calls a model directly.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help adapt the quickstart to your own codebase and run the right `azd` deployment steps.
+
 ## Prerequisites
 
 Before you begin, you need:
 
 * An Azure subscription--[Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * If you have an existing Foundry project, you need `Foundry Project Manager` at project scope. If you need to create a new Foundry project, you need `Owner` role at resource group scope. For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
-* [Azure Developer CLI (AZD) 1.25.3 or later](/azure/developer/azure-developer-cli/install-azd).
+* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd).
 * The `azd microsoft.foundry` extension:
 
     ```bash
     azd ext install microsoft.foundry
+    ```
+
+* An authenticated `azd` session:
+
+    ```bash
+    azd auth login
     ```
 
 * Your existing agent code in a local directory.
@@ -250,7 +258,7 @@ You should see a response within a few seconds.
 ## Clean up resources
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project and hosted agent. If the resource group contains other resources, those are also deleted.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. Delete any resources you no longer need from the existing project separately.
 
 ```bash
 azd down
@@ -265,7 +273,7 @@ azd down
 | `Connection refused` on local run | Ensure no other process is using port 8088. |
 | `AuthorizationFailed` during deploy | You need `Foundry Project Manager` at project scope. |
 | Agent stuck in `provisioning` | Run `azd ai agent show` to check status. First deploys can take 2–3 minutes while dependencies install. |
-| `azd ai agent init` fails | Run `azd version` to verify 1.25.3 or later. Update the extension: `azd ext upgrade microsoft.foundry`. |
+| `azd ai agent init` fails | Run `azd version` to verify 1.27.1 or later. Run `azd ext show azure.ai.agents` to verify 1.0.0-beta.4 or later. Upgrade with `azd ext upgrade azure.ai.agents`. |
 
 For the full permission and role-assignment matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 

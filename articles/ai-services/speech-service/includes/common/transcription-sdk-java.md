@@ -324,7 +324,7 @@ result.getCombinedPhrases().forEach(phrase ->
 );
 ```
 
-For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-transcription).
+For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-and-llm-speech-transcription).
 
 Reference: [`PhraseListOptions`](/java/api/com.azure.ai.speech.transcription.models.phraselistoptions), [`TranscriptionOptions.setPhraseListOptions()`](/java/api/com.azure.ai.speech.transcription.models.transcriptionoptions)
 

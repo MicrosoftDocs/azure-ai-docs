@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 01/27/2026
+ms.date: 08/21/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Search indexes in Azure AI Search
@@ -105,12 +106,21 @@ Field attributes determine how a field is used, such as whether it's used in ful
 |sortable |By default the system sorts by a search score, but you can configure an explicit sort based on fields in the documents. Fields of type `Collection(Edm.String)` can't be sortable. |  
 |facetable |Typically used in a presentation of search results that includes a hit count by category (for example, hotels in a specific city). This option can't be used with fields of type `Edm.GeographyPoint`. Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. For details, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).|  
 |key |Unique identifier for documents within the index. Exactly one field must be chosen as the key field and it must be of type `Edm.String`.|  
-|retrievable |Determines whether the field can be returned in a search result. This is useful when you want to use a field (such as *profit margin*) as a filter, sorting, or scoring mechanism, but don't want the field to be visible to the end user. This attribute must be `true` for `key` fields.|  
+|retrievable |Indicates whether the field can be returned as part of a document in search results. Setting this attribute to `false` excludes the field from returned document fields, and the field can't be requested through `$select`. This setting doesn't prevent internal use by search features that depend on indexed content or schema configuration. Depending on the feature configuration, field content or derived information can still contribute to outputs such as highlighting, facets, ranking, filtering, sorting, or other query processing. This attribute must be `true` for `key` fields.|
 
 Although you can add new fields at any time, existing field definitions are locked in for the lifetime of the index. For this reason, developers typically use the Azure portal for creating simple indexes, testing ideas, or using the Azure portal pages to look up a setting. Frequent iteration over an index design is more efficient if you follow a code-based approach so that you can rebuild the index easily.
 
 > [!NOTE]
 > The APIs you use to build an index have varying default behaviors. For the [REST APIs](/rest/api/searchservice/indexes/create), most attributes are enabled by default (for example, searchable and retrievable are true for string fields) and you often only need to set them if you want to turn them off. For the .NET SDK, the opposite is true. On any property you don't explicitly set, the default is to disable the corresponding search behavior unless you specifically enable it.
+
+## Best practices for sensitive fields
+
+If a field contains sensitive or confidential information:
+
++ Enable only the field attributes required by your application, such as `searchable`, `filterable`, or `facetable`.
++ Configure field attributes explicitly instead of relying on API or SDK defaults.
++ Don't assume that excluding a field from document results prevents disclosure through all query features or response formats.
++ Review application and feature requirements before storing sensitive information in the search index.
 
 <a name="index-size"></a>
 

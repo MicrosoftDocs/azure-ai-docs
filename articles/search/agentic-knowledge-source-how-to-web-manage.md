@@ -32,17 +32,17 @@ As an Azure admin, you can use the Azure CLI to enable or disable the use of [We
 
 To check the current status of Web Knowledge Source access, run the following command.
 
-### [PowerShell](#tab/powershell)
+# [Azure CLI](#tab/azure-cli)
 
 ```azurecli
 az feature show --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>"
 ```
 
-### [REST API](#tab/rest-api)
+# [REST API](#tab/rest-api)
 
 ```http
-GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled?api-version=2021-07-01
-Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
+GET https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled?api-version=2021-07-01
+Authorization: Bearer {{management-access-token}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
 ```
 
 ---
@@ -56,17 +56,17 @@ The output shows the `state` property, which indicates the current registration 
 
 Access to Web Knowledge Source is enabled by default. If access has been disabled, you can run the following command to enable it.
 
-### [PowerShell](#tab/powershell)
+# [Azure CLI](#tab/azure-cli)
 
-```powershell
+```azurecli
 az feature unregister --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>"
 ```
 
-### [REST API](#tab/rest-api)
+# [REST API](#tab/rest-api)
 
 ```http
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled/unregister?api-version=2021-07-01
-Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
+POST https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled/unregister?api-version=2021-07-01
+Authorization: Bearer {{management-access-token}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
 ```
 
 ---
@@ -75,17 +75,17 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 
 Run the following command to disable access to Web Knowledge Source.
 
-### [PowerShell](#tab/powershell)
+# [Azure CLI](#tab/azure-cli)
 
-```powershell
+```azurecli
 az feature register --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>"
 ```
 
-### [REST API](#tab/rest-api)
+# [REST API](#tab/rest-api)
 
 ```http
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled/register?api-version=2021-07-01
-Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
+POST https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Features/providers/Microsoft.Search/features/WebKnowledgeSourceDisabled/register?api-version=2021-07-01
+Authorization: Bearer {{management-access-token}} // Obtain using `az account get-access-token --scope https://management.azure.com/.default --query accessToken --output tsv`
 ```
 
 ---
@@ -93,4 +93,4 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 ## Related content
 
 + [Create a Web Knowledge Source resource](agentic-knowledge-source-how-to-web.md)
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)

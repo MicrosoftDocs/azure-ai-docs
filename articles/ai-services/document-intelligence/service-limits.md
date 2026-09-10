@@ -6,9 +6,10 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 04/30/2026
+ms.date: 09/08/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ai-usage: ai-assisted
 ---
 
 
@@ -26,7 +27,13 @@ This article contains both a quick reference and detailed description of Azure D
 
 ## Model usage
 
+Model usage limits vary by API version and pricing tier. Review the supported document types and service quotas that apply to your resource.
+
 :::moniker range="doc-intel-4.0.0"
+### Supported document types
+
+The following table shows the document types that each model supports in API version 4.0.
+
 |Document types supported|Read|Layout|Prebuilt models|Custom models|Add-on capabilities|
 |--|--|--|--|--|----|
 | PDF | ✔️ | ✔️ | ✔️ | ✔️ |✔️|
@@ -44,6 +51,10 @@ For Document Intelligence v4.0 `2024-11-30` (GA) supports page and line features
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
+### Supported document types
+
+The following table shows the document types that each model supports in API version 3.1.
+
 |Document types supported|Read|Layout|Prebuilt models|Custom models|
 |--|--|--|--|--|
 | PDF | ✔️ | ✔️ | ✔️ | ✔️ |
@@ -96,6 +107,10 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 ::: moniker-end
 
+### Service quotas
+
+The following table compares model usage quotas for the Free (F0) and Standard (S0) pricing tiers.
+
 |Quota|Free (F0)<sup>1</sup>|Standard (S0)|
 |--|--|--|
 | **Analyze transactions Per Second limit** | 1 | 15 (default value) |
@@ -106,6 +121,8 @@ Document Intelligence billing is calculated monthly based on the model type and 
 | Adjustable | No | Yes <sup>2</sup> |
 | **List operations Per Second limit** | 1 | 10 (default value) |
 | Adjustable | No | Yes <sup>2</sup> |
+| **Maximum number of Document Intelligence resources per region** | 1 | 20 |
+| Adjustable | No | No |
 | **Max document size** | 4 MB | 500 MB |
 | Adjustable | No | No |
 | **Max number of pages (Analysis)** | 2 | 2000 |

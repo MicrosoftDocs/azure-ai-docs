@@ -4,7 +4,7 @@ description: "Learn how to enable or disable Microsoft Agent 365 data collection
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: deeikele
-ms.date: 03/19/2026
+ms.date: 08/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

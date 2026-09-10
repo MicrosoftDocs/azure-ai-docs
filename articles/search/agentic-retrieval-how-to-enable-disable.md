@@ -14,13 +14,13 @@ ai-usage: ai-assisted
 
 Agentic retrieval is a premium feature billed by usage. By default, all search services are enrolled in the free plan, which provides a monthly allowance at no charge. To enable continued access after the free quota is consumed, you can switch to the standard plan.
 
-Starting with Search Service REST API version 2026-04-01, billing consent for semantic ranker and agentic retrieval is separate. Use `knowledgeRetrieval` to control paid agentic retrieval usage independently of `semanticSearch`.
+Starting with Search Service REST API version `2026-04-01`, billing consent for semantic ranker and agentic retrieval is separate. Use `knowledgeRetrieval` to control paid agentic retrieval usage independently of `semanticSearch`.
 
 ## Prerequisites
 
 - An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
-- **Owner** or **Contributor** permissions on the search service.
+- **Owner** or **Contributor** access to the search service.
 
 - Search Management REST API version [2026-03-01-preview](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) or later to set the `knowledgeRetrieval` property.
 
@@ -28,9 +28,9 @@ Starting with Search Service REST API version 2026-04-01, billing consent for se
 
 [!INCLUDE [billing-split-version-compatibility](includes/billing-split-version-compatibility.md)]
 
-For Search Service REST API version 2026-04-01 and later, `knowledgeRetrieval` controls agentic retrieval billing independently of `semanticSearch`. To control semantic ranker billing, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
+For Search Service REST API version `2026-04-01` and later, `knowledgeRetrieval` controls agentic retrieval billing independently of `semanticSearch`. To control semantic ranker billing, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
 
-For Search Service REST API version 2025-11-01-preview and earlier, `semanticSearch` controls consent for both semantic ranker and paid agentic retrieval usage. The `knowledgeRetrieval` property is ignored.
+For Search Service REST API version `2025-11-01-preview` and earlier, `semanticSearch` controls consent for both semantic ranker and paid agentic retrieval usage. The `knowledgeRetrieval` property is ignored.
 
 ## Billing plans
 
@@ -45,7 +45,7 @@ Agentic retrieval has two billing plans. For pricing by currency, see [Azure AI 
 
 Follow these steps to switch agentic retrieval to the standard billing plan.
 
-### [Azure portal](#tab/portal)
+# [Azure portal](#tab/portal)
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
@@ -57,14 +57,14 @@ Follow these steps to switch agentic retrieval to the standard billing plan.
 
     :::image type="content" source="media/agentic-retrieval-how-to-enable-disable/agentic-enable.png" alt-text="Screenshot of the Premium features page in the Azure portal, showing the Knowledge retrieval Standard plan selected." lightbox="media/agentic-retrieval-how-to-enable-disable/agentic-enable.png" border="true":::
 
-### [REST](#tab/rest)
+# [REST](#tab/rest)
 
 Use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `standard`:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{management-access-token}}
 
 {
   "properties": {
@@ -76,7 +76,7 @@ Authorization: Bearer {{token}}
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
 > [!IMPORTANT]
-> If you previously relied on `semanticSearch` to enable paid agentic retrieval usage, you must explicitly set `knowledgeRetrieval` to `standard` before you migrate agentic retrieval workloads to Search Service REST API version 2026-04-01 or later. Existing `semanticSearch=standard` consent doesn't carry over to `knowledgeRetrieval`.
+> If you previously relied on `semanticSearch` to enable paid agentic retrieval usage, you must explicitly set `knowledgeRetrieval` to `standard` before you migrate agentic retrieval workloads to Search Service REST API version `2026-04-01` or later. Existing `semanticSearch=standard` consent doesn't carry over to `knowledgeRetrieval`.
 
 ---
 
@@ -84,7 +84,7 @@ Management REST API calls are authenticated through Microsoft Entra ID. For inst
 
 Follow these steps to switch agentic retrieval back to the free billing plan.
 
-### [Azure portal](#tab/portal)
+# [Azure portal](#tab/portal)
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
@@ -94,14 +94,14 @@ Follow these steps to switch agentic retrieval back to the free billing plan.
 
     :::image type="content" source="media/agentic-retrieval-how-to-enable-disable/agentic-disable.png" alt-text="Screenshot of the Premium features page in the Azure portal, showing the Knowledge retrieval Free plan selected." lightbox="media/agentic-retrieval-how-to-enable-disable/agentic-disable.png" border="true":::
 
-### [REST](#tab/rest)
+# [REST](#tab/rest)
 
 Use [Services - Create or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `free`:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{management-access-token}}
 
 {
   "properties": {

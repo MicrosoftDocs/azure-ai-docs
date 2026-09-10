@@ -4,12 +4,14 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/23/2026
+ms.date: 08/08/2026
+ai-usage: ai-assisted
 ms.custom:
   - build-2024
   - ignite-2024
   - sfi-image-nochange
   - sfi-ropc-nochange
+  - doc-kit-assisted
 ---
 
 # Index data from OneLake files and shortcuts
@@ -23,7 +25,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
+In this article, you learn how to configure a OneLake files indexer for extracting searchable data and metadata from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
 
@@ -41,13 +43,15 @@ This article uses the REST APIs to illustrate each step.
 
 + Textual data. If you have binary data, you can use [AI enrichment](cognitive-search-concept-intro.md) image analysis to extract text or generate descriptions of images. File content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
+  Source-file processing and AI enrichment have separate limits. A downstream skill or external service can accept less data than the indexer extracts, so check the [reference article for each skill](cognitive-search-predefined-skills.md) in your skillset.
+
 + Unstructured content in the **Files** location of your lakehouse. You can add data by:
 
   + [Upload into a lakehouse directly](/fabric/onelake/create-lakehouse-onelake#load-data-into-a-lakehouse)
   + [Use data pipelines](/fabric/data-engineering/tutorial-lakehouse-data-ingestion) from [Microsoft Fabric](https://fabric.microsoft.com/)
   + [Add shortcuts](/fabric/onelake/create-onelake-shortcut) from external data sources like [Amazon S3](/fabric/onelake/create-s3-shortcut) or [Google Cloud Storage](/fabric/onelake/create-gcs-shortcut).  
 
-+ An AI Search service, basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
++ An Azure AI Search service, Basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The Azure AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
   
 + An Administrator or Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
@@ -63,13 +67,13 @@ This article uses the REST APIs to illustrate each step.
 
 + This indexer doesn't support OneLake workspace Table location content. 
 
-+ This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
++ This indexer doesn't support SQL queries. The `query` parameter in the data source configuration only specifies an optional folder or shortcut to index.
 
 + There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
 
 + Indexing files from [Fabric items with sensitivity labels](/fabric/fundamentals/apply-sensitivity-labels), for example, lakehouses, isn't supported. However, when sensitivity labels are applied directly to individual documents, ingestion of protected content and associated labels is supported. In these cases, Azure AI Search can extract and honor sensitivity labels and labeled documents' content through its [integration with Purview](search-indexer-sensitivity-labels.md). 
   
-+ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
++ Workspace role-based permissions in Microsoft OneLake might affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
 
 ## Supported tasks
 
@@ -107,7 +111,7 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 ## Prepare data for indexing
 
-Before you set up indexing, review your source data to determine whether any changes should be made to your data in the lakehouse. An indexer can index content from one container at a time. By default, all files in the container are processed. You have several options for more selective processing:
+Before you set up indexing, review your source data to determine whether you need to make any changes to your data in the lakehouse. An indexer can index content from one container (the lakehouse) at a time. By default, the indexer processes all files in the lakehouse. To process files more selectively, consider the following options:
 
 + Place files in a virtual folder. An indexer [data source definition](#define-the-data-source) includes a "query" parameter that can be either a lakehouse subfolder or shortcut. If this value is specified, only those files in the subfolder or shortcut within the lakehouse are indexed.
 
@@ -155,7 +159,7 @@ The OneLake indexer uses token authentication and role-based access for connecti
 
 The minimum role assignment for your search service identity is Contributor.
 
-1. [Configure a system or user-managed identity](search-how-to-managed-identities.md) for your AI Search service.
+1. [Configure a system or user-managed identity](search-how-to-managed-identities.md) for your Azure AI Search service.
 
    The following screenshot shows a system managed identity for a search service named "onelake-demo".
 
@@ -167,7 +171,7 @@ The minimum role assignment for your search service identity is Contributor.
 
 1. [Grant permission for search service access](/fabric/get-started/give-access-workspaces) to the Fabric workspace. The search service makes the connection on behalf of the indexer.
 
-   If you use a system-assigned managed identity, search for the name of the AI Search service. For a user-assigned managed identity, search for the name of the identity resource.
+   If you use a system-assigned managed identity, search for the name of the Azure AI Search service. For a user-assigned managed identity, search for the name of the identity resource.
 
    The following screenshot shows a Contributor role assignment using a system managed identity.
 

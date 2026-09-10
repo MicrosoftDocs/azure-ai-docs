@@ -1,11 +1,11 @@
 ---
-title: "Customer-Managed Keys (CMKs) for Microsoft Foundry"
-description: "Learn how to use CMKs for enhanced encryption and data security in Microsoft Foundry. Configure Azure Key Vault or Azure Managed HSM integration and meet compliance requirements."
+title: "Configure Customer-Managed Keys for Microsoft Foundry"
+description: "Configure customer-managed key (CMK) encryption for a Microsoft Foundry resource by using Azure Key Vault or Azure Managed HSM with the portal, Bicep, or the Azure CLI."
 ms.author: scottpolly 
 author: s-polly 
 ms.reviewer: deeikele
-ms.date: 05/04/2026
-ms.service: foundry-tools
+ms.date: 08/24/2026
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - classic-and-new
@@ -18,15 +18,10 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---
 
-# Customer-managed keys (CMKs) for Microsoft Foundry
+# Configure customer-managed keys for Microsoft Foundry
 
-Customer-managed key (CMK) encryption in [!INCLUDE [foundry-link](../includes/foundry-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault or Azure Managed HSM integration.
+This article shows how to configure customer-managed key (CMK) encryption for a [!INCLUDE [foundry-link](../includes/foundry-link.md)] resource by using Azure Key Vault or Azure Managed HSM. CMK encryption applies to data at rest in the Foundry resource's associated storage accounts, including project artifacts, uploaded files, and evaluation data.
 
-Microsoft Foundry provides robust encryption capabilities, including the ability to use CMKs stored in Key Vault or Managed HSM to help secure your sensitive data. CMK encryption applies to data at rest stored in the Foundry resource's associated storage accounts, including project artifacts, uploaded files, and evaluation data.
-
-This article explains how to configure CMK encryption by using Key Vault or Managed HSM for your Foundry resource.
-
-> [!NOTE]
-> Due to capacity constraints in the underlying Azure AI Search infrastructure, customer-managed key (CMK) encryption is currently available only in select regions. For the list of supported regions, see [Azure AI Search regional availability](/azure/search/search-region-support#americas).
+To understand what CMK covers across Foundry capabilities and the compute stack before you configure it, see [Customer-managed key encryption in Microsoft Foundry](customer-managed-keys.md).
 
 [!INCLUDE [encryption-keys-portal 1](../includes/concepts-encryption-keys-portal-1.md)]

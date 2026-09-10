@@ -5,7 +5,7 @@ ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - build-2024
@@ -89,7 +89,7 @@ Quotas for both storage and vector index size increase or decrease as you add or
 
 Data plane REST APIs (all newer APIs provide vector usage statistics):
 
-+ [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) returns quota and usage for the search service all-up.
++ [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) returns overall quota and usage for the search service.
 + [GET Index Statistics](/rest/api/searchservice/indexes/get-statistics) returns usage for a given index.
 
 Usage and quota are reported in bytes.

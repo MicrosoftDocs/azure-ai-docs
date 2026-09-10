@@ -1,7 +1,7 @@
 ---
-title: "Customize a Microsoft Foundry Model with the Foundry Python SDK"
+title: "Customize a Microsoft Foundry model with the Foundry SDK"
 titleSuffix: Microsoft Foundry
-description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python SDK.
+description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python or JavaScript/TypeScript SDK.
 author: ssalgadodev
 ms.author: ssalgado
 manager: mcleans
@@ -12,6 +12,7 @@ ms.topic: include
 ai-usage: ai-assisted
 ms.custom:
   - build-2025, classic-and-new
+  - dev-focus
 ---
 
 ## Prerequisites
@@ -19,7 +20,10 @@ ms.custom:
 - Read the [guide on when to use Foundry fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
-- You need the following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
+- Python 3.9+ or Node.js 22+.
+- The SDK packages for your language:
+  - **Python**: `azure-ai-projects`, `azure-identity`, and `requests` (used for the control-plane deployment call), plus the standard library modules `os` and `json`.
+  - **JavaScript/TypeScript**: `@azure/ai-projects`, `@azure/identity`, and (for deployment) `@azure/arm-cognitiveservices`.
 - Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -29,9 +33,9 @@ ms.custom:
 
 [!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
-## Review the workflow for the Python SDK
+## Review the workflow for the Foundry SDK
 
-Take a moment to review the fine-tuning workflow for using the Python SDK with Foundry:
+Take a moment to review the fine-tuning workflow for using the Foundry SDK, in Python or JavaScript/TypeScript:
 
 1. Prepare your training and validation data.
 1. Select a base model.
@@ -101,7 +105,9 @@ For large data files, we recommend that you import from Blob Storage. Large file
 > [!IMPORTANT]
 > Importing from Azure Blob Storage requires the storage account to have **public network access enabled**. If your organization's policies don't allow public access on storage accounts, use the [local file upload](/rest/api/azureopenai/files/upload) method instead.
 
-The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
+The following example uploads local training and validation files by using the Foundry SDK, and retrieves the returned file IDs:
+
+# [Python](#tab/python)
 
 ```python
 import os
@@ -127,11 +133,54 @@ print("Training file ID:", training_file_id)
 print("Validation file ID:", validation_file_id)
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import * as fs from "node:fs";
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Get the OpenAI-compatible client by using the Foundry SDK
+const client = new AIProjectClient(
+  process.env["FOUNDRY_PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+).getOpenAIClient();
+
+// Upload the training and validation dataset files to Microsoft Foundry
+const trainingFileName = "training_set.jsonl";
+const validationFileName = "validation_set.jsonl";
+
+const trainingResponse = await client.files.create({
+  file: fs.createReadStream(trainingFileName),
+  purpose: "fine-tune",
+});
+const validationResponse = await client.files.create({
+  file: fs.createReadStream(validationFileName),
+  purpose: "fine-tune",
+});
+const trainingFileId = trainingResponse.id;
+const validationFileId = validationResponse.id;
+
+// Wait for the files to finish processing before you use them
+await client.files.waitForProcessing(trainingFileId);
+await client.files.waitForProcessing(validationFileId);
+
+console.log("Training file ID:", trainingFileId);
+console.log("Validation file ID:", validationFileId);
+```
+
+---
+
+- Reference: [OpenAI Files API](https://platform.openai.com/docs/api-reference/files) (`files.create`, both languages)
+- Reference: [`AIProjectClient.get_openai_client`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python) / [`AIProjectClient.getOpenAIClient`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
+
 ## Create a customized model
 
 After you upload your training and validation files, you're ready to start the fine-tuning job.
 
-The following Python code shows an example of how to create a new fine-tuning job by using the Python SDK:
+The following code shows an example of how to create a new fine-tuning job by using the Foundry SDK:
+
+# [Python](#tab/python)
 
 ```python
 response = client.fine_tuning.jobs.create(
@@ -152,6 +201,36 @@ print("Job ID:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const response = await client.fineTuning.jobs.create(
+  {},
+  {
+    body: {
+      training_file: trainingFileId,
+      validation_file: validationFileId,
+      model: "gpt-4.1-2025-04-14", // Enter the base model name.
+      suffix: "my-model", // Can't contain dot/period characters.
+      seed: 105, // Omit to auto-generate a seed.
+      trainingType: "GlobalStandard", // Other options: "Standard", "Developer".
+    },
+  },
+);
+
+const jobId = response.id;
+
+// Use the job ID to monitor the status of the fine-tuning job.
+// The fine-tuning job takes some time to start and finish.
+
+console.log("Job ID:", response.id);
+console.log(JSON.stringify(response, null, 2));
+```
+
+---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.create`, both languages)
+
 > [!NOTE]
 > We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
 
@@ -166,7 +245,9 @@ The currently supported hyperparameters for supervised fine-tuning are:
 |`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 |`seed` | Integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
 
-To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of `method`:
+To set custom hyperparameters, provide them as part of `method`:
+
+# [Python](#tab/python)
 
 ```python
 client.fine_tuning.jobs.create(
@@ -186,9 +267,40 @@ client.fine_tuning.jobs.create(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+await client.fineTuning.jobs.create(
+  {},
+  {
+    body: {
+      training_file: "file-abc123",
+      model: "gpt-4.1-2025-04-14",
+      suffix: "my-model",
+      seed: 105,
+      method: {
+        type: "supervised", // Job uses supervised fine-tuning.
+        supervised: {
+          hyperparameters: {
+            n_epochs: 2,
+          },
+        },
+      },
+      trainingType: "GlobalStandard",
+    },
+  },
+);
+```
+
+---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.create` with `method`, both languages)
+
 To learn about supported hyperparameters for the other customization methods, see the [guide for direct preference optimization](../how-to/fine-tuning-direct-preference-optimization.md) and the [guide for reinforcement fine-tuning](../how-to/reinforcement-fine-tuning.md).
 
 ## Check fine-tuning job status
+
+# [Python](#tab/python)
 
 ```python
 response = client.fine_tuning.jobs.retrieve(job_id)
@@ -198,16 +310,41 @@ print("Status:", response.status)
 print(response.model_dump_json(indent=2))
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const status = await client.fineTuning.jobs.retrieve(jobId);
+
+console.log("Job ID:", status.id);
+console.log("Status:", status.status);
+console.log(JSON.stringify(status, null, 2));
+```
+
 ---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.retrieve`, both languages)
 
 ### List fine-tuning events
 
 To examine the individual fine-tuning events that were generated during training, run the following command. Before you run the command, you might need to upgrade your OpenAI client library to the latest version by using `pip install openai --upgrade`.
 
+# [Python](#tab/python)
+
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
 print(response.model_dump_json(indent=2))
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const events = await client.fineTuning.jobs.listEvents(jobId, { limit: 10 });
+console.log(JSON.stringify(events, null, 2));
+```
+
+---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.list_events`, both languages)
 
 ### List checkpoints
 
@@ -217,12 +354,25 @@ When a fine-tuning job finishes, you have the three most recent versions of the 
 
 You can run the following command to retrieve the list of checkpoints associated with an individual fine-tuning job:
 
+# [Python](#tab/python)
+
 ```python
 response = client.fine_tuning.jobs.checkpoints.list(job_id)
 print(response.model_dump_json(indent=2))
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const checkpoints = await client.fineTuning.jobs.checkpoints.list(jobId, {
+  limit: 10,
+});
+console.log(JSON.stringify(checkpoints, null, 2));
+```
+
 ---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.checkpoints.list`, both languages)
 
 ## Analyze your customized model
 
@@ -271,6 +421,8 @@ If you're deploying for further validation, consider deploying for [testing](../
 
 Unlike with the previous SDK commands, you must use the control plane API for the deployment. This task requires separate authorization, a different API path, and a different API version.
 
+# [Python](#tab/python)
+
 |Variable      | Definition|
 |--------------|-----------|
 | `token`        | An authorization token. There are multiple ways to generate an authorization token. The easiest method for initial testing is to open Azure Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this token in a new environment variable. |
@@ -318,6 +470,61 @@ print(r.json())
 
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+Instead of calling the control plane REST API directly, use the `@azure/arm-cognitiveservices` management library. It authenticates by using `DefaultAzureCredential`, so you don't need to generate or manage an authorization token yourself.
+
+|Variable      | Definition|
+|--------------|-----------|
+| `subscriptionId` | The subscription ID for the associated Foundry resource. |
+| `resourceGroup` | The resource group name for your Foundry resource. |
+| `accountName` | The Foundry resource name. |
+| `modelDeploymentName` | The custom name for your new fine-tuned model deployment. Your code references this name during inference calls. |
+| `fineTunedModel` | Your fine-tuned model. Retrieve this value from `status.fine_tuned_model` on the completed fine-tuning job. It looks like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. Alternatively, you can deploy a checkpoint by passing the checkpoint ID, which appears in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d`. |
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import {
+  CognitiveServicesManagementClient,
+} from "@azure/arm-cognitiveservices";
+
+const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"]!;
+const resourceGroup = process.env["AZURE_RESOURCE_GROUP"]!;
+const accountName = process.env["AZURE_AOAI_ACCOUNT"]!;
+// Custom deployment name that you use for inference calls.
+const modelDeploymentName = "gpt-41-ft";
+// Retrieve this value from the completed fine-tuning job's
+// `fine_tuned_model` field.
+const fineTunedModel = status.fine_tuned_model!;
+
+const cognitiveClient = new CognitiveServicesManagementClient(
+  new DefaultAzureCredential(),
+  subscriptionId,
+);
+
+console.log("Creating a new deployment...");
+await cognitiveClient.deployments.beginCreateOrUpdate(
+  resourceGroup,
+  accountName,
+  modelDeploymentName,
+  {
+    sku: { name: "GlobalStandard", capacity: 1 },
+    properties: {
+      model: {
+        format: "OpenAI",
+        name: fineTunedModel,
+        version: "1",
+      },
+    },
+  },
+);
+```
+
+---
+
+- Reference: [Deployments - Create Or Update (REST API)](/rest/api/aiservices/accountmanagement/deployments/create-or-update) (Python control-plane call)
+- Reference: [`CognitiveServicesManagementClient`](/javascript/api/@azure/arm-cognitiveservices/cognitiveservicesmanagementclient) (JavaScript/TypeScript)
+
 To learn about cross-region deployment and how to use the deployed model, see [Use your deployed fine-tuned model](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
 If you're ready to deploy for production or you have particular data-residency needs, follow the [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
@@ -327,6 +534,8 @@ If you're ready to deploy for production or you have particular data-residency n
 After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples. Continuous fine-tuning is supported only for OpenAI models.
 
 To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a customized model](#create-a-customized-model). But instead of specifying the name of a generic base model, you specify your fine-tuned model's ID. The fine-tuned model's ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`.
+
+# [Python](#tab/python)
 
 ```python
 response = client.fine_tuning.jobs.create(
@@ -343,6 +552,32 @@ print("Job ID:", response.id)
 print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+const response = await client.fineTuning.jobs.create(
+  {},
+  {
+    body: {
+      training_file: trainingFileId,
+      validation_file: validationFileId,
+      model: "gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7",
+    },
+  },
+);
+const jobId = response.id;
+
+// Use the job ID to monitor the status of the fine-tuning job.
+// The fine-tuning job takes some time to start and finish.
+
+console.log("Job ID:", response.id);
+console.log(JSON.stringify(response, null, 2));
+```
+
+---
+
+- Reference: [OpenAI Fine-tuning API](https://platform.openai.com/docs/api-reference/fine-tuning) (`fine_tuning.jobs.create`, both languages)
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. You can add a string of up to 18 characters to the name of your fine-tuned model.
 

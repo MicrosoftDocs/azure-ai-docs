@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ms.custom: references_regions
 monikerRange: '>=doc-intel-4.0.0'
@@ -15,6 +15,8 @@ monikerRange: '>=doc-intel-4.0.0'
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence bank statement model
+
+This content applies to: 🟩 v4.0 (GA)
 
 The Document Intelligence bank statement model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank statements. The API analyzes printed bank statements; extracts key information such as account number, bank details, statement details, transaction details, and fees;  and returns a structured JSON data representation. With V4.0 GA, you can now extract check tables in the US bank statements.
 

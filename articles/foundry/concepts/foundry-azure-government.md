@@ -7,7 +7,7 @@ ms.author: jvenezia
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
-ms.date: 06/05/2026
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom:
   - references_regions
@@ -107,6 +107,10 @@ Foundry Agent Service is available in Azure Government with a subset of agent ty
 
 For quotas and limits that apply to Azure OpenAI models in Azure Government, see [Azure OpenAI quotas and limits in Azure Government](../openai/quotas-limits-gov.md).
 
+## Provisioned throughput
+
+For fungible provisioned throughput unit (PTU) quota, model eligibility, and Azure Reservation requirements, see [Provisioned throughput in Azure Government](../openai/concepts/provisioned-throughput-gov.md).
+
 ## Related content
 
 For more information on Microsoft Foundry in Azure Government, see:
@@ -114,5 +118,6 @@ For more information on Microsoft Foundry in Azure Government, see:
 - [Foundry Agent Service feature availability in Azure Government](../agents/concepts/azure-government.md) — Agent types, tools, and publishing options
 - [Foundry Models sold by Azure in Azure Government](../foundry-models/concepts/models-sold-directly-by-azure-gov.md) — Available models in Azure Government
 - [Azure OpenAI quotas and limits in Azure Government](../openai/quotas-limits-gov.md) — Service quotas
+- [Provisioned throughput in Azure Government](../openai/concepts/provisioned-throughput-gov.md) — PTU quota and payment options
 - [Add Microsoft Foundry to a network security perimeter](../how-to/add-foundry-to-network-security-perimeter.md) — NSP integration
 - [Azure Government documentation](/azure/azure-government/documentation-government-welcome) — Compliance certifications and onboarding

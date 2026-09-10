@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ---
 

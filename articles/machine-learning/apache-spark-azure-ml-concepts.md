@@ -70,8 +70,6 @@ After the system tears down the serverless Spark compute resource, submission of
 A Conda dependency YAML file can define many session-level Conda packages in a session configuration. A session times out if it needs more than 15 minutes to install the Conda packages defined in the YAML file. Check whether a required package is already available in the Azure Synapse base image. To do this, visit these resources to determine *packages available in the base image for* the Apache Spark version in use:
 - [Azure Synapse Runtime for Apache Spark 3.5](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.5)
 - [Azure Synapse Runtime for Apache Spark 3.4](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.4)
-- [Azure Synapse Runtime for Apache Spark 3.3](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.3)
-
 
 > [!NOTE]
 > For a session-level Conda package:

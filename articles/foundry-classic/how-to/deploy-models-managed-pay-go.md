@@ -6,7 +6,7 @@ ms.subservice: foundry-models
 ms.custom:
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 06/16/2026
+ms.date: 08/20/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -144,11 +144,18 @@ The following sections list the supported models for managed compute deployment 
 |--|--|
 | [Domyn-Large](https://ai.azure.com/explore/models/Domyn-Large/version/1/registry/azureml-domyn/?cid=learnDocs) | Chat completion |
 
+### EngineeringGroup
+
+| Model | Task |
+|--|--|
+| [EngGPT2-16B-A3B](https://ai.azure.com/explore/models/EngGPT2-16B-A3B/version/1/registry/azureml-Engineeringgroup-p/?cid=learnDocs) | Chat completion |
+
 ### Inception Labs
 
 | Model | Task |
 |--|--|
 | [Mercury](https://ai.azure.com/explore/models/Mercury/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion, Text generation, Summarization |
+| [Mercury-2](https://ai.azure.com/explore/models/Mercury-2/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion |
 
 ### Insilico Medicine
 
@@ -249,6 +256,7 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 
 | Model | Task |
 |--|--|
+| [TabPFN-3-Plus-Thinking](https://ai.azure.com/explore/models/TabPFN-3-Plus-Thinking/version/1/registry/azureml-priorlabs-p/?cid=learnDocs) | Forecasting |
 | [TabPFN-2.5](https://ai.azure.com/explore/models/TabPFN-2.5/version/2/registry/azureml-priorlabs-p/?cid=learnDocs) | Regression, Classification, Forecasting |
 
 ### RezolveAI
@@ -270,10 +278,16 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 
 | Model | Task |
 |--|--|
+| [voyage-code-4](https://ai.azure.com/explore/models/voyage-code-4/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-3.5-embedding-model](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-4-lite-embedding](https://ai.azure.com/explore/models/voyage-4-lite-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-4-embedding](https://ai.azure.com/explore/models/voyage-4-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 | [voyage-4-large-embedding](https://ai.azure.com/explore/models/voyage-4-large-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-multimodal-3.5](https://ai.azure.com/explore/models/voyage-multimodal-3.5/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-context-4](https://ai.azure.com/explore/models/voyage-context-4/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [rerank-2.5-lite](https://ai.azure.com/explore/models/rerank-2.5-lite/version/1/registry/azureml-voyage/?cid=learnDocs) | Text classification |
+| [rerank-2.5](https://ai.azure.com/explore/models/rerank-2.5/version/1/registry/azureml-voyage/?cid=learnDocs) | Text classification |
+
 
 ## Related content
 

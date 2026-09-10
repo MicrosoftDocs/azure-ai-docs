@@ -9,6 +9,7 @@ ms.topic: reference
 ms.custom: references_regions
 ms.date: 06/02/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 # What is Azure Translator text translation?
@@ -45,32 +46,11 @@ The languages supported for LLM and Adaptive custom translations are listed in t
 
 The `2026-06-06` API supports both the resource API key and Microsoft Entra ID authentication. For your information, *see* [Authorization and authentication](../../text-translation/reference/authentication.md).
 
-## NMT Base URLs
+## Region support
 
-Requests to Translator are, in most cases, handled by the datacenter that's closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
+NMT endpoint selection and Foundry LLM deployment types use different processing boundaries. For endpoint URLs, processing locations, and deployment differences, see [Region support for Azure Translator](../../region-support.md).
 
-To force the request to be handled within a specific geography, use the desired geographical endpoint. All requests are processed among the datacenters within the geography.
-
-✔️ Feature: **Translator Text** </br>
-
-
-| NMT model service endpoint | Request processing data center |
-|------------------|--------------------------|
-|**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
-|**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
-|**Asia Pacific:**</br>**`api-apc.cognitive.microsofttranslator.com`**|Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland):**</br>**`api-eur.cognitive.microsofttranslator.com`**|France Central &bull; West Europe|
-|**Switzerland:**</br> For more information, *see* [Switzerland service endpoints](#switzerland-service-endpoints).|Switzerland North &bull; Switzerland West|
-
-#### Switzerland service endpoints
-
-Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
-
-### LLM processing
-
-When you deploy a large language model (LLM), the configuration options you choose—global, data zone, or regional—directly impact and determine the specific location in which your data is processed. Therefore, your selections during setup play a significant role in defining the geographical boundaries for how and where the model processes your information.
-
-#### Service limits
+## Service limits
 
 | Operation | Maximum Number of Array Elements | Maximum Size of Array Element | Generative AI LLM: Maximum Number of Array Elements | Generative AI LLM: Maximum Size of Array Element |
 | --- | --- | --- | --- | --- |

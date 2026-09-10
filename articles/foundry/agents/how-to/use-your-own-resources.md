@@ -1,12 +1,12 @@
 ---
 title: "Use your own resources in the Foundry Agent Service"
-description: "Learn how to use resources that you already have with the Foundry Agent Service." 
+description: "Learn how to configure Foundry Agent Service to use your existing Azure OpenAI, Storage, Cosmos DB, and AI Search resources instead of Microsoft-managed ones."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda

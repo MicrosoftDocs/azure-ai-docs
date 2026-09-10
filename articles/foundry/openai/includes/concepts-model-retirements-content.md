@@ -7,7 +7,7 @@ ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/24/2026
+ms.date: 07/29/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -33,7 +33,7 @@ Every model in the Foundry catalog belongs to exactly one of these five stages:
 
 > [!NOTE]
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
-> - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle—for example, 12 months instead of 18. When a shorter lifecycle applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
+> - Generally available models from Anthropic, DeepSeek, Fireworks, and Mistral AI follow a 12-month lifecycle instead of the standard 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## Model launch and availability
 
@@ -131,7 +131,13 @@ When gpt-4o version `2024-05-13` retires on **2026-10-01**, the service automati
 
 ## Migration to a replacement model
 
-When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
+Don't wait for Microsoft to name an official replacement before you begin evaluating newer models. New models and model versions become available regularly, and the best option for your application might change as models with better quality, lower latency, or lower cost become available.
+
+Microsoft selects the official replacement approximately 90–120 days before retirement. Waiting until closer to the retirement date allows the recommendation to reflect the strongest available option when customers need to migrate. The replacement listed in the [Model retirement schedule](../concepts/model-retirement-schedule.md) is Microsoft's recommended migration target and, where supported, the model used for automatic upgrades at retirement. It doesn't limit your manual migration choices.
+
+When you choose a target, evaluate candidate models against your own application, prompts, and representative data. Compare quality, latency, and cost together rather than relying on public benchmarks alone. Before you migrate, confirm API compatibility, feature support, deployment-type and regional availability, capacity, and quota.
+
+For the full, phase-by-phase migration process, including how to prepare a test dataset, adapt prompts and schemas, validate quality, and roll out safely, see [Model migration process](../../foundry-models/concepts/model-migration.md).
 
 ## Notifications
 

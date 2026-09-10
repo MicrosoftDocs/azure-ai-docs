@@ -133,6 +133,14 @@ The Foundry Local SDK manages the complete model lifecycle through the Core API.
 
 This lifecycle is the same across all supported languages. The SDK handles each phase through a consistent API pattern: get a model from the catalog, download and load it, create a client, and run inference.
 
+## Choose your next step
+
+| I want to&hellip; | Go to |
+|---|---|
+| Build your first app | [Get started with Foundry Local](../get-started.md) |
+| Build a chatbot | [Build a multi-turn chat assistant](../tutorials/tutorial-build-chat-assistant.md) |
+| Start coding | [Use native chat completions](../how-to/how-to-use-native-chat-completions.md) |
+
 ## Related content
 
 - [Get started with Foundry Local](../get-started.md)

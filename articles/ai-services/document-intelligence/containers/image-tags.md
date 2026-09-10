@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: reference
-ms.date: 05/20/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ---
 
@@ -31,7 +31,7 @@ Support for containers is currently available with Document Intelligence version
 
 ::: moniker range="doc-intel-3.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)**
+**This content applies to:** 🟩 **v3.0 (GA)**
 
 ## Microsoft container registry (MCR)
 
@@ -55,7 +55,7 @@ The following containers support DocumentIntelligence v3.0 models and features:
 
 ::: moniker range="doc-intel-3.1.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)**
+**This content applies to:** 🟩 **v3.1 (GA)**
 
 ## Microsoft container registry (MCR)
 
@@ -75,7 +75,7 @@ The following containers support DocumentIntelligence v3.1 models and features:
 ::: moniker-end
 
 ::: moniker range="doc-intel-4.0.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+**This content applies to:** 🟩 **v4.0 (GA)**
 
 ## Microsoft container registry (MCR)
 

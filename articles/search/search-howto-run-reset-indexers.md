@@ -1,9 +1,9 @@
-﻿---
+---
 title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 08/17/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -189,10 +189,10 @@ The Reset Skills request selectively processes one or more skills during the nex
 
 For indexers that have caching enabled, you can explicitly request processing for skill updates that the indexer can't detect. For example, if you make external changes, such as revisions to a custom skill, use this API to rerun the skill. The process refreshes outputs, such as a knowledge store or search index, by using reusable data from the cache and new content per the updated skill.
 
-Use the [latest preview API](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+Use the [latest preview API](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-08-01-preview&preserve-view=true).
 
 ```http
-POST /skillsets/[skillset name]/resetskills?api-version=2026-05-01-preview
+POST /skillsets/[skillset name]/resetskills?api-version=2026-08-01-preview
 {
     "skillNames" : [
         "#1",
@@ -212,7 +212,7 @@ Remember to follow up with [Run Indexer](/rest/api/searchservice/indexers/run) t
 
 ## How to reset docs (preview)
 
-The [Indexers - Reset Docs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) API accepts a list of document keys so you can refresh specific documents. If you specify the reset parameters, they solely determine what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, the indexer processes only that document.
+The [Indexers - Reset Docs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-08-01-preview&preserve-view=true) API accepts a list of document keys so you can refresh specific documents. If you specify the reset parameters, they solely determine what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, the indexer processes only that document.
 
 On a per-document basis, the indexer refreshes all fields in the search document with values and metadata from the data source. You can't pick and choose which fields to refresh. 
 
@@ -222,12 +222,12 @@ If you enrich the document through a skillset and it has cached data, the indexe
 
 When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. Use the latest preview API.
 
-1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
+1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
 
-1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
+1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-08-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
 
     ```http
-    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-08-01-preview
     {
         "documentKeys" : [
             "1001",
@@ -257,7 +257,7 @@ When you're testing this API for the first time, the following APIs can help you
 If you call the Reset Documents API multiple times with different keys, the new keys are added to the list of document keys reset. If you call the API with the **`overwrite`** parameter set to true, the current list is replaced with the new one:
 
 ```http
-POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-08-01-preview
 {
     "documentKeys" : [
         "200",
@@ -271,7 +271,7 @@ POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs
 
 ## How to resync indexers (preview)
 
-[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) is a preview REST API that performs a partial reindex of all documents.
+[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-08-01-preview&preserve-view=true) is a preview REST API that performs a partial reindex of all documents.
 An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If you delete a document from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index is removed if delete tracking is enabled.
 
 If you modify a document in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, so the indexer can reindex it in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
@@ -284,10 +284,10 @@ Resync Indexers offers an efficient and convenient alternative. You simply place
 
 ### How to resync and run indexers
 
-1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-05-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
+1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2026-08-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
 
     ```http
-    POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2026-08-01-preview
     {
         "options" : [
             "permissions"
@@ -304,7 +304,7 @@ Resync Indexers offers an efficient and convenient alternative. You simply place
 
 To check the reset status and see which document keys are queued for processing, follow these steps:
 
-1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by using a preview API. 
+1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true) by using a preview API.
 
    The preview API returns the **`currentState`** section, found at the end of the response.
 
@@ -334,37 +334,39 @@ To check the reset status and see which document keys are queued for processing,
 
 1. After the indexer reprocesses the documents, run Get Indexer Status again. The indexer returns to the **`indexingAllDocs`** mode and processes any new or updated documents on the next run.
 
-## Check indexer runtime quota for S3 HD search services
+## Check indexer runtime quota for S3 HD and Serverless search services
 
-Applies to search services at the Standard 3 High Density (S3 HD) pricing tier.
+This section applies to Standard 3 High Density (S3 HD) and Serverless search services. For aggregate quota behavior and planning guidance, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
 
-To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics#servicestatistics?view=rest-searchservice-2026-05-01-preview&preserve-view=true) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) now return more information in the response.
+Each indexer run has a two-hour maximum. Separately, all indexers share 24 hours of cumulative runtime per service in each 24-hour UTC window.
+
+To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics?view=rest-searchservice-2026-08-01-preview&preserve-view=true#servicestatistics) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true) now return more information in the response.
 
 ### Track cumulative runtime quota
 
-Track a search service's cumulative indexer runtime usage and determine how much runtime quota is left within the current 24-hour window period.
+Track a search service's cumulative indexer runtime usage and determine how much runtime quota is left within the current 24-hour window.
 
-Send a GET request to the search service resource provider. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
+Send a GET request to the search service endpoint. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
 
 ```http
-GET {{search-endpoint}}/servicestats?api-version=2026-05-01-preview 
+GET {{search-endpoint}}/servicestats?api-version=2026-08-01-preview
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 ```
 
-Responses include `indexersRuntime` properties, showing start and end times, seconds used, seconds remaining, and cumulative runtime within the last 24 hours.
+Responses include `indexersRuntime` properties that show the window start and end times, cumulative seconds used by all indexers, and seconds remaining for the service.
 
 ### Track indexer runtime quota
 
 Return the same information for a single indexer.
 
 ```http
-GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version=2026-05-01-preview 
+GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version=2026-08-01-preview
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 ```
 
-Responses include a `runtime` properties, showing start and end times, seconds used, and seconds remaining.
+Responses include `runtime` properties that show the window start and end times, seconds used by the indexer, and seconds remaining for all indexers in the service.
 
 ## Next steps
 

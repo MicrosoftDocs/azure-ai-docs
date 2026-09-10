@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 06/14/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ms.custom: sfi-image-nochange
@@ -18,7 +18,7 @@ ms.custom: sfi-image-nochange
 <!-- markdownlint-disable MD034 -->
 # Train a custom model using the Sample Labeling tool
 
-**This content applies to:** ![Document Intelligence v2.1 checkmark](../media/yes-icon.png) **v2.1**.
+**This content applies to:** 🟩 **v2.1**.
 
 >[!TIP]
 >

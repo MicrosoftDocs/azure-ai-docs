@@ -1,12 +1,12 @@
 ---
-title: How to use the Azure AI Content Safety Provenance Detect API
+title: How to use the Azure AI Content Safety Content Provenance Detection API
 titleSuffix: Azure AI services
-description: Learn how to use the Azure AI Content Safety Provenance Detect API, what signals it can detect, common use cases, and current limitations.
+description: Learn how to use the Azure AI Content Safety Content Provenance Detection API, what signals it can detect, common use cases, and current limitations.
 author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 07/22/2026
+ms.date: 08/05/2026
 ms.author: ssalgado
 ai-usage: ai-assisted
 ---
@@ -36,9 +36,9 @@ Before you begin, make sure you have:
 
 - **An active Azure subscription**: If you don't have one, create a free account at [https://azure.microsoft.com/free/](https://azure.microsoft.com/free/).
 - **Azure CLI installed**: Download the [Azure CLI from](/cli/azure/install-azure-cli).
-- **Access to the Provenance Detection API**: This API is available through the Azure AI Content Safety service.
+- **Access to the Content Provenance Detection API**: This API is available through the Azure AI Content Safety service.
 - **PowerShell or another REST client**: You need a tool to send HTTP requests. The examples in this guide use PowerShell, but you can also use curl, Postman, or any REST client.
-- **Media files to analyze**: Prepare image or video files that you want to analyze. You can store these files in Azure Blob Storage or make them accessible through a public URL.
+- **Media files to analyze**: Prepare image, audio, or video files that you want to analyze. You can store these files in Azure Blob Storage or make them accessible through a public URL.
 
 ## Set up your Azure environment
 
@@ -56,6 +56,8 @@ The Content Provenance Detection API is part of the Azure AI Content Safety serv
    1. **Region**: Choose a region close to your location or where your data resides
    1. **Pricing tier**: Select the appropriate tier for your usage needs
 1. Select **Review + create**, and then select **Create**.
+
+After deployment completes, go to your new resource and copy the **Endpoint** value from the **Keys and Endpoint** page. The endpoint has the format `https://<your-resource-name>.cognitiveservices.azure.com`. This guide authenticates with Microsoft Entra ID, so you don't need the resource keys.
 
 ### Set up Azure Blob Storage
 
@@ -182,7 +184,7 @@ $body = @{ content = @{ uri = $blobUri } } | ConvertTo-Json
 
 # 5) Submit the detection request
 $submit = Invoke-WebRequest -Method POST `
-  "$endpoint/contentsafety/provenance/operations:detect?api-version=$version" `
+  "$endpoint/contentsafety/provenance:detect?api-version=$version" `
   -Headers $headers `
   -ContentType "application/json" `
   -Body $body
@@ -246,10 +248,10 @@ When provenance information is found, the response includes a `ProvenanceDetecte
 ```
 
 Each result object contains:
-- **type**: The kind of provenance marker (`Watermark`, `C2PA`, etc.)
-- **provider**: The organization that embedded or verified this marker
-- **modelName**: The detection model used to identify the marker
-- **timestamp**: When the marker was created or verified
+- **type**: The kind of provenance marker (`Watermark` or `C2PA`)
+- **provider**: The Microsoft provider that generated the content
+- **modelName**: The AI model that generated the content, when recorded
+- **timestamp**: When the marker was created
 
 ### No Provenance Detected
 
@@ -304,13 +306,13 @@ If your request is malformed (for example, missing required fields), you'll rece
 ### Common Issues
 
 **"Unauthorized" or "Forbidden" error**
-- Verify that your API key is correct and associated with the right resource.
+- Verify that you requested the Microsoft Entra token for the `https://cognitiveservices.azure.com` resource and that the token isn't expired.
 - Check that your managed identity has the "Cognitive Services User" role on your Content Safety resource.
 - If using SAS tokens, ensure the token hasn't expired.
 
 **"File not found" error**
 - Verify that the blob URI is correct and the file exists in your storage container.
-- Check that the managed identity has "Storage Blob Data Contributor" role on your storage account.
+- Check that the managed identity has the "Storage Blob Data Reader" role on your storage account.
 - Ensure 5 minutes have passed since you assigned the role.
 
 **"Timeout" error**

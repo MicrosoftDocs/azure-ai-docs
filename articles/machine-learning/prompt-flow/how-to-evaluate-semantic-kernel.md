@@ -12,24 +12,28 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Evaluate Semantic Kernel with prompt flow
 
 [!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
-This article describes the seamless integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and planners by using prompt flow. In the rapidly evolving landscape of AI orchestration, a comprehensive evaluation of your plugins and planners is important for optimal performance.
+This article describes the integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and orchestration code by using prompt flow.
 
-Semantic Kernel is an open-source SDK that lets you easily combine Foundry Tools with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
+Semantic Kernel is an open-source SDK that you can use to combine AI services with programming languages like C# and Python. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and automatic function calling to orchestrate operations.
 
-As you build and add more plugins to planners, the error potential increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
+As you add plugins and function calls, test that they work as intended. You can use prompt flow to automate this process for an existing application.
+
+> [!IMPORTANT]
+> Semantic Kernel's Stepwise and Handlebars planners are deprecated and removed from current packages. The planner-based workflow shown in this article is for evaluating a legacy implementation. For current Semantic Kernel applications, use [automatic function calling](/semantic-kernel/concepts/planning#using-automatic-function-calling).
 
 The integration of Semantic Kernel with prompt flow allows you to:
 
 - Harness the powerful AI orchestration capabilities of Semantic Kernel to enhance the efficiency and effectiveness of your prompt flows.
-- Use prompt flow evaluation and experiment management to comprehensively assess the quality of your Semantic Kernel plugins and planners.
+- Use prompt flow evaluation and experiment management to assess the quality of your Semantic Kernel plugins and orchestration code.
 
 ## Prerequisites
 
@@ -53,7 +57,7 @@ Similar to the [integration of LangChain with prompt flow](how-to-integrate-with
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/prompt-flow-end-result.png" alt-text="Diagram of prompt flow with Semantic Kernel." border="false":::
 
-For this example, you create a flow with a Semantic Kernel planner that solves math problems.
+For this legacy example, you create a flow with a Semantic Kernel planner that solves math problems. For a current implementation, replace the planner with automatic function calling and evaluate its outputs by using the same batch-testing approach.
 
 1. From the **Prompt flow** page, select **Create**.
 1. On the **Create a new flow** screen, select **Create** in the **Standard flow** tile.
@@ -71,11 +75,11 @@ For this example, you create a flow with a Semantic Kernel planner that solves m
 
    :::image type="content" source="./media/how-to-evaluate-semantic-kernel/semantic-kernel-flow.png" alt-text="Screenshot of creating a flow with semantic kernel planner." lightbox = "./media/how-to-evaluate-semantic-kernel/semantic-kernel-flow.png":::
 
-## Batch test your plugins and planners
+## Batch test your plugins and orchestration
 
 Instead of manually testing each different scenario, you can automatically run large batches of tests by using prompt flow and benchmark data.
 
-Use batches with prompt flow to run batch tests on your planner that uses the math plugin. By defining several word problems, you can quickly test any changes to your plugins or planners so you catch regressions early.
+Use batches with prompt flow to run batch tests on your orchestration code that uses the math plugin. By defining several word problems, you can quickly test changes to your plugins or function calls so you catch regressions early.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/using-batch-runs-with-prompt-flow.png" alt-text="Diagram showing batch runs with prompt flow for Semantic Kernel." border="false":::
 
@@ -127,15 +131,15 @@ You can check the aggregated metric in the **Metrics** tab.
 
 ## Experiment for quality improvement
 
-If you find that your plugins and planners aren't performing as well as they should, take steps to improve them. The following high-level recommendations can help you improve the effectiveness of your plugins and planners:
+If your plugins and orchestration code don't perform as expected, take steps to improve them. The following high-level recommendations can help:
 
-- Use a more advanced model like GPT-4 instead of GPT-3.5-turbo.
-- Improve your plugin descriptions so they're easier for the planner to use.
-- Inject more help to the planner when you send the user request.
+- Use a current model that supports function calling and is available in your Azure OpenAI deployment.
+- Improve your plugin descriptions so they're easier for the model to use.
+- Provide clear instructions and representative context in the user request.
 
-A combination of these three actions can turn a failing planner into a successful one. By the end of the enhancement and evaluation process, you should have a planner that can correctly answer all of the benchmark data.
+A combination of these actions can improve orchestration results. Use the enhancement and evaluation process to validate results against your benchmark data.
 
-Throughout the process of enhancing your plugins and planners in prompt flow, use the runs to monitor your experimental progress. Each iteration allows you to submit a batch run with an evaluation run at the same time.
+Throughout the process of enhancing your plugins and orchestration code in prompt flow, use the runs to monitor your experimental progress. Each iteration allows you to submit a batch run with an evaluation run at the same time.
 
 :::image type="content" source="./media/how-to-evaluate-semantic-kernel/batch-evaluation.png" alt-text="Screenshot of batch run with evaluation." lightbox = "./media/how-to-evaluate-semantic-kernel/batch-evaluation.png":::
 
@@ -151,5 +155,5 @@ The **Visualize outputs** screen shows a detailed table with a line-by-line comp
 
 - [Semantic Kernel documentation](/semantic-kernel/)
 - [What is a Plugin?](/semantic-kernel/ai-orchestration/plugins)
-- [What is a Planner?](/semantic-kernel/ai-orchestration/planners/evaluate-and-deploy-planners/)
+- [Planning with automatic function calling](/semantic-kernel/concepts/planning)
 - [Deploy a flow as a managed online endpoint for real-time inference](how-to-deploy-for-real-time-inference.md)

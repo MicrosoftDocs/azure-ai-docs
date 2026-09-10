@@ -153,7 +153,7 @@ Personal voice enables your users to get AI generated replication of their own v
 }
 ```
 
-The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural` and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
+The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural` and `DragonHDOmniLatestNeural`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
 
 ### Azure custom avatar
 
@@ -171,7 +171,7 @@ The configuration for a custom avatar doesn't differ from the configuration of a
 
 #### Voice sync for custom avatar
 
-If you trained a custom video avatar together with [voice sync for avatar](./text-to-speech-avatar/voice-sync-for-avatar.md), you can use the voice as the synthesis voice. Set the `voice.type` to `avatar-voice-sync` and `voice.model` to the base model for the synced voice. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural`, and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). To learn more about custom avatars trained with voice sync, see [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md).
+If you trained a custom video avatar together with [voice sync for avatar](./text-to-speech-avatar/voice-sync-for-avatar.md), you can use the voice as the synthesis voice. Set the `voice.type` to `avatar-voice-sync` and `voice.model` to the base model for the synced voice. Supported base model names include `DragonLatestNeural` and `DragonHDOmniLatestNeural`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). To learn more about custom avatars trained with voice sync, see [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)
 
 ```json
 {

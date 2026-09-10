@@ -8,10 +8,10 @@ ms.custom: build-2025, dev-focus
 ms.author: lajanuar
 author: laujan
 ms.topic: concept-article
-ms.date: 06/15/2026
+ms.date: 08/05/2026
 zone_pivot_groups: foundry-local-sdk
-reviewer: maanavdalal
-ms.reviewer: maanavd
+reviewer: wayne-ch
+ms.reviewer: waynechuang
 ai-usage: ai-assisted
 ---
 

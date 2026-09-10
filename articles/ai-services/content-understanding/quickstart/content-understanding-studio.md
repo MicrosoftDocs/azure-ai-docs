@@ -1,11 +1,11 @@
 ---
-title: Quickstart Try out Content Understanding Studio or Foundry portal
+title: "Quickstart: Try Content Understanding Studio or Microsoft Foundry"
 titleSuffix: Foundry Tools
-description: Try out the new features of the Content Understanding Studio, or access the prebuilt analyzers through the Foundry portal.
+description: Use Content Understanding Studio to try analyzers and create custom analyzers, or use Microsoft Foundry to run its available analyzers.
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 02/12/2026
+ms.date: 07/16/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: quickstart
@@ -16,9 +16,9 @@ ms.custom:
   - dev-focus
 ---
 
-# Quickstart: Try out Content Understanding via web portal
+# Quickstart: Try Content Understanding Studio or Microsoft Foundry
 
-[Content Understanding Studio](https://aka.ms/cu-studio) helps you try prebuilt analyzers, build and test custom analyzers, and improve analyzer performance over time. This quickstart walks you through the basic steps to get started.
+[Content Understanding Studio](https://contentunderstanding.ai.azure.com/) is the primary experience for trying prebuilt and search analyzers and creating custom analyzers. In this quickstart, use Studio or [Microsoft Foundry (new)](https://ai.azure.com/) to discover and run available analyzers.
 
 ## Prerequisites
 
@@ -26,60 +26,69 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A Microsoft Foundry resource, created in a [supported region](../language-region-support.md#region-support).
-* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
+
+#### [Content Understanding Studio](#tab/cu-studio-prereq)
+
+[!INCLUDE [Studio model deployment setup](../includes/foundry-model-deployment-setup-studio.md)]
+
+#### [Microsoft Foundry (new)](#tab/foundry-new-prereq)
+
+1. Go to [Microsoft Foundry](https://ai.azure.com/).
+
+1. Navigate to the Content Understanding playground.
+
+1. Select the gear icon to open the **Configure** panel. Select existing model deployments or deploy new models from the playground. Alternatively, go to the [model catalog](https://ai.azure.com/explore/models), deploy the [models supported by Content Understanding](../service-limits.md#supported-generative-models), and then return to the playground to select them.
+
+#### [REST API](#tab/rest-api-prereq)
+
+[!INCLUDE [REST model deployment setup](../includes/foundry-model-deployment-setup-rest.md)]
+
+---
 
 #### [Content Understanding Studio](#tab/cu-studio)
 
 ## Explore Content Understanding Studio
 
-If you're familiar with Document Intelligence, you might recognize the classic features. Content Understanding Studio includes those features and adds multimodal analysis.
-
-When you arrive in [Content Understanding Studio](https://aka.ms/cu-studio), select between the classic Document Intelligence Studio and the new Content Understanding experience. Select "Content Understanding" to get started.
+Open [Content Understanding Studio](https://contentunderstanding.ai.azure.com/) and sign in with your Azure account.
 
 ## Try out prebuilt analyzers
 
-Get started by trying out the prebuilt analyzers offered through Content Understanding. Start by opening [Content Understanding Studio](https://aka.ms/cu-studio).
+Get started by trying a prebuilt analyzer in Content Understanding Studio.
 
-1. **Browse prebuilt analyzers**: Select the option to view all prebuilt analyzers from the home page of [Content Understanding Studio](https://aka.ms/cu-studio).
-1. **Select a prebuilt to try**: Content Understanding offers an extensive list of prebuilt analyzers that support scenarios across all modalities. Select an option based on your data needs to explore what features it offers.
+1. **Browse prebuilt analyzers**: Select the option to view all prebuilt analyzers from the Studio home page.
+1. **Select a prebuilt analyzer**: Select an analyzer based on your data type and scenario.
 1. **Test on sample data**: Explore how the analyzer performs on provided sample data.
     :::image type="content" source="../media/quickstarts/cu-studio-tryout.png" alt-text="Screenshot of Content Understanding Studio showing the prebuilt analyzer selection and results interface." lightbox="../media/quickstarts/cu-studio-tryout.png" :::
 1. **Try out on your own data**: To try out Content Understanding on your data, you need to select a deployment of both a chat completion model and an embeddings model. Learn more in [Connect your Content Understanding analyzer to Foundry model deployments](../concepts/models-deployments.md).
 1. **Verify the results**: After running the analyzer, review the output in the results pane. You should see extracted fields, key-value pairs, or other structured data depending on the analyzer you selected. If the output matches your expectations, you've successfully tested the prebuilt analyzer.
 
-## Customize your analyzer (optional)
+## Create a custom analyzer (optional)
 
-After you try the prebuilt analyzers, you can customize them to fit your specific needs:
+After you try a prebuilt analyzer, you can create an analyzer for your specific needs:
 
-- **Modify the schema**: Content Understanding supports customization for all prebuilt analyzers. See [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
-- **Build from scratch**: Create custom analyzers using AI-assisted suggestions. See [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
+- **Create a custom analyzer**: Define a schema with the fields you want to extract. See [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
 - **Classify data**: Route documents to different processing paths. See [How to classify and route with custom categories in Content Understanding Studio](../how-to/classification-content-understanding-studio.md).
 
 #### [Microsoft Foundry (new)](#tab/foundry-new)
 
-With Microsoft Foundry (new), you can quickly test prebuilt analyzer models. You don't need to deploy any models yourself. Just select these options to explore their capabilities and see how they extract and organize information from your documents.
 
 ## Available analyzers
 
-- **Read** (`prebuilt-read`) extracts text elements such as words, paragraphs, formulas, and barcodes. It provides OCR without layout analysis.
-- **Layout** (`prebuilt-layout`) extracts text and layout elements such as words, figures, paragraphs, and tables. It also extracts document structure (sections and formatting), hyperlinks, and (for digital PDFs) annotations such as highlights, underlines, and strikethroughs.
+Foundry supports the Read and Layout content extraction analyzers and a subset of prebuilt analyzers. The analyzer dropdown shows the analyzers currently available in Foundry. For a full comparison, see [Content Understanding Studio and Microsoft Foundry](../foundry-vs-content-understanding-studio.md).
 
-These prebuilt analyzers don't require a large language model or embedding model. For more information, see [Content extraction analyzers](../concepts/prebuilt-analyzers.md#content-extraction-analyzers).
+## Try an analyzer
 
-## Try out prebuilt analyzers
-
-1. Go to [!INCLUDE [foundry-link](../../../foundry/includes/foundry-link.md)] and select your project or create a new one.
+1. Go to [Microsoft Foundry](https://ai.azure.com/) and select your project or create a new one.
 1. Select **Build** in the upper right menu, then select **Models** on the left pane. This lets you access your own deployed models and any prebuilt models provided by Foundry Tools.
-1. Select the **AI Services** tab, and find 
-**Azure Content Understanding - Read** or 
-**Azure Content Understanding - Layout**. Selecting either one brings you to that model's respective playground page.
-1. Run the analyzer on the sample data provided, or connect your own data to see how the model performs. Examine the results, either formatted or as raw JSON data.
+1. Select the **AI Services** tab, and then select the **Content Understanding Playground**.
+1. Run the analyzer on the sample data provided, or upload your own content to see how the model performs. Examine the results, either formatted or as raw JSON data.
+    :::image type="content" source="../media/quickstarts/foundry-playground.png" alt-text="Screenshot of the Content Understanding playground in Microsoft Foundry showing a document and Layout analyzer results." lightbox="../media/quickstarts/foundry-playground.png" :::
 
 ---
 
 ## Related content
 
+- [Content Understanding Studio and Microsoft Foundry](../foundry-vs-content-understanding-studio.md)
 - [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md)
 - [How to classify and route with custom categories in Content Understanding Studio](../how-to/classification-content-understanding-studio.md)
 - [Connect your Content Understanding analyzer to Foundry model deployments](../concepts/models-deployments.md)
-

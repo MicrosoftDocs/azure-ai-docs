@@ -6,12 +6,13 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/08/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ---
 
 # Document Intelligence composed custom models
 
+::: moniker range="doc-intel-4.0.0"
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 

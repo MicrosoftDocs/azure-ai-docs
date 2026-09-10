@@ -101,7 +101,7 @@ The following subscription types aren't supported for Claude models:
 
 To request a quota increase beyond your default rate limits, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
-For current default rate limits by subscription type, see [Claude models in Microsoft Foundry — Quotas and rate limits](../concepts/claude-models.md#quotas-rate-limits-and-regions).
+For current default rate limits by subscription type, see [Claude models in Microsoft Foundry — Quotas and rate limits](../concepts/claude-models.md#quotas-and-rate-limits).
 
 ## Choose the right option for your workload
 

@@ -33,7 +33,7 @@ You can create three types of custom evaluators:
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. | Defined by your endpoint. Return a JSON object that conforms to the standard evaluation result schema. |
 | **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. | A JSON object with `score`, `reason`, `status`, and optional `properties`. See [Endpoint response schema](#endpoint-response-schema). |
 
-After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
+After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../observability/how-to/cloud-evaluation.md).
 
 ## Code-based evaluators
 
@@ -644,7 +644,7 @@ project_client.beta.evaluators.delete_version(
 client.evals.delete(eval_id=eval_object.id)
 ```
 
-For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
 
@@ -728,5 +728,5 @@ def grade(sample: dict, item: dict) -> float:
 
 ## Related content
 
-- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)

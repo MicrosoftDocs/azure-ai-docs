@@ -10,6 +10,14 @@ ai-usage: ai-assisted
 
 ### July 2026 release
 
+`2026-07-25` The Azure Realtime Speech-to-Speech model is now generally available, bringing enterprise-grade, low-latency, multilingual voice experiences to Azure AI. This release adds 34 authentic, locale-native voices across 11 major languages, with male and female options across key locales. Voice quality is improved - most Azure Realtime voices are on par with or better than competing offerings - and latency is about 100 ms lower than GPT Realtime 1.5 for more responsive conversations. Azure Realtime is ready for production use today.
+
+Highlights
+- 34 locale-native voices across 11 major languages, with male and female options across key locales.
+- Improved voice quality - on par with or better than competing realtime voice offerings.
+- About 100 ms lower latency than GPT Realtime 1.5 for more responsive conversations.
+- Recommended use cases to help pick the right voice.
+
 Voice Live API version `2026-07-15` is generally available and is now the default service version used by the SDKs.
 
 New features:

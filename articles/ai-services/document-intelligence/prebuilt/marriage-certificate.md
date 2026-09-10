@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/25/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -19,7 +19,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence marriage certificate model
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** 
+**This content applies to:** 🟩 **v4.0 (GA)** 
 
 The Document Intelligence Marriage Certificate model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields from Marriage Certificates. Marriage certificates  can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information such as Spouse names, Issue date, and marriage place; and returns a structured JSON data representation. The model currently supports English-language document formats.
 

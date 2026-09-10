@@ -191,11 +191,11 @@ This capability helps your organization manage and monitor AI-generated data in 
 
 - For all other authentication scenarios, user interactions are visible in Microsoft Purview Audit and DSPM for AI activity explorer classifications, but aren't enforced by data security policies.
 
-- Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
+- Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters or an Agent 365 subscription. If pay-as-you-go billing isn't set up and the tenant doesn't have an Agent 365 subscription, only Purview Audit is supported. Learn more about [Microsoft Purview](/Office365/ServiceDescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description#microsoft-purview-for-agentic-workloads).
 
 - Integration with Microsoft Purview for the preceding features in Foundry doesn't yet support network isolation.
 
-This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview).
+This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview). 
 
 ### Enable Microsoft Purview in Foundry
 
@@ -215,7 +215,7 @@ To enable Microsoft Purview in Foundry:
 1. At the top of the tab, use the subscription dropdown to select the Azure subscription.
 1. Turn on the **Powered by Microsoft Purview** toggle.
 
-   :::image type="content" source="media/how-to-manage-compliance-security/purview-data-security-and-governance.png" alt-text="Screenshot of the Data security and governance tab in Foundry, showing the Powered by Microsoft Purview toggle and the option to enable data security and compliance governance for the selected subscription." lightbox="media/how-to-manage-compliance-security/purview-data-security-and-governance.png":::
+1. Select the **Data security and governance** tab.
 
 > [!NOTE]
 > The toggle takes effect only if Microsoft Purview is present in the tenant. Billing happens in Purview and is based on pay-as-you-go (PAYG) meters and the policies created in Purview. If PAYG billing isn't set up in Purview, only Microsoft Purview Audit integration is supported.

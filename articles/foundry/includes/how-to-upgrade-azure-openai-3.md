@@ -6,7 +6,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/20/2026
+ms.date: 08/19/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -93,7 +93,7 @@ To roll back, convert your template configuration back to `OpenAI` as kind.
 To roll back to Azure OpenAI, use either the AzAPI or AzureRM Terraform providers.
 
 > [!NOTE]
-> When using the [AzureRM resource provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), make sure you use a version greater than 4.57.0 of your Terraform CLI client for a non-destructive resource update.
+> When you use the [AzureRM provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), use version 4.56.0 or later for a non-destructive resource update between the `AIServices` and `OpenAI` resource kinds.
 
 * Delete any non-OpenAI model deployments.
 * Delete Foundry-specific sub-resources, including projects and connections.

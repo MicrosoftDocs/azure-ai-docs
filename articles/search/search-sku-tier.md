@@ -5,7 +5,8 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 07/13/2026
+ms.date: 08/04/2026
+ai-usage: ai-assisted
 ---
 
 # Choose a pricing model and service tier in Azure AI Search
@@ -28,13 +29,13 @@ Selecting the Dedicated pricing model requires estimating your workload needs an
 
 Selecting the Serverless pricing model does not require selecting a pre-provisioned service tier, but uses consumption-based pricing, so [performance optimization](./serverless-cost-optimization.md) will directly affect cost.
 
-## Serverless (preview)
+## Serverless pricing model (preview)
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 The Serverless pricing model is a consumption-based offering that automatically scales compute and storage based on your workload. It eliminates the need to provision capacity upfront, allowing you to pay only for the resources you use.
 
-With the Serverless model, you don’t configure replicas, partitions, or search units. Instead, the service manages capacity dynamically in response to query volume, indexing activity, and workload complexity.
+When you use the Serverless model, you don't configure replicas, partitions, or search units. Instead, the service manages capacity dynamically in response to query volume, indexing activity, and workload complexity.
 
 Billing is based on two primary dimensions:
 
@@ -48,21 +49,14 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - Index aliases: Not supported
 - Debug sessions: Not supported
 - Private networking for indexers: Not supported
-- File Knowledge Source (Preview): Not supported
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
-
-Available regions for the Serverless pricing model during preview include:
-
-- West Central US
-- Switzerland North
-- Japan East
 
 To learn more, see [Service Limits in Azure AI Search](./search-limits-quotas-capacity.md).
 
 For additional large-scale Serverless deployment options, contact Microsoft using the [Azure AI Search Serverless Private Preview Sign-up Form](https://aka.ms/FoundryIQ-serverless-contact).
 
-## Dedicated
+## Dedicated pricing model
 
 The Dedicated pricing model is a provisioned-capacity offering that provides predictable performance and cost by allocating fixed infrastructure to your workload. You configure capacity upfront, allowing the service to handle consistent indexing and query demands with guaranteed resources.
 
@@ -71,7 +65,7 @@ With the Dedicated tiers, you explicitly configure replicas, partitions, and sea
 Billing is based on:
 
 - **[Service tier](#tier-descriptions)**: The pre-selected provisioned capacity.
-- **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You’re billed at a fixed hourly rate based on the number of search units and selected service tier.
+- **Search units (SUs)**: The billing unit for Dedicated services, calculated as replicas × partitions. You pay a fixed hourly rate based on the number of search units and selected service tier.
 
 This model is designed for workloads with steady, predictable demand, where consistent performance, low latency, and controlled scaling are important.
 
@@ -100,9 +94,9 @@ Some tiers are designed for certain types of work:
 
 There is also a free, limited search service tier:
 
-- **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling is not supported. Some premium features are unavailable, and the service may be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
+- **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling isn't supported. Some premium features are unavailable, and the service might be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
-Billing rates are shown in the [Azure portal](https://portal.azure.com/auth/login/) when you're creating a new AI Search service in the **Select Pricing Tier** page. 
+You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page.
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Screenshot of the Azure portal Select a pricing tier chart listing the service tiers and their associated SKU." border="true":::
 

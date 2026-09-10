@@ -1,12 +1,12 @@
 ---
-title: "Agent development lifecycle"
+title: "Agent development lifecycle in Microsoft Foundry"
 description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring."
 services: cognitive-services
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -82,11 +82,19 @@ Agent versioning provides the following capabilities for managing agent configur
   | Chat output | Analyze response differences between agent versions using identical inputs |
   | YAML definition | Review differences in agent definitions |
 
+### Reference agents with a stable, get-or-create pattern
+
+In code, you refer to an agent by `<agent_name>:<version>`. Create each agent once, then persist and reuse that identifier across sessions and processes.
+
+- **Create once, reuse the ID.** Cache the agent name or ID your application depends on. Don't recreate it on every run.
+- **Treat 404 as terminal.** If a `GET`, run, or use call returns `404 Not Found` for an ID you previously created, the agent was deleted. Recreate it. Don't retry the same ID in a loop.
+- **Prefer get-or-create.** On startup, look up the agent by name and create it only if the lookup returns 404. This approach keeps a single stable ID and avoids orphaned duplicates.
+
 ### Add tools
 
 Make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
 
-To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
+To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about how to add tools for agents using a Toolbox and what's available, see [Toolbox Overview](./toolbox-overview.md).
 
 ### Debug and validate by using tracing (preview)
 
@@ -141,6 +149,7 @@ After you create an agent version that you're happy with, [publish it as an agen
 - **Unsaved changes are temporary**: If you want to compare versions, view history, or run full evaluations, save your changes as a version.
 - **Tools must be configured before saving**: If a tool requires authentication or a connection, complete setup before you save.
 - **Publishing can require permission updates**: After publishing, recheck resource access for the published agent identity and remove any access the agent no longer needs.
+- **Reusing a deleted agent's ID**: An agent ID is invalidated when the agent is deleted. Calls that reference a deleted or never-created ID return `404 Not Found`. Treat a 404 for a previously valid ID as terminal. Recreate the agent (or use a get-or-create pattern) instead of retrying the same ID. Repeatedly polling a deleted ID never succeeds and only generates error traffic.
 
 ## Related content
 
@@ -151,7 +160,7 @@ After you create an agent version that you're happy with, [publish it as an agen
 
 **Configure and extend agents:**
 
-- [Discover tools in Foundry Tools](./tool-catalog.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
 
 **Publish and monitor agents:**

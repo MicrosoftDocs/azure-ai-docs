@@ -23,6 +23,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry models]
 - <a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven</a> for dependency management and building the project.
 - A [Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 - API key or [Azure CLI](/cli/azure/install-azure-cli) for authentication.
+- A microphone and speakers (or headset) connected to your computer. The sample captures live audio from the microphone and plays responses through the speakers. To test without audio hardware, the sample supports a `--no-audio` flag for text-only interaction.
 
 > [!TIP]
 > To use Voice Live, you don't need to deploy an audio model with your Foundry resource. Voice Live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live overview documentation](../../../voice-live.md).
@@ -138,6 +139,12 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry models]
     ```
 
 1. **Configure authentication** - Copy `application.properties.sample` to `application.properties` and update with your values:
+
+    ```shell
+    cp application.properties.sample application.properties
+    ```
+
+    Edit `application.properties`:
 
     ```properties
     azure.voicelive.endpoint=https://your-resource-name.services.ai.azure.com/

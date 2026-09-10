@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 04/07/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -14,6 +14,8 @@ monikerRange: '>=doc-intel-4.0.0'
 <!-- markdownlint-disable MD033 -->
 
 # Document Intelligence bank check model
+
+This content applies to: 🟩 v4.0 (GA)
 
 The Document Intelligence bank check model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract data from US bank checks. The API analyzes printed checks; extracts key information, and returns a structured JSON data representation. The latest version 4.0 for bank check supports signature detection on bank checks.
 

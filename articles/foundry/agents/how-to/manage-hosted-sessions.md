@@ -1,21 +1,23 @@
 ---
 title: "Manage hosted agent sessions"
-description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, or Azure Developer CLI."
+description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 07/21/2026
+ms.date: 08/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
-zone_pivot_groups: hosted-agent-manage-method
+zone_pivot_groups: hosted-agent-deploy-clients
 ---
 
 # Manage hosted agent sessions
 
-This article shows you how to manage sessions for Hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days, with a 15-minute idle timeout that deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
+This article shows you how to manage sessions for hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days. The agent version's idle timeout can be 2 through 60 minutes and defaults to 15 minutes. When the timeout is reached, the platform deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help reason about session state, files, and conversation IDs as you test or troubleshoot hosted agents.
 
 ## Sessions versus conversations
 
@@ -67,6 +69,12 @@ For Invocations, the platform reads the query parameter only. Fields named `agen
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+- JavaScript/TypeScript SDK: `@azure/ai-projects` and `@azure/identity` (`npm install @azure/ai-projects @azure/identity`).
+
+:::zone-end
+
 :::zone pivot="azd"
 
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later.
@@ -111,6 +119,136 @@ project = AIProjectClient(
     endpoint="<your-project-endpoint>",
     credential=DefaultAzureCredential(),
 )
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+## Set up the client
+
+All JavaScript/TypeScript examples in this article use the following client configuration:
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const project = new AIProjectClient(
+  "<your-project-endpoint>",
+  new DefaultAzureCredential(),
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+:::zone-end
+
+## Manage session idleness
+
+Configure the idle timeout when you create an agent version. The setting applies to sessions created for that version. Set `idle_timeout_seconds` from 120 through 3,600 seconds. If you omit the setting, the server default is 900 seconds.
+
+When a session reaches the idle timeout, the platform suspends its sandbox and saves its state. The platform provisions compute and restores the saved state when the session is referenced again. To change the timeout, create another agent version with the new value.
+
+:::zone pivot="azd"
+
+Add `sessionConfiguration` to the `azure.ai.agent` service in `azure.yaml`:
+
+```yaml
+services:
+  my-agent:
+    host: azure.ai.agent
+    kind: hosted
+    sessionConfiguration:
+      idleTimeoutSeconds: 120
+```
+
+Deploy the agent:
+
+```bash
+azd deploy
+```
+
+The `azure.ai.agents` extension validates the value and maps `sessionConfiguration.idleTimeoutSeconds` to the hosted agent version's `session_configuration.idle_timeout_seconds` property. The setting applies to both code and container deployment modes. If you omit `sessionConfiguration`, the extension omits the property from the request, and the service uses the 900-second default.
+
+> [!NOTE]
+> The 120-second minimum requires `azure.ai.agents` extension version **1.0.0-beta.14** or later. Install or update the extension with `azd ext install azure.ai.agents`.
+
+:::zone-end
+
+:::zone pivot="python"
+
+Pass a `SessionConfiguration` in the hosted agent definition:
+
+```python
+from azure.ai.projects.models import (
+    AgentEndpointProtocol,
+    ContainerConfiguration,
+    HostedAgentDefinition,
+    ProtocolVersionRecord,
+    SessionConfiguration,
+)
+
+agent = project.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        protocol_versions=[
+            ProtocolVersionRecord(
+                protocol=AgentEndpointProtocol.RESPONSES,
+                version="1.0.0",
+            )
+        ],
+        cpu="1",
+        memory="2Gi",
+        container_configuration=ContainerConfiguration(
+            image="your-registry.azurecr.io/your-image:tag"
+        ),
+        environment_variables={
+            "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+        },
+        session_configuration=SessionConfiguration(
+            idle_timeout_seconds=120
+        ),
+    ),
+)
+
+print(f"Created version {agent.version} with a 2-minute idle timeout.")
+```
+
+Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Include `session_configuration` in the definition when you create an agent version:
+
+```bash
+AGENT_NAME="my-agent"
+
+az rest --method POST \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "definition": {
+            "kind": "hosted",
+            "container_configuration": {
+                "image": "your-registry.azurecr.io/your-image:tag"
+            },
+            "cpu": "1",
+            "memory": "2Gi",
+            "protocol_versions": [
+                {
+                    "protocol": "responses",
+                    "version": "1.0.0"
+                }
+            ],
+            "environment_variables": {
+                "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
+            },
+            "session_configuration": {
+                "idle_timeout_seconds": 120
+            }
+        }
+    }'
 ```
 
 :::zone-end
@@ -198,6 +336,52 @@ follow_up = openai_client.responses.create(
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+When you call `getOpenAIClient` with an `agentName`, the returned OpenAI client is routed at the agent's endpoint. The first call creates the session; the response carries the new `agent_session_id` field.
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+  azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create({
+  input: "Find me hotels in Seattle under $200 per night",
+});
+const sessionId = (response as any).agent_session_id;
+console.log(`Session: ${sessionId}`);
+console.log(`Response: ${response.output_text}`);
+
+// Reuse the session and thread the conversation on a later turn.
+const followUp = await openAIClient.responses.create(
+  {
+    input: "Recommend one of those hotels",
+    previous_response_id: response.id,
+  },
+  { body: { agent_session_id: sessionId } },
+);
+console.log(followUp.output_text);
+```
+
+If you thread turns with a `conversation` ID instead of `previous_response_id`, the platform automatically routes every call for that conversation to the same `agent_session_id`—you can omit `agent_session_id`:
+
+```typescript
+const conversation = await openAIClient.conversations.create();
+
+const first = await openAIClient.responses.create({
+  input: "Find me hotels in Seattle under $200 per night",
+  conversation: conversation.id,
+});
+const followUp2 = await openAIClient.responses.create({
+  input: "Recommend one of those hotels",
+  conversation: conversation.id,
+});
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ```bash
@@ -276,6 +460,53 @@ requests.post(
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+The JavaScript/TypeScript SDK doesn't ship a typed Invocations client either. Call the endpoint with `fetch` (or any HTTP library) and authenticate with a bearer token from `@azure/identity`:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+if (!token) {
+  throw new Error("Failed to acquire an access token.");
+}
+const headers = {
+  Authorization: "Bearer " + token.token,
+  "Content-Type": "application/json",
+};
+
+const base =
+  "<your-project-endpoint>/agents/my-agent/endpoint/protocols/invocations?api-version=v1";
+
+// First call — platform creates a new session.
+const firstResponse = await fetch(base, {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ input: "Hello" }),
+});
+let sessionId: string | undefined;
+const text = await firstResponse.text();
+for (const line of text.split("\n")) {
+  if (line.startsWith("data:")) {
+    const event = JSON.parse(line.slice(5).trim());
+    if (event.type === "done") {
+      sessionId = event.session_id;
+    }
+  }
+}
+
+// Reuse the session on a later call.
+await fetch(`${base}&agent_session_id=${sessionId}`, {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ input: "Continue our previous discussion" }),
+});
+```
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ```bash
@@ -346,25 +577,46 @@ Omit the body (or send `{}`) to let the platform pick the version using the agen
 ```python
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={},
-    isolation_key="user-123",
 )
 print(f"Session created (ID: {session.agent_session_id}, status: {session.status})")
 ```
 
-The SDK requires the `isolation_key` keyword on `create_session` and `delete_session`. The server only enforces it when the agent endpoint is configured to read keys from headers—see [Isolation keys](#isolation-keys).
-
-To pin the session to a specific agent version, include `version_indicator` in the body:
+To pin the session to a specific agent version, pass `version_indicator`:
 
 ```python
+from azure.ai.projects.models import VersionRefIndicator
+
 session = project.agents.create_session(
     agent_name="my-agent",
-    body={
-        "version_indicator": {"type": "version_ref", "agent_version": "2"},
-    },
-    isolation_key="user-123",
+    version_indicator=VersionRefIndicator(agent_version="2"),
 )
+print(f"Created session {session.agent_session_id} for agent version 2")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const session = await project.agents.createSession("my-agent");
+console.log(
+  `Session created (ID: ${session.agent_session_id}, status: ${session.status})`,
+);
+```
+
+To pin the session to a specific agent version, pass a version indicator:
+
+```typescript
+const pinnedSession = await project.agents.createSession("my-agent", {
+  type: "version_ref",
+  agent_version: "2",
+});
+console.log(
+  `Created session ${pinnedSession.agent_session_id} for agent version 2`,
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -397,6 +649,18 @@ for item in sessions:
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```typescript
+for await (const item of project.agents.listSessions("my-agent")) {
+  console.log(`Session: ${item.agent_session_id} (status: ${item.status})`);
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
+:::zone-end
+
 :::zone pivot="azd"
 
 Session listing isn't currently available as a standalone command. Use the REST API or SDK.
@@ -426,6 +690,20 @@ session = project.agents.get_session(
 )
 print(f"Session ID: {session.agent_session_id}, Status: {session.status}")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const session = await project.agents.getSession(
+  "my-agent",
+  "<session-id>",
+);
+console.log(`Session ID: ${session.agent_session_id}, Status: ${session.status}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -463,49 +741,14 @@ az rest --method POST \
 project.agents.stop_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
 
 :::zone-end
 
-:::zone pivot="azd"
+:::zone pivot="javascript"
 
-Session management isn't currently available as a standalone command. Use the REST API or SDK.
-
-:::zone-end
-
-## Stopping a session
-
-Stopping a session terminates its running compute while preserving the persistent filesystem volume. Unlike deleting a session, the session is retained and you can resume it later.
-
-Stopping a session that's already stopped succeeds without error.
-
-When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the stop to the calling identity.
-
-:::zone pivot="rest"
-
-```bash
-SESSION_ID="<session-id>"
-ISOLATION_KEY="user-123"
-
-az rest --method POST \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:stop?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}" \
-    --headers "x-ms-user-isolation-key=${ISOLATION_KEY}"
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-project.agents.stop_session(
-    agent_name="my-agent",
-    session_id="<session-id>",
-    isolation_key="user-123",
-)
-```
+Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
 
 :::zone-end
 
@@ -539,9 +782,18 @@ az rest --method DELETE \
 project.agents.delete_session(
     agent_name="my-agent",
     session_id="<session-id>",
-    isolation_key="user-123",
 )
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.deleteSession("my-agent", "<session-id>");
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -556,9 +808,6 @@ Session management isn't currently available as a standalone command. Use the RE
 Upload and download files to agent session sandboxes. Each file is scoped to a specific session. The maximum file size for upload is 50 MB.
 
 A container can also write files directly into the session sandbox (under `$HOME`) and have them appear through these APIs. For an example, see the [note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent), which persists one notes file per session.
-
-> [!NOTE]
-> The Python SDK uses `session_id` as the keyword for `upload_session_file`, and `agent_session_id` for `get_session_files`, `download_session_file`, and `delete_session_file`. Use the keyword name shown in each example.
 
 ### Upload a file
 
@@ -579,15 +828,33 @@ az rest --method PUT \
 :::zone pivot="python"
 
 ```python
-project.agents.upload_session_file(
-    agent_name="my-agent",
-    session_id="<session-id>",
-    content_or_file_path="./data.csv",
-    path="data.csv",
-)
+with open("./data.csv", "rb") as file:
+    result = project.agents.upload_session_file(
+        agent_name="my-agent",
+        session_id="<session-id>",
+        content=file.read(),
+        path="data.csv",
+    )
+print(f"Uploaded {result.path} ({result.bytes_written} bytes)")
 ```
 
-The `content_or_file_path` parameter accepts a file path string. The SDK reads and uploads the file contents automatically.
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+import { readFileSync } from "node:fs";
+
+const result = await project.agents.uploadSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+  readFileSync("./data.csv"),
+);
+console.log(`Uploaded ${result.path} (${result.bytes_written} bytes)`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -616,14 +883,33 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.agents.get_session_files(
+files = project.agents.list_session_files(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path=".",
 )
-for entry in files.entries:
-    print(f"  {entry['name']} (size: {entry['size']}, directory: {entry['is_directory']})")
+for entry in files:
+    print(f"{entry.name} (size: {entry.size}, directory: {entry.is_directory})")
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const files = project.agents.listSessionFiles(
+  "my-agent",
+  "<session-id>",
+  { path: "." },
+);
+for await (const entry of files) {
+  console.log(
+    `${entry.name} (size: ${entry.size}, directory: ${entry.is_directory})`,
+  );
+}
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -656,13 +942,35 @@ az rest --method GET \
 content_bytes = b"".join(
     project.agents.download_session_file(
         agent_name="my-agent",
-        agent_session_id="<session-id>",
+        session_id="<session-id>",
         path="data.csv",
     )
 )
 with open("./output.csv", "wb") as f:
     f.write(content_bytes)
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+import { writeFileSync } from "node:fs";
+import { buffer } from "node:stream/consumers";
+
+const downloadResult = await project.agents.downloadSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+);
+if (!downloadResult.readableStreamBody) {
+  throw new Error("No stream body in the download response.");
+}
+const contentBytes = await buffer(downloadResult.readableStreamBody);
+writeFileSync("./output.csv", contentBytes);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 
@@ -693,10 +1001,24 @@ az rest --method DELETE \
 ```python
 project.agents.delete_session_file(
     agent_name="my-agent",
-    agent_session_id="<session-id>",
+    session_id="<session-id>",
     path="data.csv",
 )
 ```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+await project.agents.deleteSessionFile(
+  "my-agent",
+  "<session-id>",
+  "data.csv",
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone-end
 

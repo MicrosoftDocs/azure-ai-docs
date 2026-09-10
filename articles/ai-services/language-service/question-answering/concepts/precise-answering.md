@@ -5,7 +5,7 @@ ms.service: azure-language-foundry-tools
 ms.topic: feature-guide
 author: laujan
 ms.author: lajanuar
-ms.date: 04/06/2026
+ms.date: 06/30/2026
 ms.custom: language-service-question-answering
 ---
 

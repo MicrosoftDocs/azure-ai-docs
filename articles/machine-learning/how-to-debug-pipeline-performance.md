@@ -9,12 +9,18 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 08/31/2026
 ms.custom: designer, pipeline UI
+ai-usage: ai-assisted
 ---
 # Use profiling to debug pipeline performance issues
 
 The profiling feature in Azure Machine Learning studio helps you debug pipeline performance problems, such as hanging or long durations. Profiling lists the duration of each pipeline step and provides a Gantt chart for visualization. You can see the time spent on each job status and quickly find steps that take longer than expected.
+
+## Prerequisites
+
+- Access to an Azure Machine Learning workspace that contains a pipeline job.
+- A root pipeline job with profiling data. Profiling isn't available for individual child jobs.
 
 ## Find the node that runs the longest overall
 
@@ -54,12 +60,12 @@ Besides total duration, you can also sort the duration table by durations for ea
 The following table presents the definition of each job status, the estimated time it takes, and suggestions for addressing issues with that status.
 
 | Status | Definition | Time estimation | Next steps |
-|------|--------------|-------------|----------|
-| Not started | The job is submitted from the client and accepted in Azure Machine Learning services. Most time is spent in service scheduling and preprocessing. | If there's no backend service issue, this time should be short.| Open a support case via the Azure portal. |
-|Preparing | In this status, the job is pending for preparation of job dependencies, for example environment image building.| If you're using a curated or registered custom environment, this time should be short. | Check the image building log. |
-|Inqueue | The job is pending for compute resource allocation. Duration of this stage mainly depends on the status of your compute cluster.| If you're using a cluster with enough compute resource, this time should be short. | Increase the max nodes of the target compute, change the job to another less busy compute, or modify job priority to get more compute resources for the job. |
-|Running | The job is executing on the remote compute. This stage consists of: <br> 1. Runtime preparation, such as image pulling, docker starting, and data mounting or download. 2. User script execution. | This status is expected to be the most time consuming. | 1. Check the source code for any user error. <br>  2. View the monitoring tab for compute metrics like CPU, memory, and networking to identify any bottlenecks. <br> 3. If the job is running, try online debug with [interactive endpoints](how-to-interactive-jobs.md), or locally debug your code. |
-| Finalizing | Job is in post-processing after execution completes. Time spent in this stage is mainly for post processes like uploading output, uploading metrics and logs, and cleaning up resources.| Time is expected to be short for command jobs. Duration might be long for polygenic risk score (PRS) or Message Passing Interface (MPI) jobs because for distributed jobs, finalizing lasts from the first node starting to the last node finishing. | Change your step job output mode from upload to mount if you find unexpected long finalizing time, or open a support case via the Azure portal. |
+| --- | --- | --- | --- |
+| Not started | The job is submitted from the client and accepted in Azure Machine Learning services. Most time is spent in service scheduling and preprocessing. | If there's no backend service issue, this time should be short. | Open a support case via the Azure portal. |
+| Preparing | In this status, the job is pending for preparation of job dependencies, for example environment image building. | If you're using a curated or registered custom environment, this time should be short. | Check the image building log. |
+| Inqueue | The job is pending for compute resource allocation. Duration of this stage mainly depends on the status of your compute cluster. | If you're using a cluster with enough compute resource, this time should be short. | Increase the max nodes of the target compute, change the job to another less busy compute, or modify job priority to get more compute resources for the job. |
+| Running | The job is executing on the remote compute. This stage consists of: <br> 1. Runtime preparation, such as image pulling, Docker startup, and data mounting or download. 2. User script execution. | This status is expected to be the most time consuming. | 1. Check the source code for any user error. <br>  2. View the monitoring tab for compute metrics like CPU, memory, and networking to identify any bottlenecks. <br> 3. If the job is running, try online debug with [interactive endpoints](how-to-interactive-jobs.md), or locally debug your code. |
+| Finalizing | Job is in post-processing after execution completes. Time spent in this stage is mainly for post processes like uploading output, uploading metrics and logs, and cleaning up resources. | Time is expected to be short for command jobs. Duration might be long for polygenic risk score (PRS) or Message Passing Interface (MPI) jobs because for distributed jobs, finalizing lasts from the first node starting to the last node finishing. | Change your step job output mode from upload to mount if you find unexpected long finalizing time, or open a support case via the Azure portal. |
 
 ## Related content
 

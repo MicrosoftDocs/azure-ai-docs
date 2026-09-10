@@ -1,7 +1,7 @@
 ---
 author: PatrickFarley
 ms.service: azure-speech-foundry-tools
-ms.date: 07/23/2026
+ms.date: 08/18/2026
 ms.topic: include
 ms.author: pafarley
 ai-usage: ai-assisted
@@ -36,13 +36,13 @@ ai-usage: ai-assisted
 | `bn-IN` | Bengali (India) | ✅ | ✅ | |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | ✅ | | |
 | `ca-ES` | Catalan | ✅ | | |
-| `cs-CZ` | Czech (Czechia) | ✅ | | ✅ |
+| `cs-CZ` | Czech (Czechia) | ✅ | ✅ | ✅ |
 | `cy-GB` | Welsh (United Kingdom) | ✅ | | |
 | `da-DK` | Danish (Denmark) | ✅ | | ✅ |
 | `de-AT` | German (Austria) | ✅ | | |
 | `de-CH` | German (Switzerland) | ✅ | ✅ | ✅ |
 | `de-DE` | German (Germany) | ✅ | ✅ | ✅ |
-| `el-GR` | Greek (Greece) | ✅ | | ✅ |
+| `el-GR` | Greek (Greece) | ✅ | ✅ | ✅ |
 | `en-AU` | English (Australia) | ✅ | | |
 | `en-CA` | English (Canada) | ✅ | | |
 | `en-GB` | English (United Kingdom) | ✅ | ✅ | ✅ |
@@ -83,7 +83,7 @@ ai-usage: ai-assisted
 | `et-EE` | Estonian (Estonia) | ✅ | | |
 | `eu-ES` | Basque | ✅ | | |
 | `fa-IR` | Persian (Iran) | ✅ | | |
-| `fi-FI` | Finnish (Finland) | ✅ | | ✅ |
+| `fi-FI` | Finnish (Finland) | ✅ | ✅ | ✅ |
 | `fil-PH` | Filipino (Philippines) | ✅ | | |
 | `fr-BE` | French (Belgium) | ✅ | | |
 | `fr-CA` | French (Canada) | ✅ | | |
@@ -97,7 +97,7 @@ ai-usage: ai-assisted
 | `hr-HR` | Croatian (Croatia) | ✅ | | |
 | `hu-HU` | Hungarian (Hungary) | ✅ | | ✅ |
 | `hy-AM` | Armenian (Armenia) | ✅ | | |
-| `id-ID` | Indonesian (Indonesia) | ✅ | | ✅ |
+| `id-ID` | Indonesian (Indonesia) | ✅ | ✅ | ✅ |
 | `is-IS` | Icelandic (Iceland) | ✅ | | |
 | `it-CH` | Italian (Switzerland) | ✅ | | |
 | `it-IT` | Italian (Italy) | ✅ | ✅ | ✅ |
@@ -121,15 +121,15 @@ ai-usage: ai-assisted
 | `nb-NO` | Norwegian Bokmål (Norway) | ✅ | | ✅ |
 | `ne-NP` | Nepali (Nepal) | ✅ | | |
 | `nl-BE` | Dutch (Belgium) | ✅ | | |
-| `nl-NL` | Dutch (Netherlands) | ✅ | | ✅ |
+| `nl-NL` | Dutch (Netherlands) | ✅ | ✅ | ✅ |
 | `or-IN` | Odia (India) | ✅ | | |
 | `pa-IN` | Punjabi (India) | ✅ | ✅ | |
-| `pl-PL` | Polish (Poland) | ✅ | | ✅ |
+| `pl-PL` | Polish (Poland) | ✅ | ✅ | ✅ |
 | `ps-AF` | Pashto (Afghanistan) | ✅ | | |
 | `pt-BR` | Portuguese (Brazil) | ✅ | ✅ | ✅ |
 | `pt-PT` | Portuguese (Portugal) | ✅ | | |
 | `ro-RO` | Romanian (Romania) | ✅ | | |
-| `ru-RU` | Russian (Russia) | ✅ | | ✅ |
+| `ru-RU` | Russian (Russia) | ✅ | ✅ | ✅ |
 | `si-LK` | Sinhala (Sri Lanka) | ✅ | | |
 | `sk-SK` | Slovak (Slovakia) | ✅ | | |
 | `sl-SI` | Slovenian (Slovenia) | ✅ | | |
@@ -138,13 +138,13 @@ ai-usage: ai-assisted
 | `sr-ME` | Serbian (Montenegro) | ❌ | | |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | ✅ | | |
 | `sr-XK` | Serbian (Kosovo) | ❌ | | |
-| `sv-SE` | Swedish (Sweden) | ✅ | | ✅ |
+| `sv-SE` | Swedish (Sweden) | ✅ | ✅ | ✅ |
 | `sw-KE` | Kiswahili (Kenya) | ✅ | | |
 | `sw-TZ` | Kiswahili (Tanzania) | ❌ | | |
 | `ta-IN` | Tamil (India) | ✅ | | |
 | `te-IN` | Telugu (India) | ✅ | ✅ | |
-| `th-TH` | Thai (Thailand) | ✅ | | ✅ |
-| `tr-TR` | Turkish (Türkiye) | ✅ | | ✅ |
+| `th-TH` | Thai (Thailand) | ✅ | ✅ | ✅ |
+| `tr-TR` | Turkish (Türkiye) | ✅ | ✅ | ✅ |
 | `uk-UA` | Ukrainian (Ukraine) | ✅ | | |
 | `ur-IN` | Urdu (India) | ✅ | | |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | ✅ | | |

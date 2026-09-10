@@ -1,7 +1,7 @@
 ---
 title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
-author: aahil
+author: aahill
 ms.author: aahi
 ms.date: 07/14/2026
 ms.service: microsoft-foundry
@@ -54,6 +54,39 @@ You need the following role assignments:
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
+## Configure the base URL correctly
+
+When you enter **Base URL** in the connection wizard, provide the gateway base
+path only. Foundry appends the request route based on the model protocol.
+
+| Protocol style | Full endpoint example | Base URL to enter in Foundry |
+|---|---|---|
+| Azure OpenAI (deployment-based) | `https://<your-ai-services-account>.services.ai.azure.com/openai/deployments/<deployment-name>/chat/completions?api-version=2024-10-21` | `https://<your-ai-services-account>.services.ai.azure.com/openai` |
+| OpenAI-compatible v1 API | `https://<your-ai-services-account>.services.ai.azure.com/openai/v1/chat/completions` | `https://<your-ai-services-account>.services.ai.azure.com/openai/v1` |
+
+Current behavior:
+
+- Foundry appends `chat/completions` for OpenAI-compatible chat models.
+- For deployment-based routing, Foundry adds
+   `deployments/{deployment-name}` when the connection is configured to use a
+   deployment path.
+
+Example:
+
+If **Base URL** is
+   `https://<your-ai-services-account>.services.ai.azure.com/openai/v1`, Foundry calls `https://<your-ai-services-account>.services.ai.azure.com/openai/v1/chat/completions`.
+
+## Choose the correct API key and header
+
+If you select **API key** authentication, use the key source and header format
+that match your topology:
+
+| Connection pattern | API key to provide | API key header name |
+|---|---|---|
+| Direct model endpoint in a Foundry project (without API Management or another gateway) | Use the project API key for your Foundry project endpoint. | `api-key` |
+| Azure API Management gateway | In the Azure portal, open your API Management resource, then go to **APIs** > **Subscriptions** > your project subscription, and copy the subscription key. | Use the header expected by your API Management policy or API definition. |
+| External gateway (non-Azure) | Use the API key issued by that gateway provider. | Use the header required by the gateway documentation. |
+
 ::: zone pivot="foundry-portal"
 
 ## Create a model connection
@@ -67,9 +100,7 @@ To add a model connection in the Foundry portal:
 # [API Management](#tab/api-management)
 
 1. Sign in to [Microsoft Foundry](https://ai.azure.com).
-1. Select **Operate**, and then select **Admin**.
-1. Open the **All projects** tab.
-1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select **Manage**, and then select **Resource details**.
 1. Select the **Admin-connected models** tab, and then select **Add**.
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
@@ -145,9 +176,7 @@ To configure **Managed Identity** authentication to API Management, complete the
 # [Other source](#tab/other-sources)
 
 1. Sign in to [Microsoft Foundry](https://ai.azure.com).
-1. Select **Operate**, and then select **Admin**.
-1. Open the **All projects** tab.
-1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select **Manage**, and then select **Resource details**.
 1. Select the **Admin-connected models** tab, and then select **Add**.
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
@@ -226,7 +255,7 @@ For detailed connection specifications, see the [connection samples on GitHub](h
    > [!TIP]
    > A successful deployment returns `provisioningState: Succeeded` in the command output.
 
-1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com), select **Operate**, and then select **Admin**. Open the **All projects** tab, select the link in the **Parent resource** column for your project, and then select the **Admin-connected models** tab. The new connection appears in the list with the models you configured.
+1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com), select **Manage**, select **Resource details**, and then select the **Admin-connected models** tab. The new connection appears in the list with the models you configured.
 
 ::: zone-end
 
@@ -260,7 +289,7 @@ For a complete working example, see the [agent SDK samples on GitHub](https://gi
 
 After deploying your agent, confirm that the full pipeline works correctly:
 
-1. **Check connection status** — In the Foundry portal, select **Operate**, select **Admin**, and open the **All projects** tab. Select the link in the **Parent resource** column for your project, and then select the **Admin-connected models** tab. Verify the connection appears in the list. If it's missing, check the gateway endpoint URL and credentials.
+1. **Check connection status** — In the Foundry portal, select **Manage**, select **Resource details**, and then select the **Admin-connected models** tab. Verify the connection appears in the list. If it's missing, check the gateway endpoint URL and credentials.
 
 1. **Send a test prompt** — Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
 
@@ -315,9 +344,78 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 | Timeout errors from the gateway | Check that your gateway endpoints are accessible from the Agent Service network. For private networks, see the network isolation guidance in the Limitations section. |
 | Authentication failures | For API Management, verify your subscription key. For Model Gateway, verify the API key or OAuth 2.0 configuration. |
 
+### Enable Application Insights logging in API Management
+
+1. In the Azure portal, go to your API Management resource.
+1. Select **Monitoring** > **Application Insights**.
+1. Select **+ Add**.
+1. Select your Application Insights resource, and then select **Create**.
+1. Select **APIs** > **All APIs** > **Settings**.
+1. Find **Diagnostic Logs** for Application Insights, and enable it.
+1. Set sampling to `100%` for testing.
+1. Set **Always log errors** to **Yes**.
+1. Set verbosity to **Information**.
+1. Select **Save**.
+1. Send a few test calls to your API Management endpoint.
+
+### See logs
+
+In Application Insights, open **Logs** and run these queries.
+
+Incoming requests:
+
+```kusto
+requests
+| order by timestamp desc
+| take 100
+```
+
+API Management backend calls:
+
+```kusto
+dependencies
+| project timestamp, name, target, data, resultCode, duration
+| order by timestamp desc
+```
+
+Exceptions:
+
+```kusto
+exceptions
+| order by timestamp desc
+```
+
+Custom or API Management traces:
+
+```kusto
+traces
+| order by timestamp desc
+```
+
+### For detailed API Management gateway logs
+
+You can also send gateway diagnostics to Log Analytics for deeper
+gateway-level investigation.
+
+1. In API Management, select **Monitoring** > **Diagnostic settings**.
+1. Select **Add diagnostic setting**.
+1. Send logs to a **Log Analytics workspace**.
+
+Then run:
+
+```kusto
+ApiManagementGatewayLogs
+| order by TimeGenerated desc
+| take 100
+```
+
+Application Insights is best for request and dependency tracing.
+`ApiManagementGatewayLogs` is best for detailed gateway-level diagnostics.
+
 ## Supported configurations
 
 - Only prompt agents in the Agent SDK support this feature.
+- The Response API isn't supported at present.
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
 - Supported networking configurations:
     - Public networking is supported for both API Management and self-hosted gateways.

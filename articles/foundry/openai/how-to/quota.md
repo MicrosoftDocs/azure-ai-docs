@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 05/04/2026
 ms.author: aashcraft
 ms.custom: classic-and-new
+ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to understand how to manage Azure OpenAI deployment quotas in Microsoft Foundry so that I can control rate limits for my models.
 ---
@@ -25,7 +26,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
  
 1. Projects help organize your work. The project you're working on appears in the upper-left corner. If you want to create a new project, select the project name, then **Create new project**.
 
-1. Select **Operate** from the upper-right navigation.
+1. Select **Manage** from the upper-right navigation.
 
 1. Select **Quota** from the left pane to land on the **Quota** pane. The quota view has two tabs:
 

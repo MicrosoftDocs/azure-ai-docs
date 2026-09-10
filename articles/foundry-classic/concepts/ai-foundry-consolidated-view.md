@@ -23,7 +23,6 @@ ai-usage: ai-assisted
 ## Related content
 
 - [Microsoft Foundry management center](management-center.md)
-- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - [Plan and manage costs for Microsoft Foundry](manage-costs.md)
 - [Role-based access control for Microsoft Foundry](rbac-foundry.md)
 - [Quickstart: Start using Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis)

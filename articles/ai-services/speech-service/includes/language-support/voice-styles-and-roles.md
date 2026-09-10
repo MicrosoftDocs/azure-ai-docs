@@ -30,12 +30,9 @@ ms.author: pafarley
 | `en-US-GuyNeural` | `angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering` | Not supported |
 | `en-US-Harper:MAI-Voice-2` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `whispering` | Not supported |
 | `en-US-Harper:MAI-Voice-2-Flash` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `whispering` | Not supported |
-| `en-US-Iris:MAI-Voice-1` | `anger`, `confusion`, `determination`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealousy`, `joy`, `narration`, `neutral`, `regret`, `relief`, `sadness`, `shouting`, `softvoice`, `surprise`, `whispering` | Not supported |
 | `en-US-JaneNeural` | `angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering` | Not supported |
 | `en-US-JasonNeural` | `angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering` | Not supported |
-| `en-US-Jasper:MAI-Voice-1` | `anger`, `confusion`, `disgust`, `embarrassment`, `excitement`, `fear`, `generalconversation`, `happiness`, `hope`, `jealous`, `joy`, `learning`, `media`, `persuasive`, `regret`, `sadness`, `sales`, `surprise` | Not supported |
 | `en-US-JennyNeural` | `angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering` | Not supported |
-| `en-US-June:MAI-Voice-1` | `anger`, `callcenter`, `confusion`, `customerservice`, `disgust`, `embarrassment`, `fear`, `generalconversation`, `happiness`, `jealous`, `joy`, `learning`, `professional`, `regret`, `sadness`, `surprise` | Not supported |
 | `en-US-KaiNeural` | `conversation` | Not supported |
 | `en-US-LunaNeural` | `conversation` | Not supported |
 | `en-US-NancyMultilingualNeural` | `excited`, `friendly`, `funny`, `relieved`, `shy` | Not supported |

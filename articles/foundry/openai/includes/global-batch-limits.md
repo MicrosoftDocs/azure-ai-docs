@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 07/10/2026
+ms.date: 08/14/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -15,14 +15,14 @@ ms.custom: classic-and-new
 
 | Limit name | Limit value |
 | ---------- | ----------- |
-| Maximum Batch input files - (no expiration) | 500 |
-| Maximum Batch input files - (expiration set) | 10,000 |
+| Maximum batch input files (no expiration) | 500 |
+| Maximum batch input files (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
 | Maximum input file size - [Bring your own storage (BYOS)](../../../foundry-classic/openai/how-to/batch-blob-storage.md) | 1 GB |
 | Maximum requests per file | 100,000 |
 
 > [!NOTE]
-> Batch file limits don't apply to output files (for example, `result.jsonl`, and `error.jsonl`). To remove batch input file limits, use [Batch with Azure Blob Storage](../../../foundry-classic/openai/how-to/batch-blob-storage.md).
+> Set expiration for input files to increase the per-resource limit and manage stored files. Batch input file limits don't apply to output files, such as `result.jsonl` and `error.jsonl`. To avoid Files API input file limits, use [Batch with Azure Blob Storage](../../../foundry-classic/openai/how-to/batch-blob-storage.md).
 
 ## Batch quota
 

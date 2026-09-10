@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/03/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ms.custom: references.regions
 ---
@@ -15,6 +15,7 @@ ms.custom: references.regions
 
 # Document Intelligence ID document model
 
+::: moniker range="doc-intel-4.0.0"
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 

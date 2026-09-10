@@ -5,7 +5,7 @@ keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 04/02/2026
+ms.date: 08/21/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-mcp
@@ -35,7 +35,7 @@ In this article, you learn about:
 
 ## Interpreting the response
 
-MCP Server provides output that is passed to the language model selected for your agent (for example, Visual Studio Code with GitHub Copilot). The language model combines this output with the conversation context to generate a final response based on its capabilities. Always verify the accuracy of the language model’s response. It may include details that are inferred or generated beyond the MCP Server’s original output.
+MCP Server provides output that is passed to the language model selected for your agent (for example, Visual Studio Code with GitHub Copilot). The language model combines this output with the conversation context to generate a final response based on its capabilities. Always verify the accuracy of the language model's response. It might include details that are inferred or generated beyond the MCP Server's original output.
 
 ## Impact of write operations
 
@@ -150,7 +150,7 @@ Foundry MCP Server currently doesn't support network isolation. It exposes the p
 
 ### Data residency
 
-Foundry MCP Server uses a global stateless proxy architecture. Data created by backend services that interact with MCP Server stays encrypted at rest in the region you select. MCP Server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.  
+Foundry MCP Server uses a global stateless proxy architecture. Data created by backend services that interact with MCP Server stays encrypted at rest in the region you select. MCP Server itself doesn't store data. For performance and availability, data centers in the European Union (EU) or the United States (US) can process requests and responses, with all data encrypted in transit.  
 
 > [!IMPORTANT]
 > By using this preview feature, you acknowledge and consent to any cross-region processing that might occur. For example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Foundry MCP Server or restrict its use to scenarios that remain within your selected region.
@@ -202,4 +202,4 @@ If Foundry tools don't appear in the agent mode tools list:
 
 - Review [available tools and example prompts](available-tools.md) for Foundry MCP Server
 - Get started with [Foundry MCP Server](get-started.md)
-- Learn how to [build your own MCP server](build-your-own-mcp-server.md) 
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md)

@@ -6,7 +6,7 @@ ms.author: scottpolly
 ms.reviewer: deeikele
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/20/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -14,7 +14,7 @@ Learn how to use custom Azure policies to enable teams to self-manage Microsoft 
 
 By using custom policies, you can:
 
-- **Enforce governance**: Prevent unauthorized creation of Foundry hubs, projects, connections, or capability hosts.
+- **Enforce governance**: Prevent unauthorized creation of Foundry accounts, projects, connections, or capability hosts.
 - **Control resource behavior**: Ensure security configurations, enforce tagging, or allow only approved integrations.
 - **Ensure compliance**: Apply enterprise security and operational standards consistently across environments.
 
@@ -37,7 +37,7 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
    - Provide:
      - **Definition location**: Subscription (applies to resources in a single subscription) or management group (applies across multiple subscriptions).
      - **Name**: A unique name (for example, `Deny-Unapproved-Connections`).
-     - **Description**: Explain the purpose (for example, “Restrict Foundry connections to approved categories”).
+     - **Description**: Explain the purpose (for example, "Restrict Foundry connections to approved categories").
      - **Category**: Use an existing category or create one such as `AI Governance`.
 
 1. **Add policy rule**
@@ -48,17 +48,30 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
         "mode": "All",
         "policyRule": {
           "if": {
-            "allOf": [
+            "anyOf": [
               {
-                "field": "type",
-                "in": [
-                  "Microsoft.CognitiveServices/accounts/connections",
-                  "Microsoft.CognitiveServices/accounts/projects/connections"
+                "allOf": [
+                  {
+                    "field": "type",
+                    "equals": "Microsoft.CognitiveServices/accounts/connections"
+                  },
+                  {
+                    "field": "Microsoft.CognitiveServices/accounts/connections/category",
+                    "notIn": "[parameters('allowedCategories')]"
+                  }
                 ]
               },
               {
-                "field": "Microsoft.CognitiveServices/accounts/connections/category",
-                "notIn": "[parameters('allowedCategories')]"
+                "allOf": [
+                  {
+                    "field": "type",
+                    "equals": "Microsoft.CognitiveServices/accounts/projects/connections"
+                  },
+                  {
+                    "field": "Microsoft.CognitiveServices/accounts/projects/connections/category",
+                    "notIn": "[parameters('allowedCategories')]"
+                  }
+                ]
               }
             ]
           },
@@ -80,23 +93,31 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
 
       For a complete, ready-to-use version of this policy, see the full sample:
 
-      :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json"
-      
+      :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json":::
 
-  This policy denies creation of Foundry connections when the connection `category` isn't in the `allowedCategories` parameter. It applies to both `Microsoft.CognitiveServices/accounts/connections` and `Microsoft.CognitiveServices/accounts/projects/connections`.
+      This policy denies creation of Foundry connections when the connection `category` isn't in the `allowedCategories` parameter. It applies to both `Microsoft.CognitiveServices/accounts/connections` and `Microsoft.CognitiveServices/accounts/projects/connections`.
 
-  To customize the behavior, update `allowedCategories` (or override it when you assign the policy) with the connection categories your organization approves.
+      To customize the behavior, update `allowedCategories` (or override it when you assign the policy) with the connection categories your organization approves.
 
-  References:
-  - Reference: [Policy definition structure](/azure/governance/policy/concepts/definition-structure)
-  - Reference: [Policy rule structure](/azure/governance/policy/concepts/definition-structure-policy-rule)
-  - Reference: [Policy effects](/azure/governance/policy/concepts/effects)
+      For more information, see:
+
+      - [Policy definition structure](/azure/governance/policy/concepts/definition-structure)
+      - [Policy rule structure](/azure/governance/policy/concepts/definition-structure-policy-rule)
+      - [Policy effects](/azure/governance/policy/concepts/effects)
 
 1. **Assign the policy**
-   - After saving, assign the policy to the desired scope (subscription, resource group, or hub).
+   - After saving, assign the policy to the desired scope (management group, subscription, or resource group).
+   - Supply the approved categories through the `allowedCategories` parameter. For example, assign the policy with the Azure CLI:
+
+     ```azurecli
+     az policy assignment create \
+       --name "deny-unapproved-connections" \
+       --policy "<policy-definition-id>" \
+       --params '{ "allowedCategories": { "value": [ "BingLLMSearch" ] } }'
+     ```
 
 1. **Validate the policy assignment**
-   - Try to create a connection with a category that isn't in `allowedCategories` and confirm the request is denied.
+   - Try to create a connection with a category that isn't in `allowedCategories` and confirm the request is denied with a `RequestDisallowedByPolicy` error.
    - Try to create a connection with a category that is in `allowedCategories` and confirm the request succeeds.
 
 ## Common custom policy scenarios
@@ -120,14 +141,14 @@ Explore ready-to-use templates and examples in the GitHub repository:
 
 This library includes JSON templates for common scenarios.
 
-## Next steps
-
-- Review [Built-in Policies for Foundry](../../ai-services/policy-reference.md) for built-in and custom policies for comprehensive compliance.
-- Test policies in a nonproduction environment before enforcing them broadly.
-
 ## Troubleshooting
 
 - If you can't create or assign a policy definition, confirm you have the required role at the scope you're using.
 - If a connection isn't blocked as expected, confirm the policy assignment scope includes the target resource.
 - If a policy blocks more resources than expected, review the `allowedCategories` value used in the assignment.
 - Policy evaluation can take up to 30 minutes after assignment. To force immediate evaluation, run `az policy state trigger-scan --resource-group <resource-group-name>`.
+
+## Next steps
+
+- To review built-in and custom policies for comprehensive compliance, see [Built-in Policies for Foundry](../../ai-services/policy-reference.md).
+- Test policies in a nonproduction environment before enforcing them broadly.

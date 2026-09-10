@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -138,7 +138,10 @@ To define a vectorizer and vector profile in an existing index:
     GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
     Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
     ```
-    
+
+    > [!WARNING]
+    > A retrieved Custom Web API vectorizer contains `<redacted>` for every `httpHeaders` value. When you update the same vectorizer without changing its `name`, `kind`, or `uri`, you can resubmit `<redacted>` for matching existing header names. If you change `uri`, submit actual values for every `httpHeaders` entry. For other update rules, see [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md#update-header-values-after-get).
+
 1. Use [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) to update the index definition. Paste the full index definition in the request body.
 
    ```http
@@ -162,14 +165,15 @@ To define a vectorizer and vector profile in an existing index:
               "resourceUri": "https://url.openai.azure.com",
               "deploymentId": "text-embedding-ada-002",
               "modelName": "text-embedding-ada-002",
-              "apiKey": "mytopsecretkey"
+              "apiKey": "<your-azure-openai-api-key>"
             }
           },
           {
             "name": "my_custom_vectorizer",
             "kind": "customWebApi",
-            "customVectorizerParameters": {
-              "uri": "https://my-endpoint",
+            "customWebApiParameters": {
+              "uri": "https://contoso.embeddings.com",
+              "httpMethod": "POST",
               "authResourceId": null,
               "authIdentity": null
             }

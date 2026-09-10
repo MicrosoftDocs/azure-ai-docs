@@ -50,7 +50,7 @@ The cache is created when you specify the `cache` property and run the indexer. 
 The following example illustrates an indexer with caching enabled. See [Configure enrichment caching](enrichment-cache-how-to-configure.md) for full instructions. 
 
 ```json
-POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2026-05-01-preview
+POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2026-08-01-preview
     {
         "name": "myIndexerName",
         "targetIndexName": "myIndex",
@@ -96,7 +96,7 @@ If you know that a change to the skill is superficial, override skill evaluation
 When you set this parameter, only updates to the skillset definition are committed. The change isn't evaluated for effects on the existing cache. Use a preview API version, 2020-06-30-Preview or later. Use the latest preview API.
 
 ```http
-PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2026-05-01-preview&disableCacheReprocessingChangeDetection
+PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2026-08-01-preview&disableCacheReprocessingChangeDetection
   
 ```
 
@@ -105,7 +105,7 @@ PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-versi
 Most changes to a data source definition invalidate the cache. However, for scenarios where you know that a change shouldn't invalidate the cache - such as changing a connection string or rotating the key on the storage account - append the `ignoreResetRequirement` parameter on the [data source update](/rest/api/searchservice/data-sources/create-or-update). Set this parameter to true to allow the commit to go through, without triggering a reset condition that would result in all objects being rebuilt and populated from scratch.
 
 ```http
-PUT https://[search service].search.windows.net/datasources/[data source name]?api-version=2026-05-01-preview&ignoreResetRequirement
+PUT https://[search service].search.windows.net/datasources/[data source name]?api-version=2026-08-01-preview&ignoreResetRequirement
  
 ```
 
@@ -113,13 +113,13 @@ PUT https://[search service].search.windows.net/datasources/[data source name]?a
 
 The purpose of the cache is to avoid unnecessary processing. But suppose you make a change to a skill that the indexer doesn't detect (for example, changing something in external code, such as a custom skill).
 
-In this case, use the [Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-05-01-preview&preserve-view=true) API to force reprocessing of a particular skill, including any downstream skills that have a dependency on that skill's output. This API accepts a POST request with a list of skills that should be invalidated and marked for reprocessing. After Reset Skills, follow with a [Run Indexer](/rest/api/searchservice/indexers/run) request to invoke the pipeline processing.
+In this case, use the [Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-08-01-preview&preserve-view=true) API to force reprocessing of a particular skill, including any downstream skills that have a dependency on that skill's output. This API accepts a POST request with a list of skills that should be invalidated and marked for reprocessing. After Reset Skills, follow with a [Run Indexer](/rest/api/searchservice/indexers/run) request to invoke the pipeline processing.
 
 ## Re-cache specific documents
 
 If you [reset an indexer](/rest/api/searchservice/indexers/reset), all documents in the search corpus are reprocessed. 
 
-In scenarios where only a few documents need reprocessing, use [Reset Documents (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to force reprocessing of specific documents. When you reset a document, the indexer invalidates the cache for that document. The indexer then reprocesses the document by reading it from the data source. For more information, see [Run or reset indexers, skills, and documents](search-howto-run-reset-indexers.md).
+In scenarios where only a few documents need reprocessing, use [Reset Documents (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to force reprocessing of specific documents. When you reset a document, the indexer invalidates the cache for that document. The indexer then reprocesses the document by reading it from the data source. For more information, see [Run or reset indexers, skills, and documents](search-howto-run-reset-indexers.md).
 
 To reset specific documents, include a list of document keys as read from the search index in the request. If the key maps to a field in the external data source, use the value from the search index.
 
@@ -134,7 +134,7 @@ Depending on how you call the API, the request either appends, overwrites, or qu
 The following example illustrates a reset document request:
 
 ```http
-POST https://[search service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-05-01-preview
+POST https://[search service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2026-08-01-preview
     {
         "documentKeys" : [
             "key1",
@@ -185,10 +185,10 @@ Preview APIs provide extra properties on indexers. Use the latest preview API.
 
 Use the generally available version for skillsets and data sources. In addition to the reference documentation, see [Configure caching for incremental enrichment](enrichment-cache-how-to-configure.md) for details about order of operations.
 
-+ [Create or Update Indexer (api-version=2026-05-01-preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) 
++ [Create or Update Indexer (api-version=2026-08-01-preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-+ [Reset Skills (api-version=2026-05-01-preview)](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
++ [Reset Skills (api-version=2026-08-01-preview)](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-+ [Create or Update Skillset (api-version=2026-05-01-preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (New URI parameter on the request)
++ [Create or Update Skillset (api-version=2026-08-01-preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) (New URI parameter on the request)
 
-+ [Create or Update Data Source (api-version=2026-05-01-preview)](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) When you call this API with a preview API version, it provides a new parameter named `ignoreResetRequirement`. Set this parameter to `true` when your update action shouldn't invalidate the cache. Use `ignoreResetRequirement` sparingly as it could lead to unintended inconsistency in your data that isn't easily detected.
++ [Create or Update Data Source (api-version=2026-08-01-preview)](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) When you call this API with a preview API version, it provides a new parameter named `ignoreResetRequirement`. Set this parameter to `true` when your update action shouldn't invalidate the cache. Use `ignoreResetRequirement` sparingly as it could lead to unintended inconsistency in your data that isn't easily detected.

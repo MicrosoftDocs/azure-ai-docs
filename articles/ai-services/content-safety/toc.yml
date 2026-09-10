@@ -31,7 +31,7 @@ items:
     href: concepts/harm-categories.md
   - name: Microsoft Foundry portal
     href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
-  - name: Provenance Detection
+  - name: Content Provenance Detection
     href: ./concepts/provenance-detection.md
 - name: Quickstarts
   items:
@@ -79,7 +79,7 @@ items:
     href: how-to/improve-performance.md
   - name: Use Content Safety in Foundry portal
     href: how-to/foundry.md
-  - name: Use Provenance Detection API 
+  - name: Use Content Provenance Detection API
     href: how-to/how-to-provenance-detection.md
   - name: Containers (preview)
     items:

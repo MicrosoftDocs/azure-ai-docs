@@ -6,7 +6,7 @@ ms.reviewer: meerakurup
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/17/2026
 ms.custom: include
 ---
 
@@ -26,10 +26,10 @@ Run this command to verify that the `nsp` Azure CLI extension is available and t
 
 ```azurecli
 az extension add --name nsp --upgrade
-az network perimeter associable-resource-type list --output table
+az network perimeter associable-resource-type list --location <region> --output table
 ```
 
-The command returns a list of resource types that you can associate with an NSP. Look for `Microsoft.CognitiveServices/accounts` in the output to confirm that Foundry resources support NSP association. If you see an authentication error, sign in by using `az login` and try again.
+Replace `<region>` with the Azure region of your Foundry resource. The command returns a list of resource types that you can associate with an NSP. Look for `Microsoft.CognitiveServices/accounts` in the output to confirm that Foundry resources support NSP association. If you see an authentication error, sign in by using `az login` and try again.
 
 Reference: [az network perimeter associable-resource-type list](/cli/azure/network/perimeter/associable-resource-type)
 
@@ -39,7 +39,7 @@ Reference: [az network perimeter associable-resource-type list](/cli/azure/netwo
 
 1. Open the Azure portal and go to your Network security perimeter resource.
 1. Select **Associated resources** (or **Resources** depending on the UI iteration) > **Add / Associate**.
-1. Choose the target profile, pick your Foundry resource, set access mode (start with Learning), and confirm.
+1. Choose the target profile, pick your Foundry resource, set access mode (start with Transition, formerly Learning), and confirm.
 
 For portal screenshots and a detailed walkthrough, see [Assign an Azure OpenAI account to a network security perimeter](/azure/ai-foundry/openai/how-to/network-security-perimeter#assign-an-azure-openai-account-to-a-network-security-perimeter). The same portal flow applies to Foundry resources.
 
@@ -47,15 +47,15 @@ For portal screenshots and a detailed walkthrough, see [Assign an Azure OpenAI a
 
 ```azurecli
 az network perimeter association create \
-	--name MyAssociation \
-	--perimeter-name MyPerimeter \
-	--resource-group MyResourceGroup \
-	--access-mode Learning \
-	--private-link-resource "{id:<FOUNDRY_RESOURCE_ARM_ID>}" \
-	--profile "{id:<NSP_PROFILE_ARM_ID>}"
+             --name MyAssociation \
+             --perimeter-name MyPerimeter \
+             --resource-group MyResourceGroup \
+             --access-mode Learning \
+             --private-link-resource "{id:<FOUNDRY_RESOURCE_ARM_ID>}" \
+             --profile "{id:<NSP_PROFILE_ARM_ID>}"
 ```
 
-This command associates your Foundry resource with a profile in Learning mode so you can review access logs before you enforce access rules.
+This command associates your Foundry resource with a profile in Transition mode so you can review access logs before you enforce access rules. The CLI value for this mode is `Learning`.
 
 Reference: [az network perimeter association create](/cli/azure/network/perimeter/association#az-network-perimeter-association-create)
 
@@ -67,20 +67,26 @@ Verify the association by running:
 
 ```azurecli
 az network perimeter association show \
-	--name MyAssociation \
-	--perimeter-name MyPerimeter \
-	--resource-group MyResourceGroup
+             --name MyAssociation \
+             --perimeter-name MyPerimeter \
+             --resource-group MyResourceGroup
 ```
 
 Confirm the output shows your Foundry resource with the expected access mode. After association, traffic evaluation begins per the selected access mode.
 
 ## Choose an access mode
 
-Start in Learning mode to observe potential denies. Switch to Enforced mode once you define the required inbound and outbound rules. For more details, see [NSP access modes](/azure/private-link/network-security-perimeter-concepts).
+A network security perimeter supports three access modes:
+
+- **Transition** (formerly Learning): Evaluates and logs access without blocking traffic, so you can observe potential denies. The Azure CLI value for this mode is `Learning`.
+- **Enforced**: Applies inbound and outbound rules and blocks traffic that no rule allows.
+- **Audit**: Logs access decisions for auditing.
+
+Start in Transition mode to observe potential denies. Switch to Enforced mode once you define the required inbound and outbound rules. For more details, see [NSP access modes](/azure/private-link/network-security-perimeter-concepts).
 
 ## Understand `publicNetworkAccess` interaction
 
-- Learning mode: `publicNetworkAccess` still governs exposure while you assess logs.
+- Transition mode: `publicNetworkAccess` still governs exposure while you assess logs.
 - Enforced mode: NSP rules take precedence; `publicNetworkAccess` is effectively overridden by allowed inbound rules.
 
 ## Change access mode
@@ -96,11 +102,11 @@ Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analy
 For detailed steps, see [Diagnostic logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs).
 
 > [!IMPORTANT]
-> When your Foundry resource is inside a network security perimeter in **Enforced** mode, diagnostic logs to customer-owned destinations (Log Analytics workspace, Storage account, or Event Hub) are only filtered by NSP rules when the request uses **Microsoft Entra ID (AAD) authentication**. Requests authenticated with API keys don't carry the NSP perimeter claim, so log traffic to those destinations isn't blocked by NSP. To ensure full NSP compliance for diagnostic logging, use Entra ID authentication.
+> To help ensure full NSP compliance for diagnostic logging, use Microsoft Entra ID authentication for requests to customer-owned log destinations (Log Analytics workspace, Storage account, or Event Hub). **TO VERIFY:** The exact NSP filtering behavior for API key-authenticated log traffic in **Enforced** mode needs confirmation with the feature team before it's stated here.
 
 ## Interpret logs
 
-Query the `NspAccessLogs` table in your Log Analytics workspace to validate allow and deny decisions. Use the logs to finalize required sources or destinations before enforcing.
+Query the `NSPAccessLogs` table in your Log Analytics workspace to validate allow and deny decisions. Use the logs to finalize required sources or destinations before enforcing.
 
 For examples of log fields you can filter on, such as `MatchedRule` or `Profile`, see [Add an Azure OpenAI service to a network security perimeter](/azure/ai-foundry/openai/how-to/network-security-perimeter#enable-logging-network-access).
 
@@ -124,11 +130,11 @@ Choose IP range (CIDR) or subscription scope. Prefer subscription and managed id
 
 List only required FQDNs (principle of least privilege). Keep dependent Azure services in the same NSP to minimize outbound allow entries.
 
-Common FQDNs for Foundry outbound rules include:
+Example FQDNs you might need in Foundry outbound rules (verify for your scenario):
 
 - `*.openai.azure.com` — model endpoints
 - `*.blob.core.windows.net` — storage
 - `*.search.windows.net` — search indexes
 
 > [!NOTE]
-> Confirm the exact FQDNs required for your scenario. The list depends on which Foundry features and dependent services you use.
+> This list is illustrative, not authoritative. Confirm the exact FQDNs required for your scenario. The list depends on which Foundry features and dependent services you use.

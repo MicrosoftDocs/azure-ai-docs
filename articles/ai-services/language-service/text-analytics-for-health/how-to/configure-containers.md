@@ -7,8 +7,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 06/13/2026
+ms.date: 08/12/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-health
 ---
 # Configure Text Analytics for health docker containers

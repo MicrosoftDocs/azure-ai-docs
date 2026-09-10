@@ -294,8 +294,8 @@ Developers using this service should review Microsoft's policies on customer dat
 
 ## Next steps
 
-* Try processing your audio content in the [**Microsoft Foundry portal**](https://aka.ms/cu-landing).
-* Learn how to analyze audio content with [**analyzer templates**](../how-to/content-understanding-foundry-classic.md).
+* Try processing your audio content in [**Content Understanding Studio**](https://contentunderstanding.ai.azure.com/).
+* Learn how to analyze audio content with [**analyzer templates**](../concepts/analyzer-templates.md).
 * Review code samples: 
   * [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
   * [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

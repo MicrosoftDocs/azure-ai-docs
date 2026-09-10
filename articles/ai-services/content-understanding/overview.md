@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools solutions,
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 03/23/2026
+ms.date: 08/04/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -52,7 +52,7 @@ Content Understanding accelerates time to value by enabling straight-through pro
 
 * **Optimize workflow through classification**: Content Understanding's classification feature enables you to categorize the documents first, before routing them to the associated analyzer for extraction.
 
-## Industry-specific applications
+### Industry-specific applications
 
 Some common industry-specific applications for Content Understanding include:
 
@@ -65,6 +65,23 @@ Some common industry-specific applications for Content Understanding include:
 |Post-call analytics| Businesses and call centers can generate insights from call recordings to track key performance indicators (KPIs), improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.|
 |Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.|
 |Enhanced customer support| Businesses with support channels can use Content Understanding for RAG search to enhance the quality of responses based on data from prior customer issues and feedback.|
+
+## Content Understanding Features by version
+
+Use API version `2025-11-01` (GA) for production workloads, and use API version `2026-06-01-preview` to evaluate new capabilities announced in the Build 2026 wave.
+
+| Capability area | `2025-11-01` (GA) | `2026-06-01-preview` |
+|:--|:--|:--|
+| Production readiness | Recommended for production use. | Public preview for early access testing and evaluation.
+| Core multimodal extraction | Stable support for document, image, audio, and video extraction workflows. | Includes GA capabilities plus preview enhancements.
+| Agentic document understanding | Not available. | Available through [agentic mode](concepts/agentic-mode.md) for complex reasoning over document evidence.
+| Classification enhancements | Standard document classification and segmentation. | Adds richer classification signals and [in-page segmentation](concepts/classifier.md#classification-enhancements-2026-06-01-preview).
+| Document intelligence additions | Existing extraction and layout behavior. | Adds preview features such as [signature detection](document/elements.md#signatures) and [document metadata extraction](document/elements.md#document-metadata).
+| Custom analyzer training behavior | Supports labeled training examples. | Supports labeled training and improves training behavior by distilling patterns into the built analyzer for improved privacy and efficiency. See [improve analyzer training](document/analyzer-improvement.md).
+| Generative model flexibility | Supports GA model combinations for analyzer scenarios. | Expands and iterates model support aligned with Build 2026 updates. See [model deployments](concepts/models-deployments.md).
+
+For release-by-release changes, see [What's new in Content Understanding](whats-new.md).
+
 
 
 ## Key components of Content Understanding
@@ -86,10 +103,10 @@ The Content Understanding framework processes unstructured content through multi
 |**Foundry models**|The Foundry large language models (LLMs) and embeddings models that power generative capabilities. You bring your own deployments of supported generative models and text-embedding models for training examples. Content Understanding uses these models for field extraction, figure analysis, and other AI-powered features. Learn more about [models and deployments](concepts/models-deployments.md).|
 |**Structured output** |The final result is supplied in your chosen format. Content can be output as Markdown for search and retrieval scenarios, or as structured JSON matching your defined schema for automation and analytics workflows.|
 
-## Content Understanding experiences
+## Content Understanding web portals
 Content Understanding is a Foundry service. To use Content Understanding, you must create a Foundry Azure Resource. Content Understanding Studio complements the Foundry experience if you need advanced capabilities. For a more detailed breakdown of each service, see [Feature Comparison: Content Understanding in Foundry vs Content Understanding Studio](foundry-vs-content-understanding-studio.md).
 
-* **Content Understanding in Foundry (new) portal (coming soon)**: The Foundry NextGen portal lets you build advanced, comprehensive agentic workflows with the Content Understanding Tool.
+* **Content Understanding in Microsoft Foundry portal**: The Foundry portal lets you build advanced, comprehensive agentic workflows with the Content Understanding Tool.
 * **Content Understanding Studio**: A complementary UX experience, Content Understanding Studio enables a smooth transition if you're moving from Document Intelligence. It offers an experience optimized for analyzer performance improvement including improving custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI
@@ -111,16 +128,11 @@ For more information on content filter types, see [Content filter types](../open
 > * Apply for modified content filters by using this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, see [**Content filtering**](../../ai-foundry/openai/concepts/content-filter.md).
 
-## Face capabilities
 
-Content Understanding provides face description capabilities that can generate detailed descriptions of faces in video and image content. When enabled, the generative model describes facial attributes such as facial hair and facial expression, and can identify prominent people or celebrities. Learn more about [face description in video processing](video/overview.md#face-description-fields).
 
 
 ## Data privacy and security
 Review Microsoft's policies on customer data when using the Content Understanding service. For more information, visit the [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
-
-> [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. For related information, see [Data and privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Get started
 

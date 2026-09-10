@@ -8,7 +8,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 06/12/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ms.custom:
   - references_regions
@@ -50,7 +50,7 @@ Features marked **Preview** are available for early adoption but might not carry
 
 ## Tools
 
-The following table lists tool availability for Foundry Agent Service in Azure Government. For details on each tool, see the [Foundry tool catalog](../concepts/tool-catalog.md).
+The following table lists tool availability for Foundry Agent Service in Azure Government. For details on how to connect tools by using a Toolbox, see the [What is Toolbox in Foundry?](../concepts/toolbox-overview.md)
 
 | Tool | Available |
 | --- | --- |
@@ -60,6 +60,8 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Azure AI Search | Yes |
 | Azure Functions | Yes |
 | Function calling | Yes |
+| MCP servers | Yes |
+| OpenAPI tool | Yes |
 | Web search | No |
 | Grounding with Bing | No |
 | Image Generation | No |
@@ -67,13 +69,11 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Computer Use | No |
 | Microsoft Fabric | No |
 | SharePoint | No |
-| MCP servers | No |
 | Agent-to-Agent (A2A) | No |
-| OpenAPI tool | No |
 
 ## Publishing
 
-Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. Publishing to Microsoft Teams and Microsoft 365 Copilot isn't supported. For more information, see [Publish an agent](../how-to/publish-copilot.md).
+Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. For more information, see [Publish an agent](../how-to/publish-copilot.md).
 
 ## SDK configuration for Azure Government
 
@@ -143,5 +143,5 @@ For samples that use tools like file search, code interpreter, and function call
 - [Microsoft Foundry in Azure Government](../../concepts/foundry-azure-government.md) — Platform features, endpoints, and portal URLs
 - [Quotas and limits for Microsoft Foundry Agent Service](./limits-quotas-regions.md) — Service quotas and regional support
 - [Foundry Agent Service overview](../overview.md) — Introduction to Agent Service
-- [Foundry tool catalog](../concepts/tool-catalog.md) — Detailed information on all tools
+- [What is Toolbox in Foundry?](../concepts/toolbox-overview.md) — Detailed information on all tools
 - [Foundry Models sold by Azure in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md) — Available models in Azure Government

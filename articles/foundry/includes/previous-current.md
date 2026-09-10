@@ -8,11 +8,14 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/04/2026
 ms.custom: include, classic-and-new
-
 ---
+
 ## Evolution of Foundry
 
-Foundry consolidates several previous Azure AI services and tools into a unified platform. The following table maps previous concepts to their current equivalents. For detailed guidance on transitioning, see [Navigate from classic to the new experience](../how-to/navigate-from-classic.md).
+Foundry consolidates several previous Azure AI services and tools into a unified platform. For detailed guidance on transitioning, see [Navigate from classic to the new experience](../how-to/navigate-from-classic.md).
+
+<details>
+<summary>Previous concepts and their current equivalents</summary>
 
 | Dimension | Previous | Current |
 |-----------|---------|-----|
@@ -25,3 +28,4 @@ Foundry consolidates several previous Azure AI services and tools into a unified
 | SDKs & endpoints | Multiple packages (`azure-ai-inference`, `azure-ai-generative`, `azure-ai-ml`, `AzureOpenAI()`) against 5+ endpoints | Unified project client (`azure-ai-projects` 2.x) + `OpenAI()` against one project endpoint. |
 | Terminology | Threads, Messages, Runs, Assistants | Conversations, Items, Responses, Agent Versions |
 
+</details>

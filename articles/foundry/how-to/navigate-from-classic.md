@@ -31,7 +31,7 @@ Microsoft Foundry has evolved through several naming and architectural changes. 
 
 > [!IMPORTANT]
 > **Key migration dates:**
-> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration.md).
+> - **August 26, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration.md).
 > - **August 26, 2026** &mdash; Assistants API sunsets.  Use the generally available [Microsoft Foundry Agents service](../agents/overview.md). Follow the [migration guide](../agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../agents/how-to/migrate.md).
 
 ## Plan your migration
@@ -78,7 +78,7 @@ Use the following table to identify which SDK packages map to the current Foundr
 
 | SDK package | Classic equivalent | Status | Notes |
 | --- | --- | --- | --- |
-| `openai` | `azure-ai-inference` | Use for model inference | `azure-ai-inference` retiring May 30, 2026. |
+| `openai` | `azure-ai-inference` | Use for model inference | `azure-ai-inference` retires August 26, 2026. |
 | `OpenAI()` with `base_url` | `AzureOpenAI()` | Use standard client | Azure-specific code eliminated. |
 | `azure-ai-projects` 2.x | `azure-ai-projects` 1.x | Stable &mdash; targets the new portal | 1.x targets the classic portal experience. |
 | `azure-ai-projects` 2.x | `azure-ai-generative` | Stable | Capabilities merged into project client. |
@@ -155,7 +155,7 @@ These features are available only in the current Foundry portal:
 
 ## Navigate the portal
 
-The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. The current portal splits features across five top-level sections, each with its own left pane.
+The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. The current portal splits features across six top-level sections, each with its own left pane.
 
 :::image type="content" source="../media/navigate-from-classic/foundry-home.png" alt-text="Screenshot of home page of the current Foundry portal.":::
 
@@ -164,8 +164,11 @@ The classic portal uses a single customizable left pane for all navigation, with
 | **Home** | Selected project | Project overview and quick actions |
 | **Discover** | Selected project | Model catalog and model benchmarks |
 | **Build** | Selected project | Agents, models, playgrounds, evaluations, fine-tuning |
-| **Operate** | All projects | Admin, quota, compliance, fleet health, tracing |
+| **Operate** | All projects | Compliance, fleet health, tracing, assets |
+| **Manage** | Selected project and its resource | Quota, AI Gateway, resource details, project details |
 | **Docs** | N/A | Documentation links |
+
+Within **Build**, items are grouped under **Create** (Agents, Models, Services, Tools, Knowledge, Memory, Guardrails, Data) and **Optimize** (Evaluations, Fine-tune) section headers in the left pane.
 
 The following table maps frequently used classic portal locations to their current equivalents.
 
@@ -178,10 +181,10 @@ The following table maps frequently used classic portal locations to their curre
 | View evaluations | **Evaluation** in the left pane | **Build** > [**Evaluations**](evaluate-generative-ai-app.md) |
 | Fine-tune a model | **Fine-tuning** in the left pane | **Build** > [**Fine-tuning**](../openai/how-to/fine-tuning.md) |
 | Tracing and monitoring | **Tracing** in the left pane | **Operate** > **Tracing** |
-| Manage quotas | **Management center** > **Quota** | **Operate** > **Quota** |
-| Manage users and permissions | **Management center** > **Users** | **Operate** > **Admin** |
-| View all projects and resources | **Management center** > **All resources** | **Operate** > **Admin** |
-| Connected resources | **Management center** > **Connected resources** | **Operate** > **Admin** > select a project |
+| Manage quotas | **Management center** > **Quota** | **Manage** > **Quota** |
+| Manage users and permissions | **Management center** > **Users** | **Manage** > **Project details** > **Users** |
+| View all projects and resources | **Management center** > **All resources** | Project name dropdown > **View all projects** |
+| Connected resources | **Management center** > **Connected resources** | **Manage** > **Project details** > **Connected resources** |
 | Guardrails and content filters | **Guardrails + controls** in the left pane | **Operate** > **Compliance** |
 
 ## Switch between portal experiences

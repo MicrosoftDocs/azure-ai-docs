@@ -112,7 +112,7 @@ Telemetry continues to flow to Application Insights unless you disable monitorin
 
 The OTLP endpoint URL isn't a secret, but the authentication header usually is. Keep the secret out of `agent.yaml` by storing it in a Foundry **Custom keys** project connection and referencing it with a placeholder.
 
-1. Create a **Custom keys** (`CustomKeys`) connection on the project. In the Foundry portal, go to **Connected resources** > **Add connection** > **Custom keys**, or create the connection with infrastructure as code. Add a field that holds the full OTLP header string - for example a field named `otlp_headers` set to `<header-name>=<secret>`. The exact header name and format come from your provider's documentation.
+1. Create a **Custom keys** (`CustomKeys`) connection on the project. In the Foundry portal, go to **Manage** > **Project details** > **Connected resources** > **Add connection** > **Custom keys**, or create the connection with infrastructure as code. Add a field that holds the full OTLP header string - for example a field named `otlp_headers` set to `<header-name>=<secret>`. The exact header name and format come from your provider's documentation.
 
 1. Reference the connection field from `agent.yaml` with a placeholder:
 

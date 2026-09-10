@@ -7,8 +7,8 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/27/2026
-ms.custom: include, classic-and-new
+ms.date: 08/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -137,6 +137,8 @@ print(json.dumps(response.json(), indent=2))
 ---
 
 ### Quota tier reference
+
+All `gpt-chat-latest` versions use the same tier-level TPM limit shown in each tier. Versions `2026-05-05`, `2026-05-28`, and `2026-06-24`<sup>1</sup> use 10 RPM per 1,000 TPM. Version `2026-08-06`<sup>2</sup> uses 1 RPM per 1,000 TPM, so the tables list the versions separately.
 
 # [Tier 1](#tab/tier1)
 

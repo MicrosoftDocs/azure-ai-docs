@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 07/27/2026
+ms.date: 09/08/2026
 ms.author: pafarley
 keywords: on-premises, Docker, container, transcription
 ai-usage: ai-assisted
@@ -99,6 +99,9 @@ The fast transcription container requires a GPU to run.
 ## Run the container with `docker run`
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container.
+
+> [!NOTE]
+> Fast transcription containers don't require a Redis-compatible cache for speaker diarization. The cache settings for real-time diarization apply only to speech-to-text containers.
 
 # [Fast transcription](#tab/container)
 

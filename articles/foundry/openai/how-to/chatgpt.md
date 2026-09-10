@@ -1,6 +1,6 @@
 ---
 title: "Work with chat completion models"
-description: "Learn how to use Azure OpenAI chat completions in Python and .NET, manage multi-turn conversations, and handle context windows and common errors."
+description: "Learn how to use Azure OpenAI chat completions in Python, C#, and TypeScript, manage conversations, and handle context windows and common errors."
 author: alvinashcraft #dereklegenzoff
 ms.author: aashcraft #delegenz
 ms.service: microsoft-foundry
@@ -10,16 +10,21 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 07/22/2026
+ms.date: 08/24/2026
 manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted
 zone_pivot_groups: openai-chat-completions
 ---
 
+<!-- markdownlint-disable MD044 -->
+
 # Work with chat completion models
 
 [!INCLUDE [chatgpt 1](../includes/how-to-chatgpt-1.md)]
+
+> [!NOTE]
+> Reasoning models, such as the GPT-5 series, behave differently on this API. They use `max_completion_tokens` instead of `max_tokens`, and they don't support `temperature`, `top_p`, or the penalty parameters. On the `gpt-5.6` and later models, a Chat Completions request that includes function tools fails unless you set `reasoning_effort` to `none`. Use the [Responses API](responses.md) for tool calling with reasoning models. For details, see [Azure OpenAI reasoning models](reasoning.md).
 
 ## Prerequisites
 
@@ -41,6 +46,14 @@ zone_pivot_groups: openai-chat-completions
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+- Node.js 22 or later.
+- For Microsoft Entra ID authentication, install the [Azure CLI](/cli/azure/install-azure-cli), assign the `Cognitive Services User` role to your user account, and then run `az login`.
+- If you use API keys, set the `AZURE_OPENAI_API_KEY` environment variable.
+
+::: zone-end
+
 In the code samples, replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name and `YOUR-DEPLOYMENT-NAME` with your model deployment name.
 
 ::: zone pivot="programming-language-python"
@@ -55,8 +68,15 @@ In the code samples, replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resourc
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript and TypeScript](../includes/chat-completion-javascript.md)]
+
+::: zone-end
+
 ## Related content
 
 - [Use the Responses API](responses.md)
+- [Azure OpenAI reasoning models](reasoning.md)
 - [Explore Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Generate embeddings](../tutorials/embeddings.md)

@@ -4,10 +4,10 @@ description: Include file
 ms.service: microsoft-foundry
 ms.custom: build-2025
 ms.topic: include
-ms.date: 06/29/2026
+ms.date: 08/05/2026
 ms.author: lajanuar
-reviewer: maanavdalal
-ms.reviewer: maanavd
+reviewer: wayne-ch
+ms.reviewer: waynechuang
 author: laujan
 ai-usage: ai-assisted
 ---

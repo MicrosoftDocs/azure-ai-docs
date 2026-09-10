@@ -18,6 +18,18 @@ ms.custom:
 
 [!INCLUDE [evaluation-regions-limits-virtual-network 1](../includes/concepts-evaluation-regions-limits-virtual-network-1.md)]
 
+### Supported regions for AI red teaming
+
+AI red teaming is supported in the following regions.
+
+- East US 2
+- North Central US
+
+> [!NOTE]
+> For supported local red teaming regions, see [regions for AI Red Teaming (classic)](../../foundry-classic/concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-ai-red-teaming).
+
+[!INCLUDE [evaluation-regions-limits-virtual-network 1.5](../includes/concepts-evaluation-regions-limits-virtual-network-1-half.md)]
+
 ## Bring your own storage
 
 You can use your own storage account to run evaluations for your Foundry project, whether the project is configured with a virtual network or without one.
