@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 09/06/2026
+ms.date: 09/09/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -212,7 +212,7 @@ The regions in the following tables support most of the core features of Azure S
 
 # [LLM speech](#tab/llmspeech)
 
-| Region | Transcribe | Translate | Transcribe with mai-transcribe model |
+| Region | Transcribe | Translate | Transcribe with MAI-Transcribe |
 | ----- | ----- | ----- | ----- |
 | `centralindia` | ✅ | ✅ | ✅ |
 | `eastus` | ✅ | ✅ | ✅ |
