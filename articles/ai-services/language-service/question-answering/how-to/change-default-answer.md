@@ -3,14 +3,14 @@ title: Get default answer - custom question answering
 description: The default answer is returned when there is no match to the question. You might want to change the default answer from the standard default answer in custom question answering.
 ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 06/30/2026
+ms.date: 09/10/2026
 author: laujan
 ms.author: lajanuar
 ms.custom: language-service-question-answering
 ---
 # Change default answer for custom question answering
 
-The default answer for a project is meant to be returned when an answer is not found. If you're using a client application, such as the [Azure AI Bot Service](/azure/bot-service/bot-builder-howto-qna), it may also have a separate default answer, indicating no answer met the score threshold.
+The default answer for a project is meant to be returned when an answer is not found. If you're using a client application, it may also have a separate default answer, indicating no answer met the score threshold.
 
 ## Default answer
 
@@ -21,7 +21,7 @@ The default answer for a project is meant to be returned when an answer is not f
 
 ### Client application integration
 
-For a client application, such as a bot with the [Azure AI Bot Service](/azure/bot-service/bot-builder-howto-qna), you can choose from the following scenarios:
+For a client application, uou can choose from the following scenarios:
 
 * Use your project's setting
 * Use different text in the client application to distinguish when an answer is returned but doesn't meet the score threshold. This text can either be static text stored in code, or can be stored in the client application's settings list.
