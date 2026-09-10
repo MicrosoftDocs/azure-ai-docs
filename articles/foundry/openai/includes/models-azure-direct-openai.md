@@ -404,7 +404,8 @@ These models can be used only with Embedding API requests.
 
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. Image generation models include `gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, and `gpt-image-2`.
+The image generation models create images from text prompts that you provide. Image generation models include `gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, `gpt-image-2`, `gpt-image-2.5-flare`, and `gpt-image-2.5-sunburst`.
+
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
@@ -414,6 +415,8 @@ For model availability across all regions, grouped by deployment category, see [
 | `gpt-image-1-mini` | 4,000 |
 | `gpt-image-1.5` | 4,000 |
 | `gpt-image-2` | 4,000 |
+| `gpt-image-2.5-flare` | 4,000 |
+| `gpt-image-2.5-sunburst` | 4,000 |
 
 ## Video generation models
 
