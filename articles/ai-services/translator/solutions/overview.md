@@ -24,6 +24,7 @@ Azure Translator offers the following prebuilt solutions:
 
 ```markdown
 **Microsoft Translator Pro begins retirement on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027, but Microsoft is no longer onboarding new customers. [Review the retirement details and recommended action](translator-pro/overview.md).**
+```
 
 * [**Language Studio**](../document-translation/language-studio.md). Azure Translator in the [Azure Language in Foundry Tools Studio](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage. 
 
