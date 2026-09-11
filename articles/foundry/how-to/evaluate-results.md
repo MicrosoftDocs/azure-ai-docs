@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 09/11/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -64,6 +64,28 @@ In this article, you learn how to:
 ### Evaluation run details
 
 Select the name of the run to view row-level results for each individual query. For each row, you can see the query, response, ground truth, evaluator score, and score explanation.
+
+### Review target latency and estimated cost
+
+For evaluation runs that invoke a model or agent target, the run details can
+include target latency. The summary reports median (p50) and 95th-percentile
+(p95) end-to-end target latency in milliseconds, along with the number of rows
+that contributed a usable measurement.
+
+Model-target evaluation runs can also include estimated target inference cost.
+The estimate is currently available for Global Standard model deployments when
+the run has usable target token attribution and pricing data. If some attributed
+models can't be priced, the result is marked partial and the estimate includes
+only the models with available prices.
+
+> [!IMPORTANT]
+> Target cost is an estimate based on reported token usage and published list
+> prices. It excludes evaluator model usage and evaluation runtime costs, and it
+> doesn't account for negotiated pricing, commitments, or discounts. Use Azure
+> billing data for actual charges.
+
+For the evaluation run response fields and a JSON example, see
+[Review target latency and estimated cost](../observability/how-to/cloud-evaluation-results.md#review-target-latency-and-estimated-cost).
 
 ## Compare the evaluation results
 
