@@ -19,7 +19,7 @@ GPT-Live is a full-duplex voice API for building agents that listen and speak at
 
 *Full-duplex* means the audio channel carries data in both directions at once, similar to a telephone call: the agent keeps listening while it's speaking, and the user can talk without waiting for a pause. This is in contrast to *half-duplex* systems, like a walkie-talkie or turn-based speech-to-speech models such as the [GPT Realtime API](../how-to/realtime-audio.md), where only one party can transmit at a time and the other must wait to respond.
 
-GPT-Live marks a shift away from turn-based voice interactions toward natural, bidirectional, phone-call-like conversations. It enables higher-quality, real-time communication that feels as natural as talking to another person.
+GPT-Live marks a shift away from turn-based voice interactions toward natural, bidirectional, phone-call-like conversations. It enables more natural, real-time communication that feels as natural as talking to another person.
 
 ## Why use GPT-Live?
 
@@ -57,13 +57,13 @@ For guidance on splitting instructions between the voice model and the backend, 
 
 `gpt-live-1`supports multilingual speech and can be used for speech-translation experiences. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
 
-The models also support speech translation across all source and target languages and locales. Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
+Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
 
 ## Connect to GPT-Live
 
 GPT-Live supports three transports:
 
-- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. It also supports 16/24-kHz PCM, 8-kHz, G.711, μ-law, and A-law. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
+- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded raw audio using 16- or 24-kHz PCM, or 8-kHz G.711 μ-law (PCMU) or A-law (PCMA). See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
 - **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-webrtc.md).
 
 ## Choose a voice architecture
