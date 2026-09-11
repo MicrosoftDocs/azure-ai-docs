@@ -14,7 +14,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 09/10/2026
+ms.date: 09/11/2026
 recommendations: false
 #customerIntent: As a developer with a provisioned throughput deployment, I want to benchmark, monitor, and scale it so I can run it reliably in production.
 ---
