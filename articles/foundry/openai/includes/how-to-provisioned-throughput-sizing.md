@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/09/2026
+ms.date: 09/11/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -253,6 +253,8 @@ To size a deployment, you must first convert all token types into a common unit 
 ### Estimate PTUs manually
 
 Estimate the PTUs your workload requires by using the throughput values for your image model and information about your expected traffic as follows:
+
+#### Traffic information
 
 | Input | Description |
 | --- | --- |
