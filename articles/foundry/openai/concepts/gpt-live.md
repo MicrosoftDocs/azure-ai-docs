@@ -30,7 +30,7 @@ The turn-based pattern of earlier speech-to-speech models can feel unnatural, es
 GPT-Live splits a voice application into two parts:
 
 - **The live voice model** handles the spoken conversation. It listens, speaks, decides when to respond, and decides when to hand off work. You steer this behavior with a short set of session instructions that cover conversational style and when to delegate.
-- **A backend** handles the work that the live model delegates: reasoning, tool calls, lookups, and longer tasks. You choose the backend model or agent independently of the voice model, and you keep detailed business rules, workflows, and tool definitions there.
+- **A backend** handles delegated reasoning, lookups, tool selection, and longer-running tasks. Hosted tools can run through a configured Responses API backend, while your application executes private functions and remains responsible for permissions, user confirmations, business records, and durable task state.
 
 Your application owns everything outside the spoken exchange: permissions, confirmations, tool execution, business records, and durable task state. Because the live model can keep talking while backend work runs, interrupting speech doesn't cancel that work. Your application decides whether to finish, change, or cancel it.
 
