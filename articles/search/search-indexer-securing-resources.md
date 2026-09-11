@@ -39,9 +39,10 @@ A list of all possible Azure resource types that an indexer might access in a ty
 | SQL Server on Azure virtual machines | Data source |
 | SQL Managed Instance | Data source |
 | Azure Functions | Attached to a skillset and used to host for custom web API skills |
+| Azure OpenAI / Foundry resource | Embedding skills and vectorizers (integrated vectorization); billing connection for built-in skills when the skillset uses a keyless (managed identity) configuration |
 
 > [!NOTE]
-> An indexer also connects to Foundry Tools for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
+> An indexer also connects to a Foundry (Azure AI Services) resource for built-in skills. If that resource has public network access disabled, the connection requires a shared private link (group ID `cognitiveservices_account`) and a keyless, managed-identity skillset configuration. See [Connect through a shared private link](search-indexer-howto-access-private.md).
 
 Indexers connect to resources using the following approaches:
 
@@ -76,7 +77,7 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 
 | Execution environment | Description |
 |-----------------------|-------------|
-| Private <sup>1</sup> | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution environment you can use and it's used automatically. |
+| Private <sup>1</sup> | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution environment that can reach the resource. Set `executionEnvironment` to `private` on the indexer explicitly; automatic selection isn't guaranteed. See [Considerations for using a private endpoint](#considerations-for-using-a-private-endpoint). |
 |  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
 
@@ -156,6 +157,14 @@ Once you have an approved private endpoint to a resource, indexers that are set 
 Azure AI Search validates that callers of the private endpoint have appropriate role assignments. For example, if you request a private endpoint connection to a storage account with read-only permissions, this call is rejected.
 
 If the private endpoint isn't approved, or if the indexer didn't use the private endpoint connection, you'll find a `transientFailure` error message in indexer execution history.
+
+If shared private links are created and approved but the indexer runs without `executionEnvironment` set to `private`, it might fail with a 403 error similar to the following:
+
+```
+Unexpected error validating provided resource. {"error":{"code":"403","message": "Public access is disabled. Please configure private endpoint."}}
+```
+
+This error means the indexer attempted the connection from the multitenant environment over the public endpoint. Set `executionEnvironment` to `private` and rerun the indexer.
 
 ## Supplement network security with token authentication
 
