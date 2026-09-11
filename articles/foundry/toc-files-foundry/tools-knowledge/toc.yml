@@ -66,6 +66,8 @@ items:
           href: ../../agents/how-to/foundry-iq-tutorial-private-retrieval.md
     - name: Fabric IQ (preview)
       href: ../../agents/how-to/tools/fabric-iq.md
+    - name: Web IQ (preview)
+      href: ../../agents/how-to/tools/web-iq.md
     - name: Work IQ (preview)
       href: ../../agents/how-to/tools/work-iq.md
   - name: File search
@@ -88,6 +90,8 @@ items:
       href: ../../agents/how-to/tools/function-calling.md
     - name: Reminder tool (preview)
       href: ../../agents/how-to/tools/reminder-tool.md
+    - name: Shell (preview)
+      href: ../../agents/how-to/tools/shell.md
     - name: Browser automation (preview)
       items:
       - name: Overview

@@ -4,7 +4,7 @@ description: "Use the Responses API as a single interface to call any model in M
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/01/2026
+ms.date: 09/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
@@ -26,7 +26,7 @@ The [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.m
 - A Foundry project with a `model-router` deployment. See [Deploy model router](model-router.md#deploy-a-model-router-model).
 - At least one named model deployment for deterministic calls (for example, `gpt-4.1-mini`). See [Deploy a model](/azure/ai-foundry/openai/how-to/create-resource).
 - Familiarity with the [Responses API](responses.md).
-- Python 3.9+ or Node.js 22+.
+- Python 3.10+ or Node.js 22+.
 - The Foundry SDK for your language:
 
 # [Python](#tab/python)
