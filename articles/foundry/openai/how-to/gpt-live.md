@@ -69,7 +69,7 @@ The `session` object in `session.start` is a strict configuration object; it rej
 
 | Field | Notes |
 |---|---|
-| `model` | Required. The GPT-Live model to run, for example `gpt-live-1`. Immutable after startup. |
+| `model` | Required. The GPT-Live model to run, such as `gpt-live-1`. Immutable after startup. |
 | `instructions` | System instructions. Immutable after startup; add more with `session.instructions.append`. |
 | `audio.output.voice` | Output voice. Defaults to `marin`. Immutable after startup. |
 | `delegation` | Either `{ type: "client" }` or `{ type: "responses", responses: {...} }`. Omitting this field or setting it to `null` selects client delegation. See [Delegate work in GPT-Live](gpt-live-delegation.md). |
@@ -78,7 +78,7 @@ After startup, later `session.update` calls are sparse: omitted fields keep thei
 
 ## Stream audio
 
-Audio input and output use raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Base64-encode the raw PCM bytes—not a WAV file or another container—and send them in `session.input_audio.append`. Each sample is two bytes, so the decoded payload must contain an even number of bytes. Raw audio events aren't acknowledged.
+Audio input and output use raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Base64-encode the raw PCM bytes - not a WAV file or another container - and send them in `session.input_audio.append`. Each sample is two bytes, so the decoded payload must contain an even number of bytes. Raw audio events aren't acknowledged.
 
 ```javascript
 ws.send(JSON.stringify({
@@ -98,7 +98,7 @@ Append fragments in order for each speaker. Because listening and speaking can o
 
 ## Add context during the conversation
 
-Feed text into a running session with one of three append events. Each takes a plain-string `content` of up to 500 tokens and a required `delegation_id`. Use `null` for general session context, or a client delegation ID to update that task.
+Feed text into a running session with one of three append events. Each event takes a plain-string `content` of up to 500 tokens and a required `delegation_id`. Use `null` for general session context, or a client delegation ID to update that task.
 
 | Event | Use it for | Acknowledgment |
 |---|---|---|
@@ -119,7 +119,7 @@ An acknowledgment confirms that context was accepted for injection. It doesn't c
 
 ## Observe a session with a sideband WebSocket
 
-A trusted application server can attach a second, *sideband* WebSocket to an already-running session to observe events and send commands, without being one of the primary media endpoints. Attach to the running session by its ID:
+A trusted application server can attach a second *sideband* WebSocket to an already running session to observe events and send commands, without being one of the primary media endpoints. Attach to the running session by its ID:
 
 ```text
 wss://<your-resource-name>.openai.azure.com/openai/v1/live/sessions/{session_id}/attach

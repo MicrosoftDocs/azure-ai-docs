@@ -123,7 +123,7 @@ Repeated appends can continue the same client delegation. The acknowledgment arr
 
 ## Handle Responses delegation
 
-With Responses delegation, `session.delegation.created` identifies the delegation with `target: "responses"` and a `response_id` that binds it to the Responses lifecycle. GPT-Live manages the backend call; don't send a standalone Responses request into the GPT-Live event stream.
+By using Responses delegation, `session.delegation.created` identifies the delegation with `target: "responses"` and a `response_id` that binds it to the Responses lifecycle. GPT-Live manages the backend call; don't send a standalone Responses request into the GPT-Live event stream.
 
 ```json
 {
