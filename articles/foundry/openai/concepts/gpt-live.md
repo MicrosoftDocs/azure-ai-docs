@@ -55,7 +55,7 @@ For guidance on splitting instructions between the voice model and the backend, 
 
 ## Language and translation support
 
-`gpt-live-1` supports speech input and spoken output across all languages and locales. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
+`gpt-live-1`supports multilingual speech and can be used for speech-translation experiences. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
 
 The models also support speech translation across all source and target languages and locales. Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
 
@@ -63,9 +63,8 @@ The models also support speech translation across all source and target language
 
 GPT-Live supports three transports:
 
-- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
+- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events (also supports 16/24-kHz PCM, 8-kHz, G.711, μ-law and A-law. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
 - **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-webrtc.md).
-- **SIP**: SIP is a supported connection transport. Detailed GPT-Live SIP procedures aren't included yet.
 
 ## Choose a voice architecture
 
