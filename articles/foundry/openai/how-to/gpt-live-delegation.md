@@ -26,6 +26,20 @@ When a GPT-Live conversation needs search, deeper reasoning, or another action t
 
 Omitted or `null` delegation defaults to client delegation.
 
+## Choose a delegation mode
+
+Start with Responses delegation when its managed workflow fits your task. Choose client delegation when you need more control over the backend's context, execution, or the results that reach GPT-Live.
+
+| Consideration | Favor Responses delegation when: | Favor client delegation when: |
+|---|---|---|
+| Implementation effort | You want GPT-Live to prepare backend requests, manage the connection, and return results to the conversation. | You want to build and operate those pieces yourself. |
+| Reviewing backend results | Backend output can return directly to GPT-Live. | Your application must validate, redact, combine, or discard results before they reach GPT-Live. |
+| Backend capabilities | Your workflow fits the Responses model and tools that GPT-Live supports. | You need another backend, multiple models, or capabilities beyond the managed configuration. |
+| Context ownership | The conversation context that GPT-Live supplies fits your application. | You need to choose exactly which history, memory, and application state each backend request receives. |
+| Execution policy | A configured model and tool loop fits the task. | You need custom routing, fallbacks, checkpoints, or budgets across backend steps. |
+
+You choose the mode when you create the session. To change modes, start a new session. In both modes, your application enforces permissions and required confirmations before it runs a tool, and it keeps the authoritative task state.
+
 ## Configure a delegation mode
 
 Set `delegation` in the session object. Client delegation:

@@ -27,6 +27,17 @@ GPT-Live marks a shift away from turn-based voice interactions toward natural, b
 
 The turn-based pattern of earlier speech-to-speech models can feel unnatural, especially when a user wants to interject, acknowledge, or redirect the conversation mid-response. GPT-Live's goal is a more natural, bidirectional, phone-call-like conversation instead of a turn-based interaction. See [Capabilities](#capabilities) for details.
 
+## How GPT-Live works
+
+GPT-Live splits a voice application into two parts:
+
+- **The live voice model** handles the spoken conversation. It listens, speaks, decides when to respond, and decides when to hand off work. You steer this behavior with a short set of session instructions that cover conversational style and when to delegate.
+- **A backend** handles the work that the live model delegates: reasoning, tool calls, lookups, and longer tasks. You choose the backend model or agent independently of the voice model, and you keep detailed business rules, workflows, and tool definitions there.
+
+Your application owns everything outside the spoken exchange: permissions, confirmations, tool execution, business records, and durable task state. Because the live model can keep talking while backend work runs, interrupting speech doesn't cancel that work. Your application decides whether to finish, change, or cancel it.
+
+For guidance on splitting instructions between the voice model and the backend, see [Delegate work in GPT-Live](../how-to/gpt-live-delegation.md).
+
 ## Capabilities
 
 | Capability | Description |
@@ -58,6 +69,39 @@ GPT-Live supports three transports:
 - **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
 - **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-web-rtc.md).
 - **SIP**: SIP is a supported connection transport. Detailed GPT-Live SIP procedures aren't included yet.
+
+## Choose a voice architecture
+
+GPT-Live is one of several ways to build a voice experience. Choose based on how speech connects to reasoning and tools.
+
+| Architecture | Best for | Why choose it |
+|---|---|---|
+| GPT-Live | Full-duplex conversations with a separate backend | You choose the voice model and the backend that reasons and uses tools independently, and the conversation continues while backend work runs. |
+| [GPT Realtime API](../how-to/realtime-audio.md) | Speech, reasoning, and tool use in one turn-based model | One model interprets audio, decides what to do, and responds in speech. |
+| Chained pipeline | Full control over each speech and text stage | Speech-to-text, your own agent, and text-to-speech run as separate stages that you can inspect or replace. |
+
+## Context management in long conversations
+
+GPT-Live manages conversation context automatically as a session grows; you don't set a parameter to enable it. The instructions you provide at session start are preserved for the life of the session.
+
+As the conversation approaches the context window limit, GPT-Live summarizes older history in the background and continues within the same session. Older details can be summarized or dropped, so keep important facts, confirmed actions, and current task state in your application and supply relevant context when it's needed.
+
+## Speech and task work run independently
+
+Because GPT-Live is full duplex, the spoken conversation and delegated backend work proceed on separate tracks:
+
+- Interrupting the assistant's speech stops it from talking, but doesn't cancel work already running in the backend. "Stop talking" and "Cancel my order" are different intents.
+- A completed backend response doesn't mean the user heard the answer. Verify spoken confirmations against your application's authoritative state.
+- Transcript fragments reflect audio cadence, not complete turns. A fragment isn't a finished user turn, user and assistant text can overlap, and transcripts can contain mistakes.
+
+## Cost model
+
+GPT-Live bills the voice conversation separately from the backend that reasons and uses tools:
+
+- The **voice session** covers the spoken conversation, including silence and time when the backend is working.
+- The **backend** model and tool usage is billed the same as an application without voice.
+
+Session usage is reported as a cumulative running total, so read the latest usage value rather than adding snapshots together. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ## Limits
 
