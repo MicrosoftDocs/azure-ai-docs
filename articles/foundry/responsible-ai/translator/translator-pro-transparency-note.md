@@ -13,6 +13,7 @@ ai-usage: ai-assisted
 
 # Microsoft Translator Pro Transparency Note
 
+> [!IMPORTANT]
 > **Microsoft Translator Pro begins retirement on September 15, 2026. Existing customers can continue using the application in maintenance mode until September 15, 2027, but Microsoft is no longer onboarding new customers. [Review the retirement details and recommended action](../../../ai-services/translator/solutions/translator-pro/overview.md).**
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]

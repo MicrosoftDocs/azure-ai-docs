@@ -22,7 +22,7 @@ ms.custom: FY25Q1-Linter
 > * Effective September 15, 2027, Microsoft Translator Pro is fully retired and is no longer available or supported.
 > * The retirement applies solely to the Microsoft Translator Pro client application. It doesn't affect [Azure Translator in Foundry Tools](../../overview.md), [Azure Speech in Foundry Tools](../../../speech-service/overview.md), or the Azure resources used by those services.
 >
-> Existing customers should complete their transition from Microsoft Translator Pro before September 15, 2027. Organizations that require custom enterprise translation experiences can use Translator and Speech services to build applications that align with their security, organizational, and deployment requirements.
+> Existing customers should complete their transition from Microsoft Translator Pro before September 15, 2027. Organizations that require custom enterprise translation experiences can use [Translator](../../overview.md) and [Speech](../../../speech-service/overview.md) services to build applications that align with their security, organizational, and deployment requirements.
 
 Microsoft Translator Pro is an enterprise mobile application that provides real-time speech-to-speech translation. The application integrates with an organization's Azure environment and requires enterprise users to authenticate with their organizational identities and use configured Translator resources.
 
