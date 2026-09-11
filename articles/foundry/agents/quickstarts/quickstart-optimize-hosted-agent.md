@@ -59,6 +59,22 @@ Before you begin, you need:
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+* [Azure CLI](/cli/azure/install-azure-cli) for authentication.
+* [.NET 10 SDK or later](https://dotnet.microsoft.com/download/dotnet/10.0).
+* The .NET packages used in this path.
+
+  ```dotnetcli
+  dotnet add package Azure.AI.Projects --prerelease
+  dotnet add package Azure.Identity
+  ```
+
+* An existing Foundry project that already contains the hosted agent,
+  registered dataset, and evaluator you want to use for optimization.
+
+:::zone-end
+
 :::zone pivot="vscode"
 
 * [Visual Studio Code](https://code.visualstudio.com/).
@@ -392,6 +408,191 @@ Foundry before promoting it.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+## C# SDK path
+
+Use the following steps if you want to run the optimizer from .NET instead of using the Azure Developer CLI workflow described earlier.
+
+This path assumes you already have the following resources in an existing
+Foundry project:
+
+* A hosted agent to optimize.
+* A registered training dataset.
+* A registered evaluator, such as the built-in `builtin.task_adherence` evaluator.
+
+Unlike the Azure Developer CLI flow described earlier, the .NET SDK path doesn't scaffold
+a project or generate `eval.yaml`, a dataset, or evaluators for you. If you
+want the sample to create those assets automatically, use
+`azd ai agent eval generate` first.
+
+### 1. Set your environment variables
+
+Create a console app, and then set these values in your shell before you run it:
+
+```text
+FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
+FOUNDRY_AGENT_NAME=<your-hosted-agent-name>
+DATASET_NAME=<your-registered-dataset-name>
+DATASET_VERSION=1
+EVALUATOR_NAME=builtin.task_adherence
+EVAL_MODEL=<your-eval-model-deployment-name>
+OPTIMIZATION_MODEL=<your-optimization-model-deployment-name>
+```
+
+Use the exact project endpoint from your Foundry project's **Overview** page.
+
+Set `EVAL_MODEL` and `OPTIMIZATION_MODEL` to deployment names that already
+exist in your Foundry project, not just model family names. The optimization
+model must be a reasoning model that the optimizer supports. If you pick an
+unsupported deployment, the service returns an error that lists the allowed
+models.
+
+### 2. Run the optimization job
+
+Replace `Program.cs` with the following code.
+
+Agent optimization is a preview capability, so the request needs the
+`AgentsOptimization=V2Preview` feature header. The `FoundryFeaturesPolicy` class
+in this example adds that header to every request the client sends:
+
+```csharp
+using System.ClientModel.Primitives;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+// Adds the preview feature header that agent optimization requires.
+public sealed class FoundryFeaturesPolicy(string features) : PipelinePolicy
+{
+    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("Foundry-Features", features);
+        ProcessNext(message, pipeline, index);
+    }
+
+    public override ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("Foundry-Features", features);
+        return ProcessNextAsync(message, pipeline, index);
+    }
+}
+
+public static class Program
+{
+    public static void Main()
+    {
+        var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")!;
+        var agentName = Environment.GetEnvironmentVariable("FOUNDRY_AGENT_NAME")!;
+        var datasetName = Environment.GetEnvironmentVariable("DATASET_NAME")!;
+        var datasetVersion = Environment.GetEnvironmentVariable("DATASET_VERSION") ?? "1";
+        var evaluatorName = Environment.GetEnvironmentVariable("EVALUATOR_NAME") ?? "builtin.task_adherence";
+        var evalModel = Environment.GetEnvironmentVariable("EVAL_MODEL")!;
+        var optimizationModel = Environment.GetEnvironmentVariable("OPTIMIZATION_MODEL")!;
+
+        var options = new AIProjectClientOptions();
+        options.AddPolicy(new FoundryFeaturesPolicy("AgentsOptimization=V2Preview"), PipelinePosition.PerCall);
+
+        AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential(), options);
+        AgentOptimizationJobs optimizationJobs = projectClient.AgentAdministrationClient.GetAgentOptimizationJobs();
+
+        OptimizationJob job = new()
+        {
+            Inputs = new OptimizationJobInputs(
+                new OptimizationAgentIdentifier(agentName),
+                new OptimizationReferenceDatasetInput(datasetName) { Version = datasetVersion },
+                new[] { new OptimizationEvaluatorRef(evaluatorName) })
+            {
+                Options = new OptimizationOptions
+                {
+                    MaxCandidates = 2,
+                    EvalModel = evalModel,
+                    OptimizationModel = optimizationModel,
+                    // The optimizer needs at least one optimizable target, such as the
+                    // baseline system prompt, the tool definitions, or skills.
+                    OptimizationConfig =
+                    {
+                        ["system_prompt"] = BinaryData.FromObjectAsJson(
+                            "You are a helpful assistant that answers user requests accurately and concisely."),
+                    },
+                },
+            },
+        };
+
+        OptimizationJob created = optimizationJobs.Create(job);
+        Console.WriteLine($"Optimization job started: {created.Id}");
+
+        OptimizationJob current = created;
+        while (current.Status != AgentsJobStatus.Succeeded
+            && current.Status != AgentsJobStatus.Failed
+            && current.Status != AgentsJobStatus.Cancelled)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(20));
+            current = optimizationJobs.Get(created.Id);
+            Console.WriteLine($"\tstatus=`{current.Status}`");
+        }
+
+        Console.WriteLine($"Final status: {current.Status}");
+
+        if (current.Result is not null)
+        {
+            Console.WriteLine($"Baseline candidate: {current.Result.Baseline}");
+            Console.WriteLine($"Best candidate: {current.Result.Best}");
+
+            foreach (OptimizationCandidate candidate in current.Result.Candidates)
+            {
+                Console.WriteLine(
+                    $"{candidate.Name}: candidate_id={candidate.CandidateId}, " +
+                    $"avg_score={candidate.AvgScore:F4}, " +
+                    $"avg_tokens={candidate.AvgTokens:F0}");
+            }
+        }
+    }
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+When the job succeeds, the app prints the winning candidate and its
+`candidate_id`:
+
+```output
+Optimization job started: opt_<job-id>
+        status=`in_progress`
+        status=`succeeded`
+Final status: succeeded
+Baseline candidate: cand_opt_<job-id>_0000
+Best candidate: cand_opt_<job-id>_0000
+baseline: candidate_id=cand_opt_<job-id>_0000, avg_score=1.0000, avg_tokens=0
+```
+
+Unlike `azd ai agent optimize`, the .NET SDK flow doesn't create a local
+`.agent_configs/baseline/metadata.yaml` file. The optimization job metadata
+stays in the returned job object and in the Foundry service response,
+including the baseline candidate, best candidate, and scored candidate list.
+
+### 3. Apply the winning candidate
+
+If you're also working from the local `azd` project used in the CLI flow,
+apply the winning candidate by using the `candidate_id` returned by the app:
+
+```bash
+azd ai agent optimize apply --candidate <candidate-id>
+azd deploy
+```
+
+If you only need to inspect the result, use the candidate scores and evaluation
+identifiers printed by the app to review the winning configuration in
+Foundry before promoting it.
+
+:::zone-end
+
 :::zone pivot="vscode"
 
 ## Run the optimization in VS Code
@@ -558,6 +759,9 @@ azd down --force --purge
 | Python script fails with `KeyError: 'DATASET_NAME'` or another missing variable | The script didn't load your `.env` file, or the variable is missing | Run the script from the same folder as `.env`, or export the required values in your shell before running `python optimize_hosted_agent.py`. |
 | Python script fails with `ResourceNotFound: The project does not exist` | `FOUNDRY_PROJECT_ENDPOINT` doesn't point to an existing Foundry project | Copy the project endpoint from the Foundry project's **Overview** page and update `FOUNDRY_PROJECT_ENDPOINT` in `.env`. |
 | Python script fails with `Optimization model deployment '<name>' not found` | `OPTIMIZATION_MODEL` is not the name of a deployed model in your Foundry project | Use the exact deployment name from **Build** > **Deployments**, such as an existing `gpt-5` family or DeepSeek deployment in your project. |
+| The job request fails with `evaluators is required and cannot be empty` | The `Foundry-Features` preview header is missing from the request | Add the `AgentsOptimization=V2Preview` header, as the `FoundryFeaturesPolicy` class in the C# path shows. |
+| The job fails with `No optimizable element found for the hosted agent` | The request doesn't include an optimizable target | Supply at least one target in `optimization_config`, such as the baseline `system_prompt`, the tool definitions, or skills. |
+| The job fails with `AllEvaluatorsFailedError` | The evaluator is misconfigured, so every row fails to score | Open the evaluation run link in the error, and confirm the evaluator scores your agent's responses. Start with a built-in evaluator such as `builtin.task_adherence`. |
 | The **Optimize** section doesn't appear for a hosted agent | Foundry Toolkit is older than version 1.6.4, or the selected agent isn't a deployed hosted agent | Update [Foundry Toolkit](https://aka.ms/foundrytk), reload Visual Studio Code, and reopen the deployed agent from the **Agents** tab. |
 | GitHub Copilot Chat doesn't open after you select the workspace | GitHub Copilot isn't installed, isn't available for your account, or agent mode is disabled | Set up [GitHub Copilot in Visual Studio Code](https://code.visualstudio.com/docs/copilot/setup), enable agent mode, and then select **New Optimization** again. |
 | Foundry Toolkit can't apply the best candidate to the current workspace | The workspace doesn't contain an `azure.yaml` service whose name matches the deployed hosted agent | Open the workspace that contains the selected agent's code and matching `azure.ai.agent` service, then try again. |
@@ -571,8 +775,8 @@ azd down --force --purge
 In this quickstart, you:
 
 * Deployed the optimization sample agent by using the customer-support template.
-* Ran the agent optimizer by using the Azure Developer CLI, Python SDK, Visual
-  Studio Code, or the Microsoft Foundry Skill.
+* Ran the agent optimizer by using the Azure Developer CLI, Python SDK, .NET SDK,
+  Visual Studio Code, or the Microsoft Foundry Skill.
 * Deployed the winning candidate and verified the improvement.
 
 ## Next steps

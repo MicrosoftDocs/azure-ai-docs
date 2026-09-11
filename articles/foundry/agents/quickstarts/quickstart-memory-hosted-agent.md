@@ -62,6 +62,17 @@ pip install "azure-ai-projects>=2.3.0" azure-identity python-dotenv
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Use the .NET SDK in this path to create the memory store with
+`AIProjectClient.MemoryStores.CreateMemoryStore(...)`, upload the hosted-agent
+code as a new version, route traffic to it temporarily, and validate that the
+same signed-in user is remembered across separate calls.
+
+You also need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later.
+
+:::zone-end
+
 You also need an embedding model deployment in your Foundry project, such as `text-embedding-3-small`. The memory store uses it to index memories. The agent's chat model, such as `gpt-4o`, can be the deployment you already use for hosted agents.
 
 Your identity needs the **Foundry User** role on the Foundry project scope
@@ -477,6 +488,222 @@ that you supplied in the first request.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+## Step 1: Create or choose a Foundry project
+
+1. Open [Foundry portal](https://ai.azure.com) and create a Foundry project, or
+   select an existing one.
+1. In the project, deploy:
+
+   * A chat-capable model such as `gpt-4o`.
+   * An embedding model such as `text-embedding-3-small`.
+
+1. Copy the project endpoint from **Overview** and the deployment names from
+   **Build** > **Deployments**.
+
+## Step 2: Download the Foundry memory sample
+
+Clone the Foundry samples repo:
+
+```bash
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+The C# hosted-agent sample is under
+`samples/csharp/hosted-agents/agent-framework/foundry-memory-rag/src/foundry-memory-rag`.
+The next steps deploy that folder as a hosted agent version. The sample reads
+its configuration from these environment variables, which the deployment code
+sets on the container:
+
+| Variable | Description |
+| -------- | ----------- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint. |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Chat model deployment name. |
+| `AZURE_AI_EMBEDDING_DEPLOYMENT_NAME` | Embedding model deployment name. |
+| `AZURE_AI_MEMORY_STORE_ID` | Memory store name. Defaults to `foundry-memory-rag-store`. |
+
+## Step 3: Provision the memory store with C\#
+
+Create a .NET console app and install the packages. Memory store APIs are in
+preview, so install the prerelease `Azure.AI.Projects` package:
+
+```dotnetcli
+dotnet new console --name provision-memory-store
+cd provision-memory-store
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.Identity
+```
+
+This code is safe to rerun. It first calls `GetMemoryStore(...)` to check
+whether the store already exists, and only calls `CreateMemoryStore(...)` if the
+store isn't found. Replace `Program.cs` with the following code and set
+`endpoint`, `chatModel`, and `embeddingModel` to your project values:
+
+```csharp
+using System.ClientModel;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Memory;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var chatModel = "gpt-4o";
+var embeddingModel = "text-embedding-3-small";
+var memoryStoreName = "foundry-memory-rag-store";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+try
+{
+    MemoryStore existing = projectClient.MemoryStores.GetMemoryStore(memoryStoreName);
+    Console.WriteLine($"Memory store '{existing.Name}' already exists (id={existing.Id}); leaving as-is.");
+}
+catch (ClientResultException ex) when (ex.Status == 404)
+{
+    MemoryStore created = projectClient.MemoryStores.CreateMemoryStore(
+        memoryStoreName,
+        new MemoryStoreDefaultDefinition(chatModel, embeddingModel)
+        {
+            Options = new MemoryStoreDefaultOptions(isUserProfileEnabled: true, isChatSummaryEnabled: false)
+            {
+                UserProfileDetails =
+                    "Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials",
+            },
+        },
+        description: "Memory store for the hosted-agent memory quickstart");
+    Console.WriteLine($"Created memory store '{created.Name}' (id={created.Id}).");
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+## Step 4: Deploy the hosted agent with C\#
+
+Create a second console app for the deployment code:
+
+```dotnetcli
+dotnet new console --name deploy-memory-agent
+cd deploy-memory-agent
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Extensions.OpenAI
+dotnet add package Azure.Identity
+```
+
+In `Program.cs`, replace the existing code with the following code. Set `endpoint`, `chatModel`,
+`embeddingModel`, and `samplePath` to your values. `samplePath` is the full path
+to the `foundry-memory-rag` source folder you cloned in Step 2:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var chatModel = "gpt-4o";
+var embeddingModel = "text-embedding-3-small";
+var agentName = "memory-agent";
+var memoryStoreName = "foundry-memory-rag-store";
+var samplePath =
+    @"<path-to-foundry-samples>\samples\csharp\hosted-agents\agent-framework\foundry-memory-rag\src\foundry-memory-rag";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+HostedAgentDefinition definition = new(cpu: "0.5", memory: "1Gi")
+{
+    Versions = { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
+    CodeConfiguration = new(
+        runtime: "dotnet_10",
+        entryPoint: ["dotnet", "foundry-memory-rag.dll"],
+        dependencyResolution: CodeDependencyResolution.RemoteBuild),
+};
+definition.EnvironmentVariables.Add("FOUNDRY_PROJECT_ENDPOINT", endpoint);
+definition.EnvironmentVariables.Add("AZURE_AI_MODEL_DEPLOYMENT_NAME", chatModel);
+definition.EnvironmentVariables.Add("AZURE_AI_EMBEDDING_DEPLOYMENT_NAME", embeddingModel);
+definition.EnvironmentVariables.Add("AZURE_AI_MEMORY_STORE_ID", memoryStoreName);
+
+ProjectsAgentVersion? created = null;
+AgentEndpointConfiguration? originalEndpoint = null;
+try
+{
+    created = agentsClient.CreateAgentVersionFromCode(
+        agentName, samplePath, new AgentVersionFromCodeMetadata(definition));
+    Console.WriteLine($"Created hosted agent version {created.Version}");
+
+    for (var attempt = 1; attempt <= 60; attempt++)
+    {
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        created = agentsClient.GetAgentVersion(agentName, created.Version);
+        Console.WriteLine($"Provisioning status: {created.Status} (attempt {attempt}/60)");
+        if (created.Status == AgentVersionStatus.Active) break;
+        if (created.Status == AgentVersionStatus.Failed)
+            throw new InvalidOperationException("Hosted agent provisioning failed.");
+    }
+
+    ProjectsAgentRecord agent = agentsClient.GetAgent(agentName);
+    originalEndpoint = agent.AgentEndpoint;
+    agentsClient.PatchAgent(agentName, new PatchAgentOptions
+    {
+        AgentEndpoint = new AgentEndpointConfiguration
+        {
+            VersionSelector = new([new FixedRatioVersionSelectionRule(created.Version, 100)]),
+            ProtocolConfiguration = new() { Responses = new ResponsesProtocolConfiguration() },
+        },
+    });
+
+    ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+        .GetProjectResponsesClientForAgentEndpoint(agentName);
+
+    ResponseResult first = responsesClient.CreateResponse(
+        "Hi! My name is Linda and I'm vegetarian. Please remember that.");
+    Console.WriteLine(first.GetOutputText());
+
+    Thread.Sleep(TimeSpan.FromSeconds(10));
+
+    ResponseResult second = responsesClient.CreateResponse(
+        "Do you remember my name and any dietary preference I told you earlier?");
+    Console.WriteLine(second.GetOutputText());
+}
+finally
+{
+    if (originalEndpoint is not null)
+        agentsClient.PatchAgent(agentName, new PatchAgentOptions { AgentEndpoint = originalEndpoint });
+    if (created is not null)
+        agentsClient.DeleteAgentVersion(agentName, created.Version, force: true);
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+This code uploads the memory sample as a new hosted-agent version, points the
+hosted agent at that version temporarily, invokes it twice as the same
+signed-in user, and restores the previous endpoint configuration when it
+finishes.
+
+## Step 5: Verify that memory persists
+
+The first call stores the fact in the memory store. The second call asks for the
+remembered fact in a separate request. If the memory store is configured
+correctly, the response mentions the same name and dietary preference that you
+supplied in the first request. Memory extraction is asynchronous, so allow a few
+seconds between the two calls for the store to index the memory.
+
+:::zone-end
+
 ## Clean up resources
 
 Delete the resources when you're finished so you stop incurring charges.
@@ -552,6 +779,33 @@ embedding deployment, or hosted agent.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+The deployment code already deletes the hosted agent version and restores the
+previous endpoint configuration when it finishes. To delete the memory store,
+add this code to a console app that has the `Azure.AI.Projects` (prerelease) and
+`Azure.Identity` packages installed:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var memoryStoreName = "foundry-memory-rag-store";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+projectClient.MemoryStores.DeleteMemoryStore(memoryStoreName);
+Console.WriteLine($"Deleted memory store '{memoryStoreName}'.");
+```
+
+If you created a dedicated resource group or project for this quickstart,
+delete it from the Azure portal after you no longer need the chat deployment,
+embedding deployment, or hosted agent.
+
+:::zone-end
+
 ## Troubleshooting
 
 | Issue | Solution |
@@ -569,8 +823,8 @@ embedding deployment, or hosted agent.
 In this quickstart, you:
 
 - Created a Foundry memory store with the user-profile capability.
-- Deployed a hosted agent that reads and writes to the store through `FoundryMemoryProvider` by using Azure Developer CLI or the Python SDK.
-- Verified that the agent recalls user facts across separate sessions, either locally with Azure Developer CLI or remotely with the Python SDK after deployment.
+- Deployed a hosted agent that reads and writes to the store through `FoundryMemoryProvider` by using Azure Developer CLI, the Python SDK, or the .NET SDK.
+- Verified that the agent recalls user facts across separate sessions, either locally with Azure Developer CLI or remotely with the Python or .NET SDK after deployment.
 
 ## Next step
 

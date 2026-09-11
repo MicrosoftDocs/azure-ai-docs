@@ -2121,6 +2121,8 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: vscode
     title: VS Code
   - id: foundry-skills
@@ -2134,6 +2136,8 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
 # Owner: johmil
 - id: hosted-agent-deploy-clients
   title: Deployment method
@@ -2357,6 +2361,8 @@ groups:
     title: VS Code
   - id: python
     title: Python
+  - id: csharp
+    title: C#
 # Owner: aahi
 - id: selection-foundry-skills
   title: Selections
