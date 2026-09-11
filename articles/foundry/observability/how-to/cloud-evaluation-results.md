@@ -1,22 +1,23 @@
 ---
 title: "Get cloud evaluation results with the Microsoft Foundry SDK"
-description: "Learn how to use the Microsoft Foundry SDK to poll cloud evaluation runs, interpret item and aggregate results, cancel runs, and troubleshoot errors."
+description: "Learn how to poll cloud evaluation runs, interpret results, review target latency and estimated cost, cancel runs, and troubleshoot errors."
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/11/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to retrieve and interpret cloud evaluation results so that I can diagnose failures and compare application quality.
+# customer intent: As a developer, I want to retrieve and interpret cloud evaluation results so that I can compare quality, latency, and estimated cost.
 ---
 
 # Get evaluation results with Microsoft Foundry SDK
 
-Poll asynchronous evaluation runs, retrieve item and aggregate output, cancel runs, and resolve common evaluation errors.
+Poll asynchronous evaluation runs, retrieve item and aggregate output, review
+target latency and cost, cancel runs, and resolve common evaluation errors.
 
 ## Prerequisites
 
@@ -211,6 +212,88 @@ For aggregate results over multiple data examples (a dataset), the average rate 
   ]
 }
 ```
+
+## Review target latency and estimated cost
+
+When you retrieve or list completed runs, runs that invoke a model or agent
+target can include run-wide target latency under `latency.target`. Model-target
+runs can also include an estimated inference cost under
+`estimated_cost.target`.
+
+Both properties are optional. The service omits latency when no evaluation row
+has a usable target latency measurement. It omits estimated cost when the run
+isn't a model-target evaluation or when no target model can be priced.
+Estimated cost is currently available for Global Standard model deployments
+when the run has usable target token attribution and pricing data.
+
+The following example shows the relevant part of a completed evaluation run:
+
+```json
+{
+  "latency": {
+    "target": {
+      "p50_ms": 812.25,
+      "p95_ms": 2400.5,
+      "sample_count": 47
+    }
+  },
+  "estimated_cost": {
+    "target": {
+      "estimated_cost": 0.012346,
+      "currency": "USD",
+      "completeness": "partial",
+      "pricing_version": "rate-card-version",
+      "model_costs": [
+        {
+          "model_name": "gpt-5-mini",
+          "estimated_cost": 0.012346,
+          "prompt_tokens": 12000,
+          "cached_tokens": 2000,
+          "completion_tokens": 3000
+        }
+      ],
+      "unpriced_models": [
+        "unpriced-model"
+      ]
+    }
+  }
+}
+```
+
+Latency fields have the following meanings:
+
+| Field | Description |
+|---|---|
+| `p50_ms` | Median end-to-end target latency, in milliseconds. The value can include fractional milliseconds. |
+| `p95_ms` | 95th-percentile end-to-end target latency, in milliseconds. The value can include fractional milliseconds. |
+| `sample_count` | Number of evaluation rows that contributed a usable target latency measurement. |
+
+Estimated cost fields have the following meanings:
+
+| Field | Description |
+|---|---|
+| `estimated_cost` | Total estimated inference cost for the target models that the service could price. |
+| `currency` | ISO 4217 currency code for the estimate. |
+| `completeness` | `complete` when all attributed target models were priced, or `partial` when at least one model couldn't be priced. |
+| `pricing_version` | Optional identifier for the price-list snapshot used for the estimate. |
+| `model_costs` | Cost and token-usage breakdown for each priced target model. |
+| `unpriced_models` | Optional list of target models for which no reliable price was available. |
+
+Each entry in `model_costs` contains the backing `model_name`, its
+`estimated_cost`, non-cached input `prompt_tokens`, `cached_tokens`, and output
+`completion_tokens`. For a direct deployment, `model_name` is the backing model
+resolved from deployment metadata. For a model-router target, the breakdown
+identifies the models attributed by the runtime.
+
+When `completeness` is `partial`, the top-level cost and `model_costs` include
+only the models that the service could price. Check `unpriced_models` before
+using the estimate to compare runs.
+
+> [!IMPORTANT]
+> Target cost is an estimate based on reported token usage and published list
+> prices. It excludes evaluator model usage and evaluation runtime costs, and it
+> doesn't account for negotiated pricing, commitments, or discounts. Use Azure
+> billing data for actual charges.
 
 ## Cancel a run
 
