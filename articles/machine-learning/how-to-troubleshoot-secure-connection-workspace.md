@@ -9,8 +9,9 @@ ms.topic: troubleshooting
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 09/30/2025
+ms.date: 09/11/2026
 ms.custom: sfi-image-nochange
+ai-usage: ai-assisted
 # Customer Intent: As an admin, I need to understand how to troubleshoot connectivity problems to a workspace that is configured with a private endpoint.
 ---
 
@@ -39,8 +40,8 @@ The troubleshooting steps for DNS configuration differ based on whether you use 
 
     :::image type="content" source="./media/how-to-troubleshoot-secure-connection-workspace/dns-servers.png" alt-text="Screenshot of the DNS servers configuration.":::
 
-    * If this value is **Default (Azure-provided)** or **168.63.129.16**, then the virtual network is using Azure DNS. Skip to the [Azure DNS troubleshooting](#azure-dns-troubleshooting) section.
-    * If there's a different IP address listed, then the virtual network is using a custom DNS solution. Skip to the [Custom DNS troubleshooting](#custom-dns-troubleshooting) section.
+    * If this value is **Default (Azure-provided)** or **168.63.129.16**, the virtual network uses Azure-provided DNS. Verify that the affected client's network interface doesn't override this setting, then continue to [Azure DNS troubleshooting](#azure-dns-troubleshooting).
+    * If a different IP address is listed, the virtual network uses custom DNS. Verify that the affected client uses that resolver, then continue to [Custom DNS troubleshooting](#custom-dns-troubleshooting).
 
 ### Custom DNS troubleshooting
 
@@ -72,7 +73,9 @@ Use the following steps to verify if your custom DNS solution is correctly resol
     Address: 10.3.0.5
     ```
 
-1. If the `nslookup` command returns an error, or returns a different IP address than displayed in the portal, then the custom DNS solution isn't configured correctly. For more information, see [How to use your workspace with a custom DNS server](how-to-custom-dns.md).
+1. If the `nslookup` command returns an error, or returns a different IP address than displayed in the portal, the custom DNS solution isn't configured correctly. For more information, see [How to use your workspace with a custom DNS server](how-to-custom-dns.md).
+
+    Verify that your DNS server conditionally forwards the Azure Machine Learning DNS zones required for your scenario. For commercial Azure, these zones include `api.azureml.ms`, `notebooks.azure.net`, `instances.ml.azure.ms`, and `aznbcontent.net`. Include `inference.ml.azure.com` when you use managed online endpoints. Also verify private endpoints and DNS records for the workspace dependencies you use. For cloud-specific zones and managed online endpoint wildcard records, see [How to use your workspace with a custom DNS server](how-to-custom-dns.md).
 
 ### Azure DNS troubleshooting
 
@@ -82,10 +85,10 @@ When using Azure DNS for name resolution, use the following steps to verify that
 
     :::image type="content" source="media/how-to-troubleshoot-secure-connection-workspace/dns-zone-group.png" alt-text="Screenshot of the DNS configuration with Private DNS zone and group highlighted." lightbox="media/how-to-troubleshoot-secure-connection-workspace/dns-zone-group.png":::
 
-    * If there's a **Private DNS zone** entry, but no **DNS zone group** entry, delete and recreate the Private Endpoint. When recreating the private endpoint, enable **Private DNS zone integration**.
+    * If a **Private DNS zone** entry has no **DNS zone group** entry, verify that the private endpoint connection is approved and that the private DNS zone names, records, and DNS zone group configuration are correct. Add or correct the DNS zone group without deleting the private endpoint when possible.
     * If **DNS zone group** isn't empty, select the link for the **Private DNS zone** entry.
 
-        From the Private DNS zone, select **Virtual network links**. There should be a link to the virtual network. If there isn't one, then delete and recreate the private endpoint. When recreating it, select a Private DNS Zone linked to the virtual network or create a new one that is linked to it.
+        From the Private DNS zone, select **Virtual network links**. Add links for each client virtual network and applicable peered virtual network that must resolve the private endpoint. Verify that the zone contains the expected private DNS records.
 
         :::image type="content" source="./media/how-to-troubleshoot-secure-connection-workspace/virtual-network-links.png" alt-text="Screenshot of the virtual network links for the Private DNS zone.":::
 
@@ -93,7 +96,7 @@ When using Azure DNS for name resolution, use the following steps to verify that
 
 ## Browser configuration (DNS over HTTPS)
 
-Check if DNS over HTTP is enabled in your web browser. DNS over HTTP can prevent Azure DNS from responding with the IP address of the Private Endpoint.
+Check whether DNS over HTTPS is enabled in your web browser. DNS over HTTPS can bypass the operating system or corporate DNS resolver and return public IP addresses instead of the private endpoint address.
 
 * Mozilla Firefox: For more information, see [Disable DNS over HTTPS in Firefox](https://support.mozilla.org/en-US/kb/firefox-dns-over-https).
 * Microsoft Edge:
@@ -102,10 +105,12 @@ Check if DNS over HTTP is enabled in your web browser. DNS over HTTP can prevent
 
         :::image type="content" source="./media/how-to-troubleshoot-secure-connection-workspace/disable-dns-over-http.png" alt-text="Screenshot of the use secure DNS setting in Microsoft Edge.":::
 
+    For managed devices, set the [DnsOverHttpsMode policy](https://learn.microsoft.com/deployedge/microsoft-edge-policies#dnsoverhttpsmode) to `off`.
+
 ## Proxy configuration
 
 If you use a proxy, it might prevent communication with a secured workspace. To test, use one of the following options:
 
 * Temporarily disable the proxy setting and see if you can connect.
-* Create a [Proxy auto-config (PAC)](https://wikipedia.org/wiki/Proxy_auto-config) file that allows direct access to the FQDNs listed on the private endpoint. It should also allow direct access to the FQDN for any compute instances.
-* Configure your proxy server to forward DNS requests to Azure DNS.
+* Create a [Proxy auto-config (PAC)](https://wikipedia.org/wiki/Proxy_auto-config) file that allows direct access to the private endpoint FQDNs and the dependent resource endpoints required by your workspace scenario. Verify the required endpoints by using [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md).
+* Configure conditional forwarding for the required private DNS zones in a DNS forwarder or Azure DNS Private Resolver. For on-premises DNS, forward requests through a DNS forwarder or Azure DNS Private Resolver hosted in a virtual network. Don't configure an HTTP or HTTPS proxy to forward DNS requests to `168.63.129.16`.
