@@ -219,9 +219,12 @@ items:
       href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
   - name: Anthropic
     items:
-    - name: Overview
+    - name: Overview of Claude models in Foundry
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
+    - name: Quotas and rate limits
+      displayName: Claude model quotas and rate limits in Microsoft Foundry
+      href: ../../foundry-models/concepts/claude-models-quotas-limits.md
     - name: Compare hosting options
       displayName: Compare Azure-hosted and Anthropic-hosted Claude models in Microsoft Foundry
       href: ../../foundry-models/concepts/claude-models-hosting-comparison.md

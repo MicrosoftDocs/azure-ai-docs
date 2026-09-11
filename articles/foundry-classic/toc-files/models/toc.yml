@@ -86,6 +86,9 @@ items:
     - name: Claude models overview
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
+    - name: Quotas and rate limits
+      displayName: Claude model quotas and rate limits in Microsoft Foundry
+      href: ../../foundry-models/concepts/claude-models-quotas-limits.md
     - name: Deploy and use Claude models
       displayName: Deploy and use Claude models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-claude.md
