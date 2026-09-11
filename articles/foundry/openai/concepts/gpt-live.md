@@ -45,7 +45,6 @@ For guidance on splitting instructions between the voice model and the backend, 
 | Full-duplex conversation | Listens and generates a response at the same time, without rigid turn-taking. |
 | Natural interruptions | Adapts when a user interrupts, instead of finishing a queued response. |
 | Delegation | Hands off requests that need search, tool use, or deeper reasoning to a configured backend model or to your own application, while the live session continues. See [Delegate work in GPT-Live](../how-to/gpt-live-delegation.md). |
-| Multimodal input | Accepts voice, text, and image input. |
 | Speech translation | Translates speech across source and target languages and locales. Quality varies by language pair. |
 | Output | Voice only. |
 
