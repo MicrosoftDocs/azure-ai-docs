@@ -22,7 +22,7 @@ When a GPT-Live conversation needs search, deeper reasoning, or another action t
 | Mode | Description |
 |---|---|
 | **Client delegation** | GPT-Live hands work to your application. Your client or backend performs the work and returns the result as context. This option is the most flexible, but it requires more upfront integration. |
-| **Responses delegation** | GPT-Live routes the request to a configured [Responses API](responses.md) model. Hosted tools run server-side; client-actionable function calls are returned to your application for completion. |
+| **Responses delegation** | GPT-Live routes the request to a configured [Responses API](responses.md) deployment. Hosted tools run server-side; client-actionable function calls are returned to your application for completion. This incurs normal charges for Responses API usage. |
 
 Omitted or `null` delegation defaults to client delegation.
 
