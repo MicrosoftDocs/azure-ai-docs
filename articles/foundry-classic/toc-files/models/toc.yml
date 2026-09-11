@@ -86,6 +86,9 @@ items:
     - name: Claude models overview
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
+    - name: Quotas and rate limits
+      displayName: Claude model quotas and rate limits in Microsoft Foundry
+      href: ../../foundry-models/concepts/claude-models-quotas-limits.md
     - name: Deploy and use Claude models
       displayName: Deploy and use Claude models in Foundry
       href: ../../foundry-models/how-to/use-foundry-models-claude.md
@@ -248,58 +251,53 @@ items:
     href: ../../openai/how-to/webhooks.md
   - name: Concepts
     items:
-    - name: Abuse monitoring
-      href: ../../openai/concepts/abuse-monitoring.md
-    - name: Audio
-      href: ../../openai/concepts/audio.md
-    - name: Default safety policies
-      href: ../../openai/concepts/default-safety-policies.md
-    - name: Prompt transformations
-      href: ../../openai/concepts/prompt-transformation.md
-    - name: Customizing Large Language Models (LLMs)
-      href: ../../openai/concepts/customizing-llms.md
-    - name: Embeddings
-      href: ../../openai/concepts/understand-embeddings.md
-    - name: Fine-tuning
-      href: ../../openai/concepts/fine-tuning-considerations.md
-    - name: Vision-enabled models
-      href: ../../openai/concepts/gpt-with-vision.md
-    - name: Video generation (preview)
-      href: ../../openai/concepts/video-generation.md
-    - name: Red teaming large language models (LLMs)
-      href: ../../openai/concepts/red-teaming.md
-    - name: Content credentials
-      href: ../../openai/concepts/content-credentials.md
-    - name: Prompt engineering
-      items:
-      - name: Prompt engineering techniques
-        href: ../../openai/concepts/prompt-engineering.md
-      - name: Image prompt engineering techniques
-        href: ../../openai/concepts/gpt-4-v-prompt-engineering.md
-    - name: System messages
-      items:
-      - name: System message design
-        href: ../../openai/concepts/advanced-prompt-engineering.md
-      - name: Safety system messages
-        href: ../../openai/concepts/system-message.md
-      - name: Safety system message templates
-        href: ../../openai/concepts/safety-system-message-templates.md
-    - name: Foundry Models lifecycle and support policy
-      displayName: Foundry Models lifecycle and support policy
-      href: ../../openai/concepts/model-retirements.md
-    - name: Model versions
-      href: ../../openai/concepts/model-versions.md
-    - name: Model retirement schedule
-      href: ../../openai/concepts/model-retirement-schedule.md
-    - name: Retired Foundry Models
-      href: ../../openai/concepts/retired-models.md
-  - name: How-to
-    items:
-    - name: Assistants (preview)
-      items:
-      - name: Tools
+      - name: Abuse monitoring
+        href: ../../openai/concepts/abuse-monitoring.md
+      - name: Audio
+        href: ../../openai/concepts/audio.md
+      - name: Default safety policies
+        href: ../../openai/concepts/default-safety-policies.md
+      - name: Prompt transformations
+        href: ../../openai/concepts/prompt-transformation.md
+      - name: Customizing Large Language Models (LLMs)
+        href: ../../openai/concepts/customizing-llms.md
+      - name: Embeddings
+        href: ../../openai/concepts/understand-embeddings.md
+      - name: Fine-tuning
+        href: ../../openai/concepts/fine-tuning-considerations.md
+      - name: Vision-enabled models
+        href: ../../openai/concepts/gpt-with-vision.md
+      - name: Video generation (preview)
+        href: ../../openai/concepts/video-generation.md
+      - name: Red teaming large language models (LLMs)
+        href: ../../openai/concepts/red-teaming.md
+      - name: Content credentials
+        href: ../../openai/concepts/content-credentials.md
+      - name: Prompt engineering
         items:
-        - name: Function calling
+        - name: Prompt engineering techniques
+          href: ../../openai/concepts/prompt-engineering.md
+        - name: Image prompt engineering techniques
+          href: ../../openai/concepts/gpt-4-v-prompt-engineering.md
+      - name: System messages
+        items:
+        - name: System message design
+          href: ../../openai/concepts/advanced-prompt-engineering.md
+        - name: Safety system messages
+          href: ../../openai/concepts/system-message.md
+        - name: Safety system message templates
+          href: ../../openai/concepts/safety-system-message-templates.md
+      - name: Foundry Models lifecycle and support policy
+        displayName: Foundry Models lifecycle and support policy
+        href: ../../openai/concepts/model-retirements.md
+      - name: Model versions
+        href: ../../openai/concepts/model-versions.md
+      - name: Model retirement schedule
+        href: ../../openai/concepts/model-retirement-schedule.md
+      - name: Retired Foundry Models
+        href: ../../openai/concepts/retired-models.md
+  - name: How-to 
+    items:
     - name: Content filtering
       href: ../../openai/how-to/content-filters.md
     - name: Use blocklists

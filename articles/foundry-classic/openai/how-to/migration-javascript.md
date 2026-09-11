@@ -7,8 +7,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 09/10/2026
 manager: mcleans
+ai-usage: ai-assisted
 ---
 
 # Migrating to the OpenAI JavaScript API library 4.x (classic)
@@ -31,7 +32,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 const credential = new DefaultAzureCredential();
 ```
 
-This object is then passed to the second argument of the `OpenAIClient` and `AssistantsClient` client constructors.
+Pass this object to the second argument of the `OpenAIClient` constructor.
 
 In order to authenticate the `AzureOpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `AzureOpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
 
@@ -46,7 +47,7 @@ const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
 ### (Highly Discouraged) API Key
 
-API keys are not recommended for production use because they are less secure than other authentication methods. Previously, `AzureKeyCredential` objects were created as follows to authenticate `OpenAIClient` or `AssistantsClient`:
+Don't use API keys in production because they're less secure than other authentication methods. Previously, you created `AzureKeyCredential` objects as follows to authenticate `OpenAIClient`:
 
 ```typescript
 import { AzureKeyCredential } from "@azure/openai";
@@ -87,14 +88,14 @@ If not set, the API version defaults to the last known one before the release of
 
 ## API differences
 
-There are key differences between the `OpenAIClient` and `AssistantsClient` clients and the `AzureOpenAI` client:
+The `OpenAIClient` and `AzureOpenAI` clients have key differences:
 
-- Operations are represented as a flat list of methods in both `OpenAIClient` and `AssistantsClient`, for example `client.getChatCompletions`. In `AzureOpenAI`, operations are grouped in nested groups, for example `client.chat.completions.create`.
-- `OpenAIClient` and `AssistantsClient` rename many of the names used in the Azure OpenAI API. For example, snake case is used in the API but camel case is used in the client. In `AzureOpenAI`, names are kept the same as in the Azure OpenAI API.
+- `OpenAIClient` presents operations as a flat list of methods, such as `client.getChatCompletions`. `AzureOpenAI` groups operations in nested groups, such as `client.chat.completions.create`.
+- `OpenAIClient` uses different names than the Azure OpenAI API. For example, the API uses snake case, but the client uses camel case. `AzureOpenAI` uses the same names as the Azure OpenAI API.
 
 ## Migration examples
 
-The following sections provide examples of how to migrate from `OpenAIClient` and `AssistantsClient` to `AzureOpenAI`.
+The following sections provide examples of how to migrate from `OpenAIClient` to `AzureOpenAI`.
 
 ### Chat completions
 
@@ -115,7 +116,7 @@ const result = await client.getChatCompletions(deploymentName, messages, { maxTo
 Note the following:
 - The `getChatCompletions` method has been replaced with the `chat.completions.create` method.
 - The `messages` parameter is now passed in the options object with the `messages` property.
-- The `maxTokens` property has been renamed to `max_tokens` and the `deploymentName` parameter has been removed. Generally, the names of the properties in the `options` object are the same as in the Azure OpenAI API, following the snake case convention instead of the camel case convention used in the `AssistantsClient`. This is true for all the properties across all requests and responses in the `AzureOpenAI` client.
+- Rename the `maxTokens` property to `max_tokens` and remove the `deploymentName` parameter. Generally, the names of the properties in the `options` object are the same as in the Azure OpenAI API. The API uses snake case instead of the camel case convention used in `OpenAIClient`. This naming convention applies to all properties across all requests and responses in the `AzureOpenAI` client.
 - The `deploymentName` parameter isn't needed if the client was created with the `deployment` option. If the client was not created with the `deployment` option, the `model` property in the option object should be set with the deployment name.
 
 ### Streaming chat completions
@@ -238,158 +239,6 @@ const result = await client.getAudioTranslation(deploymentName, audio);
 
 - The `getAudioTranslation` method has been replaced with the `audio.translations.create` method.
 - All other changes are the same as in the audio transcription example.
-
-### Assistants
-
-The following examples show how to migrate some of the `AssistantsClient` methods.
-
-#### Assistant creation
-
-# [OpenAI JavaScript (new)](#tab/javascript-new)
-
-```typescript
-const options = ...;
-const assistantResponse = await assistantsClient.beta.assistants.create(
-  options
-);
-```
-
-# [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
-
-```typescript
-const options = {
-  model: azureOpenAIDeployment,
-  name: "Math Tutor",
-  instructions:
-    "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
-  tools: [{ type: "code_interpreter" }],
-};
-const assistantResponse = await assistantsClient.createAssistant(options);
-```
-
----
-
-- The `createAssistant` method has been replaced with the `beta.assistants.create` method
-
-#### Thread creation
-
-The following example shows how to migrate the `createThread` method call.
-
-# [OpenAI JavaScript (new)](#tab/javascript-new)
-
-```typescript
-const assistantThread = await assistantsClient.beta.threads.create();
-```
-
-# [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
-
-```typescript
-const assistantThread = await assistantsClient.createThread();
-```
-
----
-
-- The `createThread` method has been replaced with the `beta.threads.create` method
-
-#### Message creation
-
-The following example shows how to migrate the `createMessage` method call.
-
-# [OpenAI JavaScript (new)](#tab/javascript-new)
-
-```typescript
-const threadResponse = await assistantsClient.beta.threads.messages.create(
-  assistantThread.id,
-  {
-    role,
-    content: message,
-  }
-);
-```
-
-# [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
-
-```typescript
-const threadResponse = await assistantsClient.createMessage(
-  assistantThread.id,
-  role,
-  message
-);
-```
-
----
-
-- The `createMessage` method has been replaced with the `beta.threads.messages.create` method.
-- The message specification has been moved from a parameter list to an object.
-
-#### Runs
-
-To run an assistant on a thread, the `createRun` method is used to create a run, and then a loop is used to poll the run status until it is in a terminal state. The following example shows how to migrate the run creation and polling.
-
-# [OpenAI JavaScript (new)](#tab/javascript-new)
-
-This code can be migrated and simplified by using the `createAndPoll` method, which creates a run and polls it until it is in a terminal state.
-
-```typescript
-const runResponse = await assistantsClient.beta.threads.runs.createAndPoll(
-  assistantThread.id,
-  {
-    assistant_id: assistantResponse.id,
-  },
-  { pollIntervalMs: 500 }
-);
-```
-
-# [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
-
-```typescript
-let runResponse = await assistantsClient.createRun(assistantThread.id, {
-  assistantId: assistantResponse.id,
-});
-
-do {
-  await new Promise((r) => setTimeout(r, 500));
-  runResponse = await assistantsClient.getRun(
-    assistantThread.id,
-    runResponse.id
-  );
-} while (
-  runResponse.status === "queued" ||
-  runResponse.status === "in_progress"
-```
-
----
-
-- The `createRun` method has been replaced with the `beta.threads.runs.create` and `createAndPoll` methods.
-- The `createAndPoll` method is used to create a run and poll it until it is in a terminal state.
-
-#### Processing Run results
-
-# [OpenAI JavaScript (new)](#tab/javascript-new)
-
-Pages can be looped through by using the `for await` loop.
-
-```typescript
-for await (const runMessageDatum of runMessages) {
-  for (const item of runMessageDatum.content) {
-    ...
-  }
-}
-```
-
-# [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
-
-Without paging, results had to be accessed manually page by page using the `data` property of the response object. For instance, accessing the first page can be done as follows:
-
-```typescript
-for (const runMessageDatum of runMessages.data) {
-  for (const item of runMessageDatum.content) {
-    ...
-  }
-}
-```
-
----
 
 ### Embeddings
 
@@ -546,7 +395,3 @@ The following table explores several type names from `@azure/openai` and shows t
 ## Azure types
 
 `AzureOpenAI` connects to the Azure OpenAI and can call all the operations available in the service. However, the types of the requests and responses are inherited from the `OpenAI` and are not yet updated to reflect the additional features supported exclusively by the Azure OpenAI service. TypeScript users will need to import `"@azure/openai/types"` from `@azure/openai@2.0.0-beta.1` which will merge Azure-specific definitions into existing types. Examples in [the Migration examples](#migration-examples) section show how to do this.
-
-## Next steps
-
-- [Azure OpenAI Assistants](../concepts/assistants.md)

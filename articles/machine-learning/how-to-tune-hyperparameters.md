@@ -9,7 +9,7 @@ ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.date: 09/15/2025
+ms.date: 09/11/2026
 ms.topic: how-to
 ---
 
@@ -19,7 +19,7 @@ ms.topic: how-to
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 
-In this article, you learn how to automate efficient hyperparameter tuning with the Azure Machine Learning SDK v2 and CLI v2 using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob) class.
+In this article, you learn how to automate efficient hyperparameter tuning with the Azure Machine Learning SDK v2 and CLI v2 by using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob) class.
 
 - Define the parameter search space
 - Choose a sampling algorithm
@@ -30,13 +30,24 @@ In this article, you learn how to automate efficient hyperparameter tuning with 
 - Visualize training jobs
 - Select the best configuration
 
+## Before you begin
+
+Before you run a sweep job, ensure you have:
+
+- An Azure Machine Learning workspace and a compute target such as a CPU cluster.
+- A training script that logs the objective metric with the exact name used in `primary_metric`.
+- The Azure ML SDK v2 installed in your Python environment, and authenticated with `DefaultAzureCredential` or `az login`.
+- The Azure CLI and Azure ML CLI extension installed if you use the YAML-based examples in this article.
+
+The examples in this article assume an existing workspace and a compute target that the current user can access.
+
 ## What is hyperparameter tuning?
 
-**Hyperparameters** are adjustable settings that control model training. For neural networks, for example, you choose the number of hidden layers and the number of nodes per layer. Model performance depends heavily on these values.
+**Hyperparameters** are adjustable settings that control model training. For neural networks, you choose the number of hidden layers and the number of nodes per layer. Model performance depends heavily on these values.
 
 **Hyperparameter tuning** (or **hyperparameter optimization**) is the process of finding the hyperparameter configuration that yields the best performance. This process is often computationally expensive and manual.
 
-Azure Machine Learning lets you automate hyperparameter tuning and run experiments in parallel to efficiently optimize hyperparameters.
+Azure Machine Learning automates hyperparameter tuning and runs experiments in parallel to efficiently optimize hyperparameters.
 
 
 ## Define the search space
@@ -47,7 +58,7 @@ Hyperparameters can be discrete or continuous, and can have a value distribution
 
 ### Discrete hyperparameters
 
-Discrete hyperparameters are specified as a `Choice` among discrete values. `Choice` can be:
+Specify discrete hyperparameters as a `Choice` among discrete values. `Choice` can be:
 
 * one or more comma-separated values
 * a `range` object
@@ -67,21 +78,21 @@ References:
 
 In this case, `batch_size` takes one of [16, 32, 64, 128] and `number_of_hidden_layers` takes one of [1, 2, 3, 4].
 
-The following advanced discrete hyperparameters can also be specified using a distribution:
+You can also specify the following advanced discrete hyperparameters by using a distribution:
 
-* `QUniform(min_value, max_value, q)` - Returns a value like round(Uniform(min_value, max_value) / q) * q
-* `QLogUniform(min_value, max_value, q)` - Returns a value like round(exp(Uniform(min_value, max_value)) / q) * q
-* `QNormal(mu, sigma, q)` - Returns a value like round(Normal(mu, sigma) / q) * q
-* `QLogNormal(mu, sigma, q)` - Returns a value like round(exp(Normal(mu, sigma)) / q) * q
+* `QUniform(min_value, max_value, q)` - Returns a value like `round(Uniform(min_value, max_value) / q) * q`.
+* `QLogUniform(min_value, max_value, q)` - Returns a value like `round(exp(Uniform(min_value, max_value)) / q) * q`.
+* `QNormal(mu, sigma, q)` - Returns a value like `round(Normal(mu, sigma) / q) * q`.
+* `QLogNormal(mu, sigma, q)` - Returns a value like `round(exp(Normal(mu, sigma)) / q) * q`.
 
 ### Continuous hyperparameters 
 
-Continuous hyperparameters are specified as a distribution over a continuous range of values:
+Specify continuous hyperparameters as a distribution over a continuous range of values:
 
-* `Uniform(min_value, max_value)` - Returns a value uniformly distributed between min_value and max_value
-* `LogUniform(min_value, max_value)` - Returns a value drawn according to exp(Uniform(min_value, max_value)) so that the logarithm of the return value is uniformly distributed
-* `Normal(mu, sigma)` - Returns a real value that's normally distributed with mean mu and standard deviation sigma
-* `LogNormal(mu, sigma)` - Returns a value drawn according to exp(Normal(mu, sigma)) so that the logarithm of the return value is normally distributed
+* `Uniform(min_value, max_value)` - Returns a value uniformly distributed between `min_value` and `max_value`.
+* `LogUniform(min_value, max_value)` - Returns a value drawn according to `exp(Uniform(min_value, max_value))` so that the logarithm of the return value is uniformly distributed.
+* `Normal(mu, sigma)` - Returns a real value that's normally distributed with mean `mu` and standard deviation `sigma`.
+* `LogNormal(mu, sigma)` - Returns a value drawn according to `exp(Normal(mu, sigma))` so that the logarithm of the return value is normally distributed.
 
 An example of a parameter space definition:
 
@@ -197,9 +208,9 @@ References:
 
 Bayesian sampling (Bayesian optimization) selects new samples based on prior results to improve the primary metric efficiently.
 
-Bayesian sampling is recommended if you have enough budget to explore the hyperparameter space. For best results, we recommend a maximum number of jobs greater than or equal to 20 times the number of hyperparameters being tuned. 
+Use Bayesian sampling if you have enough budget to explore the hyperparameter space. For best results, set the maximum number of jobs to at least 20 times the number of hyperparameters you're tuning. 
 
-The number of concurrent jobs has an impact on the effectiveness of the tuning process. A smaller number of concurrent jobs may lead to better sampling convergence, since the smaller degree of parallelism increases the number of jobs that benefit from previously completed jobs.
+The number of concurrent jobs affects how effective the tuning process is. A smaller number of concurrent jobs might lead to better sampling convergence. The smaller degree of parallelism increases the number of jobs that benefit from previously completed jobs.
 
 Bayesian sampling supports `choice`, `uniform`, and `quniform` distributions.
 
@@ -226,8 +237,8 @@ References:
 
 Define the objective of your sweep job by specifying the primary metric and goal you want hyperparameter tuning to optimize. Each training job is evaluated for the primary metric. The early termination policy uses the primary metric to identify low-performance jobs.
 
-* `primary_metric`: The name of the primary metric needs to exactly match the name of the metric logged by the training script
-* `goal`: It can be either `Maximize` or `Minimize` and determines whether the primary metric will be maximized or minimized when evaluating the jobs. 
+* `primary_metric`: The name of the primary metric needs to exactly match the name of the metric logged by the training script.
+* `goal`: It can be either `maximize` or `minimize` and determines whether the primary metric is maximized or minimized when evaluating the jobs.
 
 ```Python
 from azure.ai.ml.sweep import Uniform, Choice
@@ -241,7 +252,7 @@ sweep_job = command_job_for_sweep.sweep(
     compute="cpu-cluster",
     sampling_algorithm = "bayesian",
     primary_metric="accuracy",
-    goal="Maximize",
+    goal="maximize",
 )
 ```
 References: 
@@ -254,7 +265,7 @@ This sample maximizes "accuracy".
 
 Your training script **must** log the primary metric with the exact name expected by the sweep job.
 
-Log the primary metric in your training script with the following sample snippet:
+Log the primary metric in your training script by using the following sample snippet:
 
 ```Python
 import mlflow
@@ -263,9 +274,9 @@ mlflow.log_metric("accuracy", float(val_accuracy))
 References: 
 [mlflow.log_metric](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_metric)
 
-The training script calculates the `val_accuracy` and logs it as the primary metric "accuracy". Each time the metric is logged, it's received by the hyperparameter tuning service. It's up to you to determine the frequency of reporting.
+The training script calculates the `val_accuracy` and logs it as the primary metric "accuracy". Each time the metric is logged, the hyperparameter tuning service receives it. You decide how often to report the metric.
 
-For more information on logging values for training jobs, see [Enable logging in Azure Machine Learning training jobs](how-to-log-view-metrics.md).
+For more information about logging values for training jobs, see [Enable logging in Azure Machine Learning training jobs](how-to-log-view-metrics.md).
 
 ## <a name="early-termination"></a> Specify early termination policy
 
@@ -273,8 +284,10 @@ End poorly performing jobs early to improve efficiency.
 
 You can configure the following parameters that control when a policy is applied:
 
-* `evaluation_interval`: the frequency of applying the policy. Each time the training script logs the primary metric counts as one interval. An `evaluation_interval` of 1 will apply the policy every time the training script reports the primary metric. An `evaluation_interval` of 2 will apply the policy every other time. If not specified, `evaluation_interval` is set to 0 by default.
-* `delay_evaluation`: delays the first policy evaluation for a specified number of intervals. This is an optional parameter that avoids premature termination of training jobs by allowing all configurations to run for a minimum number of intervals. If specified, the policy applies every multiple of evaluation_interval that is greater than or equal to delay_evaluation. If not specified, `delay_evaluation` is set to 0 by default.
+* `evaluation_interval`: the frequency of applying the policy. Each time the training script logs the primary metric counts as one interval. An `evaluation_interval` of 1 applies the policy every time the training script reports the primary metric. An `evaluation_interval` of 2 applies the policy every other time.
+* `delay_evaluation`: delays the first policy evaluation for a specified number of intervals. This optional parameter avoids premature termination of training jobs by allowing all configurations to run for a minimum number of intervals. If specified, the policy applies every multiple of `evaluation_interval` that is greater than or equal to `delay_evaluation`. If not specified, `delay_evaluation` defaults to 0.
+
+The default `evaluation_interval` value depends on the early termination policy you choose.
 
 Azure Machine Learning supports the following early termination policies:
 * [Bandit policy](#bandit-policy)
@@ -285,13 +298,13 @@ Azure Machine Learning supports the following early termination policies:
 
 ### Bandit policy
 
-[Bandit policy](/python/api/azure-ai-ml/azure.ai.ml.sweep.banditpolicy) uses a slack factor or amount plus evaluation interval. It ends a job when its primary metric falls outside the allowed slack from the best job.
+The [Bandit policy](/python/api/azure-ai-ml/azure.ai.ml.sweep.banditpolicy) uses a slack factor or slack amount plus an evaluation interval. It ends a job when its primary metric falls outside the allowed slack from the best job.
 
 Specify the following configuration parameters:
 
 * `slack_factor` or `slack_amount`: Allowed difference from the best job. `slack_factor` is a ratio; `slack_amount` is an absolute value.
 
-    For example,  consider a Bandit policy applied at interval 10. Assume that the best performing job at interval 10 reported a primary metric is 0.8 with a goal to maximize the primary metric. If the policy specifies a `slack_factor` of 0.2, any training jobs whose best metric at interval 10 is less than 0.66 (0.8/(1+`slack_factor`)) will be terminated.
+    For example, consider a Bandit policy applied at interval 10. Assume that the best performing job at interval 10 reported a primary metric of 0.8 with a goal to maximize the primary metric. If the policy specifies a `slack_factor` of 0.2, the policy terminates any training jobs whose best metric at interval 10 is less than 0.66 (0.8/(1+`slack_factor`)).
 * `evaluation_interval`: (optional) the frequency for applying the policy
 * `delay_evaluation`: (optional) delays the first policy evaluation for a specified number of intervals
 
@@ -304,15 +317,15 @@ sweep_job.early_termination = BanditPolicy(slack_factor = 0.1, delay_evaluation 
 References: 
 [BanditPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.banditpolicy)
 
-In this example, the early termination policy is applied at every interval when metrics are reported, starting at evaluation interval 5. Any jobs whose best metric is less than (1/(1+0.1) or 91% of the best performing jobs will be terminated.
+In this example, the early termination policy is applied at every interval when metrics are reported, starting at evaluation interval 5. The policy terminates any jobs whose best metric is less than (1/(1+0.1)) or 91% of the best performing jobs.
 
 ### Median stopping policy
 
-[Median stopping](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy) is an early termination policy based on running averages of primary metrics reported by the jobs. This policy computes running averages across all training jobs and stops jobs whose primary metric value is worse than the median of the averages.
+The [median stopping](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy) policy is an early termination policy that uses running averages of primary metrics reported by the jobs. This policy computes running averages across all training jobs and stops jobs whose primary metric value is worse than the median of the averages.
 
 This policy takes the following configuration parameters:
-* `evaluation_interval`: the frequency for applying the policy (optional parameter).
-* `delay_evaluation`: delays the first policy evaluation for a specified number of intervals (optional parameter).
+* `evaluation_interval`: how often to apply the policy (optional).
+* `delay_evaluation`: number of intervals to delay the first policy evaluation (optional).
 
 
 ```Python
@@ -322,32 +335,34 @@ sweep_job.early_termination = MedianStoppingPolicy(delay_evaluation = 5, evaluat
 References: 
 [MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)
 
-In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job is stopped at interval 5 if its best primary metric is worse than the median of the running averages over intervals 1:5 across all training jobs.
+In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job stops at interval 5 if its best primary metric is worse than the median of the running averages over intervals 1 through 5 across all training jobs.
 
 ### Truncation selection policy
 
-[Truncation selection](/python/api/azure-ai-ml/azure.ai.ml.sweep.truncationselectionpolicy) cancels a percentage of lowest performing jobs at each evaluation interval. Jobs are compared using the primary metric. 
+The [truncation selection](/python/api/azure-ai-ml/azure.ai.ml.sweep.truncationselectionpolicy) policy cancels a percentage of the lowest performing jobs at each evaluation interval. Jobs are compared by using the primary metric. 
 
 This policy takes the following configuration parameters:
 
 * `truncation_percentage`: the percentage of lowest performing jobs to terminate at each evaluation interval. An integer value between 1 and 99.
-* `evaluation_interval`: (optional) the frequency for applying the policy
-* `delay_evaluation`: (optional) delays the first policy evaluation for a specified number of intervals
-* `exclude_finished_jobs`: specifies whether to exclude finished jobs when applying the policy
-
+* `evaluation_interval`: how often to apply the policy (optional).
+* `delay_evaluation`: number of intervals to delay the first policy evaluation (optional).
 
 ```Python
 from azure.ai.ml.sweep import TruncationSelectionPolicy
-sweep_job.early_termination = TruncationSelectionPolicy(evaluation_interval=1, truncation_percentage=20, delay_evaluation=5, exclude_finished_jobs=true)
+sweep_job.early_termination = TruncationSelectionPolicy(
+    evaluation_interval=1,
+    truncation_percentage=20,
+    delay_evaluation=5,
+)
 ```
 References: 
 [TruncationSelectionPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.truncationselectionpolicy)
 
-In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job terminates at interval 5 if its performance at interval 5 is in the lowest 20% of performance of all jobs at interval 5 and will exclude finished jobs when applying the policy.
+In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job terminates at interval 5 if its performance at interval 5 is in the lowest 20% of performance of all jobs at interval 5.
 
 ### No termination policy (default)
 
-If no policy is specified, the hyperparameter tuning service lets all training jobs execute to completion.
+If you don't specify a policy, the hyperparameter tuning service lets all training jobs run to completion.
 
 ```Python
 sweep_job.early_termination = None
@@ -355,10 +370,10 @@ sweep_job.early_termination = None
 References: 
 [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob)
 
-### Picking an early termination policy
+### Choosing an early termination policy
 
-* For a conservative policy that provides savings without terminating promising jobs, consider a Median Stopping Policy with `evaluation_interval` 1 and `delay_evaluation` 5. These are conservative settings that can provide approximately 25%-35% savings with no loss on primary metric (based on our evaluation data).
-* For more aggressive savings, use Bandit Policy with a smaller allowable slack or Truncation Selection Policy with a larger truncation percentage.
+* For a conservative policy that saves resources without terminating promising jobs, consider a Median Stopping Policy with `evaluation_interval` set to 1 and `delay_evaluation` set to 5. These settings are conservative and can provide about 25%-35% savings with no loss on the primary metric, based on evaluation data.
+* For more aggressive savings, use a Bandit Policy with a smaller allowable slack or a Truncation Selection Policy with a larger truncation percentage.
 
 ## Set limits for your sweep job
 
@@ -385,7 +400,7 @@ This code configures the hyperparameter tuning experiment to use a maximum of 20
 
 ## Configure hyperparameter tuning experiment
 
-To configure your hyperparameter tuning experiment, provide the following:
+To configure your hyperparameter tuning experiment, provide the following information:
 * The defined hyperparameter search space
 * Your sampling algorithm
 * Your early termination policy
@@ -397,7 +412,7 @@ To configure your hyperparameter tuning experiment, provide the following:
 SweepJob can run a hyperparameter sweep on the Command or Command Component. 
 
 > [!NOTE]
->The compute target used in `sweep_job` must have enough resources to satisfy your concurrency level. For more information on compute targets, see [Compute targets](concept-compute-target.md).
+> The compute target used in `sweep_job` must have enough resources to satisfy your concurrency level. For more information about compute targets, see [Compute targets](concept-compute-target.md).
 
 Configure your hyperparameter tuning experiment:
 
@@ -434,7 +449,7 @@ sweep_job = command_job_for_sweep.sweep(
     compute="cpu-cluster",
     sampling_algorithm="random",
     primary_metric="test-multi_logloss",
-    goal="Minimize",
+    goal="minimize",
 )
 
 # Specify your experiment details
@@ -459,13 +474,13 @@ References:
 - [MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)
 - [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
-The `command_job` is invoked as a function so you can apply parameter expressions. The `sweep` function is configured with `trial`, sampling algorithm, objective, limits, and compute. The snippet comes from the sample notebook [Run hyperparameter sweep on a Command or CommandComponent](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/lightgbm/iris/lightgbm-iris-sweep.ipynb). In this sample, `learning_rate` and `boosting` are tuned. Early stopping is driven by a `MedianStoppingPolicy`, which stops a job whose primary metric is worse than the median of running averages across all jobs (see [MedianStoppingPolicy reference](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)).
+The `command_job` is invoked as a function so you can apply parameter expressions. Configure the `sweep` function with `trial`, sampling algorithm, objective, limits, and compute. The following snippet comes from the sample notebook [Run hyperparameter sweep on a Command or CommandComponent](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/lightgbm/iris/lightgbm-iris-sweep.ipynb). In this sample, you tune `learning_rate` and `boosting`. The `MedianStoppingPolicy` drives early stopping. This policy stops a job whose primary metric is worse than the median of running averages across all jobs. For more information, see [MedianStoppingPolicy reference](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy).
 
-To see how the parameter values are received, parsed, and passed to the training script to be tuned, refer to this [code sample](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/lightgbm/iris/src/main.py)
+To see how the parameter values are received, parsed, and passed to the training script for tuning, refer to this [code sample](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/lightgbm/iris/src/main.py).
 
 > [!Important]
 > Every hyperparameter sweep job restarts the training from scratch, including rebuilding the model and _all the data loaders_. You can minimize 
-> this cost by using an Azure Machine Learning pipeline or manual process to do as much data preparation as possible prior to your training jobs. 
+> this cost by using an Azure Machine Learning pipeline or manual process to do as much data preparation as possible before your training jobs. 
 
 ## Submit hyperparameter tuning experiment
 
@@ -504,7 +519,7 @@ Visualize hyperparameter tuning jobs in [Azure Machine Learning studio](https://
 
 ## Find the best trial job
 
-After all tuning jobs complete, retrieve the best trial outputs:
+When all tuning jobs finish, retrieve the best trial outputs:
 
 ```Python
 # Download best trial model output
@@ -513,7 +528,7 @@ ml_client.jobs.download(returned_sweep_job.name, output_name="model")
 References:
 - [MLClient.jobs](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure_ai_ml_mlclient_jobs)
 
-You can use the CLI to download all default and named outputs of the best trial job and logs of the sweep job.
+Use the CLI to download all default and named outputs of the best trial job and logs of the sweep job.
 ```
 az ml job download --name <sweep-job> --all
 ```

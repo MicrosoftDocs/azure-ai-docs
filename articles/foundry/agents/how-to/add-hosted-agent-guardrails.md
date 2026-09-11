@@ -4,7 +4,7 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 06/29/2026
+ms.date: 08/17/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -139,6 +139,41 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
+
+## Add a guardrail with the .NET SDK
+
+When you create an agent version with the .NET SDK, set the `ContentFilterConfiguration` property on `HostedAgentDefinition`. Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+var projectEndpoint = "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+var raiPolicyId =
+    "/subscriptions/<subscription-id>/resourceGroups/<resource-group>"
+    + "/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-image:tag"),
+    ContentFilterConfiguration = new ContentFilterConfiguration(raiPolicyName: raiPolicyId),
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created: {agent.Name}, version: {agent.Version}");
+```
 
 ## Add a guardrail with the JavaScript/TypeScript SDK
 

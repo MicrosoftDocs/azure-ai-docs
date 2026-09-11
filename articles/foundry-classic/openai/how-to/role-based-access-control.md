@@ -6,9 +6,10 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 1/31/2026
+ms.date: 09/10/2026
 ms.author: aashcraft
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Role-based access control for Azure OpenAI in Microsoft Foundry Models (classic)
@@ -75,7 +76,6 @@ This role has all the permissions of Cognitive Services OpenAI User and is also 
 ✅ Upload datasets for fine-tuning <br>
 ✅ View, query, filter Stored completions data <br>
 ✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]** <br>
-✅ Grant access to the Assistants API <br> 
 ✅ Add data sources to Azure OpenAI On Your Data.
 
 A user with only this role assigned would be unable to:

@@ -5,8 +5,9 @@ author: fosteramanda
 ms.author: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 09/09/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Standard agent setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control. Use standard setup when you need full data sovereignty, compliance with enterprise security policies, or project-level isolation.
@@ -132,7 +133,7 @@ The project managed identity includes both System-assigned Managed Identity (SMI
         * Search Service Contributor
     * **Azure Blob Storage Container**: `<workspaceId>-azureml-blobstore`
         * Storage Blob Data Contributor
-    * **Azure Blob Storage Container**: `<workspaceId>-agents-blobstore`
+    * **Azure Blob Storage Container**: `<workspaceId>-azureml-agent`
         * Storage Blob Data Owner
     * **Cosmos DB for NoSQL Database**: `enterprise_memory`
         * Cosmos DB Built-in Data Contributor
@@ -240,7 +241,7 @@ After you complete provisioning, verify the setup is working correctly:
 | Symptom | Cause | Resolution |
 |---------|-------|------------|
 | `CapabilityHostProvisioningFailed` or capability host status shows **Failed** | Insufficient Cosmos DB throughput | Ensure your Cosmos DB account has at least 3000 RU/s (1000 RU/s per container × 3 containers). For multiple projects, multiply by the number of projects. |
-| `403 Forbidden` when the agent reads or writes files | Missing storage role assignments | Verify the project managed identity has **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container and **Storage Blob Data Owner** on the `<workspaceId>-agents-blobstore` container. |
+| `403 Forbidden` when the agent reads or writes files | Missing storage role assignments | Verify the project managed identity has **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container and **Storage Blob Data Owner** on the `<workspaceId>-azureml-agent` container. |
 | `SearchIndexNotFound` or `403` on search operations | Missing search roles | Confirm that the project managed identity has both **Search Index Data Contributor** and **Search Service Contributor** on your Azure AI Search resource. |
 | `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Foundry User** role to the developer on the project scope. |
 | Update request to capability host returns `400 BadRequest` | Update not supported | Capability hosts can't be updated after creation. Delete and recreate the project if configuration changes are needed. |

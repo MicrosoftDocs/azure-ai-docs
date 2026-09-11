@@ -1,13 +1,13 @@
 ---
 title: Claude models in Microsoft Foundry
-description: Discover Claude models in Microsoft Foundry. Compare available models, capabilities, quotas, and supported regions to choose the right one for your AI use case.
+description: Discover Claude models in Microsoft Foundry. Compare available models, capabilities, hosting options, and supported regions to choose the right model.
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 09/01/2026
+ms.date: 09/11/2026
 ms.custom:
   - classic-and-new
   - doc-kit-assisted

@@ -295,6 +295,54 @@ Content-Type: application/json
 
 ---
 
+### Create the agent with the .NET SDK
+
+Install the prerelease packages with `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var mcpEndpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2026-05-01-preview";
+var projectEndpoint = "{project_endpoint}"; // e.g. https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
+var projectConnectionName = "{project_connection_name}";
+var agentName = "{agent_name}";
+var agentModel = "gpt-4.1-mini";
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+// Define agent instructions (see "Optimize agent instructions" section for guidance).
+var instructions = """
+    You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
+    Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
+    If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
+    """;
+
+// Create an MCP tool that points at the knowledge base connection.
+McpTool mcpKbTool = ResponseTool.CreateMcpTool(
+    serverLabel: "knowledge-base",
+    serverUri: new Uri(mcpEndpoint),
+    allowedTools: new McpToolFilter { ToolNames = { "knowledge_base_retrieve" } },
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+mcpKbTool.ProjectConnectionId = projectConnectionName;
+
+// Create the agent with the MCP tool.
+DeclarativeAgentDefinition definition = new(model: agentModel)
+{
+    Instructions = instructions,
+    Tools = { mcpKbTool },
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: agentName,
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent '{agentName}' created or updated successfully.");
+```
+
 ### (Optional) Enforce permissions with per-request headers
 
 If any of your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user sees only the documents they're authorized to access. To enable this filtering, forward the signed-in user's identity token in the `x-ms-query-source-authorization` header of the MCP tool connection. Without the token, permission-enabled sources return results unfiltered. For more information, see [Enforce permissions at query time (preview)](/azure/search/agentic-retrieval-how-to-retrieve#enforce-permissions-at-query-time-preview).

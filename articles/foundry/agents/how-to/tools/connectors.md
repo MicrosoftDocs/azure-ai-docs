@@ -485,6 +485,61 @@ agent = client.agents.create_version(
 print(f"Created agent: {agent.name}, version: {agent.version}")
 ```
 
+**Prompt agent (.NET SDK):**
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var projectEndpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var toolboxConnectionName = "connector-toolbox-conn";
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+// 1. Add the connector's managed MCP server to a toolbox.
+//    connectionName and serverUrl come from the connector you created earlier.
+AgentToolboxes toolboxes = agentsClient.GetAgentToolboxes();
+MCPToolboxTool connectorTool = new(serverLabel: connectionName)
+{
+    ServerUri = new Uri(serverUrl),
+    ProjectConnectionId = connectionName,
+    ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+};
+ToolboxVersion toolbox = toolboxes.CreateVersion(
+    name: "connector-toolbox",
+    tools: [connectorTool],
+    description: "Toolbox with the connector MCP server");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+var toolboxMcpUrl =
+    $"{projectEndpoint}/toolboxes/{toolbox.Name}/versions/{toolbox.Version}/mcp?api-version=v1";
+
+// 3. Create a remote-tool project connection that points at the toolbox endpoint,
+//    once, with the Azure Developer CLI (see the Python example for the command).
+
+// 4. Attach the toolbox to the agent as an MCP tool.
+McpTool toolboxTool = ResponseTool.CreateMcpTool(
+    serverLabel: "toolbox",
+    serverUri: new Uri(toolboxMcpUrl),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+toolboxTool.ProjectConnectionId = toolboxConnectionName;
+
+DeclarativeAgentDefinition definition = new(model: "gpt-4o")
+{
+    Instructions = "You are a helpful assistant.",
+    Tools = { toolboxTool },
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-connector-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Created agent: {agent.Name}, version: {agent.Version}");
+```
+
 **Hosted agent (Python SDK):**
 
 Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `FoundryToolbox`.

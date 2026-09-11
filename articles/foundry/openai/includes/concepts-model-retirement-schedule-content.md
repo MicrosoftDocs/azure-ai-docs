@@ -88,13 +88,13 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-realtime-mini | 2025-12-15 | GA | 2027-06-15 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
-| o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
-| o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
-| o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
-| o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
-| o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
-| o3-pro | 2025-06-10 | GA | 2026-12-17 | — |
-| o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
+| o1 | 2024-12-17 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o1-pro | 2025-03-19 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3 | 2025-04-16 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3-deep-research | 2025-06-26 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3-mini | 2025-01-31 | Deprecated | 2026-11-19 | gpt-5.6-terra |
+| o3-pro | 2025-06-10 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o4-mini | 2025-04-16 | Deprecated | 2026-11-19 | gpt-5.6-terra |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-10-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
@@ -118,7 +118,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4o | 2024-08-06 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
 | gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
-| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16 |
+| o4-mini | 2025-04-16 | No earlier than 2027-05-19<sup>1</sup> | 2027-11-19 |
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 

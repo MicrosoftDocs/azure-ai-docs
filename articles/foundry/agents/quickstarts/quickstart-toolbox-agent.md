@@ -52,6 +52,14 @@ deployment for you.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+For the .NET SDK path, use the C# section later in this article instead of the Azure Developer CLI or VS Code workflow. That path creates the toolbox with `AgentToolboxes.CreateVersion(...)`, then uploads the C# hosted-agent code as a new version and points it at that toolbox by name.
+
+You also need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later, and an existing Foundry project with a deployed chat-capable model.
+
+:::zone-end
+
 :::zone pivot="vscode"
 
 You also need [Visual Studio Code](https://code.visualstudio.com/) with the
@@ -430,6 +438,204 @@ documentation.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+## C# SDK path
+
+Use this path to create the toolbox and deploy the C# hosted-agent sample with
+the .NET SDK instead of the Azure Developer CLI or VS Code workflow.
+
+### 1. Create or choose a Foundry project
+
+1. Open [Foundry portal](https://ai.azure.com) and create a Foundry project, or
+   select an existing one.
+1. In the project, deploy a chat-capable model such as `gpt-4o`.
+1. Copy the project endpoint from **Overview** and the deployment name from
+   **Build** > **Deployments**.
+
+### 2. Download the toolbox hosted-agent sample
+
+Clone the Foundry samples repo:
+
+```bash
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+The C# hosted-agent sample is under
+`samples/csharp/hosted-agents/agent-framework/foundry-toolbox-server-side/src/foundry-toolbox-server-side-dotnet-agent-framework`.
+The deployment code in the next steps sets these environment variables on the
+container:
+
+| Variable | Description |
+| -------- | ----------- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint. |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Chat model deployment name. |
+| `TOOLBOX_NAME` | Toolbox name the agent connects to. |
+
+### 3. Create the toolbox with C\#
+
+Create a .NET console app and install the packages. Toolbox APIs are in preview,
+so install the prerelease `Azure.AI.Projects` package:
+
+```dotnetcli
+dotnet new console --name create-toolbox
+cd create-toolbox
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.Identity
+```
+
+Replace `Program.cs` with the following code and set `endpoint` to your project
+endpoint:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var toolboxName = "my-toolbox";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+AgentToolboxes toolboxes = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+ToolboxVersion created = toolboxes.CreateVersion(
+    name: toolboxName,
+    tools:
+    [
+        new WebSearchToolboxTool { Name = "web_search", SearchContextSize = WebSearchToolSearchContextSize.Medium },
+        new MCPToolboxTool(serverLabel: "mslearn")
+        {
+            ServerUri = new Uri("https://learn.microsoft.com/api/mcp"),
+            ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+        },
+    ],
+    description: "Toolbox with web search and Microsoft Learn MCP.");
+Console.WriteLine($"Created toolbox version {created.Version} for {created.Name}");
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+The sample hosted agent resolves the toolbox from `FOUNDRY_PROJECT_ENDPOINT`
+plus `TOOLBOX_NAME`, so you don't need to store the versioned endpoint.
+
+### 4. Deploy the hosted agent with C\#
+
+Create a second console app for the deployment code:
+
+```dotnetcli
+dotnet new console --name deploy-toolbox-agent
+cd deploy-toolbox-agent
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Extensions.OpenAI
+dotnet add package Azure.Identity
+```
+
+Replace `Program.cs` with the following code. Set `endpoint`, `chatModel`, and
+`samplePath` to your values. `samplePath` is the full path to the
+`foundry-toolbox-server-side-dotnet-agent-framework` source folder you cloned in
+Step 2:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var chatModel = "gpt-4o";
+var toolboxName = "my-toolbox";
+var agentName = "toolbox-agent";
+var samplePath =
+    @"<path-to-foundry-samples>\samples\csharp\hosted-agents\agent-framework\foundry-toolbox-server-side\src\foundry-toolbox-server-side-dotnet-agent-framework";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+HostedAgentDefinition definition = new(cpu: "1", memory: "2Gi")
+{
+    Versions = { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
+    CodeConfiguration = new(
+        runtime: "dotnet_10",
+        entryPoint: ["dotnet", "foundry-toolbox-server-side.dll"],
+        dependencyResolution: CodeDependencyResolution.RemoteBuild),
+};
+definition.EnvironmentVariables.Add("FOUNDRY_PROJECT_ENDPOINT", endpoint);
+definition.EnvironmentVariables.Add("AZURE_AI_MODEL_DEPLOYMENT_NAME", chatModel);
+definition.EnvironmentVariables.Add("TOOLBOX_NAME", toolboxName);
+
+ProjectsAgentVersion? created = null;
+AgentEndpointConfiguration? originalEndpoint = null;
+try
+{
+    created = agentsClient.CreateAgentVersionFromCode(
+        agentName, samplePath, new AgentVersionFromCodeMetadata(definition));
+    Console.WriteLine($"Created hosted agent version {created.Version}");
+
+    for (var attempt = 1; attempt <= 60; attempt++)
+    {
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        created = agentsClient.GetAgentVersion(agentName, created.Version);
+        Console.WriteLine($"Provisioning status: {created.Status} (attempt {attempt}/60)");
+        if (created.Status == AgentVersionStatus.Active) break;
+        if (created.Status == AgentVersionStatus.Failed)
+            throw new InvalidOperationException("Hosted agent provisioning failed.");
+    }
+
+    ProjectsAgentRecord agent = agentsClient.GetAgent(agentName);
+    originalEndpoint = agent.AgentEndpoint;
+    agentsClient.PatchAgent(agentName, new PatchAgentOptions
+    {
+        AgentEndpoint = new AgentEndpointConfiguration
+        {
+            VersionSelector = new([new FixedRatioVersionSelectionRule(created.Version, 100)]),
+            ProtocolConfiguration = new() { Responses = new ResponsesProtocolConfiguration() },
+        },
+    });
+
+    ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+        .GetProjectResponsesClientForAgentEndpoint(agentName);
+    ResponseResult response = responsesClient.CreateResponse(
+        "How do I create a hosted agent in Microsoft Foundry? Use the Microsoft Learn documentation.");
+    Console.WriteLine(response.GetOutputText());
+}
+finally
+{
+    if (originalEndpoint is not null)
+        agentsClient.PatchAgent(agentName, new PatchAgentOptions { AgentEndpoint = originalEndpoint });
+    if (created is not null)
+        agentsClient.DeleteAgentVersion(agentName, created.Version, force: true);
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+This code uploads the toolbox sample as a new hosted-agent version, points the
+hosted agent at that version temporarily, invokes it with a Microsoft Learn
+question, and restores the previous endpoint configuration when it finishes.
+
+### 5. Verify the toolbox-backed response
+
+If you configure the toolbox correctly, the response shows that the hosted agent
+discovered the toolbox tools and answered by using Microsoft Learn
+documentation.
+
+:::zone-end
+
 ## Clean up resources
 
 Delete the resources when you're finished so you stop incurring charges.
@@ -488,6 +694,34 @@ deployment, or hosted agent.
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+The deployment code already deletes the hosted agent version and restores the
+previous endpoint configuration when it finishes. To delete the toolbox, add
+this code to a console app that has the `Azure.AI.Projects` (prerelease) and
+`Azure.Identity` packages installed:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var toolboxName = "my-toolbox";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+projectClient.AgentAdministrationClient.GetAgentToolboxes().Delete(toolboxName);
+Console.WriteLine($"Deleted toolbox '{toolboxName}'.");
+```
+
+If you created a dedicated resource group or project for this quickstart,
+delete it from the Azure portal after you no longer need the toolbox, chat
+deployment, or hosted agent.
+
+:::zone-end
+
 ## Troubleshooting
 
 | Issue | Solution |
@@ -502,7 +736,7 @@ deployment, or hosted agent.
 In this quickstart, you:
 
 - Built a toolbox that combines web search and the Microsoft Learn MCP server behind one endpoint.
-- Consumed the toolbox from a Python hosted agent that connects over the Model Context Protocol by using Azure Developer CLI or the Python SDK.
+- Consumed the toolbox from a hosted agent that connects over the Model Context Protocol by using Azure Developer CLI, the Python SDK, or the .NET SDK.
 - Ran the agent locally or validated it remotely and deployed it to Foundry Agent Service.
 
 ## Next step
