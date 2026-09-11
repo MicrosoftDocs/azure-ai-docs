@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Use GPT-Live via WebRTC
 
-[!INCLUDE [preview-feature](../includes/preview-feature.md)]
 
 WebRTC supports browser-based or native client applications that need low-latency, real-time audio streaming with GPT-Live. Audio travels on a negotiated media track, and session events travel over a data channel.
 

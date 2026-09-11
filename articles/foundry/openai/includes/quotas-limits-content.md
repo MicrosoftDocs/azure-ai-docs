@@ -227,11 +227,11 @@ The following section provides you with a quick guide to the default quotas and 
 
 ## GPT-Live concurrent session limits
 
-Rate limits for the GPT-Live API are expressed as the maximum number of concurrent sessions per subscription, based on your tier.
+Rate limits for the GPT-Live API are the maximum number of concurrent sessions per subscription, based on your tier.
 
 | Tier | Maximum concurrent sessions |
 |--|--|
-| Default (nontiered) | 10 |
+| Default (non-tiered) | 10 |
 | Tier 1 | 25 |
 | Tier 2 | 50 |
 | Tier 3 | 200 |

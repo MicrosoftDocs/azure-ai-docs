@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Delegate work in GPT-Live
 
-[!INCLUDE [preview-feature](../includes/preview-feature.md)]
 
 When a GPT-Live conversation needs search, deeper reasoning, or another action that the live model can't complete on its own, it delegates that work while the live interaction continues. GPT-Live supports two delegation modes, configured in the `delegation` field of [session configuration](gpt-live.md#session-configuration).
 
@@ -123,7 +122,7 @@ Repeated appends can continue the same client delegation. The acknowledgment arr
 
 ## Handle Responses delegation
 
-With Responses delegation, `session.delegation.created` identifies the delegation with `target: "responses"` and a `response_id` that binds it to the Responses lifecycle. GPT-Live manages the backend call; don't send a standalone Responses request into the GPT-Live event stream.
+By using Responses delegation, `session.delegation.created` identifies the delegation with `target: "responses"` and a `response_id` that binds it to the Responses lifecycle. GPT-Live manages the backend call; don't send a standalone Responses request into the GPT-Live event stream.
 
 ```json
 {
