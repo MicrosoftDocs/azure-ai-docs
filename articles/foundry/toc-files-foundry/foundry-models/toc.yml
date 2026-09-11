@@ -361,6 +361,17 @@ items:
       
   - name: Audio and speech
     items:
+    - name: GPT-Live
+      items:
+      - name: What is GPT-Live?
+        href: ../../openai/concepts/gpt-live.md
+      - name: Use GPT-Live for real-time voice
+        displayName: "Quickstart: Get started with GPT-Live"
+        href: ../../openai/how-to/gpt-live.md
+      - name: Use GPT-Live via WebRTC
+        href: ../../openai/how-to/gpt-live-webrtc.md
+      - name: Delegate work in GPT-Live
+        href: ../../openai/how-to/gpt-live-delegation.md
     - name: Audio generation
       displayName: "Quickstart: Get started with Azure OpenAI audio generation"
       href: ../../openai/audio-completions-quickstart.md
@@ -409,6 +420,8 @@ items:
     - name: GPT Realtime Transcribe
       displayName: GPT Realtime Transcribe streaming transcription model
       href: ../../openai/concepts/gpt-realtime-whisper.md
+
+
 
 - name: Fine-tuning
   items:

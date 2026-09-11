@@ -38,6 +38,7 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | GPT-Realtime series | ✅ | ✅ | ✅ |
+| GPT-Live series |  |  | ✅ |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅ |  |
 | o3-mini | ✅ |  |  |
@@ -99,6 +100,8 @@ The following guidance is drawn from Microsoft research insights and [best pract
 #### [Audio / speech models](#tab/speech)
 
 The GPT realtime models in Azure OpenAI service enable robust speech-to-speech and text-to-speech interactions. These models integrate advanced speech recognition and synthesis capabilities, allowing them to understand spoken input, generate accurate transcriptions, and produce fluent spoken output in a target language. With their ability to translate speech in real time, GPT realtime models facilitate dynamic conversations across languages. 
+
+The GPT-Live models are full-duplex speech-to-speech models: unlike the turn-based GPT realtime models, they can listen and generate a response at the same time, without waiting for one party to finish speaking. GPT-Live models can also delegate part of a conversation to a configured Responses API model or to the calling application, while the live session continues.
 
 The transcription model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The transcription model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
@@ -250,6 +253,8 @@ Azure OpenAI service offers these functionalities through the realtime API:
 - Transcribing input and output speech
 
 The service is designed for rapid speech-to-speech processing of spoken interactions, facilitating real-time conversations with minimal latency. 
+
+GPT-Live offers similar speech-to-speech, translation, and transcription functionality through a full-duplex event API, so an application can send and receive audio at the same time instead of waiting for discrete turns. GPT-Live can also delegate part of a conversation—for example, a request that needs search or tool use—to a configured Responses API model or back to the calling application, while the live session continues.
 
 The transcription model in Azure OpenAI service enables speech-to-text transcription and translation of audio files. The model was trained on multilingual and multitask supervised data that was collected from the internet. These large and diverse datasets improve robustness to attributes such as accents, background noise, and technical language, while enabling transcription into multiple languages and translation into English.
 
@@ -542,6 +547,10 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 > Microsoft's testing of GPT-Realtime-2 identified that the model shows a lower propensity to block coaching, role-playing, or advising in certain inappropriate scenarios. Customers should consider (i) conducting their own evaluations in their production environments to validate safety performance for their specific use cases, (ii) using Azure AI Content Safety (or equivalent safeguards) in conjunction with this model, (iii) limited access/gating or preview deployment or other staggered roll-outs, (iv) implementing appropriate monitoring for safety performance in their production systems. Customers are encouraged to provide feedback to Microsoft.
 
 The same considerations apply to `gpt-realtime-2.1` and `gpt-realtime-2.1-mini`, which are currently in public preview and are minor updates over `gpt-realtime-2` focused on improved silence and noise handling.
+
+### GPT-Live limitations
+
+- GPT-Live is in public preview. Capabilities, performance, and availability might change before general availability. Evaluate the model with your intended scenarios and provide feedback during the preview.
 
 ### Risk and limitations of Computer Use (Preview) 
 
