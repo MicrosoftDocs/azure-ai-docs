@@ -65,18 +65,17 @@ In this article, you learn how to:
 
 Select the name of the run to view row-level results for each individual query. For each row, you can see the query, response, ground truth, evaluator score, and score explanation.
 
-### Review target latency and estimated cost
+### Review model-target latency and estimated cost
 
-For evaluation runs that invoke a model or agent target, the run details can
-include target latency. The summary reports median (p50) and 95th-percentile
-(p95) end-to-end target latency in milliseconds, along with the number of rows
-that contributed a usable measurement.
+For model-target evaluation runs, the run details can include target latency
+and estimated target inference cost. The latency summary reports median (p50)
+and 95th-percentile (p95) end-to-end target latency in milliseconds, along with
+the number of rows that contributed a usable measurement.
 
-Model-target evaluation runs can also include estimated target inference cost.
-The estimate is currently available for Global Standard model deployments when
-the run has usable target token attribution and pricing data. If some attributed
-models can't be priced, the result is marked partial and the estimate includes
-only the models with available prices.
+The cost estimate is currently available for Global Standard model deployments
+when the run has usable target token attribution and pricing data. If some
+attributed models can't be priced, the result is marked partial and the
+estimate includes only the models with available prices.
 
 > [!IMPORTANT]
 > Target cost is an estimate based on reported token usage and published list
@@ -85,7 +84,7 @@ only the models with available prices.
 > billing data for actual charges.
 
 For the evaluation run response fields and a JSON example, see
-[Review target latency and estimated cost](../observability/how-to/cloud-evaluation-results.md#review-target-latency-and-estimated-cost).
+[Review model-target latency and estimated cost](../observability/how-to/cloud-evaluation-results.md#review-model-target-latency-and-estimated-cost).
 
 ## Compare the evaluation results
 

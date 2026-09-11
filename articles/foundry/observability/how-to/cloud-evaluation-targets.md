@@ -385,7 +385,7 @@ For a complete runnable example, see [sample_model_evaluation.py](https://github
 
 The completed run response can include target latency percentiles and estimated
 model inference cost. See
-[Review target latency and estimated cost](cloud-evaluation-results.md#review-target-latency-and-estimated-cost)
+[Review model-target latency and estimated cost](cloud-evaluation-results.md#review-model-target-latency-and-estimated-cost)
 for field definitions, availability rules, and cost-estimate limitations.
 
 > [!TIP]

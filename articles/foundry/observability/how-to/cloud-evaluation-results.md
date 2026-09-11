@@ -1,6 +1,6 @@
 ---
 title: "Get cloud evaluation results with the Microsoft Foundry SDK"
-description: "Learn how to poll cloud evaluation runs, interpret results, review target latency and estimated cost, cancel runs, and troubleshoot errors."
+description: "Learn how to poll cloud evaluation runs, interpret results, review model-target latency and estimated cost, cancel runs, and troubleshoot errors."
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom:
@@ -17,7 +17,8 @@ ai-usage: ai-assisted
 # Get evaluation results with Microsoft Foundry SDK
 
 Poll asynchronous evaluation runs, retrieve item and aggregate output, review
-target latency and cost, cancel runs, and resolve common evaluation errors.
+model-target latency and cost, cancel runs, and resolve common evaluation
+errors.
 
 ## Prerequisites
 
@@ -213,11 +214,10 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 }
 ```
 
-## Review target latency and estimated cost
+## Review model-target latency and estimated cost
 
-When you retrieve or list completed runs, runs that invoke a model or agent
-target can include run-wide target latency under `latency.target`. Model-target
-runs can also include an estimated inference cost under
+When you retrieve or list completed model-target runs, they can include run-wide
+target latency under `latency.target` and estimated inference cost under
 `estimated_cost.target`.
 
 Both properties are optional. The service omits latency when no evaluation row
