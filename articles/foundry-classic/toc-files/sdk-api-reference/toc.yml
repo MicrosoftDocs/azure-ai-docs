@@ -67,31 +67,6 @@ items:
             href: ../../openai/reference-preview-latest.md
           - name: 2025-04-01-preview - Inference 
             href: ../../openai/reference-preview.md
-  - name: Assistants API Reference
-    items:
-      - name: REST
-        items:
-        - name: Assistants
-          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
-        - name: Threads
-          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
-        - name: Messages
-          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
-        - name: Runs
-          href: /rest/api/microsoft-foundry/azureopenai/threads?view=rest-microsoft-foundry-v1-preview&preserve-view=true
-      - name: SDK 
-        items:
-        - name: C#
-          href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/foundry-classic/openai/context/context
-        - name: Go
-          href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
-        - name: Java
-          href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/foundry-classic/openai/context/context
-        - name: JavaScript
-          href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/foundry-classic/openai/context/context
-        - name: Python
-          href: https://platform.openai.com/docs/api-reference/assistants
-        
   - name: Azure OpenAI On Your Data API Reference
     items:
       - name: Azure OpenAI On Your Data

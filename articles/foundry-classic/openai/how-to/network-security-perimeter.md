@@ -1,12 +1,13 @@
 ---
 title: "Add an Azure OpenAI network security perimeter (classic)"
 description: "Use this article to learn about adding Azure OpenAI to your network security perimeter. (classic)"
-ms.date: 11/20/2025
+ms.date: 09/10/2026
 ms.topic: how-to
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
+ai-usage: ai-assisted
 ---
 
 # Add an Azure OpenAI service to a network security perimeter (preview) (classic)
@@ -26,7 +27,7 @@ This article explains how to join an Azure OpenAI service to a network security 
 You can add an Azure OpenAI service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the Azure Virtual Network Manager REST API to join a service, and use the Management REST APIs to view and synchronize the configuration settings.
 
 ## Limitations and considerations
-* Azure OpenAI customer-managed keys might not behave as expected. The Azure OpenAI resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
+* Azure OpenAI customer-managed keys might not behave as expected. The Azure OpenAI resources in the Azure subscription might not be able to use the fine-tune API.
 
 * Network security perimeter controls only data plane operations within Azure OpenAI, not control plane operations. For example, users can deploy a model within their Azure OpenAI resource secured by the perimeter, but cannot use fine-tuned models, upload files, or start a session in the Chat Playground. In these data plane scenarios, an error message will show that access is blocked by the Network Security Perimeter, as expected.
 
