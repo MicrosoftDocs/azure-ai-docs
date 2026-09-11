@@ -3,7 +3,7 @@ title: "Quickstart: Create a prompt agent"
 description: "Learn how to create a prompt agent in Foundry Agent Service using the Microsoft Foundry SDK, then have a multi-turn conversation with the agent you create."
 author: aahill
 ms.author: aahi
-ms.date: 08/21/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
@@ -23,23 +23,14 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 * A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../tutorials/quickstart-create-foundry-resources.md).
 * The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
-## Set environment variables
+## Get your project endpoint
 
-Store [your project endpoint](../../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
+Copy [your project endpoint](../../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) from the welcome screen in the Foundry portal.
 
-**Python and JavaScript**
+The code samples in this quickstart declare their values as constants at the top of each file. Before you run a sample, replace these placeholders:
 
-```
-PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-AGENT_NAME="MyAgent"
-```
-
-**C# and Java**
-
-```
-ProjectEndpoint = <endpoint copied from welcome screen>
-AgentName = "MyAgent"
-```
+* `your_project_endpoint`: Your project endpoint, in the format `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`.
+* `your_agent_name`: A name for your agent, such as `MyAgent`.
 
 ## Install packages and authenticate
 
@@ -97,7 +88,7 @@ Use the agent you created to interact by asking a question and a related follow-
 
 # [REST API](#tab/rest)
 
-Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values, and set the `FOUNDRY_AGENT_NAME` environment variable to the agent name you used:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-chat-with-agent.sh":::
 
