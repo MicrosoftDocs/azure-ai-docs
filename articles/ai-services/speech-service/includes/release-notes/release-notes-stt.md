@@ -9,6 +9,17 @@ ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
+### September 2026 release
+
+#### Updated phrase list configuration and extended max size for improved recognition
+For our LLM Speech Transcription service, customers can now specify phrase lists in the request description instead of the catch-all general prompt. The max number of phrases in a list has also expanded to 2,000 phrases, though a longer phrase list will impact quality and latency. These phrase lists let customers provide words or phrases ahead of time to improve recognition. See [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md) for a full list of LLM Speech features and implementation details.
+
+#### Improved runtime latency
+This release includes service-side runtime enhancements that reduce end-to-end latency across short, medium, and long audio. No customer action is required. Note that results vary by workload and instance load.
+
+#### 2607 LLM Speech model release
+The 2607 model improves multilingual transcription quality across our many supported languages as well as in mixed-language inputs. The updated model is ready to use through the API and the Microsoft Foundry playground. More details on our [published blog](https://devblogs.microsoft.com/foundry/announcing-azure-ai-speech-llm-2607/).
+
 ### August 2026 release
 
 #### Improved pronunciation assessment models
