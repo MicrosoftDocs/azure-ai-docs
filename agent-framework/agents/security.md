@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 09/11/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -262,6 +262,12 @@ When `source_integrity` is declared, it overrides the otherwise-default rule of 
 If a tool declares neither per-item labels nor `source_integrity`, FIDES falls back to the combined label of its inputs. This is the right default for pure transformation tools — a `summarize(text)` that processes an untrusted blob produces an untrusted summary without any extra annotation.
 
 When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
+
+### Keep MCP labels subordinate to local policy
+
+When you connect through `SecureMCPToolProxy`, FIDES treats MCP server metadata as untrusted by default. Server `ToolAnnotations` can make locally configured policy more restrictive. They can't mark data as trusted, remove the `public` confidentiality cap, or authorize untrusted input.
+
+FIDES also combines server result `_meta.ifc` labels with the current local result label by default. A remote label can lower integrity or raise confidentiality, but it can't relax local policy. If an authenticated server is authoritative for result labels, set `trust_server_ifc=True` on `SecureMCPToolProxy` or `apply_mcp_security_labels`. A complete, valid `_meta.ifc` label then becomes authoritative for that result. Missing, partial, or malformed labels still use local policy, and `ToolAnnotations` remain restriction-only.
 
 ## Annotating sink tools
 
