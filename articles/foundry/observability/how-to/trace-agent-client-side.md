@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: aahill
 ms.author: aahi
 ms.reviewer: lagayhar
-ms.date: 04/10/2026
+ms.date: 09/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
@@ -44,7 +44,7 @@ In this article, you learn how to:
 
 # [Python](#tab/python)
 
-- Python 3.9 or later.
+- Python 3.10 or later.
 - The `azure-ai-projects` package version 2.0.0 or later.
 
 # [C#](#tab/csharp)

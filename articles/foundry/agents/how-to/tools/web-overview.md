@@ -62,6 +62,9 @@ If you're migrating from Grounding with Bing Search on the classic agents platfo
 
 The following use cases help you compare the available tools. Use case 1 covers general web search, where both Web Search and Grounding with Bing Search can retrieve results from the public web. Use case 2 covers domain-restricted search, which only Grounding with Bing Custom Search supports.
 
+> [!NOTE]
+> If you're looking for [Microsoft Web IQ (limited access)](./web-iq.md), that's a separate tool in the Microsoft IQ family. Web IQ builds on the Bing global index, but it uses separate APIs and doesn't appear in these comparison tables. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Search are the web grounding tools covered here.
+
 ### Use case 1: Grounding from general web indexed by Bing
 
 |                           | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Search](./bing-tools.md) |
@@ -113,6 +116,7 @@ Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Sear
 
 - [Use the Web Search tool](./web-search.md)
 - [Use Grounding with Bing Search and Grounding with Bing Custom Search](./bing-tools.md)
+- [Web IQ (preview)](./web-iq.md)
 - [Best practices for using tools in Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Agent environment setup](../../../agents/environment-setup.md)
 - [Web grounding pricing](https://www.microsoft.com/en-us/bing/apis)

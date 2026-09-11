@@ -3,7 +3,7 @@ title: "Quickstart: Optimize a hosted agent (preview)"
 description: "Deploy and optimize a hosted agent by using the Azure Developer CLI, Python SDK, VS Code, or the Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 08/25/2026
+ms.date: 09/03/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -51,7 +51,7 @@ Before you begin, you need:
 * The Python packages used in this path:
 
   ```bash
-  pip install "azure-ai-projects>=2.4.0" azure-ai-agentserver-optimization azure-identity python-dotenv
+  pip install "azure-ai-projects>=2.5.0" azure-ai-agentserver-optimization azure-identity python-dotenv
   ```
 
 * An existing Foundry project that already contains the hosted agent,
@@ -290,12 +290,12 @@ import time
 from azure.ai.agentserver.optimization import load_config
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-  OptimizationAgentIdentifier,
-  OptimizationEvaluatorRef,
-  OptimizationJob,
-  OptimizationJobInputs,
-  OptimizationOptions,
-  OptimizationReferenceDatasetInput,
+  OptimizedAgentIdentifier,
+  AgentOptimizationEvaluatorRef,
+  AgentOptimizationJob,
+  AgentOptimizationJobInputs,
+  AgentOptimizationOptions,
+  AgentOptimizationReferenceDatasetInput,
 )
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
@@ -317,15 +317,15 @@ with (
   DefaultAzureCredential() as credential,
   AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  job = OptimizationJob(
-    inputs=OptimizationJobInputs(
-      agent=OptimizationAgentIdentifier(agent_name=agent_name),
-      train_dataset=OptimizationReferenceDatasetInput(
+  job = AgentOptimizationJob(
+    inputs=AgentOptimizationJobInputs(
+      agent=OptimizedAgentIdentifier(agent_name=agent_name),
+      train_dataset=AgentOptimizationReferenceDatasetInput(
         name=dataset_name,
         version=dataset_version,
       ),
-      evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
-      options=OptimizationOptions(
+      evaluators=[AgentOptimizationEvaluatorRef(name=evaluator_name)],
+      options=AgentOptimizationOptions(
         max_candidates=2,
         eval_model=eval_model,
         optimization_model=optimization_model,
@@ -338,6 +338,7 @@ with (
     )
   )
   poller = project_client.beta.agents.begin_create_optimization_job(job=job)
+  print(f"Optimization job ID: {poller.details.job_id}")
 
   print(f"Optimization job started, waiting for completion...")
   while not poller.done():
@@ -363,6 +364,8 @@ Run the script:
 ```bash
 python optimize_hosted_agent.py
 ```
+
+The optimization job ID prints immediately after submission; use it to monitor progress in the Foundry portal.
 
 When the job succeeds, the script prints the winning candidate and its
 `candidate_id`.

@@ -3,7 +3,7 @@ title: "Quickstart: Evaluate your hosted agent"
 description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Azure Developer CLI, the Microsoft Foundry portal, or the Microsoft Foundry SDK for Python to create a test suite, run an evaluation, and review the results."
 author: lgayhardt
 ms.author: lagayhar
-ms.date: 06/16/2026
+ms.date: 09/03/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -35,7 +35,7 @@ Each step offers several paths. Use whichever you prefer:
 
 * **Azure Developer CLI**: The `azd ai agent` extension (`azure.ai.agents`), version 0.1.40-preview or later, which provides the `azd ai agent eval` commands. This extension is included in the `microsoft.foundry` extension you installed in the previous quickstart. Verify the installed version with `azd ext list`, and run `azd ext upgrade microsoft.foundry` if needed. Sign in with `azd auth login`.
 * **Foundry portal**: Access to the [Foundry portal](https://ai.azure.com).
-* **Python SDK**: [Python 3.9 or later](https://www.python.org/downloads/), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate. For installation, see [Install the Azure CLI](/cli/azure/install-azure-cli).
+* **Python SDK**: [Python 3.10 or later](https://www.python.org/downloads/), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate. For installation, see [Install the Azure CLI](/cli/azure/install-azure-cli).
 * **JavaScript/TypeScript SDK**: [Node.js 20 LTS or later](https://nodejs.org/), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate.
 
 ## Step 1: Confirm your deployed agent

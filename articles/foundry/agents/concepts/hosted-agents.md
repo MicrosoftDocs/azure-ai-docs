@@ -135,9 +135,9 @@ When integrated via Microsoft 365 channels (for example, Teams), hosted agents c
 In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
 For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
-### Sessions and conversations
+### Sessions, conversations, and the state store
 
-Hosted agents use **sessions** and **conversations** to manage state. How they work depends on the protocol.
+Hosted agents use **sessions**, **conversations**, and the **state store** to manage state. How they work depends on the protocol.
 
 #### Sessions
 
@@ -155,6 +155,17 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 
 - **Persistence**: Conversation history is stored in Foundry and persists independently of compute state.
 - **Cross-channel access**: Users can access the same conversation from the playground, API, Teams, or other published channels.
+
+#### State store
+
+The state store is a durable, server-backed key-value store for application state that the platform doesn't manage for you. A store holds keyed JSON items and is addressed by a caller-chosen store name.
+
+- **Persistence**: Foundry stores items and persists them independently of compute state, so they survive container crashes, restarts, and idle eviction.
+- **Isolation**: Each store name is an independent partition. A store can also partition its items per end user, so one store name is safe to share across the users of a multitenant agent.
+- **Item lifetime**: A store-level idle window ages out items, with a default of 30 days. Writes renew the window, and you can configure a store to never expire its items.
+- **Any framework**: Because the store is a general-purpose key-value API, an agent can use it to hold framework checkpoints for a bring-your-own framework such as LangGraph or Microsoft Agent Framework, alongside its own application state.
+
+For more information, see [Durable state store for hosted agents](agent-state-store.md).
 
 #### How sessions and conversations work with each protocol
 
