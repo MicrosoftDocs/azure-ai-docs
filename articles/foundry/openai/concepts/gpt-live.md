@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 GPT-Live is a full-duplex voice API for building agents that listen and speak at the same time, rather than waiting for one party to finish before the other responds.
 
-[!INCLUDE [preview-feature](../includes/preview-feature.md)]
-
 *Full-duplex* means the audio channel carries data in both directions at once, similar to a telephone call: the agent keeps listening while it's speaking, and the user can talk without waiting for a pause. This is in contrast to *half-duplex* systems, like a walkie-talkie or turn-based speech-to-speech models such as the [GPT Realtime API](../how-to/realtime-audio.md), where only one party can transmit at a time and the other must wait to respond.
 
 GPT-Live marks a shift away from turn-based voice interactions toward natural, bidirectional, phone-call-like conversations. It enables higher-quality, real-time communication that feels as natural as talking to another person.
