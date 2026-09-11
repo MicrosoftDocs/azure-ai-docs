@@ -248,9 +248,6 @@ items:
     - name: Deploy CXRReportGen premium model
       displayName: Deploy CXRReportGen premium healthcare AI model in Foundry
       href: ../../how-to/healthcare-ai/deploy-cxrreportgen-premium.md
-    - name: Fine-tune a healthcare AI premium model
-      displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
-      href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
 
 - name: Develop with AI models
   items:
@@ -417,8 +414,21 @@ items:
     href: ../../openai/concepts/fine-tuning-considerations.md
     displayName: finetuning, fine-tuning 
   - name: Fine-tune models
-    href: ../../openai/how-to/fine-tuning.md
-    displayName: finetuning, fine-tuning 
+    items: 
+    - name: When to fine-tune a model
+      href: ../../openai/how-to/fine-tuning.md
+      displayName: finetuning, fine-tuning 
+    - name: Healthcare models
+      items:
+      - name: Fine-tune a healthcare AI premium model
+        displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
+      - name: Fine-tune MedImageInsight premium model
+        displayName: Fine-tune MedImageInsight premium healthcare AI model in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-medimageinsight-premium.md
+      - name: Fine-tune CXRReportGen premium model
+        displayName: Fine-tune CXRReportGen premium healthcare AI model in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-cxrreportgen-premium.md
   - name: Deploy your fine-tuned model
     href: ../../openai/how-to/fine-tuning-deploy.md
     displayName: finetuning, fine-tuning     
