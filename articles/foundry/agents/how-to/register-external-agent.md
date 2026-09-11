@@ -3,7 +3,7 @@ title: "Register external agents for observability and evaluation"
 description: "Register third-party agents running on any host in Microsoft Foundry for tracing and evaluation, without migrating the runtime or provisioning an AI Gateway."
 author: aahill
 ms.author: aahi
-ms.date: 05/20/2026
+ms.date: 08/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -188,6 +188,47 @@ Resolved otel_agent_id: travel-planner-agent-v1
 
 The `create_version()` method atomically creates the agent record and its first registration revision when called with a new name. External agents are versionless from the user's perspective. Edits to `otel_agent_id` create a new internal revision under the same name.
 
+### [C# SDK](#tab/csharp)
+
+Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. External agent support ships in the prerelease package, so install it with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+#pragma warning disable AAIP001
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+
+// External agents are in preview. The AAIP001 pragma opts in to the preview surface.
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(endpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Register the externally hosted agent.
+ExternalAgentDefinition definition = new()
+{
+    // Set explicitly when the running agent emits a gen_ai.agent.id
+    // that differs from the Foundry agent name.
+    OtelAgentId = "travel-planner-agent-v1",
+};
+ProjectsAgentVersionCreationOptions options = new(definition)
+{
+    Description = "Travel planning agent hosted externally.",
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "travel-planner-agent",
+    options: options,
+    // Create and update requests require the ExternalAgents preview feature.
+    foundryFeatures: "ExternalAgents=V1Preview");
+
+Console.WriteLine($"Registered external agent: {agent.Name}");
+```
+
+```output
+Registered external agent: travel-planner-agent
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 Set the `FOUNDRY_PROJECT_ENDPOINT` environment variable to your project endpoint. Find this value on the project's **Overview** page in the Foundry portal.
@@ -286,6 +327,20 @@ agent = project.agents.get(agent_name="travel-planner-agent")
 otel_agent_id = agent.versions.latest.definition.otel_agent_id
 ```
 
+### [C# SDK](#tab/csharp)
+
+```csharp
+#pragma warning disable AAIP001
+// Retrieve the registered agent and its resolved otel_agent_id.
+ProjectsAgentRecord agent = agentsClient.GetAgent("travel-planner-agent");
+if (agent.Versions.Latest.Definition is not ExternalAgentDefinition definition)
+{
+    throw new InvalidOperationException("Expected an external agent definition.");
+}
+
+string otelAgentId = definition.OtelAgentId;
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 ```typescript
@@ -324,6 +379,16 @@ for a in agents:
     print(a.name)
 ```
 
+### [C# SDK](#tab/csharp)
+
+```csharp
+#pragma warning disable AAIP001
+foreach (ProjectsAgentRecord agent in agentsClient.GetAgents(kind: ProjectsAgentKind.External))
+{
+    Console.WriteLine(agent.Name);
+}
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 ```typescript
@@ -347,6 +412,15 @@ Use one of the SDK tabs to delete an external agent registration. Deleting the r
 # Delete the registration. This does not affect the running agent.
 # force=True removes all internal revisions of the agent atomically.
 project.agents.delete(agent_name="travel-planner-agent", force=True)
+```
+
+### [C# SDK](#tab/csharp)
+
+```csharp
+#pragma warning disable AAIP001
+// Delete the registration. This action doesn't affect the running agent.
+// force: true removes all internal revisions of the agent atomically.
+agentsClient.DeleteAgent(agentName: "travel-planner-agent", force: true);
 ```
 
 ### [JavaScript/TypeScript SDK](#tab/javascript)

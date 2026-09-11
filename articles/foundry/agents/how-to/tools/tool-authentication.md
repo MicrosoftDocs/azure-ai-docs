@@ -207,6 +207,42 @@ toolbox_version = project.toolboxes.create_version(
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
 ```
 
+# [C#](#tab/csharp)
+
+Install the prerelease packages with `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+AgentToolboxes toolboxes = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+// Connection IDs from the connections you created earlier.
+var ordersConnectionId = "orders-mcp";
+var workiqConnectionId = "workiq-conn";
+
+ToolboxVersion toolbox = toolboxes.CreateVersion(
+    name: "employee-toolbox",
+    tools:
+    [
+        new MCPToolboxTool(serverLabel: "orders")
+        {
+            ServerUri = new Uri("https://orders-mcp.example.com/mcp"),
+            ProjectConnectionId = ordersConnectionId,
+            ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+        },
+        new WorkIQPreviewToolboxTool(workiqConnectionId),
+    ],
+    description: "Private orders MCP + Work IQ, both via OAuth identity passthrough.");
+Console.WriteLine($"Created toolbox: {toolbox.Name}, version: {toolbox.Version}");
+```
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```typescript

@@ -169,6 +169,44 @@ patched_agent = project.agents.update_details(
 print(f"Enabled incoming A2A for agent: {patched_agent.name}")
 ```
 
+#### [C# SDK](#tab/csharp)
+
+Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`. Use `PatchAgent` to add the agent card and enable the responses and A2A protocols in one call:
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri("your_project_endpoint"),
+    tokenProvider: new DefaultAzureCredential());
+
+var patchOptions = new PatchAgentOptions
+{
+    AgentEndpoint = new AgentEndpointConfiguration
+    {
+        ProtocolConfiguration = new ProtocolConfiguration
+        {
+            Responses = new ResponsesProtocolConfiguration(),
+            A2a = new A2AProtocolConfiguration(),
+        },
+    },
+    AgentCard = new AgentCard(version: "1.0", skills: new[]
+    {
+        new AgentCardSkill(id: "general-qa", name: "General Q&A")
+        {
+            Description = "Answers general questions.",
+        }
+    })
+    {
+        Description = "A helpful assistant that answers questions.",
+    },
+};
+var patched = agentsClient.PatchAgent("your_agent_name", patchOptions);
+Console.WriteLine($"Enabled incoming A2A for agent: {patched.Value.Name}");
+```
+
 #### [JavaScript/TypeScript SDK](#tab/javascript)
 
 Install the required package:

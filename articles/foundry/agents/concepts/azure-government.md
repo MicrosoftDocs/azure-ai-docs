@@ -87,6 +87,8 @@ The token audience and project endpoint differ from public cloud. Set `credentia
 
 The following example creates a simple prompt agent, sends a message, and prints the response:
 
+# [Python](#tab/python)
+
 ```python
 import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -130,6 +132,51 @@ with (
         openai_client.conversations.delete(conversation_id=conversation.id)
         project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
+
+# [C#](#tab/csharp)
+
+Install the prerelease packages with `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+using System;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")!;
+
+// For Azure Government, authenticate against the Government cloud and use the .us endpoint.
+var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
+{
+    AuthorityHost = AzureAuthorityHosts.AzureGovernment,
+});
+AIProjectClient projectClient = new(new Uri(endpoint), credential);
+var agentsClient = projectClient.AgentAdministrationClient;
+
+// Create a prompt agent.
+DeclarativeAgentDefinition definition = new(model: "gpt-4.1")
+{
+    Instructions = "You are a helpful assistant",
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "MyAgent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created (name: {agent.Name}, version: {agent.Version})");
+
+// Invoke the agent through the Responses API.
+ProjectResponsesClient responses = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgent(agent.Name);
+ResponseResult response = await responses.CreateResponseAsync("Hello!");
+Console.WriteLine($"Response: {response.GetOutputText()}");
+
+agentsClient.DeleteAgent(agent.Name, force: true);
+```
+
+---
 
 For samples that use tools like file search, code interpreter, and function calling, see the [agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
 

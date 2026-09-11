@@ -99,6 +99,37 @@ The OpenAI client authenticates with the caller's Microsoft Entra credential, so
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Install the packages with `dotnet add package Azure.AI.Projects --prerelease`, `dotnet add package Azure.AI.Extensions.OpenAI`, and `dotnet add package Azure.Identity`.
+
+```csharp
+using System.ClientModel;
+using System.Text.Json;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse(
+    "Summarize the latest support tickets");
+
+// The session identifier is returned on the raw response payload.
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+string sessionId = payload.RootElement.GetProperty("agent_session_id").GetString()!;
+Console.WriteLine($"Session: {sessionId}");
+```
+
+The client authenticates with the caller's Microsoft Entra credential, so the session is scoped to that identity.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -159,6 +190,50 @@ response = openai_client.responses.create(
 ```
 
 Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. The session is scoped to that end user rather than to the calling service.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+The .NET client sets the header for every request through a pipeline policy:
+
+```csharp
+using System.ClientModel.Primitives;
+
+// Sends the end-user identifier that the platform uses to scope the session.
+public sealed class UserIdentityPolicy(string userId) : PipelinePolicy
+{
+    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        ProcessNext(message, pipeline, index);
+    }
+
+    public override ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        return ProcessNextAsync(message, pipeline, index);
+    }
+}
+```
+
+Create one client per end user, and then invoke the agent:
+
+```csharp
+var options = new AIProjectClientOptions();
+options.AddPolicy(new UserIdentityPolicy("<stable-end-user-id>"), PipelinePosition.PerCall);
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential(), options);
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse("Summarize my open tickets");
+
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+Console.WriteLine($"Session: {payload.RootElement.GetProperty("agent_session_id").GetString()}");
+```
+
+Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. Each end-user identifier gets its own session, so two users invoking the same agent receive different session IDs.
 
 :::zone-end
 

@@ -2147,6 +2147,8 @@ groups:
     title: Azure Developer CLI
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: javascript
     title: JavaScript/TypeScript SDK
   - id: rest
@@ -2169,6 +2171,8 @@ groups:
     title: REST API
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: javascript
     title: JavaScript/TypeScript SDK
   - id: azd
