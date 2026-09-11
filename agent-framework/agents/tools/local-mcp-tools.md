@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/09/2026
+ms.date: 09/11/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -230,9 +230,13 @@ if __name__ == "__main__":
     asyncio.run(http_mcp_example())
 ```
 
-For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During a tool call, the provider receives the values from `function_invocation_kwargs`. For ambient requests such as the initialize handshake, tool or prompt discovery, and background pings, it receives an empty dictionary.
+For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During each tool call, the provider receives that run's `function_invocation_kwargs`.
 
-If the server requires authentication during connection, capture or refresh the required credential in the provider instead of depending only on per-run values. A provider that raises `KeyError` because a per-run value is unavailable lets an ambient request continue without that header; this pattern works only when the server permits unauthenticated initialization and discovery. Other provider errors are surfaced.
+When a run lazily connects the tool, connection-lifetime requests reuse the kwargs from the run that established the connection. These requests include the initialize handshake, tool and prompt discovery, and background pings. Later runs don't replace the connection kwargs until the tool closes.
+
+If the tool connects eagerly before a run, the provider receives an empty mapping for connection-lifetime requests. Capture or refresh a construction-time credential in the provider for this case. If a credential only arrives at run time, pass the unconnected tool through `run(tools=[...])` with `function_invocation_kwargs` so that run establishes the connection.
+
+A `KeyError` from the provider is tolerated only when no run seeded the connection, and the request continues without provider headers. After a run seeds the connection, a missing key is a configuration error and the exception is surfaced.
 
 ### Control Host payload retention
 
