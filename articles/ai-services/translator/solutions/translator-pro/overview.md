@@ -16,13 +16,12 @@ ms.custom: FY25Q1-Linter
 > [!IMPORTANT]
 > **Microsoft Translator Pro begins retirement on September 15, 2026**. The following conditions apply:
 >
-> * Existing customers retain access to Microsoft Translator Pro in maintenance mode through September 15, 2027.
+> * Existing customers retain access to Microsoft Translator Pro in maintenance mode through September 15, 2027, and should complete their transition before that date.
 > * Microsoft doesn't onboard new customers to Microsoft Translator Pro during retirement.
 > * During the maintenance period, Microsoft provides critical security, compliance, reliability, and service-continuity updates as applicable. Microsoft doesn't introduce new product capabilities.
 > * Effective September 15, 2027, Microsoft Translator Pro is fully retired and is no longer available or supported.
 > * The retirement applies solely to the Microsoft Translator Pro client application. It doesn't affect [Azure Translator in Foundry Tools](../../overview.md), [Azure Speech in Foundry Tools](../../../speech-service/overview.md), or the Azure resources used by those services.
->
-> Existing customers should complete their transition from Microsoft Translator Pro before September 15, 2027. Organizations that require custom enterprise translation experiences can use [Translator](../../overview.md) and [Speech](../../../speech-service/overview.md) services to build applications that align with their security, organizational, and deployment requirements.
+> * Organizations that require custom enterprise translation experiences can use [Translator](../../overview.md) and [Speech](../../../speech-service/overview.md) services to build applications that align with their security, organizational, and deployment requirements.
 
 Microsoft Translator Pro is an enterprise mobile application that provides real-time speech-to-speech translation. The application integrates with an organization's Azure environment and requires enterprise users to authenticate with their organizational identities and use configured Translator resources.
 
