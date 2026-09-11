@@ -54,11 +54,10 @@ For guidance on splitting instructions between the voice model and the backend, 
 | Model | Description |
 |---|---|
 | `gpt-live-1` | The flagship full-duplex voice model. |
-| `gpt-live-1-mini` | A smaller, lower-latency variant intended for higher-volume deployments. |
 
 ## Language and translation support
 
-`gpt-live-1` and `gpt-live-1-mini` support speech input and spoken output across all languages and locales. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
+`gpt-live-1` supports speech input and spoken output across all languages and locales. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
 
 The models also support speech translation across all source and target languages and locales. Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
 

@@ -84,87 +84,103 @@ Responses delegation, with tools:
 
 ## Handle client delegation
 
-With client delegation, `delegation.created` contains the unit of work and a client-targeted item ID. Use that ID as `delegation_item_id` when you return the result as context.
+With client delegation, `session.delegation.created` identifies a unit of work with `target: "client"` and a delegation `id`. The delegation object carries metadata, not the task text, so use transcript events and your application state to work out what the user wants. Save the `id` to correlate your result.
 
 ```json
 {
-  "type": "delegation.created",
+  "type": "session.delegation.created",
+  "event_id": "event_delegation",
   "offset_ms": 1000,
-  "item": {
+  "delegation": {
     "id": "item_delegation_123",
     "type": "delegation",
-    "target": "client",
-    "content": [{ "type": "input_text", "text": "What is the weather?" }]
+    "target": "client"
   }
 }
 ```
 
+Return the result with `session.commentary.append` for content the model should say aloud, or `session.thinking.append` for quiet context. Set `delegation_id` to the delegation `id`. Each event takes a plain-string `content` of up to 500 tokens.
+
 ```json
 {
-  "type": "delegation.context.append",
-  "event_id": "event_delegation_context_1",
-  "delegation_item_id": "item_delegation_123",
-  "content": [{ "type": "input_text", "text": "It is 62 degrees and raining in Seattle." }]
+  "type": "session.commentary.append",
+  "event_id": "event_result_1",
+  "delegation_id": "item_delegation_123",
+  "content": "It is 62 degrees and raining in Seattle."
 }
 ```
 
 ```json
 {
-  "type": "delegation.context.appended",
-  "delegation_item_id": "item_delegation_123",
+  "type": "session.commentary.appended",
+  "client_event_id": "event_result_1",
   "start_ms": 1200,
   "end_ms": 1600
 }
 ```
 
-Each `delegation.context.append` event contains exactly one `input_text` part and is limited to 500 tokens. Repeated appends continue the same delegation stream—they don't create independently addressable context items. `delegation.context.appended` intentionally has no separate context-item ID; the delegation item ID is the stable correlation handle.
+Repeated appends can continue the same client delegation. The acknowledgment arrives after estimated context injection; it doesn't prove that the model consumed or spoke the result, or that an external action succeeded.
 
 ## Handle Responses delegation
 
-With Responses delegation, `delegation.created` identifies the delegation item, sets `target: "responses"`, and includes a `response_id` that binds it to the Responses lifecycle. GPT-Live emits `delegation.created` immediately before the matching top-level `response.created` event. Don't send `response.create` into the GPT-Live event stream.
+With Responses delegation, `session.delegation.created` identifies the delegation with `target: "responses"` and a `response_id` that binds it to the Responses lifecycle. GPT-Live manages the backend call; don't send a standalone Responses request into the GPT-Live event stream.
 
 ```json
 {
-  "type": "delegation.created",
+  "type": "session.delegation.created",
+  "event_id": "event_delegation",
   "offset_ms": 1000,
-  "item": {
+  "delegation": {
     "id": "item_delegation_456",
     "type": "delegation",
     "target": "responses",
-    "response_id": "resp_123",
-    "content": [{ "type": "input_text", "text": "What is the weather?" }]
+    "response_id": "resp_123"
   }
 }
 ```
 
+Subsequent Responses events arrive inside a `response.event` envelope. Dispatch on the nested `event.type` and preserve the outer `delegation_id`. Don't treat top-level `response.*` values as unwrapped Responses events.
+
 ```json
 {
-  "type": "response.created",
-  "response": { "id": "resp_123", "status": "in_progress", "model": "gpt-5.5" }
+  "type": "response.event",
+  "event_id": "event_response_1",
+  "delegation_id": "item_delegation_456",
+  "event": {
+    "type": "response.output_text.delta",
+    "item_id": "msg_123",
+    "delta": "The forecast is"
+  }
 }
 ```
 
-Responses events are passed through at the top level, without a wrapper. Dispatch on the full event type string, and tolerate new `response.*` lifecycle events. Delegated output text is also injected into the live session, so it can surface as normal transcript, turn, and audio output.
+Delegated output text is also injected into the live session, so it can surface as normal transcript and audio output. Live speech and delegated work continue independently: a completed backend response doesn't mean the user heard the answer.
 
 ### Complete a client-actionable function call
 
-When `response.function_call_arguments.done` identifies an actionable call, send one `delegation.function_call_output.create` event for that `call_id`. Unknown or already-resolved IDs are rejected, and parallel calls require one result event per call.
+Read completed function calls from the nested `response.output_item.done` event inside a `response.event` envelope. The finished item contains `call_id`, `name`, and `arguments`.
 
 ```json
 {
-  "type": "response.function_call_arguments.done",
-  "response_id": "resp_123",
-  "item_id": "fc_123",
-  "output_index": 0,
-  "call_id": "call_123",
-  "name": "get_weather",
-  "arguments": "{\"location\":\"Seattle\"}"
+  "type": "response.event",
+  "delegation_id": "item_delegation_456",
+  "event": {
+    "type": "response.output_item.done",
+    "item": {
+      "type": "function_call",
+      "call_id": "call_123",
+      "name": "get_weather",
+      "arguments": "{\"location\":\"Seattle\"}"
+    }
+  }
 }
 ```
 
+Run your authorized handler, then submit the result as a Responses item with `response.item.create`.
+
 ```json
 {
-  "type": "delegation.function_call_output.create",
+  "type": "response.item.create",
   "event_id": "event_function_output_1",
   "item": {
     "type": "function_call_output",
@@ -174,19 +190,16 @@ When `response.function_call_arguments.done` identifies an actionable call, send
 }
 ```
 
+Submit every required result for the pending tool calls, then explicitly continue the backend response with `response.create`. Parallel calls require one result per call.
+
 ```json
 {
-  "type": "delegation.function_call_output.created",
-  "item": {
-    "id": "item_function_output_123",
-    "type": "function_call_output",
-    "call_id": "call_123",
-    "output": "{\"temperature\":62,\"conditions\":\"rain\"}"
-  }
+  "type": "response.create",
+  "event_id": "event_continue_1"
 }
 ```
 
-The `delegation.function_call_output.created` acknowledgment means the result was accepted, not that the Responses delegation has finished. Keep reading `response.*` events until the lifecycle reaches a terminal event such as `response.completed`, or an error.
+Appending a function result doesn't automatically continue the response, and it has no standalone success acknowledgment. Keep reading `response.event` envelopes until the nested lifecycle reaches a terminal event such as `response.completed`, or an error.
 
 ## Related content
 

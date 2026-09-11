@@ -24,17 +24,17 @@ This article shows how to connect to GPT-Live over WebSocket, configure a sessio
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
 - An API key or Microsoft Entra ID credentials for authentication. For production applications, use [Microsoft Entra ID](../../../foundry-classic/openai/how-to/managed-identity.md) for enhanced security.
-- A deployment of a GPT-Live model (`gpt-live-1` or `gpt-live-1-mini`).
+- A deployment of the `gpt-live-1` model.
 
 ## Connect over WebSocket
 
-Open a WebSocket connection and select the model in the query string. Wait for the `session.started` event before treating the session as ready; the first lifecycle event is `session.started`, not `session.updated`.
+Open a WebSocket connection to the live endpoint, then send a `session.start` event with your session configuration. Wait for the `session.started` event before treating the session as ready.
 
 ```javascript
 import WebSocket from "ws";
 
 const ws = new WebSocket(
-  "wss://<your-resource-name>.openai.azure.com/openai/v1/live?model=gpt-live-1",
+  "wss://<your-resource-name>.openai.azure.com/openai/v1/live",
   {
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -44,9 +44,10 @@ const ws = new WebSocket(
 
 ws.on("open", () => {
   ws.send(JSON.stringify({
-    type: "session.update",
+    type: "session.start",
     event_id: "event_start",
     session: {
+      model: "gpt-live-1",
       instructions: "Be concise and ask before taking an external action.",
       audio: { output: { voice: "marin" } },
       delegation: { type: "client" },
@@ -60,68 +61,71 @@ ws.on("message", (data) => {
 });
 ```
 
-Don't repeat `model` inside the initial `session.update`; the model comes from the WebSocket URL.
+Set `model` in the `session` object of the `session.start` event.
 
 ## Session configuration
 
-The initial `session.update` is a strict configuration object; it rejects unknown fields.
+The `session` object in `session.start` is a strict configuration object; it rejects unknown fields.
 
 | Field | Notes |
 |---|---|
-| `instructions` | System instructions. Immutable after initialization. |
-| `audio.output.voice` | Output voice. Defaults to `marin`. Immutable after initialization. |
+| `model` | Required. The GPT-Live model to run, for example `gpt-live-1`. Immutable after startup. |
+| `instructions` | System instructions. Immutable after startup; add more with `session.instructions.append`. |
+| `audio.output.voice` | Output voice. Defaults to `marin`. Immutable after startup. |
 | `delegation` | Either `{ type: "client" }` or `{ type: "responses", responses: {...} }`. Omitting this field or setting it to `null` selects client delegation. See [Delegate work in GPT-Live](gpt-live-delegation.md). |
 
-After startup, later `session.update` calls are sparse: omitted fields keep their current values. A successful update produces `session.updated` with the complete public session resource. Only errors echo `event_id`.
+After startup, later `session.update` calls are sparse: omitted fields keep their current values, and only `delegation.responses` settings can change. A successful update produces `session.updated` with the complete public session resource. Only errors echo `event_id`.
 
 ## Stream audio
 
-Audio input and output use raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Base64-encode the raw PCM bytes—not a WAV file or another container—and send them in `input_audio.append`. Each sample is two bytes, so the decoded payload must contain an even number of bytes. Raw audio events aren't acknowledged.
+Audio input and output use raw, headerless, mono, signed 16-bit little-endian PCM sampled at 24,000 Hz. Base64-encode the raw PCM bytes—not a WAV file or another container—and send them in `session.input_audio.append`. Each sample is two bytes, so the decoded payload must contain an even number of bytes. Raw audio events aren't acknowledged.
 
 ```javascript
 ws.send(JSON.stringify({
-  type: "input_audio.append",
+  type: "session.input_audio.append",
   event_id: "event_audio_1",
   audio: "<base64-encoded-24khz-pcm16le-mono-audio>",
 }));
 ```
 
-GPT-Live streams audio output back as `output_audio.delta` events, using the same PCM16 format, with a server-assigned half-open time range (`start_ms` / `end_ms`). There's no `output_audio.done` event. A gap between output-audio ranges represents omitted silence.
+GPT-Live streams audio output back as `session.output_audio.delta` events, using the same PCM16 format, with a server-assigned half-open time range (`start_ms` / `end_ms`). There's no output-audio-done event. A gap between output-audio ranges represents omitted silence.
 
-## Read transcripts and turns
+## Read transcripts
 
-`input_transcript.added` and `output_transcript.added` emit complete timed transcript fragments as they become available. Fragment boundaries reflect cadence, not semantic turn boundaries.
+`session.input_transcript.delta` and `session.output_transcript.delta` emit timed transcript fragments as they become available. Each event contains a `delta` text fragment with a `start_ms` / `end_ms` range on the session timeline. Fragment boundaries reflect audio cadence, not semantic turn boundaries.
 
-`turn.created`, `turn.delta`, and `turn.done` group those fragments into a heuristic user/assistant turn view for applications that want one. Turn events are a projection: they aren't context items and don't change session state.
+Append fragments in order for each speaker. Because listening and speaking can overlap, user and assistant fragments can interleave, a fragment isn't a complete turn, and transcripts can contain mistakes. GPT-Live doesn't emit an authoritative turn-completed event; group fragments into turns in your application if you need that view.
 
-## Append general session context
+## Add context during the conversation
 
-Use `session.context.append` to add general text context—such as facts the model should know—to the active session without interrupting the conversation. `content` contains exactly one `input_text` part and is limited to 500 tokens.
+Feed text into a running session with one of three append events. Each takes a plain-string `content` of up to 500 tokens and a required `delegation_id`. Use `null` for general session context, or a client delegation ID to update that task.
+
+| Event | Use it for | Acknowledgment |
+|---|---|---|
+| `session.instructions.append` | Trusted application instructions that change behavior or speech. | `session.instructions.appended` |
+| `session.thinking.append` | Quiet context the model can use, but doesn't say on append. | `session.thinking.appended` |
+| `session.commentary.append` | Information the model should say aloud, which it may paraphrase. | `session.commentary.appended` |
 
 ```javascript
 ws.send(JSON.stringify({
-  type: "session.context.append",
+  type: "session.thinking.append",
   event_id: "event_context_1",
-  content: [{
-    type: "input_text",
-    text: "The user has already accepted the terms.",
-  }],
+  delegation_id: null,
+  content: "The user has already accepted the terms.",
 }));
 ```
 
+An acknowledgment confirms that context was accepted for injection. It doesn't confirm that the model consumed the update, spoke it, or that any external action succeeded. Quiet context can still influence later speech, so it isn't a place for secrets.
+
 ## Observe a session with a sideband WebSocket
 
-A trusted application server can attach a second, *sideband* WebSocket to an already-running session to observe events and send commands, without being one of the primary media endpoints. Connect to the existing session's URL; there's no separate `/sideband` path.
+A trusted application server can attach a second, *sideband* WebSocket to an already-running session to observe events and send commands, without being one of the primary media endpoints. Attach to the running session by its ID:
 
-```http
-GET /v1/live/sess_123 HTTP/1.1
-Host: <your-resource-name>.openai.azure.com
-Authorization: Bearer <token>
-Connection: Upgrade
-Upgrade: websocket
+```text
+wss://<your-resource-name>.openai.azure.com/openai/v1/live/sessions/{session_id}/attach
 ```
 
-The sideband connection receives the same JSON server events as the primary connection, and any commands it sends enter the same session stream.
+The session is already running, so don't send `session.start` again. The sideband connection receives the same JSON server events as the primary connection, and any commands it sends enter the same session stream. This is how a server monitors a browser-owned WebRTC session while audio stays on the media track.
 
 ## Close a session gracefully
 
@@ -134,7 +138,7 @@ ws.send(JSON.stringify({
 }));
 ```
 
-On close, the service stops accepting new work, drains active delegation and output work, finalizes the current projected turn, emits `session.closed` with cumulative usage, and closes the transport. Shutdown completes when work drains, with a 10-second maximum; new commands are rejected while closing.
+On close, the service stops accepting new work, drains active delegation and output work, and emits `session.closed` with the final cumulative usage and a `reason`. New commands are rejected while closing. Read the final `usage` from `session.closed`; a transport close without that event leaves final usage unconfirmed.
 
 ## Related content
 
