@@ -67,7 +67,7 @@ The models also support speech translation across all source and target language
 GPT-Live supports three transports:
 
 - **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
-- **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-web-rtc.md).
+- **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-webrtc.md).
 - **SIP**: SIP is a supported connection transport. Detailed GPT-Live SIP procedures aren't included yet.
 
 ## Choose a voice architecture
