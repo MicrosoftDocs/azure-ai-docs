@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/20/2026
+ms.date: 09/03/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -31,7 +31,7 @@ If you don't have an existing virtual network, the Standard Setup with private n
     - The built-in role needed is **Role Based Access Administrator**.
     - Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     - The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
-- [Python 3.9 or later](https://www.python.org/)
+- [Python 3.10 or later](https://www.python.org/)
 - Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Foundry User** [RBAC role](../../concepts/rbac-foundry.md) for the project.
     - The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**
 - Register providers. The following providers must be registered:

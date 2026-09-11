@@ -104,7 +104,7 @@ To use searchable PDF, make a `POST` request using the `Analyze` operation and s
 
 ```bash
 
-     POST {endpoint}/documentintelligence/documentModels/prebuilt-read:analyze?_overload=analyzeDocument&api-version=2024-11-30&output=pdf
+     POST {endpoint}/documentintelligence/documentModels/prebuilt-read:analyze?api-version=2024-11-30&output=pdf
      {...}
      202
 ```

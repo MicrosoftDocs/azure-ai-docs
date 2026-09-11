@@ -7,7 +7,7 @@ ms.reviewer: nbrady
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/03/2026
 ms.custom:
   - classic-and-new
   - build-2025
@@ -26,7 +26,7 @@ Microsoft Foundry has evolved through several naming and architectural changes. 
 
 - An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](create-projects.md).
-- **For SDK migration:** Python 3.9+ or .NET 8+, with `azure-ai-projects` 2.x and `openai` packages installed.
+- **For SDK migration:** Python 3.10+ or .NET 8+, with `azure-ai-projects` 2.x and `openai` packages installed.
 - **For resource upgrade:** Owner or Contributor role on the Azure OpenAI resource you plan to upgrade.
 
 > [!IMPORTANT]
@@ -137,7 +137,7 @@ These features are available only in the current Foundry portal:
 | --- | --- |
 | Responses API | GA |
 | Agents v2 (Responses API) | GA |
-| Tool catalog (1,400+ tools) | GA  (check label on individual tools in the catalog to determine if they are GA or Preview)
+| Tool catalog (1,400+ tools) | GA  (check label on individual tools in the catalog to determine if they're GA or Preview) |
 | Multi-agent workflows | Preview |
 | Agent memory | Preview |
 | Agent publishing to M365/Teams | GA |

@@ -16,18 +16,12 @@ ai-usage: ai-assisted
 
 # Evaluate automated machine learning experiment results
 
-Automated machine learning (AutoML) records metrics and charts for the models
-created during a training job. Use these results together to compare models,
-select an operating threshold, and identify errors that an aggregate score
-might hide.
+Automated machine learning (AutoML) records metrics and charts for the models you create during a training job. Use these results together to compare models, select an operating threshold, and identify errors that an aggregate score might hide.
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, [create a free Azure
-  account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An AutoML job created with [Azure Machine Learning
-  studio](how-to-use-automated-ml-for-ml-models.md) or the [Azure Machine
-  Learning CLI or Python SDK](how-to-configure-auto-train.md).
+- An Azure subscription. If you don't have one, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An AutoML job created with [Azure Machine Learning studio](how-to-use-automated-ml-for-ml-models.md) or the [Azure Machine Learning CLI or Python SDK](how-to-configure-auto-train.md).
 
 ## Choose evaluation results
 
@@ -115,8 +109,7 @@ Micro recall aggregates counts before calculating the result:
 `micro_recall = sum(TP) / (sum(TP) + sum(FN))`. It gives each sample equal
 weight, so majority classes can dominate. In single-label multiclass
 classification, micro recall equals overall accuracy. Weighted averaging
-calculates a metric for each class and weights the results by class support.
-For more information, see the [scikit-learn guidance for multiclass and
+calculates a metric for each class and weights the results by class support. For more information, see the [scikit-learn guidance for multiclass and
 multilabel metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#multiclass-and-multilabel-classification).
 
 AutoML calculates normalized macro recall as
