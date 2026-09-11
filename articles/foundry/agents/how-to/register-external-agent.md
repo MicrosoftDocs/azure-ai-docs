@@ -304,7 +304,7 @@ const otelAgentId = definition.otel_agent_id;
 
 ### Create and run the evaluation
 
-Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. External agents support evaluation of individual interactions and complete multi-turn conversations.
+Use the `otel_agent_id` to run a trace evaluation over the agent's collected telemetry. External agents support trace-based evaluation of individual interactions. You can also evaluate multi-turn conversations by conversation ID when the agent emits a stable `gen_ai.conversation.id` and the required message attributes on its `invoke_agent` spans.
 
 For walkthroughs that show how to create an evaluation, configure testing criteria, and interpret results, see:
 
