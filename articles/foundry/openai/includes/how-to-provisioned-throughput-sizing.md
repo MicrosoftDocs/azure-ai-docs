@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/21/2026
+ms.date: 09/11/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -20,9 +20,11 @@ If you're new to provisioned throughput, start with [What is provisioned through
 - Familiarity with the concepts in [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md).
 - An estimate of your workload characteristics: expected peak requests per minute (RPM), average prompt size in tokens, and average response size in tokens.
 
-## Estimate PTUs required
+## Estimate PTUs for text-only model
 
-Two approaches are available for estimating the number of PTUs required for a workload:
+For a text model, the workload always includes *text output tokens.* Input can consist of *text input tokens*, *image input tokens*, or a combination of both. This section covers how to estimate the number of PTUs required for a workload when you use a text model. For how to estimate the number of PTUs for an image model, see [Estimate PTUs for image model](#estimate-ptus-for-image-model).
+
+Two approaches are available for estimating the PTUs required for a workload:
 
 - Use the [sizing formulas](#estimate-manually) for full control over the calculation
 - Use the [Foundry capacity calculator](#use-the-capacity-calculator) for a guided estimate. 
@@ -35,7 +37,7 @@ Both approaches use per-model values from the [deployment parameters tables](#de
 
 ### Estimate manually
 
-You can estimate the PTUs your workload requires using the model-specific values from the [deployment parameters tables](#deployment-parameters-and-throughput-values-by-model) and information about your expected traffic as follows:
+You can estimate the PTUs your workload requires by using the model-specific values from the [deployment parameters tables](#deployment-parameters-and-throughput-values-by-model) and information about your expected traffic as follows:
 
 
 | Input | Description |
@@ -53,8 +55,8 @@ The manual calculation of PTUs converts your expected token volume into a single
 
 **Formulas:**
 
-- Input TPM = Peak RPM × average prompt size (tokens)
-- Output TPM = Peak RPM × average response size (tokens)
+- Input TPM = Peak RPM × average prompt size
+- Output TPM = Peak RPM × average response size
 - Normalized TPM = (input TPM × (1 − cache rate)) + (output-to-input ratio × output TPM)
 - PTUs required = normalized TPM ÷ Input TPM per PTU
 
@@ -119,7 +121,7 @@ Some models use an output-to-input ratio that differs from their global standard
 
 ## Deployment parameters and throughput values by model
 
-The tables in this section list the throughput and deployment parameters for each supported model. To understand what the parameters in each row mean, see the [Appendix](#appendix).
+The tables in this section list the throughput and deployment parameters for each supported model. To understand what the parameters in each row mean, see [Understand deployment parameters](#understand-deployment-parameters).
 
 ### Latest Azure OpenAI models
 
@@ -127,21 +129,23 @@ The tables in this section list the throughput and deployment parameters for eac
 >
 > Long-context requests that exceed 128K prompt tokens aren't supported for `gpt-5.4`, `gpt-4.1`, `gpt-4.1-mini`, and `gpt-4.1-nano`. The system routes these requests to [spillover deployments](../how-to/spillover-traffic-management.md), if available. Otherwise, the requests return an error.
 
-| Topic | **gpt-6-astra**,<br>**2026-09-03** | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Output-to-input ratio | See [GPT-6 Astra sizing guidance](#normalized-token-pricing-for-gpt-6-astra) below | 6 | 6 | 6 | 6 | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Topic | **gpt-6-astra**,<br>**2026-09-03** | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-image-2**,<br>**2026-04-21** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 100 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 100 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 100  | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 100 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Output-to-input ratio | See [GPT-6 Astra sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | 6 | 6 | 6 | 6 | See [GPT-image-2 sizing guidance](#estimate-ptus-for-image-model) | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Latency target value<sup>1</sup> | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 50 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
+<sup>2</sup> Latency SLA not defined.
+
 #### Normalized token pricing for GPT-6 Astra
 
-With GPT-6 Astra, PTUs support prompt cache breakpoints, enabling higher cache hit rates and a more deterministic caching experience. Cache reads and writes significantly increase cache hit rates, especially for agentic workloads. As cache reuse grows, GPT-6 Astra uses normalized tokens to align PTU throughput accounting with Global Standard pay-as-you-go pricing.
+With GPT-6 Astra, PTUs support [prompt cache breakpoints](../how-to/prompt-caching.md#configure-prompt-cache-breakpoints), enabling higher cache hit rates and a more deterministic caching experience. Cache reads and writes significantly increase cache hit rates, especially for agentic workloads. As cache reuse grows, GPT-6 Astra uses normalized tokens to align PTU throughput accounting with Global Standard pay-as-you-go pricing.
 
 > [!NOTE]
 >
@@ -223,7 +227,7 @@ The following Fireworks on Microsoft Foundry models support both Global and US D
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
-### Appendix
+## Understand deployment parameters
 
 Each row in the tables corresponds to one of the following parameters:
 
@@ -233,10 +237,76 @@ Each row in the tables corresponds to one of the following parameters:
 | **Global & data zone provisioned scale increment** | The PTU increment in which you can increase or decrease a Global Provisioned or Data Zone Provisioned deployment. Continuing with the gpt-5.2 example, an increment of 5 means deployments can be sized at 15, 20, 25, and so on. |
 | **Regional provisioned minimum deployment** | The smallest number of PTUs you can deploy for a Regional Provisioned deployment. For example, gpt-5.2 requires a minimum regional provisioned deployment of 50 PTUs. |
 | **Regional provisioned scale increment** | The PTU increment for Regional Provisioned deployments. Continuing with the gpt-5.2 example, an increment of 50 means deployments can be sized at 50, 100, 150, and so on. |
-| **Input TPM per PTU** | The maximum input tokens per minute (TPM) that one PTU supports. Use this value when [estimating PTUs](#estimate-ptus-required). |
+| **Input TPM per PTU** | The maximum input tokens per minute (TPM) that one PTU supports. Use this value when [estimating PTUs](#estimate-ptus-for-text-only-model). |
 | **Output-to-input ratio** | The weight applied to output tokens when estimating PTU requirements. This value reflects the model's global standard price ratio between output and input tokens, with [exceptions for some models](#models-with-a-non-standard-output-to-input-ratio). For example, a ratio of 8 means one output token counts as eight input tokens toward the model's TPM limit. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/), and [DeepSeek model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/) for current pricing. |
 | **Latency target value** | The expected request latency at the stated PTU utilization level. Expressed as a percentile threshold—for example, "99% > 50 TPS" means 99% of requests are processed at more than 50 tokens per second. |
 
+## Estimate PTUs for image model
+
+Image models extend the PTU sizing methodology used with text-only models because a workload for an image model contains *image output tokens* in addition to *text input tokens* and *image input tokens*. Each of these token types consumes PTU capacity differently. 
+
+To size a deployment, you must first convert all token types into a common unit called **normalized tokens**, which represent the equivalent number of text input tokens before estimating PTU requirements.
+
+> [!NOTE]
+> Before using Azure Monitor to monitor a deployed image model, review [Limitations and known issues for image model metrics](../how-to/provisioned-get-started.md#limitations-and-known-issues-for-image-model-metrics).
+
+### Estimate PTUs manually
+
+Estimate the PTUs your workload requires by using the throughput values for your image model and information about your expected traffic as follows:
+
+#### Traffic information
+
+| Input | Description |
+| --- | --- |
+| **Peak RPM** | The expected peak number of requests per minute sent to the model. |
+| **Text input tokens** | The average number of text input tokens per request. |
+| **Image input tokens**<sup>1</sup> | The average number of image input tokens per request. |
+| **Image output tokens**<sup>2</sup> | The average number of image output tokens per request. |
+
+<sup>1</sup> To estimate **image input tokens** per request, refer to the OpenAI documentation: [Image input cost calculator](https://developers.openai.com/api/docs/guides/images-vision?api-mode=responses#image-input-cost-calculator). 
+
+<sup>2</sup> To estimate **image output tokens** per request, refer to the OpenAI documentation: [Image output token calculator](https://developers.openai.com/api/docs/guides/image-generation#gpt-image-25-and-gpt-image-2-output-tokens).
+
+#### Throughput values for image model
+
+GPT-image-2 uses the following throughput values:
+
+| Parameter | Value |
+| --- | --- |
+| Text input tokens per minute per PTU | 1,200 |
+| Image input tokens per minute per PTU | 750 |
+| Image-to-text conversion factor<sup>1</sup> | 1.6 |
+| Image output-to-image-input token cost ratio<sup>2</sup> | 3.75 |
+
+<sup>1</sup> The image-to-text conversion factor is `Text input tokens per minute per PTU` ÷ `Image input tokens per minute per PTU`. This factor means that one image token uses the same PTU capacity as about `1.6` text input tokens.
+
+<sup>2</sup> Image output tokens have a higher weight than image input tokens because image generation needs extra processing. The image output weighting happens before converting to text-token equivalents.
+
+#### Normalized TPM
+
+The manual calculation converts image input and output tokens to equivalent text input tokens. The resulting *normalized TPM* determines the number of PTUs required.
+
+- Normalized tokens per request = Text input tokens + (image input tokens × 1.6) + (image output tokens × 3.75 × 1.6)
+- Normalized TPM = Normalized tokens per request × Peak RPM
+- PTUs required = Normalized TPM ÷ 1,200
+
+Round the raw PTU requirement up to the nearest deployment increment or to the minimum deployment size, whichever is larger.
+
+**Worked example:**
+
+Suppose your application sends 10 requests per minute, with 2,000 text input tokens, 1,229 image input tokens, and 7,024 image output tokens per request. GPT-image-2 has an image-to-text conversion factor of 1.6, an image output-to-input ratio of 3.75, and 1,200 normalized TPM per PTU.
+
+- Normalized tokens per request = 2,000 + (1,229 × 1.6) + (7,024 × 3.75 × 1.6) = 46,110.4
+- Normalized TPM = 46,110.4 × 10 = 461,104
+- PTUs required = 461,104 ÷ 1,200 = 384.25 (**400 PTUs** rounded up to the nearest 100 PTUs, matching the scale increment for GPT-image-2.)
+
+In summary, the PTUs needed for this example workload are as follows:
+
+| Peak RPM | Text input tokens | Image input tokens | Image output tokens | Normalized TPM | Estimated PTUs | Deployment PTUs<sup>1</sup> |
+|----------|-------------------|--------------------|---------------------|----------------|----------------|-----------------------------|
+| 10       | 2,000             | 1,229              | 7,024               | 461,104        | 384.25         | 400                         |
+
+<sup>1</sup> Rounded up to the 100-PTU scale increment for GPT-image-2.
 
 ## Related content
 
