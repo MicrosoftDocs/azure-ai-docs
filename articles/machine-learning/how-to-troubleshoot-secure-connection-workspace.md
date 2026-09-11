@@ -105,7 +105,7 @@ Check whether DNS over HTTPS is enabled in your web browser. DNS over HTTPS can 
 
         :::image type="content" source="./media/how-to-troubleshoot-secure-connection-workspace/disable-dns-over-http.png" alt-text="Screenshot of the use secure DNS setting in Microsoft Edge.":::
 
-    For managed devices, set the [DnsOverHttpsMode policy](https://learn.microsoft.com/deployedge/microsoft-edge-policies#dnsoverhttpsmode) to `off`.
+    For managed devices, set the [DnsOverHttpsMode policy](/deployedge/microsoft-edge-policies#dnsoverhttpsmode) to `off`.
 
 ## Proxy configuration
 
