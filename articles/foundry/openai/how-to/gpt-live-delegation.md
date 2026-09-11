@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Delegate work in GPT-Live
 
-[!INCLUDE [preview-feature](../includes/preview-feature.md)]
 
 When a GPT-Live conversation needs search, deeper reasoning, or another action that the live model can't complete on its own, it delegates that work while the live interaction continues. GPT-Live supports two delegation modes, configured in the `delegation` field of [session configuration](gpt-live.md#session-configuration).
 

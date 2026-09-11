@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # GPT-Live event API reference
 
-[!INCLUDE [preview-feature](includes/preview-feature.md)]
 
 This article is the full event reference for GPT-Live. For task-based guidance, see [Use GPT-Live for real-time voice](how-to/gpt-live.md) and [Delegate work in GPT-Live](how-to/gpt-live-delegation.md).
 

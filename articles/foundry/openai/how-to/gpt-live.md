@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Use GPT-Live for real-time voice
 
-[!INCLUDE [preview-feature](../includes/preview-feature.md)]
 
 This article shows how to connect to GPT-Live over WebSocket, configure a session, stream audio, and read the events GPT-Live returns. For an overview of GPT-Live and its capabilities, see [What is GPT-Live?](../concepts/gpt-live.md)
 
