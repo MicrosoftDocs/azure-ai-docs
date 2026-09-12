@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: SergeyMenshykh
 ms.topic: article
 ms.author: semenshi
-ms.date: 07/08/2026
+ms.date: 09/12/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Skills
@@ -897,7 +898,7 @@ Skills can be discovered from MCP (Model Context Protocol) servers that expose s
 MCP-based skills support two index entry types:
 
 - **`skill-md`** - The skill's `SKILL.md` and sibling resources are fetched on demand from the MCP server.
-- **`archive`** - The skill is distributed as a single packaged archive (ZIP, TAR, or gzip-compressed TAR) that is downloaded and unpacked locally.
+- **`archive`** - The skill is distributed as a ZIP archive that is downloaded and unpacked locally.
 
 ### Basic usage
 
@@ -972,7 +973,7 @@ var skillsProvider = new AgentSkillsProviderBuilder()
 > [!NOTE]
 > MCP-based skills are experimental and may change in future releases. Using `MCPSkillsSource` emits a `FutureWarning` under the `MCP_SKILLS` feature flag.
 
-Skills can be discovered from MCP (Model Context Protocol) servers that expose skill resources under the `skill://` URI scheme. The MCP server advertises skills via a `skill://index.json` discovery document, and the framework fetches each skill's `SKILL.md` body on demand via `resources/read`.
+Skills can be discovered from MCP (Model Context Protocol) servers that expose skill resources under the `skill://` URI scheme. The MCP server advertises skills via a `skill://index.json` discovery document. Python supports `skill-md` entries fetched on demand through `resources/read` and `archive` entries supplied as ZIP files.
 
 Wrap an MCP `ClientSession` in `MCPSkillsSource` and pass it to `SkillsProvider`:
 
@@ -991,7 +992,7 @@ async with streamable_http_client(url=mcp_url) as (read, write, _), ClientSessio
     await session.initialize()
 
     # MCPSkillsSource reads skill://index.json and creates one skill per
-    # skill-md entry; SKILL.md bodies are fetched on demand.
+    # supported entry; skill-md bodies are fetched on demand.
     skills_provider = SkillsProvider(MCPSkillsSource(client=session))
 
     client = FoundryChatClient(
@@ -1009,8 +1010,12 @@ async with streamable_http_client(url=mcp_url) as (read, write, _), ClientSessio
         response = await agent.run("...")
 ```
 
+For archive entries, use an `application/zip` media type or a `.zip` URL suffix. TAR, `.tar.gz`, `.tgz`, and other archive formats are skipped as unsupported so the remaining index entries can still load. Repackage existing non-ZIP skills as ZIP; no caller-side code change is required.
+
+`MCPSkillsSource` extracts ZIP content in memory. Use its `archive_*` constructor options to restrict resource extensions, search depth, file count, download size, and total uncompressed size. Scripts in MCP archives are available only as read-only resources and are never exposed as runnable scripts.
+
 > [!NOTE]
-> The Python `MCPSkillsSource` supports only `skill-md` index entries (index entries of any other type are silently skipped). Unlike the .NET implementation, it does **not** support archive-type skills. If `skill://index.json` is absent, unreadable, empty, or fails to parse, the source returns an empty list.
+> If `skill://index.json` is absent, unreadable, empty, or fails to parse, the source returns an empty list. Index entry types other than `skill-md` and `archive` are skipped.
 
 > [!IMPORTANT]
 > An external MCP server controls what skill content - including instructions and scripts the agent may run - reaches the agent. Only connect `MCPSkillsSource` to servers you have vetted and trust, and treat their responses as untrusted input.
