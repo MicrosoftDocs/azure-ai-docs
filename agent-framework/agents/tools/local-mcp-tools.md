@@ -230,7 +230,9 @@ if __name__ == "__main__":
     asyncio.run(http_mcp_example())
 ```
 
-For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During each tool call, the provider receives that run's `function_invocation_kwargs`.
+For authenticated HTTP endpoints, use `static_headers` for fixed credentials or `header_provider` for values derived from each run. Both paths add headers only to requests for the configured origin and remove them from cross-origin redirects. Fixed headers are copied when the tool is created and don't serialize concurrent calls. When both options supply the same header, the dynamic value from `header_provider` takes precedence.
+
+During each tool call, `header_provider` receives that run's `function_invocation_kwargs`.
 
 When a run lazily connects the tool, connection-lifetime requests reuse the kwargs from the run that established the connection. These requests include the initialize handshake, tool and prompt discovery, and background pings. Later runs don't replace the connection kwargs until the tool closes.
 

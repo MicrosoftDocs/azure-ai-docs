@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 05/27/2026
+ms.date: 09/12/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Shared State
@@ -88,6 +89,8 @@ Console.WriteLine($"Total calls: {sharedState["callCount"]}");
 
 The following example shows how to use a middleware container to share state across middleware components:
 
+After `call_next()` returns, innermost function middleware receives the parsed tool result as `list[Content]`. If the tool uses `result_parser=SKIP_PARSING`, it receives the raw return value instead. Outer middleware sees whatever inner middleware leaves in `context.result`. When overriding a parsed result, assign a new `list[Content]` or a string; other values, including a single `Content` object, are converted to one stringified text item.
+
 ```python
 # Copyright (c) Microsoft. All rights reserved.
 
@@ -97,6 +100,7 @@ from random import randint
 from typing import Annotated
 
 from agent_framework import (
+    Content,
     FunctionInvocationContext,
     tool,
 )
@@ -171,10 +175,18 @@ class MiddlewareContainer:
         # Call the next middleware/function
         await call_next()
 
-        # After function execution, enhance the result using shared state
+        # This middleware is innermost, so the result is list[Content].
         if context.result:
-            enhanced_result = f"[Call #{self.call_count}] {context.result}"
-            context.result = enhanced_result
+            context.result = [
+                (
+                    Content.from_text(
+                        f"[Call #{self.call_count}] {item.text}"
+                    )
+                    if item.type == "text"
+                    else item
+                )
+                for item in context.result
+            ]
             print("[ResultEnhancer] Enhanced result with call number")
 
 
