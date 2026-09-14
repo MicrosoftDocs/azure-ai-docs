@@ -431,7 +431,7 @@ manifest URL with the sample you want to use.
 mkdir my-agent-framework-agent
 cd my-agent-framework-agent
 
-azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/01_basic/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/agent.manifest.yaml
 ```
 
 ::: zone-end
