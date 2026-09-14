@@ -346,9 +346,6 @@ items:
     - name: Image prompt transformation
       displayName: Prompt transformation
       href: ../../openai/concepts/prompt-transformation.md
-    - name: Image to text models
-      displayName: How to use image-to-text models in the model catalog
-      href: ../../../foundry-classic/how-to/use-image-models.md?context=/azure/foundry/context/context
     - name: Video generation 
       displayName: Video generation with Sora
       href: ../../openai/concepts/video-generation.md

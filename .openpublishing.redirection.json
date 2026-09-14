@@ -2984,6 +2984,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path": "articles/foundry-classic/how-to/use-image-models.md",
+      "redirect_url": "/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/foundry/foundry-models/how-to/configure-marketplace.md",
       "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
       "redirect_document_id": false
