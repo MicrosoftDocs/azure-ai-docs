@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/11/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -241,7 +241,8 @@ Some endpoints protect the agent card path itself and reject unauthenticated req
 
 ```json
 {
-  "type": "a2a_preview",
+  "type": "a2a",
+  "a2a_version": "1.0",
   "base_url": "https://<a2a-endpoint>",
   "project_connection_id": "<connection-id>",
   "send_credentials_for_agent_card": true
