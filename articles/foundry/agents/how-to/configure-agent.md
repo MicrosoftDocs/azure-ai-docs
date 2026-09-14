@@ -5,7 +5,7 @@ description: "Learn how to configure your agent's stable endpoint, select the ac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 08/28/2026
+ms.date: 09/11/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -75,7 +75,7 @@ An agent can expose multiple protocols simultaneously:
 | **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/responses` |
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
-| **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+| **A2A v1.0 (GA) and v0.3 (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
 | **MCP (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/mcp` |
 
 To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).

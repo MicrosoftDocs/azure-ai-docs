@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/19/2026
+ms.date: 09/11/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -112,7 +112,7 @@ The endpoint is available immediately after deployment—publishing isn't requir
 - **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 - **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/{project}/agents/{name}/endpoint/protocols/invocations_ws?api-version=v1
-- **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
+- **A2A v1.0 (GA) and v0.3 (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
 Which endpoints are active depends on the protocols declared in the agent version definition. Set this definition in the `azure.ai.agent` service in `azure.yaml` when using `azd`, or via `protocol_versions` when using the SDK.
 
