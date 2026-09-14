@@ -8,8 +8,9 @@ ms.subservice: mlops
 ms.author: scottpolly
 author: lgayhardt
 ms.reviewer: jturuk
-ms.date: 09/11/2025
+ms.date: 09/14/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
 # Schedule machine learning pipeline jobs
@@ -106,7 +107,7 @@ To open the schedule creation wizard, select **Schedule** > **Create new schedul
 
 #### Parameters
 
-- `frequency` **(required)** is the time unit on which basis the schedule fires. Can be `minutes`, `hours`, `days`, `weeks`, or `months`.
+- `frequency` **(required)** is the time unit on which basis the schedule fires. Can be `minute`, `hour`, `day`, `week`, or `month`.
 - `interval` **(required)** is the number of time units between schedule recurrences.
 - `schedule` (optional) defines the recurrence pattern, which can contain `hours`, `minutes`, and `weekdays`. If omitted, jobs trigger according to the logic of `start_time`, `frequency`, and `interval`.
   - When `frequency` is `day`, the pattern can specify `hours` and `minutes`.
