@@ -6,7 +6,7 @@ reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
 manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/14/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -68,46 +68,39 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
     az account get-access-token --scope https://ai.azure.com/.default
     ```
 
-  ## Set up the Microsoft Fabric connection
+## Set up the Microsoft Fabric connection
 
-  In the Foundry portal, add the Microsoft Fabric data agent tool to your
-  agent. You don't need to create the connection separately in the management
-  center. When you add the tool, Foundry prompts you for the Fabric data agent
-  information and creates the project connection.
+In the Foundry portal, add the Microsoft Fabric data agent tool to your agent. You don't need to create the connection separately in the management center. When you add the tool, Foundry prompts you for the Fabric data agent information and creates the project connection.
 
-  1. In Microsoft Fabric, open your data agent.
-  1. Copy the `workspace_id` and `artifact_id` values from the URL.
+1. In Microsoft Fabric, open your data agent.
+1. Copy the `workspace_id` and `artifact_id` values from the URL.
 
-    The URL path looks similar to `.../groups/<workspace_id>/aiskills/<artifact_id>...`. Both values are GUIDs.
+The URL path looks similar to `.../groups/<workspace_id>/aiskills/<artifact_id>...`. Both values are GUIDs.
 
-  1. In the Foundry portal, open your project.
-  1. Create or open an agent, and then add the **Microsoft Fabric data agent**
-     tool.
-  1. Enter the `workspace_id` and `artifact_id` values.
-  1. Complete the tool setup. Foundry creates the project connection.
-  1. Copy the connection **ID** from the tool configuration.
+1. In the Foundry portal, open your project.
+1. Create or open an agent, and then add the **Microsoft Fabric data agent** tool.
+1. Enter the `workspace_id` and `artifact_id` values.
+1. Complete the tool setup. Foundry creates the project connection.
+1. Copy the connection **ID** from the tool configuration.
 
-    Use the connection ID as the value for `FABRIC_PROJECT_CONNECTION_ID`. The value looks like `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryAccountName>/projects/<foundryProjectName>/connections/<connectionName>`.
+Use the connection ID as the value for `FABRIC_PROJECT_CONNECTION_ID`. The value looks like: `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryAccountName>/projects/<foundryProjectName>/connections/<connectionName>`.
 
-  ### Create the connection with the REST API
+### Create the connection with the REST API
 
-  To automate connection creation, send an Azure Resource Manager `PUT`
-  request. The caller needs the
-  `Microsoft.CognitiveServices/accounts/projects/connections/write`
-  permission on the Foundry project.
+To automate connection creation, send an Azure Resource Manager `PUT` request. The caller needs the `Microsoft.CognitiveServices/accounts/projects/connections/write` permission on the Foundry project.
 
-  Get an Azure Resource Manager access token:
+Get an Azure Resource Manager access token:
 
-  ```azurecli
+```azurecli
   az account get-access-token \
     --resource https://management.azure.com/ \
     --query accessToken \
     --output tsv
-  ```
+```
 
-  Use the token to create the project connection:
+Use the token to create the project connection:
 
-  ```http
+```http
   PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<foundry-account-name>/projects/<foundry-project-name>/connections/<connection-name>?api-version=2025-04-01-preview
   Authorization: Bearer <access-token>
   Content-Type: application/json
@@ -124,18 +117,17 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
       }
     }
   }
-  ```
+```
 
-  The response `id` property is the project connection ID. Use this value for
-  `FABRIC_PROJECT_CONNECTION_ID` in the agent samples.
+The response `id` property is the project connection ID. Use this value for `FABRIC_PROJECT_CONNECTION_ID` in the agent samples.
 
-  ## Identity passthrough and access control
+## Identity passthrough and access control
 
-  This integration uses identity passthrough (On-Behalf-Of). The Fabric tool runs queries by using the identity of the signed-in user.
+This integration uses identity passthrough (On-Behalf-Of). The Fabric tool runs queries by using the identity of the signed-in user.
 
-  - Give each end user access to the Fabric data agent and its underlying data sources, or the tool call fails.
-  - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
-  - For more information about how agent identity works, see [Agent identity](../../concepts/agent-identity.md).
+- Give each end user access to the Fabric data agent and its underlying data sources, or the tool call fails.
+- Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
+- For more information about how agent identity works, see [Agent identity](../../concepts/agent-identity.md).
 
 ## Usage support
 
@@ -146,10 +138,6 @@ The following table shows SDK and setup support.
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Create an agent with the Microsoft Fabric tool
-
-> [!NOTE]
-> - For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
-> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
 
@@ -326,7 +314,7 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 
 ### Expected output
 
-- The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
+The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
 
 ### Hosted agents
 
