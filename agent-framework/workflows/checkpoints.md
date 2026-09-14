@@ -539,6 +539,8 @@ Ensure that the storage location used for checkpoints is secured appropriately. 
 
 Agent Framework omits transient `raw_representation` values from framework-native objects before pickling and restores those fields as `None`. Any other unsupported type causes deserialization to fail with a `WorkflowCheckpointException`.
 
+Import a built-in orchestration class from `agent_framework.orchestrations` before loading a checkpoint that contains orchestration state. Loading the orchestration package registers its framework-owned types automatically, so you don't need to add them to `allowed_checkpoint_types`.
+
 To allow additional application-specific types, pass them via the `allowed_checkpoint_types` parameter using `"module:qualname"` format:
 
 ```python
