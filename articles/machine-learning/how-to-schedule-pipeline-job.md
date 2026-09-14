@@ -488,7 +488,7 @@ Use the following table to diagnose common issues with scheduled pipeline jobs.
 | Symptom | Cause | Resolution |
 |---------|-------|------------|
 | The schedule doesn't trigger jobs. | The schedule is disabled, or its `start_time` is in the future. | Confirm the schedule is enabled, and check `start_time`. Use [View schedule details](#view-schedule-details) to inspect the trigger. |
-| Triggered jobs fail after they previously succeeded. | The schedule author lost the permissions needed to submit the job, even when a managed identity is assigned. | Restore the author's job-submission permissions. See [Role-based access control (RBAC) support](#role-based-access-controls-rbac-support). |
+| Triggered jobs fail after they previously succeeded. | The schedule author lost the permissions needed to submit the job, even when a managed identity is assigned. | Restore the author's job-submission permissions. See [Role-based access control (RBAC) support](#role-based-access-control-rbac-support). |
 | No job runs on the 30th or 31st of some months. | Those days don't exist in every month. | Use a `cron` expression, or choose a day that exists in every month. |
 | `DAYS` or `MONTHS` values in a cron expression are ignored. | These fields aren't supported and are always treated as `*`. | Express the pattern by using the supported fields, or use a recurrence trigger. |
 
