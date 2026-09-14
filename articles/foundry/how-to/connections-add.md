@@ -54,7 +54,7 @@ Connections let you authenticate to Microsoft and other resources within your Fo
 |Serverless Model|✅|Serverless Model connections allow serverless API deployment. Connection creation is supported only through code.|
 |Azure Databricks|✅|Azure Databricks connections let Foundry Agents access workflows and Genie Spaces during runtime. Connection creation is supported only through code.|
 |SharePoint|✅|SharePoint is a Microsoft platform for document storage and collaboration. It lets agents access and manage organizational documents. Connection creation is supported only through code.|
-|Microsoft Fabric|✅|AI skills let you create conversational Q&A systems on Fabric using generative AI. Connection creation is supported only through code.|
+|Microsoft Fabric|✅|Fabric data agents let you create conversational Q&A systems over Fabric data. To create the connection, add the **Microsoft Fabric data agent** tool to an agent in the Foundry portal and provide the workspace and artifact IDs when prompted.|
 |Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
 |Azure APIM|✅|APIM supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
 |Model Gateway|✅|Model Gateway supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|

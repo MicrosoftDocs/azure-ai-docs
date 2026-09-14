@@ -70,7 +70,10 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
   ## Set up the Microsoft Fabric connection
 
-  Before you run the samples, create a project connection to your Fabric data agent.
+  In the Foundry portal, add the Microsoft Fabric data agent tool to your
+  agent. You don't need to create the connection separately in the management
+  center. When you add the tool, Foundry prompts you for the Fabric data agent
+  information and creates the project connection.
 
   1. In Microsoft Fabric, open your data agent.
   1. Copy the `workspace_id` and `artifact_id` values from the URL.
@@ -78,10 +81,11 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
     The URL path looks similar to `.../groups/<workspace_id>/aiskills/<artifact_id>...`. Both values are GUIDs.
 
   1. In the Foundry portal, open your project.
-  1. Select **Manage** in the upper-right navigation, select **Project details**, and then select the **Connected resources** tab.
-  1. Create a connection of type **Microsoft Fabric**.
+  1. Create or open an agent, and then add the **Microsoft Fabric data agent**
+     tool.
   1. Enter the `workspace_id` and `artifact_id` values.
-  1. Save the connection, and then copy the connection **ID**.
+  1. Complete the tool setup. Foundry creates the project connection.
+  1. Copy the connection **ID** from the tool configuration.
 
     Use the connection ID as the value for `FABRIC_PROJECT_CONNECTION_ID`. The value looks like `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryAccountName>/projects/<foundryProjectName>/connections/<connectionName>`.
 
