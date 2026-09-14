@@ -69,9 +69,9 @@ Developers can then view assessment results on each skill's details page in the 
 Assign Azure RBAC permissions so developers can discover skills from your private catalog in Foundry.
 
 1. Decide whether to grant access to a security group or to individual users.
-1. On the API Center resource, or on a parent resource group or subscription that contains it, assign at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) role (or an equivalent custom role) to those users.
+1. On the API Center resource, or on a parent resource group or subscription that contains the API Center, assign the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) role (or an equivalent custom role) to the users who need access to the skill catalog.
 
-The API Center role assignment and the Foundry project role assignment grant access to different resources. Assigning the Azure API Center Data Reader role only at the Foundry project scope doesn't grant access to the API Center catalog.
+The Azure API Center role assignment and the Foundry project role assignment control access to different resources. Assigning permissions only at the Foundry project scope does not grant access to API Center catalog data. Users must also have the appropriate Azure API Center role assignment at the API Center resource scope (or an inherited scope such as its parent resource group or subscription). The Azure API Center Data Reader role provides read access to Azure API Center data plane operations.
 
 Role assignments can take up to 24 hours to propagate. If developers don't see the catalog immediately, wait and try again.
 
