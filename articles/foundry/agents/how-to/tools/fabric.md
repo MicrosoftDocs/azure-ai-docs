@@ -89,6 +89,46 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
     Use the connection ID as the value for `FABRIC_PROJECT_CONNECTION_ID`. The value looks like `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryAccountName>/projects/<foundryProjectName>/connections/<connectionName>`.
 
+  ### Create the connection with the REST API
+
+  To automate connection creation, send an Azure Resource Manager `PUT`
+  request. The caller needs the
+  `Microsoft.CognitiveServices/accounts/projects/connections/write`
+  permission on the Foundry project.
+
+  Get an Azure Resource Manager access token:
+
+  ```azurecli
+  az account get-access-token \
+    --resource https://management.azure.com/ \
+    --query accessToken \
+    --output tsv
+  ```
+
+  Use the token to create the project connection:
+
+  ```http
+  PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<foundry-account-name>/projects/<foundry-project-name>/connections/<connection-name>?api-version=2025-04-01-preview
+  Authorization: Bearer <access-token>
+  Content-Type: application/json
+
+  {
+    "properties": {
+      "category": "CustomKeys",
+      "authType": "CustomKeys",
+      "credentials": {
+        "keys": {
+          "workspace_id": "<fabric-workspace-id>",
+          "artifact_id": "<fabric-data-agent-id>"
+        }
+      }
+    }
+  }
+  ```
+
+  The response `id` property is the project connection ID. Use this value for
+  `FABRIC_PROJECT_CONNECTION_ID` in the agent samples.
+
   ## Identity passthrough and access control
 
   This integration uses identity passthrough (On-Behalf-Of). The Fabric tool runs queries by using the identity of the signed-in user.
