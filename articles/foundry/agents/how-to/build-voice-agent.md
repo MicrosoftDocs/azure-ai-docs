@@ -3,7 +3,7 @@ title: "Build a voice agent with hosted agents"
 description: "Build and deploy a real-time voice agent on Foundry Agent Service using the invocations_ws WebSocket protocol."
 author: aahill
 ms.author: aahi
-ms.date: 08/06/2026
+ms.date: 08/17/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -193,6 +193,8 @@ Voice agents follow the same deployment flow as any hosted agent. The only diffe
 
 When you create the agent version, include `invocations_ws` in `protocol_versions`. You can declare it alone or alongside `responses` and `invocations`.
 
+# [Python](#tab/python)
+
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -226,6 +228,36 @@ agent = project.agents.create_version(
     ),
 )
 ```
+
+# [C#](#tab/csharp)
+
+Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri("https://<resource>.services.ai.azure.com/api/projects/<project>"),
+    tokenProvider: new DefaultAzureCredential());
+
+// Declare the invocations_ws protocol for full-duplex voice streaming.
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-voice-agent:v1"),
+    EnvironmentVariables = { ["MODEL_DEPLOYMENT_NAME"] = "gpt-realtime" },
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-voice-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Created hosted agent: {agent.Name}, version: {agent.Version}");
+```
+
+---
 
 For the full deployment flow (build, push, RBAC, polling for status), see [Deploy a hosted agent](deploy-hosted-agent.md).
 

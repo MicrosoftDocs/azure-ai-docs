@@ -11,6 +11,7 @@ ms.subservice: automl
 ms.topic: faq
 ms.custom: automl, sdkv2
 ms.date: 03/08/2025
+ai-usage: ai-assisted
 ---
 
 # Frequently asked questions about forecasting in AutoML
@@ -97,7 +98,7 @@ AutoML's forecasting models all require that training data has regularly spaced 
 
 The primary metric is important because its value on validation data determines the best model during [sweeping and selection](./concept-automl-forecasting-sweeping.md). Normalized root mean squared error (NRMSE) and normalized mean absolute error (NMAE) are usually the best choices for the primary metric in forecasting tasks.
 
-To choose between them, note that NRMSE penalizes outliers in the training data more than NMAE because it uses the square of the error. NMAE might be a better choice if you want the model to be less sensitive to outliers. For more information, see [Regression and forecasting metrics](./how-to-understand-automated-ml.md#regressionforecasting-metrics).
+To choose between them, note that NRMSE penalizes outliers in the training data more than NMAE because it uses the square of the error. NMAE might be a better choice if you want the model to be less sensitive to outliers. For more information, see [Regression and forecasting metrics](./how-to-understand-automated-ml.md#regression-and-forecasting-metric-reference).
 
 > [!NOTE]
 > We don't recommend using the R2 score, or _R_<sup>2</sup>, as a primary metric for forecasting.

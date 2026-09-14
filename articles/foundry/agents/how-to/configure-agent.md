@@ -169,6 +169,36 @@ with project_client:
     print(f"Agent endpoint configured for agent: {patched_agent.name}")
 ```
 
+#### [C# SDK](#tab/csharp)
+
+Install the prerelease SDK with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`. The prerelease package includes endpoint configuration.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Pin 100% of traffic to a specific agent version.
+var endpointConfig = new AgentEndpointConfiguration
+{
+    VersionSelector = new VersionSelector(new[]
+    {
+        new FixedRatioVersionSelectionRule(agentVersion: "2", trafficPercentage: 100)
+    })
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentEndpoint = endpointConfig });
+Console.WriteLine($"Agent endpoint configured for agent: {patched.Value.Name}");
+```
+
 #### [JavaScript/TypeScript SDK](#tab/javascript)
 
 ```typescript
@@ -281,6 +311,42 @@ with project_client:
         agent_endpoint=endpoint_config,
     )
     print(f"Protocols and authorization updated for agent: {patched_agent.name}")
+```
+
+#### [C# SDK](#tab/csharp)
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Enable protocols and set inbound authorization schemes.
+var endpointConfig = new AgentEndpointConfiguration
+{
+    ProtocolConfiguration = new ProtocolConfiguration
+    {
+        Responses = new ResponsesProtocolConfiguration(),
+        Activity = new ActivityProtocolConfiguration(),
+        Invocations = new InvocationsProtocolConfiguration(),
+        A2a = new A2AProtocolConfiguration(),
+    },
+    AuthorizationSchemes =
+    {
+        new EntraAuthorizationScheme(),
+        new BotServiceRbacAuthorizationScheme(),
+    },
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentEndpoint = endpointConfig });
+Console.WriteLine($"Protocols and authorization updated for agent: {patched.Value.Name}");
 ```
 
 #### [JavaScript/TypeScript SDK](#tab/javascript)
@@ -434,6 +500,39 @@ patched_agent = project_client.agents.update_details(
     ),
 )
 print(f"Added an agent card to: {patched_agent.name}")
+```
+
+#### [C# SDK](#tab/csharp)
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Add an agent card that describes the agent's skills to consumers.
+var card = new AgentCard(version: "1.0.0", skills: new[]
+{
+    new AgentCardSkill(id: "competitor-analysis", name: "Competitor Analysis")
+    {
+        Description = "Analyzes competitor products and market positioning.",
+        Examples = { "Compare our pricing with a competitor." },
+        Labels = { "research", "analysis", "market-intel" },
+    }
+})
+{
+    Description = "A competitive intelligence analyst.",
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentCard = card });
+Console.WriteLine($"Added an agent card to: {patched.Value.Name}");
 ```
 
 #### [JavaScript/TypeScript SDK](#tab/javascript)

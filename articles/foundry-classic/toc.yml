@@ -4,12 +4,12 @@ items:
 - name: What is Microsoft Foundry (classic) portal?
   href: what-is-foundry.md
 - name: Get started
-  expanded: true
   items:
-    - name: Quickstart
-      href: quickstarts/get-started-code.md  
-    - name: Microsoft Foundry SDKs
-      href: how-to/develop/sdk-overview.md
+  - name: Quickstart
+    href: quickstarts/get-started-code.md
+  - name: Microsoft Foundry SDKs
+    href: how-to/develop/sdk-overview.md
+  expanded: true
 - name: Models
   href: toc-files/models/toc.yml
 - name: Foundry Tools
@@ -18,8 +18,8 @@ items:
   href: agents/toc.yml
 - name: Solutions
   href: toc-files/solutions/toc.yml
-- name: Observability 
-  href: toc-files/observability/toc.yml              
+- name: Observability
+  href: toc-files/observability/toc.yml
 - name: Optimizations
   href: toc-files/optimizations/toc.yml
 - name: Setup and configure

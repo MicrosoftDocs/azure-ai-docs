@@ -1,6 +1,6 @@
 ---
 title: "Deploy a hosted agent"
-description: "Deploy your containerized agent code to Foundry Agent Service using the Python SDK, JavaScript/TypeScript SDK, or REST API."
+description: "Deploy your containerized agent code to Foundry Agent Service using the Python, .NET, or JavaScript/TypeScript SDK, or the REST API."
 author: aahill
 ms.author: aahi
 ms.date: 08/17/2026
@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-clients
 
 # Deploy a hosted agent
 
-This article shows you how to deploy a containerized agent to Foundry Agent Service by using the Azure Developer CLI (`azd`), the Python SDK, or the REST API. Choose a deployment method by using the selector at the top of the article. Use the SDK or REST approaches when you want to manage agent deployments directly from your own applications or services.
+This article shows you how to deploy a containerized agent to Foundry Agent Service by using the Azure Developer CLI (`azd`), the Python, .NET, or JavaScript/TypeScript SDK, or the REST API. Choose a deployment method by using the selector at the top of the article. Use the SDK or REST approaches when you want to manage agent deployments directly from your own applications or services.
 
 If you're deploying for the first time or want a guided walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md). The **Azure Developer CLI (azd)** and **VS Code extension** handle building, pushing, versioning, and RBAC configuration automatically.
 
@@ -473,6 +473,188 @@ For more complete examples, see the [Hosted agent samples](https://github.com/mi
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+## Deploy using the .NET SDK
+
+Use the SDK when you want to manage agent deployments directly from .NET code.
+
+### Additional prerequisites
+
+* [.NET 10 SDK or later](https://dotnet.microsoft.com/download/dotnet/10.0)
+* A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
+* **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
+* The Azure AI Projects SDK. Install the prerelease package for the hosted-agent APIs:
+
+    ```dotnetcli
+    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Extensions.OpenAI
+    dotnet add package Azure.Identity
+    ```
+
+### Build and push your container image
+
+1. Build your Docker image:
+
+    ```bash
+    docker build --platform linux/amd64 -t myagent:v1 .
+    ```
+
+    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/csharp/getting-started-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
+
+1. Push to Azure Container Registry:
+
+    ```bash
+    az acr login --name myregistry
+    docker tag myagent:v1 myregistry.azurecr.io/myagent:v1
+    docker push myregistry.azurecr.io/myagent:v1
+    ```
+
+> [!TIP]
+> Use unique image tags instead of `:latest` for reproducible deployments.
+
+### Configure container registry permissions
+
+Grant your project's managed identity access to pull images:
+
+1. In the [Azure portal](https://portal.azure.com), go to your Foundry project resource.
+
+1. Select **Identity** and copy the **Object (principal) ID** under **System assigned**.
+
+1. Assign the **Container Registry Repository Reader** role to this identity on your container registry. See [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
+
+### Create a hosted agent version
+
+When you create a version, the platform automatically provisions the agent. There's no separate start step. The platform builds a container snapshot and makes the agent ready to serve requests.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+HostedAgentDefinition definition = new(cpu: "1", memory: "2Gi")
+{
+    Versions =
+    {
+        new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0"),
+    },
+    ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-image:tag"),
+};
+definition.EnvironmentVariables.Add("MODEL_DEPLOYMENT_NAME", "gpt-4o");
+
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    "my-agent", new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created: {agent.Name}, version: {agent.Version}");
+```
+
+To expose more than one protocol, add more `ProtocolVersionRecord` entries:
+
+```csharp
+Versions =
+{
+    new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0"),
+    new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0"),
+    new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0"),
+},
+```
+
+Key parameters:
+
+| Parameter | Description |
+| ----------- | ------------- |
+| `agentName` | Unique name (alphanumeric with hyphens, max 63 characters) |
+| `ContainerConfiguration` | Full Azure Container Registry image URL with tag |
+| `cpu` | CPU allocation (for example, `"1"`) |
+| `memory` | Memory allocation (for example, `"2Gi"`) |
+| `Versions` | Protocols the container exposes (`Responses`, `Invocations`, or both) |
+
+To set when session compute goes idle, see [Manage session idleness](manage-hosted-sessions.md#manage-session-idleness).
+
+### Poll for version status
+
+After creating a version, poll until the status is `Active` before invoking the agent. Provisioning typically takes less than one minute depending on image size.
+
+```csharp
+while (true)
+{
+    ProjectsAgentVersion versionInfo = agentsClient.GetAgentVersion("my-agent", agent.Version);
+    Console.WriteLine($"Status: {versionInfo.Status}");
+
+    if (versionInfo.Status == AgentVersionStatus.Active)
+    {
+        Console.WriteLine("Agent is ready!");
+        break;
+    }
+
+    if (versionInfo.Status == AgentVersionStatus.Failed)
+    {
+        Console.WriteLine("Provisioning failed.");
+        break;
+    }
+
+    Thread.Sleep(TimeSpan.FromSeconds(5));
+}
+```
+
+Version status values:
+
+| Status | Description |
+| -------- | ------------- |
+| `Creating` | Infrastructure provisioning in progress |
+| `Active` | Agent is ready to serve requests |
+| `Failed` | Provisioning failed - check the `Error` field for details |
+| `Deleting` | Version is being cleaned up |
+| `Deleted` | Version has been fully removed |
+
+### Invoke the agent
+
+After the version reaches `Active` status, use `GetProjectResponsesClientForAgentEndpoint` to create a Responses client bound to the agent's endpoint.
+
+For the **Responses** protocol:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ResponseResult response = responsesClient.CreateResponse("Hello! What can you do?");
+Console.WriteLine(response.GetOutputText());
+```
+
+For the **Invocations** protocol, call the invocations endpoint directly:
+
+```csharp
+using System.Net.Http.Json;
+using Azure.Core;
+
+var token = new DefaultAzureCredential()
+    .GetToken(new TokenRequestContext(["https://ai.azure.com/.default"]))
+    .Token;
+
+using HttpClient http = new();
+http.DefaultRequestHeaders.Authorization = new("Bearer", token);
+
+var url = $"{projectEndpoint}/agents/my-agent/endpoint/protocols/invocations?api-version=v1";
+HttpResponseMessage result = await http.PostAsJsonAsync(url, new { message = "Process this task" });
+Console.WriteLine(await result.Content.ReadAsStringAsync());
+```
+
+For more complete examples, see the [C# hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents).
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ## Deploy using the JavaScript/TypeScript SDK
@@ -765,6 +947,24 @@ Or delete the entire agent and all its versions. Use `force=True` to cascade-del
 
 ```python
 project.agents.delete(agent_name="my-agent", force=True)
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+### SDK cleanup
+
+Delete a single version:
+
+```csharp
+agentsClient.DeleteAgentVersion("my-agent", agent.Version);
+```
+
+Or delete the entire agent and all its versions. Use `force: true` to cascade-delete any active sessions, such as right after you invoke the agent. Without it, the call fails with a conflict error while sessions are active:
+
+```csharp
+agentsClient.DeleteAgent("my-agent", force: true);
 ```
 
 :::zone-end

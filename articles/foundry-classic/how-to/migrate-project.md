@@ -3,7 +3,7 @@ title: "Migrate From Hub-based to Foundry Projects (classic)"
 description: "Learn how to migrate from existing hub-based projects to new Microsoft Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features. (classic)"
 author: sdgilley
 ms.topic: how-to
-ms.date: 12/24/2025
+ms.date: 09/10/2026
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.service: microsoft-foundry
@@ -74,7 +74,6 @@ Create new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.
 - Model deployments
 - Data files
 - Fine-tuned models
-- Assistants
 - Vector stores
 
 ### What doesn't transfer

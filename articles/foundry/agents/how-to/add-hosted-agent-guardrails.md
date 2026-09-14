@@ -4,7 +4,7 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 06/29/2026
+ms.date: 08/17/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -47,13 +47,16 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
+> [!WARNING]
+> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then [test the guardrail](#test-content-safety-filtering) before you rely on the agent's content safety.
+
 `rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
 
 ## Add a guardrail with the Azure Developer CLI
 
 When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
-1. In your `azure.yaml`, add `policies` to the agent service:
+1. In your `azure.yaml`, add a `policies` list to the agent service:
 
     ```yaml
     services:
@@ -79,6 +82,9 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
     ```
 
 The platform attaches the guardrail when it creates the agent version.
+
+> [!NOTE]
+> In `azure.yaml` the field is camelCased as `raiPolicyName`. The deprecated standalone `agent.yaml` uses the snake_case `rai_policy_name`. Both map to `rai_config.rai_policy_name` on the agent version. Don't declare the guardrail in `agent.manifest.yaml` - `azd` reads that file only during `azd ai agent init` and ignores it at deploy time.
 
 ## Add a guardrail with the Python SDK
 
@@ -133,6 +139,41 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
+
+## Add a guardrail with the .NET SDK
+
+When you create an agent version with the .NET SDK, set the `ContentFilterConfiguration` property on `HostedAgentDefinition`. Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+var projectEndpoint = "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+var raiPolicyId =
+    "/subscriptions/<subscription-id>/resourceGroups/<resource-group>"
+    + "/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-image:tag"),
+    ContentFilterConfiguration = new ContentFilterConfiguration(raiPolicyName: raiPolicyId),
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created: {agent.Name}, version: {agent.Version}");
+```
 
 ## Add a guardrail with the JavaScript/TypeScript SDK
 
@@ -248,7 +289,19 @@ A blocked prompt returns `HTTP 400` with a `content_filter` error:
 }
 ```
 
-A prompt that passes the policy returns `HTTP 200` with the agent's response. If a harmful prompt isn't blocked, confirm that the policy referenced by `rai_policy_name` is configured to filter the relevant content category and severity.
+A prompt that passes the policy returns `HTTP 200` with the agent's response. If a harmful prompt isn't blocked, check in this order:
+
+1. The policy named by `rai_policy_name` **actually exists** on the account. A nonexistent policy fails open with no error. List the policies on the account and confirm the final segment of `rai_policy_name` matches one of them:
+
+    ```bash
+    az rest --method get \
+      --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies?api-version=2024-10-01" \
+      --query "value[].name" -o tsv
+    ```
+
+1. The policy is configured to filter the relevant content category and severity.
+
+The guardrail applies to streaming requests too. By using `"stream": true`, a violating prompt is rejected with the same `HTTP 400` before any event is emitted.
 
 ## Network egress controls (preview)
 

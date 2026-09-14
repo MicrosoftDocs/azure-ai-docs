@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/19/2026
+ms.date: 09/03/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -108,7 +108,8 @@ agent = project.agents.create_version(
             WebSearchTool(
                 user_location=WebSearchApproximateLocation(
                     country="GB", city="London", region="London"
-                )
+                ),
+                # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
             )
         ],
     ),
@@ -192,7 +193,8 @@ async def main() -> None:
             WebSearchToolboxTool(
                 user_location=WebSearchApproximateLocation(
                     country="GB", city="London", region="London"
-                )
+                ),
+                # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
             )
         ],
     )
@@ -304,7 +306,8 @@ toolbox = project.toolboxes.create_version(
             custom_search_configuration=WebSearchConfiguration(
                 project_connection_id=BING_CUSTOM_SEARCH_CONNECTION_ID,
                 instance_name=BING_CUSTOM_SEARCH_INSTANCE_NAME,
-            )
+            ),
+            # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
         )
     ],
 )
@@ -1362,6 +1365,21 @@ You can configure web search behavior when you create your agent.
 
 - `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
 - `search_context_size`: Controls how much context window space to use for the search. Supported values are `low`, `medium`, and `high`. The default is `medium`.
+- `external_web_access`: When set to `False`, disables live internet access for the tool instance. Requires `azure-ai-projects>=2.6.0`. Default: `[TO VERIFY]`.
+
+### Disable live internet access
+
+`azure-ai-projects` 2.6.0 adds an optional `external_web_access` property to both `WebSearchTool` (used directly on a prompt agent) and `WebSearchToolboxTool` (used in a toolbox). Set it to `False` to disable live internet access for that tool instance. To use this property, install `azure-ai-projects>=2.6.0`. This property is currently available in the Python SDK only.
+
+> [!IMPORTANT]
+> The default value of `external_web_access` is `[TO VERIFY]`. Explicitly set the property when your scenario requires a specific behavior.
+
+| Property | Type | Applies to | Description |
+| --- | --- | --- | --- |
+| `external_web_access` | `bool` | `WebSearchTool`, `WebSearchToolboxTool` | When set to `False`, disables live internet access. Requires `azure-ai-projects>=2.6.0`. Default: `[TO VERIFY]`. |
+
+> [!NOTE]
+> This property applies to the Foundry Agent Service tool surface. The Azure OpenAI Responses API (`web_search_preview`) has separate behavior for web search access. For details, see [Web search with the Responses API](../../../openai/how-to/web-search.md).
 
 ## Security and privacy considerations
 
