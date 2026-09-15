@@ -53,7 +53,7 @@ Additional samples demonstrate:
 - Sequential workflows that pass prior messages between Claude agents.
 - URL fetching and multiple permission rules.
 
-When `ClaudeAgent` receives multiple messages, it sends one prompt that frames them as conversation history and labels each message by role. This preserves role boundaries during agent handoffs, but it doesn't replay native Claude multi-role history or share a Claude session. A single user message remains unchanged.
+When `ClaudeAgent` receives multiple messages, it sends one prompt that frames them as conversation history and labels each message by role. This approach preserves role boundaries during agent handoffs, but it doesn't replay native Claude multi-role history or share a Claude session. A single user message remains unchanged.
 
 ## Permission considerations
 

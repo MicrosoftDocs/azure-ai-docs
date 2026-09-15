@@ -235,7 +235,7 @@ A `Content` item without a `security_label` is treated as `trusted` + `public` â
 
 ## Labeling your data sources
 
-The only security code most tools need is the label on the data they return. `LabelTrackingFunctionMiddleware` will do the rest. There are three ways to attach a label. The framework first establishes the
+Most tools only need security code for the label on the data they return. `LabelTrackingFunctionMiddleware` handles the rest. You can attach a label in three ways. The framework first establishes the
 locally trusted fallback, then applies embedded labels as restrictions.
 
 ### Per-item embedded labels
@@ -285,8 +285,8 @@ async def fetch_external_data(query: str) -> dict:
     return await http.get(query)
 ```
 
-When `source_integrity` is declared, it establishes the locally trusted
-fallback instead of using the otherwise-default rule of combining input
+When you declare `source_integrity`, it establishes the locally trusted
+fallback instead of using the default rule of combining input
 labels. Embedded labels can make this fallback more restrictive, but they
 can't relax it. Use `source_integrity` for tools that *introduce* trust state
 (data fetchers and external APIs) rather than tools that *transform*

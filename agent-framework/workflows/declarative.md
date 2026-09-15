@@ -2212,7 +2212,7 @@ workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 
 #### HttpRequestAction
 
-Sends an HTTP request through the configured `HttpRequestHandler`. Successful JSON responses are parsed before assignment; non-2xx responses fail the action. In Python, the error includes the request URL and status code but omits the response body.
+Sends an HTTP request through the configured `HttpRequestHandler`. Successful JSON responses are parsed before assignment. Non-2xx responses fail the action. In Python, the error includes the request URL and status code but omits the response body.
 
 ```yaml
 - kind: HttpRequestAction
