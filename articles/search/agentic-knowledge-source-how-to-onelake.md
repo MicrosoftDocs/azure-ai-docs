@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 09/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create, monitor, use, and delete an indexed OneLake knowledge source and configure its generated ingestion pipeline, models, analyzers, permissions, and image processing so that lakehouse files can ground agentic retrieval responses.
+#customer intent: As an application developer, I want to create an indexed OneLake knowledge source and configure its generated ingestion, enrichment, and access-control behavior so that lakehouse files can ground agentic retrieval responses.
 ---
 
 # Create an indexed OneLake knowledge source

@@ -8,7 +8,7 @@ ms.custom:
   - references_regions
   - build-2025
 ai-usage: ai-assisted
-#customer intent: As a solution architect, I want to understand agentic retrieval use cases, architecture, workflow, components, integration requirements, availability, pricing, and implementation resources so that I can determine whether and how to use it in a RAG or agent solution.
+#customer intent: As a solution architect, I want to understand agentic retrieval use cases, architecture, integration requirements, availability, and pricing so that I can determine whether and how to use it in a RAG or agent solution.
 ---
 
 # Agentic retrieval in Azure AI Search

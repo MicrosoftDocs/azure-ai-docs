@@ -8,7 +8,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to understand Work IQ governance, configure delegated Microsoft Entra authentication, and create, use, query, and delete a Work IQ knowledge source so that agentic retrieval can return permission-aware organizational intelligence and Work IQ response data.
+#customer intent: As an application developer, I want to set up delegated Microsoft Entra authentication, create a Work IQ knowledge source, and process its response data so that agentic retrieval can return permission-aware organizational intelligence.
 ---
 
 # Create a Work IQ knowledge source (preview)

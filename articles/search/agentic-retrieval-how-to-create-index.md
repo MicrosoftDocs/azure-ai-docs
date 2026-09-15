@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
-#customer intent: As an application developer, I want to understand required and optional index criteria and configure fields, descriptions, semantic ranking, vectors, scoring, analyzers, and synonyms so that an existing or new index can support an agentic retrieval knowledge source.
+#customer intent: As an application developer, I want to create or validate an index against agentic retrieval criteria and configure its relevance behavior so that I can use the index with an indexed knowledge source.
 ---
 
 # Create an index for agentic retrieval in Azure AI Search

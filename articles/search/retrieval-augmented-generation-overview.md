@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - build-2025
 ai-usage: ai-assisted
-#customer intent: As a solution architect, I want to understand RAG challenges and how Azure AI Search addresses query understanding, multiple data sources, token constraints, response time, and security so that I can prepare content, tune relevance, and choose between agentic retrieval and classic RAG.
+#customer intent: As a solution architect, I want to understand common RAG challenges and how Azure AI Search addresses them so that I can prepare content, tune relevance, and choose between agentic retrieval and classic RAG.
 ---
 
 # Retrieval-augmented generation (RAG) in Azure AI Search

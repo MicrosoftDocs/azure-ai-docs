@@ -9,7 +9,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to call or stream the retrieve action, control source selection and result processing, filter content, enforce permissions, process grounding data, citations, activity, images, and sensitivity labels, troubleshoot failures, and call and authenticate to the MCP endpoint so that my application or agent can obtain and use grounded responses from a knowledge base.
+#customer intent: As an application developer, I want to call and customize the retrieve action or MCP endpoint, enforce access, and process retrieval responses so that my application or agent can use grounded content from a knowledge base.
 ---
 
 # Query a knowledge base using the retrieve action or MCP endpoint
