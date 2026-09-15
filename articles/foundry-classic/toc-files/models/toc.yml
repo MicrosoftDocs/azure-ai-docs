@@ -79,8 +79,6 @@ items:
       href: ../../foundry-models/how-to/use-structured-outputs.md
   - name: Work with embedding models
     href: ../../openai/how-to/embeddings.md
-  - name: Work with image models
-    href: ../../how-to/use-image-models.md
   - name: Anthropic
     items:
     - name: Claude models overview
