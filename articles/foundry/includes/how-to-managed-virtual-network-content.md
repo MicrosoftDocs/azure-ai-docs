@@ -455,7 +455,7 @@ Select the right outbound network isolation mode for you depending on your netwo
 | Aspect | Managed network | Custom (BYO) network |
 | --- | --- | --- |
 | Benefits | Microsoft handles subnet range, IP selection, delegation. | Full control: bring custom firewall, set user-defined routes, network peering, delegate subnet. |
-| Limitations | Can't bring your own firewall for allow only approved outbound. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support yet. | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation. Requires private Class A, B, and C, not public or CGNAT IP address ranges allowed. Requires minimum /27 subnet for Agent delegation. |
+| Limitations | Can't bring your own firewall to allow only approved outbound traffic. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support yet. | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation. Requires certain IP class range for injection. Requires minimum /27 subnet for Agent delegation. |
 
 For more on virtual network injection set-up for Agents and the limitations , see [Configure a custom virtual network for Agents](../agents/how-to/virtual-networks.md).
 
