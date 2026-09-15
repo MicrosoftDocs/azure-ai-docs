@@ -10,7 +10,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to compare reasoning effort levels and configure them at the knowledge base or request level so that I can balance retrieval depth, relevance, latency, regional availability, and model usage.
+#customer intent: As an application developer, I want to choose and configure a retrieval reasoning effort so that I can balance retrieval depth, relevance, latency, and LLM cost while meeting model and regional requirements.
 ---
 
 # Set the retrieval reasoning effort (preview)

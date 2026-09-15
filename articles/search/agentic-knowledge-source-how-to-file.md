@@ -7,7 +7,7 @@ ms.date: 08/21/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create a file knowledge source and manage directly uploaded files so that small-to-medium file sets can ground knowledge base responses without external storage.
+#customer intent: As an application developer, I want to create a file knowledge source and manage uploaded files so that I can ground knowledge base responses without provisioning Azure Storage.
 ---
 
 # Create a file knowledge source (preview)

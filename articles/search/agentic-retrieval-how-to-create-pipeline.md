@@ -7,7 +7,7 @@ ms.topic: tutorial
 ms.custom:
   - build-2025
 ai-usage: ai-assisted
-#customer intent: As an application developer, I want to build and test an end-to-end agentic retrieval solution and tune its data quality, context, cost, and performance so that a Foundry agent can use an Azure AI Search knowledge base through MCP.
+#customer intent: As an application developer, I want to build and test an end-to-end agentic retrieval solution so that a Foundry agent can use an Azure AI Search knowledge base through MCP to return grounded responses.
 ---
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search

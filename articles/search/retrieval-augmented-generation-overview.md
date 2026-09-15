@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - build-2025
 ai-usage: ai-assisted
-#customer intent: As a solution architect, I want to understand common RAG challenges and how Azure AI Search addresses them so that I can prepare content, tune relevance, and choose between agentic retrieval and classic RAG.
+#customer intent: As a solution architect, I want to compare agentic retrieval and classic RAG for common RAG challenges so that I can choose an Azure AI Search approach that fits my application requirements.
 ---
 
 # Retrieval-augmented generation (RAG) in Azure AI Search

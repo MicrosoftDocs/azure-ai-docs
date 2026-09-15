@@ -7,7 +7,7 @@ ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create an indexed SharePoint knowledge source and configure secure ingestion and document-level access so that SharePoint content can ground agentic retrieval responses.
+#customer intent: As an application developer, I want to create an indexed SharePoint knowledge source and configure document-level access and protected Azure dependencies so that SharePoint content can ground agentic retrieval responses.
 ---
 
 # Create an indexed SharePoint knowledge source (preview)
