@@ -4,8 +4,9 @@ description: Use the Anthropic Claude Agent SDK as an Agent Framework Python age
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Anthropic Claude
@@ -49,7 +50,10 @@ Additional samples demonstrate:
 - Interactive permission handling.
 - Local and remote MCP servers.
 - Session persistence and resumption.
+- Sequential workflows that pass prior messages between Claude agents.
 - URL fetching and multiple permission rules.
+
+When `ClaudeAgent` receives multiple messages, it sends one prompt that frames them as conversation history and labels each message by role. This approach preserves role boundaries during agent handoffs, but it doesn't replay native Claude multi-role history or share a Claude session. A single user message remains unchanged.
 
 ## Permission considerations
 

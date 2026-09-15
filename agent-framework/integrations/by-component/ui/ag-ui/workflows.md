@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/07/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -159,6 +159,11 @@ Workflow runs emit a richer set of AG-UI events compared to single-agent runs:
 
 Clients can use `STEP_STARTED` / `STEP_FINISHED` events to render progress indicators showing which agent is currently active.
 The integration closes open reasoning and text blocks before a terminal event or human-input request, so clients receive a complete event sequence.
+
+When a Python workflow fails, `RUN_ERROR` uses the generic public message
+`Workflow execution failed.` plus an error code. An `executor_failed` event
+likewise exposes the generic message and error type. Internal exception details
+and tracebacks remain in server logs.
 
 ## Interrupt and resume
 
