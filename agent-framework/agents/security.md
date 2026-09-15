@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 06/23/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Security with FIDES
@@ -411,6 +412,7 @@ FIDES is shipping as experimental on purpose, so the team can iterate on the erg
 2. **Most-restrictive-wins propagation can be conservative.** Once an untrusted issue body enters the context, the rest of the run is untrusted unless you explicitly drop it. Per-message scoping or compaction-aware label decay are both on the table.
 3. **Approvals are coarse.** `approval_on_violation=True` gates the violating tool call; it doesn't expose the full label algebra to the user. Richer UI surfaces for "why was I asked to approve this?" are in scope for future iterations.
 4. **Quarantined LLM is single-turn.** `quarantined_llm` is intentionally tools-free and one-shot. Multi-turn quarantined sub-agents are doable but not in this release.
+5. **MCP result labels require a trusted authority.** By default, FIDES combines labels from an MCP server with local policy, so the server can only make a label more restrictive. Set `trust_server_ifc=True` only after you verify who owns the MCP server and determine that you trust its identity, operation, and labeling policy. This setting makes complete, valid labels from the server authoritative, which can relax local labels. Treat labels from an unknown or untrusted MCP server as untrusted input.
 
 If you hit a bug or have a feature request, open an issue on [the repository](https://github.com/microsoft/agent-framework/issues). For broader feedback on the security model — especially defaults, propagation, and approval ergonomics — join the conversation in [discussion #5624](https://github.com/microsoft/agent-framework/discussions/5624).
 
