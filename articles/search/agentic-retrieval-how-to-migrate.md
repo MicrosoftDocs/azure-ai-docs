@@ -8,7 +8,7 @@ ms.custom:
   - dev-focus
   - doc-kit-assisted
 ai-usage: ai-assisted
-#customer intent: As an application developer, I want to migrate agentic retrieval code between API versions so that my application remains compatible with the latest service contract.
+#customer intent: As an application developer, I want to determine when and how to migrate agentic retrieval code and resources and understand each API version's breaking and nonbreaking changes so that my existing solution behaves as before on a newer service contract.
 ---
 
 # Migrate agentic retrieval code to the latest version

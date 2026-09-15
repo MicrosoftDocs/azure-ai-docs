@@ -9,7 +9,7 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 07/20/2026
 ai-usage: ai-assisted
-#customer intent: As an application developer, I want to create and test an agentic retrieval solution in the Azure portal so that I can establish a conversational search experience without writing code.
+#customer intent: As an application developer, I want to configure access, prepare sample data, create a blob knowledge source and knowledge base, test retrieval, review generated objects, and clean up resources in the Azure portal so that I can establish and understand a conversational search experience without writing code.
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal

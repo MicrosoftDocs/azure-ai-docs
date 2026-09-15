@@ -9,7 +9,7 @@ ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
-#customer intent: As an application developer, I want to build and query an agentic retrieval knowledge base so that my application can produce citation-backed answers across a multi-turn conversation.
+#customer intent: As an application developer, I want to use an Azure SDK or REST to create a search index knowledge source and knowledge base and process multi-turn retrieval responses so that my application can produce grounded, citation-backed answers with an Azure OpenAI model.
 ---
 
 # Quickstart: Agentic retrieval

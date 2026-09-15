@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create an indexed Azure SQL knowledge source so that rows from a SQL table or view can ground agentic retrieval responses.
+#customer intent: As an application developer, I want to prepare, create, monitor, use, and delete an indexed Azure SQL knowledge source, including its authentication, change detection, column mappings, and generated objects, so that current rows from a SQL table or view can ground agentic retrieval responses.
 ---
 
 # Create an indexed Azure SQL knowledge source (preview)

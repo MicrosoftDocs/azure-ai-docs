@@ -9,7 +9,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to configure access and create a knowledge base so that it can orchestrate retrieval across one or more knowledge sources.
+#customer intent: As an application developer, I want to configure access and models and list, inspect, create, configure, query, and delete knowledge bases so that I can orchestrate retrieval across one or more knowledge sources with appropriate defaults, limits, and browser access.
 ---
 
 # Create a knowledge base in Azure AI Search

@@ -7,7 +7,7 @@ ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create a blob knowledge source so that content from Azure Blob Storage or ADLS Gen2 can ground agentic retrieval responses.
+#customer intent: As an application developer, I want to create, monitor, use, and delete a blob knowledge source and configure its generated ingestion pipeline, extraction, models, analyzers, permissions, and image processing so that content from Azure Blob Storage or ADLS Gen2 can ground agentic retrieval responses.
 ---
 
 # Create a blob knowledge source from Azure Blob Storage or ADLS Gen2

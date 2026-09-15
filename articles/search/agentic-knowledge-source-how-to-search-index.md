@@ -6,7 +6,7 @@ ms.topic: how-to
 ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create a search index knowledge source so that an existing Azure AI Search index can be used by a knowledge base.
+#customer intent: As an application developer, I want to validate an existing index and create, configure, use, query, and delete a search index knowledge source, including its fields, semantic configuration, base filter, and query hints, so that the index can provide grounding content to a knowledge base.
 ---
 
 # Create a search index knowledge source

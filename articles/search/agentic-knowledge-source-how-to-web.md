@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
-#customer intent: As an application developer, I want to create a Web Knowledge Source with domain controls so that my knowledge base can retrieve current information from the public web.
+#customer intent: As an application developer, I want to understand the terms and limitations and create, scope, use, query, and delete a Web Knowledge Source so that my knowledge base can supplement proprietary content with current information from permitted public web domains.
 ---
 
 # Create a Web Knowledge Source resource
