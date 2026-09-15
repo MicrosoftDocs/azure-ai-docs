@@ -31,7 +31,7 @@ You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) proto
 For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 > [!WARNING]
-> When you connect to Work IQ, you might incur costs. The request crosses from the Azure compliance boundary that applies to your Foundry project into the Microsoft 365 compliance boundary that applies to Work IQ. This service-boundary transition doesn't mean that the request leaves your Microsoft Entra tenant or the Microsoft network. Your organization's compliance boundary is defined by your policies, approved services, geographic requirements, and regulatory obligations. Confirm that both services are approved for your use case and that the appropriate permissions and approvals are in place.
+> When you connect to Work IQ, you might incur costs and data might be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
