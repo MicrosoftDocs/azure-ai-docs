@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -361,6 +361,25 @@ To surface text from `execute_code`, end the code with `print(...)`; Hyperlight 
 
 When filesystem access is enabled, write larger artifacts to `/output/<filename>` instead. Returned files are attached to the tool result, while files under `/input` are available for reading inside the sandbox.
 
+The `/output` directory is scoped to one `execute_code` invocation. The
+framework attaches collected files to that invocation's result and then clears
+or isolates the output generation. Consume returned attachments from the
+current result; don't rely on files remaining under `/output` for a later
+`execute_code` call.
+
+For Python, output attachment collection defaults to 20 files, 5 MiB per file,
+and 20 MiB of cumulative raw file data for each invocation. Oversized or
+directory-heavy output returns a structured execution error with no partial
+attachments while preserving sandbox standard output.
+
+Trusted applications can raise the always-finite limits with positive integers
+through `max_output_files`, `max_output_file_bytes`, and
+`max_output_total_bytes` on `HyperlightExecuteCodeTool` or
+`HyperlightCodeActProvider`. Higher limits increase host memory use because
+files are encoded as inline base64. For portable behavior, write attachment
+files directly under `/output`; nested attachments fail closed on platforms
+without secure directory-relative file opening.
+
 ## Compare CodeAct and direct tool calling
 
 The conceptual comparison is the same as for any CodeAct backend: the same client, model, tools, prompt, and structured output schema can be wired either through traditional tool calling or through Hyperlight-backed CodeAct. The only difference is the tool surface — direct tools versus a single `execute_code` tool backed by `HyperlightCodeActProvider`:
@@ -399,7 +418,7 @@ This package is still in beta. Plan around the following constraints:
 
 1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP. Python 3.14 is supported.
 2. The current integration executes Python guest code.
-3. In-memory interpreter state does not persist across separate `execute_code` calls. Use mounted files and `/output` artifacts when data needs to survive across calls.
+3. In-memory interpreter state and `/output` files don't persist across separate `execute_code` calls.
 4. Approval applies to the `execute_code` invocation as a whole, not to each individual `call_tool(...)` inside the same code block.
 5. Tool descriptions, parameter annotations, and return shapes matter more here because the model is writing code against that contract rather than choosing isolated direct tool calls.
 

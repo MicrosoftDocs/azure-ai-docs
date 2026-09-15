@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
-ms.date: 08/21/2026
+ms.date: 09/11/2026
 ai-usage: ai-assisted
 #customer intent: As an IT administrator, I want to understand which elevated roles are required for each area of Microsoft Foundry so that I can plan role assignments and troubleshoot permission errors.
 ---
@@ -178,7 +178,7 @@ Several agent tools require **Contributor** or higher to provision or configure 
 |------|-------------|-------|---------|
 | OpenAPI tool | **Contributor** *or* **Owner** | Foundry project | [OpenAPI tool](../agents/how-to/tools/openapi.md) |
 | MCP tool | **Contributor** *or* **Owner** | Foundry project | [Model Context Protocol tool](../agents/how-to/tools/model-context-protocol.md) |
-| Agent-to-agent (preview) | **Contributor** *or* **Owner** | Foundry resource | [Agent-to-agent](../agents/how-to/tools/agent-to-agent.md) |
+| Agent-to-agent | **Contributor** *or* **Owner** | Foundry resource | [Agent-to-agent](../agents/how-to/tools/agent-to-agent.md) |
 | Azure Speech | **Storage Blob Data Contributor** | Storage account | [Azure Speech tool](../agents/how-to/tools/azure-ai-speech.md) |
 
 ### Publish agents

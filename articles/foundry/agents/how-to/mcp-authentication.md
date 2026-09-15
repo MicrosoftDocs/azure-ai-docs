@@ -204,6 +204,9 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - After the user closes the dialog, submit another response with the previous
   response ID. Choose your programming language.
 
+  > [!NOTE]
+  > For .NET, invoke agents with the [Responses API quickstart](../quickstarts/responses-api.md?pivots=csharp).
+
 :::zone pivot="python"
 
 Install the Python packages:

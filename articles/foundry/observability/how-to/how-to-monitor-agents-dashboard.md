@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: none
-ms.date: 08/08/2026
+ms.date: 09/03/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
@@ -25,7 +25,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 - A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Access to the [Foundry portal](https://ai.azure.com).
-- Python 3.9 or later (required for Python SDK steps).
+- Python 3.10 or later (required for Python SDK steps).
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure) (protection level set to **Protected**), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read that data.
 
 ## Connect Application Insights
@@ -87,7 +87,7 @@ Use the Foundry portal, the Python SDK, or the .NET SDK to set up recurring eval
 
 # [Python](#tab/python)
 
-This section requires Python 3.9 or later.
+This section requires Python 3.10 or later.
 
 ```bash
 pip install "azure-ai-projects>=2.0.0" python-dotenv

@@ -5,9 +5,10 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 # Using function tools with an agent
@@ -189,6 +190,12 @@ client.function_invocation_configuration.update(
     }
 )
 ```
+
+### Control tool error details
+
+By default, `include_detailed_errors` is `False`. Function execution and argument-validation failures return generic results to the model and other serialized channels. The original diagnostic remains available to trusted host code in `Content.exception`. `Content.to_dict()` replaces that field with a fixed, non-sensitive failure marker, and protocol conversions don't expose the diagnostic.
+
+Set `client.function_invocation_configuration["include_detailed_errors"] = True` only when the result stays on a trusted channel. Exception text can contain sensitive data, and this setting adds that text to the channel-visible result.
 
 ## Create a class with multiple function tools
 

@@ -5,7 +5,7 @@ ms.manager: mcleans
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 08/21/2026
+ms.date: 09/11/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -124,4 +124,4 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 - [Browser automation (preview)](../how-to/tools/browser-automation.md)
 - [Computer Use (preview)](../how-to/tools/computer-use.md)
 - [Image generation (preview)](../how-to/tools/image-generation.md)
-- [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)
+- [Agent-to-Agent (A2A)](../how-to/tools/agent-to-agent.md)

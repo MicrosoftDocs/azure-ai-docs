@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -230,9 +230,30 @@ if __name__ == "__main__":
     asyncio.run(http_mcp_example())
 ```
 
-For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During a tool call, the provider receives the values from `function_invocation_kwargs`. For ambient requests such as the initialize handshake, tool or prompt discovery, and background pings, it receives an empty dictionary.
+For authenticated HTTP endpoints, use `static_headers` for fixed credentials or `header_provider` for values derived from each run. Both paths add headers only to requests for the configured origin and remove them from cross-origin redirects. Fixed headers are copied when the tool is created and don't serialize concurrent calls. When both options supply the same header, the dynamic value from `header_provider` takes precedence.
 
-If the server requires authentication during connection, capture or refresh the required credential in the provider instead of depending only on per-run values. A provider that raises `KeyError` because a per-run value is unavailable lets an ambient request continue without that header; this pattern works only when the server permits unauthenticated initialization and discovery. Other provider errors are surfaced.
+During each tool call, `header_provider` receives that run's
+`function_invocation_kwargs`. The fixed and dynamic headers together form the
+HTTP session's effective identity. Header names are compared
+case-insensitively, while values remain case-sensitive.
+
+Framework-owned sessions bind this effective identity when they connect. If a
+later run produces a different identity, the tool reconnects before sending the
+call and refreshes session-derived tool and prompt discovery. Initialize,
+discovery, background ping, and other connection-lifetime requests continue to
+use the headers bound to that session.
+
+Caller-supplied sessions remain caller-owned. Because the wrapper can't
+establish or reconnect an unknown identity for those sessions, dynamic header
+resolution with an unknown identity is rejected. A changed identity is also
+rejected; use a separate framework-managed tool instance.
+
+If the tool connects eagerly before a run, the provider receives an empty mapping for connection-lifetime requests. Capture or refresh a construction-time credential in the provider for this case. If a credential only arrives at run time, pass the unconnected tool through `run(tools=[...])` with `function_invocation_kwargs` so that run establishes the connection.
+
+A `KeyError` from the provider is tolerated only when no run seeded the
+connection, and the request continues without provider headers. After a run
+seeds the connection, a missing key is a configuration error and the exception
+is surfaced.
 
 ### Control Host payload retention
 

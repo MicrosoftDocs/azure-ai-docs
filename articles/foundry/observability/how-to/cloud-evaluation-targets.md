@@ -6,7 +6,7 @@ ms.subservice: foundry-observability
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/11/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -382,6 +382,11 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
+
+The completed run response can include target latency percentiles and estimated
+model inference cost. See
+[Review model-target latency and estimated cost](cloud-evaluation-results.md#review-model-target-latency-and-estimated-cost)
+for field definitions, availability rules, and cost-estimate limitations.
 
 > [!TIP]
 > To add another evaluation run, use the same code.

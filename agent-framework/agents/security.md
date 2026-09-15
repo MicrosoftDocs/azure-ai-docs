@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -171,6 +171,17 @@ calling these accessors without a session raises `ValueError`. This requirement
 prevents state from one session from being read as though it belonged to
 another.
 
+FIDES binds a policy approval to the exact resolved tool invocation in its
+owning session and consumes the grant once. If the resolved hidden content
+changes, or the pending policy record expires or is evicted, the tool doesn't
+run. Instead, the framework returns and persists a replacement request that
+requires a second approval. Rejection and cancellation clear only the matching
+invocation.
+
+For `USER_IDENTITY` data, the source and destination principal sets are also
+part of this binding. A principal change invalidates the grant and requires a
+replacement approval instead of executing under stale authority.
+
 ## Labels on content
 
 Every `Content` item can carry a `security_label` in its `additional_properties` with two independent axes.
@@ -190,6 +201,25 @@ Every `Content` item can carry a `security_label` in its `additional_properties`
 | `private` | Internal/business-sensitive — must not leave through a public sink. |
 | `user_identity` | Highest sensitivity (PII, credentials, per-user secrets). |
 
+### Principal metadata for user identity
+
+A `ContentLabel` with
+`ConfidentialityLabel.USER_IDENTITY` requires a non-empty principal set under
+the public `PRINCIPAL_METADATA_KEY` constant
+(`"agent_framework.security.principals"`). Each principal is a mapping that
+contains exactly `tenant_id` and `user_id`, both as non-empty strings. Build
+this metadata from the authenticated request or session, or from trusted local
+configuration. Don't infer principals from model arguments or remote result
+metadata.
+
+A source tool declares its owners with `confidentiality="user_identity"` and
+`PRINCIPAL_METADATA_KEY` in its `additional_properties`. A destination declares
+`max_allowed_confidentiality="user_identity"` and its authorized principals
+under the same key. Every source principal must be a member of the destination
+set. Combined identity-scoped content carries the union of its source
+principals, so missing, malformed, or mismatched principal metadata fails
+closed.
+
 ### The combining rule
 
 When labels are combined (multiple inputs to a tool, or new content joining a running context), FIDES picks the *most restrictive* of each axis:
@@ -205,11 +235,18 @@ A `Content` item without a `security_label` is treated as `trusted` + `public` �
 
 ## Labeling your data sources
 
-The only security code most tools need is the label on the data they return. `LabelTrackingFunctionMiddleware` will do the rest. There are three ways to attach a label, in order of priority.
+Most tools only need security code for the label on the data they return. `LabelTrackingFunctionMiddleware` handles the rest. You can attach a label in three ways. The framework first establishes the
+locally trusted fallback, then applies embedded labels as restrictions.
 
-### Per-item embedded labels (preferred)
+### Per-item embedded labels
 
 For tools that return `list[Content]` — especially mixed-trust data — attach a `security_label` to each item in `additional_properties`. The middleware reads the label per item, which means a single tool call can return *some* items the main model can see and *others* that get auto-hidden.
+
+Embedded labels are restriction-only by default. They can lower integrity or
+raise confidentiality, but they can't upgrade the local fallback, lower its
+confidentiality, or establish principal authority. Only a complete label
+stamped by a framework-owned processor after it applies local policy is
+authoritative.
 
 ```python
 import json
@@ -248,11 +285,28 @@ async def fetch_external_data(query: str) -> dict:
     return await http.get(query)
 ```
 
-When `source_integrity` is declared, it overrides the otherwise-default rule of "combine input labels." Use this for tools that *introduce* trust state (data fetchers, external APIs) rather than tools that *transform* already-labeled inputs.
+When you declare `source_integrity`, it establishes the locally trusted
+fallback instead of using the default rule of combining input
+labels. Embedded labels can make this fallback more restrictive, but they
+can't relax it. Use `source_integrity` for tools that *introduce* trust state
+(data fetchers and external APIs) rather than tools that *transform*
+already-labeled inputs.
 
 ### Implicit propagation through arguments
 
 If a tool declares neither per-item labels nor `source_integrity`, FIDES falls back to the combined label of its inputs. This is the right default for pure transformation tools — a `summarize(text)` that processes an untrusted blob produces an untrusted summary without any extra annotation.
+
+When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
+
+Variable expansion fails closed if it detects a reference cycle, nesting would
+exceed 16 variable-reference levels, or one invocation would expand more than
+100 references.
+
+### Keep MCP labels subordinate to local policy
+
+When you connect through `SecureMCPToolProxy`, FIDES treats MCP server metadata as untrusted by default. Server `ToolAnnotations` can make locally configured policy more restrictive. They can't mark data as trusted, remove the `public` confidentiality cap, or authorize untrusted input.
+
+FIDES also combines server result `_meta.ifc` labels with the current local result label by default. A remote label can lower integrity or raise confidentiality, but it can't relax local policy. If an authenticated server is authoritative for result labels, set `trust_server_ifc=True` on `SecureMCPToolProxy` or `apply_mcp_security_labels`. A complete, valid `_meta.ifc` label then becomes authoritative for that result. Missing, partial, or malformed labels still use local policy, and `ToolAnnotations` remain restriction-only.
 
 ## Annotating sink tools
 
@@ -326,7 +380,7 @@ Sometimes you want a stricter posture: keep raw untrusted text away from the mai
 
 - **No tools attached** — so any "call write_file" embedded in the untrusted bytes is just generated text, not a tool call.
 - **An isolated context** — only the prompt and the referenced variables are visible.
-- **An `untrusted` label on the result** — whatever the quarantined model returns is itself labeled untrusted and re-enters the variable store. The main model gets a summary it can reason over without ever seeing the raw bytes.
+- **An `untrusted` integrity label and the combined input confidentiality on the result** — whatever the quarantined model returns remains untrusted and can't implicitly declassify private or user-identity content. The result re-enters the variable store, and the main model gets a summary it can reason over without ever seeing the raw bytes.
 
 ```python
 from agent_framework.security import quarantined_llm
@@ -433,6 +487,7 @@ FIDES is shipping as experimental on purpose, so the team can iterate on the erg
 2. **Most-restrictive-wins propagation can be conservative.** Once an untrusted issue body enters the context, the rest of the run is untrusted unless you explicitly drop it. Per-message scoping or compaction-aware label decay are both on the table.
 3. **Approvals are coarse.** `approval_on_violation=True` gates the violating tool call; it doesn't expose the full label algebra to the user. Richer UI surfaces for "why was I asked to approve this?" are in scope for future iterations.
 4. **Quarantined LLM is single-turn.** `quarantined_llm` is intentionally tools-free and one-shot. Multi-turn quarantined sub-agents are doable but not in this release.
+5. **MCP result labels require a trusted authority.** By default, FIDES combines labels from an MCP server with local policy, so the server can only make a label more restrictive. Set `trust_server_ifc=True` only after you verify who owns the MCP server and determine that you trust its identity, operation, and labeling policy. This setting makes complete, valid labels from the server authoritative, which can relax local labels. Treat labels from an unknown or untrusted MCP server as untrusted input.
 
 If you hit a bug or have a feature request, open an issue on [the repository](https://github.com/microsoft/agent-framework/issues). For broader feedback on the security model — especially defaults, propagation, and approval ergonomics — join the conversation in [discussion #5624](https://github.com/microsoft/agent-framework/discussions/5624).
 

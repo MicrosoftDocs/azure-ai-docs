@@ -4,10 +4,11 @@ description: "Learn about the latest news and features updates for Azure OpenAI.
 author: alvinashcraft
 ms.author: aashcraft #
 manager: mcleans
-ms.date: 12/30/2025
+ms.date: 09/10/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: whats-new
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - references_regions
@@ -191,9 +192,9 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 ## June 2025
 
-### New models codex-mini & o3-pro released
+### New models codex-mini and o3-pro released
 
-- `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
+- `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ## May 2025
 
@@ -248,9 +249,9 @@ For more information about available models, see the [models and versions docume
 
 ## March 2025
 
-### Responses API & computer-use-preview model
+### Responses API and computer-use-preview model
 
-The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model, which powers the [Computer use](./how-to/computer-use.md) capability.
+The [Responses API](./how-to/responses.md) is a stateful API from Azure OpenAI that provides a unified experience for model interactions. The Responses API also adds support for the new `computer-use-preview` model, which powers the [Computer use](./how-to/computer-use.md) capability.
 
 **For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models still need to request access for this model.
 
@@ -343,7 +344,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 For fine-tuning model region availability, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#fine-tuning-models).
 
-### Stored completions & distillation
+### Stored completions and distillation
 
 [Stored completions](./how-to/stored-completions.md) allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./how-to/evaluations.md) and [fine-tuning](./how-to/fine-tuning.md).
 

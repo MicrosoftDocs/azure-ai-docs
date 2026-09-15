@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/29/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -69,6 +70,12 @@ The package installs `psutil` to terminate child process trees when an execution
 `LocalShellTool` runs commands directly on the host. It defaults to a persistent shell, a 30-second timeout, 64-KiB output truncation, working-directory confinement, and approval for every command.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/openai/client_with_local_shell.py" range="3-12,33-97":::
+
+OpenAI provider-hosted shell transcript items remain informational, even when a
+local shell executor is configured. Only a well-formed explicit
+`local_shell_call`, or a shell call marked with `environment.type="local"`,
+enters the local function and approval path. Configuring `LocalShellTool` alone
+doesn't cause provider-hosted shell calls to execute on the host.
 
 Use `mode="stateless"` when each call should run in a fresh process. Use the `AGENT_FRAMEWORK_SHELL` environment variable or the `shell` constructor argument to override the resolved shell.
 
