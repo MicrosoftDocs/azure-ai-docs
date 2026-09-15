@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/08/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -316,6 +316,19 @@ if langfuse.auth_check():
 
 # Then activate Agent Framework's telemetry code paths
 enable_instrumentation(enable_sensitive_data=False)
+```
+
+For [MLflow](https://mlflow.org/docs/latest/genai/tracing/integrations/listing/microsoft-agent-framework/), configure an OTLP/HTTP span exporter for the tracking server's `/v1/traces` endpoint. MLflow accepts traces only, so don't set a base `OTEL_EXPORTER_OTLP_ENDPOINT`, which would also send logs and metrics to unsupported endpoints.
+
+```python
+from agent_framework.observability import configure_otel_providers
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+
+exporter = OTLPSpanExporter(
+    endpoint="http://localhost:5000/v1/traces",
+    headers={"x-mlflow-experiment-id": "<mlflow_experiment_id>"},
+)
+configure_otel_providers(exporters=[exporter])
 ```
 
 #### 4. Manual setup
