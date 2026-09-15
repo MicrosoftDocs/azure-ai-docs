@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/10/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 <!--
   Language parity table - keep in sync when adding/removing sections.
@@ -244,7 +245,9 @@ pip install agent-framework-hyperlight --pre
 `agent-framework-hyperlight` ships separately from `agent-framework-core`, so you only take on the sandbox runtime when you need it.
 
 > [!NOTE]
-> The package depends on Hyperlight sandbox components. If the backend is not published for your current platform yet, `execute_code` fails when it tries to create the sandbox.
+> The Hyperlight sandbox backend is available on x86-64 Linux and AMD64
+> Windows, including Python 3.14. It requires the corresponding host
+> virtualization support. Other platforms fail when the sandbox is created.
 
 ## Use `HyperlightCodeActProvider`
 
@@ -358,6 +361,19 @@ To surface text from `execute_code`, end the code with `print(...)`; Hyperlight 
 
 When filesystem access is enabled, write larger artifacts to `/output/<filename>` instead. Returned files are attached to the tool result, while files under `/input` are available for reading inside the sandbox.
 
+For Python, output attachment collection defaults to 20 files, 5 MiB per file,
+and 20 MiB of cumulative raw file data for each invocation. Oversized or
+directory-heavy output returns a structured execution error with no partial
+attachments while preserving sandbox standard output.
+
+Trusted applications can raise the always-finite limits with positive integers
+through `max_output_files`, `max_output_file_bytes`, and
+`max_output_total_bytes` on `HyperlightExecuteCodeTool` or
+`HyperlightCodeActProvider`. Higher limits increase host memory use because
+files are encoded as inline base64. For portable behavior, write attachment
+files directly under `/output`; nested attachments fail closed on platforms
+without secure directory-relative file opening.
+
 ## Compare CodeAct and direct tool calling
 
 The conceptual comparison is the same as for any CodeAct backend: the same client, model, tools, prompt, and structured output schema can be wired either through traditional tool calling or through Hyperlight-backed CodeAct. The only difference is the tool surface — direct tools versus a single `execute_code` tool backed by `HyperlightCodeActProvider`:
@@ -392,9 +408,9 @@ For workloads that compute totals across a dataset by repeatedly looking up data
 
 ## Current limitations
 
-This package is still alpha, and a few constraints are worth planning around:
+This package is still in beta. Plan around the following constraints:
 
-1. Platform support follows the published Hyperlight backend packages. Today that means supported Linux and Windows environments; unsupported platforms will fail when creating the sandbox.
+1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP. Python 3.14 is supported.
 2. The current integration executes Python guest code.
 3. In-memory interpreter state does not persist across separate `execute_code` calls. Use mounted files and `/output` artifacts when data needs to survive across calls.
 4. Approval applies to the `execute_code` invocation as a whole, not to each individual `call_tool(...)` inside the same code block.

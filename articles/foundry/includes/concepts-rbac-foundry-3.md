@@ -6,8 +6,9 @@ ms.reviewer: meerakurup
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/04/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Create custom roles for projects
@@ -16,19 +17,32 @@ If the built-in roles don't meet your enterprise requirements, create a custom r
 
 ```json
 {
-  "properties": {
-    "roleName": "My Enterprise Foundry User",
-    "description": "Custom role for Foundry at my enterprise to only allow building Agents. Assign at subscription level.",
-    "assignableScopes": ["/subscriptions/<your-subscription-id>"],
-    "permissions": [ { 
-        "actions": ["Microsoft.CognitiveServices/*/read", "Microsoft.Authorization/*/read", "Microsoft.CognitiveServices/accounts/listkeys/action","Microsoft.Resources/deployments/*"], 
-        "notActions": [], 
-        "dataActions": ["Microsoft.CognitiveServices/accounts/AIServices/agents/*"], 
-        "notDataActions": []     
-    } ]
-  }
+  "Name": "My Enterprise Foundry User",
+  "IsCustom": true,
+  "Description": "Custom role for Foundry at my enterprise to only allow building Agents. Assign at subscription level.",
+  "Actions": [
+    "Microsoft.CognitiveServices/*/read",
+    "Microsoft.Authorization/*/read",
+    "Microsoft.CognitiveServices/accounts/listkeys/action",
+    "Microsoft.Resources/deployments/*"
+  ],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/*"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": ["/subscriptions/<your-subscription-id>"]
 }
 ```
+
+Save the definition to a file and create the role:
+
+```azurecli
+az role definition create --role-definition custom-role.json
+```
+
+> [!NOTE]
+> This format is what the Azure CLI and Azure PowerShell accept. The REST API and Azure Resource Manager templates wrap the same fields in a `properties` object and use camel case, such as `roleName` instead of `Name`.
 
 For more information on creating a custom role, see the following articles.
 

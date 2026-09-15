@@ -5,7 +5,7 @@ description: Complete reference for the Voice Live API events, models, and confi
 manager: mcleans
 ms.service: foundry-tools
 ms.topic: reference
-ms.date: 1/30/2026
+ms.date: 08/26/2026
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted
@@ -2378,7 +2378,7 @@ Base VAD-based turn detection.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
-| threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
+| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
 | prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
 | speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
@@ -2405,7 +2405,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
-| threshold | float | Optional. Activation threshold (default: 0.5) |
+| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
 | prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
@@ -2423,7 +2423,7 @@ Azure semantic VAD (default variant).
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
-| threshold | float | Optional. Activation threshold (default: 0.5) |
+| threshold | float | Optional. Activation threshold in the range `[0.01, 1.0)` (default: 0.5) |
 | prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |

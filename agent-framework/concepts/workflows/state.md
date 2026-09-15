@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: article
 ms.author: taochen
-ms.date: 07/01/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,7 @@ ms.service: agent-framework
     | State Visibility and Scope Behavior         | ✅ |   ✅   | ✅ |       |
     | Writing to State                            | ✅ |   ✅   | ✅ |       |
     | Accessing State                             | ✅ |   ✅   | ✅ |       |
+    | Workflow-scoped runtime kwargs              | ❌ |   ✅   | ❌ | Python supports global and executor-specific values |
     | State Isolation – Mutable vs Immutable      | ✅ |   ✅   | ✅ | Prose only, no code needed |
     | State Isolation – Helper Methods            | ❌ |   ✅   | ✅ | C# coming soon |
     | State Isolation – Resetting Shared Executors | ✅ |   ❌   | ✅ | Links to advanced page |
@@ -215,38 +217,44 @@ fileProcess := workflow.NewExecutor("FileProcessExecutor", func(ctx *workflow.Co
 
 ::: zone-end
 
+::: zone pivot="programming-language-python"
+
 ## Workflow-scoped runtime kwargs
 
 For values that should flow to agents and tools without becoming shared workflow state, pass them on `workflow.run()` as `function_invocation_kwargs=` or `client_kwargs=`.
 
-- If none of the top-level keys match an executor ID, the mapping is treated as global and every matching agent executor receives the same dict.
-- If one or more top-level keys match executor IDs, the whole mapping is treated as per-executor targeting and each executor receives only its own entry.
-- The same global-vs-targeted rules apply to both `function_invocation_kwargs` and `client_kwargs`.
+- A plain mapping with no executor ID keys is global, and every matching agent executor receives it.
+- A plain mapping with executor ID keys is targeted, and each executor receives only its own entry.
+- Use `WorkflowInvocationKwargs` to combine shared values with executor-specific overrides. Overrides win when the same key appears in both mappings.
+- The same rules apply to `function_invocation_kwargs` and `client_kwargs`, and mixed values are preserved through nested workflows.
 
 ```python
-await workflow.run(
-    "Create the report",
-    function_invocation_kwargs={
-        "tenant": "contoso",
-        "request_id": "req-42",
-    },
-)
+from agent_framework import WorkflowInvocationKwargs
 
 await workflow.run(
     "Create the report",
-    function_invocation_kwargs={
-        "researcher": {
-            "db_config": {"connection_string": "..."},
+    function_invocation_kwargs=WorkflowInvocationKwargs(
+        global_kwargs={
+            "tenant": "contoso",
+            "request_id": "req-42",
         },
-        "writer": {
-            "user_preferences": {"format": "markdown"},
+        executor_kwargs={
+            "researcher": {
+                "request_id": "research-42",
+                "db_config": {"connection_string": "..."},
+            },
+            "writer": {
+                "user_preferences": {"format": "markdown"},
+            },
         },
-    },
+    ),
 )
 ```
 
 > [!TIP]
 > Executor-targeted kwargs use workflow executor IDs. For wrapped agents, that is the agent name by default, or the explicit `id` you pass to `AgentExecutor(...)`.
+
+::: zone-end
 
 ## State Isolation
 

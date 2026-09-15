@@ -106,6 +106,8 @@ The Responses API supports the following models:
 - `gpt-image-1` (Version: `2025-04-15`)
 - `gpt-image-1-mini` (Version: `2025-10-06`)
 - `gpt-image-1.5` (Version: `2025-12-16`)
+- `gpt-image-2.5-flare` (Version: `2026-09-09`)
+- `gpt-image-2.5-sunburst` (Version: `2026-09-09`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)

@@ -3,7 +3,7 @@ title: "Deep dive into Foundry Agent Service networking"
 description: "Understand the network architecture, subnet sizing, IP allocation, and traffic flow for hosted and prompt agents in Microsoft Foundry Agent Service with bring-your-own VNet."
 author: aahill
 ms.author: aahi
-ms.date: 07/29/2026
+ms.date: 09/07/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -36,14 +36,13 @@ Two request flows traverse this architecture:
 | Term | What it means |
 |------|---------------|
 | **Foundry instance** | Your Microsoft Foundry resource. The top-level container that holds your projects, agents, and networking configuration. |
-| **Hosted agent** | An agent you build and deploy yourself by using your own container image through Azure Container Registry. You control CPU, memory, and code. Runs on Azure Container Apps. |
+| **Hosted agent** | An agent you build and deploy yourself by using your own container image through Azure Container Registry. You control CPU, memory, and code. |
 | **Prompt agent** | An agent where compute and scaling are fully managed by Microsoft. You define behavior through configuration. No container image or infrastructure management is required. |
 | **Single-tenant data proxy** | A platform-managed networking component dedicated to your Foundry project that handles outbound connectivity for your agents. Each project gets its own isolated data proxy instance. All tool calls route through the data proxy. |
 | **Tool server** | A backend service registered at the project level that your agents can call to perform actions, such as querying a database or invoking an external API. In bring-your-own VNet configurations, tool server traffic routes through the single-tenant data proxy. |
 | **Delegated subnet** | The subnet in your VNet that you delegate to Foundry Agent Service. All agent infrastructure (data proxies and Micro VMs) deploys into this subnet and consumes IPs from it. |
 | **Micro VM** | The lightweight virtual machine that runs a Hosted agent. |
 | **Version** | A change that affects how your agent runs, such as new code, a new container image, or a configuration update. Only runtime-affecting changes create a new version. |
-| **Revision** | The deployment unit for your agent. A revision can be *versioned* (tied to a runtime change) or *non-versioned* (metadata-only changes like tags or scaling settings). |
 
 ## How traffic flows
 
@@ -78,7 +77,15 @@ Subnet configuration applies at the **Foundry account level**. All projects in t
 
 ### Recommended subnet size
 
-Use a **/24 CIDR** range for production workloads. A /27 subnet can work for smaller deployments, but it leaves very little headroom. Platform upgrades, rollouts, and scaling events all need temporary additional IPs, and a small subnet can become exhausted during these operations.
+Use a **/24 CIDR** range as the starting point for production workloads, and choose a larger range when your expected peak concurrency requires it. Don't use a /27 subnet for production workloads. Although /27 can support small development or evaluation deployments, it leaves very little headroom. Platform upgrades, rollouts, and scaling events all need temporary extra IPs, and a small subnet can become exhausted during these operations.
+
+Plan subnet capacity in this order:
+
+1. Estimate peak concurrent hosted agent sessions across all projects in the account for the region. Projects in the account share subnet capacity. All Foundry accounts and projects in the subscription and region share the session quota separately.
+1. Check the region's default concurrent session quota in [Default service limits](limits-quotas-regions.md#default-service-limits).
+1. Size the subnet so usable IPs meet or exceed the target by using the table in [Subnet size and concurrent sessions](#subnet-size-and-concurrent-sessions). Keep the planned peak below 80% of usable IPs to absorb upgrade and scaling spikes.
+1. If the target exceeds the regional default, [request a limit increase](limits-quotas-regions.md#request-a-limit-increase). Specify the subscription, region, and expected concurrency. Increases depend on regional capacity.
+1. If you need more sessions than the subnet's usable IPs allow and the subnet can't grow, request an increase to the IP-to-session mapping in the same support request.
 
 ### Supported IP ranges
 
@@ -92,14 +99,7 @@ Public IP ranges and CGNAT ranges (for example, `100.64.0.0/10`) aren't supporte
 
 ### How IPs are consumed
 
-IPs are reserved at approximately a **1 IP per 10 pods** ratio. Each Foundry project gets one data proxy that starts at 1 pod (1 replica) and scales out with traffic.
-
-| Scenario | Example | IP impact |
-|----------|---------|-----------|
-| Low traffic | 10 projects, each at 1 replica | ~1 IP shared across 10 pods |
-| High traffic | 10 projects, each scaled to 10 replicas | 100 pods, ~10 IPs |
-
-Project capacity is dynamic because more traffic per project consumes more IPs.
+IP addresses from the delegated subnet support hosted agent sessions and project-level networking components. Actual consumption changes with concurrent sessions, project count, scaling, and platform maintenance. Size the subnet for your expected peak concurrent sessions and keep enough unused addresses for temporary capacity needs. Plan capacity by sessions and usable subnet IPs, not by infrastructure units such as pods.
 
 ### Subnet size and concurrent sessions
 
@@ -107,16 +107,25 @@ The number of concurrent agent sessions available per subscription varies by reg
 
 | Subnet | Total IPs | Usable IPs | Approximate concurrent sessions |
 |--------|-----------|------------|---------------------------------|
-| /27    | 32        | ~27        | ~17                             |
-| /26    | 64        | ~59        | ~50 (maximum supported)         |
+| /27    | 32        | ~27        | ~20                             |
+| /26    | 64        | ~59        | ~50                             |
+| /25    | 128       | ~123       | ~100                            |
+| /24    | 256       | ~251       | ~250                            |
+| /23    | 512       | ~507       | ~500                            |
+| /22    | 1,024     | ~1,019     | ~1,000                          |
+| /21    | 2,048     | ~2,043     | ~2,000                          |
 
-With the default 1:1 mapping, use a **/26 subnet** or larger to support 50 concurrent sessions.
+The table shows common subnet sizes and isn't exhaustive. You can use a larger supported subnet when it fits your private IP address plan. The extra addresses provide capacity and operational headroom but don't increase your per-subscription regional session quota.
 
-To support more concurrent sessions with the same subnet, create an Azure support request. In the request, specify the subscription, region, and expected number of concurrent sessions. Based on your requirements and regional capacity, support can increase the mapping to **10 concurrent sessions per usable IP (1:10)**.
+The **Approximate concurrent sessions** column estimates capacity from usable subnet IPs under the default mapping. These values aren't production planning targets. Plan for lower concurrency so project-level networking components and the recommended 20% operational headroom also fit in the subnet. Your per-subscription regional session quota further limits actual concurrency. For example, in a region with a 1,000-session quota, a subnet larger than /22 adds IP headroom but doesn't increase concurrency unless you request a quota increase.
+
+A session represents hosted-agent compute and persisted file state, not conversation history. Session capacity therefore doesn't determine how many conversations your application can maintain. With the Responses protocol, a conversation is associated with a session, while other invocation patterns can reuse a session without platform-managed conversation history. For details, see [Sessions versus conversations](../how-to/manage-hosted-sessions.md#sessions-versus-conversations).
+
+To support more concurrent sessions within the same subnet, create an Azure support request. In the request, specify the subscription, region, and expected number of concurrent sessions. Based on your requirements and regional capacity, support can increase the mapping to **10 concurrent sessions per usable IP (1:10)**. For the default concurrent session quota available per region, see [Foundry Agent Service quotas](limits-quotas-regions.md#default-service-limits).
 
 ### Project capacity
 
-A Foundry instance supports approximately **250 projects** at low traffic. Under heavy traffic, when agents scale to many replicas, the effective limit can drop to as few as **~25 projects**. When IPs are exhausted, new project provisioning fails.
+A Foundry instance supports approximately **250 projects** at low traffic. Under heavy traffic, when agents run many concurrent sessions, the effective limit can drop to as few as **~25 projects**. When IPs are exhausted, new project provisioning fails.
 
 > [!IMPORTANT]
 > Don't plan to run at theoretical maximum capacity. Target a maximum of **80% subnet utilization** to absorb spikes from upgrades and scaling.
@@ -125,37 +134,21 @@ A Foundry instance supports approximately **250 projects** at low traffic. Under
 
 Platform upgrades run old and new infrastructure in parallel, which temporarily increases IP consumption. A /24 subnet provides enough buffer to handle these temporary spikes alongside your normal workloads. Infrastructure upgrades are fully Microsoft-managed, including their timing.
 
-## Hosted agents networking behavior
-
-Hosted agents run on Azure Container Apps and give you control over CPU and memory configuration. You deploy them through your own Azure Container Registry.
-
-### Revisions and IP usage
-
-When you deploy an update (new image, configuration, or code), the platform creates a new revision. During rollout, old and new revisions run in parallel as traffic shifts to the new version, and both consume IPs from your subnet.
-
-Revision limits per Hosted agent:
-
-- **100 active revisions** per agent.
-- **1,000 total revisions** per agent name. Oldest inactive revisions are automatically purged when the active limit is reached.
-- Approximately **200 Hosted agents** per Foundry instance.
-
-The 200 hosted-agent limit is separate from the ~250 project cap, which applies instance-wide across all agent types.
-
 ### Outbound connectivity
 
-Each Hosted agent runs in a Micro VM attached to your delegated subnet with a dedicated network interface and uses its own IP for outbound communication. Tool calls always route through the single-tenant data proxy. For source-code agent deployments, the provisioning step also requires outbound access to specific endpoints. See [Firewall requirements for private virtual networks](../how-to/deploy-hosted-agent-code.md#firewall-requirements-for-private-virtual-networks).
+Hosted agents run in microVMs attached to your delegated subnet and use that for outbound communication. Tool calls always route through the single-tenant data proxy. For source-code agent deployments, the provisioning step also requires outbound access to specific endpoints. See [Firewall requirements for private virtual networks](../how-to/deploy-hosted-agent-code.md#firewall-requirements-for-private-virtual-networks).
 
 ### Performance and scaling
 
-Scaling Hosted agents doesn't introduce latency or performance degradation. The only scenario where performance is affected is when IP exhaustion prevents the platform from scaling, which is avoidable with proper subnet sizing. Hosted agents support custom CPU and memory configurations. You select from available CPU and memory pairs when you create an agent version.
+Hosted agents support custom CPU and memory configurations. You select from available CPU and memory pairs when you create an agent version. Starting or resuming a session can require compute provisioning. If the subnet doesn't have enough available IP addresses, the platform can't provision compute for additional sessions.
 
 ## Prompt agents networking behavior
 
 Prompt agents also run on Azure Container Apps, but compute and scaling are fully managed by Microsoft. You don't configure CPU or memory.
 
-### Revisions and IP usage
+### Versions and IP usage
 
-Unlike Hosted agents, prompt agent revisions don't consume IPs. The data proxy runs in single-revision mode, so inactive revisions have no impact on IP availability.
+Unlike hosted agent sessions, prompt agent versions don't consume IPs. Project-level networking components still consume addresses from the delegated subnet.
 
 ### Outbound connectivity
 
@@ -173,12 +166,12 @@ If you can't avoid IP overlap, use [Managed virtual network](../../how-to/manage
 
 ## Monitor IP usage and detect exhaustion
 
-The Azure portal doesn't currently expose IP utilization for delegated subnets, so you can't monitor it directly. The primary indicators of IP exhaustion are **HTTP 5xx errors from the data proxy** and, for Hosted agents, **session creation failures (4xx errors)**. When IPs are exhausted, data proxy scaling and new project provisioning fail, and Hosted agents can't allocate a Micro VM for new sessions. Monitor data proxy health and Hosted agent session-creation success as leading indicators of capacity issues.
+The Azure portal doesn't currently expose IP utilization for delegated subnets, so you can't monitor it directly. The primary indicators of IP exhaustion are **HTTP 5xx errors from the data proxy** and, for hosted agents, **HTTP 429 `subnet_exhausted` errors during session creation or resume**. When IPs are exhausted, data proxy scaling and new project provisioning fail, and hosted agents can't allocate compute for new or resumed sessions. Monitor data proxy health and hosted agent session success as leading indicators of capacity issues.
 
 Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
 - The data proxy returning 5xx errors.
-- Hosted agent session creation failing with 4xx errors.
+- Hosted agent session creation or resume failing with HTTP 429 `subnet_exhausted` errors.
 - New project provisioning failures.
 
 > [!IMPORTANT]
@@ -188,17 +181,16 @@ Consider deploying a new Foundry instance with a fresh subnet when you observe:
 
 | Topic | Recommendation |
 |-------|----------------|
-| Subnet size | Use /24 for production. /27 is the minimum but risky. With the default 1:1 mapping, you need /26 for 50 concurrent sessions. Request more sessions (up to a 1:10 mapping, or one IP address for 10 sessions) through Azure support. |
+| Subnet size | Use /24 or larger for production. /27 is the minimum but risky. With the default 1:1 mapping, subnet capacity ranges from approximately 20 concurrent sessions with /27 to 2,000 with /21. Size for less than 80% utilization, or request up to a 1:10 mapping (one IP address for 10 sessions) through Azure support. |
 | Utilization target | Stay below 80% subnet utilization to absorb upgrade and scaling spikes. |
 | Supported IP ranges | RFC 1918 only: `10.x`, `172.16` through `172.31.x`, and `192.168.x`. No public or CGNAT ranges. |
 | Project capacity | ~250 projects at low traffic, as few as ~25 at full scale. Driven by IP availability. |
-| Hosted agent limits | 100 active revisions and 1,000 total revisions per agent. ~200 Hosted agents per instance. |
-| IP consumption | Hosted agent revisions consume IPs. Prompt agent revisions don't. |
-| Outbound connectivity | Hosted agents use a dedicated NIC. All tool calls route through the single-tenant data proxy. |
-| Hosted compared to prompt | Hosted: custom CPU and memory, your ACR, dedicated NIC. Prompt: fully managed scaling. |
+| IP consumption | Hosted agent sessions and project-level networking components consume IPs. Prompt agent versions don't. |
+| Outbound connectivity | Hosted agent sessions use the delegated subnet. All tool calls route through the single-tenant data proxy. |
+| Hosted compared to prompt | Hosted: custom CPU and memory and your ACR. Prompt: fully managed scaling. |
 | VNet peering | Peered VNets must have non-overlapping IP ranges. Use Managed VNet if overlap exists. |
 | Monitoring | No direct IP monitoring in the portal. Watch for data proxy 500 errors. |
-| Performance | No degradation from scaling either agent type, with proper subnet sizing. |
+| Performance | Starting or resuming a session can require compute provisioning. IP exhaustion prevents additional session compute from being provisioned. |
 
 ## Related content
 

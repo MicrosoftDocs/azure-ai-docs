@@ -8,7 +8,7 @@ ms.custom:
   - references_regions
   - dev-focus
 ms.topic: how-to
-ms.date: 04/22/2026
+ms.date: 09/03/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -30,7 +30,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 - **Foundry User** role on the Foundry project.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-- Python 3.9 or later.
+- Python 3.10 or later.
 - For agentic scenarios: an existing Foundry Agent deployed in your project. The agent's name is required as `AZURE_AI_AGENT_NAME`.
 
 ## Getting started

@@ -4,7 +4,7 @@ description: "Learn how to use Foundry Content Safety middleware in LangChain ag
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/04/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -207,7 +207,7 @@ result = agent.invoke(
                     "content safety policies>")]},
 )
 
-print(result["messages"][0].content[0]["text"])
+print(result["messages"][0].content)
 ```
 
 ```output
@@ -349,6 +349,12 @@ retrieved documents.
 
 Use `langchain_azure_ai.agents.middleware.AzureGroundednessMiddleware` to
 evaluate AI generated content against grounding sources.
+
+> [!IMPORTANT]
+> Groundedness detection isn't available in every region. If your project is in
+> an unsupported region, the middleware returns
+> `HttpResponseError: This feature is not yet available in this region`. For
+> supported regions, see [Azure AI Content Safety region support](../../../ai-services/content-safety/overview.md#region-availability).
 
 The following example:
 
@@ -597,11 +603,14 @@ def tool_only_extractor(state, runtime):
         [SystemMessage(content=QUESTION_EXTRACTION_INSTRUCTION)]
         + [m for m in messages if isinstance(m, (HumanMessage, AIMessage))]
     )
-    question = (
-        question_response.content.strip()
-        if isinstance(question_response.content, str)
-        else None
-    )
+    question_content = question_response.content
+    if isinstance(question_content, str):
+        question = question_content.strip() or None
+    elif isinstance(question_content, list):
+        parts = [b["text"] for b in question_content if isinstance(b, dict) and b.get("type") == "text"]
+        question = " ".join(parts).strip() or None
+    else:
+        question = None
 
     return GroundednessInput(answer=answer, sources=sources, question=question)
 

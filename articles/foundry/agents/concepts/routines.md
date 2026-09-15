@@ -1,22 +1,20 @@
 ---
-title: "Routines in Foundry Agent Service (preview)"
-description: "Learn how routines in Foundry Agent Service invoke agents from project-native timers, recurring schedules, and events such as GitHub issues, with governed connections and run history."
+title: "Routines in Foundry Agent Service"
+description: "Learn how routines in Foundry Agent Service invoke agents from timers, schedules, GitHub issues, and Microsoft Teams messages."
 author: aahill
 ms.author: aahi
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/08/2026
-ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
+ms.date: 08/27/2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Routines in Foundry Agent Service (preview)
+# Routines in Foundry Agent Service
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-Routines in Foundry Agent Service let you run an agent automatically when a defined trigger fires. Use a routine when you want a project-native way to say, "When a specific time, schedule, or event occurs, invoke this agent."
+Microsoft Foundry provides routines in Foundry Agent Service that run an agent automatically when a defined trigger fires. Use a routine when you want a project-native way to say, "When a specific time, schedule, or event occurs, invoke this agent."
 
 Without routines, teams often build this trigger layer themselves by combining technologies such as schedulers, Logic Apps, Azure Functions, queues, custom storage, and authentication code. Routines move that operational glue into Foundry so the trigger, action, permissions, connections, and run history live with the agent in the same Foundry project.
 
@@ -28,8 +26,8 @@ A routine has one trigger and one action.
 
 | Component | Description |
 | --- | --- |
-| **Trigger** | Defines when the routine starts. A trigger can be a one-time timer, a recurring schedule, or an event such as a GitHub issue being opened or closed. |
-| **Action** | Defines what happens after the trigger fires. In the preview, the action invokes one prompt agent or hosted agent through the existing agent endpoint. |
+| **Trigger** | Defines when the routine starts. A trigger can be a one-time timer, a recurring schedule, or an event such as a GitHub issue being opened or closed or a message posted in a Microsoft Teams channel. |
+| **Action** | Defines what happens after the trigger fires. The action invokes one prompt agent or hosted agent by using agent identity by default or the routine creator's identity when explicitly selected. |
 | **Input** | Provides the user input sent to the agent. Input can be text or JSON. |
 | **Lifecycle state** | Determines whether the routine is enabled or disabled. You can update, enable, disable, or delete a routine without recreating the agent. |
 | **Run history** | Records each trigger run, including inputs, outputs, status, and a link to the related agent response and trace details. |
@@ -38,13 +36,13 @@ The one-trigger, one-action model keeps routines focused on a single question: *
 
 ## Trigger types
 
-Routines support three trigger types in the preview: timer, recurring, and event. The recurring trigger is also referred to as a recursive trigger.
+Routines support three trigger types: timer, recurring, and event. The API represents a recurring trigger with the `schedule` type.
 
 | Trigger type | When to use it | Example |
 | --- | --- | --- |
-| **Timer** | Run an agent once at a specific date and time. After the timer fires, the routine becomes inactive. | Run a migration-readiness agent at `2026-06-01T09:00:00Z`. |
+| **Timer** | Run an agent once at a specific date and time. After the timer fires, the routine becomes inactive. | Run a migration-readiness agent at `2030-09-01T09:00:00Z`. |
 | **Recurring** | Run an agent repeatedly on a cron-style schedule. | Run a support-summary agent every weekday at 7 AM. |
-| **Event** | Run an agent when an external event fires. In the preview, the `github_issue` event fires when an issue is opened or closed in a watched GitHub repository. | Triage an issue when it's opened in a GitHub repository. |
+| **Event** | Run an agent when an external event fires. For example, the `github_issue` trigger fires when an issue is opened or closed in a watched GitHub repository. The `custom` trigger with the `teams` provider fires when a message is posted in a monitored Microsoft Teams channel. | Triage a GitHub issue when it's opened, or respond to a Teams message when it's posted. |
 
 ## How routines run
 
@@ -53,16 +51,22 @@ When you enable a routine, Foundry manages the trigger and dispatch path for you
 1. The trigger fires from a timer, a recurring schedule, or an external event.
 1. Foundry creates a routine run record in the project.
 1. Foundry invokes the configured agent endpoint with the routine input.
-1. The agent processes the request by using its configured model, instructions, tools, and identity.
+1. The agent processes the request by using its configured model, instructions, tools, and dispatch identity.
 1. Foundry stores the routine run status and links the run to the agent response and trace details.
 
-This flow uses the existing agent invocation path, so routines don't introduce a separate runtime for agent logic. The agent continues to use the same configuration, tools, and observability features that it uses when invoked from an application or playground.
+This flow uses the existing agent invocation path, so routines don't introduce a separate runtime for agent logic. The agent continues to use the same configuration, tools, and observability features that it uses when invoked from an application or playground. Because routines reuse this path, they also work with projects secured by a virtual network and inherit the project's network configuration. For more information, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
+
+Routines don't support customer-managed key (CMK) encryption. Don't use routines for workloads that require CMK protection.
 
 ## Connections, identity, and governance
 
 Routines are scoped to a Foundry project. You manage routines with the same project governance model you use for agents, tools, and connections. For more information, see [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md).
 
-Event triggers use project connections to authenticate to the external system. For example, the `github_issue` trigger relies on a GitHub connector connection that Foundry provisions in your account's connector namespace. For more information, see [Add managed MCP servers powered by connector namespaces](../how-to/tools/connectors.md).
+Event triggers use project connections to authenticate to the external system. For example, the `github_issue` trigger relies on a GitHub connector connection. The `custom` trigger with the `teams` provider relies on a Microsoft Teams connector connection. Foundry provisions these connections in your account's connector namespace. For more information, see [Add managed MCP servers powered by connector namespaces](../how-to/tools/connectors.md).
+
+**Every routine invokes its agent by using agent identity by default, regardless of the trigger type.** If the agent has tools that require delegated user access, explicitly select creator identity when you create the routine. Creator identity means only the principal that creates the routine. It isn't the agent creator, agent publisher, connection creator, a later routine editor, or another end user. You can't supply an arbitrary end-user identity at dispatch time.
+
+The dispatch identity is fixed at creation. To switch an existing routine between agent and creator identity, delete and recreate it. Connector authentication is separate from dispatch identity, so selecting creator identity doesn't change the identity stored in a GitHub or Teams connection. For configuration details and a REST example, see [Choose a dispatch identity](../how-to/use-routines.md#choose-a-dispatch-identity).
 
 This project-scoped design provides the following benefits:
 
@@ -102,13 +106,19 @@ Routines and workflows both help automate agent scenarios, but they solve differ
 
 Use a routine first when the automation is simply "run this agent when something happens." Move to workflows when the automation needs coordination logic beyond a single agent invocation.
 
-## Preview limitations
+## Limitations
 
-The preview has the following limitations:
+Routines have the following limitations:
 
 - A routine has exactly one trigger and one action.
-- The only action type is invoking one Foundry agent.
-- Supported trigger types are timer, recurring, and event (GitHub issue) triggers.
+- Routines support prompt agents and hosted agents. They don't support workflow agents.
+- Routines can be one-shot timers, recurring schedules, or event-based. Supported event triggers are GitHub issue events and Microsoft Teams channel messages.
+- The only action is invoking one agent through the Responses API or Invocations API. The agent protocol must match the action.
+- Every routine uses agent identity by default. Creator identity is an explicit create-time opt-in and always means the principal that creates the routine.
+- Routines support projects secured by a virtual network. They don't support customer-managed key (CMK) encryption.
+- Routines aren't available in UK West, Switzerland West, Japan West, UAE North, or Norway East.
+- Recurring schedules have a minimum interval of five minutes.
+- A downstream agent request has a 30-second timeout per attempt and three total delivery attempts by default.
 
 ## Related content
 

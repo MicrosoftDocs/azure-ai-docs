@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/04/2026
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -30,6 +30,7 @@ Connections let you authenticate to Microsoft and other resources within your Fo
 
 * If you don't have one, [create a project](../how-to/create-projects.md).
 * Make sure you can open your project in Microsoft Foundry.
+* Create the resource you want to connect to, such as an Azure AI Search service or an Azure Storage account. A resource that doesn't exist yet doesn't appear in the list when you browse for it.
 * Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Foundry User**, **Foundry Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]

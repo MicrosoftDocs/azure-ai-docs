@@ -3,7 +3,7 @@ title: "Use model router with Foundry agents"
 description: "Learn how model router selects the optimal model per request for your Foundry agents, reducing costs while maintaining quality across tool-calling, RAG, and multi-turn scenarios."
 author: sanjeev3
 ms.author: sajagtap
-ms.date: 08/12/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Use model router with Foundry agents
 
-Model router selects the optimal large language model (LLM) for each request your agent makes — per turn, not per session. A simple greeting routes to a fast, inexpensive model. A complex tool-calling chain routes to a frontier model. You deploy one endpoint, write zero routing logic, and get automatic cost optimization across all agent interactions.
+Model router selects the optimal large language model (LLM) for each request your agent makes. A simple greeting routes to a fast, inexpensive model. A complex tool-calling chain routes to a frontier model. You deploy one endpoint, write zero routing logic, and get automatic cost optimization across all agent interactions.
 
 This article explains how model router behaves with Foundry Agent Service agents, which tool types it supports, the routing patterns you can expect, and how to get started.
 
@@ -43,7 +43,7 @@ Without model router, you either over-provision (use an expensive model for ever
 Key benefits for agent workloads:
 
 - **Zero model selection overhead.** One deployment serves all agent scenarios — no per-agent model decisions.
-- **Per-request optimization.** Different turns in the same conversation use different models based on complexity.
+- **Per-request optimization.** Agent Service requests are routed independently based on complexity.
 - **Automatic cost efficiency.** Simple queries use inexpensive models; expensive models only activate when the prompt genuinely needs them.
 - **Tool-aware routing.** The router understands tool-calling patterns and selects models capable of structured invocations.
 - **Multi-agent flexibility.** Deploy multiple model router instances — each with a different model subset and routing mode — and assign each agent the deployment that fits its workload.
@@ -61,9 +61,11 @@ To route agentic requests to Claude models, deploy the Claude models separately 
 
 Model router analyzes the full request context — system message, user message, tool definitions, conversation history — to determine complexity and select a model. For agents, this means:
 
-### Per-request, not per-session
+### Per-request routing in Agent Service
 
-Each turn in a conversation is routed independently. A conversation might use three different models across five turns based on what each turn requires. You can observe which model handled each request through the `model` field in the API response.
+Agent Service routes requests independently. A conversation might use three different models across five turns based on what each turn requires. You can observe which model handled each request through the `model` field in the API response.
+
+The session affinity preview for direct Chat Completions requests doesn't configure affinity for Agent Service sessions. Agent Service support isn't part of this preview.
 
 ### Complexity-aware selection
 

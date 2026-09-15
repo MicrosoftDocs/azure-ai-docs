@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/19/2026
+ms.date: 09/08/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: whats-new
@@ -22,6 +22,16 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## September 2026
+
+### Content Understanding Toolkit and CU CLI (preview)
+
+The [Azure Content Understanding Toolkit](https://github.com/Azure/content-understanding-toolkit) is a set of tools that ease integration with Azure Content Understanding, together with experimental tools that capture best practices for building on Content Understanding. It includes the CU CLI and prebuilt analyzer schema references with more tools coming over time.
+
+Install CU CLI from [PyPI](https://pypi.org/project/cu-cli/):
+
+By using CU CLI, you can provision a Microsoft Foundry resource, configure Content Understanding defaults, submit local files for analysis, and create, test, and manage analyzers. It supports both the `2025-11-01` GA and `2026-06-01-preview` API versions. For more information, see the [CU CLI documentation](https://github.com/Azure/content-understanding-toolkit/tree/main/cu-cli).
 
 ## August 2026
 

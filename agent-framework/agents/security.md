@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 06/23/2026
+ms.date: 09/11/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Security with FIDES
@@ -149,6 +150,34 @@ That is the whole opt-in. After reading the malicious issue from the previous se
 
 The rest of this page explains every option that appears above, plus the ones you might want to reach for next.
 
+### Keep security state scoped to a session
+
+`SecureAgentConfig` stores labels, hidden variables, audit records, and pending
+approvals in the active `AgentSession`. Reuse or restore the same session to
+continue that security state. Use a different session to isolate another user
+or conversation.
+
+```python
+session = agent.create_session()
+await agent.run("Review issue 42.", session=session)
+
+for entry in config.get_audit_log(session):
+    print(entry)
+```
+
+Pass the same session to `get_audit_log()`, `get_variable_store()`, and
+`list_variables()`. After `SecureAgentConfig` runs as a context provider,
+calling these accessors without a session raises `ValueError`. This requirement
+prevents state from one session from being read as though it belonged to
+another.
+
+FIDES binds a policy approval to the exact resolved tool invocation in its
+owning session and consumes the grant once. If the resolved hidden content
+changes, or the pending policy record expires or is evicted, the tool doesn't
+run. Instead, the framework returns and persists a replacement request that
+requires a second approval. Rejection and cancellation clear only the matching
+invocation.
+
 ## Labels on content
 
 Every `Content` item can carry a `security_label` in its `additional_properties` with two independent axes.
@@ -232,6 +261,14 @@ When `source_integrity` is declared, it overrides the otherwise-default rule of 
 
 If a tool declares neither per-item labels nor `source_integrity`, FIDES falls back to the combined label of its inputs. This is the right default for pure transformation tools — a `summarize(text)` that processes an untrusted blob produces an untrusted summary without any extra annotation.
 
+When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
+
+### Keep MCP labels subordinate to local policy
+
+When you connect through `SecureMCPToolProxy`, FIDES treats MCP server metadata as untrusted by default. Server `ToolAnnotations` can make locally configured policy more restrictive. They can't mark data as trusted, remove the `public` confidentiality cap, or authorize untrusted input.
+
+FIDES also combines server result `_meta.ifc` labels with the current local result label by default. A remote label can lower integrity or raise confidentiality, but it can't relax local policy. If an authenticated server is authoritative for result labels, set `trust_server_ifc=True` on `SecureMCPToolProxy` or `apply_mcp_security_labels`. A complete, valid `_meta.ifc` label then becomes authoritative for that result. Missing, partial, or malformed labels still use local policy, and `ToolAnnotations` remain restriction-only.
+
 ## Annotating sink tools
 
 Tools that *consume* data — write files, post comments, send email, charge cards — declare what context they are willing to run in via `additional_properties`. These are the two knobs the policy enforcer checks.
@@ -304,7 +341,7 @@ Sometimes you want a stricter posture: keep raw untrusted text away from the mai
 
 - **No tools attached** — so any "call write_file" embedded in the untrusted bytes is just generated text, not a tool call.
 - **An isolated context** — only the prompt and the referenced variables are visible.
-- **An `untrusted` label on the result** — whatever the quarantined model returns is itself labeled untrusted and re-enters the variable store. The main model gets a summary it can reason over without ever seeing the raw bytes.
+- **An `untrusted` integrity label and the combined input confidentiality on the result** — whatever the quarantined model returns remains untrusted and can't implicitly declassify private or user-identity content. The result re-enters the variable store, and the main model gets a summary it can reason over without ever seeing the raw bytes.
 
 ```python
 from agent_framework.security import quarantined_llm

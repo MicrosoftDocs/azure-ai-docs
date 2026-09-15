@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/10/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,98 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Lab installs separately, and Foundry supports Projects 2.6
+
+**PR:** [#8188](https://github.com/microsoft/agent-framework/pull/8188)
+
+`agent-framework` and `agent-framework-core[all]` no longer install the
+experimental `agent-framework-lab` package. Install each Lab module explicitly.
+
+```bash
+pip install "agent-framework-lab[gaia]"
+pip install "agent-framework-lab[tau2]"
+pip install "agent-framework-lab[lightning]"
+```
+
+Lab now resolves its experimental dependencies independently from released
+Agent Framework packages. The `agent-framework-foundry` package supports
+`azure-ai-projects>=2.2.0,<2.7.0` and uses an OpenAI 3-compatible
+`agent-framework-openai` version. This separation lets Foundry applications use
+Azure AI Projects 2.4 through 2.6 without overriding Lab's OpenAI 2-compatible
+dependency constraints.
+
+---
+
+### 🔴 GitHub Copilot workspace file hooks are opt-in
+
+**PR:** [#7517](https://github.com/microsoft/agent-framework/pull/7517)
+
+`GitHubCopilotAgent` no longer loads `.github/hooks/` from the working
+directory by default. Enable hooks only for a working directory you trust.
+
+```python
+from agent_framework.github import GitHubCopilotAgent, GitHubCopilotOptions
+
+agent = GitHubCopilotAgent(
+    default_options=GitHubCopilotOptions(enable_file_hooks=True),
+)
+```
+
+File hooks run commands on the host and aren't gated by
+`on_permission_request` or other tool-approval callbacks. When hooks exist and
+you omit `enable_file_hooks`, the agent defaults it to `False` and logs a
+warning once. Explicitly setting `enable_file_hooks=False` disables hooks
+without that warning. For configuration guidance, see
+[Control workspace file hooks](../../integrations/by-component/agent-services/github-copilot.md#control-workspace-file-hooks).
+
+---
+
+### 🔴 File-backed storage uses shared path normalization
+
+**PR:** [#8123](https://github.com/microsoft/agent-framework/pull/8123)
+
+File-backed sessions, memory, and todo storage now derive folder names through
+one shared storage-key mapping. IDs and scopes that contain uppercase letters,
+path separators, Unicode, or other unsafe characters might resolve to a
+different location after upgrade.
+
+Existing data isn't moved automatically. If you need to preserve it, migrate
+the old files or directories to the newly derived location. Treat
+`FileMemoryProvider.scope` as one opaque namespace key, not as a nested path.
+For example, `tenants/alice` maps to one encoded folder.
+
+`TodoFileStore` uses the shared mapping for owner IDs, but it rejects session
+IDs that contain `/` or `\`. Canonicalize those session IDs before you migrate
+todo data.
+
+---
+
+### 🔴 `SecretString` no longer inherits from `str`
+
+**PR:** [#8127](https://github.com/microsoft/agent-framework/pull/8127)
+
+`SecretString` now masks string conversion, formatting, and concatenation. APIs
+that require an actual `str`, including JSON serialization, no longer accept the
+wrapper implicitly. Extract the value explicitly at the boundary that requires
+the credential:
+
+**Before:**
+
+```python
+payload = json.dumps({"api_key": secret})
+```
+
+**After:**
+
+```python
+payload = json.dumps({"api_key": secret.get_secret_value()})
+```
+
+The extracted value is an ordinary string and is no longer protected from
+accidental logging or formatting.
+
+---
 
 ### 🔴 Middleware inputs require a sequence, and Agent Hooks installs separately
 

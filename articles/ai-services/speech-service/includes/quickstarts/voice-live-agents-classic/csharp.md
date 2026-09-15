@@ -416,8 +416,6 @@ Follow these steps to create a console application and install the Voice Live SD
         ///</summary>
         /// <remarks>
         /// This sample now demonstrates some of the new convenience methods added to the VoiceLive SDK:
-        /// - ClearStreamingAudioAsync() - Clears all input audio currently being streamed
-        /// - CancelResponseAsync() - Cancels the current response generation (existing method)
         /// - ConfigureSessionAsync() - Configures session options (existing method)
         ///
         /// Additional convenience methods available but not shown in this sample:
@@ -441,12 +439,8 @@ Follow these steps to create a console application and install the Voice Live SD
             private VoiceLiveSession? _session;
             private AudioProcessor? _audioProcessor;
             private bool _disposed;
-            // Tracks whether an assistant response is currently active (created and not yet completed)
-            private bool _responseActive;
             // Tracks whether we've already sent the initial proactive greeting to start the conversation
             private bool _conversationStarted;
-            // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
-            private bool _canCancelResponse;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
@@ -638,44 +632,6 @@ Follow these steps to create a console application and install the Voice Live SD
                         {
                             await _audioProcessor.StopPlaybackAsync().ConfigureAwait(false);
                         }
-    
-                        // Only attempt cancellation / clearing if a response is actually active
-                        if (_responseActive && _canCancelResponse)
-                        {
-                            // Cancel any ongoing response (only if server may still be generating)
-                            try
-                            {
-                                await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
-                                _logger.LogInformation("≡ƒ¢æ Active response cancelled due to user barge-in");
-                            }
-                            catch (Exception ex)
-                            {
-                                // Treat known benign message as debug-level (server already finished response)
-                                if (ex.Message.Contains("no active response", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    _logger.LogDebug("Cancellation benign: response already completed");
-                                }
-                                else
-                                {
-                                    _logger.LogWarning(ex, "Response cancellation failed during barge-in");
-                                }
-                            }
-    
-                            // Clear any streaming audio still in transit only if response still marked active
-                            try
-                            {
-                                await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
-                                _logger.LogInformation("Γ£¿ Cleared streaming audio after cancellation");
-                            }
-                            catch (Exception ex)
-                            {
-                                _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
-                            }
-                        }
-                        else
-                        {
-                            _logger.LogDebug("No active response to cancel during barge-in; skipping cancellation and clear operations");
-                        }
                         break;
     
                     case SessionUpdateInputAudioBufferSpeechStopped speechStopped:
@@ -691,8 +647,6 @@ Follow these steps to create a console application and install the Voice Live SD
     
                     case SessionUpdateResponseCreated responseCreated:
                         _logger.LogInformation("≡ƒñû Assistant response created");
-                        _responseActive = true;
-                        _canCancelResponse = true; // Response can be cancelled until completion
                         break;
     
                     case SessionUpdateResponseAudioDelta audioDelta:
@@ -709,20 +663,15 @@ Follow these steps to create a console application and install the Voice Live SD
                     case SessionUpdateResponseAudioDone audioDone:
                         _logger.LogInformation("≡ƒñû Assistant finished speaking");
                         Console.WriteLine("≡ƒÄñ Ready for next input...");
-                        // Do NOT mark _responseActive false yet; ResponseDone may still arrive
                         break;
     
                     case SessionUpdateResponseDone responseDone:
                         _logger.LogInformation("Γ£à Response complete");
-                        _responseActive = false; // Response fully complete
-                        _canCancelResponse = false; // No longer cancellable
                         break;
     
                     case SessionUpdateError errorEvent:
                         _logger.LogError("Γ¥î VoiceLive error: {ErrorMessage}", errorEvent.Error?.Message);
                         Console.WriteLine($"Error: {errorEvent.Error?.Message}");
-                        _responseActive = false;
-                        _canCancelResponse = false;
                         break;
     
                     default:
