@@ -56,12 +56,6 @@ The following table shows regional support for the [Responses API](../../openai/
 | Switzerland West | Yes | Yes | Yes | 
 | UAE North | Yes | Yes | Yes |
 | UK South | Yes | Yes | Yes | 
-| US Gov Arizona | Yes | Yes | No |
-| US Gov Virginia | Yes | Yes | No |
-| USNat East | Yes | Yes | No |
-| USNat West | Yes | Yes | No |
-| USSec East | Yes | Yes | No |
-| USSec West | Yes | Yes | No |
 | West Central US | Yes | Yes | Yes | 
 | West Europe | Yes | Yes | Yes | 
 | West US | Yes | Yes | Yes | 
