@@ -6,6 +6,7 @@ ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 06/16/2026
 ai-usage: ai-assisted
+#customer intent: As an Azure administrator, I want to enable or disable agentic retrieval billing so that I can control paid knowledge retrieval on an Azure AI Search service.
 ---
 
 # Enable or disable agentic retrieval billing

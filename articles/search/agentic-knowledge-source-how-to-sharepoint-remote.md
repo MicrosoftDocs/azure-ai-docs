@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 09/03/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a remote SharePoint knowledge source so that my knowledge base can retrieve live SharePoint content under each user's permissions.
 ---
 
 # Create a remote SharePoint knowledge source (preview)

@@ -9,7 +9,7 @@ ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
-# Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI LLM to synthesize answers.
+#customer intent: As an application developer, I want to build and query an agentic retrieval knowledge base so that my application can produce citation-backed answers across a multi-turn conversation.
 ---
 
 # Quickstart: Agentic retrieval

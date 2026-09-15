@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 09/01/2026
 ai-usage: ai-assisted
+#customer intent: As a solution architect, I want to understand indexed and remote knowledge sources so that I can select appropriate sources for an agentic retrieval solution.
 ---
 
 # What is a knowledge source?

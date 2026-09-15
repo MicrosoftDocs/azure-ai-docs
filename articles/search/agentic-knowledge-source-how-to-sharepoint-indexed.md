@@ -7,6 +7,7 @@ ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create an indexed SharePoint knowledge source so that SharePoint content can be ingested and retrieved with document-level permissions.
 ---
 
 # Create an indexed SharePoint knowledge source (preview)

@@ -6,6 +6,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/18/2026
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to configure and test image serving so that answer synthesis can reason over images embedded in indexed documents.
 ---
 
 # Surface document-embedded images in agentic retrieval (preview)

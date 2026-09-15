@@ -8,6 +8,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to configure authentication and create a Work IQ knowledge source so that agentic retrieval can use permission-aware organizational intelligence.
 ---
 
 # Create a Work IQ knowledge source (preview)

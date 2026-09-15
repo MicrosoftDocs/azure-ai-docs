@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a Fabric Ontology knowledge source so that my knowledge base can answer questions using live data and business relationships defined in Fabric.
 ---
 
 # Create a Fabric Ontology knowledge source (preview)

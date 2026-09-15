@@ -10,6 +10,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to set the retrieval reasoning effort so that I can balance retrieval depth, latency, and model usage.
 ---
 
 # Set the retrieval reasoning effort (preview)

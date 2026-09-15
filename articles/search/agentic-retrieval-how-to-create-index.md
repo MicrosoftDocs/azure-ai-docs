@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to configure an index for agentic retrieval so that its fields and search settings support knowledge source queries.
 ---
 
 # Create an index for agentic retrieval in Azure AI Search

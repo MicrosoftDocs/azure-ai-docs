@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to enable answer synthesis for a knowledge base or retrieve request so that users receive natural-language answers with citations.
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search (preview)

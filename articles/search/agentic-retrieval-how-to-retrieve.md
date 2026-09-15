@@ -9,6 +9,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to query a knowledge base through the retrieve action or MCP endpoint so that my application can obtain grounded responses from configured knowledge sources.
 ---
 
 # Query a knowledge base using the retrieve action or MCP endpoint
