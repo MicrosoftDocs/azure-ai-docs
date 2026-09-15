@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -361,6 +361,12 @@ To surface text from `execute_code`, end the code with `print(...)`; Hyperlight 
 
 When filesystem access is enabled, write larger artifacts to `/output/<filename>` instead. Returned files are attached to the tool result, while files under `/input` are available for reading inside the sandbox.
 
+The `/output` directory is scoped to one `execute_code` invocation. The
+framework attaches collected files to that invocation's result and then clears
+or isolates the output generation. Consume returned attachments from the
+current result; don't rely on files remaining under `/output` for a later
+`execute_code` call.
+
 For Python, output attachment collection defaults to 20 files, 5 MiB per file,
 and 20 MiB of cumulative raw file data for each invocation. Oversized or
 directory-heavy output returns a structured execution error with no partial
@@ -412,7 +418,7 @@ This package is still in beta. Plan around the following constraints:
 
 1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP. Python 3.14 is supported.
 2. The current integration executes Python guest code.
-3. In-memory interpreter state does not persist across separate `execute_code` calls. Use mounted files and `/output` artifacts when data needs to survive across calls.
+3. In-memory interpreter state and `/output` files don't persist across separate `execute_code` calls.
 4. Approval applies to the `execute_code` invocation as a whole, not to each individual `call_tool(...)` inside the same code block.
 5. Tool descriptions, parameter annotations, and return shapes matter more here because the model is writing code against that contract rather than choosing isolated direct tool calls.
 

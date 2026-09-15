@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -179,14 +179,16 @@ description, and constraints become part of the search tool's JSON schema:
 
 ### Native Agent Framework implementations
 
-The following implementations use the native Agent Framework contracts. Each
-one is also available as a separate Semantic Kernel connector, but the two
+The following implementations use the native Agent Framework contracts. Some
+are also available as separate Semantic Kernel connectors, but the two
 connector families aren't interchangeable.
 
 | Implementation | Agent Framework package and lifecycle | Separate Semantic Kernel connector | Search modes | Key limitations |
 |---|---|---|---|---|
 | In-memory | `agent-framework-core`; released package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/inmemory-connector) | Dense vector with portable filters | Process-local linear scan for development and tests, not a production database. |
 | Azure AI Search | `agent-framework-azure-ai-search`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-ai-search-connector) | Dense vector and keyword-hybrid | One top-level dense vector field per query. Some thresholds, hybrid text-recall controls, strict post-filtering, and permissions require a supporting preview SDK/API and `allow_preview=True`. |
+| Azure Cosmos DB for NoSQL | `agent-framework-azure-cosmos`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector) | Dense vector with portable filters | Keys must be strings stored as `id`, and containers use the `/id` partition key. Keyword and hybrid search aren't supported, and Euclidean search doesn't support score thresholds. |
+| Azure DocumentDB | `agent-framework-azure-documentdb`; alpha package | Not available | Dense vector with portable metadata filters | Keys must be strings or integers. Generated ObjectIds, hybrid and full-text search, and nested filter paths aren't supported. |
 | PostgreSQL with pgvector | `agent-framework-postgres`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Exact dense vector, HNSW, and IVFFlat | Requires PostgreSQL 13+, pgvector 0.8.0+, an existing schema, and the enabled extension. Keyword and hybrid search aren't supported. |
 | Qdrant | `agent-framework-qdrant`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/qdrant-connector) | Dense vector with server-side portable filters | Server mode requires Qdrant 1.16.2+. Keys must be unsigned 64-bit integers or UUIDs. Keyword and hybrid search aren't supported, and filters aren't available in local SDK mode. |
 | Redis | `agent-framework-redis`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/redis-connector) | Dense vector over HASH or JSON records | Requires Redis 8.0.3+ with Search; JSON records also require RedisJSON. Redis Cluster, keyword search, and hybrid search aren't supported. |
@@ -195,6 +197,8 @@ Install a prerelease connector package for the database you use:
 
 ```bash
 pip install agent-framework-azure-ai-search --pre
+pip install agent-framework-azure-cosmos --pre
+pip install agent-framework-azure-documentdb --pre
 pip install agent-framework-postgres --pre
 pip install agent-framework-qdrant --pre
 pip install agent-framework-redis --pre
@@ -220,7 +224,6 @@ implementations don't currently have a native Agent Framework connector:
 | Implementation | Availability | Uses an officially supported database SDK | Maintainer or vendor |
 |---|:---:|:---:|---|
 | [Azure Cosmos DB for MongoDB vCore](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-mongodb-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [Azure Cosmos DB for NoSQL](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [Chroma](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/chroma-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | Elasticsearch | Planned | Not applicable | Not applicable |
 | [Faiss](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/faiss-connector) | Available | Yes | Microsoft Semantic Kernel project |
