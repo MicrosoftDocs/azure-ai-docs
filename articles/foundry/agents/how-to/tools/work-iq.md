@@ -658,15 +658,13 @@ Work IQ and Foundry are Microsoft services, but they operate under different com
 
 Customer data therefore leaves the Foundry project's Azure service boundary, but it doesn't leave the customer's Microsoft Entra tenant. The query and response are processed by Work IQ under the applicable Microsoft 365 service terms, compliance certifications, and data residency commitments. Work IQ returns a synthesized response to the Foundry agent, and that response can contain information grounded in the user's Microsoft 365 content. Foundry can process or store the response according to the agent and project configuration.
 
-Traffic between Foundry and Work IQ is traffic between Microsoft services. Microsoft states that traffic between Microsoft services routes over the [Microsoft global network](/azure/networking/microsoft-global-network) and not over the public internet.
-
 When virtual network isolation is enabled for the Foundry project, Work IQ tool calls route through the project's single-tenant data proxy. The data proxy is a platform-managed networking component dedicated to the project that handles outbound agent connectivity. This routing doesn't move Work IQ into the customer VNet or change the Microsoft 365 compliance boundary that applies to Work IQ processing. For the complete request path, see [Deep dive into Foundry Agent Service networking](../../concepts/agents-networking-deep-dive.md#how-traffic-flows).
 
 ### Data residency
 
 Work IQ retrieves data from your organization's Microsoft 365 tenant. Work IQ processing follows your Microsoft 365 data residency configuration, not the Azure region of your Foundry project. The query and synthesized result cross between the Azure and Microsoft 365 compliance boundaries even though both services use the same Microsoft Entra tenant.
 
-For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and [Microsoft global network](/azure/networking/microsoft-global-network).
+For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
