@@ -603,7 +603,7 @@ Tool-specific `tools/call` argument examples:
 | File Search | `{"queries": ["search text"]}` — or `{"queries": ["search text"], "vector_store_ids": ["<VECTOR_STORE_ID>"]}` when vector store is passed dynamically |
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
-| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| A2A | `{"message": {"parts": [{"kind": "text", "text": "Hello"}]}}` |
 | Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
 | Work IQ | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
 | MCP | `{"query": "what is agent service"}` |
