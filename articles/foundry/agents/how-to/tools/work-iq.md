@@ -384,6 +384,7 @@ Next, [connect the toolbox to a hosted agent](use-toolbox-hosted-agent.md). For 
 ---
 :::zone-end
 
+<!-- markdownlint-disable-next-line MD044 -->
 :::zone pivot="javascript"
 
 ```javascript
