@@ -654,16 +654,9 @@ A successful response returns HTTP 200 or 201. The response body includes a `pro
 
 ## Data governance and compliance
 
-Work IQ and Foundry are Microsoft services, but they use different service
-boundaries. A Work IQ request starts in your Foundry project in Azure, crosses
-from the Azure service boundary into the Microsoft 365 service boundary, and
-runs against data in the same Microsoft Entra tenant as the signed-in user.
+Work IQ and Foundry are Microsoft services, but they use different service boundaries. A Work IQ request starts in your Foundry project in Azure, crosses from the Azure service boundary into the Microsoft 365 service boundary, and runs against data in the same Microsoft Entra tenant as the signed-in user.
 
-Crossing the Azure compliance boundary doesn't mean that the request leaves
-your organization or is sent to a third party. It means that the Work IQ part
-of the request is processed under the Microsoft 365 service terms, compliance
-certifications, and data residency commitments instead of the Azure terms that
-apply to your Foundry project.
+Crossing the Azure compliance boundary doesn't mean that the request leaves your organization or is sent to a third party. It means that the Work IQ part of the request is processed under the Microsoft 365 service terms, compliance certifications, and data residency commitments instead of the Azure terms that apply to your Foundry project.
 
 ### Data-flow summary
 
@@ -679,8 +672,7 @@ The following table answers common questions about the Work IQ data path.
 
 ### Settings that affect data flow
 
-Some settings control whether data can flow. Other settings change where
-Foundry stores the response but don't change the route to Work IQ.
+Some settings control whether data can flow. Other settings change where Foundry stores the response but don't change the route to Work IQ.
 
 | Configuration | Effect on data flow | Outcome |
 | --- | --- | --- |
@@ -694,46 +686,24 @@ Foundry stores the response but don't change the route to Work IQ.
 | Application Insights tracing | Foundry records agent and tool telemetry in the connected Application Insights resource. | Traces might include prompts, tool arguments, tool results, and other customer content. Configure access, retention, and redaction for the telemetry resource. |
 
 > [!IMPORTANT]
-> Basic and standard agent setup affect where Foundry stores agent data. They
-> don't keep Work IQ calls inside the Azure compliance boundary. Work IQ is a
-> Microsoft 365 service, so the Work IQ portion of the request is processed
-> within the Microsoft 365 compliance boundary.
+> Basic and standard agent setup affect where Foundry stores agent data. They don't keep Work IQ calls inside the Azure compliance boundary. Work IQ is a Microsoft 365 service, so the Work IQ portion of the request is processed within the Microsoft 365 compliance boundary.
 
 ### Understand the compliance boundaries
 
 Use the following terms precisely:
 
-- **Azure compliance boundary** refers to the Azure services and contractual
-  commitments that apply to your Foundry project. A request crosses this
-  boundary when Foundry sends it to Work IQ.
-- **Microsoft 365 compliance boundary** refers to the Microsoft 365 services,
-  certifications, data handling policies, and residency commitments that apply
-  while Work IQ processes the request.
-- **Organization compliance boundary** refers to the boundary your
-  organization defines through its policies, approved services, tenant
-  configuration, geography requirements, and regulatory obligations. This
-  boundary isn't a Microsoft product boundary. Your organization decides
-  whether both Azure and Microsoft 365 are inside it.
-- **Microsoft Entra tenant boundary** controls identity and data isolation
-  between organizations. Work IQ uses the same tenant as the Foundry
-  connection and signed-in user, and doesn't support cross-tenant retrieval.
+- **Azure compliance boundary** refers to the Azure services and contractual commitments that apply to your Foundry project. A request crosses this boundary when Foundry sends it to Work IQ.
+- **Microsoft 365 compliance boundary** refers to the Microsoft 365 services, certifications, data handling policies, and residency commitments that apply while Work IQ processes the request.
+- **Organization compliance boundary** refers to the boundary your organization defines through its policies, approved services, tenant configuration, geography requirements, and regulatory obligations. This boundary isn't a Microsoft product boundary. Your organization decides whether both Azure and Microsoft 365 are inside it.
+- **Microsoft Entra tenant boundary** controls identity and data isolation between organizations. Work IQ uses the same tenant as the Foundry connection and signed-in user, and doesn't support cross-tenant retrieval.
 
-The phrase "outside the Azure compliance boundary" doesn't by itself mean
-"outside your organization," "outside Microsoft," or "over the public
-internet." It means another Microsoft service boundary and its applicable
-terms govern that part of the request.
+The phrase "outside the Azure compliance boundary" doesn't by itself mean "outside your organization," "outside Microsoft," or "over the public internet." It means another Microsoft service boundary and its applicable terms govern that part of the request.
 
 ### Data residency
 
-Work IQ retrieves data from your organization's Microsoft 365 tenant. Work IQ
-processing follows your Microsoft 365 data residency configuration, not the
-Azure region of your Foundry project. The Work IQ query and synthesized result
-cross between the Azure and Microsoft 365 service boundaries even when both
-services use the same Microsoft Entra tenant.
+Work IQ retrieves data from your organization's Microsoft 365 tenant. Work IQ processing follows your Microsoft 365 data residency configuration, not the Azure region of your Foundry project. The Work IQ query and synthesized result cross between the Azure and Microsoft 365 service boundaries even when both services use the same Microsoft Entra tenant.
 
-For details, see [Microsoft 365 Copilot privacy and data handling
-policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and [Microsoft
-global network](/azure/networking/microsoft-global-network).
+For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and [Microsoft global network](/azure/networking/microsoft-global-network).
 
 ### Privacy and data handling
 
