@@ -6,8 +6,9 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/20/2026
+ms.date: 08/12/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## How model router works
@@ -27,11 +28,11 @@ Model router optimizes costs and latencies while maintaining comparable quality.
 
 The current version, `2025-11-18` (latest), includes the following capabilities:
 1. Support Global Standard and Data Zone Standard deployments.
-1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `DeepSeek-V3.2`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `gpt-5.2`, `gpt-5.2-chat`, `claude-haiku-4-5`, `claude-sonnet-4-5`, `claude-opus-4-1`, and `claude-opus-4-6`.
+1. Routes across models from OpenAI, DeepSeek, Meta, xAI, and Anthropic. For the current routing pool, see [Supported models](#supported-models).
 1. Quick deploy or Custom deploy with **routing mode** and **model subset** options.
 1. **Routing mode**: Optimize the routing logic for your needs. Supported options: `Quality`, `Cost`, `Balanced` (default).
 1. **Model subset**: Select your preferred models to create your model subset for routing.
-1. Support for agentic scenarios including tools so you can now use it in the Foundry Agent Service.
+1. Support for agentic scenarios with tools across eligible OpenAI, open-source (OSS), and Anthropic models in Foundry Agent Service.
 
 ## Versioning
 
@@ -40,7 +41,7 @@ Model router uses date-stamped versions. The current version is `2025-11-18` (la
 Older versions (`2025-08-07`, `2025-05-19`) are frozen and don't receive new model additions.
 
 | Version | Status | Description |
-|:--------|:-------|:------------|
+| :-------- | :------- | :------------ |
 | `2025-11-18` | **Active (latest)** | Receives ongoing model and feature updates |
 | `2025-08-07` | Frozen | Fixed set of models; no new additions |
 | `2025-05-19` | Frozen | Fixed set of models; no new additions |

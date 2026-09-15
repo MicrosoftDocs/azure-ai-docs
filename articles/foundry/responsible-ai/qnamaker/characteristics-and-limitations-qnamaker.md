@@ -5,9 +5,8 @@ description: "Characteristics and limitations of QnA Maker"
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.subservice: azure-ai-qna-maker
 ms.date: 02/25/2021
 ---
 

@@ -4,11 +4,11 @@ titleSuffix: Microsoft Foundry
 description: "Agent types, tools, and publishing options supported by Microsoft Foundry Agent Service in Azure Government (USGov Virginia and USGov Arizona)."
 author: jvenezia
 ms.author: jvenezia
-manager: nitinme
+manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 06/12/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ms.custom:
   - references_regions
@@ -50,7 +50,7 @@ Features marked **Preview** are available for early adoption but might not carry
 
 ## Tools
 
-The following table lists tool availability for Foundry Agent Service in Azure Government. For details on each tool, see the [Foundry tool catalog](../concepts/tool-catalog.md).
+The following table lists tool availability for Foundry Agent Service in Azure Government. For details on how to connect tools by using a Toolbox, see the [What is Toolbox in Foundry?](../concepts/toolbox-overview.md)
 
 | Tool | Available |
 | --- | --- |
@@ -60,6 +60,8 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Azure AI Search | Yes |
 | Azure Functions | Yes |
 | Function calling | Yes |
+| MCP servers | Yes |
+| OpenAPI tool | Yes |
 | Web search | No |
 | Grounding with Bing | No |
 | Image Generation | No |
@@ -67,13 +69,11 @@ The following table lists tool availability for Foundry Agent Service in Azure G
 | Computer Use | No |
 | Microsoft Fabric | No |
 | SharePoint | No |
-| MCP servers | No |
 | Agent-to-Agent (A2A) | No |
-| OpenAPI tool | No |
 
 ## Publishing
 
-Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. Publishing to Microsoft Teams and Microsoft 365 Copilot isn't supported. For more information, see [Publish an agent](../how-to/publish-copilot.md).
+Azure Government supports publishing agents. Each published agent gets a stable managed endpoint and a Microsoft Entra identity. You can register the agent with the Entra Agent Registry for discovery within your tenant. For more information, see [Publish an agent](../how-to/publish-copilot.md).
 
 ## SDK configuration for Azure Government
 
@@ -86,6 +86,8 @@ pip install "azure-ai-projects>=2.0.0" azure-identity
 The token audience and project endpoint differ from public cloud. Set `credential_scopes` to `https://ai.azure.us/.default` and use your Azure Government project endpoint, which has the format `https://{resource-name}.services.ai.azure.us/api/projects/{project-name}`.
 
 The following example creates a simple prompt agent, sends a message, and prints the response:
+
+# [Python](#tab/python)
 
 ```python
 import os
@@ -131,6 +133,51 @@ with (
         project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
+# [C#](#tab/csharp)
+
+Install the prerelease packages with `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+using System;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")!;
+
+// For Azure Government, authenticate against the Government cloud and use the .us endpoint.
+var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
+{
+    AuthorityHost = AzureAuthorityHosts.AzureGovernment,
+});
+AIProjectClient projectClient = new(new Uri(endpoint), credential);
+var agentsClient = projectClient.AgentAdministrationClient;
+
+// Create a prompt agent.
+DeclarativeAgentDefinition definition = new(model: "gpt-4.1")
+{
+    Instructions = "You are a helpful assistant",
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "MyAgent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created (name: {agent.Name}, version: {agent.Version})");
+
+// Invoke the agent through the Responses API.
+ProjectResponsesClient responses = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgent(agent.Name);
+ResponseResult response = await responses.CreateResponseAsync("Hello!");
+Console.WriteLine($"Response: {response.GetOutputText()}");
+
+agentsClient.DeleteAgent(agent.Name, force: true);
+```
+
+---
+
 For samples that use tools like file search, code interpreter, and function calling, see the [agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
 
 ## Quotas, limits, and models
@@ -143,5 +190,5 @@ For samples that use tools like file search, code interpreter, and function call
 - [Microsoft Foundry in Azure Government](../../concepts/foundry-azure-government.md) — Platform features, endpoints, and portal URLs
 - [Quotas and limits for Microsoft Foundry Agent Service](./limits-quotas-regions.md) — Service quotas and regional support
 - [Foundry Agent Service overview](../overview.md) — Introduction to Agent Service
-- [Foundry tool catalog](../concepts/tool-catalog.md) — Detailed information on all tools
+- [What is Toolbox in Foundry?](../concepts/toolbox-overview.md) — Detailed information on all tools
 - [Foundry Models sold by Azure in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md) — Available models in Azure Government

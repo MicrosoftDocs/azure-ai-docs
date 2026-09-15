@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 09/08/2026
 ms.reviewer: fasantia
 reviewer: santiagxf
 ai-usage: ai-assisted

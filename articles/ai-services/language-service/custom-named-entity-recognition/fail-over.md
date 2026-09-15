@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how to save and recover your custom NER models.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 04/06/2026
+ms.date: 08/10/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner
 ---
 # Back up and recover your custom NER models

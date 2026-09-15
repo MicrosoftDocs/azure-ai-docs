@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: View a list of entity types the conversational PII feature can detect and identify within conversation inputs.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 02/17/2026
 ms.author: lajanuar

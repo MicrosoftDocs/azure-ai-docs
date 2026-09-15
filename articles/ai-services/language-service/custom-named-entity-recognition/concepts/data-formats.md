@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by custom NER.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/22/2026
+ms.date: 08/01/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner
 ---
 # Accepted custom NER data formats

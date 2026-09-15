@@ -48,15 +48,15 @@ The following steps show how to use safety system messages in [Foundry portal](h
     :::image type="content" source="../media/navigate-chat-playground.png" alt-text="Screenshot of Foundry portal showing the Chat playground entry point for Azure OpenAI.":::
 1. Navigate to the default safety system messages integrated in the studio.
     :::image type="content" source="../media/navigate-system-message.png" alt-text="Screenshot of Foundry portal showing where to open the system message and safety system message settings.":::
-1. Select the system messages that are applicable to your scenario. 
+1. Select the system messages that apply to your scenario. 
     :::image type="content" source="../media/select-system-message.png" alt-text="Screenshot of Foundry portal showing a list of available safety system message templates to select.":::
-1. Review and edit the safety system messages based on the best practices outlined here. 
+1. Review and edit the safety system messages based on the best practices outlined in this article. 
     :::image type="content" source="../media/review-system-message.png" alt-text="Screenshot of Foundry portal showing an editable safety system message text area.":::
 1. Apply changes and evaluate your system. 
     :::image type="content" source="../media/apply-system-message.png" alt-text="Screenshot of Foundry portal showing how to apply changes and run a test in the Chat playground.":::
 
 > [!NOTE]
-> If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
+> If you're using a safety system message that isn't built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
 ## Test your safety system message
 
 After adding a safety system message, test it with both benign and adversarial prompts:
@@ -80,7 +80,7 @@ If the model refuses too often or allows harmful content, adjust your safety sys
 
 Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/accessibility).
 
-The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
+The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” might be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
 > [!NOTE]
 > The model-specific guidance in this section reflects best practices at time of publication. Verify current recommendations with each vendor's documentation.
 ### OpenAI
@@ -156,21 +156,21 @@ The safety system instructions are designed for different models and contexts. T
 
 ## Limitations
 
-Safety system messages aren’t a complete safety solution:
+Safety system messages aren't a complete safety solution:
 
-- They can be bypassed or degraded by adversarial prompting.
-- They can reduce usefulness if they’re too strict.
+- Adversarial prompting can bypass or degrade them.
+- If they're too strict, they can reduce usefulness.
 - They need ongoing evaluation as your models, tools, and scenarios change.
 
-To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](../../../foundry-classic/foundry-models/concepts/content-filter.md) and the [Azure AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text) for layered protection.
+To reduce risk, combine system messages with other mitigations such as content filtering. For layered protection, see [Content filtering overview](../../../foundry-classic/foundry-models/concepts/content-filter.md) and the [Azure AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text).
 
 ## Evaluation
 
-We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](../concepts/system-message.md).
+Adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](../concepts/system-message.md).
 
 ## Next steps
 
 - Read [Safety system messages](../concepts/system-message.md) for authoring guidance and best practices.
 - Use [System message design](../concepts/advanced-prompt-engineering.md) to avoid common prompt pitfalls.
 - Layer mitigations with [Content filtering overview](../../../foundry-classic/foundry-models/concepts/content-filter.md).
-- If you’re hardening a system against attacks, see [Prompt shields](../concepts/content-filter-prompt-shields.md).
+- If you're hardening a system against attacks, see [Prompt shields](../concepts/content-filter-prompt-shields.md).

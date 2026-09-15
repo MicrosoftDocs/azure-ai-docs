@@ -4,13 +4,15 @@ description: Learn how to set up a blob indexer to automate indexing of Azure Bl
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 08/08/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - ignite-2024
   - sfi-ropc-nochange
   - ai-assisted
+  - doc-kit-assisted
 ---
 
 # Index data from Azure Blob Storage
@@ -41,6 +43,8 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 + [Access tiers](/azure/storage/blobs/access-tiers-overview) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
 
 + Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your pricing tier.
+
+  The blob indexer limits cover the maximum blob size and the number of characters that Azure AI Search extracts from a blob. If you use a skillset, each skill's input or service limit applies separately after document cracking.
 
 + A supported network configuration and data access. At a minimum, you need read permissions in Azure Storage. A storage connection string that includes an access key gives you read access to storage content. If instead you're using Microsoft Entra logins and roles, make sure the [search service's managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 

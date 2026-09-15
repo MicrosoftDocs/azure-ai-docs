@@ -1,39 +1,47 @@
 ---
-title: Page List API Results
-description: Learn how to page through Azure AI Search list APIs in preview, including supported operations and continuation patterns.
+title: Page Through Azure AI Search List Results
+description: Learn how to page through Azure AI Search list operations using cursor pagination and service-provided continuation URLs.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/17/2026
+ms.custom:
+  - doc-kit-assisted
+  - dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
-# Use paging with Azure AI Search list APIs
+# Page through Azure AI Search list results (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-Paging support in the `2026-05-01-preview` API makes Azure AI Search list operations easier to use at scale. Instead of assuming a list call returns the full collection, callers can request one page at a time, process the results, and continue until the collection is exhausted.
+Starting with the `2026-08-01-preview` REST API, use cursor pagination (preview) to enumerate supported service resources one page at a time. The service returns an opaque continuation URL when more results are available.
 
-Use paging for management tools, admin workflows, and inventory jobs that enumerate large collections of indexes, indexers, data sources, skillsets, knowledge bases, or knowledge sources.
+This article explains the cursor contract and demonstrates how to page through existing indexes.
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) with objects to enumerate.
++ An [Azure AI Search service](search-create-service-portal.md) that contains resources for one of the supported list operations.
 
-+ Permissions to call list operations. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to list service resources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
+
+  > [!NOTE]
+  > The client library must support the `2026-08-01-preview` version of the Search Service REST API. Earlier versions don't expose the cursor parameters shown in this article.
 
 ::: zone-end
 
@@ -41,162 +49,169 @@ Use paging for management tools, admin workflows, and inventory jobs that enumer
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
+  > [!NOTE]
+  > The client library must support the `2026-08-01-preview` version of the Search Service REST API. Earlier versions don't expose the cursor parameters shown in this article.
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
-## Choose paging parameters
+## Choose a list operation
 
-Supported preview list operations accept paging parameters that control the page size, offset, and count behavior.
+The `2026-08-01-preview` cursor contract applies to the following list operations:
 
-| Parameter | Type | Default | Maximum | Description |
-| --- | --- | --- | --- | --- |
-| `$top` | Integer | `50` | `1000` | Number of items to retrieve in the page. |
-| `$skip` | Integer | `0` | No fixed maximum other than the number of objects in the list. | Number of items to skip before returning results. |
-| `$count` | Boolean | `false` | Not applicable | Returns the total item count when set to `true`. |
+| Operation | Resource path |
+| --- | --- |
+| List Aliases | `/aliases` |
+| [List Data Sources](/rest/api/searchservice/data-sources/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | `/datasources` |
+| [List Indexers](/rest/api/searchservice/indexers/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | `/indexers` |
+| [List Indexes](/rest/api/searchservice/indexes/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | `/indexes` |
+| List Index Statistics | `/indexstats` |
+| List Knowledge Bases | `/knowledgebases` |
+| List Knowledge Sources | `/knowledgesources` |
+| List Knowledge Source Files | `/knowledgesources('{knowledge-source-name}')/files` |
+| [List Skillsets](/rest/api/searchservice/skillsets/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | `/skillsets` |
+| List Synonym Maps | `/synonymmaps` |
 
-If `$top` is omitted, the service returns up to 50 items by default. If a request asks for more than 1,000 items, the service returns at most 1,000 items in the page and includes continuation information when more items remain. Filtering and ordering parameters, such as `$filter` and `$orderby`, aren't part of this preview paging contract.
-
-For knowledge base and knowledge source list operations, the service orders resources by name before applying `$skip` and `$top`, so paging is stable across requests when the collection doesn't change.
-
-## Send the first paged request
-
-The following example requests five indexes and asks the service to include the total count.
+## Request and follow pages
 
 ::: zone pivot="csharp"
 
+The following example lists indexes whose names start with `hotels` and requests up to 50 indexes per page. Iterating the `AsyncPageable<SearchIndex>` result automatically requests each subsequent page.
+
 ```csharp
+using System;
 using Azure;
+using Azure.Identity;
+using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.Models;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+string endpoint = Environment.GetEnvironmentVariable(
+    "AZURE_SEARCH_ENDPOINT")!;
 
-var page = indexClient.GetIndexesAsync(top: 5, skip: 0).AsPages().GetAsyncEnumerator();
-await page.MoveNextAsync();
-foreach (var index in page.Current.Values)
+var options = new SearchClientOptions(
+    SearchClientOptions.ServiceVersion.V2026_08_01_Preview);
+var client = new SearchIndexClient(
+    new Uri(endpoint),
+    new AzureCliCredential(),
+    options);
+
+AsyncPageable<SearchIndex> indexes = client.GetIndexesAsync(
+    search: "hotels",
+    pageSize: 50,
+    searchType: ListingSearchType.Prefix);
+
+await foreach (SearchIndex index in indexes)
 {
     Console.WriteLine(index.Name);
 }
 ```
 
-**Reference:** [SearchIndexClient.GetIndexesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient.GetIndexesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getindexesasync?view=azure-dotnet-preview&preserve-view=true)
 
 ::: zone-end
 
 ::: zone pivot="python"
 
+The following example lists indexes whose names start with `hotels` and requests up to 50 indexes per page. Iterating the `ItemPaged` result automatically requests each subsequent page.
+
 ```python
-from azure.core.credentials import AzureKeyCredential
+import os
+
+from azure.identity import AzureCliCredential
 from azure.search.documents.indexes import SearchIndexClient
 
-index_client = SearchIndexClient(endpoint="search_url", credential=AzureKeyCredential("api_key"))
+endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
 
-for index in index_client.list_indexes(top=5, skip=0):
-    print(index.name)
+with SearchIndexClient(
+    endpoint,
+    AzureCliCredential(),
+    api_version="2026-08-01-preview",
+) as client:
+    indexes = client.list_indexes(
+        select=["name"],
+        search="hotels",
+        page_size=50,
+        search_type="prefix",
+    )
+    for index in indexes:
+        print(index.name)
 ```
 
-**Reference:** [SearchIndexClient.list_indexes](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+**Reference:** [SearchIndexClient.list_indexes](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true#azure-search-documents-indexes-searchindexclient-list-indexes)
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
+Send an initial request to list indexes whose names start with `hotels`. The request returns up to 50 index names:
+
 ```http
-GET {{search-url}}/indexes?$top=5&$skip=0&$count=true&api-version=2026-05-01-preview
-Content-Type: application/json
-api-key: {{search-api-key}}
+GET https://<search-service-name>.search.windows.net/indexes?api-version=2026-08-01-preview&search=hotels&searchType=prefix&pageSize=50&$select=name
+Authorization: Bearer <access-token>
+Accept: application/json
 ```
 
-**Reference:** [List Indexes](/rest/api/searchservice/indexes/list?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [List Indexes](/rest/api/searchservice/indexes/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-::: zone-end
-
-The response includes the first page of values. When you specify `$top`, request subsequent pages by increasing `$skip`.
+When more than 50 matching indexes exist, the response includes `@odata.nextLink`, which contains the complete continuation URL and an opaque token. The following response is abbreviated:
 
 ```json
 {
-  "@odata.count": 43,
   "value": [
-    { "name": "index-1" },
-    { "name": "index-2" },
-    { "name": "index-3" },
-    { "name": "index-4" },
-    { "name": "index-5" }
+    {
+      "name": "<index-name>"
+    }
+  ],
+  "@odata.nextLink": "https://<search-service-name>.search.windows.net/indexes?api-version=2026-08-01-preview&searchType=prefix&%24select=name&%24skiptoken=<opaque-token>"
+}
+```
+
+To request the next page, send a GET request to the complete `@odata.nextLink` value exactly as returned. Keep the same authentication header:
+
+```http
+GET <complete-@odata.nextLink-value>
+Authorization: Bearer <access-token>
+Accept: application/json
+```
+
+**Reference:** [List Indexes](/rest/api/searchservice/indexes/list?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
+
+The terminal response contains the final index names and omits `@odata.nextLink`, indicating that no more pages are available. Result order isn't part of the cursor contract:
+
+```json
+{
+  "value": [
+    {
+      "name": "<next-index-name>"
+    }
   ]
 }
 ```
 
-## Continue through all pages
-
-When you control `$top`, continue by increasing `$skip` until the response contains fewer items than requested. If the service applies the default page size because `$top` is omitted, or caps a request above the maximum page size, the response can include `@odata.nextLink` when more results remain. Treat `@odata.nextLink` as opaque when it's present.
-
-::: zone pivot="csharp"
-
-The .NET SDK pages through results transparently. Iterating an `AsyncPageable<T>` fetches each page on demand, so a simple `await foreach` covers the entire collection. Set `top` to control the page size that the SDK requests from the service.
-
-```csharp
-await foreach (var index in indexClient.GetIndexesAsync(top: 50))
-{
-    Console.WriteLine(index.Name);
-}
-```
-
 ::: zone-end
 
-::: zone pivot="python"
+## Handle cursor behavior
 
-The Python SDK pages through results transparently. Iterating the iterator returned by `list_indexes` fetches each page on demand, so a simple `for` loop covers the entire collection. Set `top` to control the page size that the SDK requests from the service.
++ **Detect the final page:** Continue paging only while the response contains `@odata.nextLink`. The terminal page omits this property, and responses don't include `@odata.count`.
 
-```python
-for index in index_client.list_indexes(top=50):
-    print(index.name)
-```
++ **Preserve continuation state:** Use the complete `@odata.nextLink` exactly as returned. Don't construct, modify, decode, or reuse its `$skiptoken`. The token supports forward paging only.
 
-::: zone-end
++ **Change request parameters:** Start a new initial request to change the resource path, API version, search prefix, selected properties, or page size. Combining `$skiptoken` with `search` or `pageSize` returns HTTP 400.
 
-::: zone pivot="rest"
-
-The following pseudocode shows the basic paging loop for REST callers:
-
-```text
-top = 50
-skip = 0
-
-while true:
-    response = GET "/indexes?$top={top}&$skip={skip}&$count=true&api-version=2026-05-01-preview"
-    process response.value
-
-    if response.value.length < top:
-        break
-
-    skip = skip + top
-```
-
-::: zone-end
-
-## Supported list operations
-
-The following list operations support paging in the preview:
-
-+ List Indexes
-+ List Index Statistics Summary
-+ List Synonym Maps
-+ List Indexers
-+ List Data Sources
-+ List Skillsets
-+ List Knowledge Bases
-+ List Knowledge Sources
-
-Aliases aren't included in the preview paging scope.
-
-Knowledge base and knowledge source list operations support `$top`, `$skip`, and `$count` in the `2026-05-01-preview` API.
++ **Account for collection changes:** Forward paging is stable only while the collection remains unchanged. Adding, updating, or deleting resources during enumeration can produce duplicate or omitted results.
 
 ## Related content
 
 + [Manage Azure AI Search using REST APIs](search-manage-rest.md)
-+ [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API)
-+ [Knowledge Bases - Create or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) (REST API)
++ [Manage an index in Azure AI Search](search-how-to-manage-index.md)

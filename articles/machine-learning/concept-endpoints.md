@@ -13,7 +13,7 @@ ms.custom:
   - devplatv2
   - ignite-2023
   - build-2024
-ms.date: 08/13/2025
+ms.date: 08/21/2026
 #Customer intent: As an MLOps administrator, I want to understand what a managed endpoint is and why I need it.
 ---
 
@@ -27,7 +27,7 @@ After you train machine learning models or pipelines, or find suitable models fr
 
 An **endpoint** is a stable and durable URL that can be used to request or invoke a model. You provide the required inputs to the endpoint and receive the outputs. Azure Machine Learning supports standard deployments, online endpoints, and batch endpoints. An endpoint provides:
 
-- A stable and durable URL (such as _endpoint-name.region.inference.ml.azure.com_)
+- A stable and durable URL (for example, a managed online endpoint scoring URL such as `https://<endpoint-name>.<region>.inference.ml.azure.com/score`). The exact URL format varies by endpoint type.
 - An authentication mechanism
 - An authorization mechanism
 
@@ -61,11 +61,11 @@ _Batch endpoints_ are designed for long-running batch inference. When you invoke
 
 __Standard deployment__:
 
-Use [standard deployments](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to standard deployments. We recommend using this deployment mode when:
+Use [standard deployments](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to standard deployments. For the models you can deploy this way, see [Deploy models as standard deployments](how-to-deploy-models-serverless.md). Use this deployment mode when:
 
 > [!div class="checklist"]
 > * Your model is a foundational model or a fine-tuned version of a foundational model that is available for standard deployments.
-> * You can benefit from a quota-less deployment.
+> * You can benefit from a deployment that doesn't consume your subscription's compute quota.
 > * You don't need to customize the inference stack used to run the model.
 
 __Online endpoints__:
@@ -94,6 +94,8 @@ Use [batch endpoints](concept-endpoints-batch.md) to operationalize models or pi
 ### Comparison of standard deployment, online, and batch endpoints
 
 All standard deployments, online endpoints, and batch endpoints are based on the idea of endpoints, therefore, you can transition easily from one to the other. Online and batch endpoints are also capable of managing multiple deployments for the same endpoint.
+
+In short: use standard deployments for supported foundation models, online endpoints for low-latency inference with custom models, and batch endpoints for asynchronous inference over large volumes of data.
 
 #### Endpoints
 

@@ -5,9 +5,9 @@ description: Learn about definitions used in custom text classification.
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: glossary
-ms.date: 05/23/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---

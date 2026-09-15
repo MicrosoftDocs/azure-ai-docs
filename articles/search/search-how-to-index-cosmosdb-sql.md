@@ -1,11 +1,12 @@
 ---
 title: Azure Cosmos DB NoSQL Indexer
-description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
+description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full-text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
@@ -47,7 +48,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 1. Sign in to the Azure portal and [create an account, database, and container](/azure/cosmos-db/nosql/quickstart-portal) on Cosmos DB. 
 
-1. In Cosmos DB, select **Data Explorer**  for the new container, provide the following values.
+1. In Cosmos DB, select **Data Explorer** and, for the new container, provide the following values.
 
     | Property | Value |
     |----------|-------|
@@ -69,7 +70,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 Now that you have a container, you can use the Azure portal, REST client, or an Azure SDK to index your data.
 
-The Description field provides the most verbose content. You should target this field for full text search and optional vector queries.
+The Description field provides the most verbose content. You should target this field for full-text search and optional vector queries.
 
 ## Use the Azure portal
 
@@ -123,7 +124,7 @@ The data source definition specifies the data to index, credentials, and policie
         },
         "dataChangeDetectionPolicy": {
           "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-        "  highWaterMarkColumnName": "_ts"
+          "highWaterMarkColumnName": "_ts"
         },
         "dataDeletionDetectionPolicy": null,
         "encryptionKey": null,
@@ -151,18 +152,18 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 | Full access connection string |
 |-----------------------------------------------|
-|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`" }` |
+|`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>" }` |
 | You can get the connection string from the Azure Cosmos DB account page in the Azure portal by selecting **Keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 | (Modern approach) Managed identity connection string for NoSQL accounts |
 |------------------------------------------------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccessToken)" }`|
-|This connection string, supported only for Azure Cosmos DB for NoSQL accounts, ensures that the search service will never use account keys (even in the background) when attempting to access data from Cosmos DB. This is recommended, as it works even if the NoSQL account has account keys disabled. For more information, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
+|This connection string, supported only for Azure Cosmos DB for NoSQL accounts, ensures that the search service never uses account keys (even in the background) when attempting to access data from Cosmos DB. This approach is recommended, as it works even if the NoSQL account has account keys disabled. For more information, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md).|
 
 | (Legacy approach) Managed identity connection string |
 |------------------------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.DocumentDB/databaseAccounts/<your cosmos db account name>/;(ApiKind=[api-kind];)/(IdentityAuthType=AccountKey)" }`|
-|This connection string doesn't require an account key to be specified directly, but the search service will utilize the managed identity to fetch the account keys in the background. Though this is supported for all Cosmos DB account types, it isn't recommended for the NoSQL account type. Such a connection string won't work if account keys are disabled for the Cosmos DB account. If the `IdentityAuthType` property is omitted, the search service will still default to fetching the account key in the background. For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind`, `IdentityAuthType` see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)|
+|This connection string doesn't require an account key to be specified directly, but the search service uses the managed identity to fetch the account keys in the background. Though this approach is supported for all Cosmos DB account types, it isn't recommended for the NoSQL account type. Such a connection string doesn't work if account keys are disabled for the Cosmos DB account. If the `IdentityAuthType` property is omitted, the search service still defaults to fetching the account key in the background. For connections targeting the [SQL API](/azure/cosmos-db/sql-query-getting-started), you can omit `ApiKind` from the connection string. For more information about `ApiKind` and `IdentityAuthType`, see [Setting up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md).|
 
 <a name="flatten-structures"></a>
 
@@ -172,7 +173,7 @@ In the "query" property under "container", you can specify a SQL query to flatte
 
 Example document:
 
-```http
+```json
     {
         "userId": 10001,
         "contact": {
@@ -315,7 +316,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST APIrequest
+To monitor the indexer status and execution history, check the indexer execution history in the Azure portal, or send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) REST API request.
 
 ### [**Portal**](#tab/portal-check-indexer)
 
@@ -382,15 +383,15 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
 > [!NOTE]
-> When you assign a `null` value to a field in your Azure Cosmos DB, the AI Search indexer is unable to distinguish between `null` and a missing field value. Therefore, if a field in the index is empty, it will not be substituted with a `null` value, even if that modification was made in your database.
+> When you assign a `null` value to a field in your Azure Cosmos DB, the AI Search indexer can't distinguish between `null` and a missing field value. Therefore, if a field in the index is empty, it isn't substituted with a `null` value, even if that modification was made in your database.
 
 <a name="IncrementalProgress"></a>
 
@@ -416,8 +417,8 @@ To specify this hint, [create or update your indexer definition](#configure-and-
 
 When rows are deleted from the collection, you normally want to delete those rows from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"

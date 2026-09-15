@@ -16,13 +16,13 @@ ai-usage: ai-assisted
 
 Semantic ranker is a premium feature billed by usage. By default, all search services are enrolled in the free plan, which provides a monthly request allowance at no charge. To enable continued access after the free quota is consumed, you can switch to the standard plan.
 
-Starting with Search Service REST API version 2026-04-01, billing consent for semantic ranker and agentic retrieval is separate. Use `semanticSearch` to control billing for semantic ranker and `knowledgeRetrieval` to control billing for agentic retrieval.
+Starting with Search Service REST API version `2026-04-01`, billing consent for semantic ranker and agentic retrieval is separate. Use `semanticSearch` to control billing for semantic ranker and `knowledgeRetrieval` to control billing for agentic retrieval.
 
 ## Prerequisites
 
 - An Azure AI Search service in any [region that provides semantic ranker](search-region-support.md).
 
-- **Owner** or **Contributor** permissions on the search service.
+- **Owner** or **Contributor** access to the search service.
 
 - Search Management REST API version [2026-03-01-preview](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) or later to set the `semanticSearch` property.
 
@@ -30,9 +30,9 @@ Starting with Search Service REST API version 2026-04-01, billing consent for se
 
 [!INCLUDE [billing-split-version-compatibility](includes/billing-split-version-compatibility.md)]
 
-For Search Service REST API version 2026-04-01 and later, `semanticSearch` affects only semantic ranker billing. To control agentic retrieval billing, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
+For Search Service REST API version `2026-04-01` and later, `semanticSearch` affects only semantic ranker billing. To control agentic retrieval billing, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-For Search Service REST API version 2025-11-01-preview and earlier, `semanticSearch` controls consent for both semantic ranker and paid agentic retrieval usage.
+For Search Service REST API version `2025-11-01-preview` and earlier, `semanticSearch` controls consent for both semantic ranker and paid agentic retrieval usage.
 
 ## Billing plans
 
@@ -64,9 +64,9 @@ Follow these steps to switch semantic ranker to the standard billing plan. The b
 Use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#searchsemanticsearch) (Search Management REST API) to set `semanticSearch` to `standard`:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{management-access-token}}
 
 {
   "properties": {
@@ -101,9 +101,9 @@ Follow these steps to switch semantic ranker back to the free billing plan.
 Use [Services - Create or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#searchsemanticsearch) (Search Management REST API) to set `semanticSearch` to `free`:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{management-access-token}}
 
 {
   "properties": {
@@ -115,7 +115,7 @@ Authorization: Bearer {{token}}
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
 > [!NOTE]
-> The `disabled` value is no longer valid in Search Management REST API version 2026-03-01-preview and later. Existing services with `semanticSearch` set to `disabled` are automatically treated as `free`.
+> The `disabled` value is no longer valid in Search Management REST API version `2026-03-01-preview` and later. Existing services with `semanticSearch` set to `disabled` are automatically treated as `free`.
 
 ---
 

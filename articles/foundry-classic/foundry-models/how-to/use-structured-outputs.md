@@ -48,5 +48,5 @@ zone_pivot_groups: azure-ai-inference-samples
 
 * [Use embeddings models](./use-embeddings.md)
 * [Use image embeddings models](./use-image-embeddings.md)
-* [Use reasoning models](./use-chat-reasoning.md)
+* [Use reasoning models](../../../foundry/foundry-models/how-to/use-chat-reasoning.md)
 * [Azure AI Model Inference API](/rest/api/microsoft-foundry/modelinference)

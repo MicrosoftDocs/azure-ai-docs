@@ -4,7 +4,7 @@ description: "Learn how to run and interact with an evaluation cluster analysis.
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 07/31/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -21,7 +21,7 @@ This article explains how to generate and interact with an evaluation cluster an
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
-- One or more [completed evaluation runs](../../how-to/develop/cloud-evaluation.md).
+- One or more [completed evaluation runs](cloud-evaluation.md).
 - A deployed model in your project to use for cluster analysis generation. To learn more, see [Create model deployments](../../foundry-models/how-to/create-model-deployments.md).
 
 ## Generate an evaluation cluster analysis
@@ -38,7 +38,7 @@ This article explains how to generate and interact with an evaluation cluster an
 
 ## View cluster analysis
 
-Cluster analysis provides an intuitive visualization of performance by grouping evaluation result samples with similar issues or response patterns. It helps you quickly identify recurring failure types, understand the distribution across error categories, and prioritize areas for improvement.
+Cluster analysis provides an intuitive visualization of performance by grouping evaluation result samples with similar problems or response patterns. It helps you quickly identify recurring failure types, understand the distribution across error categories, and prioritize areas for improvement.
 
 :::image type="content" source="../../media/observability/cluster-analysis-map.png" alt-text="Screenshot of the cluster analysis page." lightbox="../../media/observability/cluster-analysis-map.png":::
 
@@ -57,25 +57,25 @@ At the top of the view, summary statistics for the evaluation run are displayed:
 Each dot represents a sample from your evaluation dataset. Dots are grouped by semantic similarity, using embedding-based clustering of model outputs and feedback signals.
 
 - Color: Indicates the cluster assignment (for example, inadequate final answer or incorrect response).
-- Position: Samples closer together share similar characteristics or issues.
+- Position: Samples closer together share similar characteristics or problems.
 
 ### Detail panel
 
 #### Cluster
 
-Selecting a cluster opens a side panel that includes:
+When you select a cluster, a side panel opens that includes:
 
 - Selected cluster – Name of the top-level issue group.
 - Entry count – Total number of samples within this cluster.
 - Subclusters – Breakdown of related subcategories.
-- Description – Automatically generated diagnostic summary explaining the likely cause or characteristic pattern
-- Recommendations: Suggested next steps for mitigation or agent improvement.
+- Description – Automatically generated diagnostic summary explaining the likely cause or characteristic pattern.
+- Recommendations – Suggested next steps for mitigation or agent improvement.
 
 :::image type="content" source="../../media/observability/cluster-analysis-side-panel.png" alt-text="Screenshot of a selected cluster with the side panel open." lightbox="../../media/observability/cluster-analysis-side-panel.png":::
 
 #### Subcluster
 
-Selecting a subcluster opens a side panel that includes:
+When you select a subcluster, a side panel opens that includes:
 
 - Cluster – Indicates the parent cluster this subcluster belongs to (for example, inadequate_final_answer).
 - Selected subcluster – The specific subset being examined (for example, invalid_or_missing_api_key).
@@ -88,7 +88,7 @@ Selecting a subcluster opens a side panel that includes:
 
 #### Entry ID
 
-Selecting a dot / entry ID opens a side panel that includes:
+When you select a dot or entry ID, a side panel opens that includes:
 
 - Cluster hierarchy
   - Displays the full path of where this entry belongs:
@@ -108,7 +108,7 @@ Selecting a dot / entry ID opens a side panel that includes:
 The filter panel on the right side of the cluster analysis view lets you customize how clusters are displayed for targeted inspection.
 
 - Color by
-  - Lets you adjust how the samples are color-coded on the visualization.
+  - Adjust how the samples are color-coded on the visualization.
   - Options typically include:
     - Cluster – Colors samples by top-level issue category.
     - Subcluster – Colors samples by more granular subcategories within each cluster.
@@ -117,8 +117,8 @@ The filter panel on the right side of the cluster analysis view lets you customi
 :::image type="content" source="../../media/observability/cluster-analysis-filter.png" alt-text="Screenshot of the cluster analysis's filter panel." lightbox="../../media/observability/cluster-analysis-filter.png":::
 
 - Advanced filtering
-  - Provides tools to focus the visualization on specific subsets of data.
-  - You can define filters based on metadata or evaluation attributes.
+  - Tools to focus the visualization on specific subsets of data.
+  - Define filters based on metadata or evaluation attributes.
     - Select Parameter – Choose which field to filter on (for example, score, evaluator type, timestamp).
     - Equal / Contains / Not equal – Define the condition for filtering.
     - Select Value – Choose or input the specific value to match.
@@ -128,7 +128,7 @@ The filter panel on the right side of the cluster analysis view lets you customi
 
 ## Download the analysis
 
-To view the analysis offline, select **download** to get a copy of the analysis in CSV format and view it in other applications.  
+To view the analysis offline, select **Download** to get a copy of the analysis in CSV format and view it in other applications.  
 
 > [!NOTE]
 > The analysis result isn't stored. If you leave the page, the analysis result is lost.
@@ -139,7 +139,7 @@ Use the insights from cluster analysis to:
 
 - **Refine prompts** — Update your agent's instructions to address recurring failure patterns identified in the clusters.
 - **Retrain or fine-tune** — Use identified failure categories as signal for fine-tuning data curation.
-- **Re-evaluate** — After making changes, run a new evaluation and generate a fresh cluster analysis to compare results. See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+- **Re-evaluate** — After making changes, run a new evaluation and generate a fresh cluster analysis to compare results. See [Run evaluations from the SDK](cloud-evaluation.md).
 
 ## Troubleshooting
 
@@ -153,5 +153,5 @@ Use the insights from cluster analysis to:
 ## Related content
 
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
-- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
-- [How to evaluate generative AI models and applications with Foundry](../../how-to/evaluate-generative-ai-app.md)
+- [Run evaluations from the SDK](cloud-evaluation.md)
+- [Run evaluations from the Foundry portal](../../how-to/evaluate-generative-ai-app.md)

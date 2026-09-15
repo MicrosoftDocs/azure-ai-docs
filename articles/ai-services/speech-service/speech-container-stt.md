@@ -1,16 +1,17 @@
 ---
 title: Speech to text containers - Speech service
 titleSuffix: Foundry Tools
-description: Install and run speech to text containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
+description: Install and run speech to text containers with Docker for real-time speech recognition and batch transcription on-premises.
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
-ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
+ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python, doc-kit-assisted
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 09/02/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to install and run speech to text containers with Docker.
 ---
 
@@ -22,14 +23,14 @@ For more information about prerequisites, validating that a container is running
 
 ## Container images
 
-The Speech to text container image for all supported versions and locales can be found on the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/tags) syndicate. It resides within the `azure-cognitive-services/speechservices/` repository and is named `speech-to-text`. 
+You can find the Speech to text container image for all supported versions and locales in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/tags) catalog. It resides within the `azure-cognitive-services/speechservices/` repository and is named `speech-to-text`.
 
-:::image type="content" source="./media/containers/mcr-tags-speech-to-text.png" alt-text="A screenshot of the search connectors and triggers dialog." lightbox="./media/containers/mcr-tags-speech-to-text.png":::
+:::image type="content" source="./media/containers/mcr-tags-speech-to-text.png" alt-text="Screenshot of Microsoft Container Registry showing Speech to text container tags and image details." lightbox="./media/containers/mcr-tags-speech-to-text.png":::
 
 The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text`. Either append a specific version or append `:latest` to get the most recent version.
 
 | Version | Path |
-|-----------|------------|
+| ------- | ---- |
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest`<br/><br/>The `latest` tag pulls the latest image for the `en-US` locale. |
 | 4.12.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:4.12.0-amd64-mr-in` |
 
@@ -39,13 +40,13 @@ All tags, except for `latest`, are in the following format and are case sensitiv
 <major>.<minor>.<patch>-<platform>-<locale>-<prerelease>
 ```
 
-The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/speech-to-text/tags/list) for your convenience. The body includes the container path and list of tags. The tags aren't sorted by version, but `"latest"` is always included at the end of the list as shown in this snippet:
+The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/speech-to-text/tags/list) for your convenience. The body includes the container path and list of tags. The tags aren't sorted by version, but `"latest"` is always included at the end of the list. The following abbreviated example shows the response structure:
 
 ```json
 {
   "name": "azure-cognitive-services/speechservices/speech-to-text",
   "tags": [
-    <--redacted for brevity-->    
+    "<additional-tags>",
     "4.12.0-amd64-sw-tz",
     "4.12.0-amd64-ta-in",
     "4.12.0-amd64-th-th",
@@ -80,12 +81,15 @@ docker pull mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. 
 
+> [!NOTE]
+> If you enable real-time diarization, configure `InClusterRedisCacheEnabled=true` and `InClusterRedisCacheEndpoint=<host-or-ip>:<port>` before you start the container. For setup and validation, see [Configure a cache for speech container diarization](speech-container-speech-to-text-diarization-cache.md).
+
 # [Speech to text](#tab/container)
 
 The following table represents the various `docker run` parameters and their corresponding descriptions:
 
 | Parameter | Description |
-|---------|---------|
+| --------- | ----------- |
 | `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](speech-container-howto.md#billing-arguments). |
 | `{API_KEY}` | The API key is required. For more information, see [billing arguments](speech-container-howto.md#billing-arguments). |
 
@@ -115,33 +119,33 @@ If you're approved to run the container disconnected from the internet, the foll
 
 The `DownloadLicense=True` parameter in your `docker run` command downloads a license file to enable your Docker container to run when it isn't connected to the internet. It also contains an expiration date, after which the license file is invalid to run the container. You can only use a license file with the appropriate container that you're approved for. For example, you can't use a license file for a `speech-to-text` container with a `neural-text-to-speech` container.
 
-| Placeholder | Description | 
-|-------------|-------|
-| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speech-to-text:latest` |
+| Placeholder | Description |
+| ----------- | ----------- |
+| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest` |
 | `{LICENSE_MOUNT}` | The path where the license is downloaded, and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
 | `{ENDPOINT_URI}` | The endpoint for authenticating your service request. You can find it on your resource's **Key and endpoint** page, on the Azure portal.<br/><br/>For example: `https://<your-resource-name>.cognitiveservices.azure.com` |
 | `{API_KEY}` | The key for your Speech resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 
 ```bash
-docker run --rm -it -p 5000:5000 \ 
+docker run --rm -it -p 5000:5000 \
 -v {LICENSE_MOUNT} \
 {IMAGE} \
 eula=accept \
 billing={ENDPOINT_URI} \
 apikey={API_KEY} \
 DownloadLicense=True \
-Mounts:License={CONTAINER_LICENSE_DIRECTORY} 
+Mounts:License={CONTAINER_LICENSE_DIRECTORY}
 ```
 
 Once the license file is downloaded, you can run the container in a disconnected environment. The following example shows the formatting of the `docker run` command you use, with placeholder values. Replace these placeholder values with your own values.
 
 Wherever the container is run, the license file must be mounted to the container and the location of the license folder on the container's local filesystem must be specified with `Mounts:License=`. An output mount must also be specified so that billing usage records can be written.
 
-Placeholder | Value | Format or example |
-|-------------|-------|---|
-| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speech-to-text:latest` |
- `{MEMORY_SIZE}` | The appropriate size of memory to allocate for your container.<br/><br/>For example: `4g` |
+| Placeholder | Description |
+| --- | --- |
+| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest` |
+| `{MEMORY_SIZE}` | The appropriate size of memory to allocate for your container.<br/><br/>For example: `4g` |
 | `{NUMBER_CPUS}` | The appropriate number of CPUs to allocate for your container.<br/><br/>For example: `4` |
 | `{LICENSE_MOUNT}` | The path where the license is located and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
 | `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Foundry Tools documentation. |
@@ -149,12 +153,12 @@ Placeholder | Value | Format or example |
 | `{CONTAINER_OUTPUT_DIRECTORY}` | Location of the output folder on the container's local filesystem.<br/><br/>For example: `/path/to/output/directory` |
 
 ```bash
-docker run --rm -it -p 5000:5000 --memory {MEMORY_SIZE} --cpus {NUMBER_CPUS} \ 
--v {LICENSE_MOUNT} \ 
+docker run --rm -it -p 5000:5000 --memory {MEMORY_SIZE} --cpus {NUMBER_CPUS} \
+-v {LICENSE_MOUNT} \
 -v {OUTPUT_PATH} \
 {IMAGE} \
 eula=accept \
-Mounts:License={CONTAINER_LICENSE_DIRECTORY}
+Mounts:License={CONTAINER_LICENSE_DIRECTORY} \
 Mounts:Output={CONTAINER_OUTPUT_DIRECTORY}
 ```
 
@@ -172,6 +176,13 @@ sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PA
 
 For more information about `docker run` with Speech containers, see [Install and run Speech containers with Docker](speech-container-howto.md#run-the-container).
 
+## Use real-time diarization
+
+Use speech-to-text container version 5.1.0 or later for generally available real-time speaker diarization. In connected and disconnected modes, proper diarization requires a customer-operated Redis-compatible cache for every audio length. Configure `InClusterRedisCacheEnabled=true` and `InClusterRedisCacheEndpoint=<host-or-ip>:<port>` when you enable diarization.
+
+By default, the cache retains four hours of diarization data. For audio beyond four hours, the oldest cached data begins to be discarded, which might reduce speaker association or labeling quality. When diarization is required, segment audio into inputs of four hours or less.
+
+To configure the required cache, test cache connectivity, and validate speaker labels, see [Configure a cache for speech container diarization](speech-container-speech-to-text-diarization-cache.md).
 
 ## Use the container
 

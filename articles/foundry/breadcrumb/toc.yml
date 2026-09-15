@@ -14,3 +14,6 @@
   - name: Microsoft Foundry
     tocHref: /azure/developer/ai/
     topicHref: /azure/foundry/index
+  - name: Microsoft Foundry
+    tocHref: /azure/azure-sovereign-clouds/private/foundry-local/
+    topicHref: /azure/foundry/index

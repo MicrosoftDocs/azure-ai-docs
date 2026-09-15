@@ -238,7 +238,7 @@ Code samples include:
 The Azure SDK for Java provides the following APIs for simple and bulk document uploads into an index:
 
 + [indexactiontype enumerator](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 **Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models)
 

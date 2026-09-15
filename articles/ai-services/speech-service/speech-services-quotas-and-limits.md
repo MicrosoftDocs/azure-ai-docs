@@ -7,8 +7,9 @@ ms.author: jagoerge
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 06/26/2026
+ms.date: 09/09/2026
 ms.reviewer: jagoerge
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
 
@@ -53,6 +54,9 @@ The following table summarizes the quotas and limits for large language model (L
 
 The following sections describe speech-to-text quotas and limits per Azure Speech resource. For information about adjustable quotas, see [more explanations](#detailed-description-quota-adjustment-and-best-practices) in this article.
 
+> [!NOTE]
+> Fast transcription and batch transcription share the same request-rate quota of 600 requests per minute. Requests to either API count toward the shared limit. Their other limits, such as maximum file size and audio length, are listed separately.
+
 #### Real-time speech to text and speech translation
 
 You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the [Speech-to-text REST API for short audio](rest-speech-to-text-short.md).
@@ -71,15 +75,15 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 | ----- | --------- | ------------- |
 | Maximum audio input file size | Not applicable | < 500 MB |
 | Maximum audio length | Not applicable | < 5 hours per file |
-| Maximum requests per minute | Not applicable | 600 |
+| Shared maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription
 
-The following limits aren't adjustable. For more information on latency in batch transcription, see [Best practices for improving performance](batch-transcription.md#best-practices-for-improving-performance).
+You can adjust the shared request-rate quota for Standard (S0) resources through the [Fast transcription quota increase process](#fast-transcription-increase-maximum-requests-per-minute). You can't adjust the other batch transcription limits. For more information on latency in batch transcription, see [Best practices for improving performance](batch-transcription.md#best-practices-for-improving-performance).
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| [Speech-to-text REST API](rest-speech-to-text.md) limit | Not available for F0 | 100 requests per 10 seconds (600 requests per minute) |
+| Shared maximum requests per minute | Not available for F0 | 600 |
 | Maximum file size for audio input | Not applicable | 1 GB |
 | Maximum number of blobs per container | Not applicable | 10,000 |
 | Maximum number of files per transcription request (when you're using multiple content URLs as input) | Not applicable | 1,000 |
@@ -109,7 +113,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
+| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 30 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
 | Maximum audio length produced per request | 10 minutes | 10 minutes |
 | Maximum total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Maximum SSML message size per turn for WebSocket | 64 KB | 64 KB |
@@ -135,7 +139,7 @@ The limits in this table apply per Azure Speech resource when you create a profe
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum number of transactions per second | Not available for F0 | 200 TPS (default value) |
+| Maximum number of transactions per second | Not available for F0 | 30 TPS (default value) |
 | Maximum number of datasets | Not applicable | 500 |
 | Maximum number of simultaneous dataset uploads | Not applicable | 5 |
 | Maximum data file size for data import per dataset | Not applicable | 2 GB |
@@ -150,7 +154,7 @@ The limits in this table apply per Azure Speech resource when you create a perso
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
 | REST API limit (not including speech synthesis) | Not available for F0 | 50 requests per 10 seconds |
-| Maximum number of transactions per second for speech synthesis | Not available for F0 | 200 TPS (default value) |
+| Maximum number of transactions per second for speech synthesis | Not available for F0 | 30 TPS (default value) |
 
 #### Batch text-to-speech avatar
 
@@ -189,7 +193,7 @@ The following quotas are adjustable for Standard (S0) resources. The Free (F0) r
 
 - **Voice Live API**: [New connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
 - **Speech to text**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation) for the base model endpoint and custom endpoint.
-- **Fast transcription**: [Maximum number of requests per minute](#fast-transcription).
+- **Fast transcription and batch transcription**: [Shared maximum requests per minute](#fast-transcription).
 - **Speech translation**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation).
 - **Text to speech**: [Maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices.
 - **Batch text-to-speech avatar**: [Maximum requests per minute](#batch-text-to-speech-avatar).
@@ -298,8 +302,7 @@ For the Standard pricing tier, you can increase the real-time TPS limit. Before 
 
 #### Estimate your needs
 
-- **Usage Under $10,000/month**: Typically, 32 TPS is sufficient, assuming that your peak usage is within 10 times your average.
-- **Default limit**: 200 TPS is available by default. This limit exceeds most use cases.
+- **Usage Under $10,000/month**: Typically, the default limit 30 TPS is sufficient, assuming that your peak usage is within 10 times your average.
 
 ##### Example scenario
 

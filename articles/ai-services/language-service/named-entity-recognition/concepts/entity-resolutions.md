@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about entity resolutions in the Named Entity Recognition feature.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/17/2026
+ms.date: 08/05/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-ner
 ---
 # Resolve entities to standard formats

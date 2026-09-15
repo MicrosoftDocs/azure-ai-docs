@@ -46,7 +46,7 @@ items:
         - name: "Part 3: Evaluate the chat app"
           href: ../../tutorials/copilot-sdk-evaluate.md
           displayName: code,sdk
-    - name: Get started with DeepSeek-R1 reasoning model
+    - name: Get started with a DeepSeek reasoning model
       href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
     - name: Deploy an enterprise chat web app
       href: ../../tutorials/deploy-chat-web-app.md

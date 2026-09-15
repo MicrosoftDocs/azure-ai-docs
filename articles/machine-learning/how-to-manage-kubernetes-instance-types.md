@@ -7,21 +7,22 @@ ms.author: scottpolly
 ms.reviewer: namanjoshi
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 07/23/2025
+ms.date: 07/16/2026
 ms.topic: how-to
-ms.custom: build-spring-2022, cliv2, sdkv2
+ms.custom: build-spring-2022, cliv2, sdkv2, dev-focus
+ai-usage: ai-assisted
 ---
 
-# Create and manage instance types for efficient utilization of compute resources
+# Create and manage instance types for efficient use of compute resources
 
-Instance types are an Azure Machine Learning concept that allows targeting certain types of compute nodes for training and inference workloads. For example, in an Azure virtual machine, an instance type is `STANDARD_D2_V3`. This article shows you how to create and manage instance types for your computation requirements. 
+Instance types are an Azure Machine Learning concept that you use to target specific types of compute nodes for training and inference workloads. For example, in an Azure virtual machine, an instance type is `STANDARD_D2_V3`. This article shows you how to create and manage instance types for your computation requirements. 
 
-In Kubernetes clusters, instance types are represented as a custom resource definition (CRD) installed with the Azure Machine Learning extension. Two elements in the Azure Machine Learning extension represent instance types:
+In Kubernetes clusters, the Azure Machine Learning extension represents instance types as a custom resource definition (CRD) that it installs. Two elements in the Azure Machine Learning extension represent instance types:
 
 - **nodeSelector**: Use [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) to specify which node a pod should run on. The node must have a corresponding label.
-- **resources**: In the [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) section, you can set the compute resources (CPU, memory, and NVIDIA GPU) for the pod.
+- **resources**: In the [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) section, set the compute resources (CPU, memory, and NVIDIA GPU) for the pod.
 
-If you [specify a nodeSelector field when deploying the Azure Machine Learning extension](./how-to-deploy-kubernetes-extension.md#review-azure-machine-learning-extension-configuration-settings), the `nodeSelector` field applies to all instance types. This means:
+If you [specify a nodeSelector field when deploying the Azure Machine Learning extension](./how-to-deploy-kubernetes-extension.md#review-azure-machine-learning-extension-configuration-settings), the `nodeSelector` field applies to all instance types. This configuration means:
 
 - For each instance type that you create, the specified `nodeSelector` field should be a subset of the extension-specified `nodeSelector` field.
 - If you use an instance type with `nodeSelector`, the workload runs on any node that matches both the extension-specified `nodeSelector` field and the instance-type-specified `nodeSelector` field.
@@ -29,7 +30,7 @@ If you [specify a nodeSelector field when deploying the Azure Machine Learning e
 
 ## Create a default instance type
 
-By default, an instance type called `defaultinstancetype` is created when you attach a Kubernetes cluster to an Azure Machine Learning workspace. Here's the definition:
+When you attach a Kubernetes cluster to an Azure Machine Learning workspace, the service creates an instance type named `defaultinstancetype` by default. Here's the definition:
 
 ```yaml
 resources:
@@ -42,14 +43,14 @@ resources:
     nvidia.com/gpu: null
 ```
 
-If you don't apply a `nodeSelector` field, the pod can be scheduled on any node. The workload's pods are assigned default resources with 0.1 CPU cores, 2 GB of memory, and 0 GPUs for the request. The resources that the workload's pods use are limited to 2 CPU cores and 8 GB of memory.
+If you don't apply a `nodeSelector` field, the pod can be scheduled on any node. The workload's pods are assigned default resources with 0.1 CPU cores, 2 GiB of memory, and 0 GPUs for the request. The resources that the workload's pods use are limited to 2 CPU cores and 2 GiB of memory.
 
-The default instance type purposefully uses minimal resources. To ensure that all machine learning workloads run with appropriate resources (for example, GPU resources), we highly recommend that you [create custom instance types](#create-a-custom-instance-type).
+The default instance type purposefully uses minimal resources. To ensure that all machine learning workloads run with appropriate resources (for example, GPU resources), [create custom instance types](#create-a-custom-instance-type).
 
 Keep in mind the following points about the default instance type:
 
 - `defaultinstancetype` doesn't appear as an `InstanceType` custom resource in the cluster when you run the command `kubectl get instancetype`, but it does appear in all clients (UI, Azure CLI, SDK).
-- `defaultinstancetype` can be overridden with the definition of a custom instance type that has the same name.
+- You can override `defaultinstancetype` by defining a custom instance type with the same name.
 
 ## Create a custom instance type
 
@@ -81,9 +82,9 @@ spec:
 
 The preceding code creates an instance type with the following behavior:
 
-- Pods are scheduled only on nodes that have the label `mylabel: mylabelvalue`.
-- Pods are assigned resource requests of `700m` for CPU and `1500Mi` for memory.
-- Pods are assigned resource limits of `1` for CPU, `2Gi` for memory, and `1` for NVIDIA GPU.
+- Schedule pods only on nodes that have the label `mylabel: mylabelvalue`.
+- Assign resource requests of `700m` for CPU and `1500Mi` for memory to pods.
+- Assign resource limits of `1` for CPU, `2Gi` for memory, and `1` for NVIDIA GPU to pods.
 
 Custom instance type creation must meet the following parameters and definition rules, or it fails:
 
@@ -94,7 +95,7 @@ Custom instance type creation must meet the following parameters and definition 
 | `Memory request` | Required | String values that can't be zero or empty. <br>You can specify the memory as a full number + suffix; for example, `1024Mi` for 1,024 mebibytes (MiB).|
 | `CPU limit` | Required | String values that can't be zero or empty. <br>You can specify the CPU in millicores; for example, `100m`. You can also specify it as full numbers. For example, `"1"` is equivalent to `1000m`.|
 | `Memory limit` | Required | String values that can't be zero or empty. <br>You can specify the memory as a full number + suffix; for example, `1024Mi` for 1024 MiB.|
-| `GPU` | Optional | Integer values that can be specified only in the `limits` section. <br>For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/#using-device-plugins). |
+| `GPU` | Optional | Integer values that you can specify only in the `limits` section. <br>For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/#using-device-plugins). |
 | `nodeSelector` | Optional | Map of string keys and values. |
 
 You can also create multiple instance types at once:
@@ -134,7 +135,7 @@ items:
           memory: "1Gi"
 ```
 
-The preceding example creates two instance types: `cpusmall` and `defaultinstancetype`. This `defaultinstancetype` definition overrides the `defaultinstancetype` definition that was created when you attached the Kubernetes cluster to the Azure Machine Learning workspace.
+The preceding example creates two instance types: `cpusmall` and `defaultinstancetype`. This `defaultinstancetype` definition overrides the `defaultinstancetype` definition that you created when you attached the Kubernetes cluster to the Azure Machine Learning workspace.
 
 If you submit a training or inference workload without an instance type, it uses `defaultinstancetype`. To specify a default instance type for a Kubernetes cluster, create an instance type with the name `defaultinstancetype`. It's automatically recognized as the default.
 
@@ -142,9 +143,10 @@ If you submit a training or inference workload without an instance type, it uses
 
 ### [Azure CLI](#tab/select-instancetype-to-trainingjob-with-cli)
 
-To select an instance type for a training job using the Azure CLI (v2), specify its name as part of the `resources` properties section in the job YAML. For example:
+To select an instance type for a training job by using the Azure CLI (v2), specify its name as part of the `resources` properties section in the job YAML. For example:
 
 ```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: python -c "print('Hello world!')"
 environment:
   image: library/python:latest
@@ -155,15 +157,15 @@ resources:
 
 ### [Python SDK](#tab/select-instancetype-to-trainingjob-with-sdk)
 
-To select an instance type for a training job using the SDK (v2), specify its name for the `instance_type` property in the `command` class. For example:
+To select an instance type for a training job by using the SDK (v2), specify its name for the `instance_type` property in the `command` class. For example:
 
 ```python
-from azure.ai.ml import command
+from azure.ai.ml import Environment, command
 
 # define the command
 command_job = command(
-    command="python -c  print('Hello world!')"",
-    environment="AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu@latest",
+    command="python -c \"print('Hello world!')\"",
+    environment=Environment(image="python:3.12-slim"),
     compute="<Kubernetes-compute_target_name>",
     instance_type="<instance type name>"
 )
@@ -177,9 +179,10 @@ In the preceding example, replace `<Kubernetes-compute_target_name>` with the na
 
 ### [Azure CLI](#tab/select-instancetype-to-modeldeployment-with-cli)
 
-To select an instance type for a model deployment using the Azure CLI (v2), specify its name for the `instance_type` property in the deployment YAML. For example:
+To select an instance type for a model deployment by using the Azure CLI (v2), specify its name for the `instance_type` property in the deployment YAML. For example:
 
 ```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/kubernetesOnlineDeployment.schema.json
 name: blue
 app_insights_enabled: true
 endpoint_name: <endpoint name>
@@ -196,7 +199,7 @@ environment:
 
 ### [Python SDK](#tab/select-instancetype-to-modeldeployment-with-sdk)
 
-To select an instance type for a model deployment using the SDK (v2), specify its name for the `instance_type` property in the `KubernetesOnlineDeployment` class. For example:
+To select an instance type for a model deployment by using the SDK (v2), specify the name for the `instance_type` property in the `KubernetesOnlineDeployment` class. For example:
 
 ```python
 from azure.ai.ml import KubernetesOnlineDeployment,Model,Environment,CodeConfiguration
@@ -235,6 +238,7 @@ Use the `resources` section to define the resource request and limit for your mo
 #### [Azure CLI](#tab/define-resource-to-modeldeployment-with-cli)
 
 ```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/kubernetesOnlineDeployment.schema.json
 name: blue
 app_insights_enabled: true
 endpoint_name: <endpoint name>
@@ -276,7 +280,7 @@ env = Environment(
 )
 
 requests = ResourceSettings(cpu="0.1", memory="0.2G")
-limits = ResourceSettings(cpu="0.2", memory="0.5G", nvidia_gpu="1")
+limits = ResourceSettings(cpu="0.2", memory="0.5G", gpu="1")
 resources = ResourceRequirementsSettings(requests=requests, limits=limits)
 
 # define the deployment

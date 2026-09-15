@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: faq
 ms.date: 06/25/2026
 ms.author: lajanuar

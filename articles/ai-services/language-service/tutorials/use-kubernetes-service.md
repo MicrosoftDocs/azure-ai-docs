@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Deploy a key phrase extraction container image to Azure Kubernetes Service, and test it in a web browser.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: tutorial
-ms.date: 05/22/2026
+ms.date: 07/23/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: cogserv-non-critical-language
 ---
 

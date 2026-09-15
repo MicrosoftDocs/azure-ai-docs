@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: tutorial
-ms.date: 06/26/2026
+ms.date: 07/13/2026
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -18,11 +18,11 @@ ai-usage: ai-assisted
 # Validate end-to-end private agentic retrieval
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -38,7 +38,7 @@ This article is part three of a three-part tutorial series. In this part of the 
 
 - `Owner`, `User Access Administrator`, or `Role Based Access Control Administrator` at scopes where you assign roles to your user account.
 
-- Foundry model deployments for `text-embedding-3-large` and `gpt-4.1`. The template used in part one deploys `gpt-4.1`, but it doesn't deploy `text-embedding-3-large`. Deploy `text-embedding-3-large`, and then verify both deployments before you continue. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/foundry/foundry-models/how-to/deploy-foundry-models).
+- Foundry model deployments for `text-embedding-3-large` and a GPT-5 family model (such as `gpt-5-turbo`). The template used in part one deploys a GPT-5 family model, but it doesn't deploy `text-embedding-3-large`. Deploy `text-embedding-3-large`, and then verify both deployments before you continue. For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/foundry/foundry-models/how-to/deploy-foundry-models).
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -60,9 +60,9 @@ Verify that your Foundry resource includes the deployments used later in this ar
       -o table
    ```
 
-1. Confirm that `text-embedding-3-large` and `gpt-4.1` both appear with a `Succeeded` status.
+1. Confirm that `text-embedding-3-large` and a GPT-5 family model both appear with a `Succeeded` status.
 
-   If `gpt-4.1` isn't deployed yet, deploy it before you create the agent later in this article.
+   If a GPT-5 family model isn't deployed yet, deploy one before you create the agent later in this article.
 
 ## Assign user account roles
 
@@ -224,7 +224,7 @@ To create the knowledge source and knowledge base:
 1. Create a blob knowledge source.
 
     ```http
-   PUT https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-05-01-preview
+   PUT https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-08-01-preview
     Authorization: Bearer <search-access-token>
     Content-Type: application/json
 
@@ -255,7 +255,7 @@ To create the knowledge source and knowledge base:
 1. Create a knowledge base that references the knowledge source.
 
     ```http
-   PUT https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-05-01-preview
+   PUT https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-08-01-preview
     Authorization: Bearer <search-access-token>
     Content-Type: application/json
 
@@ -277,7 +277,7 @@ To create the knowledge source and knowledge base:
 1. Confirm the knowledge source was created successfully.
 
    ```http
-   GET https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-05-01-preview
+   GET https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
@@ -286,7 +286,7 @@ To create the knowledge source and knowledge base:
 1. Confirm the knowledge base was created successfully.
 
    ```http
-   GET https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-05-01-preview
+   GET https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
@@ -328,7 +328,7 @@ To create the project connection:
        "properties": {
           "authType": "ProjectManagedIdentity",
           "category": "RemoteTool",
-          "target": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview",
+          "target": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview",
           "isSharedToAll": true,
           "audience": "https://search.azure.com/",
           "metadata": {
@@ -377,13 +377,13 @@ To create the agent and validate citations:
     {
       "name": "agent-private-retrieval",
        "definition": {
-          "model": "gpt-4.1",
+          "model": "<gpt-5-model-deployment-name>",
           "instructions": "Use the knowledge base for every answer. Return grounded citations. If the answer is not in the knowledge base, say that you do not know.",
           "tools": [
              {
                 "type": "mcp",
                 "server_label": "knowledge-base",
-                "server_url": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview",
+                "server_url": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview",
                 "project_connection_id": "conn-kb-private-retrieval",
                 "require_approval": "never",
                 "allowed_tools": ["knowledge_base_retrieve"]
@@ -423,7 +423,7 @@ To create the agent and validate citations:
 
    Expected result:
 
-	- The agent returns an answer that's grounded in your uploaded blob content.
+    - The agent returns an answer that's grounded in your uploaded blob content.
    - The response includes citations that reference the Earth at Night source content.
    - The request succeeds from your private network client by using the same private path configured in parts one and two.
 
@@ -437,7 +437,7 @@ Use the following table to isolate failures in the retrieval-validation flow.
 | `401` with `Failed to create or update Knowledge Source` and `Unable to retrieve blob container ... using your managed identity` | Azure AI Search runtime dependencies from part two are incomplete | Verify both shared private links show `Approved`, and verify the Azure AI Search managed identity has `Storage Blob Data Reader` on the storage account and `Cognitive Services User` on the Foundry resource. |
 | `400` when creating the knowledge source or knowledge base | Invalid embedding model configuration | Verify the `resourceUri`, `deploymentId`, and `modelName` values for the `text-embedding-3-large` embedding model. |
 | `403 Public access is disabled` during ingestion | The Foundry trusted-service bypass is disabled | Re-enable **Allow Azure services on the trusted services list** on the Foundry resource, and then retry ingestion. The `openai_account` shared private link doesn't currently replace this ingestion-time dependency. |
-| `404` on the MCP endpoint URL | Incorrect knowledge base endpoint | Verify the MCP target is `https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview`. |
+| `404` on the MCP endpoint URL | Incorrect knowledge base endpoint | Verify the MCP target is `https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview`. |
 | `401` or `403` when creating the project connection | Azure Resource Manager authorization or token scope | Verify your caller identity can manage project connections on `<project-resource-id>`. Also verify you requested the token with `--scope https://management.azure.com/.default`. |
 | `401` or `403` when the agent calls the MCP tool | Project managed identity doesn't have the required Search data-plane access, or the role assignment hasn't propagated yet | Verify the project managed identity for the connection has the required Search data-plane role on the Azure AI Search service, and then wait briefly for role propagation before you retry the validation prompt. |
 | Agent returns an answer without citations | Agent tool wiring, instructions, or retrieval data availability | Verify the agent includes the MCP tool, `allowed_tools` contains `knowledge_base_retrieve`, and your instructions require grounded citations. Also verify the knowledge base contains retrievable content from `earth-at-night-json`. |

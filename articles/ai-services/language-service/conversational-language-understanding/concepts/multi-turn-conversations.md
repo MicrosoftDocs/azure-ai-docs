@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how CLU handles entity slot-filling across multi-turn conversations.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 06/03/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

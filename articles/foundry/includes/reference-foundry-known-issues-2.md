@@ -6,7 +6,7 @@ ms.reviewer: bgilmore
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 08/19/2026
 ms.custom: include
 ---
 
@@ -70,7 +70,7 @@ The following table lists the current known issues for Speech SDK/Runtime:
 |--------|--------|----|-----------|----------|-------------------|
 | 3001   | SDK/Runtime | InitialSilenceTimeout parameter causes 400 errors | Setting `InitialSilenceTimeout` to 0 causes 400 errors. The `endSilenceTimeout` parameter might also lead to incorrect transcriptions — when set to a value other than 0, the system disregards user input after the specified duration. | Set `InitialSilenceTimeoutMs` to 0 by using `SpeechConfig.fromSubscription(subscriptionKey, region)` to disable the timeout due to initial silence. For single-shot recognition, the session terminates after 30 seconds of initial silence. For continuous recognition, the service reports an empty phrase after 30 seconds and continues. The `Speech_SegmentationMaximumTimeMs` parameter determines the maximum phrase length (default: 30,000 ms). | June 9, 2025 |
 | 3002   | SDK/Runtime | SegmentationTimeout parameter causes false words | Random words appear in Speech recognition results when `SegmentationSilenceTimeout` is set to more than 1,000 ms. | Maintain the default `SegmentationTimeout` value of 650 ms. | June 9, 2025 |
-| 3003   | SDK/Runtime | Speaker duration missing during real-time diarization in STT | The Python SDK doesn't show speaker duration when using real-time diarization with STT. | Check offset and duration on the result by following the [Conversation transcription result class](/azure/ai-services/speech-service/how-to-use-conversation-transcription) documentation. | June 9, 2025 |
+| 3003   | SDK/Runtime | Speaker duration missing during real-time diarization in STT | The Python SDK doesn't show speaker duration when using real-time diarization with STT. | Check offset and duration on the recognition result by following the [real-time diarization quickstart](/azure/ai-services/speech-service/get-started-stt-diarization) documentation. | June 9, 2025 |
 | 3004   | SDK/TTS avatar | Frequent disconnections with JavaScript SDK | TTS avatar doesn't load or frequently disconnects and reconnects when using a custom avatar with the JavaScript SDK. | Open UDP port 3478. | June 9, 2025 |
 
 ### Azure Translator in Foundry Tools

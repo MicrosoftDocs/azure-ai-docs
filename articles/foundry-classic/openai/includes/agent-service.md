@@ -3,11 +3,11 @@ manager: mcleans
 ms.service: foundry-tools
 ms.custom:
 ms.topic: include, classic-and-new
-ms.date: 02/13/2026
+ms.date: 08/26/2026
 ms.author: aahi
 author: aahill
 
 ---
 
 > [!NOTE] 
-> The Assistants API is deprecated and will be retired on August 26, 2026. Use the generally available [Microsoft Foundry Agents service](../../../foundry/agents/overview.md). Follow the [migration guide](../../../foundry/agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../../../foundry/agents/how-to/migrate.md).
+> The Assistants API is retired. Use the generally available [Microsoft Foundry Agents service](../../../foundry/agents/overview.md). To update your workloads, see the [migration guide](../../../foundry/agents/how-to/migrate.md#migrate-classic-agents-to-new-agents). [Learn more](../../../foundry/agents/how-to/migrate.md).

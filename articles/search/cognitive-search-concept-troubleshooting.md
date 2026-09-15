@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: best-practice
-ms.date: 07/07/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Tips for AI enrichment in Azure AI Search
@@ -29,12 +30,10 @@ To ignore errors during development, set `maxFailedItems` and `maxFailedItemsPer
 
 ```json
 {
-  // rest of your indexer definition
-   "parameters":
-   {
-      "maxFailedItems":-1,
-      "maxFailedItemsPerBatch":-1
-   }
+  "parameters": {
+    "maxFailedItems": -1,
+    "maxFailedItemsPerBatch": -1
+  }
 }
 ```
 
@@ -43,11 +42,11 @@ To ignore errors during development, set `maxFailedItems` and `maxFailedItemsPer
 
 ## Tip 3: Use Debug session to troubleshoot problems
 
-[**Debug session**](./cognitive-search-debug-session.md) is a visual editor that shows a skillset's dependency graph, inputs and outputs, and definitions. It works by loading a single document from your search index, with the current indexer and skillset configuration. You can then run the entire skillset, scoped to a single document. Within a debug session, you can identify and resolve errors, validate changes, and commit changes to a parent skillset. For a walkthrough, see [Tutorial: debug sessions](./cognitive-search-tutorial-debug-sessions.md).
+[**Debug session**](./cognitive-search-debug-session.md) is a visual editor that shows a skillset's dependency graph, inputs and outputs, and definitions. It loads a single source document from the indexer data source with the current indexer and skillset configuration. You can then run the entire skillset, scoped to that document. Within a debug session, you can identify and resolve errors, validate changes, and commit changes to a parent skillset. For a walkthrough, see [Tutorial: debug sessions](./cognitive-search-tutorial-debug-sessions.md).
 
 ## Tip 4: Expected content doesn't appear
 
-If content is missing, check for dropped documents in the Azure portal. In the search service page, open **Indexers** and look at the **Docs succeeded** column. Select it to view indexer execution history and review specific errors. 
+If content is missing, check for dropped documents in the Azure portal. On the search service page, open **Indexers**, select the indexer, and then select a run's **Status** value to view execution details and errors.
 
 If the problem is related to file size, you might see an error like this: "The blob \<file-name>" has the size of \<file-size> bytes, which exceeds the maximum size for document extraction for your current service tier." For more information on indexer limits, see [Service limits](search-limits-quotas-capacity.md).
 
@@ -57,7 +56,7 @@ A second reason for content failing to appear might be related to input/output m
 
 Image analysis is computationally intensive for even simple cases, so when images are especially large or complex, processing times can exceed the maximum time allowed.
 
-For indexers that have skillsets, skillset execution is [capped at 2 hours for most tiers](search-limits-quotas-capacity.md#indexer-limits). If skillset processing fails to complete within that period, you can put your indexer on a 2-hour recurring schedule to have the indexer pick up processing where it left off. 
+For indexers that have skillsets, skillset execution is [capped at 2 hours for most tiers](search-limits-quotas-capacity.md#indexer-limits). If skillset processing fails to complete within that period, schedule the indexer to run every five minutes so it can resume processing from the last known good document.
 
 Scheduled indexing resumes at the last known good document. On a recurring schedule, the indexer can work its way through the image backlog over a series of hours or days, until all unprocessed images are processed. For more information on schedule syntax, see [Schedule an indexer](search-howto-schedule-indexers.md).
 

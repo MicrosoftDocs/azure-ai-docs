@@ -5,10 +5,11 @@ description: Learn how to extract and label medical information on premises usin
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 06/05/2026
+ms.date: 07/27/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
 ---

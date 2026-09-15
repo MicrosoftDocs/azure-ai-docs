@@ -31,6 +31,8 @@ The text translation service is used only to convert text from one language to a
 
 If users need transcribed/translated text in an audio format, the feature sends the output text to [text to speech](/azure/cognitive-services/speech-service/text-to-speech). Again, no data is persisted in the text to speech data processing.
 
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
+
 ## How does speech to text process data?
 
 ### Real-time speech to text

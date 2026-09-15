@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 09/09/2026
 ai-usage: ai-assisted
 # customer intent: As a developer or product engineer, I want to understand the details behind how the Azure AI Search Serverless pricing model works so that I can optimize my search service to use the most efficient pricing model suited to my needs and only pay for what I use.
 ---
@@ -26,16 +26,38 @@ For more information about pricing model and service tier differences, see [Choo
 
 ## How cost is determined in the Serverless model
 
-In the Serverless model, **performance optimization directly affects cost**. Cost is directly tied to workload execution:
+The Dedicated and Serverless pricing models account for work inside the search service differently. Dedicated services run queries, indexing, and result processing on provisioned capacity that you already purchased. Serverless services measure the compute, memory, and disk I/O that these operations consume and convert that usage into Compute Units (CUs). As a result, **performance optimization directly affects Serverless cost**.
+
+Serverless costs are tied to workload execution:
 
 - Queries and indexing consume compute, measured in Compute Units per hour (CU/h).
-- Storage is billed separately based on index size on disk.
-- When the service is idle with no active queries or indexing, compute usage is zero. There's no reserved or minimum capacity charge.
+- Active indexes consume compute based on their resource usage and how long they remain active.
+- An index stays active for 10 minutes after its last query or indexing request before it goes inactive.
+- Inactive indexes have no minimum or reserved compute charge. The compute usage for inactive indexes scales to zero. There's no minimum compute charge when an index is inactive.
+- Storage is billed separately based on index size on disk and continues whether or not an index is in use.
+- Agentic retrieval consumes compute for search queries and orchestration performed inside the search service.
+
+Storage charges stop only when you delete the index.
+
+To view the cost breakdown and usage rates for your current billing cycle, view the **Scale + Cost** tab in your [Azure portal](https://portal.azure.com/).
+
+:::image type="content" source="media/serverless/serverless-scale-cost-in-portal.png" alt-text="Screenshot of the Scale + Cost tab in the Azure Portal showing the time range for the current billing cycle, cost breakdown, usage details for Compute Units and Storage usage and rates." lightbox="media/serverless/serverless-scale-cost-in-portal.png":::
+
+### How index size affects compute usage
+
+While an index is active, Azure AI Search evaluates two finite resources to determine its compute usage:
+
+- **Total index size**: The total space that the index occupies on disk, including text, metadata, and vectors.
+- **Vector index size**: The memory used by the [vector index](vector-search-index-size.md). Memory is more resource intensive than disk, so vector index size has a higher weighting when converted to CUs.
+
+Azure AI Search doesn't add the two resulting CU amounts together. Compute usage is based on whichever amount is higher. For example, vector index size can determine compute usage even when the total index size on disk is relatively small.
+
+To reduce active-index compute usage, identify which resource produces the higher CU amount. Then reduce total index size, vector index size, or both. Indexed storage remains a separate per-GB/month charge.
 
 The Serverless pricing model is most cost-effective for workloads with variable, intermittent, or unpredictable traffic, where provisioned capacity would be underutilized.
 
 > [!IMPORTANT]
-> Your Compute Unit per hour (CU/h) charges don't include semantic ranker, agentic retrieval, image extraction and skill execution. These capabilities are billed separately.
+> Serverless CU charges cover work performed inside the search service, including queries, indexing, result processing, and agentic retrieval orchestration. Model calls and other work performed outside the search service continue to use their existing billing meters. Examples include semantic ranking, agentic query rewriting, image extraction, and skill execution.
 
 ## Understand Compute Units (CUs)
 
@@ -57,9 +79,9 @@ Different operations have different cost profiles:
 
 ### Monitor compute usage
 
-Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-request-charge` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
+Monitoring compute consumption helps you identify expensive operations, optimize query patterns, and estimate costs. The Compute Unit (CU) cost of every request is returned in the `x-ms-azs-compute-units-consumed` HTTP response header as a floating-point number. Use this header to identify expensive operations and optimize query patterns. You can track the CU cost of every request by inspecting the HTTP response headers and operation events in Azure Monitor. For more guidance on the types of monitoring data available and methods for analyzing that data, see [Monitor Azure AI Search](/azure/azure-monitor/fundamentals/overview).
 
-- **Header**: `x-ms-request-charge: <value>`
+- **Header**: `x-ms-azs-compute-units-consumed: <value>`
 - **Value**: A floating-point number representing the CUs consumed.
 
 Example:
@@ -67,7 +89,7 @@ Example:
 ```http
 Status: 200 OK
 Content-Type: application/json
-x-ms-request-charge: 12.45
+x-ms-azs-compute-units-consumed: 12.45
 ```
 
 In this example, the request consumed 12.45 compute units. You can use this value to identify high-cost operations and compare the relative cost of different query patterns.
@@ -107,15 +129,19 @@ To estimate serverless costs:
 
 1. Index representative sample data.
 1. Run typical indexing and query workloads.
-1. Record the `x-ms-request-charge` value returned for each operation.
+1. Record the `x-ms-azs-compute-units-consumed` value returned for each operation.
 1. Use Azure Monitor metrics to measure aggregate usage over time.
 1. Extrapolate costs based on expected production traffic.
+
+Use the **Scale + Cost** tab in the Azure portal to see your current usage and estimate costs.
 
 Because the same request executed against the same data generally produces similar compute consumption, representative workloads can provide a reliable basis for cost estimation.
 
 Serverless usage is measured continuously and aggregated for billing. Compute consumption is tracked throughout each minute and emitted only when compute resources are used.
 
 When estimating costs, use request charge values to understand the cost of individual operations and Azure Monitor metrics to understand overall service consumption patterns.
+
+Use both data sources together to understand costs: per-request charge data helps you evaluate individual operations, while Azure Monitor metrics help you understand aggregate service consumption over time. For a complete cost picture, also account for features that are billed separately from Compute Units.
 
 Billing is based on aggregate compute usage rather than individual requests. Usage is measured in one-minute intervals and rounded up to the nearest 0.25 CU per minute. These one-minute usage intervals accumulate over the course of an hour to determine the billable CU/hour amount. Internally, usage aggregates from milli-compute units (mCU) to compute units (CU) and converts into the hourly usage reported for billing.
 
@@ -150,15 +176,27 @@ How you send data to the index affects both cost and throughput:
 
 - **Index only new or changed data**: Avoid full reindexing when possible. Sending only additions and updates reduces the number of documents processed, lowering compute cost and improving ingestion speed.
 
-- **Use change detection for incremental indexing**: Detect what changed before you reprocess content. Incremental indexing avoids repeated work on unchanged documents and keeps reprocessing costs down.
-
 - **Skip image extraction unless you need it**: Image extraction adds extra processing work and can become a separate cost driver. Turn it on only for documents or workflows that actually need image content.
-
-- **Target skills to relevant fields and documents**: Scope enrichment skills to the specific fields or documents they need. Avoid running skills across content that doesn't need enrichment, especially when the outputs aren't used downstream.
 
 - **Account for index size growth**: Where possible, create smaller indexes. As an index grows, indexing costs increase because more data must be stored and maintained, and operations require more compute. For very large datasets, consider partitioning data across multiple indexes to help manage performance and costs. Although costs rise with index size, the increase is sublinear. Larger indexes cost more per operation, but not proportionally more.
 
 For more guidance, see [Tips for better performance in Azure AI Search](./search-performance-tips.md).
+
+### Optimize indexer operations
+
+Serverless indexer compute usage depends on the work performed during each indexer run. For row-oriented sources, use the number of documents processed as an indicator of workload volume. For file-based sources such as Azure Blob Storage and Azure Data Lake Storage Gen2, monitor the amount of source data processed. Actual compute usage also depends on document payloads, index structure, enrichment, and other processing performed during the run.
+
+To reduce indexer compute usage:
+
+- **Use change detection and incremental indexing**: Process only new or changed data instead of repeatedly indexing the full data source.
+
+- **Right-size indexer schedules**: Choose a schedule that meets your data freshness requirements. Use Compute Unit telemetry to evaluate the effect of schedule frequency.
+
+- **Reduce unnecessary document content**: Remove content that doesn't need to be indexed, and exclude files or file types that aren't required.
+
+- **Scope enrichment skills carefully**: Run skills only on fields and documents that require enrichment, and avoid generating outputs that aren't used downstream. Billable skills can incur separate transaction charges.
+
+- **Monitor failed and repeated runs**: An indexer can consume compute for work completed before it fails. Review execution history and Compute Unit usage to identify recurring failures and retry patterns.
 
 ### Optimize your queries
 
@@ -176,7 +214,7 @@ Query design is a primary driver of variable cost:
 
 - **Use lookups instead of searches when possible**: Retrieving a document by ID is more efficient than running a search query. If you know the document ID, use a lookup instead of a search query. Lookups are more efficient because they retrieve a document directly by key, while search queries invoke the full query pipeline (parsing, index traversal, scoring, and ranking), which increases compute cost.
 
-- **Avoid deep paging (`$skip`)**: Large `$skip` values increase compute because the engine must process and rank all preceding results (for example, `$skip=5000` requires scoring at least 5,000 documents that aren’t returned). This wastes compute (CUs) and increases cost. Instead, use filters to narrow results and limit the number returned with `$top`. Right-size `$top` to match your UI display. For example, `$top=10` costs less than `$top=50` because fewer results are scored and returned. Only request as many results as your application needs, and avoid patterns that require the engine to process large numbers of unused results.
+- **Avoid deep paging (`$skip`)**: Large `$skip` values increase compute because the engine must process, score, and rank the results that precede the requested page. For example, `$skip=5000` requires the engine to process at least 5,000 results that aren't returned. This choice consumes extra compute units (CUs) and can increase cost. Instead, use filters to narrow the result `set` and `$top` to limit the number of results returned. Right-size `$top` for your application or UI. Although `$top` doesn't change how many matching documents are scored, a smaller value reduces the number of results that must be collected, sorted, and serialized. Request only as many results as your application needs, and avoid paging patterns that require the engine to process large numbers of unused results.
 
 - **Minimize facet count and facet scope**: Request only the facets that are displayed in your UI, and keep each facet `count` value as low as practical. Facets require per-query aggregations, and high counts increase compute cost.
 
@@ -207,6 +245,13 @@ Vector fields can significantly increase index size and indexing cost. Use the f
 Vector queries are compute-intensive because they require similarity calculations over high-dimensional data structures.
 
 - **Use hybrid search selectively**: Hybrid queries run both keyword and vector retrieval. Use only when necessary for relevance.
+
+- **Lower maxTextRecallSize for hybrid queries**: The `hybridSearch.maxTextRecallSize` setting controls how many BM25-ranked results feed into Reciprocal Rank Fusion. The default is 1,000 (range 1 through 10,000). Compute consumption scales roughly linearly with this value, so lowering it is one of the most direct cost levers for hybrid workloads.
+
+- Values around 500 often cut compute meaningfully with little relevance loss.
+- Going lower can drop keyword matches that vector search misses, such as exact terms, IDs, and acronyms.
+- Control vector candidates separately with k on each vector query.
+- Test representative queries and compare relevance, latency, and the `x-ms-azs-compute-units-consumed` header before settling on a value.
 
 - **Apply filters before vector queries**: Narrow the candidate set before vector search to reduce the amount of data processed. See [How filtering works in vector queries](./vector-search-filters.md#how-filtering-works-in-vector-queries).
 

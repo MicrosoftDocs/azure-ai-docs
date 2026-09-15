@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Quickly start creating an AI model to connect your Conversational Language Understanding, question answering applications.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 05/19/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: foundry-rest-api

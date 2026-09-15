@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.reviewer: samkemp
 author: laujan
 reviewer: samuel100
-ms.date: 06/15/2026
+ms.date: 05/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -132,6 +132,14 @@ The Foundry Local SDK manages the complete model lifecycle through the Core API.
 - **Unload** — when inference is complete, the SDK unloads the model from memory to free up resources. Cached model files remain on disk for future use.
 
 This lifecycle is the same across all supported languages. The SDK handles each phase through a consistent API pattern: get a model from the catalog, download and load it, create a client, and run inference.
+
+## Choose your next step
+
+| I want to&hellip; | Go to |
+|---|---|
+| Build your first app | [Get started with Foundry Local](../get-started.md) |
+| Build a chatbot | [Build a multi-turn chat assistant](../tutorials/tutorial-build-chat-assistant.md) |
+| Start coding | [Use native chat completions](../how-to/how-to-use-native-chat-completions.md) |
 
 ## Related content
 

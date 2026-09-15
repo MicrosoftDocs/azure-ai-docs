@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn about offsets caused by multilingual and emoji encodings in Language service features.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/17/2026
+ms.date: 07/28/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 # Multilingual and emoji support in Language features
 

@@ -6,8 +6,9 @@ ms.author: scottpolly
 ms.reviewer: andyaviles
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/19/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [feature-preview](feature-preview.md)]
@@ -40,19 +41,22 @@ Review these constraints before configuring `userOwnedStorage`:
 | Non-removable | You can't remove or swap the storage account post-creation. |
 | Deletion impact | If you delete or move the storage account (resource ID changes), Speech & Language stop functioning. Attempt [storage account recovery](/azure/storage/common/storage-account-recover) first; otherwise you must recreate the Foundry resource. |
 | Shared across both capabilities | Speech and Language share the same account (distinct containers). For strict isolation, create separate Foundry resources and storage accounts. |
-| Data access scope | Any user with access to the Foundry resource can access Speech & Language outputs; project-level isolation doesn’t apply for this binding. |
+| Data access scope | Any user with access to the Foundry resource can access Speech & Language outputs; project-level isolation doesn't apply for this binding. |
 
 ## Configure authentication
 
-Speech and Language support only Azure role-based access control (RBAC) through the resource’s managed identity.
+Speech and Language support only Azure role-based access control (RBAC) through the resource's managed identity.
+
+> [!NOTE]
+> The role assignment targets the Foundry resource's system-assigned managed identity, which exists only after you create the resource. If you're setting up a new resource, first complete [Create a resource with a storage account](#create-a-resource-with-a-storage-account) to generate the identity, then return here to assign the role.
 
 1. Ensure the Foundry resource has a system-assigned managed identity.
-1. On the storage account, assign the `Storage Blob Data Contributor` role to the Foundry resource’s managed identity.
+1. On the storage account, assign the `Storage Blob Data Contributor` role to the Foundry resource's managed identity.
 1. Don't assign the role to individual project identities for this scenario.
 
 API key–based authentication isn't supported.
 
-### Example (Azure CLI) – role assignment
+### Assign the role by using Azure CLI
 
 ```bash
 STORAGE_ID=/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/<storageName>
@@ -70,7 +74,7 @@ If successful, the command returns a JSON object with the role assignment detail
 
 **Reference**: [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create) | [az resource show](/cli/azure/resource#az-resource-show)
 
-### Example (PowerShell) – role assignment
+### Assign the role by using PowerShell
 
 ```powershell
 $storage = "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/<storageName>"
@@ -84,9 +88,9 @@ If successful, the command returns a `RoleAssignment` object with the `DisplayNa
 
 **Reference**: [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment) | [Get-AzResource](/powershell/module/az.resources/get-azresource)
 
-## Create resource with storage account
+## Create a resource with a storage account
 
-Set the `userOwnedStorage` field during resource creation.
+Set the `userOwnedStorage` field during resource creation. Because you can't add or change this binding later, use one of the following infrastructure-as-code templates to create the resource with the binding in a single deployment. The Azure portal and `az` CLI create flows don't currently support setting `userOwnedStorage` at creation.
 
 ### Bicep template snippet
 
@@ -104,9 +108,11 @@ resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
     type: 'SystemAssigned'
   }
   properties: {
-    userOwnedStorage: {
-      storageResourceId: storage.id
-    }
+    userOwnedStorage: [
+      {
+        resourceId: storage.id
+      }
+    ]
   }
 }
 ```
@@ -125,9 +131,11 @@ resource foundry 'Microsoft.CognitiveServices/accounts@2026-03-01' = {
   "identity": { "type": "SystemAssigned" },
   "sku": { "name": "S0" },
   "properties": {
-    "userOwnedStorage": {
-      "storageResourceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]"
-    }
+    "userOwnedStorage": [
+      {
+        "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]"
+      }
+    ]
   }
 }
 ```
@@ -159,6 +167,28 @@ resource "azurerm_cognitive_account" "foundry" {
 
 **Reference**: [azurerm_cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) | [azurerm_storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)
 
+### Deploy the template
+
+Deploy the Bicep or ARM template with the Azure CLI:
+
+```azurecli
+az deployment group create \
+  --resource-group <resource-group> \
+  --template-file main.bicep \
+  --parameters foundryName=<foundry-name> storageName=<storage-name> location=<region>
+```
+
+If successful, the command returns a JSON object with `provisioningState` set to `Succeeded` and the `userOwnedStorage` binding in the resource properties.
+
+For Terraform, initialize and apply the configuration:
+
+```bash
+terraform init
+terraform apply
+```
+
+Terraform prints a plan, prompts for confirmation, and reports `Apply complete!` with the count of created resources.
+
 ### Sample repository
 
 See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/02-storage-speech-language).
@@ -169,11 +199,11 @@ Speech scenarios (Speech-to-Text batch or real-time, Custom Speech, Text-to-Spee
 
 ### Customer-managed keys (CMK)
 
-If you configure [customer-managed keys](/azure/storage/common/customer-managed-keys-overview) encryption on the storage account, Speech data written there uses those keys. If you don't set `userOwnedStorage`, Speech falls back to Microsoft-managed storage and doesn't inherit CMK settings from the Foundry resource.
+If you configure [customer-managed keys](/azure/storage/common/customer-managed-keys-overview) encryption on the storage account, Speech data written there uses those keys. If you don't set `userOwnedStorage`, Speech uses Microsoft-managed storage, which isn't covered by your customer-managed key.
 
 ## Language integration details
 
-The `userOwnedStorage` binding mirrors historical Language resource behavior with one key difference: you can't update or replace the storage account after deletion or move. In standalone Language resources, an update is possible. In the unified Foundry resource, it isn't. Plan lifecycle mitigation accordingly.
+The `userOwnedStorage` binding follows the same lifecycle as the Foundry resource overall: you set the storage account at creation and can't update or replace it later. If you delete or move the storage account, plan lifecycle mitigation accordingly.
 
 ## Shared storage configuration
 

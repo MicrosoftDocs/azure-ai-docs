@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 06/02/2026
+ms.date: 08/06/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -16,9 +16,9 @@ ai-usage: ai-assisted
 [!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -54,9 +54,11 @@ In this tutorial, you:
 
 + A text embedding model deployed to your project for [query-time vectorization](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries). This solution uses `text-embedding-3-large`.
 
-+ An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
++ An LLM deployed to your project for the agent. This solution uses `gpt-5-mini`.
 
-+ Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
+    GPT-4 family models are deprecated. For retirement dates and current status in Microsoft Foundry, see [Model retirement schedule - Microsoft Foundry](/azure/foundry/openai/concepts/model-retirement-schedule).
+
++ Permission to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
 + [Python 3.8](https://www.python.org/downloads/) or later.
 
@@ -90,7 +92,7 @@ To configure access for this solution:
 1. On your search service, [enable role-based access](search-security-enable-roles.md) and [assign the following roles](search-security-rbac.md).
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Search Service Contributor | Your user account | Create objects |
     | Search Index Data Contributor | Your user account | Load data |
     | Search Index Data Reader | Your user account and project managed identity | Read indexed content |
@@ -98,7 +100,7 @@ To configure access for this solution:
 1. On your project's parent resource, assign the following roles.
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Foundry User | Your user account | Access model deployments and create agents |
     | Foundry Project Manager | Your user account | Create project connection and use MCP tool in agents |
     | Cognitive Services User | Search service managed identity | Access knowledge base |
@@ -131,7 +133,7 @@ To configure access for this solution:
    PROJECT_RESOURCE_ID = /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}
    AZURE_OPENAI_ENDPOINT = https://{your-resource-name}.openai.azure.com
    AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
-   AGENT_MODEL = gpt-4.1-mini
+    AGENT_MODEL = gpt-5-mini
    ```
 
    You can find the endpoints and resource ID in the Azure portal:
@@ -185,7 +187,7 @@ load_dotenv(override=True) # Take environment variables from .env
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
 project_resource_id = os.environ["PROJECT_RESOURCE_ID"]
 project_connection_name = os.getenv("PROJECT_CONNECTION_NAME", "earthknowledgeconnection")
-agent_model = os.getenv("AGENT_MODEL", "gpt-4.1-mini")
+agent_model = os.getenv("AGENT_MODEL", "gpt-5-mini")
 agent_name = os.getenv("AGENT_NAME", "earth-knowledge-agent")
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 credential = DefaultAzureCredential()
@@ -349,7 +351,7 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
+mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-08-01-preview"
 ```
 
 ### Set up a project client
@@ -435,33 +437,18 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-#### (Optional) Connect to a remote SharePoint knowledge source
+#### (Optional) Enforce permissions with per-request headers
 
-[!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
+If any of your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user sees only the documents they're authorized to access. To enable this filtering, forward the signed-in user's identity token in the `x-ms-query-source-authorization` header of the MCP tool connection. Without the token, permission-enabled sources return results unfiltered. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+[!INCLUDE [vary-mcp-headers-per-request](../foundry/includes/vary-mcp-headers-per-request.md)]
+
+The following code updates the agent from the previous step so the MCP tool reads its authorization header from a structured input.
 
 ```python
-from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
-from azure.search.documents.indexes import SearchIndexClient
-from azure.identity import get_bearer_token_provider
+from azure.ai.projects.models import StructuredInputDefinition
 
-remote_sp_ks = RemoteSharePointKnowledgeSource(
-    name="remote-sharepoint",
-    description="SharePoint knowledge source"
-)
-
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
-index_client.create_or_update_knowledge_source(knowledge_source=remote_sp_ks)
-print(f"Knowledge source '{remote_sp_ks.name}' created or updated successfully.")
-
-knowledge_base.knowledge_sources = [
-    KnowledgeSourceReference(name=remote_sp_ks.name), KnowledgeSourceReference(name=knowledge_source_name)
-]
-
-index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
-print(f"Knowledge base '{base_name}' updated with new knowledge source successfully")
-
+# Reference the token as a placeholder in the header
 mcp_kb_tool = MCPTool(
     server_label="knowledge-base",
     server_url=mcp_endpoint,
@@ -469,20 +456,52 @@ mcp_kb_tool = MCPTool(
     allowed_tools=["knowledge_base_retrieve"],
     project_connection_id=project_connection_name,
     headers={
-        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+        "x-ms-query-source-authorization": "{{search_auth_token}}"
     }
 )
 
+# Declare the structured input so the caller can supply the token per request
 agent = project_client.agents.create_version(
     agent_name=agent_name,
     definition=PromptAgentDefinition(
         model=agent_model,
         instructions=instructions,
-        tools=[mcp_kb_tool]
+        tools=[mcp_kb_tool],
+        structured_inputs={
+            "search_auth_token": StructuredInputDefinition(
+                description="Per-user Azure AI Search bearer token",
+                required=True,
+                schema={"type": "string"},
+            )
+        }
     )
 )
 
 print(f"AI agent '{agent_name}' created or updated successfully")
+```
+
+When you invoke the agent, supply an Azure AI Search token in `structured_inputs`. This example resolves a token from the current `credential`. For a multi-user app, pass the token of each signed-in user instead. For example, use a token obtained through an on-behalf-of flow so the retrieval engine can filter results for that user.
+
+```python
+# Resolve an Azure AI Search token from the current credential (use a per-user token in production)
+from azure.identity import get_bearer_token_provider
+
+search_token = get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+
+openai_client = project_client.get_openai_client()
+conversation = openai_client.conversations.create()
+
+response = openai_client.responses.create(
+    conversation=conversation.id,
+    tool_choice="required",
+    input="{user_query}",
+    extra_body={
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {"search_auth_token": search_token},
+    },
+)
+
+print(f"Response: {response.output_text}")
 ```
 
 ### Chat with the agent
@@ -505,13 +524,13 @@ response = openai_client.responses.create(
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
 ```
 
-The response should be similar to the following:
+The response should be similar to the following example.
 
 ```
 Response: Here are evidence-based explanations to your questions:
@@ -614,11 +633,11 @@ To optimize performance and reduce latency, consider the following strategies:
 
 + Summarize message threads.
 
-+ Use `gpt-4.1-mini` or a smaller model that performs faster.
++ Use `gpt-5-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
 
-+ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#troubleshoot-empty-responses).
++ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#empty-responses).
 
 ## Related content
 

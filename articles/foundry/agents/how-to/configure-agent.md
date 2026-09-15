@@ -5,19 +5,19 @@ description: "Learn how to configure your agent's stable endpoint, select the ac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 04/14/2026
+ms.date: 09/11/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
-ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted, dev-focus
 ---
 
 # Configure and share your agent
 
-Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
-- **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
-- **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotServiceRbac or BotServiceTenant authorization scheme.
+Every agent in Microsoft Foundry has a stable endpoint from the moment you create it. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
+- **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that behavior isn't what you want, pin traffic to a specific version.
+- **Protocols and authorization schemes** — Ensure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotServiceRbac or BotServiceTenant authorization scheme.
 
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
@@ -48,7 +48,7 @@ Before you configure the endpoint, understand how projects, agents, agent versio
 
 **Foundry project**: A folder that groups related resources such as agents, files, and tools.
 
-**Agent version**: An immutable snapshot of the agent's configuration. Any change, even a single prompt edit, produces a new version.
+**Agent version**: An immutable snapshot of the agent's configuration. Any change, even a single prompt edit, creates a new version.
 
 **Agent**: The stable, consumer-facing representation of an agent. The agent's identity, endpoint, and authorization surface stay consistent as its underlying versions evolve, so consumers always interact with the same entity.
 
@@ -75,7 +75,7 @@ An agent can expose multiple protocols simultaneously:
 | **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/openai/responses` |
 | **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/activityprotocol` |
 | **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/invocations` |
-| **A2A (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
+| **A2A v1.0 (GA) and v0.3 (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/a2a` |
 | **MCP (preview)** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/endpoint/protocols/mcp` |
 
 To enable the A2A protocol on your agent, see [Enable incoming A2A on a Foundry agent](enable-agent-to-agent-endpoint.md).
@@ -138,8 +138,7 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
+    AgentEndpointConfig,
     FixedRatioVersionSelectionRule,
     VersionSelector,
 )
@@ -152,11 +151,10 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
+    endpoint_config = AgentEndpointConfig(
         version_selector=VersionSelector(
             version_selection_rules=[
                 FixedRatioVersionSelectionRule(agent_version="2", traffic_percentage=100),
@@ -164,12 +162,73 @@ with project_client:
         ),
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
     print(f"Agent endpoint configured for agent: {patched_agent.name}")
 ```
+
+#### [C# SDK](#tab/csharp)
+
+Install the prerelease SDK with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`. The prerelease package includes endpoint configuration.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Pin 100% of traffic to a specific agent version.
+var endpointConfig = new AgentEndpointConfiguration
+{
+    VersionSelector = new VersionSelector(new[]
+    {
+        new FixedRatioVersionSelectionRule(agentVersion: "2", trafficPercentage: 100)
+    })
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentEndpoint = endpointConfig });
+Console.WriteLine($"Agent endpoint configured for agent: {patched.Value.Name}");
+```
+
+#### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const agentName = "name-of-your-existing-agent";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const endpointConfig = {
+  version_selector: {
+    version_selection_rules: [
+      { type: "FixedRatio", agent_version: "2", traffic_percentage: 100 },
+    ],
+  },
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: endpointConfig,
+});
+console.log(`Agent endpoint configured for agent: ${patchedAgent.name}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 
@@ -190,13 +249,15 @@ Content-Type: application/merge-patch+json
 
 {
   "agent_endpoint": {
-    "protocols": ["activity", "responses", "invocations", "a2a"],
+    "protocol_configuration": {
+      "activity": {},
+      "responses": {},
+      "invocations": {},
+      "a2a": {}
+    },
     "authorization_schemes": [
       {
-        "type": "Entra",
-        "isolation_key_source": {
-          "kind": "Entra"
-        }
+        "type": "Entra"
       },
       {
         "type": "BotServiceRbac"
@@ -211,11 +272,14 @@ Content-Type: application/merge-patch+json
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint,
-    AgentEndpointProtocol,
-    EntraAuthorizationScheme,
+    A2AProtocolConfiguration,
+    ActivityProtocolConfiguration,
+    AgentEndpointConfig,
     BotServiceRbacAuthorizationScheme,
-    EntraIsolationKeySource,
+    EntraAuthorizationScheme,
+    InvocationsProtocolConfiguration,
+    ProtocolConfiguration,
+    ResponsesProtocolConfiguration,
 )
 from azure.identity import DefaultAzureCredential
 
@@ -226,33 +290,138 @@ agent_name = "name-of-your-existing-agent"
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 with project_client:
-    endpoint_config = AgentEndpoint(
-        protocols=[
-            AgentEndpointProtocol.RESPONSES,
-            AgentEndpointProtocol.ACTIVITY,
-            AgentEndpointProtocol.INVOCATIONS,
-            AgentEndpointProtocol.A2A,
-        ],
+    endpoint_config = AgentEndpointConfig(
+        protocol_configuration=ProtocolConfiguration(
+            responses=ResponsesProtocolConfiguration(),
+            activity=ActivityProtocolConfiguration(),
+            invocations=InvocationsProtocolConfiguration(),
+            a2a=A2AProtocolConfiguration(),
+        ),
         authorization_schemes=[
-            EntraAuthorizationScheme(
-                isolation_key_source=EntraIsolationKeySource(),
-            ),
+            EntraAuthorizationScheme(),
             BotServiceRbacAuthorizationScheme(),
         ],
     )
 
-    patched_agent = project_client.beta.agents.patch_agent_details(
+    patched_agent = project_client.agents.update_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
     print(f"Protocols and authorization updated for agent: {patched_agent.name}")
 ```
 
+#### [C# SDK](#tab/csharp)
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Enable protocols and set inbound authorization schemes.
+var endpointConfig = new AgentEndpointConfiguration
+{
+    ProtocolConfiguration = new ProtocolConfiguration
+    {
+        Responses = new ResponsesProtocolConfiguration(),
+        Activity = new ActivityProtocolConfiguration(),
+        Invocations = new InvocationsProtocolConfiguration(),
+        A2a = new A2AProtocolConfiguration(),
+    },
+    AuthorizationSchemes =
+    {
+        new EntraAuthorizationScheme(),
+        new BotServiceRbacAuthorizationScheme(),
+    },
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentEndpoint = endpointConfig });
+Console.WriteLine($"Protocols and authorization updated for agent: {patched.Value.Name}");
+```
+
+#### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const agentName = "name-of-your-existing-agent";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const endpointConfig = {
+  protocol_configuration: {
+    responses: {},
+    activity: {},
+    invocations: {},
+    a2a: {},
+  },
+  authorization_schemes: [{ type: "Entra" }, { type: "BotServiceRbac" }],
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentEndpoint: endpointConfig,
+});
+console.log(
+  `Protocols and authorization updated for agent: ${patchedAgent.name}`,
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 ---
+
+### Allow Microsoft 365 traffic to a private-network agent
+
+If your project disables public network access, set `enable_m365_public_endpoint` to `true` inside the `activity` protocol configuration before you publish the agent to Microsoft 365 Copilot or Teams.
+
+```http
+PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
+Authorization: ******
+Content-Type: application/merge-patch+json
+
+{
+  "agent_endpoint": {
+    "protocol_configuration": {
+      "responses": {},
+      "activity": {
+        "enable_m365_public_endpoint": true
+      }
+    },
+    "authorization_schemes": [
+      {
+        "type": "Entra"
+      },
+      {
+        "type": "BotServiceRbac"
+      }
+    ]
+  }
+}
+```
+
+This setting lets the agent's Activity Protocol endpoint receive Microsoft 365 channel traffic, including Teams, while public network access remains disabled for the Foundry account. Foundry applies this network exception only to the Activity Protocol route. Service-managed source IP filtering allows requests delivered through Azure Bot Service or Microsoft 365 infrastructure and blocks requests from other public networks. You don't need to change the Foundry account's network settings or configure public ingress in your virtual network. Other agent protocols and project APIs remain private.
+
+Microsoft 365 doesn't support private network connectivity for agents and requires the agent endpoints it invokes to be routable over the public internet. Enabling this setting meets that requirement for the Activity Protocol route. Network restrictions don't replace authorization. Keep `BotServiceRbac` or `BotServiceTenant` configured in `authorization_schemes` so that requests must also pass token validation, tenant checks, and RBAC where applicable.
+
+If the setting is omitted or set to `false`, private-network controls continue to block all public Activity Protocol requests. This PATCH replaces `protocol_configuration` and `authorization_schemes`, so include every protocol and authorization scheme that the endpoint must retain.
+
+For the complete publishing flow, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API](publish-copilot-virtual-network.md).
 
 ### Add an agent card
 
@@ -260,7 +429,7 @@ An agent card surfaces details and capabilities to consumers, including for agen
 
 #### [Foundry portal](#tab/portal)
 
-Adding an agent card isn't yet configurable in the Foundry portal. Use the REST API or SDK.
+You can't yet configure adding an agent card in the Foundry portal. Use the REST API or SDK.
 
 #### [REST API](#tab/rest)
 
@@ -303,14 +472,112 @@ Content-Type: application/merge-patch+json
 #### [Python SDK](#tab/python)
 
 ```python
-# Agent card update via SDK is not yet supported. Use the REST API.
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import AgentCard, AgentCardSkill
+from azure.identity import DefaultAzureCredential
+PROJECT_ENDPOINT = (
+    "https://{account}.services.ai.azure.com/api/projects/{project}"
+)
+AGENT_NAME = "name-of-your-existing-agent"
+# Create the project client.
+project_client = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+# Add the agent card.
+patched_agent = project_client.agents.update_details(
+    agent_name=AGENT_NAME,
+  agent_card=AgentCard(
+        version="1.0.0",
+        description="A competitive intelligence analyst.",
+    skills=[AgentCardSkill(
+            id="competitor-analysis",
+            name="Competitor Analysis",
+            description="Analyzes competitor products and market positioning.",
+            tags=["research", "analysis", "market-intel"],
+            examples=["Compare our pricing with a competitor."],
+        )],
+    ),
+)
+print(f"Added an agent card to: {patched_agent.name}")
 ```
+
+#### [C# SDK](#tab/csharp)
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+var agentName = "name-of-your-existing-agent";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Add an agent card that describes the agent's skills to consumers.
+var card = new AgentCard(version: "1.0.0", skills: new[]
+{
+    new AgentCardSkill(id: "competitor-analysis", name: "Competitor Analysis")
+    {
+        Description = "Analyzes competitor products and market positioning.",
+        Examples = { "Compare our pricing with a competitor." },
+        Labels = { "research", "analysis", "market-intel" },
+    }
+})
+{
+    Description = "A competitive intelligence analyst.",
+};
+var patched = agentsClient.PatchAgent(
+    agentName,
+    new PatchAgentOptions { AgentCard = card });
+Console.WriteLine($"Added an agent card to: {patched.Value.Name}");
+```
+
+#### [JavaScript/TypeScript SDK](#tab/javascript)
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  "https://{account}.services.ai.azure.com/api/projects/{project}";
+const agentName = "name-of-your-existing-agent";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agentCard = {
+  version: "1.0.0",
+  description: "A competitive intelligence analyst.",
+  skills: [
+    {
+      id: "competitor-analysis",
+      name: "Competitor Analysis",
+      description:
+        "Analyzes competitor products and market positioning.",
+      tags: ["research", "analysis", "market-intel"],
+      examples: ["Compare our pricing with a competitor."],
+    },
+  ],
+};
+
+const patchedAgent = await project.agents.patchAgentObject(agentName, {
+  agentCard,
+});
+console.log(`Added an agent card to: ${patchedAgent.name}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 
 ## Get your agent properties
 
-To view your agent's current properties—identity, protocols, authorization, and endpoint configuration—run:
+To view your agent's current properties - identity, protocols, authorization, and endpoint configuration - run:
 
 ```
 GET {endpoint}/agents/{agent_name}?api-version=v1
@@ -350,32 +617,32 @@ Content-Type: application/json
 | `id` | string | Unique identifier | No | No |
 | `name` | string (max 63 chars) | Name of the agent | No | No |
 | `versions` | object | Contains `latest` with the latest `AgentVersion` | Yes (via create_version) | Yes |
-| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocols, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
+| `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocol configuration, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
 | `instance_identity` | object | The agent's unique Microsoft Entra identity (`principal_id`, `client_id`) | No (read-only) | No |
 | `blueprint` / `blueprint_reference` | object | Reference to the agent's Microsoft Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
 | `agent_card` | AgentCard | Agent details for consumers and A2A | Yes (`PATCH /agents/{name}`) | No (REST API / SDK only) |
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
 
 > [!NOTE]
-> The `version_selector`, `protocols`, and `authorization_schemes` are nested under `agent_endpoint`. To update any of them, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
+> The `version_selector`, `protocol_configuration`, and `authorization_schemes` properties are nested under `agent_endpoint`. To update any of these properties, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
 
 </details>
 
 <details>
-<summary>AgentEndpoint properties</summary>
+<summary>AgentEndpointConfig properties</summary>
 
 | Property | Type | Description |
 | --- | --- | --- |
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
-| `protocols` | array of string | Protocols enabled (for example, `responses`, `activity`, `a2a`) |
+| `protocol_configuration` | object | Protocols enabled, keyed by protocol name (for example, `responses`, `activity`, `a2a`). Each key maps to a protocol configuration object. |
+| `protocol_configuration.activity.enable_m365_public_endpoint` | boolean | When `true`, enables source-IP-filtered public access to the Activity Protocol route for Microsoft 365 Copilot and Teams even if the project disables public network access. |
 | `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
 
 </details>
 
 ## Related content
 
-- Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
-- Learn about [Hosted agents](../concepts/hosted-agents.md)
+- [Agent identity concepts in Foundry](../concepts/agent-identity.md)
+- [Hosted agents](../concepts/hosted-agents.md)
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
-

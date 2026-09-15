@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: How to enable Azure Translator to translate behind firewalls using either domain-name or IP filtering.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-translator
+ms.service: azure-translator-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 07/28/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 
 # Use Azure Translator behind firewalls

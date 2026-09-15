@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to apply best practices when you use conversational language understanding.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: best-practice
-ms.date: 04/05/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

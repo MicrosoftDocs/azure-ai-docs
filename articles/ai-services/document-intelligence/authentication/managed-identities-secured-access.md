@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 04/16/2026
 ms.author: vikurpad
 monikerRange: '<=doc-intel-4.0.0'
 ms.custom: sfi-image-nochange
@@ -249,7 +249,7 @@ Great work! You now have all the connections between the Document Intelligence r
 
 To validate your deployment, you can deploy a virtual machine (VM) to the virtual network and connect to the resources.
 
-1. Configure a [Data Science VM](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview) in the virtual network.
+1. Configure a Data Science VM in the virtual network.
 
 1. Remotely connect into the VM from your desktop and launch a browser session that accesses Document Intelligence Studio.
 

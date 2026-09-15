@@ -4,7 +4,7 @@ description: Include file
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 07/12/2024
+ms.date: 07/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: osiotugo
@@ -24,7 +24,7 @@ Content filtering occurs synchronously as the service processes prompts to gener
 - At the time when you first deploy a language model
 - Later, by selecting the content filtering toggle on the deployment details page
 
-Suppose you decide to use an API other than the [Model Inference API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that's deployed via a serverless API. In such a situation, content filtering isn't enabled unless you implement it separately by using Azure AI Content Safety.
+Suppose you decide to use an API other than the [Azure OpenAI SDK with the Azure OpenAI v1 APIs](../../foundry/openai/supported-languages.md) to work with a model that's deployed via a serverless API. In such a situation, content filtering isn't enabled unless you implement it separately by using Azure AI Content Safety.
 
 To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). If you don't use content filtering when working with models that are deployed via serverless API, you run a higher risk of exposing users to harmful content.
 

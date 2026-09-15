@@ -6,8 +6,9 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 08/21/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 By default, Foundry Agent Service manages storage for files, conversations, and vector stores. If your organization requires full data ownership, customer-managed keys (CMK), or network isolation, you can connect your own Azure resources instead. This article shows you how to configure the deployment templates to use existing Azure OpenAI, Azure Storage, Azure Cosmos DB, and Azure AI Search resources with Agent Service.
@@ -24,7 +25,7 @@ You can reuse your existing model deployments and quota from Foundry Tools or Az
 
 ### SDK usage with hub-based projects
 
-Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#foundry-portal) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
+Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../how-to/create-projects.md) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
 
 If you want to continue using your hub-based project and connection string, you need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 
@@ -207,4 +208,4 @@ Both provisioned throughput and serverless modes are supported.
 
 ## See also
 
-* Learn about the different [tools](../concepts/tool-catalog.md) agents can use.
+* Learn how to connect agents to tools by using [Foundry Toolbox](../concepts/toolbox-overview.md).

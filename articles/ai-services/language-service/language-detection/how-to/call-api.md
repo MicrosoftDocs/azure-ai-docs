@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: This article shows you how to detect the language of written text using language detection.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 04/04/2026
+ms.date: 08/12/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-language-detection
 ---
 # How to use language detection

@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 06/29/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -51,6 +51,9 @@ Default controls are displayed in the right pane when you create a new guardrail
    > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. 
 
 3. Select **Add control**. The control is added to the table on the right.
+
+> [!NOTE]
+> The **Network** control configures network egress controls, which govern a hosted agent's outbound connections. Network controls apply only to hosted agents. To learn how to author and apply egress rules, see [Add guardrails to a hosted agent](../agents/how-to/add-hosted-agent-guardrails.md#network-egress-controls-preview).
 
 ## Delete controls from a guardrail
 
@@ -539,4 +542,5 @@ For full Responsible AI guidance, see the [Responsible AI Overview](../responsib
 - [Intervention points and controls](intervention-points.md)
 - [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md)
 - [Configure content filters for Azure OpenAI](../../foundry-classic/openai/how-to/content-filters.md)
+
 

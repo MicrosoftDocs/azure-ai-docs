@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: tutorial
-ms.date: 06/26/2026
+ms.date: 07/13/2026
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 # Tutorial: Deploy private agentic retrieval for Foundry IQ
 
 > [!IMPORTANT]
-> This tutorial series uses the 2026-05-01-preview REST API for agentic retrieval. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This tutorial series uses the 2026-08-01-preview REST API for agentic retrieval. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 This three-part tutorial series describes how to deploy an end-to-end private agentic retrieval architecture for Foundry IQ by using Microsoft Foundry and Azure AI Search. It explains how inbound connectivity, outbound dependencies, and retrieval runtime fit together across the deployment.
 
@@ -42,7 +42,7 @@ The deployment provisions the following services. You interact with each service
 
 | Service | Role |
 | --- | --- |
-| Foundry (resource and project) | Orchestrates the agent runtime and hosts the project connection, the agent, and the `gpt-4.1` chat model that powers the agent. In part three, you also deploy the `text-embedding-3-large` embedding model that Azure AI Search uses to vectorize content. |
+| Foundry (resource and project) | Orchestrates the agent runtime and hosts the project connection, the agent, and a GPT-5 family model that powers the agent. In part three, you also deploy the `text-embedding-3-large` embedding model that Azure AI Search uses to vectorize content. |
 | Azure AI Search | Ingests and vectorizes your private blob content into a knowledge source, and then serves agentic retrieval through a knowledge base and its MCP endpoint. Makes a private outbound call to Azure Blob Storage for content access. For the Foundry embedding dependency, this tutorial uses the `openai_account` shared private link for the target resource, and the ingestion-time embedding call currently also relies on the trusted-service bypass. |
 | Azure Blob Storage | Stores the source documents that the knowledge source ingests and indexes for agentic retrieval. |
 | Azure Cosmos DB | Stores agent state for the standard agent setup, including messages, conversation history, and agent metadata. The deployment provisions it automatically, and you don't configure or use it directly. |

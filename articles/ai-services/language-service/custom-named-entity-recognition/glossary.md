@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Definitions and terms you may encounter when building AI models using Custom Named Entity Recognition
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: glossary
 ms.date: 06/29/2026
 ms.author: lajanuar

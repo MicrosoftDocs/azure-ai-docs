@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom NER.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 05/05/2026
+ms.date: 07/22/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner
 ---
 # Deploy a model and extract entities from text using the runtime API

@@ -7,7 +7,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 08/31/2026
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers
@@ -16,7 +17,7 @@ ms.date: 11/21/2025
 
 In search solutions, strings that have complex patterns or special characters can be challenging to work with because the [default analyzer](search-analyzers.md) strips out or misinterprets meaningful parts of a pattern. This results in a poor search experience where users can't find the information they expect. Phone numbers are a classic example of strings that are difficult to analyze. They come in various formats and include special characters that the default analyzer ignores.
 
-With phone numbers as its subject, this tutorial uses the [Search Service REST APIs](/rest/api/searchservice/) to solve patterned data problems using a [custom analyzer](index-add-custom-analyzers.md). This approach can be used as is for phone numbers or adapted for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.
+By using phone numbers as an example, this tutorial shows how to use the [Search Service REST APIs](/rest/api/searchservice/) to solve patterned data problems by using a [custom analyzer](index-add-custom-analyzers.md). You can use this approach as-is for phone numbers or adapt it for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.
 
 In this tutorial, you:
 
@@ -579,7 +580,7 @@ To prevent false positives, create a separate analyzer for querying. This analyz
     {
       "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
       "name": "phone_analyzer_search",
-      "tokenizer": "custom_tokenizer_phone",
+      "tokenizer": "keyword_v2",
       "tokenFilters": [],
       "charFilters": [
         "phone_char_mapping"
@@ -606,11 +607,11 @@ With this change, you're all set. Here are your next steps:
 
 1. Delete the index.
 
-1. Recreate the index after you add the new custom analyzer (`phone_analyzer-search`) and assign that analyzer to the `phone-number` field's `searchAnalyzer` property.
+1. Recreate the index after you add the `phone_analyzer_search` analyzer and assign it to the `phone_number` field's `searchAnalyzer` property.
 
 1. Reload the data.
 
-1. Retest the queries to verify that the search works as expected. If you're using the sample file, this step creates the third index named `phone-number-index-3`.
+1. Retest the queries to verify that the search works as expected. If you're using the sample file, this step creates the third index named `phone-numbers-index-3`.
 
 <a name="Alternate"></a>
 
@@ -651,7 +652,7 @@ Given an input of `14255550100`, the analyzer can't logically chunk the phone nu
 ]
 ```
 
-In the following example, the phone number is split into the chunks you normally expect a user to be search for.
+In the following example, the phone number is split into the chunks a user normally searches for.
 
 |Input|Output|  
 |-|-|  

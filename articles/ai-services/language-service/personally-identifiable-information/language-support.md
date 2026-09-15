@@ -4,11 +4,12 @@ titleSuffix: Foundry Tools
 description: This article explains which natural languages the PII detection feature in Azure Language in Foundry Tools supports.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 06/10/2026
+ms.date: 08/17/2026
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD025 -->
 # Personally Identifiable Information (PII) detection language support
@@ -116,10 +117,11 @@ Conversation PII preview version `2023-04-15-preview` supports the following lan
 * German
 * Spanish
 
-Conversation PII generally available (GA) version currently supports the following languages:
+Conversation PII `2024-11-01` (GA)  version currently supports the following languages:
 
 * English
 * French
+* German
 * Spanish
 
 # [Document-based PII](#tab/document-based-pii)

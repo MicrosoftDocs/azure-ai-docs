@@ -2,10 +2,11 @@
 title: Query-Time ACL and RBAC Enforcement
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.
 ms.reviewer: magottei
-ms.date: 06/08/2026
+ms.date: 08/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Query-time ACL and RBAC enforcement in Azure AI Search (preview)
@@ -13,11 +14,11 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
+> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -42,7 +43,7 @@ This article explains how to set up queries that use permission metadata to filt
   - For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
   - For SharePoint data sources, you must configure access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). You can also use an [indexed SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-indexed.md) and configure it to [enforce document-level permissions](agentic-knowledge-source-how-to-sharepoint-indexed.md#enforce-document-level-permissions). Group-based permissions, including Microsoft 365 Groups, are supported when ingested as Entra object IDs. Group expansion occurs at query time through Microsoft Graph.
 
-- Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
+- Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
 ## Limitations
 
@@ -58,6 +59,8 @@ This article explains how to set up queries that use permission metadata to filt
   - The user identity carried by **x-ms-query-source-authorization**.
 
 - Initial ACL-based queries might experience higher latency compared to subsequent requests, due to caching and permission resolution overhead.
+
+- For indexed SharePoint content, a Microsoft Entra group nested within a SharePoint group isn't expanded. Microsoft Entra transitive group resolution doesn't support this mixed relationship. See [Supported group relationships](search-indexer-sharepoint-access-control-lists.md#supported-group-relationships).
 
 ## ACL entry limits per data source
 
@@ -103,18 +106,20 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 Starting in the 2026-05-01-preview REST API, Azure AI Search can honor SharePoint site group memberships, such as Owners, Members, Visitors, and custom site groups, at query time. To enable this scenario, the index must include:
 
 - A `sharePointConnectorAppRegistration` property that references the federated identity credential of the Microsoft Entra application used to call SharePoint on behalf of the user.
-- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_sharepoint_site_url` source field).
+- A field marked with the `sharepointSiteUrl: true` attribute that stores the SharePoint site URL for each indexed item (typically named `SharePointSiteUrl` and populated from the `metadata_spo_site_url` source field).
 
 At query time, Azure AI Search uses the registered application and the site URL on each candidate document to resolve the SharePoint group memberships of the calling user on that site. The resolved groups are matched against the `spg:`-prefixed values stored in the `groupIds` permission filter field. The `spg:` prefix distinguishes SharePoint site groups from Microsoft Entra group object IDs, which are stored without a prefix.
 
 For configuration details and limitations, see [Configure SharePoint groups support](search-indexer-sharepoint-access-control-lists.md#configure-sharepoint-groups-support).
+
+If SharePoint permission filtering returns missing or unexpected results, see [Troubleshoot SharePoint permission filtering](troubleshoot-sharepoint-query-permission-filtering.md).
 
 ### Example: Query with SharePoint site group enforcement
 
 The request is identical to the standard ACL-enforced query. The search service uses the index's `sharePointConnectorAppRegistration` to resolve SharePoint group membership on the caller's behalf. Include `GroupIds` in the `select` clause to see `spg:`-prefixed values in the response.
 
 ```http
-POST {{endpoint}}/indexes/{index}/docs/search?api-version=2026-05-01-preview
+POST {{endpoint}}/indexes/{index}/docs/search?api-version=2026-08-01-preview
 Authorization: Bearer {{query-token}}
 x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json
@@ -128,10 +133,10 @@ Content-Type: application/json
 
 ## Query example
 
-Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
+Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is a Microsoft Entra access token for the querying user.
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2026-05-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2026-08-01-preview
 Authorization: Bearer {{query-token}}
 x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json
@@ -171,7 +176,7 @@ Queries are a data plane operation, so the custom role can only consist of atomi
 After you set up permissions, you can run the query. The following example is a query request against a search index.
 
 ```http
-POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2026-05-01-preview
+POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2026-08-01-preview
 Authorization: Bearer {AUTH_TOKEN}
 x-ms-query-source-authorization: {TOKEN}
 x-ms-enable-elevated-read: true
@@ -184,7 +189,7 @@ x-ms-enable-elevated-read: true
 ```
 
 > [!IMPORTANT]
-> The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true) action.
+> The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-08-01-preview&preserve-view=true) action.
 
 ### Important ACL functionality behavior change in specific preview API versions
 
@@ -194,7 +199,7 @@ Starting in November 2025, this behavior changed:
 
 - ACL permission filters now apply even when using only service API keys or Entra authentication across all versions that support ACL.
 - If the user token is omitted, ACL-protected content isn't returned.
-- To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2026-05-01-preview`.
+- To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2026-05-01-preview` or later.
 
 This update helps keep content protected when applications don't enforce best practices for token validation.
 

@@ -1,12 +1,13 @@
 ---
 title: Managed identities for storage blobs
 description: Create managed identities for containers and blobs with Azure portal.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 manager: mcleans
 ms.author: lajanuar
+ai-usage: ai-assisted
 author: laujan
-ms.date: 04/30/2026
+ms.date: 08/07/2026
 ms.custom: sfi-image-nochange
 ---
 # Managed identities for Language resources

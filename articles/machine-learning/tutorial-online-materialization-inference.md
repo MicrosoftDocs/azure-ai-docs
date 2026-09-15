@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 4: Enable online materialization and run online inference"
 titleSuffix: Azure Machine Learning managed feature store - basics
-description: This is a part of a tutorial series on managed feature store. 
+description: "Part 4 of the Azure Machine Learning managed feature store tutorial series: enable online materialization and run online inference."
 services: machine-learning
 ms.service: azure-machine-learning
 
@@ -17,7 +17,7 @@ ms.custom: sdkv2, ignite-2023
 
 # Tutorial 4: Enable online materialization and run online inference
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, visit the [feature store concepts](./concept-what-is-managed-feature-store.md) resource.
+An Azure Machine Learning managed feature store helps you discover, create, and operationalize features. Features connect the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. The lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
 > [!IMPORTANT]
 > Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
@@ -31,7 +31,7 @@ An Azure Machine Learning managed feature store lets you discover, create, and o
 >   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
 > 
 
-Part 1 of this tutorial series showed how to create a feature set specification with custom transformations, and use that feature set to generate training data. Part 2 of the series showed how to enable materialization, and perform a backfill. Additionally, Part 2 showed how to experiment with features, as a way to improve model performance. Part 3 showed how a feature store increases agility in the experimentation and training flows. Part 3 also described how to run batch inference.
+Tutorial 1 showed how to create a feature set specification with custom transformations, and then use that feature set to generate training data, enable materialization, and perform a backfill. Tutorial 2 showed how to experiment with features to improve model performance, and then train and register a model that uses features. Tutorial 3 showed how to enable recurrent materialization for the `transactions` feature set and run a batch inference pipeline.
 
 In this tutorial, you
 
@@ -46,7 +46,7 @@ In this tutorial, you
 > [!NOTE]
 > This tutorial uses a Azure Machine Learning notebook with **Serverless Spark Compute**.
 
-* Be sure to complete parts 1 through 4 of this tutorial series. This tutorial reuses the feature store and other resources created in those earlier tutorials.
+* Be sure to complete Tutorials 1 through 3 in this series. This tutorial reuses the feature store and other resources that you created in those earlier tutorials.
 
 ## Set up
 
@@ -65,7 +65,7 @@ You don't need to explicitly install these resources for this tutorial, because 
       1. Download the *azureml-examples/sdk/python/featurestore-sample/project/env/online.yml* file to your local machine
       1. In **configure session** in the top nav, select **Python packages**
       1. Select **Upload Conda file**
-      1. Upload the *online.yml* file from your local machine, with the same steps as described in [uploading *conda.yml* file in the first tutorial](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment)
+      1. Upload the *online.yml* file from your local machine by using the same steps described in [uploading the *conda.yml* file in Tutorial 1](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
       1. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns
 
 1. This code cell starts the Spark session. It needs about 10 minutes to install all dependencies and start the Spark session.
@@ -282,9 +282,9 @@ Execute this code cell to test the online deployment with the mock data. The cel
 
 ## Clean up
 
-The [fifth tutorial in the series](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
+[Tutorial 5: Develop a feature set with a custom source](./tutorial-develop-feature-set-with-custom-source.md#clean-up) describes how to delete the resources.
 
 ## Next steps
 
-* [Network isolation with feature store (preview)](./tutorial-network-isolation-for-feature-store.md)
+* [Tutorial 6: Network isolation for feature store](./tutorial-network-isolation-for-feature-store.md)
 * [Azure Machine Learning feature stores samples repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/featurestore_sample)

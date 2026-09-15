@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 09/04/2026
 ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 
@@ -28,6 +28,7 @@ For more information about authentication and authorization in Microsoft Foundry
 
 [!INCLUDE [rbac-foundry 1](../includes/concepts-rbac-foundry-1.md)]
 
+For more information about assigning a role to an individual agent, see [Agent-scope role assignments](#agent-scope-role-assignments).
 
 ### Permissions for each built-in role
 
@@ -58,15 +59,18 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 ## Manage role assignments
 
-To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (Admin page), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
+To manage roles in Foundry, you must have permission to assign and remove roles in Azure. The Azure built-in **Owner** role includes that permission. You can assign roles through the Foundry portal (**Manage** pane), Azure portal IAM, or Azure CLI. You can remove roles by using Azure portal IAM or Azure CLI.
+
+> [!IMPORTANT]
+> The Azure portal currently supports assigning **Foundry Agent Consumer** only at the Foundry account scope. To follow least-privilege principles, use Azure CLI to assign the role at project scope or agent scope. Project scope grants access to every agent endpoint in the project. Agent scope grants access only to the specified agent endpoint.
 
 # [Foundry portal](#tab/foundry)
 In the Foundry portal, manage permissions by:
 
-1. Open the **Admin** page in [Foundry](https://ai.azure.com), then select **Operate** > **Admin**.
-1. Select your project name.
+1. In [Foundry](https://ai.azure.com), select **Manage** > **Project details**.
+1. Select the **Users** tab.
 1. Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
-1. Apply the same flow for Foundry resource-level access.
+1. Apply the same flow on the **Resource details** page for Foundry resource-level access.
 
 # [Azure portal](#tab/portal)
 You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)**.
@@ -82,26 +86,44 @@ az role assignment create --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" --assign
 
 [!INCLUDE [role-rename-note-code](../includes/role-rename-note-code.md)]
 
+To assign **Foundry Agent Consumer** at project scope, store the project resource ID in a variable and then create the role assignment:
+
+```azurecli
+PROJECT_SCOPE="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>"
+
+az role assignment create \
+    --assignee-object-id "<principalId>" \
+    --assignee-principal-type ServicePrincipal \
+    --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
+    --scope "$PROJECT_SCOPE"
+```
+
 ---
 
 ### Agent-scope role assignments
 
-Roles can be assigned at the scope of a specific agent rather than the entire project. This approach lets you grant access to one agent without granting access to all agents in the project. The scope URI for an agent follows this pattern:
+Assign roles at the scope of a specific agent rather than the entire project. This approach lets you grant endpoint access to one agent without granting endpoint access to all agents in the project. The scope URI for an agent follows this pattern:
 
 ```
 /subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>
 ```
 
+> [!NOTE]
+> The system currently assesses agent-scope role assignments only for agent endpoint access. Assigning a role at the scope of an individual agent affects whether the assignee can interact with that agent's endpoints, but it doesn't grant broader control-plane or management permissions.
+
 For example, the following command assigns the Foundry Agent Consumer role (role definition ID `eed3b665-ab3a-47b6-8f48-c9382fb1dad6`) to a service principal at the scope of a specific agent.
 
 ```azurecli
+AGENT_SCOPE="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
+
 az role assignment create \
-    --assignee "<principalId>" \
+    --assignee-object-id "<principalId>" \
+    --assignee-principal-type ServicePrincipal \
     --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
-    --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<accountName>/projects/<projectName>/agents/<agentName>"
+    --scope "$AGENT_SCOPE"
 ```
 
-Agent-scope assignments follow the same RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope.
+Role-assignment mechanics for agent scopes follow the same Azure RBAC model as project-scope assignments. Any role that can be assigned at the project scope can also be assigned at the agent scope. However, at the agent scope, role assignments are currently evaluated only for agent endpoint access and don't grant broader control-plane or management permissions.
 
 [!INCLUDE [rbac-foundry 3](../includes/concepts-rbac-foundry-3.md)]
 
@@ -127,11 +149,11 @@ Five operations are required to fully manage managed compute deployments on a Fo
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/read` | Read or list managed compute deployments on a Foundry account. |
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/write` | Create or update a managed compute deployment. |
 | `Microsoft.CognitiveServices/accounts/managedComputeDeployments/delete` | Delete a managed compute deployment. |
-| `Microsoft.CognitiveServices/locations/managedComputeCapacities/read` | List available accelerator capacity by region. |
+| `Microsoft.CognitiveServices/managedComputeCapacities/read` | List available accelerator capacity by region. |
 | `Microsoft.CognitiveServices/locations/usages/read` | Read accelerator usage and quota consumption. |
 
 > [!IMPORTANT]
-> A root-level operation `Microsoft.CognitiveServices/capacities/read` does **not** exist. Custom roles that grant capacity reads must use the location-scoped `locations/managedComputeCapacities/read` operation (or `managedComputeCapacities/read` if scoped at the root of the provider). A wildcard such as `Microsoft.CognitiveServices/locations/*/read` matches `locations/usages/read` but does **not** match `locations/managedComputeCapacities/read`. List the operation explicitly when authoring a custom role.
+> The provider registers `managedComputeCapacities/read` at its root as `Microsoft.CognitiveServices/managedComputeCapacities/read`, not under `locations/`. A root-level operation `Microsoft.CognitiveServices/capacities/read` doesn't exist. A wildcard such as `Microsoft.CognitiveServices/locations/*/read` matches `locations/usages/read` but doesn't match the capacities operation. List `Microsoft.CognitiveServices/managedComputeCapacities/read` explicitly when you author a custom role.
 
 #### Role-to-permission mapping
 
@@ -164,7 +186,7 @@ The following table summarizes how each role's CRUD coverage compares across the
 | Foundry User | Read + capacities + usages | Read + capacities + usages | Same |
 
 > [!NOTE]
-> If you author a custom role that uses a `locations/*/read` wildcard to grant capacity reads for standard deployments, that wildcard does not cover `managedComputeCapacities/read`. Add `Microsoft.CognitiveServices/locations/managedComputeCapacities/read` to the custom role explicitly to grant capacity reads on the managed compute control plane.
+> If you author a custom role that uses a `locations/*/read` wildcard to grant capacity reads for standard deployments, that wildcard doesn't cover `managedComputeCapacities/read`. Add `Microsoft.CognitiveServices/managedComputeCapacities/read` to the custom role explicitly to grant capacity reads on the managed compute control plane.
 
 #### Recommended role assignments
 

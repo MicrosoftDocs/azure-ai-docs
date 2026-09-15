@@ -4,10 +4,11 @@ titleSuffix: Foundry Tools
 description: Learn how versioning works in conversational language understanding
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 04/19/2026
+ms.date: 07/23/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-clu
 ms.reviewer: haelhamm
 ---

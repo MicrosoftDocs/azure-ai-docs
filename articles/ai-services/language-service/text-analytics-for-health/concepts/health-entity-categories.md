@@ -5,10 +5,11 @@ description: Learn about categories recognized by Text Analytics for health
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/13/2026
+ms.date: 07/30/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-health
 ---
 # Supported Text Analytics for health entity categories

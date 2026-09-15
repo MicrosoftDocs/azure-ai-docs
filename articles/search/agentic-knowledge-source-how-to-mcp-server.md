@@ -3,7 +3,8 @@ title: Create an MCP Server Knowledge Source
 description: Learn how to create an MCP Server knowledge source for agentic retrieval in Azure AI Search, which connects to any external Model Context Protocol server.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 08/17/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -13,9 +14,9 @@ zone_pivot_groups: search-csharp-python-rest
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -31,8 +32,8 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-05-01-preview&preserve-view=true) |
-|--|--|--|--|--|--|--|
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2026-08-01-preview&preserve-view=true) |
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -41,11 +42,13 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 
 + An MCP server with one or more tools. The server must be reachable from Azure AI Search over HTTPS. For testing, you can use the public Microsoft Learn MCP server at `https://learn.microsoft.com/api/mcp`.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
 + The latest [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -53,11 +56,15 @@ Unlike indexed knowledge sources, MCP Server knowledge sources query live data d
 
 + The latest [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) preview package: `pip install --pre azure-search-documents`
 
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ The [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) version of the Search Service REST API.
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -80,6 +87,7 @@ The following JSON is an example response for an MCP Server knowledge source.
   "name": "my-mcp-server-ks",
   "kind": "mcpServer",
   "description": "An MCP Server knowledge source.",
+  "resultsProcessing": "rerank",
   "encryptionKey": null,
   "mcpServerParameters": {
     "serverURL": "https://learn.microsoft.com/api/mcp",
@@ -87,8 +95,8 @@ The following JSON is an example response for an MCP Server knowledge source.
     "tools": [
       {
         "name": "microsoft_docs_search",
-        "inclusionMode": null,
-        "maxOutputTokens": null,
+        "resultsProcessing": "none",
+        "maxOutputTokens": 1000,
         "outputParsing": {
           "kind": "auto",
           "jsonParameters": null,
@@ -107,16 +115,16 @@ Run the following code to create an MCP Server knowledge source.
 ::: zone pivot="csharp"
 
 ```csharp
-using Azure;
+using Azure.Identity;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
 
-Uri searchEndpoint = new Uri("<search-service-url>");
-AzureKeyCredential credential = new AzureKeyCredential("<api-key>");
+Uri searchEndpoint = new Uri("<search-endpoint>");
+DefaultAzureCredential credential = new DefaultAzureCredential();
 var indexClient = new SearchIndexClient(searchEndpoint, credential);
 
 var mcpServer = new McpServerKnowledgeSource(
-    "<knowledge-source-name>",
+    "my-mcp-server-ks",
     new McpServerKnowledgeSourceParameters(
         "https://learn.microsoft.com/api/mcp",
         new[]
@@ -125,12 +133,13 @@ var mcpServer = new McpServerKnowledgeSource(
             {
                 Name = "microsoft_docs_search",
                 OutputParsing = new McpServerAutoOutputParsing(),
-                InclusionMode = McpServerToolInclusionMode.Reranked,
+                ResultsProcessing = KnowledgeSourceResultsProcessing.None,
                 MaxOutputTokens = 1000
             }
         }))
 {
-    Description = "An MCP Server knowledge source."
+    Description = "An MCP Server knowledge source.",
+    ResultsProcessing = KnowledgeSourceResultsProcessing.Rerank
 };
 
 await indexClient.CreateOrUpdateKnowledgeSourceAsync(mcpServer);
@@ -143,40 +152,50 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(mcpServer);
 ::: zone pivot="python"
 
 ```python
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import (
+    McpServerAutoOutputParsing,
     McpServerKnowledgeSource,
-    McpServerParameters,
+    McpServerKnowledgeSourceParameters,
     McpServerTool,
-    McpServerToolOutputParsing,
 )
 
 index_client = SearchIndexClient(
-    endpoint="<search-service-url>",
-    credential=AzureKeyCredential("<api-key>")
+    endpoint="<search-endpoint>",
+    credential=DefaultAzureCredential(),
 )
 
 knowledge_source = McpServerKnowledgeSource(
-    name="<knowledge-source-name>",
+    name="my-mcp-server-ks",
     description="An MCP Server knowledge source.",
-    mcp_server_parameters=McpServerParameters(
+    results_processing="rerank",
+    mcp_server_parameters=McpServerKnowledgeSourceParameters(
         server_url="https://learn.microsoft.com/api/mcp",
         tools=[
             McpServerTool(
                 name="microsoft_docs_search",
-                output_parsing=McpServerToolOutputParsing(kind="auto"),
-                inclusion_mode="reranked",
-                max_output_tokens=1000
+                output_parsing=McpServerAutoOutputParsing(),
+                results_processing="none",
+                max_output_tokens=1000,
             )
-        ]
-    )
+        ],
+    ),
 )
 
 index_client.create_or_update_knowledge_source(knowledge_source)
+
+saved_source = index_client.get_knowledge_source(
+    knowledge_source.name
+)
+assert saved_source.results_processing == "rerank"
+assert (
+    saved_source.mcp_server_parameters.tools[0].results_processing
+    == "none"
+)
 ```
 
-**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true)
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient?view=azure-python-preview&preserve-view=true), [McpServerKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.mcpserverknowledgesource?view=azure-python-preview&preserve-view=true), [McpServerTool](/python/api/azure-search-documents/azure.search.documents.indexes.models.mcpservertool?view=azure-python-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -184,8 +203,8 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 
 ```http
 ### Create an MCP Server knowledge source
-PUT {{search-url}}/knowledgesources/my-mcp-server-ks?api-version=2026-05-01-preview
-api-key: {{api-key}}
+PUT {{search-endpoint}}/knowledgesources/my-mcp-server-ks?api-version=2026-08-01-preview
+Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 Prefer: return=representation
 
@@ -193,6 +212,7 @@ Prefer: return=representation
   "name": "my-mcp-server-ks",
   "kind": "mcpServer",
   "description": "An MCP Server knowledge source.",
+  "resultsProcessing": "rerank",
   "encryptionKey": null,
   "mcpServerParameters": {
     "serverURL": "https://learn.microsoft.com/api/mcp",
@@ -202,7 +222,7 @@ Prefer: return=representation
         "outputParsing": {
           "kind": "auto"
         },
-        "inclusionMode": "reranked",
+        "resultsProcessing": "none",
         "maxOutputTokens": 1000
       }
     ]
@@ -210,7 +230,7 @@ Prefer: return=representation
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -226,7 +246,7 @@ Use `foundryConnection` only when an agent from Foundry Agent Service invokes a 
 "authentication": {
   "kind": "foundryConnection",
   "foundryConnectionParameters": {
-    "connectionId": "<your-foundry-connection-id>"
+    "connectionId": "<foundry-connection-id>"
   }
 }
 ```
@@ -240,7 +260,7 @@ Use `storedHeaders` to send static HTTP headers with every MCP request. We recom
   "kind": "storedHeaders",
   "storedHeadersParameters": {
     "headers": {
-      "x-custom-auth": "<your-header-value>"
+      "x-custom-auth": "<header-value>"
     }
   }
 }
@@ -258,7 +278,7 @@ If an MCP server requires per-request credentials, pass them on the retrieve req
 Use the knowledge source name as the prefix:
 
 | Control header | Description |
-|--|--|
+| -- | -- |
 | `<knowledge-source-name>-header-name<N>` | The name of the HTTP header to send to the MCP server. |
 | `<knowledge-source-name>-header-value<N>` | The value of the HTTP header to send to the MCP server. |
 
@@ -269,7 +289,7 @@ Use the knowledge source name as the prefix:
 Create the retrieval client with a policy that adds the control headers to the retrieve request.
 
 ```csharp
-using Azure;
+using Azure.Identity;
 using Azure.Core;
 using Azure.Core.Pipeline;
 using Azure.Search.Documents;
@@ -357,7 +377,7 @@ result = retrieval_client.retrieve(
 ::: zone pivot="rest"
 
 ```http
-POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-05-01-preview
+POST {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2026-08-01-preview
 Authorization: Bearer {{search-access-token}}
 Content-Type: application/json
 my-mcp-server-ks-header-name: Authorization
@@ -392,7 +412,11 @@ Each header pair must include exactly one name control header and one matching v
 
 ### Configure tools
 
-Each entry in the `tools` array specifies an allowed MCP tool and optional output parsing behavior.
+Each entry in the `tools` array specifies an allowed MCP tool, optional output parsing behavior, and how the tool's results are processed.
+
+Use `resultsProcessing` to control whether the retrieval engine reranks a tool's results. Valid values are `rerank` and `none`. For mappings from earlier contracts, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
+
+For each MCP tool, the service resolves `resultsProcessing` in this order: the tool value, the request value in `knowledgeSourceParams`, the stored knowledge source value, and then `rerank`. A tool value applies only to that tool.
 
 ### Output parsing modes
 

@@ -35,6 +35,8 @@ Many enterprise environments require that Foundry, the container registry, and d
 
 You achieve VNet integration by customizing the scaffolded `infra/` Bicep templates and by running `azd` from inside (or with access to) the VNet.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help choose the right private-networking path and apply the required `azd`, Bicep, or Terraform steps.
+
 ## Prerequisites
 
 * An initialized hosted agent project. To create one, see [Initialize a hosted agent project with the Azure Developer CLI](init-agent-project.md).

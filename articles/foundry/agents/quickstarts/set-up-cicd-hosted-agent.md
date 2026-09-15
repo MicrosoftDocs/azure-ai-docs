@@ -10,7 +10,6 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
-zone_pivot_groups: hosted-agent-deploy-method
 #CustomerIntent: As an enterprise hosted agent developer, I want to set up a CI/CD pipeline so that I can automatically deploy and validate my agent after I update its source code.
 ---
 
@@ -26,6 +25,8 @@ The pipeline performs two tasks:
 
 > [!NOTE]
 > This quickstart focuses on GitHub Actions. The pipeline template includes comments for values that vary by project, such as the hosted agent code root folder, Foundry project endpoint, model deployment, and test prompt. Update those values to match your repository and environment layout.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help tailor the pipeline template, fill in project-specific values, and validate deployment after changes.
 
 ## Set up a GitHub pipeline for hosted agents
 

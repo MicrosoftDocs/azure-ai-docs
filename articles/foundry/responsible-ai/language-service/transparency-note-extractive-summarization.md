@@ -5,7 +5,7 @@ description: "Summarization is a feature in Azure Language in Foundry Tools that
 author: laujan
 ms.author: lajanuar
 manager: yabinl
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 04/01/2026
 ---

@@ -4,12 +4,10 @@ description: Set up an Azure Files indexer to automate indexing of file shares i
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 08/08/2026
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2023
-  - ignite-2024
-  - sfi-ropc-nochange
+ai-usage: ai-assisted
+ms.custom: [ignite-2023, ignite-2024, sfi-ropc-nochange, doc-kit-assisted]
 ---
 
 # Index data from Azure Files (preview)
@@ -40,6 +38,8 @@ To configure and run the indexer, you can use:
 + An [SMB file share](/azure/storage/files/files-smb-protocol) providing the source content. [NFS shares](/azure/storage/files/files-nfs-protocol#support-for-azure-storage-features) are not supported.
 
 + Files containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis.
+
++ Source files processed by the Azure Files indexer use the [shared source-file size and extracted-character limits for blob-like indexers](search-limits-quotas-capacity.md#indexer-limits).
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
@@ -75,10 +75,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 You can use 2020-06-30-preview or later for "type": `"azurefile"`. We recommend the latest preview API.
 
-1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
+1. [Create a data source](/rest/api/searchservice/indexers/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to set its definition, using a preview API for "type": `"azurefile"`.
 
     ```http
-    POST /datasources?api-version=2026-05-01-preview
+    POST /datasources?api-version=2026-08-01-preview
     {
         "name" : "my-file-datasource",
         "type" : "azurefile",

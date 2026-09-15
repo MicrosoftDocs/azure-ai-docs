@@ -1,19 +1,19 @@
 ---
-title: "Deploy a hosted agent from source code (preview)"
-description: "Deploy your hosted agent directly from source code—without building a container—by using the Azure Developer CLI, Python SDK, .NET SDK, or REST API."
+title: "Deploy a hosted agent from source code"
+description: "Deploy your hosted agent directly from source code—without building a container—by using the Azure Developer CLI, Python SDK, .NET SDK, JavaScript/TypeScript SDK, or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 06/04/2026
+ms.date: 07/09/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer new to Foundry Agent Service, I want to deploy my Python or .NET agent code without building a container so that I can iterate quickly without learning Docker or managing a registry.
 ---
 
-# Deploy a hosted agent from source code (preview)
+# Deploy a hosted agent from source code
 
 This article shows you how to deploy a [Hosted agent](../concepts/hosted-agents.md) in Foundry Agent Service from Python or .NET source code, without building or pushing a container image. You upload a `.zip` of your code (and optionally your dependencies), and Agent Service either runs it as-is or builds your dependencies for you in the cloud.
 
@@ -28,8 +28,7 @@ Use the SDK and REST procedures in this article when you need to deploy source-c
 
 If you need full control of the runtime image or you already have a working Dockerfile, use the container-based path: [Deploy a hosted agent](deploy-hosted-agent.md).
 
-> [!IMPORTANT]
-> Source-code deployment for Hosted agents is in **preview**. Functionality, region availability, and APIs might change before general availability.
+If you use a coding agent like GitHub Copilot to package and deploy source code, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help prepare your project and follow the required `azd`, SDK, or REST steps.
 
 ## Prerequisites
 
@@ -51,8 +50,20 @@ If you need full control of the runtime image or you already have a working Dock
 - The `Azure.AI.Projects.Agents` and `Azure.Identity` packages.
 
     ```dotnetcli
-    dotnet add package Azure.AI.Projects.Agents
+    dotnet add package Azure.AI.Projects.Agents --prerelease
     dotnet add package Azure.Identity
+    ```
+
+    > [!NOTE]
+    > The source-code deployment APIs for .NET are currently available only in a prerelease version of `Azure.AI.Projects.Agents`. Use the `--prerelease` flag to install it. These APIs aren't yet included in the stable (GA) release.
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+- Node.js 22 or later, to package your source locally.
+- The `@azure/ai-projects` and `@azure/identity` packages. You run the caller in Node.js, but the hosted runtime you deploy is still Python or .NET source code.
+
+    ```bash
+    npm install @azure/ai-projects @azure/identity
     ```
 
 # [REST API](#tab/rest)
@@ -92,14 +103,6 @@ You need the **Foundry Project Manager** role at the project scope to deploy a h
 
 Your agent runs as a platform-assigned managed identity that's separate from your user identity. This identity can access model inferencing through the project endpoint and session storage by default. For external resources (for example, your own Azure Storage), assign RBAC roles manually to the agent's Microsoft Entra ID. For more information, see [Agent access beyond defaults](../concepts/hosted-agent-permissions.md#agent-access-beyond-defaults).
 
-For REST calls, include the preview feature header on mutating requests (Create, Update, Delete) while the feature is in preview:
-
-```http
-Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview
-```
-
-GET requests work without it today, but include it on every call to be safe—the header gates preview behavior and might be enforced more strictly before GA.
-
 ## Deployment lifecycle
 
 Every source-code deployment follows the same sequence: **package -> create or update -> poll until `active` -> invoke**. The source-code path uses `code_configuration` in the agent definition. The image-based path uses `container_configuration` instead. These two options are mutually exclusive on a single version.
@@ -111,6 +114,7 @@ Choose the path that fits your workflow. If you're not sure, start with the Azur
 | [Azure Developer CLI or VS Code](#deploy-using-the-azure-developer-cli-or-vs-code) | **Most deployments**, including first deployments and the fastest inner loop. | Tooling builds and uploads the zip for you. |
 | [Python SDK](#deploy-from-source-code) | Programmatic deployment from Python apps or automation. | You build the zip; the SDK uploads it. |
 | [.NET SDK](#deploy-from-source-code) | Programmatic deployment from .NET apps or automation. | The SDK zips a folder for you. |
+| [JavaScript/TypeScript SDK](#deploy-from-source-code) | Programmatic deployment from Node.js apps or automation. Deploys Python or .NET source; there's no Node.js hosted runtime. | You build the zip; the SDK uploads it. |
 | [REST API](#deploy-from-source-code) | Custom tooling, language-agnostic automation, and CD systems. | You build the zip and send the multipart request. |
 
 ## Choose how dependencies are resolved
@@ -133,12 +137,7 @@ All source-code deployments require outbound access to:
 - `mcr.microsoft.com`
 - `*.login.microsoft.com`
 
-The `bundled` dependency resolution also requires outbound access to:
-
-- `deb.debian.org`
-- `packages.microsoft.com`
-
-Without these outbound paths, provisioning can't download what it needs and the deployment fails. For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
+For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
 
 ## Deploy using the Azure Developer CLI or VS Code
 
@@ -185,8 +184,6 @@ Select your language or interface. Each tab walks through the same lifecycle: cr
 
 Use the Python SDK to deploy source-code agents from your own applications or automation. You build the zip yourself and pass its bytes and SHA-256 to the SDK, which uploads it and exposes the same create, poll, invoke, and download operations as the REST API. Code-deployment requires `azure-ai-projects` version 2.2.0 or later.
 
-Source-code deployment uses the preview `beta` client surface, so create the client with `allow_preview=True`.
-
 ### Build the zip
 
 The Python SDK uploads a zip that you build. Use the same layout and dependency-resolution rules described in [Package the zip manually](#package-the-zip-manually). The minimal `remote_build` payload is a flat zip with `main.py` and `requirements.txt` at the root.
@@ -200,8 +197,6 @@ from pathlib import Path
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     CodeConfiguration,
-    CreateAgentVersionFromCodeContent,
-    CreateAgentVersionFromCodeMetadata,
     HostedAgentDefinition,
     ProtocolVersionRecord,
 )
@@ -219,42 +214,33 @@ credential = DefaultAzureCredential()
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=credential,
-    allow_preview=True,
 )
 
-content = CreateAgentVersionFromCodeContent(
-    metadata=CreateAgentVersionFromCodeMetadata(
-        description="Hello-world code agent",
-        definition=HostedAgentDefinition(
-            cpu="1",
-            memory="2Gi",
-            code_configuration=CodeConfiguration(
-                runtime="python_3_13",
-                entry_point=["python", "main.py"],
-                dependency_resolution="remote_build",
-            ),
-            protocol_versions=[
-                ProtocolVersionRecord(protocol="responses", version="1.0.0")
-            ],
-            environment_variables={"AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-5.4-mini"},
+created = project.agents.create_version_from_code(
+    agent_name=AGENT_NAME,
+    definition=HostedAgentDefinition(
+        cpu="1",
+        memory="2Gi",
+        code_configuration=CodeConfiguration(
+            runtime="python_3_13",
+            entry_point=["python", "main.py"],
+            dependency_resolution="remote_build",
         ),
+        protocol_versions=[
+            ProtocolVersionRecord(protocol="responses", version="1.0.0")
+        ],
+        environment_variables={"AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-5.4-mini"},
     ),
     code=(ZIP_PATH.name, code_zip_bytes, "application/zip"),
-)
-
-created = project.beta.agents.create_version_from_code(
-    agent_name=AGENT_NAME,
-    content=content,
     code_zip_sha256=code_zip_sha256,
+    description="Hello-world code agent",
 )
 print(f"Created version: {created.version}")
 ```
 
-For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip—see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip. For more information, see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 ### Poll for active
-
-The code-deploy methods (`create_version_from_code` and `download_code`) live on the preview `project.beta.agents` surface, but read and delete operations such as `get_version` are on `project.agents`.
 
 ```python
 import time
@@ -298,7 +284,7 @@ from pathlib import Path
 out_path = Path(f"{AGENT_NAME}-{created.version}.zip")
 sha = hashlib.sha256()
 with open(out_path, "wb") as f:
-    for chunk in project.beta.agents.download_code(
+    for chunk in project.agents.download_code(
         agent_name=AGENT_NAME, agent_version=created.version
     ):
         f.write(chunk)
@@ -313,30 +299,19 @@ For a complete runnable example, see the [Python hosted-agent samples](https://g
 
 Use the .NET SDK to deploy source-code agents from your own applications or automation. Unlike the Python and REST paths, the .NET SDK zips a source folder for you—you pass a folder path instead of building the zip yourself.
 
-Source-code deployment is a preview feature. Suppress the `AAIP001` experimental warning and add the preview feature header to every call with a pipeline policy.
-
 ### Create the agent
 
 ```csharp
 using System;
-using System.ClientModel.Primitives;
 using Azure.AI.Projects.Agents;
 using Azure.Identity;
-
-#pragma warning disable AAIP001 // Hosted agents are an experimental preview feature.
 
 // Format: "https://<account>.services.ai.azure.com/api/projects/<project>"
 string projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 
-var options = new AgentAdministrationClientOptions();
-options.AddPolicy(
-    new FeaturePolicy("HostedAgents=V1Preview,CodeAgents=V1Preview"),
-    PipelinePosition.PerCall);
-
 var agentsClient = new AgentAdministrationClient(
     endpoint: new Uri(projectEndpoint),
-    tokenProvider: new DefaultAzureCredential(),
-    options: options);
+    tokenProvider: new DefaultAzureCredential());
 
 var agentDefinition = new HostedAgentDefinition(cpu: "1", memory: "2Gi")
 {
@@ -347,7 +322,7 @@ var agentDefinition = new HostedAgentDefinition(cpu: "1", memory: "2Gi")
         dependencyResolution: CodeDependencyResolution.RemoteBuild),
 };
 
-var metadata = new CreateAgentVersionFromCodeMetadata(agentDefinition);
+var metadata = new AgentVersionFromCodeMetadata(agentDefinition);
 
 ProjectsAgentVersion agentVersion = agentsClient.CreateAgentVersionFromCode(
     agentName: "my-code-agent",
@@ -359,28 +334,7 @@ Console.WriteLine($"Created version: {agentVersion.Version}");
 
 With `remote_build`, point `filePath` at a folder of .NET project sources. Agent Service runs `dotnet restore` and `dotnet publish` for you during provisioning. The `entryPoint` refers to the published assembly name—for example, `["dotnet", "MyAgent.dll"]` for a project named `MyAgent.csproj`.
 
-`FeaturePolicy` is a small `PipelinePolicy` that adds the `Foundry-Features` header to each request:
-
-```csharp
-internal class FeaturePolicy(string feature) : PipelinePolicy
-{
-    private const string FeatureHeader = "Foundry-Features";
-
-    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int currentIndex)
-    {
-        message.Request.Headers.Add(FeatureHeader, feature);
-        ProcessNext(message, pipeline, currentIndex);
-    }
-
-    public override async ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int currentIndex)
-    {
-        message.Request.Headers.Add(FeatureHeader, feature);
-        await ProcessNextAsync(message, pipeline, currentIndex);
-    }
-}
-```
-
-For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
+For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0")`. For the Invocations (WebSocket) protocol, use `new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
 
 ### Poll for active
 
@@ -411,6 +365,155 @@ Console.WriteLine("Downloaded agent code to ./downloaded");
 
 For a complete runnable example, see the [.NET hosted-agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents).
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+Use the JavaScript/TypeScript SDK to deploy source-code agents from your own applications or automation. The SDK caller runs in Node.js, but the hosted runtime it deploys can be Python or .NET source code—there's no Node.js Hosted agent runtime. You build the zip yourself and pass its bytes and SHA-256 to the SDK, which uploads it and exposes the same create, poll, invoke, and download operations as the REST API.
+
+### Build the zip
+
+The JavaScript/TypeScript SDK uploads a zip that you build. Use the same layout and dependency-resolution rules described in [Package the zip manually](#package-the-zip-manually). The minimal `remote_build` payload for a Python runtime is a flat zip with `main.py` and `requirements.txt` at the root.
+
+### Create the agent
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://<account>.services.ai.azure.com/api/projects/<project>"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+const agentName = "my-code-agent";
+
+const codeZip = readFileSync("agent-code.zip");
+const codeZipSha256 = createHash("sha256").update(codeZip).digest("hex");
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+// The hosted runtime is Python here; the caller SDK is
+// JavaScript/TypeScript. To deploy .NET source instead, set
+// runtime to "dotnet_10" and entry_point to ["dotnet", "MyAgent.dll"].
+const created = await project.agents.createVersionFromCode(
+  agentName,
+  codeZipSha256,
+  {
+    metadata: {
+      description: "Hello-world code agent",
+      definition: {
+        kind: "hosted",
+        cpu: "1",
+        memory: "2Gi",
+        code_configuration: {
+          runtime: "python_3_13",
+          entry_point: ["python", "main.py"],
+          dependency_resolution: "remote_build",
+        },
+        protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+        environment_variables: {
+          AZURE_AI_MODEL_DEPLOYMENT_NAME: "gpt-5.4-mini",
+        },
+      },
+    },
+    code: {
+      contents: codeZip,
+      contentType: "application/zip",
+      filename: "agent-code.zip",
+    },
+  },
+);
+console.log(`Created version: ${created.version}`);
+```
+
+For the Invocations protocol, set the `protocol_versions` entry to `{ protocol: "invocations", version: "1.0.0" }`. For the Invocations (WebSocket) protocol, use `{ protocol: "invocations_ws", version: "1.0.0" }`. For `bundled` mode, set `dependency_resolution: "bundled"` and include prebuilt dependencies in the zip.
+
+### Poll for active
+
+```typescript
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+for (;;) {
+  await sleep(5_000);
+  const version = await project.agents.getVersion(
+    agentName,
+    created.version,
+  );
+  console.log(`Status: ${version.status}`);
+  if (version.status === "active") {
+    break;
+  }
+  if (version.status === "failed") {
+    throw new Error(`Provisioning failed: ${JSON.stringify(version)}`);
+  }
+}
+```
+
+See [Poll for active](#poll-for-active) for the full list of status values and how to read the `error` object on failure.
+
+### Invoke the agent
+
+After the version reaches `active`, bind an OpenAI client to the agent endpoint and call it. This example uses the Responses protocol:
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+  azureConfig: { allowPreview: true, agentName },
+});
+
+const response = await openAIClient.responses.create({
+  input: "Hello! What can you do?",
+});
+console.log(response.output_text);
+```
+
+For the Invocations protocol, call the invoke endpoint directly with a bearer token, as shown in [Invoke the agent](#invoke-the-agent).
+
+### Download the deployed zip
+
+Verify what's deployed by downloading the zip and comparing its SHA-256 value against the value you uploaded:
+
+```typescript
+import { createHash } from "node:crypto";
+import { writeFileSync } from "node:fs";
+import { buffer } from "node:stream/consumers";
+
+const downloadResult = await project.agents.downloadAgentCode(agentName, {
+  agentVersion: created.version,
+});
+
+// The result carries either a Node.js stream (readableStreamBody) or a
+// browser Blob (blobBody), depending on the runtime. Handle both so the
+// code compiles under strict TypeScript and works in either environment.
+const downloadedBytes = downloadResult.readableStreamBody
+  ? new Uint8Array(await buffer(downloadResult.readableStreamBody))
+  : downloadResult.blobBody
+    ? new Uint8Array(await (await downloadResult.blobBody).arrayBuffer())
+    : undefined;
+
+if (!downloadedBytes) {
+  throw new Error("No content found in the downloaded agent code.");
+}
+
+const downloadedSha256 = createHash("sha256")
+  .update(downloadedBytes)
+  .digest("hex");
+
+writeFileSync(`${agentName}-${created.version}.zip`, downloadedBytes);
+console.log(
+  `Downloaded (matches upload: ${downloadedSha256 === codeZipSha256})`,
+);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 # [REST API](#tab/rest)
 
 You can use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-based deployments or custom tooling. The sections walk through a first deployment in order: set up variables, build a zip, create the agent, poll until `active`, and invoke it. Update, version, download, and log-streaming endpoints are grouped under [Ongoing operations](#ongoing-operations).
@@ -425,9 +528,10 @@ Use the [REST API](https://ai.azure.com/api-reference/agents) for direct HTTP-ba
 
 ```bash
 ENDPOINT="https://{account}.services.ai.azure.com/api/projects/{project}"
-API_VERSION="2025-11-15-preview"
+API_VERSION="v1"
 TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
 AGENT=my-code-agent
+AGENT_VERSION=1
 ZIP=./agent-code.zip
 SHA=$(sha256sum "$ZIP" | cut -d' ' -f1)
 ```
@@ -436,7 +540,7 @@ SHA=$(sha256sum "$ZIP" | cut -d' ' -f1)
 
 ```powershell
 $Endpoint    = "https://{account}.services.ai.azure.com/api/projects/{project}"
-$ApiVersion  = "2025-11-15-preview"
+$ApiVersion  = "v1"
 $Token       = az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
 $Agent       = "my-code-agent"
 $Zip         = "./agent-code.zip"
@@ -472,7 +576,6 @@ Required headers on every multipart call:
 ```http
 Authorization: Bearer <token>
 Accept: application/json
-Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview
 x-ms-code-zip-sha256: <sha256-hex-of-zip>
 ```
 
@@ -506,7 +609,7 @@ This metadata matches the hello-world zip.
 }
 ```
 
-For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For the Invocations (WebSocket) protocol, use `{ "protocol": "invocations_ws", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 `code_configuration` and `container_configuration` are mutually exclusive in the agent definition: include `code_configuration` for source-code deploy (this article) or `container_configuration` for image-based deploy. See [Deploy a hosted agent (container)](deploy-hosted-agent.md) for the image variant.
 
@@ -516,7 +619,6 @@ For the Invocations protocol, replace the `protocol_versions` entry with `{ "pro
 curl -X POST "$ENDPOINT/agents?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
   -H "x-ms-agent-name: $AGENT" \
   -H "x-ms-code-zip-sha256: $SHA" \
   -F "metadata=@metadata.json;type=application/json" \
@@ -530,8 +632,7 @@ curl -X POST "$ENDPOINT/agents?api-version=$API_VERSION" \
 ```bash
 while true; do
   STATUS=$(curl -s -H "Authorization: Bearer $TOKEN" \
-    -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
-    "$ENDPOINT/agents/$AGENT/versions/1?api-version=$API_VERSION" | jq -r '.status')
+    "$ENDPOINT/agents/$AGENT/versions/$AGENT_VERSION?api-version=$API_VERSION" | jq -r '.status')
   echo "Status: $STATUS"
   [ "$STATUS" = "active" ] && break
   [ "$STATUS" = "failed" ] && echo "Provisioning failed." && exit 1
@@ -555,7 +656,6 @@ Pick the protocol your agent declared in `protocol_versions`.
 curl -X POST "$ENDPOINT/agents/$AGENT/endpoint/protocols/openai/responses?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
   -d '{"model":"gpt-5.4-mini","input":"Hello, agent!","stream":false}'
 ```
 
@@ -565,9 +665,12 @@ curl -X POST "$ENDPOINT/agents/$AGENT/endpoint/protocols/openai/responses?api-ve
 curl -X POST "$ENDPOINT/agents/$AGENT/endpoint/protocols/invocations?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
   -d '{"input":"Hello, this is a test invocation!"}'
 ```
+
+**Invocations (WebSocket) protocol:**
+
+Connect over a WebSocket upgrade instead of a REST `POST`. For the endpoint format and client examples, see [Build a voice agent with hosted agents](build-voice-agent.md#connect-a-client).
 
 Useful response headers:
 
@@ -589,7 +692,6 @@ To deploy a code change or a definition update, repost the multipart body to the
 ```bash
 curl -X POST "$ENDPOINT/agents/$AGENT?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview" \
   -H "x-ms-code-zip-sha256: $SHA" \
   -F "metadata=@metadata.json;type=application/json" \
   -F "code=@$ZIP;type=application/zip;filename=$AGENT.zip"
@@ -609,14 +711,12 @@ VERSION=1
 # Latest version
 curl -O -J "$ENDPOINT/agents/$AGENT/code:download?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Accept: application/zip" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview"
+  -H "Accept: application/zip"
 
 # Specific version
 curl -O -J "$ENDPOINT/agents/$AGENT/code:download?api-version=$API_VERSION&agent_version=$VERSION" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Accept: application/zip" \
-  -H "Foundry-Features: CodeAgents=V1Preview,HostedAgents=V1Preview"
+  -H "Accept: application/zip"
 ```
 
 Two response headers help you confirm what you downloaded:
@@ -636,7 +736,7 @@ curl -N "$ENDPOINT/agents/$AGENT/sessions/<sessionId>:logstream?api-version=$API
   -H "Accept: text/event-stream"
 ```
 
-Logs are delivered as server-sent events. `{sessionId}` is the value of `x-agent-session-id` from the invoke response. Use this endpoint to debug runtime failures and `424 session_not_ready` responses. The log-streaming endpoint doesn't require the `Foundry-Features` preview header.
+Logs are delivered as server-sent events. `{sessionId}` is the value of `x-agent-session-id` from the invoke response. Use this endpoint to debug runtime failures and `424 session_not_ready` responses.
 
 ---
 
@@ -735,6 +835,10 @@ cd publish && zip -r ../agent-code.zip .
 
 Use `--self-contained true` if you want to ship the .NET runtime in the zip. The `runtime` you set in the agent definition must match the `TargetFramework`.
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+The JavaScript/TypeScript SDK uploads Python or .NET source packages. There isn't a Node.js hosted runtime. Build the zip by following the Python or C# tab for the runtime you deploy, and then upload it with `project.agents.createVersionFromCode()`.
+
 # [REST API](#tab/rest)
 
 See the Python or C# tabs. 
@@ -795,11 +899,23 @@ project.agents.delete(agent_name=AGENT_NAME)
 agentsClient.DeleteAgent(agentName: "my-code-agent", force: true);
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+// Delete one version
+await project.agents.deleteVersion(agentName, created.version);
+
+// Delete the agent and all its versions (force cascades to active sessions)
+await project.agents.delete(agentName, { force: true });
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
+
 # [REST API](#tab/rest)
 
 ```bash
 # Delete one version
-curl -X DELETE "$ENDPOINT/agents/$AGENT/versions/1?api-version=$API_VERSION" \
+curl -X DELETE "$ENDPOINT/agents/$AGENT/versions/$AGENT_VERSION?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN"
 
 # Delete the agent and all its versions

@@ -9,13 +9,16 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/25/2026
+ms.date: 07/14/2026
+ai-usage: ai-assisted
 zone_pivot_groups: search-sdks-rest
 ---
 
 # Quickstart: Semantic ranking
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+In this quickstart, you add semantic ranking to an existing Azure AI Search index and run semantic queries to improve result relevance. Use the language tabs to choose your preferred SDK or REST workflow.
 
 ::: zone pivot="csharp"
 

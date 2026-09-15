@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 08/03/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -45,13 +45,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Navigate to the quickstart folder.
+1. Go to the quickstart folder.
 
     ```bash
     cd azure-search-dotnet-samples/quickstart-agentic-retrieval
     ```
 
-1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -65,7 +65,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     dotnet restore AgenticRetrievalQuickstart.csproj
     ```
 
-    When the restore completes, verify that no errors appear in the output.
+    When the restore finishes, make sure no errors appear in the output.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
@@ -499,7 +499,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `program.cs` deleted the objects you created in this quickstart.
+Otherwise, the following code from `program.cs` deletes the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

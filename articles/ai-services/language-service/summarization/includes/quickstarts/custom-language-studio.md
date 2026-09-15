@@ -1,11 +1,11 @@
 ---
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 04/04/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 ## Prerequisites

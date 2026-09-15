@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="480" fill="#FFFFFF"/>
+  <text x="400" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">Which protocol should my hosted agent use?</text>
+
+  <rect x="230" y="52" width="340" height="46" rx="9" fill="#EEF4FF" stroke="#1A56DB" stroke-width="2"/>
+  <text x="400" y="81" text-anchor="middle" font-size="15" font-weight="600" fill="#111827">How does your client call the agent?</text>
+
+  <line x1="234" y1="98" x2="234" y2="124" stroke="#4B5563" stroke-width="2" marker-end="url(#pc-arrow)"/>
+
+  <!-- decision 1 -->
+  <rect x="24" y="126" width="420" height="54" rx="9" fill="#FFFFFF" stroke="#1A56DB" stroke-width="2"/>
+  <text x="234" y="159" text-anchor="middle" font-size="15" font-weight="600" fill="#111827">Chat-style conversation?</text>
+  <line x1="444" y1="153" x2="466" y2="153" stroke="#4B5563" stroke-width="2" marker-end="url(#pc-arrow)"/>
+  <text x="455" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#057A55">Yes</text>
+
+  <rect x="470" y="126" width="306" height="54" rx="9" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <text x="623" y="151" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">Responses</text>
+  <text x="623" y="171" text-anchor="middle" font-size="14" fill="#374151">platform manages the session</text>
+
+  <line x1="234" y1="180" x2="234" y2="206" stroke="#4B5563" stroke-width="2" marker-end="url(#pc-arrow)"/>
+  <text x="244" y="199" font-size="14" font-weight="700" fill="#B45309">No</text>
+
+  <!-- decision 2 -->
+  <rect x="24" y="208" width="420" height="54" rx="9" fill="#FFFFFF" stroke="#1A56DB" stroke-width="2"/>
+  <text x="234" y="241" text-anchor="middle" font-size="15" font-weight="600" fill="#111827">Real-time voice or two-way streaming?</text>
+  <line x1="444" y1="235" x2="466" y2="235" stroke="#4B5563" stroke-width="2" marker-end="url(#pc-arrow)"/>
+  <text x="455" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#057A55">Yes</text>
+
+  <rect x="470" y="208" width="306" height="54" rx="9" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <text x="623" y="233" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">Invocations (WebSocket)</text>
+  <text x="623" y="253" text-anchor="middle" font-size="14" fill="#374151">one persistent connection</text>
+
+  <line x1="234" y1="262" x2="234" y2="288" stroke="#4B5563" stroke-width="2" marker-end="url(#pc-arrow)"/>
+  <text x="244" y="281" font-size="14" font-weight="700" fill="#B45309">No</text>
+
+  <rect x="24" y="290" width="420" height="70" rx="9" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <text x="234" y="318" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">Invocations</text>
+  <text x="234" y="341" text-anchor="middle" font-size="14" fill="#374151">webhooks, batch work, custom payloads</text>
+
+  <rect x="470" y="290" width="306" height="70" rx="9" fill="#F3F6FD" stroke="#4285F4" stroke-width="2"/>
+  <text x="623" y="314" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">Activity</text>
+  <text x="623" y="335" text-anchor="middle" font-size="14" fill="#374151">bridged automatically when you</text>
+  <text x="623" y="353" text-anchor="middle" font-size="14" fill="#374151">publish to Teams or Microsoft 365</text>
+
+  <rect x="24" y="386" width="752" height="70" rx="9" fill="#F3F6FD" stroke="#4285F4" stroke-width="2"/>
+  <text x="400" y="414" text-anchor="middle" font-size="15" font-weight="700" fill="#1A56DB">Not sure? Start with Responses.</text>
+  <text x="400" y="438" text-anchor="middle" font-size="14" fill="#374151">A hosted agent can expose more than one protocol, so you can add Invocations later.</text>
+</svg>

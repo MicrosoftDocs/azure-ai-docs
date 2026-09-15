@@ -1,9 +1,9 @@
 ---
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: include
-ms.date: 06/04/2026
+ms.date: 06/30/2026
 ms.author: lajanuar
 ---
 Use the following **GET** request to query the status/results of the text classification task. 

@@ -3,14 +3,15 @@ author: laujan
 ms.author: lajanuar
 ms.reviewer: samkemp
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 08/15/2026
+ai-usage: ai-assisted
 ---
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 
 ## Samples repository
 
-The complete sample code for this article is available in the [foundry-samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample use:
+You can find the complete sample code for this article in the [Foundry samples GitHub repository](https://github.com/microsoft-foundry/foundry-samples). To clone the repository and navigate to the sample, use:
 
 ```bash
 git clone https://github.com/microsoft-foundry/foundry-samples.git
