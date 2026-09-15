@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/03/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -2212,7 +2212,7 @@ workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 
 #### HttpRequestAction
 
-Sends an HTTP request through the configured `HttpRequestHandler`. Successful JSON responses are parsed before assignment; non-2xx responses fail the action.
+Sends an HTTP request through the configured `HttpRequestHandler`. Successful JSON responses are parsed before assignment; non-2xx responses fail the action. In Python, the error includes the request URL and status code but omits the response body.
 
 ```yaml
 - kind: HttpRequestAction

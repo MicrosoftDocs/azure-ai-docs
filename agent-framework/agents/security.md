@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/11/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -178,6 +178,10 @@ run. Instead, the framework returns and persists a replacement request that
 requires a second approval. Rejection and cancellation clear only the matching
 invocation.
 
+For `USER_IDENTITY` data, the source and destination principal sets are also
+part of this binding. A principal change invalidates the grant and requires a
+replacement approval instead of executing under stale authority.
+
 ## Labels on content
 
 Every `Content` item can carry a `security_label` in its `additional_properties` with two independent axes.
@@ -197,6 +201,25 @@ Every `Content` item can carry a `security_label` in its `additional_properties`
 | `private` | Internal/business-sensitive — must not leave through a public sink. |
 | `user_identity` | Highest sensitivity (PII, credentials, per-user secrets). |
 
+### Principal metadata for user identity
+
+A `ContentLabel` with
+`ConfidentialityLabel.USER_IDENTITY` requires a non-empty principal set under
+the public `PRINCIPAL_METADATA_KEY` constant
+(`"agent_framework.security.principals"`). Each principal is a mapping that
+contains exactly `tenant_id` and `user_id`, both as non-empty strings. Build
+this metadata from the authenticated request or session, or from trusted local
+configuration. Don't infer principals from model arguments or remote result
+metadata.
+
+A source tool declares its owners with `confidentiality="user_identity"` and
+`PRINCIPAL_METADATA_KEY` in its `additional_properties`. A destination declares
+`max_allowed_confidentiality="user_identity"` and its authorized principals
+under the same key. Every source principal must be a member of the destination
+set. Combined identity-scoped content carries the union of its source
+principals, so missing, malformed, or mismatched principal metadata fails
+closed.
+
 ### The combining rule
 
 When labels are combined (multiple inputs to a tool, or new content joining a running context), FIDES picks the *most restrictive* of each axis:
@@ -212,11 +235,18 @@ A `Content` item without a `security_label` is treated as `trusted` + `public` �
 
 ## Labeling your data sources
 
-The only security code most tools need is the label on the data they return. `LabelTrackingFunctionMiddleware` will do the rest. There are three ways to attach a label, in order of priority.
+The only security code most tools need is the label on the data they return. `LabelTrackingFunctionMiddleware` will do the rest. There are three ways to attach a label. The framework first establishes the
+locally trusted fallback, then applies embedded labels as restrictions.
 
-### Per-item embedded labels (preferred)
+### Per-item embedded labels
 
 For tools that return `list[Content]` — especially mixed-trust data — attach a `security_label` to each item in `additional_properties`. The middleware reads the label per item, which means a single tool call can return *some* items the main model can see and *others* that get auto-hidden.
+
+Embedded labels are restriction-only by default. They can lower integrity or
+raise confidentiality, but they can't upgrade the local fallback, lower its
+confidentiality, or establish principal authority. Only a complete label
+stamped by a framework-owned processor after it applies local policy is
+authoritative.
 
 ```python
 import json
@@ -255,13 +285,22 @@ async def fetch_external_data(query: str) -> dict:
     return await http.get(query)
 ```
 
-When `source_integrity` is declared, it overrides the otherwise-default rule of "combine input labels." Use this for tools that *introduce* trust state (data fetchers, external APIs) rather than tools that *transform* already-labeled inputs.
+When `source_integrity` is declared, it establishes the locally trusted
+fallback instead of using the otherwise-default rule of combining input
+labels. Embedded labels can make this fallback more restrictive, but they
+can't relax it. Use `source_integrity` for tools that *introduce* trust state
+(data fetchers and external APIs) rather than tools that *transform*
+already-labeled inputs.
 
 ### Implicit propagation through arguments
 
 If a tool declares neither per-item labels nor `source_integrity`, FIDES falls back to the combined label of its inputs. This is the right default for pure transformation tools — a `summarize(text)` that processes an untrusted blob produces an untrusted summary without any extra annotation.
 
 When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
+
+Variable expansion fails closed if it detects a reference cycle, nesting would
+exceed 16 variable-reference levels, or one invocation would expand more than
+100 references.
 
 ### Keep MCP labels subordinate to local policy
 

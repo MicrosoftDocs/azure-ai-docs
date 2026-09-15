@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 09/04/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -153,6 +153,14 @@ async for event in workflow.run(input, stream=True):
 # Access checkpoints from the storage
 checkpoints = await checkpoint_storage.list_checkpoints(workflow_name=workflow.name)
 ```
+
+Before writing, `FileCheckpointStorage.save()` verifies that the encoded
+checkpoint can be restored under that storage instance's
+`allowed_checkpoint_types`. It raises `WorkflowCheckpointException` and refuses
+the save if the same instance couldn't decode the checkpoint. The
+`list_checkpoints()`, `list_checkpoint_ids()`, and `get_latest()` operations use
+the same decoding path and consistently skip malformed or otherwise
+undecodable checkpoint files.
 
 See the [Security Considerations](#security-considerations) section for guidance on restricting which Python types can be deserialized via the `allowed_checkpoint_types` parameter.
 
