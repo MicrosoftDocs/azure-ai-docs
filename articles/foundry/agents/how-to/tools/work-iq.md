@@ -662,9 +662,7 @@ When virtual network isolation is enabled for the Foundry project, Work IQ tool 
 
 ### Data residency
 
-Work IQ retrieves data from your organization's Microsoft 365 tenant. Work IQ processing follows your Microsoft 365 data residency configuration, not the Azure region of your Foundry project. The query and synthesized result cross between the Azure and Microsoft 365 compliance boundaries even though both services use the same Microsoft Entra tenant.
-
-For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
