@@ -9,6 +9,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 # Monitor model router in Microsoft Foundry
