@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 09/15/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -96,6 +96,8 @@ To enable checkpointing, a `CheckpointStorage` needs to be provided when creatin
 | `CosmosCheckpointStorage` | `agent-framework-azure-cosmos` | Azure Cosmos DB | Production, distributed, cross-process workflows |
 
 All three implement the same `CheckpointStorage` protocol, so you can swap providers without changing workflow or executor code.
+
+Built-in orchestration builders accept an optional `name` that becomes the workflow name used to group and discover checkpoints. Their stable defaults are `Concurrent`, `Sequential`, `GroupChat`, `Handoff`, and `Magentic`. Set an explicit name when multiple workflows of the same orchestration type share checkpoint storage. Use the same name when you list or resume their checkpoints.
 
 # [In-Memory](#tab/py-ckpt-inmemory)
 

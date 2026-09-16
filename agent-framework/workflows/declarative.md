@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/15/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -2253,6 +2253,14 @@ from agent_framework.declarative import DefaultHttpRequestHandler, WorkflowFacto
 factory = WorkflowFactory(http_request_handler=DefaultHttpRequestHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+The default handler reuses an internally owned HTTP client, but doesn't persist
+response cookies. If a workflow requires cookies for authentication, session
+continuity, or load balancer affinity, pass a configured `httpx.AsyncClient`
+through `client=` or return one from `client_provider=`. Scope cookie-bearing
+clients to one authenticated principal and close caller-supplied clients in
+your application. Explicit `Cookie` request headers and response `Set-Cookie`
+headers remain available.
 
 ### Human-in-the-Loop Actions
 
