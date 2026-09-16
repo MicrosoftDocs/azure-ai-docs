@@ -59,7 +59,7 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 ## Access quota and usage information
 
-Foundry uses Azure quota and usage information for experiences such as deployment validation and quota reporting. Access to this subscription-level information is governed by Azure RBAC.
+Foundry uses Azure quota and usage information for experiences such as deployment validation and quota reporting. Azure RBAC governs access to this subscription-level information.
 
 Assign **Cognitive Services Usages Reader** at the subscription scope to grant the least-privilege access required for quota visibility. Other subscription-scoped roles that include `Microsoft.CognitiveServices/locations/usages/read` can also provide access, but they might grant broader permissions.
 
