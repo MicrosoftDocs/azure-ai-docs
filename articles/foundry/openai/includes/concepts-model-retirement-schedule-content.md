@@ -142,7 +142,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | coherelabs-command-a-plus-05-2026-fp8<sup>1</sup>, coherelabs-command-a-plus-05-2026-bf16<sup>1</sup>, coherelabs-command-a-plus-05-2026-w4a4<sup>1</sup> |
 | embed-v-4-0 | 1 | GA | — | — |
 
-<sup>1</sup> Available through the Hugging Face collection for managed compute deployment.
+<sup>1</sup> Available through the Hugging Face collection, for managed compute deployment.
 
 ### DeepSeek
 
