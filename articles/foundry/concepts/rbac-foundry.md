@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 09/04/2026
+ms.date: 09/16/2026
 ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 
@@ -56,6 +56,17 @@ To publish agents, you need the **Foundry Project Manager** role (minimum) on th
 
 
 [!INCLUDE [rbac-foundry 2](../includes/concepts-rbac-foundry-2.md)]
+
+## Access quota and usage information
+
+Foundry uses Azure quota and usage information for experiences such as deployment validation and quota reporting. Access to this subscription-level information is governed by Azure RBAC.
+
+Assign **Cognitive Services Usages Reader** at the subscription scope to grant the least-privilege access required for quota visibility. Other subscription-scoped roles that include `Microsoft.CognitiveServices/locations/usages/read` can also provide access, but they might grant broader permissions.
+
+If Foundry can't retrieve quota information, some experiences might not display available quota or validate deployments correctly. Verify that the signed-in user has the required permission at the subscription scope.
+
+> [!IMPORTANT]
+> The Usages API requires a subscription-scoped role assignment. Resource group, Foundry resource, and project role assignments don't authorize access to subscription-level quota information.
 
 ## Manage role assignments
 
