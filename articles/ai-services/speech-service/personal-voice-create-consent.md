@@ -1,23 +1,23 @@
 ---
-title: Add user consent to the personal voice project - Speech service
+title: Add user consent for personal voice - Speech service
 titleSuffix: Foundry Tools
-description: Learn about how to add user consent to the personal voice project.
+description: Learn how to add user consent for personal voice.
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/22/2026
+ms.date: 09/09/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-portal-rest
-#Customer intent: As a developer, I want to learn how to add user consent to the personal voice project.
+#Customer intent: As a developer, I want to add user consent for personal voice.
 ai-usage: ai-assisted
 ---
 
-# Add user consent to the personal voice project
+# Add user consent for personal voice
 
-A voice talent is the individual or target speaker whose voice is recorded and used to create personal voice profiles. With the personal voice feature, every voice must be created with explicit consent from the voice talent. A recorded statement from the voice talent is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) creates and uses their voice. The consent statement is also used to verify that the voice talent is the same person as the speaker in the fine-tuning data.
+A voice talent is the individual or target speaker whose voice you record and use to create personal voice profiles. With the personal voice feature, you must get explicit consent from the voice talent to create each voice. You need a recorded statement from the voice talent that acknowledges the customer (Azure Speech in Foundry Tools resource owner) creates and uses their voice. Use the consent statement to verify that the voice talent is the same person as the speaker in the personal voice audio prompt.
 
 > [!TIP]
 > Before you get started, learn how to [define and record your voice samples](./record-custom-voice-samples.md). See also the [responsible AI disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
@@ -46,9 +46,68 @@ See the following table for the supported formats for consent audio files:
 
 ::: zone pivot="ai-foundry-portal"
 
+# [Foundry (new)](#tab/foundry-new)
+
 ## Add voice talent consent
 
-These steps continue from the **Fine-tune a model** wizard you opened in [Create a personal voice project](./personal-voice-create-project.md).
+These steps continue from the **Customize a model** page you opened in [Set up a personal voice](./personal-voice-create-project.md?pivots=ai-foundry-portal&tabs=foundry-new).
+
+1. On the **Register voice talent** step, select an existing voice talent, or select **Add voice talent**. When you add a voice talent, select one of the following options:
+
+   - **Upload data** to upload a prerecorded consent statement audio file.
+   - **Record data** to record the consent statement directly in the portal.
+
+### Upload a prerecorded consent statement
+
+1. In the **Upload data** pane, provide the verbal consent statement:
+
+   - Select the **Language** of the recorded statement.
+   - Enter the **Voice talent name**. The name must match the person who recorded the consent statement, in the same language used in the recording.
+   - Enter the **Company name**. The company name must match what was spoken in the recording, in the same language.
+   - Drag and drop the audio file into the upload area, or select **Browse for a file** to select it.
+
+1. Select **Upload**.
+
+### Record a consent statement in the portal
+
+1. In the **Record data** pane, enter the voice talent details:
+
+   - Select the **Language** of the consent statement.
+   - Enter the **Voice talent name** and **Company name** as the voice talent says them in the recording.
+
+1. Have the voice talent read the on-screen consent statement aloud.
+1. Select **Start recording**. Have the voice talent read the consent statement, and then stop the recording.
+1. Review the recording, and then select **Done**.
+
+### Continue to training data
+
+Whether you select an existing voice talent or add one, confirm that their status is **Succeeded** in **Data preview**.
+
+:::image type="content" source="./media/personal-voice/foundry-new-personal-voice-consent.png" alt-text="Screenshot of Register voice talent in Foundry with an existing talent selected, Add voice talent outlined, and Succeeded highlighted in Data preview." lightbox="./media/personal-voice/foundry-new-personal-voice-consent.png":::
+
+Select **Next** to continue to the **Training data** step in [Create a personal voice](./personal-voice-create-voice.md?pivots=ai-foundry-portal&tabs=foundry-new).
+
+## Inspect an existing consent
+
+You can inspect previously added consent recordings outside the customization wizard.
+
+1. Select **Build** > **Services**, and then select the **Data** tab. Use the tab within **Services**, not the separate **Data** item in the left navigation.
+1. Find the voice talent row tagged **Personal voice**.
+1. Open the row's **Actions** menu, and select **View details**.
+1. Review the locale, audio, and status.
+
+If you need a different consent recording, use **Add voice talent** > **Upload data** or **Record data** on the **Register voice talent** step. Select the correct talent and confirm that its status is **Succeeded** before continuing.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Create a personal voice.](./personal-voice-create-voice.md?pivots=ai-foundry-portal&tabs=foundry-new)
+
+# [Foundry (classic)](#tab/foundry-classic)
+
+## Add voice talent consent
+
+These steps continue from the **Fine-tune a model** wizard you opened in [Create a personal voice project](./personal-voice-create-project.md?pivots=ai-foundry-portal&tabs=foundry-classic).
 
 1. On the **Register voice talent** pane of the wizard, select an existing voice talent, or select **+ New data** to add a new one. When you add new data, select one of the following options:
 
@@ -83,7 +142,14 @@ These steps continue from the **Fine-tune a model** wizard you opened in [Create
 1. Press the microphone button to start recording. Have the voice talent read the consent statement, then stop the recording.
 1. Review the recording and submit it.
 
-After you add the voice talent and the status is **Succeeded**, select them on the **Register voice talent** pane, and then select **Next** to continue to the **Training data** step in [Get a speaker profile ID](./personal-voice-create-voice.md).
+After you add the voice talent and the status is **Succeeded**, select them in the **Register voice talent** pane. Select **Next** to continue to the **Training data** step in [Get a speaker profile ID](./personal-voice-create-voice.md?pivots=ai-foundry-portal&tabs=foundry-classic).
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Create a personal voice.](./personal-voice-create-voice.md?pivots=ai-foundry-portal&tabs=foundry-classic)
+
+---
 
 ::: zone-end
 
@@ -97,7 +163,7 @@ In this scenario, the audio files must be available locally.
 
 To add consent to a personal voice project from a local audio file, use the `Consents_Post` operation of the custom voice API. Construct the request body according to the following instructions:
 
-- Set the required `projectId` property. See [create a project](./personal-voice-create-project.md).
+- Set the required `projectId` property. See [create a project](./personal-voice-create-project.md?pivots=rest-api).
 - Set the required `voiceTalentName` property. The voice talent name can't be changed later.
 - Set the required `companyName` property. The company name can't be changed later.
 - Set the required `audiodata` property with the consent audio file. 
@@ -141,7 +207,7 @@ In this scenario, the audio files must already be stored in an Azure Blob Storag
 
 To add consent to a personal voice project from the URL of an audio file, use the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
-- Set the required `projectId` property. See [create a project](./personal-voice-create-project.md).
+- Set the required `projectId` property. See [create a project](./personal-voice-create-project.md?pivots=rest-api).
 - Set the required `voiceTalentName` property. The voice talent name can't be changed later.
 - Set the required `companyName` property. The company name can't be changed later.
 - Set the required `audioUrl` property. The URL of the voice talent consent audio file. Use a URI with the [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) token.
@@ -186,9 +252,9 @@ Operation-Location: https://YourResourceName.cognitiveservices.azure.com/customv
 Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 ```
 
-::: zone-end
-
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create a personal voice.](./personal-voice-create-voice.md).
+> [Create a personal voice.](./personal-voice-create-voice.md?pivots=rest-api)
+
+::: zone-end
