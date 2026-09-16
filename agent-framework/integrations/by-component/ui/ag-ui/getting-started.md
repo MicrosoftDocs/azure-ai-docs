@@ -290,13 +290,9 @@ The server will start listening on `http://127.0.0.1:8888`.
 
 The AG-UI client connects to the remote server and displays streaming responses.
 
-`AGUIChatClient` reuses an internally owned HTTP client that doesn't persist
-response cookies.
+`AGUIChatClient` reuses an internally owned HTTP client that doesn't persist response cookies.
 
-If the server requires cookies for authentication, sessions, or load balancer
-affinity, pass a caller-owned `httpx.AsyncClient` through `http_client=`. Scope
-the client to one authenticated principal and close it in your application. An
-AG-UI thread ID is a correlation identifier, not an authentication boundary.
+If the server requires cookies for authentication, sessions, or load balancer affinity, pass a caller-owned `httpx.AsyncClient` through `http_client=`. Scope the client to one authenticated principal and close it in your application. An AG-UI thread ID is a correlation identifier, not an authentication boundary.
 
 ### Install required packages
 
