@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/09/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ---
 
@@ -289,6 +289,13 @@ The server will start listening on `http://127.0.0.1:8888`.
 ## Step 2: Creating an AG-UI Client
 
 The AG-UI client connects to the remote server and displays streaming responses.
+
+`AGUIChatClient` reuses an internally owned HTTP client, but that client doesn't
+persist response cookies. If the server requires cookies for authentication,
+sessions, or load balancer affinity, pass an `httpx.AsyncClient` through
+`http_client=`. Scope the client to one authenticated principal and close it in
+your application. An AG-UI thread ID is a correlation identifier, not an
+authentication boundary.
 
 ### Install Required Packages
 
