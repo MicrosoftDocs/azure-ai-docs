@@ -63,14 +63,14 @@ If your application uses only embedded (on-device) speech recognition or synthes
 
 When your application is online, it uses cloud speech-to-text (STT) or text-to-speech (TTS). These cloud connections are subject to the CRL partitioning issue. Your embedded fallback continues to work when there's no data signal, but cloud features fail unless you take action.
 
-To solve this issue, please follow one of the [Required action](#required-action) options.
+To solve this issue, follow one of the [Required action](#required-action) options.
 
 > [!TIP]
 > Hybrid deployments that fall back to embedded speech when offline continue to work in embedded mode, but cloud-dependent features fail until you apply the fix.
 
 ### Cloud-only deployments
 
-All cloud STT/TTS calls are affected. Please follow one of the [Required action](#required-action) options.
+All cloud STT/TTS calls are affected. Follow one of the [Required action](#required-action) options.
 
 > [!WARNING]
 > Cloud-only deployments have no fallback. After certificate renewal begins using partitioned CRLs, speech recognition and synthesis calls can fail if you haven't applied the fix. The exact timing depends on when your region's TLS certificates are renewed, but you should take action before July 1, 2026 to avoid any risk of disruption.
@@ -83,16 +83,16 @@ Previously, each certificate issuer maintained a single CRL. With partitioned CR
 
 ## The issue
 
-The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms using only the certificate issuer name as the cache key. With partitioned CRLs, this may cause a cache mismatch:
+The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms using only the certificate issuer name as the cache key. With partitioned CRLs, this method can cause a cache mismatch:
 
-- When verifying a certificate during TLS handshake, the SDK downloads and caches the CRL for a TLS certificate
-- When SDK verifies another certificate from the same issuer, an incorrect CRL may be retrieved from the cache, which may not match the current certificate's CDP
+- When verifying a certificate during TLS handshake, the SDK downloads and caches the CRL for a TLS certificate.
+- When the SDK verifies another certificate from the same issuer, it might retrieve an incorrect CRL from the cache that doesn't match the current certificate's CDP.
 - OpenSSL rejects the connection with error: `X509_V_ERR_DIFFERENT_CRL_SCOPE` (error code 44)
 
 **This affects you if:**
 - You use the Speech SDK on **Linux or Android**
 - You have **CRL checking enabled** (the default in affected versions)
-- Your region's certificate **rotates** (which happens automatically and may assign an incompatible certificate chain)
+- Your region's certificate **rotates** (which happens automatically and might assign an incompatible certificate chain).
 
 **This doesn't affect:**
 - Windows deployments
@@ -102,7 +102,7 @@ The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms
 ## Required action
 
 > [!WARNING]
-> A temporary workaround was mentioned in the early version of this article. However, This workaround does not eliminate the underlying defect and may still result in connection failures under certain circumstances. Please following the required actions to avoid any service interruption.
+> A temporary workaround was mentioned in an early version of this article. However, this workaround doesn't eliminate the underlying defect and might still result in connection failures under certain circumstances. To avoid any service interruption, follow the required actions.
 
 Take one of the following actions **before July 1, 2026**:
 
