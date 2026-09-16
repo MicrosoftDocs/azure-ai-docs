@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 08/31/2026
+ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -119,6 +119,12 @@ pip install agent-framework-openai
 ```
 
 `agent-framework-openai` is the optional Python provider package for both direct OpenAI and Azure OpenAI usage.
+
+## Reuse the Responses client concurrently
+
+One `OpenAIChatClient` instance can serve concurrent asynchronous calls on the same event loop, including overlapping streaming and non-streaming calls. This guarantee doesn't apply to `OpenAIChatCompletionClient`.
+
+Create a separate `Agent` and `AgentSession` for each concurrent run, and pass separate messages and options. User-supplied middleware, tools, and callbacks must also support concurrency. Don't share the client across OS threads or event loops, or mutate its configuration while calls are active.
 
 ## Configuration
 

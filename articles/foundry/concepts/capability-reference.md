@@ -35,7 +35,6 @@ Where you author, test, and ship Foundry work.
 | [Coding agent integration](../agents/how-to/use-cli-with-coding-agents.md) | Build Foundry projects with AI coding agents such as GitHub Copilot, including Model Context Protocol access through the Foundry MCP Server. |
 | [Templates and samples](../how-to/develop/ai-template-get-started.md) | Start from prebuilt application templates and GitHub samples. |
 | [LangChain and LangGraph integration](../how-to/develop/langchain.md) | Use Foundry models, tools, memory, and tracing from LangChain and LangGraph apps. |
-| [Ask AI](ask-ai.md) (preview) | In-product assistant that answers Foundry questions and helps you act on portal insights. |
 
 ## Models
 
@@ -69,7 +68,7 @@ Foundry Agent Service and the agent development lifecycle.
 | [Agent development lifecycle](../agents/concepts/development-lifecycle.md) | End-to-end build, test, deploy, and iterate workflow for agents. |
 | [Agent identity](../agents/concepts/agent-identity.md) | Give agents a Microsoft Entra identity for authenticated access to resources. |
 | [Workflows](../agents/concepts/workflow.md) | Coordinate multiple agents and steps into a single orchestrated process. |
-| [Routines](../agents/concepts/routines.md) (preview) | Package repeatable agent procedures for reuse. |
+| [Routines](../agents/concepts/routines.md) | Package repeatable agent procedures for reuse. |
 | [Agent-to-agent (A2A)](../agents/how-to/tools/agent-to-agent.md) | Let agents call other agents across services and vendors. |
 | [Responses API](../agents/quickstarts/responses-api.md) | Stateful API for model and agent interactions. |
 | [Voice agents](../agents/how-to/build-voice-agent.md) | Add speech input and output to agents. |

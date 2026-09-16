@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/18/2026
+ms.date: 09/03/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -69,13 +69,12 @@ Continue with the following sections to set up your programming language and ins
 
 ## Work with a programming language
 
-Use the language that your application requires. Expand a section if you need to install its
-runtime or Visual Studio Code extension.
+Use the language that your application requires. Select a tab to install its runtime or Visual
+Studio Code extension.
 
-<details>
-<summary>Python</summary>
+# [Python](#tab/python)
 
-Install [Python 3.10 or later](https://www.python.org/downloads/). Python 3.9 is the minimum
+Install [Python 3.10 or later](https://www.python.org/downloads/). Python 3.10 is the minimum
 supported version. Create a virtual environment for your project instead of installing packages
 globally.
 
@@ -96,33 +95,24 @@ source .venv/bin/activate
 For editor support, install the
 [Python extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
-</details>
+# [C#](#tab/csharp)
 
-<details>
-<summary>Java</summary>
+Install the latest Long-Term Support version of the
+[.NET SDK](https://dotnet.microsoft.com/download). For editor support, install
+[C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+Install [Node.js](https://nodejs.org/). Version 20 or later is recommended.
+
+# [Java](#tab/java)
 
 Install JDK 17 or later. The
 [Microsoft Build of OpenJDK](/java/openjdk/download) is a free Long-Term Support distribution.
 For editor support, install the
 [Visual Studio Code Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).
 
-</details>
-
-<details>
-<summary>JavaScript/TypeScript</summary>
-
-Install [Node.js](https://nodejs.org/). Version 20 or later is recommended.
-
-</details>
-
-<details>
-<summary>C#</summary>
-
-Install the latest Long-Term Support version of the
-[.NET SDK](https://dotnet.microsoft.com/download). For editor support, install
-[C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
-
-</details>
+---
 
 ## Install Git
 
@@ -169,7 +159,7 @@ design and deploy hosted agents from a guided canvas.
 | Issue | Resolution |
 | --- | --- |
 | Command not found after installation | Close and reopen your terminal. If you use Visual Studio Code, restart it so that PATH changes take effect. |
-| Python isn't found | Use `python3` instead of `python` on macOS or Linux, or install Python 3.9 or later. |
+| Python isn't found | Use `python3` instead of `python` on macOS or Linux, or install Python 3.10 or later. |
 | Permission denied during Python package installation | On macOS or Linux, don't use `sudo pip install`. Use a virtual environment instead. |
 
 ## Related content

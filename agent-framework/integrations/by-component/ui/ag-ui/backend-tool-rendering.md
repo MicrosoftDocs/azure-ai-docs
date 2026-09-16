@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -16,6 +17,7 @@ ms.service: agent-framework
   |----------------------------|:--:|:------:|:--:|-------|
   | Backend tool registration  | ✅ |   ✅   | ✅ |       |
   | AG-UI tool event mapping   | ✅ |   ✅   | ❌ | Not documented for Go |
+  | MCP Host tool results      | ❌ |   ✅   | ❌ | Python preserves complete MCP results |
   | Complex JSON serialization | ✅ |   ✅   | ❌ | Not documented for Go |
 -->
 
@@ -297,6 +299,24 @@ When the agent calls a tool, the client receives several events:
     "content": "The weather in Paris, France is sunny with a temperature of 22°C."
 }
 ```
+
+### MCP tool results
+
+For MCP tools, Python AG-UI sends the complete JSON-safe MCP result to the Host,
+including `structuredContent`, in both live `TOOL_CALL_RESULT` events and
+`MESSAGES_SNAPSHOT` replay. The model continues to receive only the parsed
+model-facing result, so Host-only metadata doesn't enter provider history.
+
+Snapshot history retains the newest MCP Host payloads within an 8-MiB aggregate
+budget. When older payloads exceed that budget, AG-UI omits their Host
+projection and retains the model-facing content for safe replay.
+
+To rebuild Host-visible history from persisted Agent Framework messages, call
+`agent_framework_messages_to_agui_host_history(messages)` from
+`agent_framework.ag_ui`. The helper accepts `Message` objects or previously
+converted message dictionaries and applies the same 8-MiB aggregate budget by
+default. Use its output for AG-UI Host history; normal outbound conversion
+remains model-safe and excludes Host-only payloads.
 
 ## Enhanced Client for Tool Events
 

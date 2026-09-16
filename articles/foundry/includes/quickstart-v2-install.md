@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/10/2026
+ms.date: 09/03/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -15,10 +15,10 @@ Make sure you install the correct version of the packages as shown here.
 
 # [Python](#tab/python)
 
-1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
+1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API**. The samples authenticate by using `DefaultAzureCredential`, which comes from `azure-identity`.
 
     ```
-    pip install azure-ai-projects>=2.3.0
+    pip install "azure-ai-projects>=2.3.0" azure-identity
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
@@ -44,7 +44,7 @@ Make sure you install the correct version of the packages as shown here.
 1. Install the current version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API**.:
 
     ```bash
-    npm install @azure/ai-projects
+    npm install @azure/ai-projects @azure/identity
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
@@ -56,6 +56,16 @@ Make sure you install the correct version of the packages as shown here.
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
     <version>2.2.0</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-core</artifactId>
+    <version>1.57.0</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.1</version>
 </dependency>
 ```
 

@@ -4,7 +4,7 @@ description: Learn how to use OpenAI-compatible LangChain classes with chat and 
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 07/20/2026
+ms.date: 09/03/2026
 ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
@@ -34,7 +34,7 @@ verification workflows.
 - A deployed chat model that supports OpenAI-compatible APIs, such as
   `gpt-4.1` or `Mistral-Large-3`.
 - A deployed embeddings model, such as `text-embedding-3-large`.
-- Python 3.9 or later.
+- Python 3.10 or later.
 
 Install the required packages:
 

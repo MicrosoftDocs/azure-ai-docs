@@ -101,6 +101,8 @@ items:
         href: configure-language-identification-diarization.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
+    - name: MAI-Transcribe API
+      href: mai-transcribe.md
     - name: Fast transcription API
       href: fast-transcription-create.md
     - name: Batch transcription API
@@ -243,11 +245,11 @@ items:
           items:
           - name: Personal voice overview
             href: personal-voice-overview.md
-          - name: "Part 1: Create a personal voice project"
+          - name: "Part 1: Set up a personal voice"
             href: personal-voice-create-project.md
-          - name: "Part 2: Add user consent to your project"
+          - name: "Part 2: Add user consent"
             href: personal-voice-create-consent.md
-          - name: "Part 3: Get a speaker profile ID"
+          - name: "Part 3: Create a personal voice"
             href: personal-voice-create-voice.md
           - name: "Part 4: Use personal voice in your application"
             href: personal-voice-how-to-use.md
@@ -323,8 +325,6 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Use MAI-Transcribe
-      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
@@ -394,8 +394,10 @@ items:
       displayName: FAQ,frequently asked questions
     - name: Reference
       items:
-      - name: Voice Live REST API reference
+      - name: Voice Live API reference
         items:
+        - name: '2026-07-15'
+          href: voice-live-api-reference-2026-07-15.md
         - name: '2026-04-10'
           href: voice-live-api-reference-2026-04-10.md
         - name: '2025-10-01'
@@ -493,6 +495,8 @@ items:
             href: speech-container-howto.md
           - name: Real-time speech to text containers
             href: speech-container-stt.md
+          - name: Configure a cache for container diarization
+            href: speech-container-speech-to-text-diarization-cache.md
           - name: Fast transcription containers
             href: speech-container-ft.md
           - name: Custom speech to text containers

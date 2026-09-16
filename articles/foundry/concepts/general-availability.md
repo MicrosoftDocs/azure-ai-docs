@@ -88,12 +88,11 @@ Statuses describe the named portal experience. Check each linked feature article
 | Discover | Search | GA |
 | Discover | [Foundry Playgrounds](concept-playgrounds.md) — Model, Agents, and Images playgrounds | GA |
 | Discover | Foundry Playgrounds — Video playground | Preview |
-| Discover | Ask AI | Preview |
 | Build | [Agents](../agents/overview.md) (core) | GA |
 | Build | Agents — Voice Live | Preview |
 | Build | Agents — traces in agent builder | Preview |
 | Build | [Publish agents to Microsoft 365 Copilot and Teams](../agents/how-to/publish-copilot.md) | GA |
-| Build | [Routines](../agents/concepts/routines.md) | Preview |
+| Build | [Routines](../agents/concepts/routines.md) | GA |
 | Build | [Agent optimizer](../agents/concepts/agent-optimizer-overview.md) | Limited preview |
 | Build | [Workflows](../agents/concepts/workflow.md) | Preview. Foundry is retiring workflows on December 1, 2026. Use Microsoft Agent Framework for new development. |
 | Build | [Models](foundry-models-overview.md) | GA (managed compute is a Preview deployment type; see [Managed compute in Microsoft Foundry](managed-compute-overview.md)) |

@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 08/31/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -129,34 +129,110 @@ see [Vector databases for .NET AI apps](/dotnet/ai/vector-stores/overview).
 
 ## Python vector store support
 
-Agent Framework uses the vector store abstractions and implementations from
-Semantic Kernel for Python. Semantic Kernel collections provide common
-operations for creating collections, upserting and retrieving records, and
-running vector, keyword, or hybrid searches when the selected implementation
-supports them.
+Agent Framework provides experimental, native Python contracts for vector store
+models, collection operations, store factories, vector and keyword-hybrid
+search, and agent search tools. The contracts are part of
+`agent-framework-core` and don't require Pydantic, NumPy, pandas, or Semantic
+Kernel.
 
 > [!WARNING]
-> Semantic Kernel Vector Store functionality for Python is a release candidate.
-> Limited breaking changes might occur before general availability.
+> The native Python vector store APIs are experimental. Limited breaking changes
+> might occur before they become stable.
 
-### Available vector store implementations
+### Core abstractions
+
+| Abstraction | Purpose |
+|---|---|
+| `VectorStoreField` and `VectorStoreCollectionDefinition` | Describe key, data, and vector fields, including storage names, indexes, dimensions, and distance functions. |
+| `@vectorstoremodel` and `register_vectorstoremodel()` | Register dataclasses, Pydantic models, msgspec structs, plain classes, or externally owned model types. |
+| `BaseVectorCollection` and `SupportsVectorUpsert` | Define batch upsert, get, delete, collection lifecycle, record conversion, and optional embedding generation. |
+| `BaseVectorStore` | Defines a store that lists collections and creates typed collection clients. |
+| `BaseVectorSearch` and `SupportsVectorSearch` | Define vector and keyword-hybrid search, paging, filters, score thresholds, and search results. |
+| `Filter`, `FilterGroup`, and `Param` | Define portable, data-only filters, including model-supplied filter parameters for search tools. |
+| `InMemoryStore` and `InMemoryCollection` | Provide process-local CRUD and linear-scan search for development and tests. |
+| `GenerateVectors` | Controls whether upserts generate all, none, or selected vector fields. |
+| `create_vector_search_tool()` | Exposes any `SupportsVectorSearch` implementation as an Agent Framework function tool. |
+
+The following sample defines vector store records by annotating their key, data,
+and vector fields:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/vector_stores/vector_store_models.py" range="126-143":::
+
+Use `VectorStoreCollectionDefinition` directly for dictionaries. For model types
+owned by another package, use `register_vectorstoremodel()` with an explicit
+definition and optional encoder and decoder. Array-like vector values serialize
+through `tolist()` without adding a NumPy dependency.
+
+Agent Framework includes an in-memory implementation for development and tests.
+It stores records in the current process and uses a linear scan, so use a
+database connector for production workloads.
+
+The following sample stores precomputed vectors and searches them with a
+portable filter tree:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/vector_stores/in_memory_filters.py" range="3-7,17-64":::
+
+Use `Param` when the model should supply a filter value. Its Python type,
+description, and constraints become part of the search tool's JSON schema:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/vector_stores/in_memory_search_tool.py" range="132-162":::
+
+### Native Agent Framework implementations
+
+The following implementations use the native Agent Framework contracts. Some
+are also available as separate Semantic Kernel connectors, but the two
+connector families aren't interchangeable.
+
+| Implementation | Agent Framework package and lifecycle | Separate Semantic Kernel connector | Search modes | Key limitations |
+|---|---|---|---|---|
+| In-memory | `agent-framework-core`; released package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/inmemory-connector) | Dense vector with portable filters | Process-local linear scan for development and tests, not a production database. |
+| Azure AI Search | `agent-framework-azure-ai-search`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-ai-search-connector) | Dense vector and keyword-hybrid | One top-level dense vector field per query. Some thresholds, hybrid text-recall controls, strict post-filtering, and permissions require a supporting preview SDK/API and `allow_preview=True`. |
+| Azure Cosmos DB for NoSQL | `agent-framework-azure-cosmos`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector) | Dense vector with portable filters | Keys must be strings stored as `id`, and containers use the `/id` partition key. Keyword and hybrid search aren't supported, and Euclidean search doesn't support score thresholds. |
+| Azure DocumentDB | `agent-framework-azure-documentdb`; alpha package | Not available | Dense vector with portable metadata filters | Keys must be strings or integers. Generated ObjectIds, hybrid and full-text search, and nested filter paths aren't supported. |
+| MongoDB | `agent-framework-mongodb`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/mongodb-connector) | Approximate or exact dense vector with portable filters | Requires PyMongo 4.13.2+ and a deployment with MongoDB Vector Search. Keyword and hybrid search, nested filter paths, provider-side embedding generation, and automatic schema migration aren't supported. |
+| PostgreSQL with pgvector | `agent-framework-postgres`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Exact dense vector, HNSW, and IVFFlat | Requires PostgreSQL 13+, pgvector 0.8.0+, an existing schema, and the enabled extension. Keyword and hybrid search aren't supported. |
+| Qdrant | `agent-framework-qdrant`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/qdrant-connector) | Dense vector with server-side portable filters | Server mode requires Qdrant 1.16.2+. Keys must be unsigned 64-bit integers or UUIDs. Keyword and hybrid search aren't supported, and filters aren't available in local SDK mode. |
+| Redis | `agent-framework-redis`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/redis-connector) | Dense vector over HASH or JSON records | Requires Redis 8.0.3+ with Search; JSON records also require RedisJSON. Redis Cluster, keyword search, and hybrid search aren't supported. |
+
+Install a prerelease connector package for the database you use:
+
+```bash
+pip install agent-framework-azure-ai-search --pre
+pip install agent-framework-azure-cosmos --pre
+pip install agent-framework-azure-documentdb --pre
+pip install agent-framework-mongodb --pre
+pip install agent-framework-postgres --pre
+pip install agent-framework-qdrant --pre
+pip install agent-framework-redis --pre
+```
+
+Each connector implements the common model, collection, CRUD, filter, and
+search contracts. Database-specific capabilities and restrictions still apply.
+For complete examples, see the
+[Azure AI Search](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/azure_ai_search.py),
+[MongoDB](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_vectors.py),
+[Postgres](https://github.com/microsoft/agent-framework/blob/main/python/packages/postgres/samples/postgres_vectors.py),
+[Qdrant](https://github.com/microsoft/agent-framework/blob/main/python/packages/qdrant/samples/qdrant_vectors.py),
+and
+[Redis](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/redis_store.py)
+samples.
+
+### Semantic Kernel-only implementations
+
+Applications can continue to use Semantic Kernel's Python vector stores
+directly. These implementations use the separate Semantic Kernel vector store
+contracts rather than the native Agent Framework contracts. The following
+implementations don't currently have a native Agent Framework connector:
 
 | Implementation | Availability | Uses an officially supported database SDK | Maintainer or vendor |
 |---|:---:|:---:|---|
-| [Azure AI Search](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-ai-search-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [Azure Cosmos DB for MongoDB vCore](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-mongodb-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [Azure Cosmos DB for NoSQL](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [Chroma](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/chroma-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | Elasticsearch | Planned | Not applicable | Not applicable |
 | [Faiss](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/faiss-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [In-memory](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/inmemory-connector) | Available | Not applicable | Microsoft Semantic Kernel project |
-| [MongoDB](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/mongodb-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [Neon Serverless Postgres](https://neon.com/) | Use the [Postgres implementation](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Yes | Microsoft Semantic Kernel project |
 | [Oracle](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/oracle-connector) | Available | Yes | Oracle |
 | [Pinecone](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/pinecone-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [Postgres](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [Qdrant](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/qdrant-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [Redis](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/redis-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [SQL Server](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/sql-connector) | Available | `pyodbc` | Microsoft Semantic Kernel project |
 | SQLite | Planned | Not applicable | Microsoft Semantic Kernel project |
 | [Weaviate](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/weaviate-connector) | Available | Yes | Microsoft Semantic Kernel project |
@@ -166,7 +242,7 @@ supports them.
 > implementation's quality, licensing, support policy, and version compatibility
 > before you use it.
 
-### Get started
+### Use a Semantic Kernel-only implementation
 
 1. Install `semantic-kernel` and the dependencies required by your chosen
    implementation.
@@ -178,11 +254,6 @@ supports them.
 
 For implementation setup and complete examples, see
 [Semantic Kernel Vector Stores](/semantic-kernel/concepts/vector-store-connectors/).
-
-<!--
-TODO: Add a "Use a Semantic Kernel vector store with Agent Framework" section
-after the Agent Framework bridge guidance and sample are verified.
--->
 
 :::zone-end
 

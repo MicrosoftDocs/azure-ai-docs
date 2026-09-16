@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/31/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ---
 
@@ -17,6 +17,7 @@ ms.service: agent-framework
   |-------------------------|:--:|:------:|:--:|-------|
   | Server setup            | ✅ |   ✅   | ✅ | Language-specific hosting APIs |
   | Client setup            | ✅ |   ✅   | ✅ |       |
+  | Client multimodal input | ❌ |   ✅   | ❌ | Python preserves ordered text and media parts |
   | Conversation continuity | ✅ |   ✅   | ❌ | Not documented for Go |
   | A2UI interactive surfaces | — |   ✅   | — | Python-specific setup in this article |
 -->
@@ -289,7 +290,11 @@ The server will start listening on `http://127.0.0.1:8888`.
 
 The AG-UI client connects to the remote server and displays streaming responses.
 
-### Install Required Packages
+`AGUIChatClient` reuses an internally owned HTTP client that doesn't persist response cookies.
+
+If the server requires cookies for authentication, sessions, or load balancer affinity, pass a caller-owned `httpx.AsyncClient` through `http_client=`. Scope the client to one authenticated principal and close it in your application. An AG-UI thread ID is a correlation identifier, not an authentication boundary.
+
+### Install required packages
 
 The AG-UI package is already installed, which includes the `AGUIChatClient`:
 
@@ -359,6 +364,35 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+```
+
+### Send multimodal messages
+
+`AGUIChatClient` preserves the order of text and media parts in user messages.
+Use a MIME type to identify URI or inline image, audio, video, and document
+content:
+
+```python
+from pathlib import Path
+
+from agent_framework import Content, Message
+
+message = Message(
+    role="user",
+    contents=[
+        Content.from_text("Compare this image with the attached brief."),
+        Content.from_uri(
+            "https://example.com/product.png",
+            media_type="image/png",
+        ),
+        Content.from_data(
+            Path("brief.pdf").read_bytes(),
+            media_type="application/pdf",
+        ),
+    ],
+)
+
+await agent.run(message, session=thread)
 ```
 
 ### Key Concepts

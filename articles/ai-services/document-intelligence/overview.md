@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: overview
-ms.date: 08/15/2026
+ms.date: 09/08/2026
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ai-usage: ai-assisted
@@ -43,14 +43,6 @@ ai-usage: ai-assisted
 
 Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
-> [!IMPORTANT]
->
-> * **Document Intelligence REST API v2.1** reaches end of support on **September 15, 2027**.
-> * **Document Intelligence REST API 2022-08-31 v3.0** reaches end of support on **March 30, 2029**.
-> * To avoid production disruption, use **Azure Document Intelligence 2024-11-30 v4.0** for all new development, and migrate existing workloads to **Azure Document Intelligence 2024-11-30 v4.0** before these retirement dates. For more information, see [**Document Intelligence migration guide**](versioning/migration-guide-overview.md).
-
-Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
-
 | ✔️ [Document analysis models](#document-analysis-models) | ✔️ [Prebuilt models](#prebuilt-models) | ✔️ [Custom models](#custom-model-overview) |
 
 > [!NOTE]
@@ -59,6 +51,20 @@ Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](..
 > * Content Understanding also offers LLM-powered analyzers for complex, unstructured, and multimodal content.
 > * Together, they make it easier to prepare data for intelligent agents and applications that can read, analyze, and respond to real-world content with precision and speed.
 > * To compare both services and determine which best fits your scenario, see [Choose the right Azure AI tool for document processing](../content-understanding/choosing-right-ai-tool.md).
+
+
+## Version support and retirement
+
+The following table summarizes Document Intelligence API version support:
+
+| Version | Status | End of support |
+|---------|--------|---------------|
+| v4.0 (2024-11-30) | GA — current | No announced date |
+| v3.1 (2023-07-31) | GA — previous | No announced date |
+| v3.0 (2022-08-31) | GA — retiring | March 30, 2029 (announced March 30, 2026) |
+| v2.1 | GA — retiring | September 15, 2027 (announced September 15, 2024) |
+
+To avoid production disruption, migrate to v4.0 before the retirement dates in the preceding table. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
 
 ## Document analysis models
 
@@ -576,19 +582,6 @@ To learn more about each model and browse the API references, use the links in t
 ## Data privacy and security
 
  As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
-
-## Version support and retirement
-
-The following table summarizes Document Intelligence API version support:
-
-| Version | Status | End of support |
-|---------|--------|---------------|
-| v4.0 (2024-11-30) | GA — current | No announced date |
-| v3.1 (2023-07-31) | GA — previous | No announced date |
-| v3.0 (2022-08-31) | GA — retiring | March 30, 2029 |
-| v2.1 | GA — retiring | September 15, 2027 |
-
-To avoid production disruption, migrate to v4.0 before the retirement dates above. For migration guidance, see the [Document Intelligence migration guide](versioning/migration-guide-overview.md).
 
 ## Related content
 

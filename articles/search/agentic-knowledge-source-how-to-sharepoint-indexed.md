@@ -3,7 +3,7 @@ title: Create a SharePoint (Indexed) Knowledge Source
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/14/2026
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 zone_pivot_groups: search-csharp-python-rest
@@ -309,6 +309,10 @@ Starting with the `2026-08-01-preview` API version, `networkAccessMode` controls
 To configure and verify private access to supported Azure dependencies:
 
 [!INCLUDE [Configure private network ingestion](includes/how-tos/knowledge-source-private-network.md)]
+
+### Use automatic per-language analyzers
+
+[!INCLUDE [Configure automatic per-language analyzers](includes/how-tos/knowledge-source-language-analyzers.md)]
 
 ## Check ingestion status
 

@@ -55,8 +55,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | North Central US​ <sup>1</sup> ​| ✅ | ✅ | ✅ | ✅ |  | ✅ |
 | South Central US​ <sup>1 </sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ <sup>1, 2</sup> | ✅ | ✅ | ✅ | ✅ |  | ✅ |
-| West US 2​ <sup>2,3</sup> ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| West US 3​ <sup>2</sup>| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ | ✅ | ✅ | ✅ |  |  |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.

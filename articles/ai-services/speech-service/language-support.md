@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 08/13/2026
+ms.date: 09/09/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 ai-usage: ai-assisted
@@ -42,7 +42,7 @@ The following table summarizes locale support for [real-time transcription](spee
 - [Custom speech](#custom-speech)
 - [Custom speech display support](#custom-speech-display-support)
 - [LLM speech translation](#llm-speech-translation)
-- [MAI Transcribe-1 supported languages](#mai-transcribe-1-supported-languages)
+- [MAI-Transcribe supported languages](#mai-transcribe-supported-languages)
 
 > [!TIP]
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
@@ -51,9 +51,9 @@ The following table summarizes locale support for [real-time transcription](spee
 
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
-### MAI Transcribe-1 supported languages
+### MAI-Transcribe supported languages
 
-The following table summarizes the languages supported by [MAI Transcribe-1](mai-transcribe.md) for speech recognition.
+The following table summarizes the languages supported by [MAI-Transcribe](mai-transcribe.md) models for speech recognition.
 
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: dmytrostruk
 ms.topic: tutorial
 ms.author: dmytrostruk
-ms.date: 07/30/2026
+ms.date: 09/09/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,7 @@ ms.service: agent-framework
     | Getting Started / Installation| ✅ |   ✅   | ✅ | Python and Go use package/module install.  |
     | Configuration                 | ❌ |   ✅   | ❌ | Python-specific environment variable table.|
     | Bring your own key (BYOK)     | ❌ |   ✅   | ❌ | Python forwards Copilot SDK provider configuration. |
+    | Workspace file hooks          | ❌ |   ✅   | ❌ | Python requires explicit opt-in.            |
     | Create an Agent               | ✅ |   ✅   | ✅ |                                            |
     | Function Tools                | ✅ |   ✅   | ✅ |                                            |
     | Context Providers             | ❌ |   ✅   | ❌ | Python-specific content in this page.      |
@@ -322,6 +324,23 @@ async def explicit_config_example():
 > [!TIP]
 > `default_options` (and per-run `options`) forwards any parameter accepted by the Copilot SDK's `create_session` — for example `reasoning_effort`, `context_tier`, `enable_citations`, `provider` (bring-your-own-key), or `skill_directories` — not just the keys shown here. Unknown parameter names raise a `TypeError`, so typos are caught rather than silently ignored.
 
+### Control workspace file hooks
+
+By default, `GitHubCopilotAgent` doesn't load file hooks from the working directory's
+`.github/hooks/` folder. Opt in only when you trust the working
+directory and intend its hooks to affect the session:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/github_copilot/github_copilot_with_file_hooks.py" range="26,46-58":::
+
+> [!WARNING]
+> File hooks run commands as the user that runs your application. They aren't
+> gated by `on_permission_request` or other tool-approval callbacks.
+
+If the working directory defines hooks and you omit `enable_file_hooks`, the
+agent defaults it to `False` and logs a warning once through the
+`agent_framework.github_copilot` logger. Explicitly setting
+`enable_file_hooks=False` disables hooks without that warning.
+
 ### Bring your own key (BYOK)
 
 Use the Copilot SDK's BYOK support to route model requests through your own OpenAI, Azure OpenAI, Anthropic, or OpenAI-compatible endpoint instead of the GitHub Copilot backend. Pass a `ProviderConfig` through `GitHubCopilotOptions(provider=...)`, and set the same model identifier in both the provider configuration and the session-level `model` option.
@@ -335,8 +354,15 @@ The runnable sample uses these environment variables:
 | `BYOK_API_KEY` | Static API key for the provider endpoint. |
 | `BYOK_MODEL_ID` | Model identifier to request. Defaults to `gpt-4o`. |
 
+The sample uses a static API key. For rotating credentials, set the experimental
+`bearer_token_provider` field on `ProviderConfig` to a synchronous or
+asynchronous callback that returns a token. The Copilot SDK invokes the callback
+for each provider request, and the callback is responsible for token
+acquisition, caching, and refresh. A bearer token provider takes precedence over
+`api_key` or `bearer_token` when they're also set.
+
 > [!WARNING]
-> BYOK uses static credentials and doesn't provide automatic token refresh. Keep API keys out of source control and load them from environment variables or a secret store. Usage and billing are tracked by your provider rather than GitHub.
+> Keep static API keys and tokens out of source control. Load them from environment variables or a secret store. Your provider, not GitHub, tracks usage and billing.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/github_copilot/github_copilot_with_byok.py" range="22-57":::
 

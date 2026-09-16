@@ -54,9 +54,6 @@ items:
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
-    - name: Upgrade or switch models with Ask AI
-      displayName: Upgrade or switch models with Ask AI (preview)
-      href: ../../observability/how-to/optimization-model-upgrade.md
     - name: Lifecycle and support policy
       displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md
@@ -88,6 +85,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: Monitor model router
+      displayName: Monitor model router in Microsoft Foundry
+      href: ../../openai/how-to/monitor-model-router.md
     - name: Evaluate model router
       displayName: Evaluate model router for your workload
       href: ../../openai/how-to/evaluate-model-router.md
@@ -160,6 +160,9 @@ items:
     - name: Overview
       displayName: What is provisioned throughput for Foundry Models?
       href: ../../openai/concepts/provisioned-throughput.md
+    - name: Overview (government)
+      displayName: Provisioned throughput for Foundry Models in Azure Government
+      href: ../../openai/concepts/provisioned-throughput-gov.md
     - name: Quickstart
       displayName: Create a provisioned throughput deployment
       href: ../../openai/provisioned-quickstart.md
@@ -216,9 +219,12 @@ items:
       href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
   - name: Anthropic
     items:
-    - name: Overview
+    - name: Overview of Claude models in Foundry
       displayName: Overview of Claude models in Foundry
       href: ../../foundry-models/concepts/claude-models.md
+    - name: Quotas and rate limits
+      displayName: Claude model quotas and rate limits in Microsoft Foundry
+      href: ../../foundry-models/concepts/claude-models-quotas-limits.md
     - name: Compare hosting options
       displayName: Compare Azure-hosted and Anthropic-hosted Claude models in Microsoft Foundry
       href: ../../foundry-models/concepts/claude-models-hosting-comparison.md
@@ -245,9 +251,6 @@ items:
     - name: Deploy CXRReportGen premium model
       displayName: Deploy CXRReportGen premium healthcare AI model in Foundry
       href: ../../how-to/healthcare-ai/deploy-cxrreportgen-premium.md
-    - name: Fine-tune a healthcare AI premium model
-      displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
-      href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
 
 - name: Develop with AI models
   items:
@@ -343,9 +346,6 @@ items:
     - name: Image prompt transformation
       displayName: Prompt transformation
       href: ../../openai/concepts/prompt-transformation.md
-    - name: Image to text models
-      displayName: How to use image-to-text models in the model catalog
-      href: ../../../foundry-classic/how-to/use-image-models.md?context=/azure/foundry/context/context
     - name: Video generation 
       displayName: Video generation with Sora
       href: ../../openai/concepts/video-generation.md
@@ -358,6 +358,17 @@ items:
       
   - name: Audio and speech
     items:
+    - name: GPT-Live
+      items:
+      - name: What is GPT-Live?
+        href: ../../openai/concepts/gpt-live.md
+      - name: Use GPT-Live for real-time voice
+        displayName: "Quickstart: Get started with GPT-Live"
+        href: ../../openai/how-to/gpt-live.md
+      - name: Use GPT-Live via WebRTC
+        href: ../../openai/how-to/gpt-live-webrtc.md
+      - name: Delegate work in GPT-Live
+        href: ../../openai/how-to/gpt-live-delegation.md
     - name: Audio generation
       displayName: "Quickstart: Get started with Azure OpenAI audio generation"
       href: ../../openai/audio-completions-quickstart.md
@@ -407,6 +418,8 @@ items:
       displayName: GPT Realtime Transcribe streaming transcription model
       href: ../../openai/concepts/gpt-realtime-whisper.md
 
+
+
 - name: Fine-tuning
   items:
   # Getting Started
@@ -414,8 +427,21 @@ items:
     href: ../../openai/concepts/fine-tuning-considerations.md
     displayName: finetuning, fine-tuning 
   - name: Fine-tune models
-    href: ../../openai/how-to/fine-tuning.md
-    displayName: finetuning, fine-tuning 
+    items: 
+    - name: When to fine-tune a model
+      href: ../../openai/how-to/fine-tuning.md
+      displayName: finetuning, fine-tuning 
+    - name: Healthcare models
+      items:
+      - name: Fine-tune a healthcare AI premium model
+        displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
+      - name: Fine-tune MedImageInsight premium model
+        displayName: Fine-tune MedImageInsight premium healthcare AI model in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-medimageinsight-premium.md
+      - name: Fine-tune CXRReportGen premium model
+        displayName: Fine-tune CXRReportGen premium healthcare AI model in Foundry
+        href: ../../how-to/healthcare-ai/fine-tune-cxrreportgen-premium.md
   - name: Deploy your fine-tuned model
     href: ../../openai/how-to/fine-tuning-deploy.md
     displayName: finetuning, fine-tuning     

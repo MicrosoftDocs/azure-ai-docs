@@ -808,16 +808,20 @@ Create a remote tool connection that uses Microsoft Entra ID On-Behalf-Of (OBO) 
 
 ### Azure Developer CLI
 
-Add the connection to the `resources` section of your `azure.yaml` file, then run `azd provision`:
+Set the Foundry project endpoint and the workspace-specific Fabric endpoint.
+Then create a connection that passes through the signed-in user's Microsoft
+Entra token:
 
-```yaml
-resources:
-  - kind: connection
-    name: fabriciq-dataagent-vnet
-    category: RemoteTool
-    authType: UserEntraToken
-    audience: https://analysis.windows.net/powerbi/api
-    target: https://{workspaceId}.z{xy}.w.api.fabric.microsoft.com/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+FABRIC_IQ_ENDPOINT="https://{workspaceId}.z{xy}.w.api.fabric.microsoft.com/v1/mcp/workspaces/{workspaceId}/dataagents/{dataAgentId}/agent"
+
+azd ai connection create fabriciq-dataagent-vnet \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind remote-tool \
+  --target "$FABRIC_IQ_ENDPOINT" \
+  --auth-type user-entra-token \
+  --audience https://analysis.windows.net/powerbi/api
 ```
 
 ### REST API

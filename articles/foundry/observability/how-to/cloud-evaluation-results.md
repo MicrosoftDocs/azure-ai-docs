@@ -1,22 +1,24 @@
 ---
 title: "Get cloud evaluation results with the Microsoft Foundry SDK"
-description: "Learn how to use the Microsoft Foundry SDK to poll cloud evaluation runs, interpret item and aggregate results, cancel runs, and troubleshoot errors."
+description: "Learn how to poll cloud evaluation runs, interpret results, review model-target latency and estimated cost, cancel runs, and troubleshoot errors."
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/11/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to retrieve and interpret cloud evaluation results so that I can diagnose failures and compare application quality.
+# customer intent: As a developer, I want to retrieve and interpret cloud evaluation results so that I can compare quality, latency, and estimated cost.
 ---
 
-# Get cloud evaluation results
+# Get evaluation results with Microsoft Foundry SDK
 
-Poll asynchronous evaluation runs, retrieve item and aggregate output, cancel runs, and resolve common evaluation errors.
+Poll asynchronous evaluation runs, retrieve item and aggregate output, review
+model-target latency and cost, cancel runs, and resolve common evaluation
+errors.
 
 ## Prerequisites
 
@@ -41,12 +43,16 @@ while True:
     run = openai_client.evals.runs.retrieve(
         run_id=eval_run.id, eval_id=eval_object.id
     )
-    if run.status in ("completed", "failed"):
+    if run.status in ("completed", "failed", "canceled"):
         break
     time.sleep(5)
     print("Waiting for eval run to complete...")
 
+if run.status != "completed":
+    raise RuntimeError(f"Evaluation run ended in {run.status}: {run.error}")
+
 # Retrieve results
+# Iterating the list operation retrieves all pages.
 output_items = list(
     openai_client.evals.runs.output_items.list(
         run_id=run.id, eval_id=eval_object.id
@@ -56,16 +62,83 @@ pprint(output_items)
 print(f"Report URL: {run.report_url}")
 ```
 
+# [C#](#tab/csharp)
+
+```csharp
+string evaluationId = "<evaluation-id>";
+string runId = "<evaluation-run-id>";
+ClientResult evaluationRun = await evaluationClient.GetEvaluationRunAsync(
+  evaluationId: evaluationId,
+  evaluationRunId: runId,
+  options: new());
+string runStatus = GetString(evaluationRun, "status");
+
+while (runStatus != "completed"
+  && runStatus != "failed"
+  && runStatus != "canceled")
+{
+  await Task.Delay(TimeSpan.FromSeconds(5));
+  evaluationRun = await evaluationClient.GetEvaluationRunAsync(
+    evaluationId: evaluationId,
+    evaluationRunId: runId,
+    options: new());
+  runStatus = GetString(evaluationRun, "status");
+  Console.WriteLine($"Current status: {runStatus}");
+}
+
+if (runStatus != "completed")
+{
+  throw new InvalidOperationException(
+    evaluationRun.GetRawResponse().Content.ToString());
+}
+
+// The .NET protocol method returns one page at a time.
+string? after = null;
+bool hasMore;
+do
+{
+  ClientResult outputItems = await evaluationClient
+    .GetEvaluationRunOutputItemsAsync(
+    evaluationId: evaluationId,
+    evaluationRunId: runId,
+    limit: null,
+    order: "asc",
+    after: after,
+    outputItemStatus: null,
+    options: new());
+  using JsonDocument page = JsonDocument.Parse(
+    outputItems.GetRawResponse().Content.ToMemory());
+  foreach (JsonElement item in page.RootElement
+    .GetProperty("data").EnumerateArray())
+  {
+    Console.WriteLine(item);
+  }
+  hasMore = page.RootElement.GetProperty("has_more").GetBoolean();
+  after = hasMore
+    ? page.RootElement.GetProperty("last_id").GetString()
+    : null;
+}
+while (hasMore);
+
+Console.WriteLine(evaluationRun.GetRawResponse().Content);
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
 let run = evalRun;
-while (!["completed", "failed"].includes(run.status)) {
+while (!["completed", "failed", "canceled"].includes(run.status)) {
   run = await openaiClient.evals.runs.retrieve(run.id, {
     eval_id: evalObject.id,
   });
   console.log(`Waiting for eval run to complete... ${run.status}`);
   await new Promise((resolve) => setTimeout(resolve, 5000));
+}
+
+if (run.status !== "completed") {
+  throw new Error(`Evaluation run ended in ${run.status}`);
 }
 
 // Retrieve results
@@ -141,9 +214,92 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 }
 ```
 
+## Review model-target latency and estimated cost
+
+When you retrieve or list completed model-target runs, they can include run-wide
+target latency under `latency.target` and estimated inference cost under
+`estimated_cost.target`.
+
+Both properties are optional. The service omits latency when no evaluation row
+has a usable target latency measurement. It omits estimated cost when the run
+isn't a model-target evaluation or when no target model can be priced.
+Estimated cost is currently available for Global Standard model deployments
+when the run has usable target token attribution and pricing data.
+
+The following example shows the relevant part of a completed evaluation run:
+
+```json
+{
+  "latency": {
+    "target": {
+      "p50_ms": 812.25,
+      "p95_ms": 2400.5,
+      "sample_count": 47
+    }
+  },
+  "estimated_cost": {
+    "target": {
+      "estimated_cost": 0.012346,
+      "currency": "USD",
+      "completeness": "partial",
+      "pricing_version": "rate-card-version",
+      "model_costs": [
+        {
+          "model_name": "gpt-5-mini",
+          "estimated_cost": 0.012346,
+          "prompt_tokens": 12000,
+          "cached_tokens": 2000,
+          "completion_tokens": 3000
+        }
+      ],
+      "unpriced_models": [
+        "unpriced-model"
+      ]
+    }
+  }
+}
+```
+
+Latency fields have the following meanings:
+
+| Field | Description |
+|---|---|
+| `p50_ms` | Median end-to-end target latency, in milliseconds. The value can include fractional milliseconds. |
+| `p95_ms` | 95th-percentile end-to-end target latency, in milliseconds. The value can include fractional milliseconds. |
+| `sample_count` | Number of evaluation rows that contributed a usable target latency measurement. |
+
+Estimated cost fields have the following meanings:
+
+| Field | Description |
+|---|---|
+| `estimated_cost` | Total estimated inference cost for the target models that the service could price. |
+| `currency` | ISO 4217 currency code for the estimate. |
+| `completeness` | `complete` when all attributed target models were priced, or `partial` when at least one model couldn't be priced. |
+| `pricing_version` | Optional identifier for the price-list snapshot used for the estimate. |
+| `model_costs` | Cost and token-usage breakdown for each priced target model. |
+| `unpriced_models` | Optional list of target models for which no reliable price was available. |
+
+Each entry in `model_costs` contains the backing `model_name`, its
+`estimated_cost`, non-cached input `prompt_tokens`, `cached_tokens`, and output
+`completion_tokens`. For a direct deployment, `model_name` is the backing model
+resolved from deployment metadata. For a model-router target, the breakdown
+identifies the models attributed by the runtime.
+
+When `completeness` is `partial`, the top-level cost and `model_costs` include
+only the models that the service could price. Check `unpriced_models` before
+using the estimate to compare runs.
+
+> [!IMPORTANT]
+> Target cost is an estimate based on reported token usage and published list
+> prices. It excludes evaluator model usage and evaluation runtime costs, and it
+> doesn't account for negotiated pricing, commitments, or discounts. Use Azure
+> billing data for actual charges.
+
 ## Cancel a run
 
 Cancel a run that you no longer need:
+
+# [Python](#tab/python)
 
 ```python
 openai_client.evals.runs.cancel(
@@ -151,6 +307,27 @@ openai_client.evals.runs.cancel(
     eval_id=eval_object.id,
 )
 ```
+
+# [C#](#tab/csharp)
+
+```csharp
+await evaluationClient.CancelEvaluationRunAsync(
+  evaluationId: evaluationId,
+  evaluationRunId: runId,
+  options: new());
+```
+
+Reference: [`EvaluationClient` protocol methods](https://github.com/openai/openai-dotnet/blob/main/OpenAI/src/Custom/Evals/EvaluationClient.Protocol.cs)
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+The current JavaScript/TypeScript SDK samples don't demonstrate run cancellation. Use the Python or C# tab for this flow.
+
+# [cURL](#tab/curl)
+
+Use the Python or C# tab to cancel a run.
+
+---
 
 ## Troubleshoot cloud evaluation
 
@@ -210,6 +387,7 @@ If an agent evaluator returns an error for unsupported tools:
 
 - [Use admin-connected models in cloud evaluations](evaluate-admin-connected-models.md)
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
+- [Complete .NET evaluation samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples/Evaluations)
 - [Trace-based evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py)
 - [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md)
 - [Set up continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)

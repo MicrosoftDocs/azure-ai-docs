@@ -34,7 +34,6 @@ Most pages in the new [!INCLUDE [foundry-link](../includes/foundry-link.md)] exp
     - Foundry application title
     - Project selector
     - Search
-    - Ask AI toggle
     - Main section navigation: Home, Discover, Build, Operate, Manage, Docs
     - Settings
     - Profile information

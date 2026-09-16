@@ -70,6 +70,8 @@ ai-usage: ai-assisted
 | gpt-5.6-sol                    | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-5.6-terra                  | DataZoneStandard  | 5,000       | 5,000,000   |
 | gpt-5.6-terra                  | GlobalStandard    | 15,000      | 15,000,000  |
+| gpt-6-astra                    | DataZoneStandard  | 5,000       | 5,000,000   |
+| gpt-6-astra                    | GlobalStandard    | 15,000      | 15,000,000  |
 | gpt-chat-latest<sup>1</sup>    | GlobalStandard    | 80,000      | 8,000,000   |
 | gpt-chat-latest<sup>2</sup>    | GlobalStandard    | 8,000       | 8,000,000   |
 | gpt-audio                      | GlobalStandard    | 45000 / 10s | 45,000,000  |
@@ -79,6 +81,8 @@ ai-usage: ai-assisted
 | gpt-image-1.5                  | GlobalStandard    | 90          | -           |
 | gpt-image-2                    | DataZoneStandard  | 12          | -           |
 | gpt-image-2                    | GlobalStandard    | 36          | -           |
+| gpt-image-2.5-flare            | GlobalStandard    | 5           | -           |
+| gpt-image-2.5-sunburst         | GlobalStandard    | 5           | -           |
 | gpt-realtime                   | GlobalStandard    | 300         | 150,000     |
 | model-router                   | DataZoneStandard  | 4,000       | 4,000,000   |
 | model-router                   | GlobalStandard    | 15,000      | 15,000,000  |

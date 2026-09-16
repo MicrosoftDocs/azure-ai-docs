@@ -5,8 +5,10 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/01/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 # Using function tools with an agent
@@ -167,6 +169,33 @@ async def main():
 
 asyncio.run(main())
 ```
+
+### Limit automatic tool invocation
+
+Set limits on the chat client to control automatic tool invocation by model round trips, total function calls, and elapsed wall-clock time:
+
+`max_function_calls` and `max_duration_seconds` default to `None`, which means unlimited. Set them to positive values. When the client reaches a limit, it stops invoking tools and asks the model for a final text response.
+
+These limits are best effort and are checked after each batch of parallel tool calls, so a batch can exceed the call-count or duration limit. Time spent waiting for tool approval counts toward `max_duration_seconds`.
+
+```python
+from agent_framework.openai import OpenAIChatCompletionClient
+
+client = OpenAIChatCompletionClient()
+client.function_invocation_configuration.update(
+    {
+        "max_iterations": 5,
+        "max_function_calls": 20,
+        "max_duration_seconds": 30.0,
+    }
+)
+```
+
+### Control tool error details
+
+By default, `include_detailed_errors` is `False`. Function execution and argument-validation failures return generic results to the model and other serialized channels. The original diagnostic remains available to trusted host code in `Content.exception`. `Content.to_dict()` replaces that field with a fixed, non-sensitive failure marker, and protocol conversions don't expose the diagnostic.
+
+Set `client.function_invocation_configuration["include_detailed_errors"] = True` only when the result stays on a trusted channel. Exception text can contain sensitive data, and this setting adds that text to the channel-visible result.
 
 ## Create a class with multiple function tools
 

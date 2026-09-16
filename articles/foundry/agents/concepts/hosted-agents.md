@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 08/19/2026
+ms.date: 09/11/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -112,7 +112,7 @@ The endpoint is available immediately after deployment—publishing isn't requir
 - **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 - **Invocations (WebSocket)**: wss://{account}.services.ai.azure.com/api/projects/{project}/agents/{name}/endpoint/protocols/invocations_ws?api-version=v1
-- **A2A (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
+- **A2A v1.0 (GA) and v0.3 (preview)**: {project_endpoint}/agents/{name}/endpoint/protocols/a2a
 
 Which endpoints are active depends on the protocols declared in the agent version definition. Set this definition in the `azure.ai.agent` service in `azure.yaml` when using `azd`, or via `protocol_versions` when using the SDK.
 
@@ -135,9 +135,9 @@ When integrated via Microsoft 365 channels (for example, Teams), hosted agents c
 In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
 For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
-### Sessions and conversations
+### Sessions, conversations, and the state store
 
-Hosted agents use **sessions** and **conversations** to manage state. How they work depends on the protocol.
+Hosted agents use **sessions**, **conversations**, and the **state store** to manage state. How they work depends on the protocol.
 
 #### Sessions
 
@@ -146,7 +146,7 @@ A session ID identifies a logical session with persisted state, including $HOME 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: You can configure the idle timeout per agent version from 5 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
+- **Session lifetime**: You can configure the idle timeout per agent version from 2 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -155,6 +155,17 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 
 - **Persistence**: Conversation history is stored in Foundry and persists independently of compute state.
 - **Cross-channel access**: Users can access the same conversation from the playground, API, Teams, or other published channels.
+
+#### State store
+
+The state store is a durable, server-backed key-value store for application state that the platform doesn't manage for you. A store holds keyed JSON items and is addressed by a caller-chosen store name.
+
+- **Persistence**: Foundry stores items and persists them independently of compute state, so they survive container crashes, restarts, and idle eviction.
+- **Isolation**: Each store name is an independent partition. A store can also partition its items per end user, so one store name is safe to share across the users of a multitenant agent.
+- **Item lifetime**: A store-level idle window ages out items, with a default of 30 days. Writes renew the window, and you can configure a store to never expire its items.
+- **Any framework**: Because the store is a general-purpose key-value API, an agent can use it to hold framework checkpoints for a bring-your-own framework such as LangGraph or Microsoft Agent Framework, alongside its own application state.
+
+For more information, see [Durable state store for hosted agents](agent-state-store.md).
 
 #### How sessions and conversations work with each protocol
 
@@ -227,7 +238,7 @@ Each session has a persistent `$HOME`. The platform preserves its contents when 
 
 Hosted agents scale per session, not per replica. The platform creates a new VM-isolated sandbox for each session on demand and keeps its compute active while requests continue. Each request resets the idle timer. When the configured idle timeout elapses after the most recent request, the platform deprovisions the sandbox compute and persists the session state.
 
-The idle timeout can be 5 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
+The idle timeout can be 2 through 60 minutes and defaults to 15 minutes. The platform permanently deletes a session after 30 days of inactivity. There's no replica count to configure and no warm pool to size.
 
 Because every session runs in its own sandbox, the cpu and memory values you set on an agent version describe a *single session*, not the aggregate footprint of the agent. Billing is based on cpu + memory consumed across all active sessions, so oversizing multiplies cost by your concurrency.
 
