@@ -63,9 +63,3 @@ For more information on creating a custom role, see the following articles.
     * To use a new Azure Blob Storage account, add the Foundry account resource's managed identity to the Storage Blob Data Reader role on that storage account. 
     * To use a new Azure AI Search source, add Foundry to the Azure AI Search role assignments.
 * To fine-tune a model in Foundry, you need both data plane and control plane permissions. Deploying a fine-tuned model is a control plane permission. Therefore, the only built-in role with both data plane and control plane permissions is the **Foundry Owner** role. Or, if you prefer, you can also assign the **Foundry User** role for data plane permissions and the **Foundry Account Owner** role for control plane permissions.
-
-### Quota and usage visibility
-
-The Usages API requires permission at the subscription scope. Role assignments at the resource group, Foundry resource, or project scope don't authorize access to subscription-level quota information.
-
-If Foundry can't retrieve quota information, some experiences might not display available quota or validate deployments correctly. Assign **Cognitive Services Usages Reader** at the subscription scope to grant the least-privilege access required for quota visibility.
