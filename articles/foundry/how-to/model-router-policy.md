@@ -63,6 +63,9 @@ Model router honors built-in Foundry policy definitions for approved-models gove
 
 **Approved-models governance**: Model router uses the same built-in Foundry policy that governs other model deployments - **Foundry model deployments should only use approved models** (previously named *Cognitive Services Deployments should only use approved Registry Models*). To assign or update this policy, follow the steps in [Built-in policy for model deployment](model-deployment-policy.md). The publisher names and asset IDs that you allow apply to model router selections automatically.
 
+> [!NOTE]
+> To deploy and use model router while the approved-models policy is assigned, model router and every model included in the deployment must satisfy the policy through either an allowed publisher or an allowed asset ID. If you use publisher-based approval, include `Microsoft` for model router and each publisher represented in the selected routing set, such as `Anthropic` for Claude models. Publisher names are listed on each model's card in the [model catalog](/azure/ai-foundry/how-to/model-catalog-overview). With ARM or CLI, any noncompliant model in the requested set causes the entire deployment to fail. In the Foundry portal, noncompliant models can be excluded and a compliant subset deployed.
+
 **Model router-specific governance (preview)**: Additional built-in policy definitions are available in public preview to extend governance to other aspects of model router deployments, including deployment regions, required routing rules, and logging configurations. You can assign these definitions from the Azure Policy **Definitions** catalog alongside the approved-models policy to enforce a broader set of routing standards across your environment.
 
 > [!TIP]
