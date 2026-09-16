@@ -4414,6 +4414,16 @@
       "source_path_from_root": "/articles/foundry/how-to/develop/evaluate-admin-connected-models.md",
       "redirect_url": "/azure/foundry/observability/how-to/evaluate-admin-connected-models",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/agents/how-to/tools/web-iq.md",
+      "redirect_url": "/azure/foundry/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/agents/how-to/tools/shell.md",
+      "redirect_url": "/azure/foundry/",
+      "redirect_document_id": false
     }
   ]
 }
