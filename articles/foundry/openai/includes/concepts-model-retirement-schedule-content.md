@@ -139,8 +139,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
-| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | Hugging Face versions available through managed compute deployment: coherelabs-command-a-plus-05-2026-fp8, coherelabs-command-a-plus-05-2026-bf16, coherelabs-command-a-plus-05-2026-w4a4 |
+| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | coherelabs-command-a-plus-05-2026-fp8<sup>1</sup>, coherelabs-command-a-plus-05-2026-bf16<sup>1</sup>, coherelabs-command-a-plus-05-2026-w4a4<sup>1</sup> |
 | embed-v-4-0 | 1 | GA | — | — |
+
+<sup>1</sup> Available through the Hugging Face collection for managed compute deployment.
 
 ### DeepSeek
 
