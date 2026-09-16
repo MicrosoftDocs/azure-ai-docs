@@ -1015,7 +1015,7 @@ For archive entries, use an `application/zip` media type or a `.zip` URL suffix.
 When an archive entry supplies a `digest`, it must use `sha256:` followed by 64
 lowercase hexadecimal characters. Agent Framework verifies the digest against
 the decoded archive bytes before extraction. An invalid or mismatched digest
-skips that archive without blocking other entries; an omitted or null digest is
+skips that archive without blocking other entries. An omitted or null digest is
 allowed. Digest verification applies only to `archive` entries, not
 `skill-md` entries or their supporting resources. A matching digest proves
 consistency with the index, not that the MCP server is trustworthy.

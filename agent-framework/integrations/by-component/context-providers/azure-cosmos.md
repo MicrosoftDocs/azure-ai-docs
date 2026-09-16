@@ -78,7 +78,7 @@ pip install agent-framework-azure-cosmos --pre
 
 ### Configure `CosmosHistoryProvider`
 
-The Python provider accepts either an Azure credential or an account key and
+The Python provider accepts either an Azure credential or an account key. It
 uses `session_id` as the partition key. Provider instances that use the same
 account, database, container, nonempty `session_id`, and `source_id` access the
 same persisted history. The `source_id` filters history within the partition.

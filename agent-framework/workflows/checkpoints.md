@@ -101,8 +101,7 @@ Built-in orchestration builders accept an optional `name` that becomes the
 workflow name used to group and discover checkpoints. Their stable defaults are
 `Concurrent`, `Sequential`, `GroupChat`, `Handoff`, and `Magentic`. Set an
 explicit name when multiple workflows of the same orchestration type share
-checkpoint storage, and use the same name when you list or resume their
-checkpoints.
+checkpoint storage. Use the same name when you list or resume their checkpoints.
 
 # [In-Memory](#tab/py-ckpt-inmemory)
 
