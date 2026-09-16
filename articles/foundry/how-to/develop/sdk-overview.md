@@ -85,6 +85,9 @@ Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
+For Maven, use the `com.azure:azure-ai-projects:2.2.0` and
+`com.azure:azure-ai-agents:2.2.0` dependencies.
+
 Add these dependencies to your Maven `pom.xml` for Foundry projects.
 
 ```xml
@@ -238,6 +241,8 @@ Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectc
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string projectEndpoint =
     "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
@@ -252,6 +257,7 @@ ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
 ResponseResult response = responseClient.CreateResponse(
     "What is the size of France in square miles?");
 Console.WriteLine($"Response output: {response.GetOutputText()}");
+#pragma warning restore OPENAI001
 ```
 
 ```output
@@ -417,8 +423,8 @@ CreateResponseOptions options = new()
             "What is the size of France in square miles?")
     },
 };
-var response = responsesClient.CreateResponse(options);
-Console.WriteLine($"Response output: {response.Value.GetOutputText()}");
+var azureOpenAIResponse = responsesClient.CreateResponse(options);
+Console.WriteLine($"Response output: {azureOpenAIResponse.Value.GetOutputText()}");
 #pragma warning restore OPENAI001
 ```
 ```output
@@ -503,13 +509,13 @@ var requestBody = new
     },
     max_tokens = 1048
 };
-var response = await httpClient.PostAsync(
+var anthropicResponse = await httpClient.PostAsync(
     endpoint,
     new StringContent(
         JsonSerializer.Serialize(requestBody), Encoding.UTF8,
         "application/json"));
 
-string result = await response.Content.ReadAsStringAsync();
+string result = await anthropicResponse.Content.ReadAsStringAsync();
 Console.WriteLine(result);
 ```
 
