@@ -159,12 +159,11 @@ from azure.ai.projects.models import (
 PROJECT_ENDPOINT = "your_project_endpoint"
 FABRIC_CONNECTION_NAME = "my-fabric-connection"
 
-# Create clients to call Foundry API
+# Create a client to call the Foundry API
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
-openai = project.get_openai_client()
 
 # Get connection ID from connection name
 fabric_connection = project.connections.get(FABRIC_CONNECTION_NAME)
@@ -188,13 +187,15 @@ agent = project.agents.create_version(
 )
 print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
+# Create an OpenAI client that targets the agent endpoint
+openai = project.get_openai_client(agent_name=agent.name)
+
 user_input = input("Enter your question for Fabric (e.g., 'Tell me about sales records'): \n")
 
 # Send the user query and force the agent to use the Fabric tool
 response = openai.responses.create(
     tool_choice="required",
     input=user_input,
-    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response output: {response.output_text}")
