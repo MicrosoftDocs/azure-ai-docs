@@ -70,7 +70,7 @@ To solve this issue, please follow one of the [Required action](#required-action
 
 ### Cloud-only deployments
 
-All cloud STT/TTS calls are affected. please follow one of the [Required action](#required-action) options.
+All cloud STT/TTS calls are affected. Please follow one of the [Required action](#required-action) options.
 
 > [!WARNING]
 > Cloud-only deployments have no fallback. After certificate renewal begins using partitioned CRLs, speech recognition and synthesis calls can fail if you haven't applied the fix. The exact timing depends on when your region's TLS certificates are renewed, but you should take action before July 1, 2026 to avoid any risk of disruption.
