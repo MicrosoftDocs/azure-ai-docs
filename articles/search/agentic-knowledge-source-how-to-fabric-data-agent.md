@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a Fabric Data Agent knowledge source and authorize queries on behalf of end users so that agentic retrieval can return live, permission-aware answers, tables, and charts from Fabric data.
 ---
 
 # Create a Fabric Data Agent knowledge source (preview)

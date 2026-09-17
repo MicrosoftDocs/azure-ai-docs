@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create an indexed Azure SQL knowledge source with column mappings, authentication, and change detection so that rows from a SQL table or view can ground agentic retrieval responses.
 ---
 
 # Create an indexed Azure SQL knowledge source (preview)

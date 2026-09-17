@@ -6,6 +6,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/18/2026
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to configure asset storage and access, enable image serving, and inspect its retrieval activity so that answer synthesis can use document-embedded images and my application can retrieve authorized image assets.
 ---
 
 # Surface document-embedded images in agentic retrieval (preview)

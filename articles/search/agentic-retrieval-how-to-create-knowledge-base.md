@@ -9,6 +9,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create and configure a knowledge base that references my knowledge sources and defines retrieval behavior so that my application can run agentic retrieval.
 ---
 
 # Create a knowledge base in Azure AI Search

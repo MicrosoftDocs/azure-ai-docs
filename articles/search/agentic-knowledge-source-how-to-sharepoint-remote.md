@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 09/03/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a remote SharePoint knowledge source, scope its live content, and handle query-time user authorization and SharePoint response data so that agentic retrieval can use content each user is permitted to access.
 ---
 
 # Create a remote SharePoint knowledge source (preview)
