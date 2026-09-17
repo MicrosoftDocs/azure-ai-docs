@@ -60,7 +60,7 @@ az ml model show \
   --registry-name <your-registry>
 ```
 
-Look for `default_deployment_template.asset_id` in the output. The `az ml model show` output doesn't surface `allowed_deployment_templates` yet — use the **REST** tab to see the full allow-list.
+Look for `default_deployment_template.asset_id` and `allowed_deployment_templates[].asset_id` in the output.
 
 # [Python SDK](#tab/python)
 
@@ -75,7 +75,7 @@ registry_client = MLClient(
 
 model = registry_client.models.get(name="my-model", version="1")
 print(model.default_deployment_template)
-# The SDK Model object doesn't expose allowed_deployment_templates yet; use the REST tab to see the full allow-list.
+print(model.allowed_deployment_templates)
 ```
 
 ---
@@ -356,7 +356,7 @@ az ml online-deployment delete --name blue --endpoint-name my-endpoint \
 
 ## Troubleshooting
 
-- **The instance type isn't allowed for this deployment template.** The `instance_type` you set on the deployment isn't in the deployment template's `allowed_instance_types` list. Use `az ml deployment-template show` to list the allowed instance types, or omit `instance_type` to use the deployment template's `default_instance_type`.
+- **The instance type isn't allowed for this deployment template.** The `instance_type` you set on the deployment isn't in the deployment template's `allowed_instance_types` list. Use `az ml deployment-template show` to list the allowed instance types, then set `instance_type` to one of them.
 - **The environment isn't a registry-scoped reference.** Deployment templates must reference an environment with the `azureml://registries/<registry-name>/environments/<name>/versions/<version>` syntax. Share workspace environments to a registry before you reference them.
 
 ## Related content

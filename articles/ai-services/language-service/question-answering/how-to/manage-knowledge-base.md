@@ -1,7 +1,7 @@
 ---
 title: Manage projects - custom question answering
 description: Manage custom question answering projects in Microsoft Foundry, including sources, project settings, project lifecycle tasks, export, import, refresh, and smart URL refresh.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar

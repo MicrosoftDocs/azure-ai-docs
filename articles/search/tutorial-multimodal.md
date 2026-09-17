@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Extract, chunk, and embed multimodal content with the Document Layout skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this tutorial, you'll build a multimodal indexer pipeline that performs these tasks:
 
 > [!div class="checklist"]
@@ -112,7 +114,7 @@ Most of these skills depend on a [deployed model](/azure/ai-foundry/foundry-mode
 | -- | -- | -- | -- | -- |
 | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | None (built-in) | Azure AI Search | See [Configure access](#configure-access) |
 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | [Document Intelligence 4.0](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0&preserve-view=true) | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
-| [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | [Azure AI Vision multimodal 4.0](/azure/ai-services/computer-vision/concept-image-retrieval) | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
+| [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | [Azure AI Vision multimodal 4.0](/azure/ai-services/computer-vision/concept-image-retrieval) | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Call an LLM to generate text descriptions of image content. | [GPT-5 or GPT-4](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure) | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated textual image descriptions. | [Text-embedding-3 or text-embedding-ada-002](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#embeddings) | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
 
@@ -189,7 +191,7 @@ The [azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-re
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
-POST {{searchUrl}}/datasources?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 
@@ -218,7 +220,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('demo-multimodal-ds')?api-version=2026-05-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('demo-multimodal-ds')?api-version=2026-08-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -1675,7 +1677,7 @@ This pattern uses:
 
 ```http
 ### Create and run an indexer
-POST {{searchUrl}}/indexers?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 
@@ -1712,7 +1714,7 @@ You can start searching as soon as the first document is loaded. This is an unsp
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1748,7 +1750,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2026-08-01-preview "
 }
 ```
 
@@ -1761,7 +1763,7 @@ Use a filter to exclude all non-image content. The `$filter` parameter only work
 For filters, you can also use logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
 
 ```http
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1787,7 +1789,7 @@ Query for text or images with content related to energy, returning the content I
 This query is full-text search only, but you can [query the vector field](vector-search-how-to-query.md) for similarity search.
 
 ```http
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -1804,21 +1806,21 @@ Indexers can be reset to clear the high-water mark, which allows a full rebuild.
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2026-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2026-05-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2026-08-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 ```

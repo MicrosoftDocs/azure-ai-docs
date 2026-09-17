@@ -22,6 +22,8 @@ translation.priority.mt:
 
 # OData `search.in` function in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A common scenario in [OData filter expressions](query-odata-filter-orderby-syntax.md) is to check whether a single field in each document is equal to one of many possible values. For example, this is how some applications implement [security trimming](search-security-trimming-for-azure-search.md) -- by checking a field containing one or more principal IDs against a list of principal IDs representing the user issuing the query. One way to write a query like this is to use the [`eq`](search-query-odata-comparison-operators.md) and [`or`](search-query-odata-logical-operators.md) operators:
 
 ```odata-filter-expr

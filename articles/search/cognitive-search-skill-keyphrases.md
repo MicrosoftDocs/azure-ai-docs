@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 ---
 #	Key Phrase Extraction cognitive skill
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Key Phrase Extraction** skill evaluates unstructured text, and for each record, returns a list of key phrases. This skill uses the [Key Phrase](/azure/ai-services/language-service/key-phrase-extraction/overview) machine learning models provided by [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 This capability is useful if you need to quickly identify the main talking points in the record. For example, given input text "The food was delicious and there were wonderful staff", the service returns "food" and "wonderful staff".

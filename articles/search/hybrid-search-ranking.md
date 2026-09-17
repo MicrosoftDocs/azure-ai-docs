@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Reciprocal Rank Fusion (RRF) is an algorithm that evaluates search scores from multiple previously ranked results to produce a single, unified result set. In Azure AI Search, RRF is used when two or more queries execute in parallel, such as [hybrid queries](hybrid-search-overview.md) and [multiple vector queries](vector-search-overview.md). Each individual query produces a ranked result set, and RRF merges and homogenizes those rankings into a single result set for the query response.
 
 RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings and give higher importance to items that are ranked higher in multiple lists. This approach can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.
@@ -128,7 +130,7 @@ In this example, the `@search.score` (weighted) values go to the RRF ranking mod
 
 By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full-text search, and the most similar `k` matches for vector search. In a hybrid query, `top` determines the number of results in the response. Based on defaults, the top 50 highest ranked matches of the unified result set are returned.
 
-Often, the search engine finds more results than `top` and `k`. To return more results, use the paging parameters `top`, `skip`, and `next`. Paging is how you determine the number of results on each logical page and navigate through the full payload. You can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to larger values (the default is 1,000) to return more results from the text side of hybrid query.
+Often, the search engine finds more results than `top` and `k`. To return more results, use the paging parameters `top`, `skip`, and `next`. Paging is how you determine the number of results on each logical page and navigate through the full payload. You can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to larger values (the default is 1,000) to return more results from the text side of hybrid query.
 
 By default, full-text search is subject to a maximum limit of 1,000 matches (see [API response limits](search-limits-quotas-capacity.md#api-response-limits)). Once 1,000 matches are found, the search engine no longer looks for more.
 

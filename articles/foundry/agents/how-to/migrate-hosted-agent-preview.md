@@ -3,7 +3,7 @@ title: "Migrate hosted agents to the latest version"
 description: "Migrate your hosted agents from the initial public preview to the latest version, including API, SDK, CLI, protocol library, and identity model changes."
 author: aahill
 ms.author: aahi
-ms.date: 06/30/2026
+ms.date: 08/06/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -16,15 +16,17 @@ ai-usage: ai-assisted
 This article shows you how to migrate hosted agents from the initial public preview to the latest version of Foundry Agent Service. The latest version introduces a new hosting backend, protocol libraries, identity model, and management APIs.
 
 > [!IMPORTANT]
-> The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically and will be supported only until May 22, 2026. 
+> The initial public preview hosting backend is retiring. You must redeploy your agents by using the new model described in this article. Existing agent deployments on the old backend aren't migrated automatically and are supported only until August 20, 2026. 
 
 This guide applies to you if you deployed a Hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map your existing preview deployment to the latest hosting model and update commands or code.
 
 ## What changed
 
 The latest version updates the existing platform with a session-based sandbox model. Key changes:
 
-- **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after 15 minutes of inactivity. See [CLI command mapping](#cli-command-mapping).
+- **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after the configured idle timeout, which defaults to 15 minutes. See [CLI command mapping](#cli-command-mapping).
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
@@ -35,7 +37,7 @@ The latest version updates the existing platform with a session-based sandbox mo
 
 ## Prerequisites
 
-- [Azure AI Projects SDK](https://pypi.org/project/azure-ai-projects/) version 2.1.0 or later (was 2.0.0).
+- [Azure AI Projects SDK](https://pypi.org/project/azure-ai-projects/) version 2.3.0 or later (was 2.0.0).
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later with the updated Foundry agents extension:
 
     ```bash
@@ -49,7 +51,7 @@ The following steps summarize the end-to-end migration. Each links to the detail
 1. **Update protocol libraries and agent code** — Replace framework adapters with the new protocol libraries and update your agent entry point. Choose your path: [Agent Framework](#migrate-agent-framework-agents), [LangGraph](#migrate-langgraph-agents), or [custom/BYO](#migrate-custom-or-byo-agents).
 1. **Update API, CLI, and SDK calls** — Remove retired CLI commands, update SDK methods, and switch to the dedicated agent endpoint. See [Removed APIs](#removed-apis), [CLI command mapping](#cli-command-mapping), [SDK method changes](#sdk-method-changes), and [Agent invocation changes](#agent-invocation-changes).
 1. **Update identity and RBAC** — Grant downstream resource access to the agent's dedicated Entra identity. See [Identity and RBAC changes](#identity-and-rbac-changes).
-1. **Update Azure Developer CLI tooling** — Install the latest `azd` Foundry agents extension and update `agent.yaml`. See [Azure Developer CLI changes](#azure-developer-cli-changes).
+1. **Update Azure Developer CLI tooling** -- Install the latest `azd` Foundry agents extension and update `azure.yaml`. See [Azure Developer CLI changes](#azure-developer-cli-changes).
 1. **Redeploy and verify** — Build your container image, deploy using `azd up` or the SDK, and confirm the version reaches `active` status.
 
 For a task-by-task summary, see the [Migration checklist](#migration-checklist) at the end of this article.
@@ -160,10 +162,10 @@ server.run()
 
 Key differences:
 
-- `AzureAIAgentClient` → `FoundryChatClient` (from `agent_framework.foundry`).
-- `ChatAgent` → `Agent` (from `agent_framework`).
-- `@ai_function` → `@tool(approval_mode="never_require")` with `Annotated` type hints for parameter descriptions.
-- `from_agent_framework(agent).run()` → `ResponsesHostServer(agent).run()`.
+- `AzureAIAgentClient` -> `FoundryChatClient` (from `agent_framework.foundry`).
+- `ChatAgent` -> `Agent` (from `agent_framework`).
+- `@ai_function` -> `@tool(approval_mode="never_require")` with `Annotated` type hints for parameter descriptions.
+- `from_agent_framework(agent).run()` -> `ResponsesHostServer(agent).run()`.
 - Add `default_options={"store": False}` because conversation history is managed by the hosting platform.
 
 For MCP tools, use `client.get_mcp_tool()` instead of defining tools in the `create_version` API:
@@ -224,7 +226,7 @@ from langgraph.prebuilt import create_react_agent
 
 
 FOUNDRY_PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-MODEL = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+MODEL = os.environ.get("FOUNDRY_MODEL_NAME", "gpt-4.1")
 
 _token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://ai.azure.com/.default"
@@ -297,8 +299,8 @@ if __name__ == "__main__":
 
 Key differences:
 
-- `azure-ai-agentserver-langgraph` → `azure-ai-agentserver-responses`. The LangGraph-specific adapter is removed.
-- `from_langgraph(graph).run()` → Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that returns a `TextResponse`.
+- `azure-ai-agentserver-langgraph` -> `azure-ai-agentserver-responses`. The LangGraph-specific adapter is removed.
+- `from_langgraph(graph).run()` -> Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that returns a `TextResponse`.
 - Uses `ChatOpenAI` with `base_url=f"{FOUNDRY_PROJECT_ENDPOINT}/openai/v1"` instead of `AzureChatOpenAI`. This uses the project-scoped endpoint, which requires only project-level permissions.
 - Conversation history is fetched via `context.get_history()` and converted to LangChain message types for multi-turn support.
 - LangGraph agent logic (tools, graph creation) is unchanged. For fine-grained control over function calls, reasoning items, or multiple output types, use `ResponseEventStream` instead of `TextResponse`.
@@ -406,10 +408,10 @@ The protocol version format changed from `"v1"` to semver `"1.0.0"`:
 
 ```python
 # Initial preview
-ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")
+ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="v1")
 
 # Latest version
-ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")
+ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
 ```
 
 ## Container protocol 2.0.0
@@ -426,7 +428,7 @@ Protocol 2.0.0 also lets one session safely serve multiple users. On 1.0.0, a se
 
 To migrate:
 
-1. Set the container protocol version to `2.0.0` in your `agent.yaml`.
+1. Set the container protocol version to `2.0.0` in the `azure.ai.agent` service in `azure.yaml`.
 1. Forward the per-request `x-agent-foundry-call-id` header on outbound calls to Foundry services (Storage, Toolbox, and other agents). The official SDK adapters do this automatically when you call those services through their clients. If you make raw HTTP calls yourself, read `x-agent-foundry-call-id` from the inbound request and add it, unchanged, to your outbound request. Don't parse the value - the platform resolves the caller's identity from it.
 1. To partition data your container stores per user, read the `x-agent-user-id` header. For a worked example, see [Multiplex multiple users in one hosted agent session](multiplex-session-users.md).
 
@@ -439,7 +441,7 @@ The following APIs from the initial preview aren't available in the latest versi
 | Removed API | Reason |
 |-------------|--------|
 | `az cognitiveservices agent start` | Compute lifecycle is automatic — no manual start needed |
-| `az cognitiveservices agent stop` | Compute deprovisions automatically after 15 minutes of inactivity |
+| `az cognitiveservices agent stop` | Compute deprovisions automatically after the configured idle timeout |
 | `az cognitiveservices agent update` | Replaced by `PATCH /agents/{name}` for endpoint routing; create a new version for runtime changes |
 | `az cognitiveservices agent delete-deployment` | Delete the version directly instead |
 | `az cognitiveservices agent list-versions` | Use `az rest --method GET` against the REST API |
@@ -466,13 +468,13 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 
 | Initial preview | Latest version |
 |-----------------|-------------------|
-| `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.1.0"` |
+| `pip install "azure-ai-projects>=2.0.0"` | `pip install "azure-ai-projects>=2.3.0"` |
 | `project.get_openai_client()` with `extra_body={"agent_reference": {"name": ..., "type": "agent_reference"}}` | `project.get_openai_client(agent_name="my-agent")` — client is pre-bound, no `extra_body` needed |
-| `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")` |
+| `ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")` |
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
-| Not available | `project.beta.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
-| Not available | `project.beta.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
-| Not available | `project.beta.agents.patch_agent_details()` for endpoint routing and traffic splitting |
+| Not available | `project.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
+| Not available | `project.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
+| Not available | `project.agents.update_details()` for endpoint version routing |
 | Not available | `metadata={"enableVnextExperience": "true"}` parameter on `client.agents.create_version()` |
 
 ## Agent invocation changes
@@ -499,29 +501,17 @@ response = openai_client.responses.create(
 print(response.output_text)
 ```
 
-> [!NOTE]
-> Using `agent_name` requires `allow_preview=True` when constructing the `AIProjectClient`:
->
-> ```python
-> project = AIProjectClient(
->     credential=DefaultAzureCredential(),
->     endpoint=PROJECT_ENDPOINT,
->     allow_preview=True,
-> )
-> ```
-
 The `agent_name` parameter tells the SDK to target the agent's dedicated endpoint. For REST calls, use the agent endpoint directly:
 
 ```bash
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{"input": "Hello!", "model": "gpt-4.1", "stream": false}'
 ```
 
-> [!IMPORTANT]
-> REST calls to Hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
+> [!NOTE]
+> Earlier preview builds required a `Foundry-Features: HostedAgents=V1Preview` header on REST calls to hosted agent endpoints. As of `azure-ai-projects` 2.3.0 on the GA `v1` API, hosted agents are generally available and this header is no longer required.
 
 Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
 
@@ -531,11 +521,11 @@ The agent lifecycle states changed from a manual state machine to automatic prov
 
 | Initial preview state | Latest version status |
 |-----------------------|--------------------------|
-| `Stopped` (initial) | Not applicable — no stopped state |
-| `Starting` → `Started` | `creating` → `active` |
+| `Stopped` (initial) | Not applicable - no stopped state |
+| `Starting` -> `Started` | `creating` -> `active` |
 | `Failed` | `failed` |
-| `Running` → `Stopping` → `Stopped` | Not applicable — compute deprovisions automatically |
-| Not available | `deleting` → `deleted` |
+| `Running` -> `Stopping` -> `Stopped` | Not applicable - compute deprovisions automatically |
+| Not available | `deleting` -> `deleted` |
 
 ## Identity and RBAC changes
 
@@ -558,6 +548,9 @@ The identity model changed significantly:
 
 ## Azure Developer CLI changes
 
+> [!NOTE]
+> Agent manifests (`agent.manifest.yaml`) and standalone agent definitions (`agent.yaml`) are deprecated. As of the Foundry `azd` extensions (`azure.ai.agents` 1.0.0-beta.1), all hosted agent configuration lives in a single `azure.yaml`. See [Author azure.yaml for hosted agents](author-azure-yaml.md).
+
 ### Updated commands
 
 | Initial preview | Latest version |
@@ -579,7 +572,7 @@ The identity model changed significantly:
     azd ext install azure.ai.agents
     ```
 
-2. If your `agent.yaml` specifies `version: "v1"` for protocol versions, change it to `version: "1.0.0"`.
+1. If your `azure.yaml` specifies `version: "v1"` for protocol versions in an `azure.ai.agent` service, change it to `version: "1.0.0"`.
 
 ## Log streaming changes
 
@@ -608,11 +601,11 @@ The following capabilities from the initial preview aren't yet available in the 
 Use this checklist to track your migration:
 
 - Update `azure-ai-projects` SDK to version 2.1.0 or later.
-- **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, etc.). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent).run()`. Update `AzureAIAgentClient` → `FoundryChatClient`, `ChatAgent` → `Agent`, and `@ai_function` → `@tool`.
+- **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, and others). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent).run()`. Update `AzureAIAgentClient` to `FoundryChatClient`, `ChatAgent` to `Agent`, and `@ai_function` to `@tool`.
 - **LangGraph users**: Replace `azure-ai-agentserver-langgraph` with `azure-ai-agentserver-responses`. Replace `from_langgraph(graph).run()` with a `ResponsesAgentServerHost` handler that returns a `TextResponse`. Use `ChatOpenAI` with the project-scoped endpoint instead of `AzureChatOpenAI`. Add `langchain-mcp-adapters` and `mcp` if using Foundry Toolbox.
 - **Custom/BYO users**: Replace framework adapter packages with protocol libraries (`azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`). Rewrite agent entry points using `ResponsesAgentServerHost` or `InvocationAgentServerHost`.
-- Update protocol version strings from `"v1"` to `"1.0.0"` in code and `agent.yaml`.
-- Update `agent.yaml` if using `azd` (protocol version format, remove any `tools` definitions from agent definition).
+- Update protocol version strings from `"v1"` to `"1.0.0"` in code and `azure.yaml`.
+- Update `azure.yaml` if using `azd` (protocol version format, and agent settings under the `azure.ai.agent` service).
 - Remove `az cognitiveservices agent` CLI calls from scripts and CI/CD pipelines; replace with `az rest` or `azd ai agent` commands.
 - Remove capability host creation steps from provisioning scripts.
 - Update agent invocation code — use `project.get_openai_client(agent_name=...)` instead of `extra_body` with `agent_reference`.

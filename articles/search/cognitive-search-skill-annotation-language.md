@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 ---
 # Skill context and input annotation language
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article is the reference documentation for skill context and input syntax. It's a full description of the expression language used to construct paths to nodes in an enriched document.
 
 Azure AI Search skills can use and [enrich the data coming from the data source and from the output of other skills](cognitive-search-defining-skillset.md).

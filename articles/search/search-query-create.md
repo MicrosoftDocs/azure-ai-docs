@@ -13,6 +13,8 @@ ms.update-cycle: 180-days
 
 # Create a full-text query in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're building a query for [full text search](search-lucene-query-architecture.md), this article provides steps for setting up the request. It also introduces a query structure, and explains how field attributes and linguistic analyzers can affect query outcomes.
 
 ## Prerequisites

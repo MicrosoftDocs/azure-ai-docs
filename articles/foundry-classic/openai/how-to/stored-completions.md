@@ -6,13 +6,17 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 12/6/2025
+ms.date: 7/6/2026
 author: alvinashcraft
 ms.author: aashcraft
 recommendations: false
+ai-usage: ai-assisted
 ---
 
-# Azure OpenAI stored completions & distillation (preview) (classic)
+# Azure OpenAI stored completions and distillation (deprecated)
+
+> [!WARNING]
+> Stored completions retire on October 15, 2026. For migration guidance, see [Migrate from stored completions to Responses API and Agent Traces](./stored-completions-retirement.md).
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

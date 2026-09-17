@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Data sources gallery
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Find a data connector from Microsoft or a partner that works with [an indexer](search-indexer-overview.md) to simplify data ingestion into a search index.
 
 > [!NOTE]

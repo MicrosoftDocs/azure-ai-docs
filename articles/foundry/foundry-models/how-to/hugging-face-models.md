@@ -43,7 +43,7 @@ Models sourced from Hugging Face are Non-Microsoft Products that aren't tested o
    - **Cognitive Services Contributor** (or **Foundry Owner** / **Foundry Account Owner**) to create, update, and delete managed compute deployments.
    - **Foundry User** to call the deployment with Microsoft Entra ID from the playground, SDK, or REST.
    For role definitions, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md#managed-compute-control-plane-operations).
-- Available GPU managed compute quota in your Azure subscription for the selected accelerator family. Foundry managed compute quota is separate from Azure VM quota and uses a different request path. In the [Foundry portal](https://ai.azure.com/nextgen), go to **Operate** > **Quota** > **Managed compute** > **Request quota** to check your current allocation or request an increase. For detailed guidance, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
+- Available GPU managed compute quota in your Azure subscription for the selected accelerator family. Foundry managed compute quota is separate from Azure VM quota and uses a different request path. In the [Foundry portal](https://ai.azure.com/nextgen), go to **Manage** > **Quota** > **Managed compute** > **Request quota** to check your current allocation or request an increase. For detailed guidance, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
 
 ## Deploy a Hugging Face model
 

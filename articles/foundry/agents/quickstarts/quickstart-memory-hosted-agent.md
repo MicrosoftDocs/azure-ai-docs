@@ -1,15 +1,17 @@
 ---
 title: "Quickstart: Give a hosted agent persistent memory"
 description: "Provision a Foundry memory store, then deploy a Python hosted agent that remembers facts about each user across sessions by using FoundryMemoryProvider."
-author: aahill
-ms.author: aahi
-ms.date: 06/18/2026
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: lindazqli
+ms.date: 07/23/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
+zone_pivot_groups: hosted-agent-memory-quickstart-method
 # customer intent: As a developer, I want to add a persistent memory store to my hosted agent so that it remembers facts a user shared in earlier sessions.
 ---
 
@@ -21,18 +23,67 @@ In this quickstart, you give a [hosted agent](../concepts/hosted-agents.md) pers
 
 You complete two parts:
 
-- **Provision a memory store** with a single command. A bundled provisioning hook runs after `azd provision` to create the store and wire it to the agent. The store uses a chat model and an embedding model to extract and index user-profile memories.
+- **Provision a memory store** and wire it to the agent. In the Azure
+    Developer CLI path, a bundled provisioning hook runs after `azd provision`.
+    In the Python path, you create the store directly with the SDK. The store
+    uses a chat model and an embedding model to extract and index user-profile
+    memories.
 - **Deploy a hosted agent** that reads and writes the store through `FoundryMemoryProvider`. The provider retrieves relevant memories before each model call and updates the store with new facts after each turn.
 
-The agent code, memory provider, provisioning hook, and authentication come from the Foundry memory sample, so you focus on the workflow rather than the implementation.
+The agent code, memory provider, and authentication come from the Foundry
+memory sample, so you focus on the workflow rather than the implementation.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help provision the memory store, wire it to your hosted agent, and test recall behavior.
 
 ## Prerequisites
 
 This quickstart builds on the hosted-agent toolchain. Complete the [Prerequisites](quickstart-hosted-agent.md#prerequisites) in the hosted agent quickstart first, which cover the Azure subscription, project roles, Python, the Azure Developer CLI (`azd`), and the `microsoft.foundry` extension.
 
+:::zone pivot="azd"
+
+You use Azure Developer CLI in this path to scaffold the sample, provision the
+memory store through a bundled `postprovision` hook, run the agent locally, and
+deploy it.
+
+:::zone-end
+
+:::zone pivot="python"
+
+You use the Python SDK in this path to create the memory store with
+`AIProjectClient.beta.memory_stores.create(...)`, upload the hosted-agent code
+as a new version, route traffic to it temporarily, and validate that the same
+signed-in user is remembered across separate calls.
+
+Install the Python packages used in this path:
+
+```bash
+pip install "azure-ai-projects>=2.3.0" azure-identity python-dotenv
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Use the .NET SDK in this path to create the memory store with
+`AIProjectClient.MemoryStores.CreateMemoryStore(...)`, upload the hosted-agent
+code as a new version, route traffic to it temporarily, and validate that the
+same signed-in user is remembered across separate calls.
+
+You also need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later.
+
+:::zone-end
+
 You also need an embedding model deployment in your Foundry project, such as `text-embedding-3-small`. The memory store uses it to index memories. The agent's chat model, such as `gpt-4o`, can be the deployment you already use for hosted agents.
 
-Your identity also needs the **Cognitive Services OpenAI User** role on the Foundry project scope, in addition to the roles in the hosted agent prerequisites. The memory store uses this role to call the embedding deployment. Without it, memory writes fail with a `401` error and the store stays empty.
+Your identity needs the **Foundry User** role on the Foundry project scope
+through the hosted-agent prerequisites, and it also needs the **Cognitive
+Services OpenAI User** role on the same scope. The memory store uses Foundry
+project data-plane access plus the embedding deployment. Without the OpenAI
+role, memory writes fail with a `401` error and the store stays empty.
+
+[!INCLUDE [Role rename note](../../includes/role-rename-note.md)]
+
+:::zone pivot="azd"
 
 ## Step 1: Initialize the hosted agent
 
@@ -41,7 +92,7 @@ Initialize a hosted agent from the Foundry memory sample. Initialization copies 
 ```powershell
 mkdir my-memory-agent
 cd my-memory-agent
-azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/13-foundry-memory/agent.manifest.yaml"
+azd ai agent init -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/13-foundry-memory/azure.yaml"
 ```
 
 Follow the prompts to select your subscription, project, and a model deployment. If you don't have a Foundry project, `azd ai agent init` guides you through creating one.
@@ -85,7 +136,10 @@ The hook is self-locating and idempotent. It runs correctly no matter which dire
 `azd provision` creates or reuses your Foundry project and chat model deployment. Then the `postprovision` hook:
 
 - Creates the memory store with the user-profile capability enabled and verifies it on the service.
-- Sets `MEMORY_STORE_NAME` so the agent reads and writes that store. The hook persists the name to your `azd` environment for local runs and into the agent's `agent.yaml` so `azd deploy` ships it to the container.
+- Sets `MEMORY_STORE_NAME` so the agent reads and writes that store. The hook persists the name to your `azd` environment for local runs and into the service environment in `azure.yaml` so `azd deploy` ships it to the container.
+
+The CLI path doesn't show a separate `create memory store` command because the
+bundled hook runs that creation logic for you as part of `azd provision`.
 
 The hook defaults the store name to `agent_framework_memory`. To use a different name, set it before you provision:
 
@@ -119,7 +173,7 @@ azd env set MEMORY_STORE_NAME "<your-store-name>"
 
 ## Step 5: Deploy to Foundry Agent Service
 
-Build and deploy the agent container. The `postprovision` hook already writes `MEMORY_STORE_NAME` into the agent's `agent.yaml`, so the deployed container reads the same store:
+Deploy the agent source code. `azd` packages the source as a ZIP file and uploads it to Foundry, which resolves dependencies and builds the hosted agent remotely. The `postprovision` hook already writes `MEMORY_STORE_NAME` into `azure.yaml`, so the deployed agent reads the same store:
 
 ```powershell
 azd deploy
@@ -139,11 +193,524 @@ azd ai agent invoke --new-session "What's my name, and is there any food I shoul
 
 The deployed agent answers with the remembered name and allergy.
 
+:::zone-end
+
+:::zone pivot="python"
+
+## Step 1: Create or choose a Foundry project
+
+1. Open [Foundry portal](https://ai.azure.com) and create a Foundry project, or
+   select an existing one.
+1. In the project, deploy:
+
+   * A chat-capable model such as `gpt-5.4-mini`.
+   * An embedding model such as `text-embedding-3-small`.
+
+1. Copy the project endpoint from **Overview** and the deployment names from
+   **Build** > **Deployments**.
+
+## Step 2: Download the Foundry memory sample
+
+Clone the Foundry samples repo:
+
+```bash
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+Create a working folder for the deployment scripts. In that folder, create a
+`.env` file with these values:
+
+```text
+FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-chat-model-deployment-name>
+AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME=<your-embedding-model-deployment-name>
+FOUNDRY_HOSTED_AGENT_NAME=memory-agent
+MEMORY_STORE_NAME=agent_framework_memory
+FOUNDRY_SAMPLE_PATH=<full-path-to-foundry-samples/samples/python/hosted-agents/agent-framework/responses/13-foundry-memory/src/agent-framework-agent-foundry-memory-responses>
+```
+
+## Step 3: Provision the memory store with Python
+
+This script is safe to rerun. It first calls `get(...)` to check if the
+memory store already exists. It only calls `create(...)` if the store isn't found.
+
+Create a file named `provision_memory_store.py` in the same working folder as
+`.env`:
+
+```python
+import asyncio
+import os
+
+from azure.ai.projects.aio import AIProjectClient
+from azure.ai.projects.models import (
+    MemoryStoreDefaultDefinition,
+    MemoryStoreDefaultOptions,
+)
+from azure.core.exceptions import ResourceNotFoundError
+from azure.identity.aio import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+async def main() -> None:
+    endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+    memory_store_name = os.environ["MEMORY_STORE_NAME"]
+    chat_model = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+    embedding_model = os.environ["AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME"]
+
+    async with (
+        DefaultAzureCredential() as credential,
+        AIProjectClient(
+            endpoint=endpoint,
+            credential=credential,
+            allow_preview=True,
+        ) as project,
+    ):
+        try:
+            existing = await project.beta.memory_stores.get(name=memory_store_name)
+            print(
+                f"Memory store '{existing.name}' already exists "
+                f"(id={existing.id}); leaving as-is."
+            )
+            return
+        except ResourceNotFoundError:
+            pass
+
+        definition = MemoryStoreDefaultDefinition(
+            chat_model=chat_model,
+            embedding_model=embedding_model,
+            options=MemoryStoreDefaultOptions(
+                chat_summary_enabled=False,
+                user_profile_enabled=True,
+                user_profile_details=(
+                    "Avoid irrelevant or sensitive data, such as age, "
+                    "financials, precise location, and credentials"
+                ),
+            ),
+        )
+
+        created = await project.beta.memory_stores.create(
+            name=memory_store_name,
+            description="Memory store for the hosted-agent memory quickstart",
+            definition=definition,
+        )
+        print(f"Created memory store '{created.name}' (id={created.id}).")
+
+
+asyncio.run(main())
+```
+
+Run the script:
+
+```bash
+python provision_memory_store.py
+```
+
+## Step 4: Deploy the hosted agent with Python
+
+Create a file named `deploy_memory_agent.py` in the same working folder as
+`.env`:
+
+```python
+import os
+import tempfile
+import time
+import zipfile
+from pathlib import Path
+
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    AgentEndpointConfig,
+    CodeConfiguration,
+    CodeDependencyResolution,
+    FixedRatioVersionSelectionRule,
+    HostedAgentDefinition,
+    ProtocolConfiguration,
+    ProtocolVersionRecord,
+    ResponsesProtocolConfiguration,
+    VersionSelector,
+)
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+model_name = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+agent_name = os.environ.get("FOUNDRY_HOSTED_AGENT_NAME", "memory-agent")
+memory_store_name = os.environ["MEMORY_STORE_NAME"]
+sample_path = Path(os.environ["FOUNDRY_SAMPLE_PATH"]).resolve()
+
+
+def create_code_zip(source_dir: Path) -> Path:
+    zip_path = Path(tempfile.gettempdir()) / f"{agent_name}.zip"
+    excluded = {".git", ".venv", "__pycache__", ".env"}
+
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+        for path in source_dir.rglob("*"):
+            if not path.is_file():
+                continue
+            if any(part in excluded for part in path.parts):
+                continue
+            zip_file.write(path, path.relative_to(source_dir))
+
+    return zip_path
+
+
+def wait_for_active_version(project_client: AIProjectClient, version: str) -> None:
+    for attempt in range(60):
+        time.sleep(10)
+        details = project_client.agents.get_version(
+            agent_name=agent_name,
+            agent_version=version,
+        )
+        status = details["status"]
+        print(f"Provisioning status: {status} (attempt {attempt + 1}/60)")
+
+        if status == "active":
+            return
+
+        if status == "failed":
+            raise RuntimeError(f"Hosted agent provisioning failed: {dict(details)}")
+
+    raise RuntimeError("Timed out waiting for the hosted agent version to become active.")
+
+
+code_zip_path = create_code_zip(sample_path)
+
+with (
+    code_zip_path.open("rb") as code_stream,
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint,
+        credential=credential,
+        allow_preview=True,
+    ) as project_client,
+):
+    original_agent_endpoint = None
+    created = None
+
+    try:
+        created = project_client.agents.create_version_from_code(
+            agent_name=agent_name,
+            description="Hosted agent with persistent Foundry memory.",
+            definition=HostedAgentDefinition(
+                cpu="0.5",
+                memory="1Gi",
+                code_configuration=CodeConfiguration(
+                    runtime="python_3_13",
+                    entry_point=["python", "main.py"],
+                    dependency_resolution=CodeDependencyResolution.REMOTE_BUILD,
+                ),
+                environment_variables={
+                    "FOUNDRY_PROJECT_ENDPOINT": endpoint,
+                    "AZURE_AI_MODEL_DEPLOYMENT_NAME": model_name,
+                    "MEMORY_STORE_NAME": memory_store_name,
+                },
+                protocol_versions=[
+                    ProtocolVersionRecord(protocol="responses", version="2.0.0")
+                ],
+            ),
+            code=code_stream,
+        )
+
+        print(f"Created hosted agent version {created.version}")
+        wait_for_active_version(project_client, created.version)
+
+        original_agent_endpoint = project_client.agents.get(
+            agent_name=agent_name
+        ).agent_endpoint
+        project_client.agents.update_details(
+            agent_name=agent_name,
+            agent_endpoint=AgentEndpointConfig(
+                version_selector=VersionSelector(
+                    version_selection_rules=[
+                        FixedRatioVersionSelectionRule(
+                            agent_version=created.version,
+                            traffic_percentage=100,
+                        ),
+                    ]
+                ),
+                protocol_configuration=ProtocolConfiguration(
+                    responses=ResponsesProtocolConfiguration()
+                ),
+            ),
+        )
+
+        with project_client.get_openai_client(agent_name=agent_name) as openai_client:
+            first_response = openai_client.responses.create(
+                input="Hi! My name is Linda and I'm vegetarian. Please remember that.",
+            )
+            print(first_response.output_text)
+
+            time.sleep(10)
+
+            second_response = openai_client.responses.create(
+                input=(
+                    "Do you remember my name and any dietary preference I told "
+                    "you earlier?"
+                ),
+            )
+            print(second_response.output_text)
+    finally:
+        if original_agent_endpoint is not None:
+            project_client.agents.update_details(
+                agent_name=agent_name,
+                agent_endpoint=original_agent_endpoint,
+            )
+
+        if created is not None:
+            project_client.agents.delete_version(
+                agent_name=agent_name,
+                agent_version=created.version,
+                force=True,
+            )
+```
+
+Run the script:
+
+```bash
+python deploy_memory_agent.py
+```
+
+This script uploads the memory sample as a new hosted-agent version, points the
+hosted agent at that version temporarily, invokes it twice as the same
+signed-in user, and restores the previous endpoint configuration when it
+finishes.
+
+## Step 5: Verify that memory persists
+
+The first call stores the fact in the memory store. The second call asks for
+the remembered fact in a separate request. If the memory store is configured
+correctly, the response should mention the same name and dietary preference
+that you supplied in the first request.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+## Step 1: Create or choose a Foundry project
+
+1. Open [Foundry portal](https://ai.azure.com) and create a Foundry project, or
+   select an existing one.
+1. In the project, deploy:
+
+   * A chat-capable model such as `gpt-4o`.
+   * An embedding model such as `text-embedding-3-small`.
+
+1. Copy the project endpoint from **Overview** and the deployment names from
+   **Build** > **Deployments**.
+
+## Step 2: Download the Foundry memory sample
+
+Clone the Foundry samples repo:
+
+```bash
+git clone https://github.com/microsoft-foundry/foundry-samples.git
+```
+
+The C# hosted-agent sample is under
+`samples/csharp/hosted-agents/agent-framework/foundry-memory-rag/src/foundry-memory-rag`.
+The next steps deploy that folder as a hosted agent version. The sample reads
+its configuration from these environment variables, which the deployment code
+sets on the container:
+
+| Variable | Description |
+| -------- | ----------- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint. |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Chat model deployment name. |
+| `AZURE_AI_EMBEDDING_DEPLOYMENT_NAME` | Embedding model deployment name. |
+| `AZURE_AI_MEMORY_STORE_ID` | Memory store name. Defaults to `foundry-memory-rag-store`. |
+
+## Step 3: Provision the memory store with C\#
+
+Create a .NET console app and install the packages. Memory store APIs are in
+preview, so install the prerelease `Azure.AI.Projects` package:
+
+```dotnetcli
+dotnet new console --name provision-memory-store
+cd provision-memory-store
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.Identity
+```
+
+This code is safe to rerun. It first calls `GetMemoryStore(...)` to check
+whether the store already exists, and only calls `CreateMemoryStore(...)` if the
+store isn't found. Replace `Program.cs` with the following code and set
+`endpoint`, `chatModel`, and `embeddingModel` to your project values:
+
+```csharp
+using System.ClientModel;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Memory;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var chatModel = "gpt-4o";
+var embeddingModel = "text-embedding-3-small";
+var memoryStoreName = "foundry-memory-rag-store";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+
+try
+{
+    MemoryStore existing = projectClient.MemoryStores.GetMemoryStore(memoryStoreName);
+    Console.WriteLine($"Memory store '{existing.Name}' already exists (id={existing.Id}); leaving as-is.");
+}
+catch (ClientResultException ex) when (ex.Status == 404)
+{
+    MemoryStore created = projectClient.MemoryStores.CreateMemoryStore(
+        memoryStoreName,
+        new MemoryStoreDefaultDefinition(chatModel, embeddingModel)
+        {
+            Options = new MemoryStoreDefaultOptions(isUserProfileEnabled: true, isChatSummaryEnabled: false)
+            {
+                UserProfileDetails =
+                    "Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials",
+            },
+        },
+        description: "Memory store for the hosted-agent memory quickstart");
+    Console.WriteLine($"Created memory store '{created.Name}' (id={created.Id}).");
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+## Step 4: Deploy the hosted agent with C\#
+
+Create a second console app for the deployment code:
+
+```dotnetcli
+dotnet new console --name deploy-memory-agent
+cd deploy-memory-agent
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Extensions.OpenAI
+dotnet add package Azure.Identity
+```
+
+In `Program.cs`, replace the existing code with the following code. Set `endpoint`, `chatModel`,
+`embeddingModel`, and `samplePath` to your values. `samplePath` is the full path
+to the `foundry-memory-rag` source folder you cloned in Step 2:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var chatModel = "gpt-4o";
+var embeddingModel = "text-embedding-3-small";
+var agentName = "memory-agent";
+var memoryStoreName = "foundry-memory-rag-store";
+var samplePath =
+    @"<path-to-foundry-samples>\samples\csharp\hosted-agents\agent-framework\foundry-memory-rag\src\foundry-memory-rag";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+HostedAgentDefinition definition = new(cpu: "0.5", memory: "1Gi")
+{
+    Versions = { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
+    CodeConfiguration = new(
+        runtime: "dotnet_10",
+        entryPoint: ["dotnet", "foundry-memory-rag.dll"],
+        dependencyResolution: CodeDependencyResolution.RemoteBuild),
+};
+definition.EnvironmentVariables.Add("FOUNDRY_PROJECT_ENDPOINT", endpoint);
+definition.EnvironmentVariables.Add("AZURE_AI_MODEL_DEPLOYMENT_NAME", chatModel);
+definition.EnvironmentVariables.Add("AZURE_AI_EMBEDDING_DEPLOYMENT_NAME", embeddingModel);
+definition.EnvironmentVariables.Add("AZURE_AI_MEMORY_STORE_ID", memoryStoreName);
+
+ProjectsAgentVersion? created = null;
+AgentEndpointConfiguration? originalEndpoint = null;
+try
+{
+    created = agentsClient.CreateAgentVersionFromCode(
+        agentName, samplePath, new AgentVersionFromCodeMetadata(definition));
+    Console.WriteLine($"Created hosted agent version {created.Version}");
+
+    for (var attempt = 1; attempt <= 60; attempt++)
+    {
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        created = agentsClient.GetAgentVersion(agentName, created.Version);
+        Console.WriteLine($"Provisioning status: {created.Status} (attempt {attempt}/60)");
+        if (created.Status == AgentVersionStatus.Active) break;
+        if (created.Status == AgentVersionStatus.Failed)
+            throw new InvalidOperationException("Hosted agent provisioning failed.");
+    }
+
+    ProjectsAgentRecord agent = agentsClient.GetAgent(agentName);
+    originalEndpoint = agent.AgentEndpoint;
+    agentsClient.PatchAgent(agentName, new PatchAgentOptions
+    {
+        AgentEndpoint = new AgentEndpointConfiguration
+        {
+            VersionSelector = new([new FixedRatioVersionSelectionRule(created.Version, 100)]),
+            ProtocolConfiguration = new() { Responses = new ResponsesProtocolConfiguration() },
+        },
+    });
+
+    ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+        .GetProjectResponsesClientForAgentEndpoint(agentName);
+
+    ResponseResult first = responsesClient.CreateResponse(
+        "Hi! My name is Linda and I'm vegetarian. Please remember that.");
+    Console.WriteLine(first.GetOutputText());
+
+    Thread.Sleep(TimeSpan.FromSeconds(10));
+
+    ResponseResult second = responsesClient.CreateResponse(
+        "Do you remember my name and any dietary preference I told you earlier?");
+    Console.WriteLine(second.GetOutputText());
+}
+finally
+{
+    if (originalEndpoint is not null)
+        agentsClient.PatchAgent(agentName, new PatchAgentOptions { AgentEndpoint = originalEndpoint });
+    if (created is not null)
+        agentsClient.DeleteAgentVersion(agentName, created.Version, force: true);
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+This code uploads the memory sample as a new hosted-agent version, points the
+hosted agent at that version temporarily, invokes it twice as the same
+signed-in user, and restores the previous endpoint configuration when it
+finishes.
+
+## Step 5: Verify that memory persists
+
+The first call stores the fact in the memory store. The second call asks for the
+remembered fact in a separate request. If the memory store is configured
+correctly, the response mentions the same name and dietary preference that you
+supplied in the first request. Memory extraction is asynchronous, so allow a few
+seconds between the two calls for the store to index the memory.
+
+:::zone-end
+
 ## Clean up resources
 
 Delete the resources when you're finished so you stop incurring charges.
 
-Delete the memory store by using the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install azure-ai-projects azure-identity`):
+:::zone pivot="azd"
+
+To delete the memory store, use the `AIProjectClient`. Run this script in a Python environment that has the `azure-ai-projects` and `azure-identity` packages installed (for example, run `pip install "azure-ai-projects>=2.3.0" azure-identity`):
 
 ```python
 import asyncio
@@ -167,19 +734,87 @@ asyncio.run(delete())
 Delete the agent and its Azure resources:
 
 > [!WARNING]
-> `azd down` permanently deletes every resource in the resource group, including the Foundry project, model deployments, Container Registry, and the hosted agent. If you provisioned into a resource group that contains other resources, those resources are deleted too.
+> If the current `azd` environment created the Foundry project, `azd down` permanently deletes the project's resource group and everything in it. If you selected an existing project during initialization, `azd down` leaves the project, its resource group, the hosted agent, and other quickstart resources in place. To delete resources you no longer need from the existing project, delete them separately.
 
 ```powershell
 azd down
 ```
 
+:::zone-end
+
+:::zone pivot="python"
+
+To delete the memory store, use the same script pattern with your memory store
+name:
+
+```python
+import asyncio
+import os
+
+from azure.ai.projects.aio import AIProjectClient
+from azure.identity.aio import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+async def delete() -> None:
+    async with (
+        DefaultAzureCredential() as credential,
+        AIProjectClient(
+            endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+            credential=credential,
+            allow_preview=True,
+        ) as project,
+    ):
+        await project.beta.memory_stores.delete(os.environ["MEMORY_STORE_NAME"])
+
+
+asyncio.run(delete())
+```
+
+If you created a dedicated resource group or project for this quickstart,
+delete it from the Azure portal after you no longer need the chat deployment,
+embedding deployment, or hosted agent.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+The deployment code already deletes the hosted agent version and restores the
+previous endpoint configuration when it finishes. To delete the memory store,
+add this code to a console app that has the `Azure.AI.Projects` (prerelease) and
+`Azure.Identity` packages installed:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var endpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var memoryStoreName = "foundry-memory-rag-store";
+
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+projectClient.MemoryStores.DeleteMemoryStore(memoryStoreName);
+Console.WriteLine($"Deleted memory store '{memoryStoreName}'.");
+```
+
+If you created a dedicated resource group or project for this quickstart,
+delete it from the Azure portal after you no longer need the chat deployment,
+embedding deployment, or hosted agent.
+
+:::zone-end
+
 ## Troubleshooting
 
 | Issue | Solution |
 | ----- | -------- |
-| The deployed agent has no memory, or `MEMORY_STORE_NAME` is empty | Confirm the `postprovision` hook ran during `azd provision` and that the agent's `agent.yaml` has `MEMORY_STORE_NAME` set. Rerun `azd provision` to run the hook again. |
-| Memory writes fail with a `401` error and the store stays empty | Grant the **Cognitive Services OpenAI User** role on the Foundry project scope to your identity and to the deployed agent's runtime identity. |
+| The deployed agent has no memory, or `MEMORY_STORE_NAME` is empty | Confirm the `postprovision` hook ran during `azd provision` and that `azure.yaml` has `MEMORY_STORE_NAME` set. Rerun `azd provision` to run the hook again. |
+| Memory writes fail with a `401` error and the store stays empty | Confirm the caller already has **Foundry User** access on the Foundry project scope, and grant the **Cognitive Services OpenAI User** role on the same scope to your identity and to the deployed agent's runtime identity. |
 | `azd provision` fails with a permissions error | Confirm your identity has the project roles listed in the [Prerequisites](quickstart-hosted-agent.md#prerequisites). |
+| `project.beta.memory_stores.create(...)` fails with `Authentication to the Azure OpenAI resource failed` | Confirm your identity already has **Foundry User** access on the Foundry project scope, and also has the **Cognitive Services OpenAI User** role on that scope. Also verify that `AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME` points to a valid embedding deployment. |
+| The Python deployment succeeds but the second call doesn't recall the stored fact | Wait a few more seconds before the second call so the memory store finishes indexing, then run the script again. |
 | The agent doesn't recall a fact you shared | Allow a few seconds after storing a fact before you query, so the store finishes indexing the memory. |
 | The agent can't read or write memories after deployment | Confirm that the `postprovision` hook created the store against the same project the agent is deployed to. |
 
@@ -188,8 +823,8 @@ azd down
 In this quickstart, you:
 
 - Created a Foundry memory store with the user-profile capability.
-- Deployed a hosted agent that reads and writes to the store through `FoundryMemoryProvider`.
-- Verified that the agent recalls user facts across separate sessions, both locally and after deployment.
+- Deployed a hosted agent that reads and writes to the store through `FoundryMemoryProvider` by using Azure Developer CLI, the Python SDK, or the .NET SDK.
+- Verified that the agent recalls user facts across separate sessions, either locally with Azure Developer CLI or remotely with the Python or .NET SDK after deployment.
 
 ## Next step
 

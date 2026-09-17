@@ -4,10 +4,11 @@ description: Learn how Azure Language service encrypts your data when persisted 
 titleSuffix: Foundry Tools
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 08/06/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 #Customer intent: As a user of Azure Language service, I want to learn how encryption at rest works.
 ---
 # Language encryption of data at rest

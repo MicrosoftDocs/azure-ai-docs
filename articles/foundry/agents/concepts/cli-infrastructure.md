@@ -1,6 +1,6 @@
 ---
 title: "Hosted agent infrastructure with the Azure Developer CLI"
-description: "Understand the Bicep infrastructure that azd scaffolds for a hosted agent project: provisioned resources, project structure, parameters, and customization."
+description: "Understand the optional Bicep infrastructure that azd can scaffold for a hosted agent project: provisioned resources, project structure, parameters, and customization."
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
@@ -16,11 +16,13 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-When you run `azd ai agent init`, the Azure Developer CLI (`azd`) scaffolds an `infra/` directory into your project that contains Bicep templates. These templates define all the Azure resources your hosted agent needs. Running `azd provision` deploys the templates to create the infrastructure. This article explains what those templates provision and how to customize them.
+When you run `azd ai agent init --infra` or `azd ai agent init --infra=bicep`, the Azure Developer CLI (`azd`) scaffolds an `infra/` directory into your project that contains Bicep templates. These templates define the Azure resources your hosted agent needs from the services declared in `azure.yaml`. Running `azd provision` deploys the templates to create the infrastructure. This article explains what those templates provision and how to customize them.
 
 ## What gets provisioned
 
-The Bicep templates are based on the [azd-ai-starter-basic](https://github.com/Azure-Samples/azd-ai-starter-basic) repository and create the following Azure resources:
+By default, `azd ai agent init` doesn't create infrastructure-as-code files. Use `--infra` or `--infra=bicep` to add Bicep infrastructure. Use `--infra=terraform` to add Terraform infrastructure and set `infra.provider: terraform`.
+
+When you add Bicep infrastructure, the templates are based on the [azd-ai-starter-basic](https://github.com/Azure-Samples/azd-ai-starter-basic) repository and create the following Azure resources:
 
 | Resource | Purpose |
 | -------- | ------- |
@@ -33,7 +35,7 @@ The Bicep templates are based on the [azd-ai-starter-basic](https://github.com/A
 | Log Analytics workspace | Centralized log collection. |
 | Managed identity | The project's system-assigned identity that authenticates the agent identity blueprint to Microsoft Entra ID and holds platform role assignments. |
 
-The templates create more resources conditionally, based on your `agent.yaml` configuration:
+The templates create more resources conditionally, based on the services and dependencies declared in `azure.yaml`:
 
 * Capability host -- supports hosted agent deployment on the Foundry project. Created when you need custom storage of conversations.
 * Grounding with Bing or Grounding with Bing Custom Search -- for the web search tool.

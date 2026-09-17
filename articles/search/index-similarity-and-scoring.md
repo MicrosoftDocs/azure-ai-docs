@@ -7,9 +7,12 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 08/27/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Relevance in keyword search (BM25 scoring)
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article explains the BM25 relevance scoring algorithm used to compute search scores for [full text search](search-lucene-query-architecture.md). BM25 relevance applies to full text search only. Filter queries, autocomplete and suggested queries, wildcard search, and fuzzy search queries aren't scored or ranked for relevance.
 
@@ -134,7 +137,7 @@ In Azure AI Search, for keyword search and the text portion of a hybrid query, y
 > [!NOTE]
 > The `featuresMode` parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents for text (Keyword) search that's BM25-ranked.
 
-[Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-05-01-preview&preserve-view=true) requests support a `featuresMode` parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index).
+[Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2026-08-01-preview&preserve-view=true) requests support a `featuresMode` parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index).
 
 Valid values for featuresMode:
 
@@ -152,7 +155,7 @@ This parameter is especially useful when you're trying to understand why certain
 For a query that targets a "description" field, a request might look like this:
 
 ```http
-POST {{baseUrl}}/indexes/hotels-sample/docs/search?api-version=2026-05-01-preview  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-sample/docs/search?api-version=2026-08-01-preview  HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 
@@ -217,7 +220,7 @@ You can consume these data points in [custom scoring solutions](https://github.c
 
 By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full text search. You can use the `top` parameter to return a smaller or larger number of items (up to 1,000 in a single response). You can use `skip` and `next` to page results. Paging determines the number of results on each logical page and supports content navigation. For more information, see [Shape search results](search-pagination-page-layout.md).
 
-If your full text query is part of a [hybrid query](hybrid-search-how-to-query.md), you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the number of results from the text side of the query.
+If your full text query is part of a [hybrid query](hybrid-search-how-to-query.md), you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to increase or decrease the number of results from the text side of the query.
 
 Full text search is subject to a maximum limit of 1,000 matches (see [API response limits](search-limits-quotas-capacity.md#api-response-limits)). Once 1,000 matches are found, the search engine no longer looks for more.
 

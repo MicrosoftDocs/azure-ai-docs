@@ -5,8 +5,8 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
-ms.custom: include, classic-and-new
+ms.date: 07/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -80,10 +80,10 @@ Key differences from the previous API:
 
 Set the following environment variables before running the code:
 
-| Variable          | Value                                                     |
-|-------------------|-----------------------------------------------------------|
-| `OPENAI_BASE_URL` | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` |
-| `OPENAI_API_KEY`  | Your Azure OpenAI API key                                 |
+| Variable          | Value                                                       |
+| ----------------- | ----------------------------------------------------------- |
+| `OPENAI_BASE_URL` | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`    |
+| `OPENAI_API_KEY`  | Your Azure OpenAI API key                                   |
 
 Then create the client without parameters:
 
@@ -352,33 +352,29 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 ```javascript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
+const endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/";
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://ai.azure.com/.default');
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+const openai = new OpenAI({
+    baseURL: endpoint,
     apiKey: tokenProvider
 });
 
-const messages = [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Tell me about the attention is all you need paper' }
-];
+async function main() {
+    const result = await openai.chat.completions.create({
+        model: "MAI-DS-R1", // Replace with your model deployment name.
+        messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: "Explain the attention mechanism." }
+        ]
+    });
+    console.log(result.choices[0]?.message.content ?? "No response returned.");
+}
 
-// Make the API request with top-level await
-const result = await client.chat.completions.create({ 
-    messages, 
-    model: 'MAI-DS-R1', // model deployment name
-    max_tokens: 100 
-});
-
-// Print the full response
-console.log('Full response:', result);
-
-// Print just the message content from the response
-console.log('Response content:', result.choices[0].message.content);
+main().catch(console.error);
 ```
 
 # [Go](#tab/go)

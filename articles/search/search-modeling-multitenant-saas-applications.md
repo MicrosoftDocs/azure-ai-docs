@@ -7,11 +7,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 06/10/2026
 ms.update-cycle: 365-days
 ---
 
 # Design patterns for multitenant SaaS applications and Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 A multitenant application is one that provides the same services and capabilities to any number of tenants who can't see or share the data of any other tenant. This article discusses tenant isolation strategies for multitenant applications built with Azure AI Search.
 

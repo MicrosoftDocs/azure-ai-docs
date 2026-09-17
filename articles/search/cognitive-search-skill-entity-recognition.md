@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Entity Recognition cognitive skill (v2)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Entity Recognition** skill (v2) extracts entities of different types from text. This skill uses the machine learning models provided by [Text Analytics](/azure/ai-services/language-service/overview) in Foundry Tools.
 
 > [!IMPORTANT]

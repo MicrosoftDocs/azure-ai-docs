@@ -301,8 +301,6 @@ class AsyncFunctionCallingClient:
         self.audio_processor: Optional[AudioProcessor] = None
         self.session_ready = False
         self.conversation_started = False
-        self._active_response = False
-        self._response_api_done = False
         self._pending_function_call: Optional[Dict[str, Any]] = None
 
         # Define available functions
@@ -469,25 +467,12 @@ class AsyncFunctionCallingClient:
 
             ap.skip_pending_audio()
 
-            # Only cancel if response is active and not already done
-            if self._active_response and not self._response_api_done:
-                try:
-                    await conn.response.cancel()
-                    logger.debug("Cancelled in-progress response due to barge-in")
-                except Exception as e:
-                    if "no active response" in str(e).lower():
-                        logger.debug("Cancel ignored - response already completed")
-                    else:
-                        logger.warning("Cancel failed: %s", e)
-
         elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
             logger.info("User stopped speaking")
             print("Processing...")
 
         elif event.type == ServerEventType.RESPONSE_CREATED:
             logger.info("Assistant response created")
-            self._active_response = True
-            self._response_api_done = False
 
         elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
             logger.debug("Received audio delta")
@@ -499,8 +484,6 @@ class AsyncFunctionCallingClient:
 
         elif event.type == ServerEventType.RESPONSE_DONE:
             logger.info("Response complete")
-            self._active_response = False
-            self._response_api_done = True
 
             # Execute pending function call if arguments are ready
             if self._pending_function_call and "arguments" in self._pending_function_call:
@@ -509,11 +492,8 @@ class AsyncFunctionCallingClient:
 
         elif event.type == ServerEventType.ERROR:
             msg = event.error.message
-            if "Cancellation failed: no active response" in msg:
-                logger.debug("Benign cancellation error: %s", msg)
-            else:
-                logger.error("VoiceLive error: %s", msg)
-                print(f"Error: {msg}")
+            logger.error("VoiceLive error: %s", msg)
+            print(f"Error: {msg}")
 
         elif event.type == ServerEventType.CONVERSATION_ITEM_CREATED:
             logger.debug("Conversation item created: %s", event.item.id)

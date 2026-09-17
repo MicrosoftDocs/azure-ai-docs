@@ -81,7 +81,7 @@ When the inspector is open, the single-page app streams the agent's responses ov
 - Continue an existing conversation by reusing the conversation ID across turns.
 - Reset to a fresh session at any time.
 
-The inspector doesn't modify your agent code or `agent.yaml`. It's purely a runtime view.
+The inspector doesn't modify your agent code or `azure.yaml`. It's purely a runtime view.
 
 ## Related content
 

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Examples of *simple* search queries in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes the default query parser for full-text search. The parser is fast and handles common scenarios, including full-text search, filtered and faceted search, and prefix search. This article uses examples to illustrate simple syntax usage in a [Search Documents (REST API)](/rest/api/searchservice/documents/search-post) request.
 
 > [!NOTE]

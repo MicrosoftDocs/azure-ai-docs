@@ -5,10 +5,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/27/2026
+ms.date: 08/31/2026
+ai-usage: ai-assisted
 ---
 
 # Content metadata properties used in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Several indexer-supported data sources, including Azure Blob Storage, Azure Data Lake Storage Gen2, and SharePoint, contain standalone files or embedded objects of various content types. Many of those content types have metadata properties that can be useful to index. Just as you can create search fields for standard blob properties like `metadata_storage_name`, you can create fields in a search index for metadata properties that are specific to a document format.
 
@@ -57,4 +60,4 @@ The following table summarizes processing for each document format, and describe
 * [Indexers in Azure AI Search](search-indexer-overview.md)
 * [AI enrichment in Azure AI Search](cognitive-search-concept-intro.md)
 * [Search over Azure Blob Storage content](search-blob-storage-integration.md)
-* [Index data from SharePoint](search-how-to-index-sharepoint-online.md)
+* [Index data from SharePoint (preview)](search-how-to-index-sharepoint-online.md)

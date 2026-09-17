@@ -8,14 +8,16 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 10/23/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# Azure Vision vectorizer
+# Azure Vision vectorizer (preview)
 
-> [!IMPORTANT]
-> This vectorizer is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) supports this feature.
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-The **Azure Vision** vectorizer connects to Azure Vision in Foundry Tools via a [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). At query time, the vectorizer uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) to generate embeddings.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
+The **Azure Vision** vectorizer (preview) connects to Azure Vision in Foundry Tools via a [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). At query time, the vectorizer uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) to generate embeddings.
 
 To determine where this model is accessible, see the [region availability for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 

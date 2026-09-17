@@ -10,6 +10,7 @@ ms.author: scottpolly
 ms.reviewer: shshubhe
 ms.date: 01/27/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom:
   - troubleshooting
   - sfi-image-nochange
@@ -281,6 +282,9 @@ Be sure to add the following information into the reason for limit increase:
 
     > [!NOTE]
     > This endpoint limit increase request is different from a VM quota increase request. If your request is related to a VM quota increase, follow the instructions in the [VM quota increases](#vm-quota-increases) section.
+
+> [!NOTE]
+> After an Azure Machine Learning online endpoints quota request that increases a data-plane limit is fulfilled, re-create the affected online deployments for the new limit to take effect.
 
 ### Compute limit increases
 

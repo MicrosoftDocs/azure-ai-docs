@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Load data into a search index in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to import documents into a predefined search index using REST APIs, Azure SDKs, or the Azure portal.
 
 > [!TIP]
@@ -236,7 +238,7 @@ Code samples include:
 The Azure SDK for Java provides the following APIs for simple and bulk document uploads into an index:
 
 + [indexactiontype enumerator](/java/api/com.azure.search.documents.models.indexactiontype)
-+ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedsender)
 
 **Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models)
 

@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 09/03/2026
 author: alvinashcraft    
 ms.author: aashcraft
 ai-usage: ai-assisted

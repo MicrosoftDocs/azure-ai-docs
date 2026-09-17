@@ -5,7 +5,7 @@ author: samuel100
 ms.author: samkemp
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/15/2026
+ms.date: 05/09/2026
 ms.custom: include file
 ai-usage: ai-assisted
 ---

@@ -14,6 +14,8 @@ ms.custom:
 
 # Create an index alias in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, an index alias is a secondary name for a search index. You can create an alias that maps to a search index and substitute the alias name in places where you'd otherwise reference an index name. This feature provides flexibility if you need to change the index to which your application points. Instead of updating references to the index name in your production code, you can simply update the alias mapping.
 
 You can create and manage aliases on a search service via HTTP requests (POST, GET, PUT, or DELETE) against a given alias resource. Aliases are service-level resources that are maintained independently from search indexes. After you create a search index, you can create an alias that maps to it.

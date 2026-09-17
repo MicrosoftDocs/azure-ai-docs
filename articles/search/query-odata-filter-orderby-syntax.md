@@ -9,6 +9,8 @@ ms.update-cycle: 365-days
 
 # OData language overview for `$filter`, `$orderby`, and `$select` in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article provides an overview of the OData expression language used in `$filter`, `$order-by`, and `$select` expressions for keyword search in Azure AI Search over numeric and string (nonvector) fields. 
 
 The language is presented "bottom-up" starting with the most basic elements. The OData expressions that you can construct in a query request range from simple to highly complex, but they all share common elements. Shared elements include:

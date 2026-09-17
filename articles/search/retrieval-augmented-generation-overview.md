@@ -1,7 +1,7 @@
 ---
 title: RAG and Generative AI
 description: Learn how Azure AI Search supports RAG patterns with agentic retrieval and classic hybrid search to ground LLM responses in your content. Get started today.
-ms.date: 06/08/2026
+ms.date: 08/04/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -9,9 +9,12 @@ ms.custom:
   - ignite-2024
   - build-2025
 ai-usage: ai-assisted
+#customer intent: As a solution architect, I want to compare agentic retrieval and classic RAG for common RAG challenges so that I can choose an Azure AI Search approach that fits my application requirements.
 ---
 
 # Retrieval-augmented generation (RAG) in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Retrieval-augmented generation (RAG) is a pattern that extends LLM capabilities by grounding responses in your proprietary content. While conceptually simple, RAG implementations face significant challenges.
 
@@ -29,7 +32,7 @@ Retrieval-augmented generation (RAG) is a pattern that extends LLM capabilities 
 
 Azure AI Search provides two approaches designed specifically for these RAG challenges:
 
-- **[Agentic retrieval](#modern-rag-with-agentic-retrieval) (preview)**: A complete RAG pipeline with LLM-assisted query planning, multi-source access, and structured responses optimized for agent consumption.
+- **[Agentic retrieval](#modern-rag-with-agentic-retrieval)**: A complete RAG pipeline with LLM-based query planning (preview), multi-source access, and structured responses optimized for agent consumption.
 
 - **[Classic RAG pattern](#classic-rag-pattern-for-azure-ai-search)**: The proven approach using hybrid search and semantic ranking, ideal for simpler requirements or when generally available (GA) features are required.
 
@@ -52,7 +55,7 @@ The following sections explain how each approach solves specific RAG challenges.
 - Semantic ranking re-scores results based on meaning, not just keywords.
 - Vector similarity search matches concepts, not exact terms.
 
-[Learn more about query planning](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+[Learn more about query planning (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 ### Solving multisource data challenges
 
@@ -145,7 +148,7 @@ Agentic retrieval represents the evolution from traditional single-query RAG pat
 - Built-in semantic ranking for optimal relevance
 - Optional answer synthesis that uses an LLM-formulated answer in the query response
 
-You need new objects for this pipeline: one or more knowledge sources, a knowledge base, and the retrieve action that you call from application code, such as a tool that works with your AI agent.
+You need new objects for this pipeline: one or more knowledge sources (each one points to searchable content, such as a search index or a remote SharePoint site), a knowledge base (the queryable object that unifies those sources), and the retrieve action that you call from application code, such as a tool that works with your AI agent.
 
 For new RAG implementations, start with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 

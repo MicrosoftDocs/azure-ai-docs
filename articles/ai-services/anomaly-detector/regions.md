@@ -102,4 +102,3 @@ The following regions are supported for Multivariate Anomaly Detection. The geog
 
 * [Quickstart: Detect anomalies in your time series data using the Univariate Anomaly Detection](quickstarts/client-libraries.md)
 * [Quickstart: Detect anomalies in your time series data using the Multivariate Anomaly Detection](quickstarts/client-libraries-multivariate.md)
-* The Anomaly Detector [REST API reference](https://aka.ms/ad-api)

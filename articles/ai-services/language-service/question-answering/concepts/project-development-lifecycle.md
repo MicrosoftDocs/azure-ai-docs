@@ -1,7 +1,7 @@
 ---
 title: Project lifecycle - custom question answering
 description: Custom question answering learns best in an iterative cycle of model changes, utterance examples, deployment, and gathering data from endpoint queries.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 author: laujan
 ms.author: lajanuar
 ms.topic: lifecycle

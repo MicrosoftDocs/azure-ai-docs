@@ -62,43 +62,43 @@ Access to a given Azure Machine Learning workspace via Private Link is done by c
 **Azure Public regions**:
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.azureml.ms```
-- ```<compute instance name>.<region the workspace was created in>.instances.azureml.ms```
-- `<compute instance name>-22.<region the workspace was created in>.instances.azureml.ms` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
+- `<compute instance name>.<region the workspace was created in>.instances.ml.azure.ms`
+- `<compute instance name>-22.<region the workspace was created in>.instances.ml.azure.ms` - The `az ml compute connect-ssh` command uses this FQDN to connect to computes in a private virtual network.
 - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.azure.net```
 - ```<managed online endpoint name>.<region>.inference.ml.azure.com``` - Used by managed online endpoints
 
 **Microsoft Azure operated by 21Vianet regions**:
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn```
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.ml.azure.cn```
-- ```<compute instance name>.<region the workspace was created in>.instances.azureml.ms```
-- `<compute instance name>-22.<region the workspace was created in>.instances.azureml.ms` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
-- ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn```
-- ```<managed online endpoint name>.<region>.inference.ml.azure.cn``` - Used by managed online endpoints
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn`
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.ml.azure.cn`
+- `<compute instance name>.<region the workspace was created in>.instances.ml.azure.ms`
+- `<compute instance name>-22.<region the workspace was created in>.instances.ml.azure.ms` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
+- `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn`
+- `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
 
 **Azure US Government regions**:
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us```
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.ml.azure.us```
-- ```<compute instance name>.<region the workspace was created in>.instances.azureml.us```
-- `<compute instance name>-22.<region the workspace was created in>.instances.azureml.us` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
-- ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net```
-- ```<managed online endpoint name>.<region>.inference.ml.azure.us``` - Used by managed online endpoints
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us`
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.ml.azure.us`
+- `<compute instance name>.<region the workspace was created in>.instances.ml.azure.us`
+- `<compute instance name>-22.<region the workspace was created in>.instances.ml.azure.us` - The `az ml compute connect-ssh` command uses this FQDN to connect to computes in a private virtual network.
+- `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net`
+- `<managed online endpoint name>.<region>.inference.ml.azure.us` - Used by managed online endpoints
 
 The Fully Qualified Domains resolve to the following Canonical Names (CNAMEs) called the workspace Private Link FQDNs:
 
 **Azure Public regions**:
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.azureml.ms```
-- ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.azure.net```
-- ```<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.azureml.ms``` - Used by managed online endpoints
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.azureml.ms`
+- `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.azure.net`
+- `<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.azureml.ms` - Used by managed online endpoints
 
 **Azure operated by 21Vianet regions**:
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.ml.azure.cn```
-- ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.chinacloudapi.cn```
-- ```<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.ml.azure.cn``` - Used by managed online endpoints
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.ml.azure.cn`
+- `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.chinacloudapi.cn`
+- `<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.ml.azure.cn` - Used by managed online endpoints
 
 **Azure US Government regions**:
-- ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.ml.azure.us```
-- ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.usgovcloudapi.net```
-- ```<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.ml.azure.us``` - Used by managed online endpoints
+- `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.privatelink.api.ml.azure.us`
+- `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.privatelink.notebooks.usgovcloudapi.net`
+- `<managed online endpoint name>.<per-workspace globally-unique identifier>.inference.<region>.privatelink.api.ml.azure.us` - Used by managed online endpoints
 
 The FQDNs resolve to the IP addresses of the Azure Machine Learning workspace in that region. However, resolution of the workspace Private Link FQDNs can be overridden by using a custom DNS server hosted in the virtual network. For an example of this architecture, see the [custom DNS server hosted in a virtual network](#example-custom-dns-server-hosted-in-virtual-network) example. For hub and project workspaces, project workspaces inherit the FQDNs from the hub workspace.
 
@@ -120,12 +120,12 @@ The following list contains the fully qualified domain names (FQDNs) used by you
 
     > [!NOTE]
     > The workspace name for this FQDN may be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
-* `<instance-name>.<region>.instances.azureml.ms`
+* `<instance-name>.<region>.instances.ml.azure.ms`
 
     > [!NOTE]
     > * Compute instances can be accessed only from within the virtual network.
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
-* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.ml.azure.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you're not using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 * `models.ai.azure.com` - Used for serverless API deployments
 
@@ -140,11 +140,11 @@ The following FQDNs are for Microsoft Azure operated by 21Vianet regions:
     > [!NOTE]
     > The workspace name for this FQDN may be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
 
-* `<instance-name>.<region>.instances.azureml.ms`
+* `<instance-name>.<region>.instances.ml.azure.ms`
 
    * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.ml.azure.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you're not using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
 
 #### Azure US Government
@@ -157,10 +157,10 @@ The following FQDNs are for Azure US Government regions:
 
     > [!NOTE]
     > The workspace name for this FQDN may be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
-* `<instance-name>.<region>.instances.azureml.us`
+* `<instance-name>.<region>.instances.ml.azure.us`
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>-22.<region>.instances.azureml.us` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.ml.azure.us` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you're not using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.us` - Used by managed online endpoints
 
@@ -279,16 +279,16 @@ The following steps describe how this topology works:
     The first step in ensuring a Custom DNS solution works with your Azure Machine Learning workspace is to create two Private DNS Zones rooted at the following domains:
 
     **Azure Public regions**:
-    - ```privatelink.api.azureml.ms```
-    - ```privatelink.notebooks.azure.net```
+    - `privatelink.api.azureml.ms`
+    - `privatelink.notebooks.azure.net`
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```privatelink.api.ml.azure.cn```
-    - ```privatelink.notebooks.chinacloudapi.cn```
+    - `privatelink.api.ml.azure.cn`
+    - `privatelink.notebooks.chinacloudapi.cn`
 
     **Azure US Government regions**:
-    - ```privatelink.api.ml.azure.us```
-    - ```privatelink.notebooks.usgovcloudapi.net```
+    - `privatelink.api.ml.azure.us`
+    - `privatelink.notebooks.usgovcloudapi.net`
 
     > [!NOTE]
     > Managed online endpoints share the workspace private endpoint. If you're manually adding DNS records to the private DNS zone `privatelink.api.azureml.ms`, an A record with wildcard
@@ -314,25 +314,25 @@ The following steps describe how this topology works:
     The following list is of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16:
 
     **Azure Public regions**:
-    - ```api.azureml.ms```
-    - ```notebooks.azure.net```
-    - ```instances.azureml.ms```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.com``` - Used by managed online endpoints
+    - `api.azureml.ms`
+    - `notebooks.azure.net`
+    - `instances.ml.azure.ms`
+    - `aznbcontent.net`
+    - `inference.ml.azure.com` - Used by managed online endpoints
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```api.ml.azure.cn```
-    - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.cn``` - Used by managed online endpoints
+    - `api.ml.azure.cn`
+    - `notebooks.chinacloudapi.cn`
+    - `instances.ml.azure.ms`
+    - `aznbcontent.net`
+    - `inference.ml.azure.cn` - Used by managed online endpoints
 
     **Azure US Government regions**:
-    - ```api.ml.azure.us```
-    - ```notebooks.usgovcloudapi.net```
-    - ```instances.azureml.us```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.us``` - Used by managed online endpoints
+    - `api.ml.azure.us`
+    - `notebooks.usgovcloudapi.net`
+    - `instances.ml.azure.us`
+    - `aznbcontent.net`
+    - `inference.ml.azure.us` - Used by managed online endpoints
 
     > [!IMPORTANT]
     > Configuration steps for the DNS Server aren't included here, as there are many DNS solutions available that can be used as a custom DNS Server. Refer to the documentation for your DNS solution for how to appropriately configure conditional forwarding.
@@ -343,19 +343,19 @@ The following steps describe how this topology works:
     The client starts by querying DNS Server for the address of the following FQDNs:
 
     **Azure Public regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.azure.net```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.com``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.azure.net`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.cn``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
 
     **Azure US Government regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.us``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.us` - Used by managed online endpoints
 
 5. **Azure DNS recursively resolves workspace domain to CNAME**:
 
@@ -418,16 +418,16 @@ The following steps describe how this topology works:
     The first step in ensuring a Custom DNS solution works with your Azure Machine Learning workspace is to create two Private DNS Zones rooted at the following domains:
 
     **Azure Public regions**:
-    - ```privatelink.api.azureml.ms```
-    - ```privatelink.notebooks.azure.net```
+    - `privatelink.api.azureml.ms`
+    - `privatelink.notebooks.azure.net`
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```privatelink.api.ml.azure.cn```
-    - ```privatelink.notebooks.chinacloudapi.cn```
+    - `privatelink.api.ml.azure.cn`
+    - `privatelink.notebooks.chinacloudapi.cn`
 
     **Azure US Government regions**:
-    - ```privatelink.api.ml.azure.us```
-    - ```privatelink.notebooks.usgovcloudapi.net```
+    - `privatelink.api.ml.azure.us`
+    - `privatelink.notebooks.usgovcloudapi.net`
 
     > [!NOTE]
     > Managed online endpoints share the workspace private endpoint. If you're manually adding DNS records to the private DNS zone `privatelink.api.azureml.ms`, an A record with wildcard
@@ -460,25 +460,25 @@ The following steps describe how this topology works:
     The following list is of zones to conditionally forward. The Azure DNS Virtual Server IP address is 168.63.129.16.
 
     **Azure Public regions**:
-    - ```api.azureml.ms```
-    - ```notebooks.azure.net```
-    - ```instances.azureml.ms```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.com``` - Used by managed online endpoints
+    - `api.azureml.ms`
+    - `notebooks.azure.net`
+    - `instances.ml.azure.ms`
+    - `aznbcontent.net`
+    - `inference.ml.azure.com` - Used by managed online endpoints
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```api.ml.azure.cn```
-    - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.cn``` - Used by managed online endpoints
+    - `api.ml.azure.cn`
+    - `notebooks.chinacloudapi.cn`
+    - `instances.ml.azure.ms`
+    - `aznbcontent.net`
+    - `inference.ml.azure.cn` - Used by managed online endpoints
 
     **Azure US Government regions**:
-    - ```api.ml.azure.us```
-    - ```notebooks.usgovcloudapi.net```
-    - ```instances.azureml.us```
-    - ```aznbcontent.net```
-    - ```inference.ml.azure.us``` - Used by managed online endpoints
+    - `api.ml.azure.us`
+    - `notebooks.usgovcloudapi.net`
+    - `instances.ml.azure.us`
+    - `aznbcontent.net`
+    - `inference.ml.azure.us` - Used by managed online endpoints
 
     > [!IMPORTANT]
     > Configuration steps for the DNS Server aren't included here, as there are many DNS solutions available that can be used as a custom DNS Server. Refer to the documentation for your DNS solution for how to appropriately configure conditional forwarding.
@@ -490,22 +490,22 @@ The following steps describe how this topology works:
     The following list is the zones to conditionally forward. The IP addresses to forward to are the IP addresses of your DNS Servers:
 
     **Azure Public regions**:
-    - ```api.azureml.ms```
-    - ```notebooks.azure.net```
-    - ```instances.azureml.ms```
-    - ```inference.ml.azure.com``` - Used by managed online endpoints
+    - `api.azureml.ms`
+    - `notebooks.azure.net`
+    - `instances.ml.azure.ms`
+    - `inference.ml.azure.com` - Used by managed online endpoints
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```api.ml.azure.cn```
-    - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
-    - ```inference.ml.azure.cn``` - Used by managed online endpoints
+    - `api.ml.azure.cn`
+    - `notebooks.chinacloudapi.cn`
+    - `instances.ml.azure.ms`
+    - `inference.ml.azure.cn` - Used by managed online endpoints
 
     **Azure US Government regions**:
-    - ```api.ml.azure.us```
-    - ```notebooks.usgovcloudapi.net```
-    - ```instances.azureml.us```
-    - ```inference.ml.azure.us``` - Used by managed online endpoints
+    - `api.ml.azure.us`
+    - `notebooks.usgovcloudapi.net`
+    - `instances.ml.azure.us`
+    - `inference.ml.azure.us` - Used by managed online endpoints
 
     > [!IMPORTANT]
     > Configuration steps for the DNS Server aren't included here, as there are many DNS solutions available that can be used as a custom DNS Server. Refer to the documentation for your DNS solution for how to appropriately configure conditional forwarding.
@@ -517,19 +517,19 @@ The following steps describe how this topology works:
     The client starts by querying On-premises DNS Server for the address of the following FQDNs:
 
     **Azure Public regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.azure.net```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.com``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.azureml.ms`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.azure.net`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 
     **Microsoft Azure operated by 21Vianet regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.cn``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
 
     **Azure US Government regions**:
-    - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us```
-    - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net```
-    - ```<managed online endpoint name>.<region>.inference.ml.azure.us``` - Used by managed online endpoints
+    - `<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.us`
+    - `ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.usgovcloudapi.net`
+    - `<managed online endpoint name>.<region>.inference.ml.azure.us` - Used by managed online endpoints
 
 6. **On-premises DNS server recursively resolves workspace domain**:
 
@@ -589,7 +589,7 @@ The following text is an example of `hosts` file entries for Azure Machine Learn
 10.1.0.7    mymanagedendpoint.eastus.inference.ml.azure.com
 
 # For a compute instance named 'mycomputeinstance'
-10.1.0.5    mycomputeinstance.eastus.instances.azureml.ms
+10.1.0.5    mycomputeinstance.eastus.instances.ml.azure.ms
 ```
 
 For more information on the `hosts` file, see [https://wikipedia.org/wiki/Hosts_(file)](https://wikipedia.org/wiki/Hosts_(file)).

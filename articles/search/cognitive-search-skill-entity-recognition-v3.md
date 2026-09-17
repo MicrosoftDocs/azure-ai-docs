@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Entity Recognition cognitive skill (v3)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The **Entity Recognition** skill (v3) extracts entities of different types from text. These entities fall under 14 distinct categories, ranging from people and organizations to URLs and phone numbers. This skill uses the [Named Entity Recognition](/azure/ai-services/language-service/named-entity-recognition/overview) machine learning models provided by [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 > [!NOTE]

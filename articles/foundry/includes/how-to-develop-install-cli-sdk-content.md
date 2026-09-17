@@ -6,7 +6,8 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 09/03/2026
+ai-usage: ai-assisted
 ms.custom: include, classic-and-new
 ---
 
@@ -101,7 +102,7 @@ Git is required to clone Foundry SDK samples. If you don't have Git installed, [
 | ----- | ---------- |
 | Command not found after install | Close and reopen your terminal, or restart VS Code, so PATH changes take effect. |
 | `az login` fails with a browser error | Run `az login --use-device-code` to authenticate using a device code flow instead. |
-| Python not found | Use `python3` instead of `python` on macOS/Linux, or install a supported version (3.9 or later). |
+| Python not found | Use `python3` instead of `python` on macOS/Linux, or install a supported version (3.10 or later). |
 | Permission denied during install | On macOS/Linux, avoid `sudo pip install`. Use a [virtual environment](#create-a-virtual-environment) instead. |
 
 ## Related content

@@ -1,0 +1,30 @@
+---
+title: Include file
+description: include file
+author: msakande
+ms.author: mopeakande
+ms.reviewer: keijik
+ms.service: microsoft-foundry
+ms.topic: include
+ms.date: 06/23/2026
+ms.custom: include, classic-and-new
+---
+
+Microsoft Foundry offers two hosting options for deploying your Claude models: 
+
+- **Hosted on Azure**
+- **Hosted on Anthropic infrastructure**
+
+For both hosting options, Anthropic is the seller and operator of Claude models in Microsoft Foundry and acts as an independent data processor for prompts and outputs associated with Claude models. Your use of the Claude models is subject to the terms of use Anthropic provides for Claude models and APIs. 
+
+## Hosted on Azure
+
+If you choose the **Hosted on Azure** deployment option, your prompts and outputs are processed on Azure infrastructure, including request ingress, API services, and GPU inference. Data at rest is stored in the selected Azure geography and processing is scoped to applicable “Global” or “DataZone” deployment options available on Microsoft Foundry. 
+
+Automatic safeguards flag content that might be sent to Anthropic Trust & Safety for review. Anthropic personnel review customer content on an exceptions-only basis to investigate potential safety violations, subject to applicable Anthropic terms. 
+
+## Hosted on Anthropic Infrastructure
+
+If you choose the **Hosted on Anthropic Infrastructure** deployment option, your prompts and outputs are processed on Anthropic hosted infrastructure. Data might be processed outside of Azure including outside of your selected Azure region. To learn more about the terms that govern data processing in Anthropic-hosted infrastructure, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
+
+Microsoft continues to provide Microsoft Foundry experience, Azure infrastructure, and billing services for this deployment option. Microsoft also collects billing, usage, customer contact, and transaction information for Marketplace operations. Microsoft might share such customer contact information, transaction details, and usage information with Anthropic so that Anthropic can operate, support, and communicate with customers about the model. Microsoft processes data for these services under the Microsoft Products and Services Data Protection Addendum and applicable Marketplace terms. 

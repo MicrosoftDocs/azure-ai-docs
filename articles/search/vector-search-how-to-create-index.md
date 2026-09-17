@@ -13,6 +13,8 @@ ms.date: 01/14/2026
 
 # Create a vector index in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, you can store and query vectors in a search index. A *vector index* is defined by an index schema that has vector fields, nonvector fields, and a vector configuration section.
 
 Creating a vector index implicitly creates an *embedding space* that serves as the corpus for vector queries. The embedding space consists of all vector fields populated with embeddings from the same embedding model. At query time, the system compares the vector query to the indexed vectors and returns results based on semantic similarity.

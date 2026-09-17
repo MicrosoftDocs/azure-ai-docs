@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: foundry-tools
 ms.topic: concept-article
-ms.date: 02/13/2026
+ms.date: 07/31/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted

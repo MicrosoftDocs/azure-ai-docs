@@ -1,10 +1,10 @@
 ---
-title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models (classic)"
-description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning. (classic)"
+title: "Tutorial: Get started with a DeepSeek reasoning model in Foundry Models (classic)"
+description: "Learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning. (classic)"
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: tutorial
-ms.date: 02/17/2026
+ms.date: 07/28/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: rasavage
@@ -13,11 +13,11 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
-#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
+#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Tutorial: Get started with DeepSeek-R1 reasoning model in Microsoft Foundry Models (classic)
+# Tutorial: Get started with a DeepSeek reasoning model in Microsoft Foundry Models (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/tutorials/get-started-deepseek-r1.md)
 
@@ -25,7 +25,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ## Create the resources
 
-To create a Foundry project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../../quickstarts/get-started-code.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../../quickstarts/get-started-code.md?pivots=programming-language-bicep).
+To create a Foundry project that supports deployment for DeepSeek-V4-Pro, follow these steps. You can also create the resources by using [Azure CLI](../../quickstarts/get-started-code.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../../quickstarts/get-started-code.md?pivots=programming-language-bicep).
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -35,16 +35,16 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
     :::image type="content" source="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png" alt-text="A screenshot of the homepage of the Foundry portal showing the model catalog section." lightbox="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png":::
 
-1. Use the search box on the screen to search for the **DeepSeek-R1** model and open its model card.
+   Use the search box on the screen to search for the **DeepSeek-V4-Pro** model and open its model card.
 
    Select **Use this model**. This action opens a wizard to create a Foundry project and resources for you to work in. You can keep the default name for the project or change it.
 
     > [!TIP]
-    > **Are you using Azure OpenAI in Foundry Models?** When you're connected to the Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI in Foundry Models?** When you're connected to the Foundry portal by using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-V4-Pro, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >
-    > A new window opens with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
+    > A new window opens with the full list of models. Select **DeepSeek-V4-Pro** from the list and select **Deploy**. The wizard asks to create a new project.
 
 1. Select the dropdown in the "Advanced options" section of the wizard to see details about settings and other defaults created alongside the project. These defaults are selected for optimal functionality and include:
 
@@ -58,11 +58,11 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 ## Deploy the model
 
-1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
+1. When you create the project and resources, a deployment wizard opens. DeepSeek-V4-Pro is available as a Foundry Model sold by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 
-    1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is available under the **Global Standard** and **Global Provisioned** deployment types, which provide higher throughput and performance.
+    1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-V4-Pro is available under the **Global Standard** and **Global Provisioned** deployment types, which provide higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
@@ -87,7 +87,7 @@ The following code examples demonstrate how to:
     > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
 
 1. Create a chat completion client connected to your model deployment
-1. Send a basic prompt to the DeepSeek-R1 model
+1. Send a basic prompt to the DeepSeek-V4-Pro model
 1. Receive and display the response
 
 **Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
@@ -105,7 +105,7 @@ The following code examples demonstrate how to:
 - [Chat completions API reference](../../openai/latest.md#create-chat-completion)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../quotas-limits.md) that apply to DeepSeek models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 [!INCLUDE [get-started-deepseek-r1 2](../../../foundry/foundry-models/includes/tutorials-get-started-deepseek-r1-2.md)]
 

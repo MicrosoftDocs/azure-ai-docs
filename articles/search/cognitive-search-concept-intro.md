@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # AI enrichment in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, *AI enrichment* refers to integration with [Foundry Tools](/azure/ai-services/what-are-ai-services) to process content that isn't searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed.
 
 Because Azure AI Search is used for text and vector queries, the purpose of AI enrichment is to improve the utility of your content in search-related scenarios. Raw content must be text or images (you can't enrich vectors), but the output of an enrichment pipeline can be vectorized and indexed in a search index using skills like [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) for vector encoding. For more information about using skills in vector scenarios, see [Integrated data chunking and embedding](vector-search-integrated-vectorization.md).
@@ -42,7 +44,7 @@ The following diagram shows the progression of AI enrichment:
 
 - Enrichment starts when the indexer *[cracks documents](search-indexer-overview.md#document-cracking)* and extracts images and text. The type of processing that occurs next depends on your data and the skills you've added to a skillset. Images can be forwarded to [skills that perform image processing](cognitive-search-concept-image-scenarios.md). Text content is queued for text and natural language processing. Internally, skills create an *[enriched document](cognitive-search-working-with-skillsets.md#enrichment-tree)* that collects transformations as they occur.
 
-- Enriched content is generated during skillset execution and is temporary unless you save it. You can enable an [enrichment cache](enrichment-cache-how-to-configure.md) to persist skill outputs for reuse in future skillset executions.
+- Enriched content is generated during skillset execution and is temporary unless you save it. You can enable an [enrichment cache (preview)](enrichment-cache-how-to-configure.md) to persist skill outputs for reuse in future skillset executions.
 
 - To get content into a search index, the indexer must have mapping information for sending enriched content to target field. [Field mappings](search-indexer-field-mappings.md) (explicit or implicit) set the data path from source data to a search index. [Output field mappings](cognitive-search-output-field-mapping.md) set the data path from enriched documents to an index.
 
@@ -80,9 +82,9 @@ In Azure AI Search, an indexer saves the output it creates. A single indexer run
 
 | Data store | Required | Location | Description |
 | --- | --- | --- | --- |
-| [searchable index](search-what-is-an-index.md) | Required | Search service | Used for full-text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
-| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-does-multimodal-search-work), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
-| [enrichment cache](enrichment-cache-how-to-configure.md) | Optional | Azure Storage | Used for caching enrichments for reuse in subsequent skillset executions. The cache stores imported, unprocessed content (cracked documents). It also stores the enriched documents created during skillset execution. Caching is helpful if you're using image analysis or OCR, and you want to avoid the time and expense of reprocessing image files. |
+| [Searchable index](search-what-is-an-index.md) | Required | Search service | Used for full-text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
+| [Knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-does-multimodal-search-work), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
+| [Enrichment cache (preview)](enrichment-cache-how-to-configure.md) | Optional | Azure Storage | Used for caching enrichments for reuse in subsequent skillset executions. The cache stores imported, unprocessed content (cracked documents). It also stores the enriched documents created during skillset execution. Caching is helpful if you're using image analysis or OCR, and you want to avoid the time and expense of reprocessing image files. |
 
 Indexes and knowledge stores are fully independent of each other. While you must attach an index to satisfy indexer requirements, if your sole objective is a knowledge store, you can ignore the index after it's populated.
 

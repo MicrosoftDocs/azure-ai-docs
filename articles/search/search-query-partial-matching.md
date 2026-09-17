@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 A *partial term search* refers to queries consisting of term fragments, where instead of a whole term, you might have just the beginning, middle, or end of term (sometimes referred to as prefix, infix, or suffix queries). A partial term search might include a combination of fragments, often with special characters such as hyphens, dashes, or slashes that are part of the query string. Common use-cases include parts of a phone number, URL, codes, or hyphenated compound words.
 
 Partial terms and special characters can be problematic if the index doesn't have a token representing the text fragment you want to search for. During the [lexical analysis phase](search-lucene-query-architecture.md#stage-2-lexical-analysis) of keyword indexing (assuming the default standard analyzer), special characters are discarded, compound words are split up, and whitespace is deleted. If you're searching for a text fragment that was modified during lexical analysis, the query fails because no match is found. Consider this example: a phone number like `+1 (425) 703-6214` (tokenized as `"1"`, `"425"`, `"703"`, `"6214"`) won't show up in a `"3-62"` query because that content doesn't actually exist in the index.
@@ -37,7 +39,9 @@ For regular expression, wildcard, and fuzzy search, analyzers aren't used at que
 > [!NOTE]
 > When a partial query string includes characters, such as slashes in a URL fragment, you might need to add escape characters. In JSON, a forward slash `/` is escaped with a backward slash `\`. As such, `search=/.*microsoft.com\/azure\/.*/` is the syntax for the URL fragment "microsoft.com/azure/".
 
-## Solving partial/pattern search problems
+Because the query term itself isn't analyzed, it's matched literally against the index, so a query like `Contoso*` can return zero results if your analyzer lowercases indexed content. For more information, see [Effect of an analyzer on wildcard queries](query-lucene-syntax.md#effect-of-an-analyzer-on-wildcard-queries).
+
+## Solving partial and pattern search problems
 
 When you need to search on fragments or patterns or special characters, you can override the default analyzer with a custom analyzer that operates under simpler tokenization rules, retaining the entire string in the index.
 

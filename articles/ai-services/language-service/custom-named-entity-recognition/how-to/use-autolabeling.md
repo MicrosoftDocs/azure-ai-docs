@@ -4,9 +4,9 @@ titleSuffix: Foundry Tools
 description: Learn how to use autolabeling in custom named entity recognition.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 06/24/2026
 ms.author: lajanuar
 ---
 # How to use autolabeling for Custom Named Entity Recognition

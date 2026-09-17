@@ -123,34 +123,6 @@ API key authentication isn't supported for invoking Agent Applications. Use Micr
 
 ## Publish an agent  
 
-### Foundry portal
-
-This section shows you how to publish an agent using the Foundry portal interface.
-
-1. In the Agent Builder, create or select an agent version you want to publish.
-
-2. Select **Publish Agent** to create an Agent Application and deployment.
-
-  **Expected result**: Publishing completes and the agent version shows a published status.
-
-3. Configure authentication for your Agent Application:
-
-      - By default, the authentication type is set to RBAC (Role-Based Access Control).
-      - Users calling the agent application using Responses protocol must be granted the **Foundry User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
-   <!--
-   - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
-    -->
-
-4. Assign permissions for tool authentication:
-
-   - If your agent includes tools that use agent identity for authentication, the newly created agent identity must have appropriate permissions
-   - Navigate to each Azure resource your agent accesses and assign the required RBAC role to the new agent identity
-
-5. After publishing, you can:
-
-      - Share the published endpoint with external consumers or integrate it into your existing application.
-      - Share and chat with your application in channels like Teams/M365 Copilot.
-
 ### REST API
 To publish an agent version, you must create an application and deployment that reference your agent version.
 
@@ -209,7 +181,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 
 **Required fields**:
 
-- `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for Hosted agents.
+- `deploymentType`: The deployment mode. Use `Managed` for prompt agents. Use `Hosted` for Hosted agents.
 - `agents`: The agent name and version to deploy.
 - `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 
@@ -218,7 +190,7 @@ For a full property reference and an infrastructure-as-code (Bicep) example for 
 - `minReplicas`: Sets the minimum number of replicas
 - `maxReplicas`: Sets the maximum number of replicas
 
-##### Prompt and workflow agents
+##### Prompt agents
 ```
 PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -273,7 +245,7 @@ Content-Type: application/json
 
 #### 3. Verify deployment is running
 
-Prompt and workflow agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
+Prompt agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version - if the version is stopped, the deployment is also stopped. 
 
 To check the current state, get the deployment resource and inspect property `state`:
 ```

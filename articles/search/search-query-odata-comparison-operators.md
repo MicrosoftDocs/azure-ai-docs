@@ -22,6 +22,8 @@ translation.priority.mt:
 
 # OData comparison operators in Azure AI Search - `eq`, `ne`, `gt`, `lt`, `ge`, and `le`
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 The most basic operation in an [OData filter expression](query-odata-filter-orderby-syntax.md) in Azure AI Search is to compare a field to a given value. Two types of comparison are possible -- equality comparison, and range comparison. You can use the following operators to compare a field to a constant value:
 
 Equality operators:

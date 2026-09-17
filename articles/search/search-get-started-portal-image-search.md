@@ -1,14 +1,17 @@
-﻿---
+---
 title: "Quickstart: Multimodal Search in the Azure portal"
 description: Learn how to index and search for multimodal content in the Azure portal. Run a wizard to extract and embed both text and images, and then use Search Explorer to query your multimodal index.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/13/2026
+ms.date: 07/20/2026
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Multimodal search in the Azure portal
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In this quickstart, you use the **Import data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
 
@@ -59,13 +62,15 @@ The portal supports the following models for each method. Deployment instruction
 | [Microsoft Foundry project](/azure/foundry/how-to/create-projects?pivots=web-portal&preserve-view=true) | LLMs:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
 | [Azure OpenAI resource](/azure/foundry-classic/openai/how-to/create-resource?pivots=web-portal) <sup>3, 4</sup> | LLMs:<ul><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
 
-<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. The wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions).
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. The wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md#supported-regions).
 
-<sup>2</sup> The wizard only supports serverless API deployments for this model. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
+<sup>2</sup> The wizard only supports serverless API deployments for this model. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment (preview).
 
 <sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
 <sup>4</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+
+For the latest model lifecycle guidance, including deprecations, see [Model retirement and deprecation](/azure/ai-foundry/openai/concepts/model-retirements).
 
 ### Public endpoint requirements
 
@@ -397,7 +402,7 @@ When the wizard completes the configuration, it creates the following objects:
 | Object | Description |
 |--|--|
 | Data source | Represents a connection to Azure Blob Storage. |
-| Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) so that you can use preview features. |
+| Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) so that you can use preview features. |
 | Skillset | Contains the following skills:<br><ul><li>The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.</li><li>The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.</li><li>The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.</li></ul> |
 | Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
 | Knowledge store | Stores extracted images as blobs in Azure Storage for downstream processing or multimodal scenarios. |

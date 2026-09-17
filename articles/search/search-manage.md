@@ -12,6 +12,8 @@ ms.custom: sfi-image-nochange
 
 # Configure your Azure AI Search service in the Azure portal
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Configuring your new Azure AI Search service involves several tasks to optimize security, access, and performance. This article provides a day-one checklist to help you set up your service in the [Azure portal](https://portal.azure.com).
 
 After you create a search service, we recommend that you:

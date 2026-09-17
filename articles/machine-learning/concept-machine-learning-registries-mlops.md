@@ -8,14 +8,14 @@ ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 06/12/2025
+ms.date: 07/06/2026
 ms.topic: concept-article
-ms.custom: build-2023
+ai-usage: ai-assisted
 ---
 
-# Machine Learning registries for MLOps
+# Machine learning registries for MLOps
 
-This article describes how Azure Machine Learning registries decouple machine learning assets from workspaces, letting you use MLOps across development, testing, and production environments. Your environments can vary based on the complexity of your IT systems. The following factors influence the number and type of environments you need:
+This article describes how Azure Machine Learning registries decouple machine learning assets from workspaces, so you can use MLOps across development, testing, and production environments. Your environments can vary based on the complexity of your IT systems. The following factors influence the number and type of environments you need:
 
 - Security and compliance policies. Production environments might need to be isolated from development environments in terms of access controls, network architecture, and data exposure.
 - Subscriptions. Development environments and production environments often use separate subscriptions for billing, budgeting, and cost management purposes.
@@ -25,13 +25,13 @@ In the preceding scenarios, you might use different Azure Machine Learning works
 
 - You might need to train a model in a development workspace, but deploy it to an endpoint in a production workspace, possibly in a different Azure subscription or region. In this case, you must be able to trace back the training job. For example, if you encounter accuracy or performance issues with the production deployment, you need to analyze the metrics, logs, code, environment, and data you used to train the model.
 
-- You might need to develop a training pipeline with test data or anonymized data in the development workspace, but retrain the model with production data in the production workspace. In this case, you might need to compare training metrics on sample vs. production data to ensure the training optimizations perform well with actual data.
+- You might need to develop a training pipeline with test data or anonymized data in the development workspace, but retrain the model with production data in the production workspace. In this case, you might need to compare training metrics on sample versus production data to ensure the training optimizations perform well with actual data.
 
 ## Cross-workspace MLOps with registries
 
-A registry, much like a Git repository, decouples machine learning assets from workspaces and hosts the assets in a central location, making them available to all workspaces in your organization. You can use registries to store and share assets such as __models__, __environments__, __components__, and __datasets__.
+A registry, much like a Git repository, decouples machine learning assets from workspaces and hosts the assets in a central location, so all workspaces in your organization can access them. Use registries to store and share assets such as __models__, __environments__, __components__, and __data assets__.
 
-To promote models across development, test, and production environments, you can start by iteratively developing a model in the development environment. When you have a good candidate model, you can publish it to a registry. You can then deploy the model from the registry to endpoints in different workspaces.
+To promote models through development, test, and production environments, start by iteratively developing a model in the development environment. When you have a good candidate model, publish it to a registry. You can then deploy the model from the registry to endpoints in different workspaces.
 
 > [!TIP]
 > If you already have models registered in a workspace, you can promote the models to a registry. You can also register a model directly in a registry from the output of a training job.
@@ -47,3 +47,4 @@ The following diagram shows training pipeline promotion between exploratory and 
 - [Create and manage Azure Machine Learning registries](./how-to-manage-registries.md)
 - [Network isolation with registries](./how-to-registry-network-isolation.md)
 - [Share models, components, and environments across workspaces with registries](./how-to-share-models-pipelines-across-workspaces-with-registries.md)
+- [Share data across workspaces with registries](./how-to-share-data-across-workspaces-with-registries.md)

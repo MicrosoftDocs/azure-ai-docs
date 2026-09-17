@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # OData $orderby syntax in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, the **$orderby** parameter specifies a custom sort order for search results. This article describes the OData syntax of **$orderby** and provides examples.
 
 Field path construction and constants are described in the [OData language overview in Azure AI Search](query-odata-filter-orderby-syntax.md). For more information about sorting behaviors, see [Ordering results](search-pagination-page-layout.md#ordering-results).

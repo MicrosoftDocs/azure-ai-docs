@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # How to use Azure.Search.Documents in a .NET application
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to create and manage search objects using C# and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search) client library in the Azure SDK for .NET.
 
 You can use this library for data plane operations, including:

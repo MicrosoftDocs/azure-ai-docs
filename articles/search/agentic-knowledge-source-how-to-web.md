@@ -8,20 +8,14 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create and scope a Web Knowledge Source while accounting for its usage terms and limitations so that my knowledge base can supplement proprietary content with current information from permitted public web domains.
 ---
 
 # Create a Web Knowledge Source resource
 
-[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 > [!IMPORTANT]
 > + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/privacy/privacystatement).
@@ -41,7 +35,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use it when y
 ### Usage support
 
 | [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources) |
-|--|--|--|--|--|--|--|
+| -- | -- | -- | -- | -- | -- | -- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -50,15 +44,17 @@ Web Knowledge Source works best alongside other knowledge sources. Use it when y
 
 + An Azure AI Search service in any [public region that provides agentic retrieval](search-region-support.md). Web Knowledge Source isn't supported in private or sovereign clouds.
 
-+ Permissions to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
++ Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 
 ::: zone pivot="csharp"
 
 + Required [`Azure.Search.Documents`](https://www.nuget.org/packages/Azure.Search.Documents) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For `2026-08-01-preview` features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
+  + For `2026-04-01` features, the latest stable package: `dotnet add package Azure.Search.Documents`
+
++ For keyless authentication, the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package: `dotnet add package Azure.Identity`
 
 ::: zone-end
 
@@ -66,19 +62,23 @@ Web Knowledge Source works best alongside other knowledge sources. Use it when y
 
 + Required [`azure-search-documents`](https://pypi.org/project/azure-search-documents/#history) package:
 
-  + For 2026-05-01-preview features, the latest preview package: `pip install --pre azure-search-documents`
+  + For `2026-08-01-preview` features, the latest preview package: `pip install --pre azure-search-documents`
 
-  + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
+  + For `2026-04-01` features, the latest stable package: `pip install azure-search-documents`
+
++ For keyless authentication, the [`azure-identity`](https://pypi.org/project/azure-identity/) package: `pip install azure-identity`
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ Required REST API version:
++ Required Search Service REST API version:
 
-  + For preview features: [Search Service 2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+  + For preview features: [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-  + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+  + For generally available features: [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+
++ For keyless authentication, include a [Microsoft Entra ID token](search-get-started-rbac.md?pivots=rest#get-token) in the `Authorization` header of each HTTP request.
 
 ::: zone-end
 
@@ -88,7 +88,7 @@ Web Knowledge Source works best alongside other knowledge sources. Use it when y
 
 + For the 2026-04-01 API version, the knowledge base must include a model reference to provide the LLM for web content summarization. Retrieval is always extractive (cited summaries). Answer synthesis and configurable reasoning effort aren't available in this version.
 
-+ For the 2026-05-01-preview API version, the knowledge base model reference also enables [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
++ For the `2026-08-01-preview` API version, the knowledge base model reference also enables [answer synthesis (preview)](agentic-retrieval-how-to-answer-synthesis.md), which produces a single LLM-formulated response instead of extracted citations.
 
 ## Check for existing knowledge sources
 
@@ -114,15 +114,15 @@ Run the following code to create a web knowledge source.
 
 ::: zone pivot="csharp"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```csharp
 // Create Web Knowledge Source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var knowledgeSource = new WebKnowledgeSource(name: "my-web-ks")
 {
@@ -131,11 +131,11 @@ var knowledgeSource = new WebKnowledgeSource(name: "my-web-ks")
     {
         Domains = new WebKnowledgeSourceDomains
         {
-            AllowedDomains = 
+            AllowedDomains =
             {
                 new WebKnowledgeSourceDomain(address: "learn.microsoft.com") { IncludeSubpages = true }
             },
-            BlockedDomains = 
+            BlockedDomains =
             {
                 new WebKnowledgeSourceDomain(address: "bing.com") { IncludeSubpages = false }
             }
@@ -155,9 +155,9 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 // Create Web Knowledge Source
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
-using Azure;
+using Azure.Identity;
 
-var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new DefaultAzureCredential());
 
 var knowledgeSource = new WebKnowledgeSource(name: "my-web-ks")
 {
@@ -166,11 +166,11 @@ var knowledgeSource = new WebKnowledgeSource(name: "my-web-ks")
     {
         Domains = new WebKnowledgeSourceDomains
         {
-            AllowedDomains = 
+            AllowedDomains =
             {
                 new WebKnowledgeSourceDomain(address: "learn.microsoft.com") { IncludeSubpages = true }
             },
-            BlockedDomains = 
+            BlockedDomains =
             {
                 new WebKnowledgeSourceDomain(address: "bing.com") { IncludeSubpages = false }
             }
@@ -190,15 +190,15 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ::: zone pivot="python"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```python
 # Create Web Knowledge Source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import WebKnowledgeSource, WebKnowledgeSourceParameters, WebKnowledgeSourceDomains, WebKnowledgeSourceDomain
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = WebKnowledgeSource(
     name = "my-web-ks",
@@ -222,11 +222,11 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ```python
 # Create Web Knowledge Source
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import WebKnowledgeSource, WebKnowledgeSourceParameters, WebKnowledgeSourceDomains, WebKnowledgeSourceDomain
 
-index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client = SearchIndexClient(endpoint = "<search-endpoint>", credential = DefaultAzureCredential())
 
 knowledge_source = WebKnowledgeSource(
     name = "my-web-ks",
@@ -252,13 +252,13 @@ print(f"Knowledge source '{knowledge_source.name}' created or updated successful
 
 ::: zone pivot="rest"
 
-# [2026-05-01-preview](#tab/2026-05-01-preview)
+# [2026-08-01-preview](#tab/2026-08-01-preview)
 
 ```http
 ### Create Web Knowledge Source
-PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-05-01-preview
+PUT {{search-endpoint}}/knowledgesources/my-web-ks?api-version=2026-08-01-preview
 Content-Type: application/json
-api-key: {{api-key}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "name": "my-web-ks",
@@ -274,15 +274,15 @@ api-key: {{api-key}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 # [2026-04-01](#tab/2026-04-01)
 
 ```http
 ### Create Web Knowledge Source
-PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2026-04-01
+PUT {{search-endpoint}}/knowledgesources/my-web-ks?api-version=2026-04-01
 Content-Type: application/json
-api-key: {{api-key}}
+Authorization: Bearer {{search-access-token}}
 
 {
   "name": "my-web-ks",

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Use an Azure Logic Apps workflow for automated indexing in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, you can use the [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to create a logic app workflow that indexes and vectorizes your content. This capability is equivalent to an [indexer](search-indexer-overview.md) and data source that generates an indexing pipeline and creates searchable content.
 
 After you create a workflow in the wizard, you can manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in Azure AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, Azure AI Search, and other items required to complete the ingestion workflow.
@@ -145,7 +147,7 @@ It also supports the following query actions:
 
 - Deletion detection isn't supported. You must manually [delete orphaned documents](search-how-to-delete-documents.md#delete-a-single-document) from the index.
 
-- Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
+- Duplicate documents in the search index are a known problem with this feature. If this problem occurs, consider deleting objects and starting over.
 
 - No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow.
 
@@ -183,7 +185,7 @@ You can make the following modifications to a search index without breaking inde
 
 - [Add scoring profiles](index-add-scoring-profiles.md)
 - [Add semantic ranking](semantic-how-to-configure.md)
-- [Add spell check](speller-how-to-add.md)
+- [Add spell check (preview)](speller-how-to-add.md)
 - [Add synonym maps](search-synonyms.md)
 - [Add suggesters](index-add-suggesters.md)
 

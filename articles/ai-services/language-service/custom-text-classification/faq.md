@@ -5,7 +5,7 @@ description: Learn about Frequently asked questions when using the custom text c
 #services: cognitive-services
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: faq
 ms.date: 06/30/2026
 ms.author: lajanuar

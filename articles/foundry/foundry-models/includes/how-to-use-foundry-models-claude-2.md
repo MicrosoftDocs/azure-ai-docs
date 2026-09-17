@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 09/01/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -74,7 +74,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     
     # Create token provider for Entra ID authentication
     tokenProvider = get_bearer_token_provider(
-        DefaultAzureCredential(), "https://ai.cognitiveservices.com/.default"
+        DefaultAzureCredential(), "https://ai.azure.com/.default"
     )
     
     # Create client with Entra ID authentication
@@ -106,7 +106,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 #### Use API key authentication
 
 > [!IMPORTANT]
-> Claude **Mythos 5** and **Mythos Preview** support Microsoft Entra ID authentication only.
+> Claude **Mythos 5-1**, **Mythos 5**, and **Mythos Preview** support Microsoft Entra ID authentication only.
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -209,7 +209,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Create token provider for Entra ID authentication
     const tokenProvider = getBearerTokenProvider(
         new DefaultAzureCredential(),
-        'https://ai.cognitiveservices.com/.default');
+        'https://ai.azure.com/.default');
     
     // Create client with Entra ID authentication
     const client = new AnthropicFoundry({
@@ -238,7 +238,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 #### Use API key authentication
 
 > [!IMPORTANT]
-> Claude **Mythos 5** and **Mythos Preview** support Microsoft Entra ID authentication only.
+> Claude **Mythos 5-1**, **Mythos 5**, and **Mythos Preview** support Microsoft Entra ID authentication only.
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -305,7 +305,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
-If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://ai.cognitiveservices.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [Configure authentication with Microsoft Entra ID](/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest#use-microsoft-entra-id-in-your-code).
+If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://ai.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [Configure authentication with Microsoft Entra ID](/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest#use-microsoft-entra-id-in-your-code).
 
 1. Export your Microsoft Entra ID token to an environment variable:
 
@@ -420,19 +420,21 @@ The following table lists common errors when you work with Claude models in Foun
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://ai.cognitiveservices.com/.default`. |
+| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://ai.azure.com/.default`. |
 | 403 Forbidden | Insufficient permissions on the resource or subscription. | Verify you have **Contributor** or **Owner** role on the resource group. For Entra ID, ensure the **Cognitive Services User** role is assigned. |
 | 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
 | 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |
-| Subscription eligibility error | Your Azure subscription type or billing region isn't supported, or your subscription tier has a default quota of 0 for the model. | Confirm your subscription has an active pay-as-you-go billing method and a supported billing country/region. See [Subscription type and region support](#subscription-type-and-region-support). For tier-specific default limits, see [Quotas, rate limits, and regions](../concepts/claude-models.md). |
-| Region not available | Deployment attempted in an unsupported region. | For Global Standard deployments, deploy to **East US2** or **Sweden Central**. For `claude-opus-4-8` (Hosted on Azure) Data Zone Standard (US), deploy to a supported US data zone location. |
+| Data retention required (400 `invalid_request_error`) | The model is an Anthropic-designated [Covered Model](https://support.claude.com/en/articles/15425695-covered-models) that requires data retention, but your subscription has zero data retention (ZDR) enabled. The upstream Anthropic message says your "organization or workspace must have data retention enabled," but in Foundry this setting applies to your **subscription**. | Anthropic independently manages data retention for Claude on Azure, so Microsoft can't change this setting for you. To use the model, either work directly with Anthropic to disable ZDR for your subscription, or create a new subscription (as data retention is enabled by default on new subscriptions) and deploy the model there. For background, see [Data retention practices for Covered Models](https://support.claude.com/en/articles/15425996-data-retention-practices-for-covered-models). |
+| Subscription eligibility error | Your Azure subscription type or billing region isn't supported, or your subscription tier has a default quota of 0 for the model. | Confirm your subscription has an active pay-as-you-go billing method and a supported billing country/region. See [Subscription type and region support](#subscription-type-and-region-support). For tier-specific default limits, see [Claude model quotas and rate limits](../concepts/claude-models-quotas-limits.md). |
+| Region not available | Deployment attempted in an unsupported region. | Deploy to the supported Azure regions for the specific Claude models you're using. For the exact Azure regions where the models are available, see [Region availability by deployment type](../concepts/models-from-partners.md#region-availability-by-deployment-type). |
+| Requests to Claude Sonnet 4.5 fail when including the `context-1m-2025-08-07` beta header and requesting greater than 200K tokens | The 1M context beta on Claude Sonnet 4.5 was retired on April 30, 2026. Starting May 1, 2026, requests greater than 200K tokens with the `context-1m-2025-08-07` beta header are rejected. | Remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 5** for higher-intelligence workloads. Requests with 200K tokens or fewer to Claude Sonnet 4.5 remain unaffected, even with the header present. |
 
 ## Related content
 
 - [Claude models in Microsoft Foundry](../concepts/claude-models.md)
 - [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
 - [Claude Consumption Units (CCU) billing in Microsoft Foundry](../concepts/claude-models-billing.md)
-- [Claude on Foundry starter kit](https://github.com/Azure-Samples/claude#readme)
+- [Deploy Claude models in Microsoft Foundry using Bicep or Terraform](/azure/developer/ai/how-to/deploy-claude-foundry?context=/azure/foundry/context/context)
 - [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
 - [Explore Microsoft Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
 - [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)

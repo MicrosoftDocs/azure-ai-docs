@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Extract text and information from images by using AI enrichment
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Images often contain useful information that's relevant in search scenarios. Azure AI Search doesn't query image content in real time, but you can extract information about an image during indexing and make that content searchable. To represent image content in a search index, you can use these approaches:
 
 + [Vectorize images](search-get-started-portal-image-search.md) to represent visual content as a searchable vector.
@@ -159,7 +161,7 @@ This section supplements the [skill reference](cognitive-search-predefined-skill
 
 1. Add templates for OCR and image analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
 
-1. If necessary, [include a Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md) in the skillset. Azure AI Search makes calls to a billable Microsoft Foundry resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Unless you use a keyless connection (preview), the Microsoft Foundry resource must be in the same region as your search service.
+1. If necessary, [include a Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md) in the skillset. Azure AI Search makes calls to a billable Microsoft Foundry resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Unless you use a keyless connection, the Microsoft Foundry resource must be in the same region as your search service.
 
 1. If original images are embedded in PDF or application files like PPTX or DOCX, you need to add a Text Merge skill if you want image output and text output together. Working with embedded images is discussed further on in this article.
 

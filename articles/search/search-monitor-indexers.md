@@ -14,6 +14,8 @@ ms.update-cycle: 365-days
 
 # Monitor indexer status and results in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 You can monitor indexer processing in the Azure portal, or programmatically through REST calls or an Azure SDK. In addition to status about the indexer itself, you can review start and end times, and detailed errors and warnings from a particular run.
 
 ## Monitor using Azure portal

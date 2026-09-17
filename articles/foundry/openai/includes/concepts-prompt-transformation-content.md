@@ -13,7 +13,7 @@ ms.custom: include, classic-and-new
 
 ## Scope
 
-Prompt transformation (also called *prompt revision*) applies to Azure OpenAI image generation requests that support the `revised_prompt` field, including DALL-E 3 deployments. If your deployment doesn't return `revised_prompt`, prompt transformation isn't available for that model.
+Prompt transformation, also called *prompt revision*, applies to Azure OpenAI image generation requests that support the `revised_prompt` field, including DALL-E 3 deployments. If your deployment doesn't return `revised_prompt`, prompt transformation isn't available for that model.
 
 > [!NOTE]
 > In API responses, this feature appears as the `revised_prompt` field. This article uses "prompt transformation" and "prompt revision" to refer to the same behavior.
@@ -52,10 +52,10 @@ Default prompt transformation includes safety-oriented guidance intended to redu
 
 ## Use prompt transformation
 
-Prompt transformation is applied by default to all Azure OpenAI DALL-E 3 requests. No extra setup is required to benefit from prompt transformation enhancements.
+Azure OpenAI applies prompt transformation by default to all DALL·E 3 requests. You don't need to set up anything extra to benefit from prompt transformation enhancements.
 
 > [!IMPORTANT]
-> Prompt transformation can't be disabled or customized for DALL-E 3 deployments in Azure OpenAI. The revised prompt is always generated automatically.
+> You can't disable or customize prompt transformation for DALL·E 3 deployments in Azure OpenAI. The revised prompt is always generated automatically.
 
 Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt might lead to many image variants.
 
@@ -63,11 +63,11 @@ Like image generation, prompt transformation is non-deterministic due to the nat
 
 - Prompt transformation applies to Azure OpenAI DALL-E 3 image generation requests.
 - Availability can vary by region and by model deployment. For region availability, see [Azure OpenAI models](/azure/ai-services/openai/concepts/models).
-- The transformed prompt is returned via the API regardless of whether you use the Foundry portal or call the REST API or SDK directly.
+- The API returns the transformed prompt whether you use the Foundry portal or call the REST API or SDK directly.
 
 ## View prompt transformations
 
-Your revised or transformed prompt is visible in the API response object as shown here, in the `revised_prompt` field. 
+You can see your revised or transformed prompt in the API response object, in the `revised_prompt` field. 
 
 ```json
 Input Content:

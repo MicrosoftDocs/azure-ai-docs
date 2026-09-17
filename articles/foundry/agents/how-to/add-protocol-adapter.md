@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-A protocol adapter is a lightweight SDK wrapper that lets your agent code speak one of the Microsoft Foundry hosted agent protocols. In this article, you install the SDK adapter package, wire up a handler, declare the protocol in `agent.yaml`, and redeploy. Add an adapter when you bring your own code that doesn't already implement the [hosted agent runtime contract](../concepts/hosted-agent-contract.md).
+A protocol adapter is a lightweight SDK wrapper that lets your agent code speak one of the Microsoft Foundry hosted agent protocols. In this article, you install the SDK adapter package, wire up a handler, declare the protocol in `azure.yaml`, and redeploy. Add an adapter when you bring your own code that doesn't already implement the [hosted agent runtime contract](../concepts/hosted-agent-contract.md).
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
 _endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-_model = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
+_model = os.environ["FOUNDRY_MODEL_NAME"]
 
 _project_client = AIProjectClient(
     endpoint=_endpoint, credential=DefaultAzureCredential()
@@ -132,8 +132,8 @@ ResponsesServer.Run<MyHandler>(configure: builder =>
 {
     var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
         ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
-    var model = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
-        ?? throw new InvalidOperationException("AZURE_AI_MODEL_DEPLOYMENT_NAME is not set.");
+    var model = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")
+        ?? throw new InvalidOperationException("FOUNDRY_MODEL_NAME is not set.");
 
     var projectClient = new AIProjectClient(
         new Uri(endpoint), new DefaultAzureCredential());
@@ -221,34 +221,42 @@ InvocationsServer.Run(handler: async (HttpContext httpContext) =>
 
 ---
 
-## Declare the protocol in agent.yaml
+## Declare the protocol in azure.yaml
 
-Add or update the `protocols` field in your `agent.yaml`:
+Add or update the `protocols` field in the `azure.ai.agent` service in your `azure.yaml`:
 
 ```yaml
-template:
-  kind: hosted
-  protocols:
-    - protocol: responses
-      version: 1.0.0
+services:
+  my-agent:
+    host: azure.ai.agent
+    project: src/my-agent
+    kind: hosted
+    protocols:
+      - protocol: responses
+        version: 2.0.0
 ```
 
 For invocations, use the following protocol:
 
 ```yaml
-template:
-  kind: hosted
-  protocols:
-    - protocol: invocations
-      version: 1.0.0
+services:
+  my-agent:
+    host: azure.ai.agent
+    project: src/my-agent
+    kind: hosted
+    protocols:
+      - protocol: invocations
+        version: 1.0.0
 ```
 
 ## Update your startup command
 
-Make sure the `startupCommand` in `azure.yaml` points to the entry point that starts the server:
+Make sure the `startupCommand` in the `azure.ai.agent` service points to the entry point that starts the server:
 
 ```yaml
-config:
+services:
+  my-agent:
+    host: azure.ai.agent
     startupCommand: python main.py
 ```
 
@@ -273,14 +281,17 @@ azd ai agent invoke --local -f request.json
 
 ## Add a second protocol
 
-An agent can support multiple protocols. To add a second one, install the additional SDK package, register both handlers in your entry point, and add both protocols to `agent.yaml`:
+An agent can support multiple protocols. To add a second one, install the additional SDK package, register both handlers in your entry point, and add both protocols to the `azure.ai.agent` service in `azure.yaml`:
 
 ```yaml
-protocols:
-  - protocol: responses
-    version: 1.0.0
-  - protocol: invocations
-    version: 1.0.0
+services:
+  my-agent:
+    host: azure.ai.agent
+    protocols:
+      - protocol: responses
+        version: 2.0.0
+      - protocol: invocations
+        version: 1.0.0
 ```
 
 > [!NOTE]
@@ -289,5 +300,6 @@ protocols:
 ## Related content
 
 * [Hosted agent runtime contract](../concepts/hosted-agent-contract.md)
+* [Resilience for long-running hosted agents](../concepts/long-running-agent-resilience.md)
 * [What are hosted agents?](../concepts/hosted-agents.md)
-* [agent.yaml schema reference](../concepts/agent-yaml-reference.md)
+* [Author azure.yaml for hosted agents](author-azure-yaml.md)

@@ -5,7 +5,7 @@ ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - build-2024
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Vector index size and limits
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 For each vector field, Azure AI Search constructs an internal vector index using the algorithm parameters specified on the field. Because Azure AI Search imposes quotas on vector index size, you should know how to estimate and monitor vector size to ensure you stay under the limits.
 
@@ -87,7 +89,7 @@ Quotas for both storage and vector index size increase or decrease as you add or
 
 Data plane REST APIs (all newer APIs provide vector usage statistics):
 
-+ [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) returns quota and usage for the search service all-up.
++ [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) returns overall quota and usage for the search service.
 + [GET Index Statistics](/rest/api/searchservice/indexes/get-statistics) returns usage for a given index.
 
 Usage and quota are reported in bytes.

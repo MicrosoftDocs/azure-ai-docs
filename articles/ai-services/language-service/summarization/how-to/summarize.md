@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to summarize text, native documents, and conversations with the summarization APIs.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.author: lajanuar

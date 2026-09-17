@@ -7,14 +7,12 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Invoke a hosted agent with the Azure Developer CLI
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use `azd ai agent invoke` to send messages to your agent, either the deployed version in Microsoft Foundry or a locally running instance. You learn how to choose an agent, use direct endpoints, manage sessions, send files, pin versions, and inspect raw responses.
 
@@ -76,7 +74,7 @@ When you want to invoke a specific deployed agent without depending on the activ
 
 ## Choose a protocol
 
-The protocol used for invoke is determined by the `protocols` field in your `agent.yaml`.
+The protocol used for invoke is determined by the `protocols` field of the `azure.ai.agent` service in `azure.yaml`.
 
 - **`responses`** -- sends a standard OpenAI Responses API request with `{"input": "your message"}`. Conversation history is managed automatically.
 - **`invocations`** -- sends whatever payload your agent code expects. Use `--input-file` (`-f`) with a JSON file matching the schema your handler defines.

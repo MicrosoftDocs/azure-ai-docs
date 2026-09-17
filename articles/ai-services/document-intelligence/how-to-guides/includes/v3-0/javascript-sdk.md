@@ -5,7 +5,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 05/27/2026
 ms.author: lajanuar
 ms.custom: devx-track-csharp, linux-related-content
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'

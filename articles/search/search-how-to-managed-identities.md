@@ -9,9 +9,12 @@ ms.custom:
   - ignite-2023
   - build-2024
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Configure a search service to connect using a managed identity
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 You can use Microsoft Entra ID security principals and role assignments for outbound connections from Azure AI Search to other Azure resources providing data, applied AI, or vectorization during indexing or queries.
 
@@ -35,7 +38,7 @@ You can use managed identities for the following scenarios.
 | Connect to embedding and chat completion models in Azure OpenAI, Microsoft Foundry, and Azure Functions via skills/vectorizers <sup>2</sup> | Yes | Yes |
 | [Connect to Azure Key Vault for customer-managed keys](search-security-manage-encryption-keys.md) | Yes | Yes |
 | [Connect to Debug sessions (hosted in Azure Storage)](cognitive-search-debug-session.md)	<sup>1</sup> | Yes | No |
-| [Connect to an enrichment cache (hosted in Azure Storage)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>3</sup> | Yes | Yes <sup>4</sup>|
+| [Connect to an enrichment cache, hosted in Azure Storage (preview)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>3</sup> | Yes | Yes <sup>4</sup>|
 | [Connect to a Knowledge Store (hosted in Azure Storage)](knowledge-store-create-rest.md) <sup>1</sup>| Yes | Yes |
 
 <sup>1</sup> For connectivity between search and storage, network security imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to Azure Storage, and that connection must be via the *trusted service exception* or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
@@ -277,7 +280,7 @@ A user-assigned managed identity is supported through the `identity` property on
 }
 ```
 
-[**Enrichment cache:**](enrichment-cache-how-to-configure.md)
+[**Enrichment cache (preview):**](enrichment-cache-how-to-configure.md)
 
 An indexer creates, uses, and remembers the container used for the cached enrichments. It's not necessary to include the container in the cache connection string. You can find the object ID on the **Identity** page of your search service in the Azure portal.
 

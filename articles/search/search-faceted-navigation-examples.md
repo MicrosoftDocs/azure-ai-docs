@@ -1,17 +1,22 @@
-﻿---
+---
 title: Faceted Navigation Examples
 description: Examples that demonstrate query syntax for facet hierarchies, distinct counts, facet aggregations, and facet filters.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/10/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Faceted navigation examples
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 This section extends [faceted navigation configuration](search-faceted-navigation.md) with examples that demonstrate basic usage and other scenarios.
 
-Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try new preview features like [facet hierarchies](#facet-hierarchy-example), [facet aggregations](#facet-aggregation-example), and [facet filters](#facet-filtering-example) on existing indexes.
+Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try [facet hierarchies (preview)](#facet-hierarchy-example-preview), [facet aggregations (preview)](#facet-aggregation-example-preview), and [facet filters (preview)](#facet-filtering-example-preview) on existing indexes.
 
 ## Facet parameters and syntax
 
@@ -193,11 +198,9 @@ Results from this query are as follows:
 }
 ```
 
-## Facet hierarchy example
+## Facet hierarchy example (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
 
 | Operator | Description |
 |-|-|
@@ -216,7 +219,7 @@ Notice that parentheses are processed before nesting and append operations: `A >
 There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
 ```http
-POST /indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+POST /indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
 {
   "search": "ocean",  
   "facets": ["Address/StateProvince>Address/City", "Tags>Rooms/BaseRate,values:50"],
@@ -376,7 +379,7 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
 ```http
-POST /indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+POST /indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
 {  
   "search": "+ocean",  
   "facets": ["Address/StateProvince > Address/City", "Tags > (Rooms/BaseRate,values:50 ; Rooms/Type)"],
@@ -473,11 +476,9 @@ Address/StateProvince
     Category
 ```
 
-## Facet filtering example
+## Facet filtering example (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or the Azure portal, you can configure facet filters.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can configure facet filters.
 
 Facet filtering enables you to constrain the facet values returned to those matching a specified regular expression. Two new parameters accept a regular expression that is applied to the facet field:
 
@@ -486,7 +487,7 @@ Facet filtering enables you to constrain the facet values returned to those matc
 
 If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 
-Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example)) on string fields.
+Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example-preview)) on string fields.
 
 Because the regular expression is nested within a JSON string value, you must escape both the double quote (`"`) and the backslash (`\`) characters. The regular expression itself is delimited by the forward slash (`/`). For more information about escape patterns, see [Regular expression search](query-lucene-syntax.md#bkmk_regex).
 
@@ -502,7 +503,7 @@ The following example shows how to escape special characters in your regular exp
 Here's an example of a facet filter that matches on Budget and Extended-Stay hotels, with Rating as a child of each hotel category.
 
 ```http
-POST /indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+POST /indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
 { 
     "search": "*", 
     "facets": ["(Category,includeTermFilter:/(Budget|Extended-Stay)/)>Rating,values:1|2|3|4|5"],
@@ -596,11 +597,9 @@ The following example is an abbreviated response (hotel documents are omitted fo
 }
 ```
 
-## Facet aggregation example
+## Facet aggregation example (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) or the Azure portal, you can aggregate facets.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can aggregate facets.
 
 Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options.
 
@@ -625,7 +624,7 @@ You can sum any facetable field of a numeric data type (except vectors and geogr
 Here's an example using the hotels-sample index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
 
 ```http
-POST /indexes/hotels-sample/docs/search?api-version=2026-05-01-preview
+POST /indexes/hotels-sample/docs/search?api-version=2026-08-01-preview
 
 { 
       "search": "*",
@@ -733,7 +732,7 @@ A response for the query might look like the following example. Windy Ocean Mode
 Here's an example using a hypothetical 'facets' index that shows the syntax for each aggregation. Notice that cardinality has an extra `precisionThreshold` option (default is 3,000) set to 40,000 in this example.
 
 ```http
-POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-05-01-preview 
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-08-01-preview
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -796,7 +795,7 @@ You can add a default value to use if a document contains a null for that field:
 Here's a request that illustrates the default specification for each field type.
 
 ```http
-POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-05-01-preview 
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-08-01-preview
 Authorization: Bearer {{token}} 
 Content-Type: application/json 
 
@@ -818,7 +817,7 @@ For string fields, a default value is delimited using the single quote character
 If the underlying data supports the use case, you can specify multiple metrics on the same field.
 
 ```http
-POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-05-01-preview 
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2026-08-01-preview
 Authorization: Bearer {{token}} 
 Content-Type: application/json 
 

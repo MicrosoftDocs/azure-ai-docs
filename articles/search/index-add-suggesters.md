@@ -13,6 +13,8 @@ ms.custom:
 
 # Configure a suggester for autocomplete and suggestions in a query
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, typeahead or "search-as-you-type" is enabled by using a *suggester*. A suggester is a configuration in an index that specifies which fields should be used to populate autocomplete and suggested matches. These fields undergo extra tokenization, generating prefix sequences to support matches on partial terms. For example, a suggester that includes a `city` field with a value for *Seattle* has prefix combinations of *sea*, *seat*, *seatt*, and *seattl* to support typeahead.
 
 Matches on partial terms can be either an autocompleted query or a suggested match. The same suggester supports both experiences.
@@ -64,7 +66,7 @@ When evaluating analyzers, consider using the [Analyze Text API](/rest/api/searc
 Fields that use [custom analyzers](index-add-custom-analyzers.md) or [built-in analyzers](index-add-custom-analyzers.md#built-in-analyzers), (except for standard Lucene) are explicitly disallowed to prevent poor outcomes.
 
 > [!NOTE]
-> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration. If you're using an indexer, you can map a source field to two different index fields to support multiple configuations.
+> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration. If you're using an indexer, you can map a source field to two different index fields to support multiple configurations.
 
 ## Create using the Azure portal
 

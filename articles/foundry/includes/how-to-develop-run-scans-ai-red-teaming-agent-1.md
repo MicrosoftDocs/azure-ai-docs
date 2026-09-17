@@ -82,13 +82,7 @@ red_team_agent = RedTeam(
 
 ## Region support
 
-Currently, AI Red Teaming Agent is available only in some regions. Ensure your Azure AI Project is located in the following supported regions:
-
-- East US 2
-- France Central
-- Sweden Central
-- Switzerland West
-- US North Central
+Currently, AI Red Teaming Agent is available only in some regions. Ensure your Azure AI Project is located in the [supported regions](../../foundry-classic/concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-ai-red-teaming).
 
 ## Supported targets
 
@@ -143,7 +137,7 @@ The `RedTeam` can run automated scans on various targets.
   red_team_result = await red_team_agent.scan(target=advanced_callback)
   ```
 
-- **PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://microsoft.github.io/PyRIT/api/pyrit-prompt-target/).
+- **PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://microsoft.github.io/PyRIT/0.14.0/api/pyrit-prompt-target/).
 
   ```python
   from pyrit.prompt_target import OpenAIChatTarget, PromptChatTarget
@@ -263,7 +257,7 @@ This approach offers a group of default attacks for easy complexity and moderate
 | `MODERATE` | `Tense` |
 | `DIFFICULT` | Composition of `Tense` and `Base64` |
 
-The following scan first runs all the baseline direct adversarial queries. Then, it applies the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64`, which first translates the baseline query into past tense then encode it into `Base64`.
+The following scan first runs all the baseline direct adversarial queries. Then, it applies the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64`, which first translates the baseline query into past tense then encodes it into `Base64`.
 
 ```python
 from azure.ai.evaluation.red_team import AttackStrategy

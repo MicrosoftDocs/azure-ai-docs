@@ -11,6 +11,8 @@ ms.custom: sfi-ropc-nochange
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article explains how to configure an indexer in Azure AI Search for a private connection to a SQL managed instance that runs within a virtual network. The private connection is through a [shared private link](search-indexer-howto-access-private.md) and Azure Private Link.
 
 On a private connection to a managed instance, the fully qualified domain name (FQDN) of the instance must include the [DNS Zone](/azure/azure-sql/managed-instance/connectivity-architecture-overview#virtual-cluster-connectivity-architecture). Currently, only the Azure AI Search Management REST API provides a `dnsZonePrefix` parameter for accepting the DNS zone specification.

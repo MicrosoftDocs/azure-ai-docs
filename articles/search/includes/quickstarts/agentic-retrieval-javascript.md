@@ -1,16 +1,14 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models. 
 
-In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
-
-A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
+The *knowledge base* uses LLM-based query planning (preview) to decompose complex queries into subqueries. It then runs the subqueries against one or more *knowledge sources* and returns results with metadata. By default, a knowledge base returns raw content from its sources, but this quickstart uses answer synthesis (preview) to generate natural-language answers.
 
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
@@ -37,10 +35,6 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
-
-+ The [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) version of the Search Service REST APIs.
-
 ## Set up the environment
 
 1. Use Git to clone the sample repository.
@@ -49,13 +43,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Navigate to the quickstart folder.
+1. Go to the quickstart folder.
 
     ```bash
     cd azure-search-javascript-samples/quickstart-agentic-retrieval-js
     ```
 
-1. In `sample.env`, replace the placeholder values for `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. Rename `sample.env` to `.env`.
 
@@ -69,7 +63,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     npm install
     ```
 
-   When the installation completes, you should see a `node_modules` folder in the project directory.
+   When the installation finishes, you see a `node_modules` folder in the project directory.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
@@ -368,7 +362,7 @@ console.log(`✅ Knowledge source 'earth-knowledge-source' created successfully.
 
 To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`.
 
-`outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
+`outputMode` (preview) is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
 
 ```javascript
 await searchIndexClient.createKnowledgeBase({
@@ -406,6 +400,8 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 1. Runs the subqueries concurrently against your knowledge source.
 1. Uses semantic ranker to rerank and filter the results.
 1. Synthesizes the top results into a natural-language answer.
+
+`retrievalReasoningEffort` (preview) is set to `low` to control the amount of reasoning used for query planning.
 
 ```javascript
 const knowledgeRetrievalClient = new KnowledgeRetrievalClient(
@@ -568,7 +564,7 @@ if (result2.references) {
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `index.js` deleted the objects you created in this quickstart.
+Otherwise, the following code from `index.js` deletes the objects you created in this quickstart.
 
 ```javascript
 await searchIndexClient.deleteKnowledgeBase('earth-knowledge-base');

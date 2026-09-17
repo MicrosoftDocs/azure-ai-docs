@@ -1,21 +1,24 @@
 ---
-title: How to handle regional capacity constraints in Azure AI Search
-description: Learn how to handle a regional capacity constraint that effects your Azure AI Search service.
+title: How to plan Azure AI Search deployments in high-demand regions
+description: Learn how to handle high demanded regions that effects your Azure AI Search service.
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: angiesi
-ms.date: 04/22/2026
+ms.date: 09/08/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
+ai-usage: ai-assisted
 ---
 
-# How to handle regional capacity constraints in Azure AI Search
+# How to manage Azure AI Search deployments in high-demand regions
 
-This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to capacity constraints. It also provides evaluation criteria for selecting an alternative region.
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-## Capacity constraint options
+This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to high demand. It also provides evaluation criteria for selecting an alternative region.
 
-When a preferred Azure region is unavailable due to capacity constraints, you have two options:
+## Consider alternative regions and off-peak deployment
+
+When a preferred Azure region is unavailable due to high demand, you have two options:
 
 - Deploy to an alternative region. 
 - Retry deployment during off-peak hours.
@@ -24,7 +27,7 @@ When a preferred Azure region is unavailable due to capacity constraints, you ha
 Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See the following section, *Criteria for selecting an alternative region*, for a full evaluation framework.
 
 **Retrying the service during off-peak hours is also a viable consideration.**
-Capacity constraints are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
+High demand is sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
 
 Retry during off-peak hours when:
 
@@ -68,7 +71,7 @@ For the current list of regions that support Availability Zones for Azure AI Sea
 
 ## Feature and model availability
 
-Not all Azure AI Search features and AI models are available in every region. Before selecting an alternative region, verify availability for the specific capabilities your workload depends on, including any Azure OpenAI or Azure AI Foundry models used in retrieval-augmented generation (RAG), semantic ranking, or AI enrichment pipelines.
+Not all Azure AI Search features and AI models are available in every region. Before selecting an alternative region, verify availability for the specific capabilities your workload depends on, including any Azure OpenAI or Azure AI Foundry models used in retrieval-augmented generation (RAG), semantic ranking, agentic retrieval, or AI enrichment pipelines.
 
 When selecting an alternative region for Azure AI Search, verify model availability in the same region. Co-locating Azure AI Search with Azure OpenAI or Azure AI Foundry in the same region eliminates cross-service latency and simplifies compliance and data residency requirements.
 

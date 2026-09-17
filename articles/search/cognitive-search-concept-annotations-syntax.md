@@ -5,11 +5,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/27/2025
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# Reference a path to enriched nodes using context and source properties an Azure AI Search skillset
+# Reference a path to enriched nodes by using context and source properties in an Azure AI Search skillset
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 During skillset execution, the engine builds an in-memory [enrichment tree](cognitive-search-working-with-skillsets.md#enrichment-tree) that captures each enrichment, such as recognized entities or translated text. In this article, learn how to reference an enrichment node in the enrichment tree so that you can pass output to downstream skills or specify an output field mapping for a search index field. 
 
@@ -102,13 +105,13 @@ To invoke the right number of iterations, set the context as `"/document/people/
     "outputs": [
       {
         "name": "lastname",
-        "targetName": "last"
+        "targetName": "lastname"
       }
     ]
   }
 ```
 
-When annotations are arrays or collections of strings, you might want to target specific members rather than the array as a whole. The previous example generates an annotation called `"last"` under each node represented by the context. If you want to refer to this family of annotations, you could use the syntax `"/document/people/*/last"`. If you want to refer to a particular annotation, you could use an explicit index: `"/document/people/1/last`" to reference the last name of the first person identified in the document. Notice that in this syntax arrays are "0 indexed".
+When annotations are arrays or collections of strings, you might want to target specific members rather than the array as a whole. The previous example generates an annotation called `"lastname"` under each node represented by the context. If you want to refer to this family of annotations, use the syntax `"/document/people/*/lastname"`. If you want to refer to a particular annotation, use an explicit index (`"/document/people/1/lastname"`) to reference the last name of the first person identified in the document. Notice that in this syntax, arrays are zero indexed.
 
 <a name="example-3"></a>
 
@@ -116,7 +119,7 @@ When annotations are arrays or collections of strings, you might want to target 
 
 Sometimes you need to group all annotations of a particular type to pass them to a particular skill. Consider a hypothetical custom skill that identifies the most common last name from all the last names extracted in Example 2. To provide just the last names to the custom skill, specify the context as `"/document"` and the input as `"/document/people/*/lastname"`.
 
-Notice that the cardinality of `"/document/people/*/lastname"` is larger than that of document. There might be 10 lastname nodes while there's only one document node for this document. In that case, the system will automatically create an array of  `"/document/people/*/lastname"` containing all of the elements in the document.
+Notice that the cardinality of `"/document/people/*/lastname"` is larger than that of document. There might be 10 lastname nodes while there's only one document node for this document. In that case, the system automatically creates an array of `"/document/people/*/lastname"` containing all of the elements in the document.
 
 ```json
   {

@@ -9,9 +9,12 @@ ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Make indexer connections to Azure Storage as a trusted service
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 In Azure AI Search, indexers that access Azure blobs can use the [trusted service exception](/azure/storage/common/storage-network-security#exceptions) to securely access blobs. This mechanism offers customers who are unable to grant [indexer access using IP firewall rules](search-indexer-howto-access-ip-restricted.md) a simple, secure, and free alternative for accessing data in storage accounts.
 
@@ -69,7 +72,7 @@ A system-assigned managed identity is a Microsoft Entra service principal. The a
 
 1. Add **Storage Blob Data Contributor** if write access is required.
 
-   Features that require write access include [enrichment caching](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
+   Features that require write access include [enrichment caching (preview)](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 ## Set up and test the connection
 

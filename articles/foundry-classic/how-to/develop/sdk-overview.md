@@ -1,16 +1,17 @@
 ---
-title: "Get started with Microsoft Foundry SDKs and Endpoints (classic)"
-description: "This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them. (classic)"
+title: "Get started with Microsoft Foundry SDKs and endpoints (classic)"
+description: "Learn how to choose Microsoft Foundry SDKs and endpoints, configure a project endpoint, and start building AI applications in the classic experience."
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.custom:
-  - classic-and-new
-  - build-2024
-  - ignite-2024
-  - dev-focus
+- classic-and-new
+- build-2024
+- ignite-2024
+- dev-focus
+- doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 08/05/2026
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -19,9 +20,9 @@ zone_pivot_groups: foundry-sdk-overview-languages
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Microsoft Foundry SDKs and Endpoints (classic)
+# Microsoft Foundry SDKs and endpoints (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/sdk-overview.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" alt-text="Diagram that shows the classic portal version is currently selected." border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/sdk-overview.md)
 
 [!INCLUDE [sdk-overview 1](../../../foundry/includes/how-to-develop-sdk-overview-1.md)]
 
@@ -60,7 +61,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
+| 1.x | Foundry classic | Retired | No supported Java package is available for this classic path. Use `com.azure:azure-ai-projects:2.2.0` with a current Foundry project. |
 
 ::: zone-end
 
@@ -68,7 +69,6 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.1 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
@@ -77,32 +77,24 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
 | 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The Java SDK path for Foundry classic is retired. The classic 1.x project SDK didn't reach general availability for Java, and the retired `azure-ai-inference` preview package isn't a supported replacement.
 
 > [!IMPORTANT]
-> The Java `azure-ai-projects` package doesn't have a 1.x GA release. The code samples in the Java sections use the `azure-ai-inference` package directly, which is being deprecated and will be retired on May 30, 2026.
-> For the 2.x Projects SDK, [switch to the new Foundry portal documentation](../../../foundry/how-to/develop/sdk-overview.md).
+> Don't start or migrate Java development on the classic SDK path. [Switch to the current Foundry SDK guide](../../../foundry/how-to/develop/sdk-overview.md) and use the GA [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) with a current Foundry project.
 
-
-Add these dependencies to your Maven `pom.xml` for Foundry classic projects.
+For a current Foundry project, add the following dependency to your Maven `pom.xml`:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
-    <artifactId>azure-ai-inference</artifactId>
-    <version>1.0.0-beta.6</version>
-</dependency>
-<dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-identity</artifactId>
-    <version>1.18.2</version>
+    <artifactId>azure-ai-projects</artifactId>
+    <version>2.2.0</version>
 </dependency>
 ```
 ::: zone-end
@@ -171,32 +163,9 @@ print(chat_responses.choices[0].message.content)
 
 ::: zone pivot="programming-language-java"
 
-**Create a project client:**
-```java
-package com.azure.ai.foundry.samples;
+The Java first-success path for Foundry classic is retired. The former `azure-ai-inference` example doesn't create a classic project client and uses an API call that isn't available in that package version.
 
-import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsClientBuilder;
-import com.azure.ai.inference.models.ChatCompletions;
-import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.credential.TokenCredential;
-import com.azure.core.exception.HttpResponseException;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-
-String  prompt = "What best practices should I follow when asking an AI model to review Java code?";
-String endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
-TokenCredential credential = new DefaultAzureCredentialBuilder().build();
-ChatCompletionsClient client = new ChatCompletionsClientBuilder()
-    .credential(credential)
-    .endpoint(endpoint)
-    .buildClient();
-```**Create and use an OpenAI-compatible client from your project:**
-```java
-ChatCompletions completions = client.complete(prompt);
-String content = completions.getChoice().getMessage().getContent();
-System.out.println("\nResponse from AI assistant:\n" + content);
-```
+For Java development, use `com.azure:azure-ai-projects:2.2.0` with a current Foundry project and follow the [current Foundry SDK guide](../../../foundry/how-to/develop/sdk-overview.md). This current SDK path doesn't add Java support to Foundry classic projects.
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -263,7 +232,7 @@ Console.WriteLine(result.Content[0].Text);
 ### What you can do with the Foundry SDK
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-- [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+- [Use the Foundry Agent Service](../../agents/quickstart.md)
 - [Run cloud evaluations](cloud-evaluation.md)
 - [Enable app tracing](./trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)

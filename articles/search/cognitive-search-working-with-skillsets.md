@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Skillset concepts in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md) or how AI is applied in Azure AI Search to transform raw content during indexing.
 
 A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over raw content retrieved from an external data source.
@@ -125,7 +127,7 @@ Notice how the output of the first skill ("pages") is used in sentiment analysis
 
 An enriched document is a temporary, tree-like data structure created during skillset execution that collects all of the changes introduced through skills. Collectively, enrichments are represented as a hierarchy of addressable nodes. Nodes also include any unenriched fields that are passed in verbatim from the external data source. The best approach for examining the structure and content of an enrichment tree is through a [debug session](cognitive-search-debug-session.md) in the Azure portal.
 
-An enriched document exists for the duration of skillset execution, but can be [cached](enrichment-cache-how-to-configure.md) or sent to a [knowledge store](knowledge-store-concept-intro.md). 
+An enriched document exists for the duration of skillset execution, but can be [cached (preview)](enrichment-cache-how-to-configure.md) or sent to a [knowledge store](knowledge-store-concept-intro.md). 
 
 Initially, an enriched document is simply the content extracted from a data source during [*document cracking*](search-indexer-overview.md#document-cracking), where text and images are extracted from the source and made available for language or image analysis. 
 

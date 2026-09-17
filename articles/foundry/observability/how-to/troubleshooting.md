@@ -28,11 +28,11 @@ Evaluation features require a storage account linked to your Foundry project thr
 
 Connect your storage account to the Foundry project by creating an Azure Blob Storage connection. For step-by-step instructions, see [Add a new connection to your project](../../how-to/connections-add.md).
 
-You can authenticate the connection by using either an **account key** or **Microsoft Entra ID** (recommended). If you use Entra ID, see [Missing RBAC role assignment for Entra ID authentication](#missing-rbac-role-assignment-for-entra-id-authentication) to configure the required permissions.
+You can authenticate the connection by using either an **account key** or **Microsoft Entra ID** (recommended). If you use Entra ID, see [Missing RBAC role assignment for Entra ID authentication](#missing-rbac-role-assignment-for-microsoft-entra-id-authentication) to configure the required permissions.
 
 For more details on bringing your own storage for evaluations, see [Rate limits, region support, and enterprise features for evaluation](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage).
 
-## Missing RBAC role assignment for Entra ID authentication
+## Missing RBAC role assignment for Microsoft Entra ID authentication
 
 If you connect your storage account by using Microsoft Entra ID authentication, the Foundry project's managed identity must have the **Storage Blob Data Contributor** role on the storage account. Without this role, the service can't read or write blob data and evaluations fail.
 
@@ -193,7 +193,7 @@ An evaluation run might stay in the **Running** or pending state for a long time
 If an evaluation fails with a `401 Unauthorized` or `403 Forbidden` error that isn't related to storage, the cause is usually project authentication or a missing role assignment.
 
 > [!NOTE]
-> If the `403` error mentions blob or storage access, see [Missing RBAC role assignment for Entra ID authentication](#missing-rbac-role-assignment-for-entra-id-authentication) instead.
+> If the `403` error mentions blob or storage access, see [Missing RBAC role assignment for Entra ID authentication](#missing-rbac-role-assignment-for-microsoft-entra-id-authentication) instead.
 
 **Resolution:**
 
@@ -247,7 +247,7 @@ For the full azd evaluation workflow, see [Run agent evaluations with the azd CL
 
 ## Trace evaluation issues
 
-[Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation-preview) runs evaluators against agent interactions that Application Insights already captured, instead of replaying requests. 
+[Trace evaluation](cloud-evaluation-deployed-interactions.md#evaluate-traces-preview) runs evaluators against agent interactions that Application Insights already captured, instead of replaying requests.
 
 ### Project managed identity is missing trace read permissions
 

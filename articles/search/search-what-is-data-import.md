@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Data import in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In Azure AI Search, queries execute over content that's loaded into a [search index](search-what-is-an-index.md), or over [remote knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) if you use agentic retrieval.
 
 This article describes the two basic workflows for populating an index on a search service: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).

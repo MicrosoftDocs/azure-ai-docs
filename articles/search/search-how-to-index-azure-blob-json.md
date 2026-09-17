@@ -7,11 +7,14 @@ ms.custom:
 ms.topic: how-to
 ms.date: 09/18/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Index JSON blobs and files in Azure AI Search
 
-**Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+**Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers (preview)](search-file-storage-integration.md)
 
 For blob indexing in Azure AI Search, this article shows you how to set properties for blobs or files consisting of JSON documents. JSON files in Azure Blob Storage or Azure Files commonly assume any of these forms:
 

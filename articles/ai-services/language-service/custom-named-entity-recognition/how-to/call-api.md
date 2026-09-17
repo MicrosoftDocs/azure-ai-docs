@@ -4,10 +4,11 @@ description: Learn how to send requests for custom NER.
 titleSuffix: Foundry Tools
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 07/31/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: language-service-custom-ner

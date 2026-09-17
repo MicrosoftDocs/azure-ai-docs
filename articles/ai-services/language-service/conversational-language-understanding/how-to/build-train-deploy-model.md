@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Build a schema, label utterances, train, evaluate, deploy, and query a conversational language understanding model in Microsoft Foundry.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.author: lajanuar

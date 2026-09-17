@@ -20,6 +20,18 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [evaluation-regions-limits-virtual-network 1](../../foundry/includes/concepts-evaluation-regions-limits-virtual-network-1.md)]
 
+### Supported regions for AI red teaming
+
+AI red teaming is supported in the following regions.
+
+- East US 2
+- France Central
+- Sweden Central
+- Switzerland West
+- US North Central
+
+[!INCLUDE [evaluation-regions-limits-virtual-network 1.5](../../foundry/includes/concepts-evaluation-regions-limits-virtual-network-1-half.md)]
+
 ## Bring your own storage
 
 You can use your own storage account to run evaluations for your Foundry project, whether the project is configured with a virtual network or without one.

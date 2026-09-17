@@ -7,7 +7,7 @@ ms.author: fosteramanda
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 07/09/2026
 ms.custom:
   - azure-ai-agents
   - classic-and-new

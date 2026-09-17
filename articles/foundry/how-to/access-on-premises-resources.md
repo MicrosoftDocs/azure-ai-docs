@@ -6,7 +6,7 @@ ms.service: microsoft-foundry
 ms.custom:
   - dev-focus
 ms.topic: how-to
-ms.date: 05/07/2026
+ms.date: 08/20/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly
 author: s-polly
@@ -50,11 +50,8 @@ az cognitiveservices account managed-network \
   --name {account-name} \
   --rule {rule-name} \
   --type privateendpoint \
-  --destination '{
-    "serviceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Network/applicationGateways/{app-gw-name}",
-    "subresourceTarget": "appGwPrivateFrontendIpIPv4",
-    "sparkEnabled": false
-  }'
+  --destination "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Network/applicationGateways/{app-gw-name}" \
+  --subresource-target appGwPrivateFrontendIpIPv4
 ```
 
 This command creates or updates a managed outbound rule and starts creating the managed private endpoint connection.
@@ -69,14 +66,13 @@ The following example creates or updates a private endpoint outbound rule to an 
 
 ```azurecli
 az rest --method PUT \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2025-10-01-preview" \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-05-01" \
   --body '{
     "properties": {
       "type": "PrivateEndpoint",
       "destination": {
         "serviceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Network/applicationGateways/{app-gw-name}",
-        "subresourceTarget": "appGwPrivateFrontendIpIPv4",
-        "sparkEnabled": false
+        "subresourceTarget": "appGwPrivateFrontendIpIPv4"
       }
     }
   }'
@@ -103,7 +99,33 @@ The connection status should show as **Approved**. If it shows **Pending**, veri
 
 After you create the private endpoint outbound rule, add FQDN aliases so the managed virtual network resolves them to the private endpoint IP address that targets the Application Gateway. FQDN aliases are required so your Foundry project can reach backend resources through the gateway by domain name.
 
+The Azure CLI `outbound-rule set` command doesn't include a parameter for FQDN aliases, so update the existing rule with the REST API. Send a `PUT` request to the same outbound rule and include an `fqdns` array alongside `destination`. Replace the placeholder values with your own values.
 
+```azurecli
+az rest --method put \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2026-05-01" \
+  --headers "Content-Type=application/json" \
+  --body '{
+    "properties": {
+      "type": "PrivateEndpoint",
+      "category": "UserDefined",
+      "destination": {
+        "serviceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Network/applicationGateways/{app-gw-name}",
+        "subresourceTarget": "appGwPrivateFrontendIpIPv4"
+      },
+      "fqdns": [
+        "app.contoso.com",
+        "api.contoso.com"
+      ]
+    }
+  }'
+```
+
+Because the request uses the existing rule name, it updates the private endpoint outbound rule in place and adds the FQDN aliases instead of creating a new rule.
+
+### References
+
+- [Microsoft.CognitiveServices/accounts/managedNetworks/outboundRules](/azure/templates/microsoft.cognitiveservices/accounts/managednetworks/outboundrules)
 
 > [!NOTE]
 > - If you use an HTTPS listener with an uploaded certificate, make sure the FQDN alias matches the certificate CN (Common Name) or SAN (Subject Alternative Name), otherwise the HTTPS call fails because of SNI (Server Name Indication).

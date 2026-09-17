@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Integrated vector embedding in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Integrated vectorization is an extension of the indexing and query pipelines in Azure AI Search. It adds the following capabilities:
 
 + Vector encoding during indexer-driven indexing
@@ -60,7 +62,7 @@ For text-to-vector conversion during queries, you take a dependency on these com
     | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) |
     | [Custom skill](cognitive-search-custom-skill-web-api.md) | [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) |
     | [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
-    | [AML skill pointing to the model catalog in Foundry portal](cognitive-search-aml-skill.md) | [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+    | [AML skill pointing to the model catalog in Foundry portal](cognitive-search-aml-skill.md) | [Microsoft Foundry model catalog vectorizer (preview)](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 ## Component diagram
 

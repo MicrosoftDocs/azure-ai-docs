@@ -3,7 +3,6 @@ title: include file
 description: include file
 author: alvinashcraft
 ms.author: aashcraft
-ms.reviewer: nitinme
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
@@ -51,7 +50,7 @@ The required mitigations are set forth here:
 | Text generation | Journalistic content, writing assistance, or other open text generation scenarios | Guardrails | The protected material text model must be configured on in filter mode. The jailbreak model (i.e., Prompt Shield for jailbreak attacks) must be configured on in filter mode.|December 1, 2023 |
 |  |  |  | If using the asynchronous filter feature, Output Content retroactively flagged as protected material text is not covered by the CCC.   | May 21, 2024 |
 
-**Image generation models, OpenAI Whisper model, and all other use cases:**
+**Image generation models, OpenAI transcription models, and all other use cases:**
 
 No additional requirements.
 

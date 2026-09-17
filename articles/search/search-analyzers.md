@@ -12,6 +12,8 @@ ms.custom:
 
 # Analyzers for text processing in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 An *analyzer* is a component of the [full text search engine](search-lucene-query-architecture.md) that's responsible for processing strings during indexing and query execution. Text processing (also known as lexical analysis) is transformative, modifying a string through actions such as these:
 
 + Remove non-essential words ([stopwords](reference-stopwords.md)) and punctuation

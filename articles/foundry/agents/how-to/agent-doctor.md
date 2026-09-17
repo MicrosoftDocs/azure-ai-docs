@@ -39,8 +39,8 @@ Run `doctor` when:
 
 Each invocation runs a set of checks, including but not limited to:
 
-- **Local**: azd version; `agent.yaml` is present and parseable; `azure.yaml` declares an `azure.ai.agent` service; `.env` for the active azd env has the expected keys; container build prerequisites are present for container deploy; entry point and runtime are valid for code deploy.
-- **Remote**: the Foundry project endpoint resolves and is reachable; required role assignments exist on the project; the deployed agent, if any, exists and can be invoked; the model deployment referenced by `agent.yaml` exists.
+- **Local**: azd version; `azure.yaml` is present and parseable; `azure.yaml` declares an `azure.ai.agent` service; `.env` for the active azd env has the expected keys; container build prerequisites are present for container deploy; entry point and runtime are valid for code deploy.
+- **Remote**: the Foundry project endpoint resolves and is reachable; required role assignments exist on the project; the deployed agent, if any, exists and can be invoked; the model deployment referenced by `azure.yaml` exists.
 
 Each check reports `pass`, `fail`, or `skip`. When every executed check passes, the report also suggests the next command to run, such as `azd ai agent eval generate`.
 

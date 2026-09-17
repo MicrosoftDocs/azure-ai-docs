@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article shows you how to create a CLU model for multi-turn interactions using slot-filling
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.author: lajanuar

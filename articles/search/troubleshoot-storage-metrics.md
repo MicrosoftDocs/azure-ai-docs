@@ -5,11 +5,13 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: troubleshooting-general
-ms.date: 04/01/2026
+ms.date: 07/21/2026
 ai-usage: ai-assisted
 ---
 
 # Troubleshoot storage and metric discrepancies in Azure AI Search
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 This article answers common questions about storage metrics that appear inconsistent across the Azure portal, REST APIs, and Azure SDKs.
 

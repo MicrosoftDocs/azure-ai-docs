@@ -9,9 +9,10 @@ ms.topic: how-to
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.custom: sfi-image-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Incorporate images into prompt flow (preview)
@@ -57,7 +58,10 @@ If the Image object from Python node is set as the flow output, you can preview 
 
 The **Azure OpenAI GPT-4 Turbo with Vision** tool and **OpenAI GPT-4V** tool are built-in tools in prompt flow that use the OpenAI GPT-4V model to answer questions based on input images. You can find the tool by selecting **More tool** in the flow authoring page.
 
-Add the [Azure OpenAI GPT-4 Turbo with Vision tool](./tools-reference/azure-open-ai-gpt-4v-tool.md) to the flow. Make sure you have an Azure OpenAI connection, with the availability of GPT-4 vision-preview models.
+> [!IMPORTANT]
+> The GPT-4 `vision-preview` model referenced by the legacy tool workflow is retired. Before you maintain an existing flow, confirm that the built-in tool supports a model deployment available to your Azure OpenAI resource. For new multimodal applications, use a current [vision-enabled model](/azure/ai-foundry/openai/how-to/gpt-with-vision) and migrate from prompt flow.
+
+Add the [Azure OpenAI GPT-4 Turbo with Vision tool](./tools-reference/azure-open-ai-gpt-4v-tool.md) to the flow, and select a supported Azure OpenAI model deployment for your connection.
 
 :::image type="content" source="./media/how-to-process-image/gpt-4v-tool.png" alt-text="Screenshot of GPT-4V tool." lightbox = "./media/how-to-process-image/gpt-4v-tool.png":::
 
@@ -124,9 +128,7 @@ If the batch run outputs contain images, you can check the **flow_outputs datase
 
 You can [deploy a flow to an online endpoint for real-time inference](./how-to-deploy-for-real-time-inference.md).
 
-Currently, the **Test** tab in the deployment detail page doesn't support image inputs or outputs. Support is coming soon. 
-
-For now, you can test the endpoint by sending a request that includes image inputs.
+The **Test** tab in the deployment details page doesn't support image inputs or outputs. Test the endpoint by sending a request that includes image inputs.
 
 To consume the online endpoint with an image input, represent the image by using the format `{"data:<mime type>;<representation>": "<value>"}`. In this case, `<representation>` can either be `url` or `base64`.
 

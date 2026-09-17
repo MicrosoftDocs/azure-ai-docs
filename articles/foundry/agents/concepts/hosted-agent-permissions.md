@@ -30,6 +30,8 @@ For end-to-end deployment and lifecycle tasks, see [Deploy a Hosted agent][deplo
 > [!IMPORTANT]
 > Always adhere to the principle of least privilege when assigning permissions. Only grant the permissions necessary for users and agents to perform their tasks, and regularly review and update permissions as needed.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map required roles and permissions to deployment and management tasks in your own Foundry project.
+
 ## Roles in this article
 
 Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Foundry User][role-ai-user], [Foundry Project Manager][role-project-manager], or [Foundry Owner][role-ai-owner].
@@ -180,6 +182,10 @@ Creating a Foundry project requires the `Microsoft.CognitiveServices/accounts/pr
 | Foundry Project Manager | Foundry account | ✔ Yes |
 | Foundry Account Owner | Foundry account | ✔ Yes |
 | Foundry Owner | Foundry account | ✔ Yes |
+
+> [!IMPORTANT]
+> Currently, user-assigned managed identities are supported only when configured during the Foundry project creation.
+> Changing the project identity type after creation isn't supported. This limitation includes changing from system-assigned to user-assigned managed identity, or from user-assigned to system-assigned managed identity.
 
 If the creator of the project has the ability to assign the `Foundry User` role at the scope of the account, the system automatically creates two role assignments:
 
@@ -444,6 +450,38 @@ A middle-tier service that authenticates its own end users can scope a session t
 
 `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action`
 
+This data action is **not** included in any built-in role. Roles that previously granted it through the `Microsoft.CognitiveServices/*` data action — including **Foundry User** and **Foundry Owner** — no longer do. To grant it, create a custom role that includes the data action and assign that role to your middle-tier service's identity at the scope of the Foundry project or the specific agent.
+
+The following custom role definition grants only the impersonation data action:
+
+```json
+{
+  "Name": "Foundry Agent User Identity Impersonation",
+  "IsCustom": true,
+  "Description": "Lets a trusted middle-tier service delegate the end-user identity to a hosted agent via the x-ms-user-identity header.",
+  "Actions": [],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>"
+  ]
+}
+```
+
+Create the role, then assign it to the middle-tier identity:
+
+```azurecli
+az role definition create --role-definition custom-impersonation-role.json
+
+az role assignment create \
+  --assignee <middle-tier-identity-object-id> \
+  --role "Foundry Agent User Identity Impersonation" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>
+```
+
 A caller that sends `x-ms-user-identity` without this permission receives a `403`. For how to use delegated identity, see [Isolate hosted agent sessions per user](../how-to/isolate-sessions-per-user.md#isolate-sessions-for-your-own-users).
 
 ## Agent observability
@@ -561,14 +599,14 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 [foundry-rbac]: ../../concepts/rbac-foundry.md
 [agent-identity]: ./agent-identity.md
 
-[role-agent-consumer]: /azure/ai-foundry/concepts/rbac-foundry#foundry-agent-consumer
+[role-agent-consumer]: ../../concepts/rbac-foundry.md#built-in-roles
 [role-owner]: /azure/role-based-access-control/built-in-roles#owner
 [role-contributor]: /azure/role-based-access-control/built-in-roles#contributor
 [role-rbac-admin]: /azure/role-based-access-control/built-in-roles#role-based-access-control-administrator
-[role-ai-user]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-user
-[role-project-manager]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-project-manager
-[role-account-owner]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-account-owner
-[role-ai-owner]: /azure/ai-foundry/concepts/rbac-foundry#azure-ai-owner
+[role-ai-user]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-project-manager]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-account-owner]: ../../concepts/rbac-foundry.md#built-in-roles
+[role-ai-owner]: ../../concepts/rbac-foundry.md#built-in-roles
 [role-acr-reader]: /azure/role-based-access-control/built-in-roles#container-registry-repository-reader
 [role-acr-writer]: /azure/role-based-access-control/built-in-roles#container-registry-repository-writer
 [role-acrpull]: /azure/role-based-access-control/built-in-roles#acrpull

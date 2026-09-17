@@ -5,7 +5,7 @@ description: Use this guide to create a CQA Microsoft Foundry agent.
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: overview
 ms.date: 06/30/2026
 ---

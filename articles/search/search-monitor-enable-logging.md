@@ -11,6 +11,8 @@ ms.update-cycle: 365-days
 
 # Configure diagnostic logging for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Diagnostic logs provide insight into operations that occur in your Azure AI Search resource. In contrast to Activity Logs that track operations performed on Azure resources at the subscription level, known as the [control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane), diagnostic logging monitors operations on the search service itself. Diagnostic logging is essential for effective oversight of service operations like indexing and queries.
 
 This article explains how to enable diagnostic logging and find information about system and user operations on an Azure AI Search resource.

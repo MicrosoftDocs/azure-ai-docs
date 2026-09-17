@@ -1,7 +1,7 @@
 ---
 title: Precise answering using answer span detection - custom question answering
 description: Understand Precise answering feature available in custom question answering.
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: feature-guide
 author: laujan
 ms.author: lajanuar

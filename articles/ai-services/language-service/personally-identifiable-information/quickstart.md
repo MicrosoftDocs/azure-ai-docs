@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Use Azure Language in Foundry Tools to detect and redact personally identifiable information (PII) with client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: quickstart
 ms.date: 04/27/2026
 ms.author: lajanuar

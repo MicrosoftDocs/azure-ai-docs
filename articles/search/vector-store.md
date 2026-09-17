@@ -12,6 +12,8 @@ ms.update-cycle: 365-days
 
 # Vector indexes in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Vectors are high-dimensional embeddings that represent text, images, and other content mathematically. Azure AI Search stores vectors at the field level, allowing vector and nonvector content to coexist within the same [search index](search-what-is-an-index.md).
 
 A search index becomes a *vector index* when you define vector fields and a vector configuration. To populate vector fields, you can push [precomputed embeddings](vector-search-how-to-generate-embeddings.md) into them or use [integrated vectorization](vector-search-integrated-vectorization.md), a built-in Azure AI Search capability that generates embeddings during indexing.

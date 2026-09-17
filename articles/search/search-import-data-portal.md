@@ -9,9 +9,12 @@ ms.custom:
   - ignite-2024
   - build-2025
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Import data wizard in the Azure portal
+
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 The **Import data** wizard in the Azure portal provides a no-code path to a queryable search index. It connects to a supported data source, configures optional AI enrichment and vectorization, infers an index schema, and loads content into the index. You can use the wizard for keyword search, RAG, and multimodal RAG.
 
@@ -34,7 +37,7 @@ Built-in sample data for the hotels-sample index is no longer available. However
 
 ### Data sources
 
-The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors) (preview).
+The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors).
 
 | Data source | Supported | Connection |
 |--|--|--|
@@ -45,9 +48,9 @@ The wizard connects to the following data sources through [built-in indexers](se
 | [Azure Table Storage](search-how-to-index-azure-tables.md) | ✅ | Built-in indexer |
 | [Azure SQL Database and Managed Instance](search-how-to-index-sql-database.md) | ✅ | Built-in indexer |
 | [Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md) | ✅ | Built-in indexer |
-| [Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md) | ✅ | Built-in indexer |
-| [Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md) | ✅ | Built-in indexer |
-| [MySQL](search-how-to-index-mysql.md) | ❌ | Not applicable |
+| [Cosmos DB for MongoDB (preview)](search-how-to-index-cosmosdb-mongodb.md) | ✅ | Built-in indexer |
+| [Cosmos DB for Apache Gremlin (preview)](search-how-to-index-cosmosdb-gremlin.md) | ✅ | Built-in indexer |
+| [MySQL (preview)](search-how-to-index-mysql.md) | ❌ | Not applicable |
 | [OneDrive](search-how-to-index-logic-apps.md#supported-connectors) | ✅ | Logic Apps connector |
 | [OneDrive for Business](search-how-to-index-logic-apps.md#supported-connectors) | ✅ | Logic Apps connector |
 | [OneLake](search-how-to-index-onelake-files.md) | ✅ | Built-in indexer |
@@ -56,7 +59,7 @@ The wizard connects to the following data sources through [built-in indexers](se
 | [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | Built-in indexer |
 
 > [!TIP]
-> Instead of using a Logic Apps connector for Azure File Storage or SharePoint, you can use the Search Service REST APIs to programmatically index data from these sources. For more information, see [Index data from Azure Files](search-file-storage-integration.md) and [Index data from SharePoint document libraries](search-how-to-index-sharepoint-online.md).
+> Instead of using a Logic Apps connector for Azure File Storage or SharePoint, you can use the Search Service REST APIs to programmatically index data from these sources. For more information, see [Index data from Azure Files (preview)](search-file-storage-integration.md) and [Index data from SharePoint document libraries (preview)](search-how-to-index-sharepoint-online.md).
 
 ### Skills
 
@@ -65,7 +68,7 @@ The following skills might appear in a wizard-generated skillset. After the skil
 | Skill | Supported | Description |
 |--|--|--|
 | [AML](cognitive-search-aml-skill.md) | ✅ | Available for RAG and multimodal RAG only. |
-| [Azure Vision multimodal embedding](cognitive-search-skill-vision-vectorize.md) | ✅ | Available for RAG and multimodal RAG only. |
+| [Azure Vision multimodal embedding (preview)](cognitive-search-skill-vision-vectorize.md) | ✅ | Available for RAG and multimodal RAG only. |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md) | ✅ | Available for RAG and multimodal RAG only. |
 | [Document Layout](cognitive-search-skill-document-intelligence-layout.md) | ✅ | Available for RAG and multimodal RAG only. |
 | [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | ✅ | Available for keyword search only. |

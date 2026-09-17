@@ -8,7 +8,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/27/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-manage-method
@@ -17,8 +17,6 @@ zone_pivot_groups: hosted-agent-manage-method
 ---
 
 # Isolate hosted agent sessions per user
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 A single hosted agent serves many users from one endpoint. This article shows you how Microsoft Foundry keeps each user's sessions, conversations, and stored data private, and how to extend that isolation to the users of your own application. By the end, you can invoke an agent and confirm that one caller can't see another caller's sessions, conversations, or stored data.
 
@@ -75,7 +73,6 @@ AGENT_NAME="my-agent"
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" \
     --body '{
         "input": "Summarize the latest support tickets",
         "stream": false
@@ -102,13 +99,62 @@ The OpenAI client authenticates with the caller's Microsoft Entra credential, so
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Install the packages with `dotnet add package Azure.AI.Projects --prerelease`, `dotnet add package Azure.AI.Extensions.OpenAI`, and `dotnet add package Azure.Identity`.
+
+```csharp
+using System.ClientModel;
+using System.Text.Json;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse(
+    "Summarize the latest support tickets");
+
+// The session identifier is returned on the raw response payload.
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+string sessionId = payload.RootElement.GetProperty("agent_session_id").GetString()!;
+Console.WriteLine($"Session: {sessionId}");
+```
+
+The client authenticates with the caller's Microsoft Entra credential, so the session is scoped to that identity.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+    azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create({
+    input: "Summarize the latest support tickets",
+});
+const sessionId = (response as any).agent_session_id;
+console.log(`Session: ${sessionId}`);
+```
+
+The OpenAI client authenticates with the caller's Microsoft Entra credential, so the session is scoped to that identity.
+
+:::zone-end
+
 ## Isolate sessions for your own users
 
 If your application authenticates its own end users - for example, through Google, GitHub, or a custom identity provider - a trusted service can tell Foundry which end user a request belongs to, so the platform isolates sessions per end user instead of per calling service.
 
 The service sends the end user's stable identifier in the `x-ms-user-identity` header. The platform treats the value as an opaque string and scopes the session to it. The value must be 1–256 characters and contain only letters, digits, and the characters `. _ : - @`; other values are rejected.
 
-To pass `x-ms-user-identity`, the calling identity must hold the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission on the agent. A caller without it receives a `403`. Grant this permission to your middle-tier service's identity. For more about agent permissions, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+To pass `x-ms-user-identity`, the calling identity must hold the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission on the agent. This permission is **not** included in any built-in role. It was previously covered by the `Microsoft.CognitiveServices/*` data action, but that action no longer grants it. Grant it explicitly by creating a custom role that includes the data action and assigning that role to your middle-tier service's identity. A caller without it receives a `403`. For the custom role definition and assignment commands, see [Delegate the end-user identity](../concepts/hosted-agent-permissions.md#delegate-the-end-user-identity).
 
 If a service holds this permission but doesn't send the header on a request, the platform scopes that session to the service's own identity instead of an end user. Your service can mix delegated and non-delegated calls, but only requests that include `x-ms-user-identity` are isolated per end user.
 
@@ -121,7 +167,7 @@ If a service holds this permission but doesn't send the header on a request, the
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/protocols/openai/responses?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview" "x-ms-user-identity=<stable-end-user-id>" \
+    --headers "x-ms-user-identity=<stable-end-user-id>" \
     --body '{
         "input": "Summarize my open tickets",
         "stream": false
@@ -141,6 +187,68 @@ response = openai_client.responses.create(
     input="Summarize my open tickets",
     extra_headers={"x-ms-user-identity": "<stable-end-user-id>"},
 )
+```
+
+Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. The session is scoped to that end user rather than to the calling service.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+The .NET client sets the header for every request through a pipeline policy:
+
+```csharp
+using System.ClientModel.Primitives;
+
+// Sends the end-user identifier that the platform uses to scope the session.
+public sealed class UserIdentityPolicy(string userId) : PipelinePolicy
+{
+    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        ProcessNext(message, pipeline, index);
+    }
+
+    public override ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        return ProcessNextAsync(message, pipeline, index);
+    }
+}
+```
+
+Create one client per end user, and then invoke the agent:
+
+```csharp
+var options = new AIProjectClientOptions();
+options.AddPolicy(new UserIdentityPolicy("<stable-end-user-id>"), PipelinePosition.PerCall);
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential(), options);
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse("Summarize my open tickets");
+
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+Console.WriteLine($"Session: {payload.RootElement.GetProperty("agent_session_id").GetString()}");
+```
+
+Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. Each end-user identifier gets its own session, so two users invoking the same agent receive different session IDs.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```typescript
+const openAIClient = project.getOpenAIClient({
+    azureConfig: { allowPreview: true, agentName: "my-agent" },
+});
+
+const response = await openAIClient.responses.create(
+    { input: "Summarize my open tickets" },
+    { headers: { "x-ms-user-identity": "<stable-end-user-id>" } },
+);
+console.log(response.output_text);
 ```
 
 Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. The session is scoped to that end user rather than to the calling service.
@@ -187,9 +295,8 @@ Upgrade to protocol 2.0.0 to get the automatic per-user isolation described earl
 
 | Symptom | Likely cause | What to try |
 |---------|--------------|-------------|
-| `403` with `preview_feature_required` | The preview opt-in header is missing. | Add the `Foundry-Features=HostedAgents=V1Preview` header to the request. |
 | `403` or `session_not_accessible` when accessing a session | The session belongs to a different identity. | Use the same identity that created the session, or hold the Foundry User role to see other identities' sessions. |
-| `403` on a request that sets `x-ms-user-identity` | The caller lacks the `UserIdentityImpersonation` permission. | Grant the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` permission to the calling service. |
+| `403` on a request that sets `x-ms-user-identity` | The caller lacks the `UserIdentityImpersonation` permission, which is no longer granted by built-in roles. | Create a custom role that includes the `Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action` data action and assign it to the calling service. |
 | Local runs don't isolate sessions | Local runs don't enforce isolation. | Test isolation against a deployed agent. Local mode (`--local`, `azd ai agent run`) targets a single user. |
 
 ## Related content

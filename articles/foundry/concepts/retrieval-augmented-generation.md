@@ -10,7 +10,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 05/20/2026
+ms.date: 08/21/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 ai-usage: ai-assisted
@@ -27,22 +27,17 @@ Foundry supports multiple patterns for working with private data. Choose based o
 
 - **Use RAG** when you need answers grounded in private or frequently changing data.
 - **Use fine-tuning** when you need to change model behavior, style, or task performance, rather than add fresh knowledge.
-- **Use agent tools** when you're building an agent that needs retrieval as a tool. For example, see [File search tool for agents](../agents/how-to/tools/file-search.md).
+- **Use agent tools** when you're building an agent that needs retrieval as a tool. For example, see [File search tool for agents](../agents/how-to/tools/file-search.md). To build a full RAG app with complete control instead, use the Foundry SDK.
 
-## Getting started with RAG in Foundry
+## RAG workflow in Foundry
 
-Implementing RAG in Foundry typically follows this workflow:
+A RAG implementation in Foundry typically covers these stages:
 
-1. **Prepare your data**: Organize and chunk your private documents or knowledge base into searchable content
-2. **Set up an index**: Create an Azure AI Search index or use another retrieval service to organize your content for efficient searching
-3. **Connect to Foundry**: Create a connection from your Foundry project to your index or retrieval service
-4. **Build your RAG application**: Integrate retrieval with your LLM calls using the Foundry SDK or REST APIs
-5. **Test and evaluate**: Verify that retrieval quality is good and responses are accurate and properly cited
-
-To get started, choose one of these paths based on your needs:
-
-- **Agent with retrieval**: If you're building an agent, use retrieval as a tool. See [File search tool for agents](../agents/how-to/tools/file-search.md).
-- **Custom RAG application**: Build a full RAG app with the Foundry SDK for complete control.
+- **Prepare your data**: Organize and chunk your private documents or knowledge base into searchable content.
+- **Set up an index**: Create an Azure AI Search index or use another retrieval service to organize your content for efficient searching.
+- **Connect to Foundry**: Create a connection from your Foundry project to your index or retrieval service.
+- **Build your RAG application**: Integrate retrieval with your model calls by using the Foundry SDK or REST APIs.
+- **Test and evaluate**: Verify that retrieval quality is good and that responses are accurate and properly cited.
 
 [!INCLUDE [retrieval-augmented-generation 2](../includes/concepts-retrieval-augmented-generation-2.md)]
 

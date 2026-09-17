@@ -8,8 +8,9 @@ ms.subservice: foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 08/24/2026
 manager: mcleans
 keywords: ChatGPT
 ai-usage: ai-assisted

@@ -4,7 +4,7 @@ description: "Learn how to use Foundry Content Safety middleware in LangChain ag
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/04/2026
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: fasantia
@@ -48,7 +48,7 @@ Set your environment variable:
 import os
 
 # Option 1: Project endpoint (recommended)
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+os.environ["FOUNDRY_PROJECT_ENDPOINT"] = (
 	"https://<resource>.services.ai.azure.com/api/projects/<project>"
 )
 
@@ -75,7 +75,7 @@ model = init_chat_model("azure_ai:gpt-4.1", credential=DefaultAzureCredential())
 
 Use classes in the namespace `langchain_azure_ai.agents.middleware.*` to add
 Content Safety capabilities to your agents. The package automatically
-detects the project connection when you set the `AZURE_AI_PROJECT_ENDPOINT`
+detects the project connection when you set the `FOUNDRY_PROJECT_ENDPOINT`
 environment variable. Microsoft Entra ID is the default authentication
 method, but key-based authentication is also available.
 
@@ -83,7 +83,7 @@ method, but key-based authentication is also available.
 from langchain_azure_ai.agents.middleware import AzureContentModerationMiddleware
 
 middleware = AzureContentModerationMiddleware(
-    project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     # ...
 )
 ```
@@ -207,7 +207,7 @@ result = agent.invoke(
                     "content safety policies>")]},
 )
 
-print(result["messages"][0].content[0]["text"])
+print(result["messages"][0].content)
 ```
 
 ```output
@@ -349,6 +349,12 @@ retrieved documents.
 
 Use `langchain_azure_ai.agents.middleware.AzureGroundednessMiddleware` to
 evaluate AI generated content against grounding sources.
+
+> [!IMPORTANT]
+> Groundedness detection isn't available in every region. If your project is in
+> an unsupported region, the middleware returns
+> `HttpResponseError: This feature is not yet available in this region`. For
+> supported regions, see [Azure AI Content Safety region support](../../../ai-services/content-safety/overview.md#region-availability).
 
 The following example:
 
@@ -597,11 +603,14 @@ def tool_only_extractor(state, runtime):
         [SystemMessage(content=QUESTION_EXTRACTION_INSTRUCTION)]
         + [m for m in messages if isinstance(m, (HumanMessage, AIMessage))]
     )
-    question = (
-        question_response.content.strip()
-        if isinstance(question_response.content, str)
-        else None
-    )
+    question_content = question_response.content
+    if isinstance(question_content, str):
+        question = question_content.strip() or None
+    elif isinstance(question_content, list):
+        parts = [b["text"] for b in question_content if isinstance(b, dict) and b.get("type") == "text"]
+        question = " ".join(parts).strip() or None
+    else:
+        question = None
 
     return GroundednessInput(answer=answer, sources=sources, question=question)
 

@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 In this Azure AI Search tutorial, you learn how to index and query large data loaded from a Spark cluster. You set up a Jupyter Notebook to:
 
 > [!div class="checklist"]

@@ -6,10 +6,10 @@ ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
 ms.author: lajanuar
-ms.reviewer: samkemp
+reviewer: wayne-ch
+ms.reviewer: waynechuang
 author: laujan
-reviewer: samuel100
-ms.date: 06/15/2026
+ms.date: 08/13/2026
 ai-usage: ai-assisted
 ---
 
@@ -28,7 +28,7 @@ The Foundry Local command-line interface (CLI) lets you browse the model catalog
 
 ## Install the Foundry Local CLI
 
-Install Foundry Local by using the package manager for your operating system.
+Install Foundry Local by using the package manager or installer for your operating system.
 
 ### [Windows](#tab/windows)
 
@@ -36,12 +36,26 @@ Install Foundry Local by using the package manager for your operating system.
 winget install Microsoft.FoundryLocal
 ```
 
-### [macOS](#tab/macos)
+### [macOS Apple Silicon](#tab/macos)
+
+Install Foundry Local by using Homebrew:
 
 ```bash
 brew tap microsoft/foundrylocal
 brew install foundrylocal
 ```
+
+If you're upgrading from Foundry Local 0.8.x, stop the old service before upgrading:
+
+```bash
+foundry service stop
+brew update
+brew upgrade microsoft/foundrylocal/foundrylocal
+```
+
+For later upgrades, run `brew update` and `brew upgrade microsoft/foundrylocal/foundrylocal`.
+
+Alternatively, download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). If you download the `.pkg`, open it with macOS Installer.
 
 ---
 
@@ -52,7 +66,7 @@ foundry --version
 ```
 
 > [!TIP]
-> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry service restart`.
+> If you see a server connection error after installation (for example, `Request to local service failed`), run `foundry server restart`.
 
 ## Browse the model catalog
 
@@ -64,11 +78,11 @@ foundry model list
 
 On first run, Foundry Local downloads execution providers for your hardware before displaying the catalog.
 
-Filter the list by hardware device, task type, or execution provider:
+Filter the list by hardware device or model type:
 
 ```bash
-foundry model list --filter device=GPU
-foundry model list --filter task=chat-completion
+foundry model list --device gpu
+foundry model list --type chat
 ```
 
 Get detailed information about a specific model:
@@ -85,7 +99,7 @@ foundry model info phi-4-mini
 Start an interactive chat session with a model:
 
 ```bash
-foundry model run phi-4-mini
+foundry chat phi-4-mini
 ```
 
 Foundry Local downloads the model on first run, loads it into memory, and opens a chat prompt. Type a message and press Enter to get a response:
@@ -132,18 +146,18 @@ Change the cache directory (for example, to move models to a larger disk):
 foundry cache cd /path/to/new/cache
 ```
 
-## Check service status
+## Check server status
 
-Verify the Foundry Local service is running and get the local endpoint URL:
+Verify the Foundry Local daemon is running and get the local endpoint URL:
 
 ```bash
-foundry service status
+foundry server status
 ```
 
-If the service isn't responding, restart it:
+If the local server isn't responding, restart the daemon:
 
 ```bash
-foundry service restart
+foundry server restart
 ```
 
 ## Related content

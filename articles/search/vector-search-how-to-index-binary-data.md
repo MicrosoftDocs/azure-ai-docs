@@ -12,6 +12,8 @@ ms.date: 01/16/2026
 
 # Index binary vectors for vector search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Azure AI Search supports the `Collection(Edm.Byte)` packed binary type to further reduce the storage and memory footprint of vector data. You can use this data type for the output of models such as [Cohere's Embed v3 binary embedding models](https://cohere.com/blog/int8-binary-embeddings) or any other embedding model or process that outputs vectors as binary bytes.
 
 There are three steps to configuring an index for binary vectors:

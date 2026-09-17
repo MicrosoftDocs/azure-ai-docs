@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 04/06/2026
+ms.date: 08/21/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -64,7 +64,7 @@ Foundry supports two networking models for outbound isolation:
 | Model | How it works | Trade-off |
 | --- | --- | --- |
 | **Customer-managed VNet (BYO)** | You provide the VNet and a dedicated subnet delegated to `Microsoft.App/environments`. The platform injects into your subnet, enabling local communication with your private Azure resources. | Full control over network configuration; requires your own network management. |
-| **Managed VNet** (preview) | Foundry manages the VNet on your behalf. | Simpler setup; limits customization options. For details, see [Configure managed virtual network](../how-to/managed-virtual-network.md). |
+| **Managed VNet** | Foundry manages the VNet on your behalf. | Simpler setup; limits customization options. For details, see [Configure managed virtual network](../how-to/managed-virtual-network.md). |
 
 > [!NOTE]
 > Some network-isolated scenarios require the SDK or CLI instead of the portal. For example, deployments with private endpoints that block all public access aren't configurable through the portal UI. For details, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
@@ -75,7 +75,7 @@ Workloads run in logically isolated environments per Foundry resource. Customer 
 
 ### Content safety and guardrails
 
-Foundry integrates content safety controls into the model and agent inference pipeline. Guardrails define risks to detect, intervention points to scan (user input, output, tool calls (preview), and tool responses (preview)), and response actions when a risk is detected. Content filters run inline with model requests and can be configured per deployment. For more information, see [Guardrails and controls overview](../guardrails/guardrails-overview.md) and [Content filtering severity levels](../openai/concepts/content-filter-severity-levels.md).
+Foundry integrates content safety controls into the model and agent inference pipeline. Guardrails define risks to detect, intervention points to scan, and response actions when a risk is detected. Intervention points include user input, output, tool calls (preview), and tool responses (preview). Content filters run inline with model requests and can be configured per deployment. For more information, see [Guardrails and controls overview](../guardrails/guardrails-overview.md) and [Content filtering severity levels](../openai/concepts/content-filter-severity-levels.md).
 
 ### Regional availability
 

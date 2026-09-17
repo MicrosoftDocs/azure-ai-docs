@@ -4,26 +4,19 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 07/28/2026
 ai-usage: ai-assisted
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights (preview)
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag will occur before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 Azure Data Lake Storage (ADLS) Gen2 supports per-user access to directories and files through [access control lists](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) (ACLs) and [role-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) (Azure RBAC). [Attribute-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) (Azure ABAC) isn't supported.
 
-Preview APIs in Azure AI Search can ingest this permission metadata alongside document content. Users who lack access to a directory or file in storage don't see the corresponding documents in search results. This is one of several strategies for [document-level access control](search-document-level-access-overview.md) in Azure AI Search.
+Azure AI Search can ingest this permission metadata (preview) alongside document content by using a preview REST API. Users who lack access to a directory or file in storage don't see the corresponding documents in search results. This is one of several strategies for [document-level access control](search-document-level-access-overview.md) in Azure AI Search.
 
 This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob knowledge source to automatically *pull* permission metadata into a search index. It supplements [Index data from ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) and [Create a blob knowledge source for ADLS Gen2](agentic-knowledge-source-how-to-blob.md) with information specific to permission ingestion. To manually *push* permission metadata, see [Index document ACLs using the push API](search-index-access-control-lists-and-rbac-push-api.md).
 
@@ -51,9 +44,7 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
 
-  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
-
-  + [Knowledge store](knowledge-store-concept-intro.md)
+  + [Knowledge store](knowledge-store-concept-intro.md), including the asset store required for [image serving (preview)](agentic-retrieval-how-to-image-serving.md) in agentic retrieval. Therefore, image serving isn't supported for knowledge sources that ingest ACLs or RBAC scopes.
 
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
 
@@ -152,12 +143,11 @@ Key points about the configuration that make it work for this scenario:
 
 + `isADLSGen2` is set to true, meeting the data source requirement for this scenario.
 + `ingestionPermissionOptions` specifies user and group IDs.
-+ `disableImageVerbalization` is set to true because the GenAI Prompt skill that backs this experience isn't currently supported in ADLS Gen2 permission inheritance.
 
 ```http
 # Create / Update Azure Blob Knowledge Source
 ###
-PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2026-05-01-preview
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2026-08-01-preview
 api-key: {{key}}
 Content-Type: application/json
  
@@ -333,7 +323,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resetdocs (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-05-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2026-08-01-preview
    { 
      "documentKeys": [ 
        "1001", 
@@ -345,7 +335,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resync (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-05-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2026-08-01-preview
    { 
      "options": [ 
        "permissions" 

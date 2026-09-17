@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how to identify and link entities found in text with the entity linking API.
 author: laujan
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: how-to
 ms.date: 06/30/2026
 ms.author: lajanuar

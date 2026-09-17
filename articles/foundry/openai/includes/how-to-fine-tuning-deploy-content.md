@@ -360,17 +360,37 @@ Azure OpenAI fine-tuning supports the following deployment types.
 | Models             | East US2 | North Central US | Sweden Central |
 |--------------------|:--------:|:----------------:|:--------------:|
 |o4-mini             | ✅       |                  | ✅             |
+|GPT-5^              |          | ✅               | ✅             |
 |GPT-4.1             |          | ✅               | ✅             |
 |GPT-4.1-mini        |          | ✅               | ✅             |
 |GPT-4.1-nano        |          | ✅               | ✅             |
 |GPT-4o              | ✅       |                  | ✅             |
 |GPT-4o-mini         |          | ✅               | ✅             |
 
+> ^ GPT-5 is generally available by application only.
+
+### Data Zone Standard
+
+Data Zone Standard fine-tuned deployments are available in the following data zones:
+
+| Model                   | US | EU | Asia |
+|-------------------------|:--:|:--:|:----:|
+| o4-mini                 | ✅ |    |      |
+| GPT-4.1                 | ✅ |    |      |
+| GPT-4.1-mini            | ✅ |    |      |
+| GPT-4.1-nano            | ✅ |    |      |
+| GPT-4o                  | ✅ |    |      |
+| GPT-4o-mini             | ✅ |    |      |
+| Ministral-3B            | ✅ |    |      |
+| Qwen-32B                | ✅ |    |      |
+| Llama-3.3-70B-Instruct  | ✅ |    |      |
+| gpt-oss-20b             | ✅ |    |      |
+
 ### Global Standard
 
 [Global standard](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
-Global standard deployments are available from all Azure OpenAI regions for the following models:
+All Foundry regions offer global standard deployments for the following models:
 
 * o4-mini
 * GPT-4.1
@@ -378,6 +398,10 @@ Global standard deployments are available from all Azure OpenAI regions for the 
 * GPT-4.1-nano
 * GPT-4o
 * GPT-4o-mini
+* Ministral-3B
+* Qwen-32B
+* Llama-3.3-70B-Instruct
+* gpt-oss-20b
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
 

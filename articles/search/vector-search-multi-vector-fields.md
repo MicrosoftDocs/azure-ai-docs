@@ -6,13 +6,16 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
 ms.date: 03/25/2026
+ai-usage: ai-assisted
 ---
 
-# Multi-vector field support in Azure AI Search
+# Multi-vector field support in Azure AI Search (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-The multi-vector field support feature in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is valuable for use cases like multimodal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
+The multi-vector field support feature (preview) in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is valuable for use cases like multimodal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
 
 ## Limitations
 
@@ -162,7 +165,7 @@ When a document includes multiple embedded vectors, such as text and image embed
 To debug how each vector contributed, use the `innerHits` debug mode (available in the latest preview REST API).
 
 ```json
-POST /indexes/my-index/docs/search?api-version=2026-05-01-preview
+POST /indexes/my-index/docs/search?api-version=2026-08-01-preview
 {
   "vectorQueries": [
     {

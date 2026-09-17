@@ -10,6 +10,8 @@ ai-usage: ai-assisted
 
 # Training for Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 Training modules provide an end-to-end learning experience that helps you build skills and develop practical knowledge through a progression of exercises. Use the following links to start with learning content from Microsoft and other training providers.
 
 ## Learning paths

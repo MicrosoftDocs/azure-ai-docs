@@ -2,7 +2,7 @@
 title: "Get started with Foundry Local"
 titleSuffix: Foundry Local
 description: "Build your first on-device AI application with the Foundry Local SDK."
-ms.date: 06/15/2026
+ms.date: 06/04/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart

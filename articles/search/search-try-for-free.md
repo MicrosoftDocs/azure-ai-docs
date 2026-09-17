@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Try Azure AI Search for free
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 If you're new to Azure, you can create an Azure free account to explore Azure AI Search and other services at no charge. The free account provides credits that you can use to create and test services for 30 days.
 
 This article explains how to maximize the value of your Azure free account to quickly and efficiently evaluate Azure AI Search.
@@ -28,7 +30,7 @@ The free account is active for 30 days and includes credits that allow you to cr
 
 ## Choose a region
 
-You can optionally integrate Azure AI Search with Foundry Tools for [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md). For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection (preview) or key-based connection. Key-based connections require both services to be in the same region.
+You can optionally integrate Azure AI Search with Foundry Tools for [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md). For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection or key-based connection. Key-based connections require both services to be in the same region.
 
 Before you create resources for a key-based connection, confirm regional support:
 
@@ -41,13 +43,13 @@ Before you create resources for a key-based connection, confirm regional support
 
 ## Choose a pricing model and tier
 
-Azure AI Search offers two pricing models: Dedicated and Serverless (Preview). For a free-trial account, you can evaluate Dedicated Free and Basic tiers, and you can also try the Serverless Developer tier at no charge during the initial preview period while reviewing estimated usage costs. Microsoft provides at least 30 days notice before Serverless Developer billing begins.
+Azure AI Search offers two pricing models: Dedicated and Serverless (preview).
 
-+ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
+- **Dedicated pricing model** - **Free tier** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
 
-+ **Basic** (recommended) is in the Dedicated pricing model, consumes about one-third of your USD200 credits over 30 days, and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
+- **Dedicated pricing model** - **Basic tier** (recommended) consumes about one-third of your USD200 credits over 30 days, and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
-+ **Serverless Developer** (Preview) is in the Serverless pricing model and uses consumption-based pricing. During the initial preview period, you can evaluate estimated usage costs without billing. Microsoft provides at least 30 days notice before billing begins.
+- **Serverless pricing model** - **Serverless Developer tier** (preview) uses consumption-based pricing. To evaluate usage costs in this tier, visit the [Azure portal](https://portal.azure.com) where you can view charges accrued once the billing period begins in the **Scale + Cost** tab.
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
@@ -85,7 +87,7 @@ You can access Azure AI Search through two portals, each optimized for different
 
 ## Track your credit usage
 
-During the trial period, stay under the USD200 credit allocation. Dedicated services are billed for provisioned capacity while they exist, even when idle. If you create a Dedicated Basic search service, expect Azure AI Search to consume about one-third of your available credits during the trial period. Serverless Developer (Preview) billing behavior is covered in the preview notice above, and you should still monitor estimated usage.
+During the trial period, stay under the USD200 credit allocation. Dedicated services are billed for provisioned capacity while they exist, even when idle. If you create a Dedicated Basic search service, expect Azure AI Search to consume about one-third of your available credits during the trial period. Serverless Developer (preview) billing behavior is covered in the preview notice above, and you should still monitor estimated usage.
 
 In the Azure portal, a notification in the upper-right corner shows how many credits have been used and how many remain. You can also monitor billing by searching for **Subscriptions** in the topmost search bar. The **Overview** page shows spending rates, forecasts, and cost management. For more information, see [Check usage of free services included with your Azure free account](/azure/cost-management-billing/manage/check-free-service-usage).
 

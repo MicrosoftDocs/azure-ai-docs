@@ -3,7 +3,7 @@ title: "Human Evaluation for Microsoft Foundry Agents"
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 04/19/2026
+ms.date: 07/31/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance."
 author: lgayhardt
 ms.author: lagayhar
@@ -28,7 +28,7 @@ This article explains how to set up human evaluation for your Foundry agent. As 
 To begin human evaluation for your Foundry agent, define a template that contains the set of questions you want human reviewers to complete based on agent responses.
 
 1. Select the agent you want to evaluate from the agent table in the **Agents** tab.  
-2. Navigate to the **Human Evaluation** tab under **Evaluation**.  
+2. Go to the **Human Evaluation** tab under **Evaluation**.  
 3. Select **Create new template** to start the template creation process.  
 4. In the **Create Human Evaluation Template** pop-up, assign a name and description, edit or delete sample questions, and add new questions based on your evaluation goals. Supported question types include thumbs up/down, slider, multiple choice, and free-form text.
 
@@ -50,40 +50,40 @@ You can create multiple evaluation templates based on your assessment needs. The
 - Select **Edit** in the template table to update a template. The template opens in an editable pop-up.  
 - Select **Delete** to remove a template.  
    > [!NOTE]
-   > Once deleted, the template and its associated evaluation results can't be retrieved from the portal.  
+   > Once deleted, you can't retrieve the template and its associated evaluation results from the portal.  
 - To set a template as active, select **Set as active** in the template table. Only one template can be active at any given time. Activating a new template automatically deactivates the previous one. Select **Set as inactive** to stop capturing human evaluation results for the current template.
 
 ## Conduct human evaluation
 
-After the evaluation template is configured and set as active for the target agent, human reviewers can begin their evaluation through the preview web app — a browser-based chat interface launched directly from the agent builder.
+After you configure the evaluation template and set it as active for the target agent, human reviewers can start their evaluation through the preview web app. This web app is a browser-based chat interface that launches directly from the agent builder.
 
 > [!NOTE]
 > Human reviewers need the **Foundry User** role on the Foundry project to access the preview web app and submit feedback.
 
-1. Select **Preview** in the top-right corner of the agent builder to open the agent in a browser-based chat interface.  
+1. Select **Preview** in the upper-right corner of the agent builder to open the agent in a browser-based chat interface.  
 2. Enter input and select **Send** to trigger an agent run.  
-3. After the agent responds, select the **Feedback** button to provide human evaluation for that response.  
+1. After the agent responds, select the **Feedback** button to provide human evaluation for that response.  
    - A side panel appears, displaying the active evaluation template.  
    - Reviewers can answer some or all questions in the form.  
-4. Select **Save** to store the evaluation data, or **Cancel** to discard.  
-5. Continue evaluating additional responses by entering new input or navigating to previous responses.  
+1. Select **Save** to store the evaluation data, or **Cancel** to discard it.  
+1. Continue evaluating additional responses by entering new input or navigating to previous responses.  
    - Reviewers can skip evaluations for certain responses or submit multiple evaluations for the same response.
 
-Saved evaluations are recorded per agent response and become available to agent builders in the **Evaluation Results** section.
+Agent builders can view saved evaluations for each agent response in the **Evaluation Results** section.
 
 ## Review human evaluation results
 
 After human reviewers complete their evaluations, agent builders can preview and download the results for further analysis through the Foundry portal.
 
 1. Navigate to the template table within the **Human Evaluation** tab and select the template you want to review results for.  
-2. All corresponding evaluation results appear under the **Evaluation Results** section. Each instance is displayed with its timestamp for reference.  
+1. All corresponding evaluation results appear under the **Evaluation Results** section. Each instance is displayed with its timestamp for reference.  
 3. Select an evaluation instance to view its JSON summary in the **JSON Output** section. The JSON includes:
    - Timestamp  
    - User prompt  
    - Agent response  
    - Questions from the evaluation template  
    - Reviewer answers  
-4. To download all evaluation results for a template, select **Download Results**. The results are exported as a CSV file containing all information from the JSON view for each evaluation instance.
+1. To download all evaluation results for a template, select **Download Results**. The results are exported as a CSV file containing all information from the JSON view for each evaluation instance.
 
 The downloaded CSV contains one row per evaluation instance, with columns for each field from the JSON view.
 

@@ -149,7 +149,7 @@ landingContent:
     - linkListType: reference
       links:
         - text: REST API (univariate)
-          url: /rest/api/aifoundry/
+          url: /rest/api/microsoft-foundry/
         - text: .NET SDK (univariate)
           url: /dotnet/api/azure.ai.anomalydetector
         - text: .Python SDK (univariate)
@@ -165,7 +165,7 @@ landingContent:
     - linkListType: reference
       links:
         - text: REST API (multivariate)
-          url: /rest/api/aifoundry/
+          url: /rest/api/microsoft-foundry/
         - text: .NET SDK (multivariate)
           url: /dotnet/api/azure.ai.anomalydetector
         - text: Python SDK (multivariate)

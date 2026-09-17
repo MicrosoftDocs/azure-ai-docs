@@ -8,14 +8,16 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 10/23/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry model catalog vectorizer
+# Microsoft Foundry model catalog vectorizer (preview)
 
-> [!IMPORTANT]
-> This vectorizer is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). To use this feature, we recommend the latest preview version of [Indexes - Create Or Update (REST API)](/rest/api/searchservice/indexes/create-or-update).
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-The **Microsoft Foundry model catalog** vectorizer connects to an embedding model deployed from the [Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) or an [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
+The **Microsoft Foundry model catalog** vectorizer (preview) connects to an embedding model deployed from the [Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) or an [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 If you're using integrated vectorization to create the vector arrays, the skillset should include an [AML skill](cognitive-search-aml-skill.md) that points to the same model specified in the vectorizer.
 

@@ -1,16 +1,14 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 07/20/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models. 
 
-In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
-
-A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
+The *knowledge base* uses LLM-based query planning (preview) to decompose complex queries into subqueries. It then runs the subqueries against one or more *knowledge sources* and returns results with metadata. By default, a knowledge base returns raw content from its sources, but this quickstart uses answer synthesis (preview) to generate natural-language answers.
 
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
@@ -45,14 +43,14 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-rest-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Go to the quickstart folder and open it in Visual Studio Code.
 
     ```bash
     cd azure-search-rest-samples/Quickstart-agentic-retrieval
     code .
     ```
 
-1. In `agentic-retrieval.rest`, replace the placeholder values for `@search-url` and `@aoai-url` with the URLs you obtained in [Get endpoints](#get-endpoints).
+1. In `agentic-retrieval.rest`, replace the placeholder values for `@search-url` and `@aoai-url` with the URLs you got in [Get endpoints](#get-endpoints).
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
@@ -72,7 +70,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 Send each request sequentially, starting with `### Create an index`.
 
-Each request should return a `200 OK`, `201 Created`, or `204 No Content` status code. If you receive an error, check the request for typos and ensure that your token is valid.
+Each request should return a `200 OK`, `201 Created`, or `204 No Content` status code. If you get an error, check the request for typos and make sure your token is valid.
 
 ### Output
 
@@ -326,13 +324,13 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ### Create a knowledge base
 
 To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a base named `earth-knowledge-base`.
 
-`outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
+`outputMode` (preview) is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
 
 ```HTTP
 ### Create a knowledge base
@@ -362,7 +360,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
 ### Run the retrieval pipeline
 
@@ -371,8 +369,10 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 1. Analyzes the entire conversation to infer the user's information need.
 1. Decomposes the compound query into focused subqueries.
 1. Runs the subqueries concurrently against your knowledge source.
-1. Uses semantic ranker to rerank and filter the results. Our example excludes responses with a reranker score of `2.5` or lower.
+1. Uses semantic ranker to rerank and filter the results. This example excludes responses with a reranker score of `2.5` or lower.
 1. Synthesizes the top results into a natural-language answer.
+
+`retrievalReasoningEffort` (preview) is set to `low` to control the amount of reasoning used for query planning.
 
 ```HTTP
 ### Run agentic retrieval
@@ -407,9 +407,9 @@ Authorization: Bearer {{token}}
 }
 ```
 
-**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-05-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-08-01-preview&preserve-view=true)
 
-The output should contain the following components:
+The output contains the following components:
 
 + `response` provides a synthesized, LLM-generated answer to the query that cites the retrieved documents. When answer synthesis isn't enabled, this section contains content extracted directly from the documents.
 
@@ -421,7 +421,7 @@ The output should contain the following components:
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following requests from `agentic-retrieval.rest` deleted the objects you created in this quickstart.
+Otherwise, the following requests from `agentic-retrieval.rest` delete the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

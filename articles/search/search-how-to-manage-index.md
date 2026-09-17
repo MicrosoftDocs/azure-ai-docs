@@ -10,6 +10,8 @@ zone_pivot_groups: search-portal-sdks-rest
 
 # Manage an index in Azure AI Search
 
+[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
 ::: zone pivot="azure-portal"
 
 After you [create an index](search-how-to-create-search-index.md), you can use the [Azure portal](https://portal.azure.com) to access its statistics and definition or remove it from your search service.
