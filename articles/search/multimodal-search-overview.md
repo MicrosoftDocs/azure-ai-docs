@@ -48,7 +48,7 @@ The wizard follows these steps to create a multimodal pipeline:
 
 1. **Generate image descriptions:** The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images, producing concise natural-language descriptions for text search and embedding using a large language model (LLM).
 
-1. **Generate embeddings:** The embedding skill creates vector representations of text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Microsoft Foundry](cognitive-search-aml-skill.md), or [Azure Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
+1. **Generate embeddings:** The embedding skill creates vector representations of text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Microsoft Foundry](cognitive-search-aml-skill.md), or [Azure Vision (preview)](cognitive-search-skill-vision-vectorize.md) embedding models natively.
 
    Alternatively, you can skip image verbalization and pass the extracted text and images directly to a multimodal embedding model through the [AML skill](cognitive-search-aml-skill.md) or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). For more information, see [Options for multimodal content embedding](#options-for-multimodal-content-embedding).
 

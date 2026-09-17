@@ -32,7 +32,7 @@ Retrieval-augmented generation (RAG) is a pattern that extends LLM capabilities 
 
 Azure AI Search provides two approaches designed specifically for these RAG challenges:
 
-- **[Agentic retrieval](#modern-rag-with-agentic-retrieval)**: A complete RAG pipeline with LLM-assisted query planning, multi-source access, and structured responses optimized for agent consumption.
+- **[Agentic retrieval](#modern-rag-with-agentic-retrieval)**: A complete RAG pipeline with LLM-based query planning (preview), multi-source access, and structured responses optimized for agent consumption.
 
 - **[Classic RAG pattern](#classic-rag-pattern-for-azure-ai-search)**: The proven approach using hybrid search and semantic ranking, ideal for simpler requirements or when generally available (GA) features are required.
 
@@ -55,7 +55,7 @@ The following sections explain how each approach solves specific RAG challenges.
 - Semantic ranking re-scores results based on meaning, not just keywords.
 - Vector similarity search matches concepts, not exact terms.
 
-[Learn more about query planning](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+[Learn more about query planning (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 ### Solving multisource data challenges
 

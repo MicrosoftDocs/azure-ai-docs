@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Agentic Retrieval"
-description: Learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations.
+description: Learn how to use preview agentic retrieval features to create a knowledge base that processes multi-turn conversations and synthesizes answers.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
@@ -15,6 +15,8 @@ zone_pivot_groups: search-sdks-rest
 # Quickstart: Agentic retrieval
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
+
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 ::: zone pivot="csharp"
 [!INCLUDE [C#](includes/quickstarts/agentic-retrieval-csharp.md)]

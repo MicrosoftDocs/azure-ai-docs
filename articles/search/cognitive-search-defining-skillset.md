@@ -8,6 +8,7 @@ ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Create a skillset in Azure AI Search
@@ -30,7 +31,7 @@ Rules for skillset definition include:
 Attach a skillset to an indexer. To use the skillset, reference it in an [indexer](search-howto-create-indexers.md) and then run the indexer to import data, invoke skills processing, and send output to an [index](search-what-is-an-index.md). A skillset is a high-level resource, but it's operational only within indexer processing. As a high-level resource, you can reference it in multiple indexers.
 
 > [!TIP]
-> Enable [enrichment caching](enrichment-cache-how-to-configure.md) to reuse the content you already processed and lower the cost of development.
+> Enable [enrichment caching (preview)](enrichment-cache-how-to-configure.md) to reuse the content you already processed and lower the cost of development.
 
 ## Add a skillset definition
 

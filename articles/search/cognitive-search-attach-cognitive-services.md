@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Attach a billable resource to a skillset in Azure AI Search
@@ -314,14 +315,14 @@ Billable built-in skills that make backend calls to external services include:
 + [Personally Identifiable Information (PII) Detection](cognitive-search-skill-pii-detection.md)
 + [Sentiment](cognitive-search-skill-sentiment-v3.md)
 + [Text Translation](cognitive-search-skill-text-translation.md)
-+ [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md)
++ [Azure Vision multimodal embeddings (preview)](cognitive-search-skill-vision-vectorize.md)
 
 A [query-time vectorizer](vector-search-how-to-configure-vectorizer.md) backed by the Azure Vision multimodal embedding model is also a billable enrichment.
 
 Image extraction is an Azure AI Search operation that occurs when documents are cracked prior to enrichment. Image extraction is billable on all pricing tiers, except for 20 free daily extractions on the free tier. Image extraction costs apply to image files inside blobs, embedded images in other files (PDF and other app files), and images extracted using [Document Extraction](cognitive-search-skill-document-extraction.md). For image extraction pricing, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
 
 > [!TIP]
-> To lower the cost of skillset processing, enable [incremental enrichment](enrichment-cache-how-to-configure.md) to cache and reuse any enrichments that are unaffected by changes made to a skillset. Caching requires Azure Storage (see [pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)), but the cumulative cost of skillset execution is lower if existing enrichments can be reused, especially for skillsets that use image extraction and analysis.
+> To lower the cost of skillset processing, enable [incremental enrichment (preview)](enrichment-cache-how-to-configure.md) to cache and reuse any enrichments that are unaffected by changes made to a skillset. Caching requires Azure Storage (see [pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)), but the cumulative cost of skillset execution is lower if existing enrichments can be reused, especially for skillsets that use image extraction and analysis.
 
 ## Example: Estimate costs
 

@@ -14,6 +14,8 @@ ms.date: 08/06/2026
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 [Hybrid search](hybrid-search-overview.md) combines text (keyword) and vector queries in a single search request. Both queries execute in parallel. The results are merged and reordered by new search scores, using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) to return a unified result set. In many cases, [per benchmark tests](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167), hybrid queries with semantic ranking return the most relevant results.
 
 In this article, learn how to:
@@ -48,7 +50,7 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + Newer stable or preview packages of the Azure SDKs (see change logs for SDK feature support).
 
-+ [Stable REST APIs](/rest/api/searchservice/documents/search-post) or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode(preview)](#set-maxtextrecallsize-and-countandfacetmode).
++ [Stable REST APIs](/rest/api/searchservice/documents/search-post) or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode (preview)](#set-maxtextrecallsize-and-countandfacetmode-preview).
 
     For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
 
@@ -293,11 +295,9 @@ await foreach (SearchResult<SearchDocument> result in results.GetResultsAsync())
 
 ---
 
-## Set maxTextRecallSize and countAndFacetMode
+## Set maxTextRecallSize and countAndFacetMode (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-A hybrid query can be tuned to control how much of each subquery contributes to the combined results. Setting `maxTextRecallSize` specifies how many BM25-ranked results are passed to the hybrid ranking model.
+A hybrid query can be tuned to control how much of each subquery contributes to the combined results. Setting the `maxTextRecallSize` parameter (preview) specifies how many BM25-ranked results are passed to the hybrid ranking model.
 
 If your request includes facets, use nonvector fields that are marked as `facetable` in the index. Vector fields aren't facetable.
 
@@ -305,7 +305,7 @@ Facet counts depend on the query type:
 
 + In a text-only query, facets count the documents that match the text query.
 + In a vector-only query, facets count the `k` documents returned by the vector query.
-+ In a hybrid query, facets account for both vector and text results. The vector side contributes the `k` nearest documents. The text side contributes BM25-ranked documents. The `countAndFacetMode` parameter determines whether count and facet calculations use all text matches or only the text matches that are retrieved for ranking.
++ In a hybrid query, facets account for both vector and text results. The vector side contributes the `k` nearest documents. The text side contributes BM25-ranked documents. The `countAndFacetMode` parameter (preview) determines whether count and facet calculations use all text matches or only the text matches that are retrieved for ranking.
 
 If you use `maxTextRecallSize`, you might also want to set `countAndFacetMode`. This parameter determines whether `count` and `facets` include all documents that matched the text query, or only documents retrieved within the `maxTextRecallSize` window. The default value is `countAllResults`.
 
@@ -586,7 +586,7 @@ A query might match to any number of documents, as many as all of them if the se
 Both `k` and `top` are optional. Unspecified, the default number of results in a response is 50. You can set `top` and `skip` to [page through more results](search-pagination-page-layout.md#paging-results) or change the default.
 
 > [!NOTE]
-> If you're using hybrid search in 2024-05-01-preview API, you can control the number of results from the keyword query using [maxTextRecallSize](#set-maxtextrecallsize-and-countandfacetmode). Combine this with a setting for `k` to control the representation from each search subsystem (keyword and vector).
+> If you're using hybrid search in 2024-05-01-preview API, you can control the number of results from the keyword query using [maxTextRecallSize](#set-maxtextrecallsize-and-countandfacetmode-preview). Combine this with a setting for `k` to control the representation from each search subsystem (keyword and vector).
 
 ### Semantic ranker results
 

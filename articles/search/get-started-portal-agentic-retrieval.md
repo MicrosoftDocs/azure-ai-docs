@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Agentic Retrieval in the Azure Portal"
-description: Learn how to use agentic retrieval in the Azure portal for a conversational search experience powered by Azure AI Search and Azure OpenAI models.
+description: Learn how to use agentic retrieval in the Azure portal for a conversational experience powered by Azure AI Search and Azure OpenAI.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 In this quickstart, use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
@@ -24,7 +24,7 @@ The portal guides you through the process of creating the following objects:
 
 + A *knowledge source* that references a container in Azure Blob Storage. When you create a blob knowledge source, Azure AI Search automatically generates an index and other pipeline objects to ingest and enrich your content for agentic retrieval.
 
-+ A *knowledge base* that uses agentic retrieval to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis output mode.
++ A *knowledge base* that uses LLM-based query planning (preview) to infer the underlying information need and execute subqueries and answer synthesis (preview) to formulate a natural-language answer.
 
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
@@ -81,7 +81,7 @@ To configure access for this quickstart:
 > + Billing from Azure AI Search for agentic retrieval.
 > + Billing from Azure OpenAI for query planning and answer synthesis.
 >
-> For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+> For more information, see [Region availability, limits, and billing](agentic-retrieval-overview.md#region-availability-limits-and-billing).
 
 ## Prepare sample data
 
@@ -131,9 +131,9 @@ To create the knowledge source for this quickstart:
 
 ## Create a knowledge base
 
-A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the LLM generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
+A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, LLM-based query planning (preview) generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
 
-The output mode determines how the knowledge base formulates answers. You can either use extractive data for verbatim content or [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) for natural-language answer generation. By default, the portal uses answer synthesis.
+The output mode determines how the knowledge base formulates answers. You can either use extractive data for verbatim content or [answer synthesis (preview)](agentic-retrieval-how-to-answer-synthesis.md) for natural-language answer generation. By default, the portal uses answer synthesis.
 
 To create the knowledge base for this quickstart:
 

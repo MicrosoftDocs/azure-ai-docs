@@ -6,11 +6,9 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Preview API usage](../previews/agentic-retrieval-preview-api-usage.md)]
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models. 
 
-In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
-
-A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
+The *knowledge base* uses LLM-based query planning (preview) to decompose complex queries into subqueries. It then runs the subqueries against one or more *knowledge sources* and returns results with metadata. By default, a knowledge base returns raw content from its sources, but this quickstart uses answer synthesis (preview) to generate natural-language answers.
 
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
@@ -332,7 +330,7 @@ Authorization: Bearer {{token}}
 
 To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a base named `earth-knowledge-base`.
 
-`outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
+`outputMode` (preview) is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
 
 ```HTTP
 ### Create a knowledge base
@@ -373,6 +371,8 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 1. Runs the subqueries concurrently against your knowledge source.
 1. Uses semantic ranker to rerank and filter the results. This example excludes responses with a reranker score of `2.5` or lower.
 1. Synthesizes the top results into a natural-language answer.
+
+`retrievalReasoningEffort` (preview) is set to `low` to control the amount of reasoning used for query planning.
 
 ```HTTP
 ### Run agentic retrieval
