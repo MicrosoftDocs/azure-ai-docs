@@ -9,7 +9,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 09/22/2025
+ms.date: 09/17/2026
 ms.custom:
   - ignite-2023
   - build-2024
@@ -133,7 +133,7 @@ After the flow run completes, you can select **View outputs** to check all histo
 
 #### Trace
 
-Tracing is disabled by default, to enable tracing you need to set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following to the python node:
+Tracing is disabled by default. To enable tracing, set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following code to a Python node:
 
 ```python
 import os
@@ -182,7 +182,7 @@ Chat history is structured as a list of inputs and outputs. All interactions in 
     "inputs": {
     "<flow input 1>": "xxxxxxxxxxxxxxx",
     "<flow input 2>": "xxxxxxxxxxxxxxx",
-    "<flow input N>""xxxxxxxxxxxxxxx"
+    "<flow input N>": "xxxxxxxxxxxxxxx"
     },
     "outputs": {
     "<flow output 1>": "xxxxxxxxxxxx",
@@ -194,7 +194,7 @@ Chat history is structured as a list of inputs and outputs. All interactions in 
     "inputs": {
     "<flow input 1>": "xxxxxxxxxxxxxxx",
     "<flow input 2>": "xxxxxxxxxxxxxxx",
-    "<flow input N>""xxxxxxxxxxxxxxx"
+    "<flow input N>": "xxxxxxxxxxxxxxx"
     },
     "outputs": {
     "<flow output 1>": "xxxxxxxxxxxx",

@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: scottpolly
 author: s-polly
-ms.date: 09/24/2025
+ms.date: 09/17/2026
 ms.topic: concept-article
 ms.reviewer: jturuk
 ms.custom: deploy, docker, prebuilt
