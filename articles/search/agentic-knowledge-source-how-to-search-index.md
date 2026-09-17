@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 08/14/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a search index knowledge source from an existing index and configure its retrieval fields, filters, and query guidance so that agentic retrieval can use relevant indexed content.
 ---
 
 # Create a search index knowledge source

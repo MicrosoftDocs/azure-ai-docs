@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 09/01/2026
 ai-usage: ai-assisted
+#customer intent: As a solution architect, I want to compare supported indexed and remote knowledge sources and understand their ingestion, security, enrichment, and retrieval options so that I can select and design appropriate sources for an agentic retrieval solution.
 ---
 
 # What is a knowledge source?

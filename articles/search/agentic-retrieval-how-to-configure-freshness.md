@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 06/02/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to determine when freshness-aware retrieval is appropriate and configure and validate a freshness policy so that newer indexed content receives a ranking preference without excluding older relevant content.
 ---
 
 # Configure freshness-aware retrieval in Azure AI Search (preview)

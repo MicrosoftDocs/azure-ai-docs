@@ -7,6 +7,7 @@ ms.date: 08/17/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create an MCP Server knowledge source and configure its authentication, tool selection, and result processing so that agentic retrieval can invoke selected external tools and use their live results.
 ---
 
 # Create an MCP Server knowledge source (preview)

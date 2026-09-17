@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 07/20/2026
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to create and test a blob knowledge source and knowledge base in the Azure portal and understand the generated ingestion objects so that I can evaluate a conversational search experience without writing code.
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
