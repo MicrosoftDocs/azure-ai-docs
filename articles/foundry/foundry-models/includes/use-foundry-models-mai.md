@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 09/04/2026
+ms.date: 09/17/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -397,15 +397,15 @@ To authenticate, you need your **resource endpoint** and either a **Microsoft En
 
 The following table lists the request parameters for the image APIs:
 
-| Parameter | API | Type | Description |
-| --------- | ---- | ---- | ----------- |
-| `model` | Both | string | The deployment name you assigned when you deployed the model. |
-| `prompt` | Both | string | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
-| `image` | Image edits | string | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
-| `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `auto_aspect_ratio` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
-| `web_grounding` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables web-grounded image generation. When enabled, the model can retrieve current, relevant information from Bing Search and use the results as additional context when interpreting the prompt and generating the image. This can improve accuracy for requests involving real-world entities, places, events, or other information that might change over time. When disabled, no web search is performed. |
+| Parameter | API | Type | Required | Description |
+| --------- | --- | ---- | -------- | ----------- |
+| `model` | Both | string | Yes | The deployment name you assigned when you deployed the model. |
+| `prompt` | Both | string | Yes | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
+| `image` | Image edits | string | Yes | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
+| `width` | Image generations | integer | No | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `height` | Image generations | integer | No | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `auto_aspect_ratio` | Both | boolean | No | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
+| `web_grounding` | Both | boolean | No | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables web-grounded image generation. When enabled, the model can retrieve current, relevant information from Bing Search and use the results as additional context when interpreting the prompt and generating the image. This can improve accuracy for requests involving real-world entities, places, events, or other information that might change over time. When disabled, no web search is performed. |
 
 #### Response format
 
