@@ -69,7 +69,7 @@ Your Azure resources could be protected using any number of the network isolatio
 | Azure SQL Database | Supported | Supported |
 | SQL Server on Azure virtual machines | Supported | N/A |
 | SQL Managed Instance | Supported | N/A |
-| Azure Functions | Supported | Supported only for certain tiers of Azure functions |
+| Azure Functions | Supported | Supported only for certain tiers of Azure Functions. |
 | Azure OpenAI or Microsoft Foundry | Supported | Supported with limitations. See [Supported resource types](search-indexer-howto-access-private.md#supported-resource-types). |
 
 ## Network access and indexer execution environments
