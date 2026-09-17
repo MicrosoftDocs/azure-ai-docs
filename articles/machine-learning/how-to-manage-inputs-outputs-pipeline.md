@@ -262,24 +262,28 @@ az ml job create -f ./pipeline.yml --set outputs.pipeline_job_trained_model.path
 The following code demonstrates how to customize output paths and is from the [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb) notebook:
 
 ```python
-from azure.ai.ml import Input, load_component
+from azure.ai.ml import Input, Output, load_component
 from azure.ai.ml.dsl import pipeline
 
 # Load component functions
 components_dir = "./components/"
 helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
 
+# Define the custom output path using a datastore URI
+# add the relative path in your blob container after "azureml://datastores/<datastore_name>/paths"
+custom_path = "azureml://datastores/workspaceblobstore/paths/custom_path/${{name}}/"
+
 @pipeline()
-def register_node_output():
+def customize_output_path():
   # Call component obj as function: apply given inputs & parameters to create a node in pipeline
   node = helloworld_component(component_in_path=Input(
     type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))
 
-  # Define name and version to register node output
-  node.outputs.component_out_path.name = 'node_output'
-  node.outputs.component_out_path.version = '1'
+  # Set a custom path for the node output
+  node.outputs.component_out_path = Output(
+    type="uri_folder", mode="rw_mount", path=custom_path)
 
-pipeline_job = register_node_output()
+pipeline_job = customize_output_path()
 pipeline_job.settings.default_compute = "azureml:cpu-cluster"
 ```
 
@@ -331,11 +335,16 @@ ml_client = MLClient(
 Download all the outputs of a job or download a specific output.
 
 ```python
-# Download all the outputs of the job
-output = ml_client.jobs.download(name=job.name, download_path=tmp_path, all=True)
+# Specify the pipeline job name, a local download path, and the output port name
+job_name = "<JOB_NAME>"
+download_path = "./pipeline_output"
+output_port_name = "<OUTPUT_PORT_NAME>"
 
-# Download specific output
-output = ml_client.jobs.download(name=job.name, download_path=tmp_path, output_name=output_port_name)
+# Download all the outputs of the job
+output = ml_client.jobs.download(name=job_name, download_path=download_path, all=True)
+
+# Download a specific output
+output = ml_client.jobs.download(name=job_name, download_path=download_path, output_name=output_port_name)
 ```
 
 # [Studio UI](#tab/ui)
@@ -385,8 +394,11 @@ ml_client = MLClient(
 To download the outputs of a child component, first list all child jobs of a pipeline job and then use similar code to download the outputs.
 
 ```python
+# Specify the parent pipeline job name
+job_name = "<JOB_NAME>"
+
 # List all child jobs in the job
-child_jobs = ml_client.jobs.list(parent_job_name=job.name)
+child_jobs = ml_client.jobs.list(parent_job_name=job_name)
 
 # Traverse and download all the outputs of child job
 for child_job in child_jobs:
