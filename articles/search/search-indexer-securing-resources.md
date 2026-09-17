@@ -5,8 +5,9 @@ ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 08/31/2026
+ms.date: 09/17/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
@@ -31,7 +32,7 @@ A list of all possible Azure resource types that an indexer might access in a ty
 
 | Resource | Purpose within indexer run |
 | --- | --- |
-| Azure Storage (blobs, ADLS Gen 2, files, tables) | Data source |
+| Azure Storage (blobs, ADLS Gen2, files, tables) | Data source |
 | Azure Storage (blobs, tables) | Skillsets (caching enrichments, debug sessions, knowledge store projections) |
 | Azure Cosmos DB (various APIs) | Data source |
 | Azure SQL Database | Data source |
@@ -39,9 +40,11 @@ A list of all possible Azure resource types that an indexer might access in a ty
 | SQL Server on Azure virtual machines | Data source |
 | SQL Managed Instance | Data source |
 | Azure Functions | Attached to a skillset and used to host for custom web API skills |
+| Azure OpenAI | Embedding and model skill execution |
+| Microsoft Foundry | Model skill execution and keyless billing for built-in skills |
 
 > [!NOTE]
-> An indexer also connects to Foundry Tools for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
+> Azure AI Search internally hosts processing for most built-in skills that are billed through Foundry Tools. For keyless billing, the skillset makes a separate outbound connection to the attached Foundry resource. If public network access is disabled on the Foundry resource, configure a shared private link for the billing connection. For configuration details, see [Supported resource types](search-indexer-howto-access-private.md#supported-resource-types).
 
 Indexers connect to resources using the following approaches:
 
@@ -58,7 +61,7 @@ Your Azure resources could be protected using any number of the network isolatio
 
 | Resource | IP restriction | Private endpoint |
 | --- | --- | ---- |
-| Azure Storage for text-based indexing (blobs, ADLS Gen 2, files, tables) | Supported only if the storage account and search service are in different regions. | Supported |
+| Azure Storage for text-based indexing (blobs, ADLS Gen2, files, tables) | Supported only if the storage account and search service are in different regions. | Supported |
 | Azure Storage for AI enrichment (caching, debug sessions, knowledge store) | Supported only if the storage account and search service are in different regions. | Supported |
 | Azure Cosmos DB for NoSQL | Supported | Supported |
 | Azure Cosmos DB for MongoDB | Supported | Unsupported |
@@ -66,7 +69,8 @@ Your Azure resources could be protected using any number of the network isolatio
 | Azure SQL Database | Supported | Supported |
 | SQL Server on Azure virtual machines | Supported | N/A |
 | SQL Managed Instance | Supported | N/A |
-| Azure Functions | Supported | Supported, only for certain tiers of Azure functions |
+| Azure Functions | Supported | Supported only for certain tiers of Azure functions |
+| Azure OpenAI or Microsoft Foundry | Supported | Supported with limitations. See [Supported resource types](search-indexer-howto-access-private.md#supported-resource-types). |
 
 ## Network access and indexer execution environments
 
@@ -76,8 +80,8 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 
 | Execution environment | Description |
 |-----------------------|-------------|
-| Private <sup>1</sup> | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution environment you can use and it's used automatically. |
-|  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
+| Private <sup>1</sup> | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. Only the private execution environment can use a shared private link. To use this connection, explicitly set `executionEnvironment` to `private` on the indexer. Automatic selection isn't guaranteed. For more information, see [Considerations for using a private endpoint](#considerations-for-using-a-private-endpoint). |
+| Multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
 
 <sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than two Azure OpenAI Embedding or Azure Vision multimodal embeddings skills are restricted from running in this environment.
@@ -135,7 +139,7 @@ This section narrows in on the private connection option.
 
 - Requires that you turn off the multitenant execution environment for the indexer.
 
-  You do this by setting the `executionEnvironment` of the indexer to `"Private"`. This step ensures that all indexer execution is confined to the private environment provisioned within the search service. This setting is scoped to an indexer and not the search service. If you want all indexers to connect over private endpoints, each one must have the following configuration:
+  You do this by setting the `executionEnvironment` of the indexer to `"private"`. This step ensures that all indexer execution is confined to the private environment provisioned within the search service. This setting is scoped to an indexer and not the search service. If you want all indexers to connect over private endpoints, each one must have the following configuration:
   
   ```json
       {
@@ -145,7 +149,7 @@ This section narrows in on the private connection option.
             ... other parameters
             "configuration" : {
               ... other configuration properties
-              "executionEnvironment": "Private"
+              "executionEnvironment": "private"
             }
           }
       }
