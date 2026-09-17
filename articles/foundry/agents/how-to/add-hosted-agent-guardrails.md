@@ -546,7 +546,7 @@ You must include `headers` when `actionType` is `Transform`. You can omit `heade
 > `https://storage.azure.com/`. Set `format` to the bearer scheme with the
 > `{token}` placeholder. Grant the deployed agent's
 > `instance_identity.principal_id` the required role on the target resource.
-> Secret value references aren't enforced yet.
+> Secret value references aren't supported during preview.
 
 #### Header operations
 
@@ -569,7 +569,7 @@ You can also author egress rules in the Foundry portal as a **Network** control 
    :::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-control.png" alt-text="Screenshot of the Network control in a guardrail showing the Egress rules row and the Outbound requests default action." lightbox="../media/add-hosted-agent-guardrails/network-egress-control.png":::
 
 1. Select **Egress rules**, and set the **Outbound requests** default action to **Deny** or **Allow**.
-1. Select **Add rules**, choose a **Mode** (**Audit** or **Enforce**), enter a **Host match** and an **Action**, and then select **Add**. Reorder rules as needed; the first match wins. For a **Transform** action, use a **Static value** or **Managed identity** value source for the header. The **Secret reference** value source appears in the dialog but isn't enforced yet. For more information, see [Preview limitations](#preview-limitations-and-whats-coming-next).
+1. Select **Add rules**, choose a **Mode** (**Audit** or **Enforce**), enter a **Host match** and an **Action**, and then select **Add**. Reorder rules as needed; the first match wins. For a **Transform** action, use a **Static value** or **Managed identity** value source for the header. The **Secret reference** value source appears in the dialog but isn't supported during preview. Don't use this option. For more information, see [Preview limitations](#preview-limitations-and-whats-coming-next).
 
    :::image type="content" source="../media/add-hosted-agent-guardrails/egress-rule-list.png" alt-text="Screenshot of the Create egress rules dialog with Audit and Enforce modes, a host match field, and an action list." lightbox="../media/add-hosted-agent-guardrails/egress-rule-list.png":::
 
@@ -683,7 +683,7 @@ Network egress controls are an additive feature. During preview:
 
 The following capabilities aren't available yet and are planned for future updates:
 
-- **Secret header values** — injecting a header value from a secret reference.
+- **Secret header values** — Injecting a header value from a secret reference isn't supported during preview.
 - Rule types such as Azure service tags and IP address ranges.
 - MCP tool policies, PII and data-loss-prevention inspection, and custom webhook hooks.
 
