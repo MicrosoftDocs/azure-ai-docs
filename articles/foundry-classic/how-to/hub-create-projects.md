@@ -191,5 +191,4 @@ To delete a hub and all its projects, select **Delete hub** in **Hub properties*
 ## Related content
 
 - [Create a Foundry project](create-projects.md).
-- [Quickstart: Get started with Foundry (Hub projects)](../quickstarts/hub-get-started-code.md).
 - [Learn more about Foundry](../what-is-foundry.md).

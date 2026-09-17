@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/12/2026
+ms.date: 09/01/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: concept-article
@@ -20,6 +20,8 @@ ai-usage: ai-assisted
 # Model router for Microsoft Foundry
 
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
+
+Model router works both as a drop-in model deployment and as an optimization layer. In a traditional hill-climbing workflow, you compare individual models and build routing logic as you search for a better balance of quality, cost, and latency. Model router shortens that model-navigation journey by managing per-request model selection behind one deployment. Evaluation remains important: compare model router with your current baseline to confirm that managed routing improves the outcomes that matter for your workload. For guidance, see [Evaluate model router for your workload](../how-to/evaluate-model-router.md).
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=32338ec4-89bf-4438-8cc3-2e3f01e88533]
 
@@ -39,6 +41,7 @@ Model router supports Global Standard deployments in all of the following region
 | :--- | :---: | :---: |
 | Australia East | ✅ | ✅ |
 | Brazil South | ✅ | - |
+| Canada Central | ✅ | - |
 | Canada East | ✅ | - |
 | Central US | ✅ | ✅ |
 | East US | ✅ | ✅ |
@@ -50,6 +53,8 @@ Model router supports Global Standard deployments in all of the following region
 | Japan West | ✅ | ✅ |
 | Korea Central | ✅ | ✅ |
 | North Central US | ✅ | ✅ |
+| North Europe | ✅ | ✅ |
+| Norway East | ✅ | ✅ |
 | Poland Central | ✅ | ✅ |
 | South Africa North | ✅ | - |
 | South Central US | ✅ | ✅ |
@@ -59,6 +64,7 @@ Model router supports Global Standard deployments in all of the following region
 | Sweden Central | ✅ | ✅ |
 | Switzerland North | ✅ | ✅ |
 | Switzerland West | ✅ | - |
+| UAE North | ✅ | - |
 | UK South | ✅ | - |
 | UK West | ✅ | - |
 | West Central US | ✅ | - |

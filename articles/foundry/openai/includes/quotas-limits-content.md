@@ -7,8 +7,8 @@ ms.reviewer: haakar
 reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/13/2026
-ms.custom: include, classic-and-new
+ms.date: 08/20/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -226,6 +226,19 @@ The following section provides you with a quick guide to the default quotas and 
 | Model          | Tokens per minute (TPM) | Requests per minute (RPM) |
 |----------------|-------------------|---------------------------------|
 | `gpt-oss-120b` | 5 M               | 5 K                             |
+
+## GPT-Live concurrent session limits
+
+Rate limits for the GPT-Live API are the maximum number of concurrent sessions per subscription, based on your tier.
+
+| Tier | Maximum concurrent sessions |
+|--|--|
+| Default (non-tiered) | 10 |
+| Tier 1 | 25 |
+| Tier 2 | 50 |
+| Tier 3 | 200 |
+| Tier 4 | 300 |
+| Tier 5 | 500 |
 
 ## Usage tiers
 

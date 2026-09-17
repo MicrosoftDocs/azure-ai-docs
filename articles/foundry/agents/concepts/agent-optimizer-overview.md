@@ -3,7 +3,7 @@ title: "Agent optimizer in Foundry Agent Service overview (preview)"
 description: "Improve prompt and hosted agents by evaluating behavior and generating better instructions, skills, tools, and model configurations."
 author: aahill
 ms.author: aahi
-ms.date: 08/04/2026
+ms.date: 08/07/2026
 ms.topic: overview
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -55,8 +55,8 @@ Both agent types follow the same high-level path:
 1. **Select the agent baseline.** Choose the prompt-agent version or hosted-agent configuration that you compare candidates against.
 1. **Select an evaluation dataset.** Use representative tasks from an existing or uploaded dataset. You can also use a registered dataset generated from agent traces.
 1. **Select evaluation criteria.** Choose built-in or custom evaluators that measure the behaviors you want to improve.
-1. **Run the optimizer.** Choose the available optimization targets and models, and then generate and evaluate candidates.
-1. **Review the results.** Compare candidate scores against your baseline and pick the best one. See [Understand optimization results](#understand-optimization-results).
+1. **Run the optimizer.** Choose the available optimization targets and models, and then generate and evaluate candidates. For prompt agents, review the [cost estimate](agent-optimizer-costs.md#pre-run-cost-estimate-for-prompt-agents) in the portal before you submit the run.
+1. **Review the results.** Compare candidate scores against your baseline, and then pick the best candidate. When available, review the [post-run measured token usage](agent-optimizer-costs.md#post-run-measured-token-usage). See [Understand optimization results](#understand-optimization-results).
 1. **Apply the selected candidate.** Promote a prompt-agent candidate to a new agent version, or apply the hosted-agent configuration and redeploy.
 
 Hosted agents require optimizer-ready code integration. Foundry Toolkit automatically scaffolds this integration when you start an optimization. For the Azure Developer CLI workflow, add the optimization package and a baseline configuration before you start. See [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md). Prompt agents don't require this code integration.
@@ -101,7 +101,12 @@ The agent optimizer uses two models during an optimization run. Both must be dep
 | **Eval model** | `eval_model` | `--eval-model` | Scores agent responses against criteria in the dataset | Any chat-completion model (for example, `gpt-4.1-mini`) |
 | **Optimization model** | `optimization_model` | `--optimize-model` | Generates candidate configurations (instructions, skills, tools, model selection) | `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4`, `gpt-5.5`, `DeepSeek-V4-Pro`, `DeepSeek-V-3.2` |
 
-The eval model runs once per task per candidate. It reads the agent's response and each criterion, then returns a binary score. The optimization model analyzes baseline results and generates improved candidates across the configured targets (instructions, skills, tools, and models). Because it reasons over the full dataset, a more capable optimization model typically produces better candidates.
+The eval model runs once for each evaluator, task, and candidate evaluation. It
+reads the agent's response and each criterion, then returns a binary score. The
+optimization model analyzes baseline results and generates improved candidates
+across the configured targets, including instructions, skills, tools, and
+models. Because it reasons over the full dataset, a more capable optimization
+model typically produces better candidates.
 
 For prompt agents, select the eval model and candidate models in the optimization wizard. For hosted agents, specify the models in `eval.yaml` or with CLI flags. The `optimization_model` setting is required for hosted-agent runs. For configuration steps, see [Choose the eval and optimization models](../how-to/optimize-agent-targets.md#choose-the-eval-and-optimization-models).
 
@@ -176,6 +181,9 @@ Optimized instructions are often longer and more detailed, which can increase re
 - Whether the cost increase fits your budget
 - Whether responses are unnecessarily verbose or adding value with the extra length
 
+For details about the pre-run cost range and post-run measured usage, see
+[Agent optimizer cost estimates and token usage](agent-optimizer-costs.md).
+
 ## Limitations and availability
 
 - The agent optimizer supports prompt agents and hosted agents during preview.
@@ -188,6 +196,7 @@ Optimized instructions are often longer and more detailed, which can increase re
 - [Quickstart: Create a prompt agent](../quickstarts/prompt-agent.md)
 - [Quickstart: Optimize a prompt agent](../quickstarts/quickstart-optimize-prompt-agent.md)
 - [Quickstart: Optimize a hosted agent](../quickstarts/quickstart-optimize-hosted-agent.md)
+- [Agent optimizer cost estimates and token usage](agent-optimizer-costs.md)
 - [Make your agent optimizer-ready](../how-to/make-agent-optimizer-ready.md)
 - [Create an evaluation dataset and evaluators](../how-to/create-optimizer-dataset.md)
 - [Optimize agent instructions, skills, tools, and models](../how-to/optimize-agent-targets.md)

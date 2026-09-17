@@ -1,10 +1,10 @@
 ---
 title: Indexing with Azure Cosmos DB for MongoDB
-description: Set up a search indexer to index data stored in Azure Cosmos DB for full text search in Azure AI Search. This article explains how index data in Azure Cosmos DB for MongoDB.
+description: Set up a search indexer to index data stored in Azure Cosmos DB for full-text search in Azure AI Search. This article explains how index data in Azure Cosmos DB for MongoDB.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ms.custom:
@@ -61,10 +61,10 @@ The data source definition specifies the data to index, credentials, and policie
 
 For this call, specify a preview REST API version to create a data source that connects via the MongoDB API. You can use `2020-06-30-preview` or later. We recommend the [latest preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions).
 
-1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to set its definition:
 
     ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -74,8 +74,7 @@ For this call, specify a preview REST API version to create a data source that c
         "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDb;"
       },
       "container": {
-        "name": "[cosmos-db-collection]",
-        "query": null
+        "name": "[cosmos-db-collection]"
       },
       "dataChangeDetectionPolicy": {
         "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
@@ -119,10 +118,10 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 
 In a [search index](search-what-is-an-index.md), add fields to accept the source JSON documents or the output of your custom query projection. Ensure that the search index schema is compatible with source data. For content in Azure Cosmos DB, your search index schema should correspond to the [Azure Cosmos DB items](/azure/cosmos-db/resource-model#azure-cosmos-db-items) in your data source.
 
-1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to define search fields that store data:
+1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to define search fields that store data:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexes?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [Search service admin key]
     
@@ -173,10 +172,10 @@ In a [search index](search-what-is-an-index.md), add fields to accept the source
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors.
 
-1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2026-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2026-08-01-preview
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -205,10 +204,10 @@ An indexer runs automatically when it's created. You can prevent this by setting
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-05-01-preview&preserve-view=true) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2026-08-01-preview&preserve-view=true) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-05-01-preview
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2026-08-01-preview
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -261,10 +260,10 @@ For Azure Cosmos DB indexers, the only supported policy is the [`HighWaterMarkCh
 
 The following example shows a [data source definition](#define-the-data-source) with a change detection policy:
 
-```http
+```json
 "dataChangeDetectionPolicy": {
     "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-"  highWaterMarkColumnName": "_ts"
+    "highWaterMarkColumnName": "_ts"
 },
 ```
 
@@ -274,8 +273,8 @@ The following example shows a [data source definition](#define-the-data-source) 
 
 When rows are deleted from the collection, you normally want to delete those rows from the search index as well. The purpose of a data deletion detection policy is to efficiently identify deleted data items. Currently, the only supported policy is the `Soft Delete` policy (deletion is marked with a flag of some sort), which is specified in the data source definition as follows:
 
-```http
-"dataDeletionDetectionPolicy"": {
+```json
+"dataDeletionDetectionPolicy": {
     "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
     "softDeleteColumnName" : "the property that specifies whether a document was deleted",
     "softDeleteMarkerValue" : "the value that identifies a document as deleted"
@@ -287,15 +286,15 @@ If you're using a custom query, make sure that the property referenced by `softD
 The following example creates a data source with a soft-deletion policy:
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2026-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2026-08-01-preview
 Content-Type: application/json
 api-key: [Search service admin key]
 
 {
-    "name": ["my-cosmosdb-mongodb-ds]",
+    "name": "my-cosmosdb-mongodb-ds",
     "type": "cosmosdb",
     "credentials": {
-        "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDB"
+        "connectionString": "AccountEndpoint=https://[cosmos-account-name].documents.azure.com;AccountKey=[cosmos-account-key];Database=[cosmos-database-name];ApiKind=MongoDb"
     },
     "container": { "name": "[my-cosmos-collection]" },
     "dataChangeDetectionPolicy": {

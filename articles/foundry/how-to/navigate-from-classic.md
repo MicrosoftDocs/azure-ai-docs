@@ -7,7 +7,7 @@ ms.reviewer: nbrady
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/11/2026
 ms.custom:
   - classic-and-new
   - build-2025
@@ -26,12 +26,12 @@ Microsoft Foundry has evolved through several naming and architectural changes. 
 
 - An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](create-projects.md).
-- **For SDK migration:** Python 3.9+ or .NET 8+, with `azure-ai-projects` 2.x and `openai` packages installed.
+- **For SDK migration:** Python 3.10+ or .NET 8+, with `azure-ai-projects` 2.x and `openai` packages installed.
 - **For resource upgrade:** Owner or Contributor role on the Azure OpenAI resource you plan to upgrade.
 
 > [!IMPORTANT]
 > **Key migration dates:**
-> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration.md).
+> - **August 26, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration.md).
 > - **August 26, 2026** &mdash; Assistants API sunsets.  Use the generally available [Microsoft Foundry Agents service](../agents/overview.md). Follow the [migration guide](../agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../agents/how-to/migrate.md).
 
 ## Plan your migration
@@ -78,7 +78,7 @@ Use the following table to identify which SDK packages map to the current Foundr
 
 | SDK package | Classic equivalent | Status | Notes |
 | --- | --- | --- | --- |
-| `openai` | `azure-ai-inference` | Use for model inference | `azure-ai-inference` retiring May 30, 2026. |
+| `openai` | `azure-ai-inference` | Use for model inference | `azure-ai-inference` retires August 26, 2026. |
 | `OpenAI()` with `base_url` | `AzureOpenAI()` | Use standard client | Azure-specific code eliminated. |
 | `azure-ai-projects` 2.x | `azure-ai-projects` 1.x | Stable &mdash; targets the new portal | 1.x targets the classic portal experience. |
 | `azure-ai-projects` 2.x | `azure-ai-generative` | Stable | Capabilities merged into project client. |
@@ -137,13 +137,13 @@ These features are available only in the current Foundry portal:
 | --- | --- |
 | Responses API | GA |
 | Agents v2 (Responses API) | GA |
-| Tool catalog (1,400+ tools) | GA  (check label on individual tools in the catalog to determine if they are GA or Preview)
+| Tool catalog (1,400+ tools) | GA  (check label on individual tools in the catalog to determine if they're GA or Preview) |
 | Multi-agent workflows | Preview |
 | Agent memory | Preview |
 | Agent publishing to M365/Teams | GA |
 | Foundry IQ | Preview |
 | Hosted agents | GA |
-| A2A protocol | Preview |
+| A2A protocol | v1.0: GA; v0.3: Preview |
 | Foundry Control Plane | Preview |
 
 ### Classic-only (migration required)
@@ -167,6 +167,8 @@ The classic portal uses a single customizable left pane for all navigation, with
 | **Operate** | All projects | Compliance, fleet health, tracing, assets |
 | **Manage** | Selected project and its resource | Quota, AI Gateway, resource details, project details |
 | **Docs** | N/A | Documentation links |
+
+Within **Build**, items are grouped under **Create** (Agents, Models, Services, Tools, Knowledge, Memory, Guardrails, Data) and **Optimize** (Evaluations, Fine-tune) section headers in the left pane.
 
 The following table maps frequently used classic portal locations to their current equivalents.
 

@@ -7,8 +7,9 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 10/08/2025
+ms.date: 09/10/2026
 ms.custom: azure-ai-agents
+ai-usage: ai-assisted
 ---
 
 # What's new in Foundry Agent Service (classic)
@@ -37,7 +38,7 @@ The [Computer Use](how-to/tools-classic/computer-use.md) tool is now available i
 
 ### Java SDK Availability
 
-The public preview of the Azure AI Agent Service Java SDK is available. See the following articles for code samples:
+The preview of the Azure AI Agent Service Java SDK is available. For code samples, see the following articles:
 
 * [quickstart](./quickstart.md?pivots=programming-language-java)
 * [Azure AI Search](./how-to/tools-classic/azure-ai-search-samples.md?pivots=java)
@@ -49,7 +50,7 @@ The public preview of the Azure AI Agent Service Java SDK is available. See the 
 
 ### Browser Automation tool
 
-The [Browser Automation tool](how-to/tools-classic/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
+The [Browser Automation tool](how-to/tools-classic/browser-automation.md) is now available in preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session by using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
 
 ### New regional availability
 
@@ -76,7 +77,7 @@ The Agent Service is now Generally Available (GA). Along with this milestone, th
 
 #### Foundry Visual Studio Code extension
 
-The [Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of Foundry actions, such as deploying and configure agents natively.
+The [Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of Foundry actions, such as deploying and configuring agents natively.
 
 #### Connected agents
 
@@ -99,13 +100,13 @@ This release brings a number of new tools to extend agents' capabilities:
 
 ## April 2025
 
-### Azure monitor integration
+### Azure Monitor integration
 
-You can now see metrics related to Agents in Azure monitor
+You can now see metrics related to Agents in Azure Monitor, such as:
 * The number of files indexed for file search.
 * The number of runs in a given timeframe.
 
-See the [Azure monitor](./how-to/metrics.md) and [metrics reference](./reference/monitor-service.md) articles for more information.
+For more information, see the [Azure Monitor](./how-to/metrics.md) and [metrics reference](./reference/monitor-service.md) articles.
 
 ### BYO thread storage
 The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage using an Azure Cosmos DB for NoSQL account**. This feature ensures all thread messages and conversation history are stored in your own resources. See the [Quickstart](quickstart.md) for more information on how to deploy a Standard agent project.
@@ -124,9 +125,9 @@ You can now use the Agent Service in the [Foundry](https://ai.azure.com/?cid=lea
 
 ## December 2024
 
-### Azure AI Service public preview
+### Azure AI Service preview
 
-Azure AI Service is now available in preview. The service builds off of the Assistants API in Azure OpenAI, and offers several additional features, such as:
+Azure AI Service is now in preview and offers several features, such as:
 
 * Several [additional tools](how-to/tools-classic/overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
 * The ability to use non Azure OpenAI [models](concepts/model-region-support.md): 

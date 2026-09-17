@@ -29,7 +29,6 @@ To use Azure Content Understanding, create your Foundry resource in a supported 
 | `eastus` | East US | United States |
 | `eastus2` | East US 2 | United States |
 | `japaneast` | Japan East | Asia Pacific |
-| `northeurope` | North Europe | Europe |
 | `southcentralus` | South Central US | United States |
 | `southeastasia` | Southeast Asia | Asia Pacific |
 | `swedencentral` | Sweden Central | Europe |

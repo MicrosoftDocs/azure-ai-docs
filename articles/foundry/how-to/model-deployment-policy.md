@@ -5,7 +5,7 @@ description: "Govern AI model deployment in Microsoft Foundry portal with built-
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: aashishb
-ms.date: 08/07/2026
+ms.date: 08/18/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -25,7 +25,7 @@ Microsoft Foundry provides built-in Azure Policy definitions to help you govern 
 | Policy | Purpose | Status |
 |---|---|---|
 | **Foundry model deployments should only use approved models** | Restrict deployments to a specific list of models or publishers that your organization explicitly approves. | Generally available |
-| **Foundry model deployments should meet eligibility requirements** | Restrict deployments based on model attributes such as source (Direct from Azure) and lifecycle status (Preview). | Preview |
+| **Foundry model deployments should meet eligibility requirements** | Restrict deployments based on model attributes such as source (Direct from Azure) and lifecycle status (Preview). | Generally available |
 
 Both policies are evaluated at **deployment time**. The catalog doesn't hide models. Instead, the **Deploy** action is disabled with a clear reason when a policy blocks the deployment. You can assign one or both policies depending on your governance needs.
 
@@ -163,10 +163,7 @@ Reference:
 
 ---
 
-## Foundry model deployments should meet eligibility requirements (preview)
-
-> [!IMPORTANT]
-> This policy is in **preview**. Preview features are made available for use, testing, and feedback purposes. Don't use them for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+## Foundry model deployments should meet eligibility requirements
 
 Use this policy to restrict deployments based on **model attributes** rather than specific model identity. This restriction is useful when you want to enforce broader organizational standards - for example, "no preview models in production" or "only Microsoft-direct models" - without maintaining an explicit allow list.
 
@@ -190,11 +187,11 @@ Both parameters default to `false`, so an unconfigured assignment imposes no res
     az account set --subscription "<subscription-id>"
     ```
 
-1. Find the policy definition ID. While the policy is in preview, its display name includes a `[Preview]:` prefix, so match on a substring instead of the full name:
+1. Find the policy definition ID:
 
     ```azurecli
     az policy definition list \
-       --query "[?contains(displayName, 'eligibility requirements')].{name:name, id:id, displayName:displayName}" \
+       --query "[?displayName=='Foundry model deployments should meet eligibility requirements'].{name:name, id:id}" \
        --output table
     ```
 
@@ -228,7 +225,7 @@ Both parameters default to `false`, so an unconfigured assignment imposes no res
 # [Azure portal](#tab/azureportal)
 
 1. From the [Azure portal](https://portal.azure.com/), select **Policy**.
-1. Select **Authoring** > **Definitions** and search for `eligibility requirements`. While the policy is in preview, it appears as **[Preview]: Foundry model deployments should meet eligibility requirements**.
+1. Select **Authoring** > **Definitions**, and search for `Foundry model deployments should meet eligibility requirements`.
 1. Select **Assign**.
 1. On the **Basics** tab, set the **Scope** (management group, subscription, or resource group) and an **Assignment name**.
 1. On the **Parameters** tab, clear **Only show parameters that need input or review** to see all fields:

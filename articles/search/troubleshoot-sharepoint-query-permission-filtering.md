@@ -19,7 +19,7 @@ Use this article if query-time permission filtering for indexed SharePoint conte
 
 + An index populated by the [SharePoint in Microsoft 365 indexer](search-how-to-index-sharepoint-online.md) with [ACL ingestion configured](search-indexer-sharepoint-access-control-lists.md).
 + Query-time permission filtering configured as described in [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
-+ REST API version `2026-05-01-preview` or an equivalent preview SDK package when you use SharePoint site groups.
++ REST API version `2026-08-01-preview` or an equivalent preview SDK package when you use SharePoint site groups.
 + Access to the index definition, generated or explicit indexer status, and the SharePoint permissions for a test user.
 + **Search Index Data Contributor** or equivalent elevated-read permission if you need to compare filtered and unfiltered results.
 
@@ -88,7 +88,7 @@ If the indexed fields are empty or stale, fix ingestion or [synchronize the Shar
 
 ### 7. Check the query request
 
-1. Use REST API version `2026-05-01-preview` or an equivalent preview SDK package for SharePoint site-group permission filters.
+1. Use REST API version `2026-08-01-preview` or an equivalent preview SDK package for SharePoint site-group permission filters.
 1. Confirm `Authorization` authenticates a principal that can query the index.
 1. Confirm `x-ms-query-source-authorization` contains the delegated test-user token.
 1. Retry the same query without unrelated filters or ranking changes so you can isolate permission behavior.

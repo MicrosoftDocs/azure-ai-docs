@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: overview
-ms.date: 06/02/2026
+ms.date: 08/12/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---

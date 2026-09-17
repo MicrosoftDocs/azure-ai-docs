@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 08/11/2026
+ms.date: 09/03/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -17,6 +17,7 @@ ai-usage: ai-assisted
 For **global deployments**, Azure OpenAI can process prompts and responses in any Azure region where you deploy the model.
 
 #### Availability for Azure OpenAI in Foundry Models
+
 
 # [Americas](#tab/az-americas)
 
@@ -57,6 +58,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | ✅ | - | ✅ | - | - | - | - |
@@ -130,6 +132,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-audio | 2025-08-28 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-1.5 | 2026-02-23 | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-audio-mini | 2025-10-06 | - | - | - | - | - | - | ✅ | - | - | - | - |
@@ -204,6 +207,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-08-06 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-realtime | 2025-08-28 | - | - | - | - | ✅ |
@@ -257,6 +261,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ |
 | gpt-chat-latest | 2026-08-06 | ✅ | ✅ |
 | gpt-chat-latest | 2026-05-05 | ✅ | ✅ |
 | gpt-image-1 | 2025-04-15 | - | ✅ |
@@ -284,10 +289,10 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-command-a-plus-05-2026 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -298,6 +303,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -308,11 +314,12 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Llama-3.3-70B-Instruct | 5 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| MAI-Image-2 | 2026-02-20 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
+| MAI-Image-2.6 | 2026-07-31 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | - | - | - | ✅ | - | - | - | ✅ | ✅ | - | - |
+| MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Phi-4 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -326,7 +333,6 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Phi-4-multimodal-instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Phi-4-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-
 # [Europe](#tab/az-europe)
 
 | **Model** | **Version** | **francecentral** | **germanywestcentral** | **italynorth** | **norwayeast** | **polandcentral** | **spaincentral** | **swedencentral** | **switzerlandnorth** | **switzerlandwest** | **uksouth** | **ukwest** | **westeurope** |
@@ -335,10 +341,10 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-command-a-plus-05-2026 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -349,6 +355,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -359,11 +366,12 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Llama-3.3-70B-Instruct | 5 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| MAI-Image-2 | 2026-02-20 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
+| MAI-Image-2.6 | 2026-07-31 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | - | - | - | - | - | ✅ | - | - | - | - | ✅ |
+| MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Phi-4 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -385,10 +393,10 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-command-a-plus-05-2026 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| DeepSeek-R1 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -399,6 +407,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -409,11 +418,12 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Llama-3.3-70B-Instruct | 5 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| MAI-Image-2 | 2026-02-20 | - | - | - | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | - | - | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | - | - | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | - | - | - | ✅ |
+| MAI-Image-2.6 | 2026-07-31 | - | - | - | - | ✅ |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | - | - | - | ✅ |
+| MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Phi-4 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -435,10 +445,10 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Cohere-command-a-plus-05-2026 | 1 | ✅ | ✅ |
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ |
-| DeepSeek-R1 | 1 | ✅ | ✅ |
 | DeepSeek-V3.2 | 1 | ✅ | ✅ |
 | DeepSeek-V3.2-Speciale | 1 | ✅ | ✅ |
 | DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ |
+| DeepSeek-V4-Flash-0731 | 2026-07-31 | ✅ | ✅ |
 | DeepSeek-V4-Pro | 2026-04-23 | ✅ | ✅ |
 | FLUX-1.1-pro | 1 | ✅ | ✅ |
 | FLUX.1-Kontext-pro | 1 | ✅ | ✅ |
@@ -449,6 +459,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ |
+| grok-4.6 | 1 | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ |
@@ -459,11 +470,12 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | Llama-3.3-70B-Instruct | 5 | ✅ | ✅ |
 | Llama-3.3-70B-Instruct | 9 | ✅ | ✅ |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | 1 | ✅ | ✅ |
-| MAI-Image-2 | 2026-02-20 | - | ✅ |
 | MAI-Image-2.5 | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Flash | 2026-06-02 | - | ✅ |
 | MAI-Image-2.5-Pro | 2026-06-19 | - | ✅ |
-| MAI-Image-2e | 2026-04-09 | - | ✅ |
+| MAI-Image-2.6 | 2026-07-31 | - | ✅ |
+| MAI-Image-2.6-Flash | 2026-07-31 | - | ✅ |
+| MAI-Thinking-1 | 2026-06-01 | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ |
 | Phi-4 | 2 | ✅ | ✅ |
@@ -509,6 +521,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.6-luna | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-05-19 | - | - | ✅ | - | - | - | ✅ |
 | model-router | 2025-08-07 | - | - | ✅ | - | - | - | ✅ |
@@ -599,6 +612,7 @@ Not available
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Cohere-rerank-v4.0-fast | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Cohere-rerank-v4.0-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepSeek-V4-Flash | 2026-04-23 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX-1.1-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX.1-Kontext-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | FLUX.2-pro | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |

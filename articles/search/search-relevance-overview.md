@@ -105,7 +105,7 @@ The following diagram illustrates how the ranking algorithms work together.
 The following hybrid semantic query demonstrates the ranking workflow in the preceding diagram. The query is scored using RRF (based on L1 scores for text and vectors), followed by semantic ranking.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-05-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2026-08-01-preview
 
 {
   "search": "cloud formation over water",

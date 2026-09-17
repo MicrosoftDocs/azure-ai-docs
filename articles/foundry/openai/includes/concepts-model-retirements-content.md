@@ -131,7 +131,13 @@ When gpt-4o version `2024-05-13` retires on **2026-10-01**, the service automati
 
 ## Migration to a replacement model
 
-When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
+Don't wait for Microsoft to name an official replacement before you begin evaluating newer models. New models and model versions become available regularly, and the best option for your application might change as models with better quality, lower latency, or lower cost become available.
+
+Microsoft selects the official replacement approximately 90–120 days before retirement. Waiting until closer to the retirement date allows the recommendation to reflect the strongest available option when customers need to migrate. The replacement listed in the [Model retirement schedule](../concepts/model-retirement-schedule.md) is Microsoft's recommended migration target and, where supported, the model used for automatic upgrades at retirement. It doesn't limit your manual migration choices.
+
+When you choose a target, evaluate candidate models against your own application, prompts, and representative data. Compare quality, latency, and cost together rather than relying on public benchmarks alone. Before you migrate, confirm API compatibility, feature support, deployment-type and regional availability, capacity, and quota.
+
+For the full, phase-by-phase migration process, including how to prepare a test dataset, adapt prompts and schemas, validate quality, and roll out safely, see [Model migration process](../../foundry-models/concepts/model-migration.md).
 
 ## Notifications
 

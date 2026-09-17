@@ -1,6 +1,21 @@
 {
   "docsets_to_publish": [
     {
+      "docset_name": "agent-framework-docs",
+      "build_source_folder": "agent-framework",
+      "build_output_subfolder": "agent-framework-docs",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      },
+      "build_entry_point": "docs",
+      "xref_query_tags": [
+        "/dotnet"
+      ]
+    },
+    {
       "docset_name": "azure-ai",
       "build_source_folder": ".",
       "build_output_subfolder": "azure-ai",
@@ -49,7 +64,7 @@
       "url": "https://github.com/Azure-Samples/cognitive-services-quickstart-code",
       "branch": "master",
       "branch_mapping": {}
-    },    
+    },
     {
       "path_to_root": "samples-cognitive-services-data-files",
       "url": "https://github.com/Azure-Samples/cognitive-services-sample-data-files",
@@ -231,16 +246,34 @@
       "branch_mapping": {}
     },
     {
-        "path_to_root": "azure-policy-autogen-docs",
-        "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
-        "branch": "main",
-        "branch_mapping": {}
+      "path_to_root": "azure-policy-autogen-docs",
+      "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
+      "branch": "main",
+      "branch_mapping": {}
     },
     {
-        "path_to_root": "foundry-local-main",
-        "url": "https://github.com/microsoft-foundry/foundry-samples",
-        "branch": "main",
-        "branch_mapping": {}
+      "path_to_root": "foundry-local-main",
+      "url": "https://github.com/microsoft-foundry/foundry-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "agent-framework-code",
+      "url": "https://github.com/microsoft/agent-framework",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "agent-framework-durable-extension",
+      "url": "https://github.com/microsoft/agent-framework-durable-extension",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "agent-framework-go",
+      "url": "https://github.com/microsoft/agent-framework-go",
+      "branch": "main",
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},

@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 Use a centrally managed Azure Container Registry (ACR) when you deploy hosted agent container images. You can build locally and push to an existing ACR, or skip the build and deploy a pre-built image that was pushed by another pipeline.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you choose an ACR workflow, prepare the required permissions, and apply the deployment steps for your project.
+
 ## Prerequisites
 
 - An initialized hosted agent project with an `azure.yaml` file. For setup, see [Initialize an agent project](init-agent-project.md).

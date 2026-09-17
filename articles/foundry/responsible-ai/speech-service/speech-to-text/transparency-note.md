@@ -87,6 +87,8 @@ Speech to text can offer different ways for users to interact with applications 
 - **Live conversation transcription**: When speakers are all in the same room using a single-microphone setup, do live transcription about which speaker (Guest1, Guest2, Guest3, and so on) makes each statement.
 - **Conversation transcription of prerecorded audio**: After the recording of audio with multiple speakers you can use our service to get the transcription about which speaker (Guest1, Guest2, Guest3, and so on) makes each statement.
 
+[!INCLUDE [Biometric data privacy note](../../includes/biometric-data-privacy-note.md)]
+
 ### Considerations when choosing other use cases
 
 The speech to text API offers convenient options for developing voice-enabled applications, but it is very important to consider the context in which you will integrate the API. You must ensure that you comply with all laws and regulations that apply to your application. This includes understanding your obligations under privacy and communication laws, including national and regional privacy, eavesdropping, and wiretap laws that apply to your jurisdiction. Collect and process only audio that is within the reasonable expectations of your users. This includes ensuring that you have all necessary and appropriate consents from users for you to collect, process, and store their audio data.

@@ -300,5 +300,6 @@ services:
 ## Related content
 
 * [Hosted agent runtime contract](../concepts/hosted-agent-contract.md)
+* [Resilience for long-running hosted agents](../concepts/long-running-agent-resilience.md)
 * [What are hosted agents?](../concepts/hosted-agents.md)
 * [Author azure.yaml for hosted agents](author-azure-yaml.md)

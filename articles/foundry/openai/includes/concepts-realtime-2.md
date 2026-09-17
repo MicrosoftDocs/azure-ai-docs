@@ -42,6 +42,10 @@ Preambles can reduce perceived latency. For example, the model might say, "Let m
 
 Instruction following is stricter than in earlier realtime models. If your system prompt contains narrow wording (for example, distinguishing "order ID" from "confirmation code"), you might need to broaden or rephrase instructions to match real user phrasing.
 
+## Known limitations
+
+Currently, GPT Realtime 2.x models don't support the `truncation` property in the `session.update` payload. To manage token usage and costs in an ongoing conversation, consider using the `conversation.item.truncate` or `conversation.item.delete` events.
+
 ## Get started
 
 The connection and usage patterns for GPT Realtime 2.x are the same as for earlier versions. Deploy the new model and point your existing code to it. Choose the transport that fits your scenario:

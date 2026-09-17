@@ -137,18 +137,7 @@ Document translation enforces limits on request size, document count, file size,
 
 ## Document translation data residency
 
-Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the Azure region where you created your Translator resource determines the processing location. The following table maps resource regions to their corresponding request processing data centers:
-
-✔️ Feature: **Document translation**
-✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
-
-|Resource created region| Request processing data center |
-|----------------------------------|-----------------------|
-|**Global**|Closest available data center.|
-|**Americas**|East US 2 &bull; West US 2|
-|**Asia Pacific**| Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland)**| France Central &bull; West Europe|
-|**Switzerland**|Switzerland North &bull; Switzerland West|
+The region where you create the Translator resource determines where document content is processed and temporarily stored. For processing locations, custom endpoint requirements, and managed identity considerations, see [Region support for Azure Translator](../../region-support.md).
 
 ## Service limits and troubleshooting
 

@@ -4,11 +4,11 @@ titleSuffix: Microsoft Foundry
 description: "Optimize a prompt agent's instructions, function-calling tool descriptions, and model selection in the Foundry portal."
 author: aahill
 ms.author: aahi
-ms.date: 08/04/2026
+ms.date: 08/07/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to optimize a prompt agent so that I can improve its quality against representative tasks and evaluation criteria.
 ---
@@ -109,6 +109,18 @@ Evaluators define how the optimizer scores each response.
 
 1. On the **Review** step, verify the agent and version, dataset, evaluators,
    evaluator configurations, and candidate models.
+
+   > [!NOTE]
+   > The estimated cost is a modeled range, not a spending limit or final
+   > charge. Review the calculation inputs, pricing assumptions, and exclusions
+   > before you submit the job. For details, see [Agent optimizer cost estimates
+   > and token usage](../concepts/agent-optimizer-costs.md).
+
+   The summary shows **Minimum**, **Estimated**, and **Maximum** values. Expand
+   **Cost breakdown (estimated)** to review the estimated calls and cost for
+   **Running your agent**, **Scoring responses**, and **Generating
+   improvements**.
+
 1. Select **Submit**.
 1. Wait for the optimization run to finish. The run appears in the
    **Optimization runs** list with its current status.
@@ -125,6 +137,8 @@ models.
    compare the results for each model.
 1. Select the candidate that provides a meaningful quality improvement without
    an unacceptable increase in token usage or cost.
+
+The completed run's **Token usage** view groups measured input, output, and total tokens by phase and model. It reports token counts rather than a final currency charge. A missing model or usage value means that the usage wasn't attributed or measured, not that it was free. For details, see [Post-run measured token usage](../concepts/agent-optimizer-costs.md#post-run-measured-token-usage).
 
 If every candidate scores lower than the baseline, keep the current agent.
 Revise the dataset, evaluators, or optimization settings before you run the
@@ -158,5 +172,6 @@ In this quickstart, you:
 ## Related content
 
 - [Agent optimizer overview](../concepts/agent-optimizer-overview.md)
+- [Agent optimizer cost estimates and token usage](../concepts/agent-optimizer-costs.md)
 - [Quickstart: Optimize a hosted agent](quickstart-optimize-hosted-agent.md)
 - [Convert agent traces into evaluation datasets](../../observability/how-to/traces-to-dataset.md)

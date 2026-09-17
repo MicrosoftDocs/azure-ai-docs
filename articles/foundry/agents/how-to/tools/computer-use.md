@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -36,6 +36,7 @@ This guide shows how to integrate the computer use tool into an application loop
   - **TypeScript**: `@azure/ai-projects`
   - **Java**: `azure-ai-agents`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
+- A `computer-use-preview` deployment in a supported region. Check both the model and region in [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
 ## Usage support
@@ -469,6 +470,12 @@ class ComputerUseDemo
                 responseOptions.InputItems.Add(responseItem);
                 if (responseItem is ComputerCallResponseItem computerCall)
                 {
+                  if (computerCall.PendingSafetyChecks.Count > 0)
+                  {
+                    throw new InvalidOperationException(
+                      "Pause execution and obtain end-user approval before acknowledging safety checks."
+                    );
+                  }
                     currentScreenshot = ProcessComputerUseCall(computerCall, currentScreenshot);
                     responseOptions.InputItems.Add(ResponseItem.CreateComputerCallOutputItem(callId: computerCall.CallId, output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageBytes: screenshots[currentScreenshot], screenshotImageBytesMediaType: "image/png")));
                     computerUseCalled = true;
@@ -810,7 +817,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -927,11 +934,11 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-The response includes `computer_call` output items with actions to execute. Process each action, capture screenshots, and send results back using the responses endpoint with `previous_response_id`.
+The response includes `computer_call` output items with actions to execute. Before you execute an action, inspect `pending_safety_checks`. If the array isn't empty, pause and show the action and safety checks to the end user. Continue only after the user explicitly approves the action.
 
 ### Submit action results with screenshot
 
-After executing the computer action (for example, click or type), capture a screenshot and send it back:
+After the user approves any pending safety checks and your application executes the computer action, capture a screenshot and send it back. Include each approved check in `acknowledged_safety_checks`. If no checks were returned, use an empty array.
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
@@ -944,6 +951,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
       {
         "type": "computer_call_output",
         "call_id": "<CALL_ID>",
+        "acknowledged_safety_checks": [],
         "output": {
           "type": "computer_screenshot",
           "image_url": "data:image/png;base64,<BASE64_SCREENSHOT>"
@@ -978,15 +986,15 @@ The tool doesn't directly control a device. Your application executes each reque
 
 The following table lists some of the differences between the computer use tool and [browser automation](browser-automation.md) tool.
 
-| Feature                        | Browser Automation          | Computer use tool          |
-|--------------------------------|-----------------------------|----------------------------|
-| Model support                  | All GPT models              | `Computer-use-preview` model only |
-| Can I visualize what's happening?     | No                          | Yes                        |
-| How it understands the screen  | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
-| How it acts                    | A list of actions provided by the model | Virtual keyboard and mouse |
-| Is it multistep?                    | Yes                         | Yes                        |
-| Interfaces                     | Browser                     | Computer and browser       |
-| Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment.          |
+| Feature | Browser Automation | Computer use tool |
+| --- | --- | --- |
+| Model support | All GPT models | `computer-use-preview` model only |
+| Can I visualize what's happening? | No | Yes |
+| How it understands the screen | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
+| How it acts | A list of actions provided by the model | Virtual keyboard and mouse |
+| Is it multistep? | Yes | Yes |
+| Interfaces | Browser | Computer and browser |
+| Do I need to bring my own resource? | Your own Playwright resource with the keys stored as a connection. | No additional resource is required, but run this tool in a sandboxed environment. |
 
 ### When to use each tool
 
@@ -1007,7 +1015,7 @@ The following table lists some of the differences between the computer use tool 
 To use the computer use tool, you need a [computer use model](../../../foundry-models/concepts/models-sold-directly-by-azure.md) deployment. The computer use model is available in the following regions:
 
 | Region | Status |
-|--------|--------|
+| --- | --- |
 | `eastus2` | Available |
 | `swedencentral` | Available |
 | `southindia` | Available |
@@ -1115,7 +1123,7 @@ In all cases where `pending_safety_checks` are returned, hand over actions to th
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-|---|---|---|
+| --- | --- | --- |
 | You don't see a `computer_call` in the response. | The agent isn't configured with the computer use tool, the deployment isn't a computer use model, or the prompt doesn't require UI interaction. | Confirm the agent has a `computer_use_preview` tool, your deployment is the `computer-use-preview` model, and your prompt requires a UI action (type, click, or screenshot). |
 | The sample code fails with missing helper files or screenshots. | The excerpts reference helper utilities and sample images that aren't part of this documentation repo. | Clone one of the maintained samples in the "Run the maintained SDK samples" section so its helper and assets remain in their expected relative locations. For TypeScript, provide your own helper and screenshot assets. |
 | The loop stops at the iteration limit. | The task needs more turns, or the app isn't applying the actions the model requests. | Increase the iteration limit, and verify that your code executes the requested action and sends a new screenshot after each turn. |

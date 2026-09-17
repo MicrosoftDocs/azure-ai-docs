@@ -129,6 +129,8 @@ Custom text to speech avatar training is time is measured by "compute hour" (mac
 
 Avatar hosting is billed per second per endpoint. You can suspend your endpoint to save costs. If you want to suspend your endpoint, you can delete it directly. To use it again, redeploy the endpoint.
 
+Photo Avatar, including both the standard and custom variants, integrates with [Voice Live](./voice-live-how-to.md) for low-latency, two-way conversational scenarios.
+
 ## Monitor Azure text to speech metrics
 
 Monitoring key metrics associated with text to speech services is crucial for managing resource usage and controlling costs. This section guides you on how to find usage information in the Azure portal and provide detailed definitions of the key metrics. For more information on Azure monitor metrics, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics).

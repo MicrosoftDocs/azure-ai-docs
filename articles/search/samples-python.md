@@ -1,7 +1,7 @@
 ---
 title: Python Samples
 description: Find Azure AI Search demo Python code samples that use the Azure SDK for Python.
-ms.date: 06/08/2026
+ms.date: 08/18/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -39,6 +39,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | [Quickstart-Semantic-Ranking](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Ranking) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [Quickstart-Vector-Search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Vector-Search) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 | [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) | [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md) | Unlike [Quickstart-Agentic-Retrieval](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval), this sample incorporates Foundry Agent Service for request orchestration. |
+| [image-serving-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/image-serving-example) | [Surface document-embedded images in agentic retrieval (preview)](agentic-retrieval-how-to-image-serving.md) | Use managed ingestion to extract images, serve them during answer synthesis, and independently query and download an indexed image reference from Azure Blob Storage. |
 
 ## Accelerators
 

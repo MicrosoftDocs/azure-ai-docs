@@ -1,11 +1,11 @@
 ---
-title: "Microsoft Foundry Rollout Across My Organization"
+title: "Microsoft Foundry rollout across my organization"
 description: "Learn how to plan the rollout of Microsoft Foundry across your organization, including environment setup, data isolation, and governance."
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 author: sdgilley
 ms.topic: concept-article
-ms.date: 04/06/2026
+ms.date: 08/21/2026
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.custom:
@@ -26,7 +26,7 @@ ai-usage: ai-assisted
 
   - Authentication and RBAC: [Role-based access control in Foundry](../concepts/rbac-foundry.md)
   - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
-  - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
+  - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/customer-managed-keys.md)
   - Example infrastructure: [templates repository with sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
   - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
 

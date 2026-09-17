@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/05/2026
+ms.date: 08/19/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -41,6 +41,7 @@ The following diagram illustrates how these components interact in a typical age
 
 You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
 
+If you use a coding agent like GitHub Copilot to design how agents, conversations, and responses work together, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help apply these components to your app's workflow.
 
 ## Prerequisites
 
@@ -367,7 +368,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 
 ---
 
-For the full list of available tools, see the [tools overview](./tool-catalog.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
+For the full list of available tools and how to add them to a Toolbox, see the [Toolbox overview](./toolbox-overview.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
 
 ## Generate responses
 
@@ -1911,7 +1912,7 @@ Because conversations and responses can persist user-provided content and tool o
 
 - **Avoid storing secrets in prompts or conversation history**. Use connections and managed secret stores instead (for example, [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md)).
 - **Use least privilege for tool access**. When a tool accesses external systems, the agent can potentially read or send data through that tool.
-- **Be careful with non-Microsoft services**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. For related considerations, see [Discover tools in the Foundry Tools](./tool-catalog.md).
+- **Be careful with non-Microsoft services**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. For related considerations, see the [Toolbox overview](./toolbox-overview.md).
 
 ## Limits and constraints
 
@@ -1920,7 +1921,7 @@ Limits can depend on the model, region, and the tools you attach (for example, s
 ## Related content
 
 - [Agent development lifecycle](./development-lifecycle.md)
-- [Discover tools in the Foundry Tools](./tool-catalog.md)
+- [What is Toolbox in Foundry?](./toolbox-overview.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
 - [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)

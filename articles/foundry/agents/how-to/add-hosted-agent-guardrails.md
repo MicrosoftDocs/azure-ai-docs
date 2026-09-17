@@ -4,11 +4,11 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 06/29/2026
+ms.date: 09/16/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
-ms.custom: references_regions
+ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to attach content safety and network egress guardrails to my hosted agent so that the platform screens prompts and responses and governs the agent's outbound connections.
 ---
@@ -26,7 +26,7 @@ You reference the guardrail by its RAI policy resource ID on the agent definitio
 
 * A [Microsoft Foundry project](../../how-to/create-projects.md).
 * A hosted agent, or a container image ready to deploy as one. See [Deploy a hosted agent](deploy-hosted-agent.md).
-* A guardrail (RAI policy) already created on the Foundry resource, and its full Azure Resource Manager (ARM) resource ID. To create one, see [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md). The ARM resource ID has this form:
+* A guardrail (RAI policy) on the Foundry resource, and its full Azure Resource Manager (ARM) resource ID. To create one in the Foundry portal, see [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md). For a network egress guardrail, you can also [create the policy with `azd provision`](#add-egress-rules-by-using-the-azure-developer-cli). The ARM resource ID has this form:
 
     ```text
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
@@ -47,13 +47,16 @@ When you omit `rai_config`, the agent runs without a content safety guardrail. W
 
 Always use the full ARM resource ID for `rai_policy_name`, not the bare policy name.
 
+> [!WARNING]
+> Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then [test the guardrail](#test-content-safety-filtering) before you rely on the agent's content safety.
+
 `rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
 
 ## Add a guardrail with the Azure Developer CLI
 
 When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
-1. In your `azure.yaml`, add `policies` to the agent service:
+1. In your `azure.yaml`, add a `policies` list to the agent service:
 
     ```yaml
     services:
@@ -79,6 +82,9 @@ When you use `azd`, declare the guardrail in the `policies` list on the `azure.a
     ```
 
 The platform attaches the guardrail when it creates the agent version.
+
+> [!NOTE]
+> In `azure.yaml` the field is camelCased as `raiPolicyName`. The deprecated standalone `agent.yaml` uses the snake_case `rai_policy_name`. Both map to `rai_config.rai_policy_name` on the agent version. Don't declare the guardrail in `agent.manifest.yaml` - `azd` reads that file only during `azd ai agent init` and ignores it at deploy time.
 
 ## Add a guardrail with the Python SDK
 
@@ -133,6 +139,84 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
+
+## Add a guardrail with the .NET SDK
+
+When you create an agent version with the .NET SDK, set the `ContentFilterConfiguration` property on `HostedAgentDefinition`. Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+var projectEndpoint = "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+var raiPolicyId =
+    "/subscriptions/<subscription-id>/resourceGroups/<resource-group>"
+    + "/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>";
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-image:tag"),
+    ContentFilterConfiguration = new ContentFilterConfiguration(raiPolicyName: raiPolicyId),
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Agent created: {agent.Name}, version: {agent.Version}");
+```
+
+## Add a guardrail with the JavaScript/TypeScript SDK
+
+When you create an agent version with the SDK, add an `rai_config` object with a `rai_policy_name` field to the hosted agent definition.
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Format: "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>"
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "your_project_endpoint";
+
+// Full ARM resource ID of the RAI policy.
+const raiPolicyId =
+  "/subscriptions/<subscription-id>/resourceGroups/<resource-group>" +
+  "/providers/Microsoft.CognitiveServices/accounts/<account>" +
+  "/raiPolicies/<policy-name>";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "hosted",
+  cpu: "1",
+  memory: "2Gi",
+  container_configuration: {
+    image: "your-registry.azurecr.io/your-image:tag",
+  },
+  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  rai_config: { rai_policy_name: raiPolicyId },
+});
+
+console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ## Add a guardrail with the REST API
 
@@ -205,7 +289,19 @@ A blocked prompt returns `HTTP 400` with a `content_filter` error:
 }
 ```
 
-A prompt that passes the policy returns `HTTP 200` with the agent's response. If a harmful prompt isn't blocked, confirm that the policy referenced by `rai_policy_name` is configured to filter the relevant content category and severity.
+A prompt that passes the policy returns `HTTP 200` with the agent's response. If a harmful prompt isn't blocked, check in this order:
+
+1. The policy named by `rai_policy_name` **actually exists** on the account. A nonexistent policy fails open with no error. List the policies on the account and confirm the final segment of `rai_policy_name` matches one of them:
+
+    ```bash
+    az rest --method get \
+      --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies?api-version=2024-10-01" \
+      --query "value[].name" -o tsv
+    ```
+
+1. The policy is configured to filter the relevant content category and severity.
+
+The guardrail applies to streaming requests too. By using `"stream": true`, a violating prompt is rejected with the same `HTTP 400` before any event is emitted.
 
 ## Network egress controls (preview)
 
@@ -217,15 +313,15 @@ Content safety controls screen prompts and responses. *Network egress controls* 
 ### How egress rules are evaluated
 
 - The system evaluates rules in order, from top to bottom. The first matching rule wins.
-- If no rule matches, the policy's default action applies. Set the default action to **Deny** for an allowlist (recommended) or **Allow** for a denylist.
-- When you apply an egress policy, the agent runtime automatically allowlists foundational domains it needs to function. A **Deny** default action doesn't block this required platform connectivity, so you don't need to add rules for it.
+- If no rule matches, the policy's default action applies. Set the default action to **Deny** for an allow list (recommended) or **Allow** for a deny list.
+- When you apply an egress policy, the agent runtime automatically allow lists foundational domains it needs to function. A **Deny** default action doesn't block this required platform connectivity, so you don't need to add rules for it.
 - Each rule matches on the request host. Wildcards such as `*.contoso.com` are supported.
 - Rule actions are **Allow**, **Deny**, **Transform** (allow the request and modify its headers), and **Rewrite** (redirect the request to another destination).
 - Evaluation is fail-closed: if the policy can't be evaluated, the request is denied.
 
 ### Rule limits
 
-The **total serialized size of all egress policies on the account** (approximately **2 MB**) limits egress rules. It's not a count limit on any single policy. In practice, this limit allows roughly **15,000 rules in total** across all policies on the account, whether they're in one policy or split across several. Requests that push the account over the limit are rejected. Keep the total number of rules well under this threshold, and consolidate or prune unused rules where possible.
+You can add a maximum of **480 egress rules** per policy. This limit applies to all egress rule actions: **Allow**, **Deny**, **Transform**, and **Rewrite**. To request an increase to this limit, [create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 
 ### Choose an enforcement mode
 
@@ -238,6 +334,58 @@ Deploy in **Audit** mode first, review the egress decisions, refine your rules, 
 
 > [!NOTE]
 > Audit mode changes only how **Deny** actions behave: a request that would be denied is logged instead of blocked. **Transform** and **Rewrite** actions are applied in both Audit and Enforce modes, so header transforms and redirects still take effect while you audit.
+
+### Add egress rules by using the Azure Developer CLI
+
+Add the RAI policy ARM resource to your `azd` project's Bicep infrastructure. The `azd provision` command deploys the resource through ARM.
+
+1. Add the following Bicep to the resource-group-scoped infrastructure for the resource group that contains your Foundry resource:
+
+    ```bicep
+    @description('Name of the existing Foundry resource.')
+    param accountName string
+
+    resource account 'Microsoft.CognitiveServices/accounts@2026-05-15-preview' existing = {
+      name: accountName
+    }
+
+    resource egressPolicy 'Microsoft.CognitiveServices/accounts/raiPolicies@2026-05-15-preview' = {
+      parent: account
+      name: 'allow-contoso'
+      properties: {
+        mode: 'Blocking'
+        basePolicyName: 'Microsoft.DefaultV2'
+        egressPolicy: {
+          mode: 'Enforced'
+          defaultAction: 'Deny'
+          rules: [
+            {
+              name: 'allow-contoso'
+              ruleType: 'Fqdn'
+              match: {
+                host: '*.contoso.com'
+              }
+              action: {
+                actionType: 'Allow'
+              }
+            }
+          ]
+        }
+      }
+    }
+
+    output RAI_POLICY_ID string = egressPolicy.id
+    ```
+
+    Reference: [Microsoft.CognitiveServices accounts/raiPolicies](/azure/templates/microsoft.cognitiveservices/2026-05-15-preview/accounts/raipolicies).
+
+1. Provision the policy:
+
+    ```bash
+    azd provision
+    ```
+
+The command creates or updates the `Microsoft.CognitiveServices/accounts/raiPolicies` child resource. Use the `RAI_POLICY_ID` output as the full policy resource ID when you attach the guardrail to a hosted agent.
 
 ### Add egress rules by using the REST API
 
@@ -271,7 +419,7 @@ curl -X PUT \
 ```
 
 - Set `egressPolicy.mode` to `Enforced` to block traffic, or `Audit` to log would-deny events without blocking.
-- Set `egressPolicy.defaultAction` to `Deny` for an allowlist or `Allow` for a denylist.
+- Set `egressPolicy.defaultAction` to `Deny` for an allow list or `Allow` for a deny list.
 - Set each rule's `action.actionType` to `Allow`, `Deny`, `Transform`, or `Rewrite`.
 
 To review the configured rules, send a GET request to the same URL and inspect `properties.egressPolicy`.
@@ -380,25 +528,57 @@ Keep these constraints in mind:
 
 ### View egress decisions
 
-The agent sends network egress decisions to the project's Application Insights resource. Each event includes details such as the destination host, matched rule, decision, and enforcement mode. Review these events to confirm that network egress behavior aligns with your configured policy.
+The agent sends network egress decisions to your project's Application Insights and trace monitoring tools. You can view these decisions in the Foundry portal playground and in Application Insights to confirm that network egress behavior aligns with your configured policy.
 
-To locate the project's Application Insights resource:
+#### In the Foundry portal playground
 
-1. Go to the Foundry portal.
-1. Select **Manage** in the upper-right navigation.
-1. Select **Project details** in the left pane.
-1. Open the **Connected resources** tab.
-1. Find the **AppInsights** connected resource and copy its **Target URI**.
+To view egress decisions in the trace timeline:
 
-Each project should have a single Application Insights connection. If Application Insights isn't configured, select **Add connection** and add an Application Insights resource for the project.
+1. Sign in to [Microsoft Foundry](https://ai.azure.com) and open your project's playground.
+1. Run or select an agent invocation to open its trace.
+1. Select the **Trajectories** tab to see the full trace timeline.
+1. Expand the trace nodes until you see a span named **Network egress decision**. It appears next to the request that triggered it.
+1. Select the span to review the decision details.
 
-After you identify the Application Insights resource, open it in the Azure portal and go to **Logs**. Run the following query to view recent network egress decisions:
+:::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png" alt-text="Screenshot of the Trajectories tab in the Foundry portal playground, showing a Network egress decision span in the trace timeline." lightbox="../media/add-hosted-agent-guardrails/network-egress-decision-trace.png":::
+
+The span details show the information you need to understand why a request was allowed or denied:
+
+| Field | Description |
+|-------|-------------|
+| Decision | The outcome of the policy evaluation, for example `Allow` or `Deny`. |
+| Reason | A human-readable explanation, such as "Request matched allow rule" or "No egress policy rule allowed this destination." |
+| Matched rule | The name of the rule that determined the outcome, if one matched. |
+| Rule source | The origin of the matched rule, such as a connector or policy definition. |
+| Enforcement | Whether the policy was enforced or run in audit mode. |
+| Destination | The method and URL of the outbound request. |
+| Default action | The action applied when no rule matches, for example `Deny`. |
+
+Allowed requests appear with a success status, and denied requests appear with a failure status, so you can spot blocked calls without leaving the trace view.
+
+#### In Application Insights
+
+To review egress decisions in Application Insights logs:
+
+1. Locate your project's Application Insights resource:
+   1. Go to the Foundry portal.
+   1. Select the **Operate** tab.
+   1. Select **Admin**.
+   1. Search for and select your project.
+   1. Open the **Connected resources** tab.
+   1. Find the **AppInsights** connected resource and copy its **Target URI**.
+
+   Each project should have a single Application Insights connection. If Application Insights isn't configured, select **Add connection** and add an Application Insights resource for the project.
+
+2. Open the Application Insights resource in the Azure portal and go to **Logs**. Run the following query to view recent network egress decisions:
 
 ```kusto
 traces
 | where timestamp > ago(1h)
 | where message == "Network egress decision"
 ```
+
+Each event includes details such as the destination host, matched rule, decision, and enforcement mode.
 
 ### What a blocked request looks like
 
@@ -424,7 +604,4 @@ The following capabilities aren't available yet and are planned for future updat
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md) — create the RAI policy you reference here.
 - [Networking options for Foundry Agent Service](../concepts/networking-options.md) — how egress controls fit with virtual network and private networking options.
 - [Deploy a hosted agent](deploy-hosted-agent.md) — the full deployment workflow for hosted agents.
-
-
-
 

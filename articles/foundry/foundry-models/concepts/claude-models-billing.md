@@ -4,7 +4,7 @@ description: Claude consumption units (CCU) bill Claude models in Microsoft Foun
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: concept-article
-ms.date: 06/23/2026
+ms.date: 08/14/2026
 ms.custom:
   - classic-and-new
   - doc-kit-assisted
@@ -129,7 +129,7 @@ CCU doesn't change how you size Claude workloads. Continue to plan with:
 - **Tokens per minute (TPM)** and **requests per minute (RPM)** quotas, which are per model.
 - Anthropic's per-model token rates for cost modeling.
 
-For current Claude model quotas in Foundry, see [Use Claude models in Foundry Models](../how-to/use-foundry-models-claude.md).
+For current Claude model quotas in Foundry, see [Claude model quotas and rate limits](claude-models-quotas-limits.md).
 
 ## Support and billing disputes
 

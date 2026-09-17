@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 07/20/2026
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to create and test a blob knowledge source and knowledge base in the Azure portal and understand the generated ingestion objects so that I can evaluate a conversational search experience without writing code.
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
@@ -28,7 +29,7 @@ The portal guides you through the process of creating the following objects:
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
 > [!IMPORTANT]
-> Some agentic retrieval features are generally available in the 2026-04-01 REST API through programmatic access. The Azure portal continues to use 2026-05-01-preview for the full feature set. If you previously created agentic retrieval objects in the portal, those objects might be subject to breaking changes. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
+> Some agentic retrieval features are generally available in the 2026-04-01 REST API through programmatic access. The Azure portal continues to use 2026-08-01-preview for the full feature set. If you previously created agentic retrieval objects in the portal, those objects might be subject to breaking changes. For migration guidance, see [Migrate agentic retrieval code to the latest version](agentic-retrieval-how-to-migrate.md).
 
 ## Prerequisites
 

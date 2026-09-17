@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/26/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -31,6 +31,8 @@ In this article, you learn how to:
 - Authenticate to an MCP server by using a project connection.
 - Review and approve MCP tool calls.
 - Troubleshoot common MCP integration issues.
+
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../../how-to/develop/use-microsoft-foundry-skill.md) can help configure MCP tool connections, authentication, approval behavior, and troubleshooting steps.
 
 ## Prerequisites
 
@@ -115,6 +117,13 @@ azd ai connection create my-mcp-conn \
   --auth-type custom-keys \
   --custom-key "Authorization=******"
 
+# OAuth — Foundry-managed app
+azd ai connection create my-mcp-conn \
+  --kind remote-tool \
+  --target https://api.githubcopilot.com/mcp \
+  --auth-type oauth2 \
+  --connector-name foundrygithubmcp
+
 # OAuth — bring your own app registration
 azd ai connection create my-mcp-conn \
   --kind remote-tool \
@@ -152,10 +161,28 @@ azd ai connection create my-mcp-conn \
 |---------------|------------------|
 | `none` | — |
 | `custom-keys` | `--custom-key "Header=Value"` (repeatable) |
-| `oauth2` | `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, `--scopes` |
+| `oauth2` | `--connector-name` for a Foundry-managed OAuth app, or `--authorization-url`, `--token-url`, `--client-id`, `--client-secret`, and `--scopes` for your own app registration |
 | `user-entra-token` | `--audience <entra-audience>` |
 | `project-managed-identity` | `--audience <entra-audience>` (optional) |
 | `agentic-identity` | `--audience <entra-audience>` |
+
+Only the following MCP servers support a Foundry-managed OAuth app. Pass
+the corresponding value to `--connector-name`.
+
+| MCP server | Connector name |
+|------------|----------------|
+| Azure Databricks Genie | `foundrydatabricksmcp` |
+| GitHub | `foundrygithubmcp` |
+| Infobip WhatsApp MCP server | `foundryinfobipmcp` |
+| Infobip RCS MCP server | `foundryinfobiprcsmcp` |
+| Infobip SMS MCP server | `foundryinfobipsmsmcp` |
+| LSEG Data and Analytics | `foundrylsegmcp` |
+| Morningstar MCP Server | `foundrymorningstarmcp` |
+| Neon | `foundryneonmcp` |
+| Pipedream | `foundrypipedreammcp` |
+| Vercel | `foundryvercelmcp` |
+
+For other OAuth-enabled MCP servers, provide your own app registration.
 
 For identity-based auth (`user-entra-token`, `project-managed-identity`, `agentic-identity`), assign the corresponding principal the required RBAC role on the target resource before you call the toolbox.
 
@@ -201,7 +228,7 @@ To learn about supported authentication options, including key-based, Microsoft 
 > Set `project_connection_id` to the ID of your project connection.
 
 > [!TIP]
-> When you add the Azure DevOps MCP Server (preview) through the **Add Tools** catalog, you authenticate to Azure DevOps during the organization connection step and store the authentication as a project connection. Use least-privilege access and review scopes when connecting the organization.
+> When you add the Azure DevOps MCP Server through the **Add Tools** catalog, you authenticate to Azure DevOps during the organization connection step and store the authentication as a project connection. Use least-privilege access and review scopes when connecting the organization.
 
 When you use a Foundry Toolbox MCP endpoint, the Toolbox centrally manages authentication. The Toolbox handles credential injection, token refresh, and policy enforcement at runtime for all tools in the bundle. Agents authenticate to the Toolbox endpoint itself by using Microsoft Entra credentials, such as `DefaultAzureCredential`, and individual tool credentials don't need to be passed by each agent. For Toolbox auth configuration, see [Toolbox prerequisites](toolbox.md#prerequisites).
 
@@ -226,8 +253,10 @@ For general guidance on tool usage, see [Best practices for using tools in Micro
 When you use MCP servers, follow these practices:
 
 - Use an allow list of tools by using `allowed_tools`.
+- Treat tool descriptions, annotations, and results from remote MCP servers as untrusted input. They can contain indirect prompt injection instructions.
 - Require approval for high-risk operations, especially tools that write data or change resources.
 - Review the requested tool name and arguments before you approve.
+- Review `allowed_tools`, approval settings, and connection permissions when the server's operator, exposed tools, or behavior changes.
 - Log approvals and tool calls for auditing and troubleshooting.
 
 > [!TIP]
@@ -354,29 +383,19 @@ Agent deleted
 
 ### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework, creates a toolbox containing the GitHub MCP server, then attaches the toolbox endpoint to your hosted agent with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework, creates a toolbox containing the GitHub MCP server, then attaches the toolbox endpoint to your hosted agent with `FoundryToolbox`. Install the packages with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`.
 
 ```python
 import asyncio
 
-import httpx
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MCPToolboxTool
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.identity import AzureCliCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 MCP_CONNECTION_NAME = "my-mcp-connection"
-
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
-        yield request
 
 
 async def main() -> None:
@@ -403,24 +422,17 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(
-        auth=_ToolboxAuth(token_provider),
+,
         timeout=120.0,
     )
 
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant that uses your MCP tool "
         "to help with Microsoft documentation questions.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("What is Microsoft Agent Framework?")
@@ -542,7 +554,7 @@ organized by service and includes guidelines for contributing new specifications
 
 ### Hosted agents
 
-This sample creates the MCP server toolbox with the Azure AI Projects SDK, then uses `ToolboxMcpClient` with `ResponsesServer` from the Microsoft Agent Framework to expose the toolbox tools to your hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the MCP server toolbox with the Azure AI Projects SDK, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to expose the toolbox tools to your hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 ```csharp
 using Azure.AI.AgentServer.Responses;
@@ -551,6 +563,8 @@ using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -576,21 +590,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [ProjectsAgentTool.AsProjectTool(mcpTool)],
         description: "Toolbox with the GitHub MCP server");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// Toolbox MCP client - discovers tools via tools/list, calls them via tools/call
-ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output
@@ -1357,7 +1369,7 @@ curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
 
-In addition to connecting arbitrary remote MCP servers by URL, some MCP servers can be added directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server (preview) is available as a catalog entry. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
+In addition to connecting arbitrary remote MCP servers by URL, you can add some MCP servers directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server is available as a catalog entry. Azure DevOps hosts the remote MCP endpoint and exposes it over streamable HTTP, so you don't install or host the server when you add it from the Foundry catalog. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
 
 For more information on using MCP, see:
 
@@ -1385,11 +1397,16 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 
 ### Connect to Azure DevOps MCP Server
 
-Azure DevOps MCP Server (preview) is available as a catalog entry in Foundry. To add it:
+Azure DevOps MCP Server is available as a catalog entry in Foundry.
+
+> [!IMPORTANT]
+> The remote Azure DevOps MCP Server authenticates with Microsoft Entra ID. Your Azure DevOps organization must be backed by a Microsoft Entra tenant. Standalone Microsoft account (MSA) organizations aren't supported.
+
+To add the server:
 
 1. In [Foundry portal](https://ai.azure.com), go to your project.
 1. Select **Add Tools** > **Catalog** and search for "Azure DevOps."
-1. Select **Azure DevOps MCP Server (preview)** and select **Create**.
+1. Select **Azure DevOps MCP Server** and select **Create**.
 1. Enter your Azure DevOps organization name and select **Connect**.
 1. Choose which Azure DevOps tools to expose to your agent. You can select a subset of tools to control exactly what the agent can access.
 
@@ -1624,7 +1641,7 @@ The following common issues might occur when you use MCP tools with Foundry Agen
 
 - "Unauthorized" or "Forbidden" from the MCP server:
 
-    Confirm the MCP server supports your authentication method, and verify the credentials stored in your project connection. For GitHub, use least-privilege tokens and rotate them regularly.
+  Confirm the MCP server supports your authentication method, and verify the credentials stored in your project connection. For GitHub, use least-privilege tokens and rotate them regularly. For Azure DevOps MCP Server, verify that the organization is backed by a Microsoft Entra tenant and that you can complete the organization connection flow in Foundry. Standalone Microsoft account organizations aren't supported.
 
 - The model never calls your MCP tool:
 

@@ -9,7 +9,7 @@ ms.author: scottpolly
 ms.reviewer: sooryar
 ms.subservice: training
 ms.topic: concept-article
-ms.date: 08/29/2025
+ms.date: 08/21/2026
 ms.custom:
   - devx-track-python
   - devx-track-azurecli
@@ -29,12 +29,12 @@ Azure Machine Learning provides several ways to train your models, from code-fir
     | Training method | Description |
     | ----- | ----- |
     | [command()](#submit-a-command) | A **typical way to train models** is to submit a command() that includes a training script, environment, and compute information. |
-    | [Automated machine learning](#automated-machine-learning) | Automated machine learning allows you to **train models without extensive data science or programming knowledge**. For people with a data science and programming background, it provides a way to save time and resources by automating algorithm selection and hyperparameter tuning. You don't have to worry about defining a job configuration when using automated machine learning. |
-    | [Machine learning pipeline](#machine-learning-pipeline) | Pipelines aren't a different training method, but a **way of defining a workflow using modular, reusable steps** that can include training as part of the workflow. Machine learning pipelines support using automated machine learning and run configuration to train models. Since pipelines aren't focused specifically on training, the reasons for using a pipeline are more varied than the other training methods. Generally, you might use a pipeline when:<br>* You want to **schedule unattended processes** such as long running training jobs or data preparation.<br>* Use **multiple steps** that are coordinated across heterogeneous compute resources and storage locations.<br>* Use the pipeline as a **reusable template** for specific scenarios, such as retraining or batch scoring.<br>* **Track and version data sources, inputs, and outputs** for your workflow.<br>* Your workflow is **implemented by different teams that work on specific steps independently**. Steps can then be joined together in a pipeline to implement the workflow. |
+    | [Automated machine learning](#automated-machine-learning) | Automated machine learning allows you to **train models without extensive data science or programming knowledge**. For people with a data science and programming background, it provides a way to save time and resources by automating algorithm selection and hyperparameter tuning. You still configure the automated ML job with settings such as the task type, training data, target column, compute, and limits. |
+    | [Machine learning pipeline](#machine-learning-pipeline) | Pipelines aren't a different training method, but a **way of defining a workflow using modular, reusable steps** that can include training as part of the workflow. Machine learning pipelines support using automated machine learning and command jobs to train models. Since pipelines aren't focused specifically on training, the reasons for using a pipeline are more varied than the other training methods. Generally, you might use a pipeline when:<br>* You want to **schedule unattended processes** such as long running training jobs or data preparation.<br>* Use **multiple steps** that are coordinated across heterogeneous compute resources and storage locations.<br>* Use the pipeline as a **reusable template** for specific scenarios, such as retraining or batch scoring.<br>* **Track and version data sources, inputs, and outputs** for your workflow.<br>* Your workflow is **implemented by different teams that work on specific steps independently**. Steps can then be joined together in a pipeline to implement the workflow. |
 
 + **Designer**: Azure Machine Learning Designer provides an easy entry-point into machine learning for building proof of concepts, or for users with little coding experience. It allows you to train models using a drag and drop web-based UI. You can use Python code as part of the design, or train models without writing any code.
 
-+ **Azure CLI**: The machine learning CLI provides commands for common tasks with Azure Machine Learning, and is often used for **scripting and automating tasks**. For example, once you've created a training script or pipeline, you might use the Azure CLI to start a training job on a schedule or when the data files used for training are updated. For training models, it provides commands that submit training jobs. It can submit jobs using run configurations or pipelines.
++ **Azure CLI**: The machine learning CLI provides commands for common tasks with Azure Machine Learning, and is often used for **scripting and automating tasks**. For example, once you've created a training script or pipeline, you might use the Azure CLI to start a training job on a schedule or when the data files used for training are updated. For training models, it provides commands that submit training jobs. It can submit command jobs, automated ML jobs, and pipeline jobs.
 
 Each of these training methods can use different types of compute resources for training. Collectively, these resources are referred to as [__compute targets__](concept-compute-target.md). A compute target can be a local machine or a cloud resource, such as an Azure Machine Learning Compute, Azure HDInsight, or a remote virtual machine.
 
@@ -76,25 +76,25 @@ Machine learning pipelines can use the previously mentioned training methods. Pi
 
 ### Understand what happens when you submit a training job
 
-The Azure training lifecycle consists of:
+The Azure training lifecycle for a typical script-based command job consists of the following steps. Automated ML and pipeline jobs follow a similar flow, but the exact execution and image-caching behavior can vary by job type and environment:
 
-1. Zipping the files in your project folder and upload to the cloud.
+1. Zip the files in your project folder and upload them to the cloud.
     
     > [!TIP]
     > [!INCLUDE [amlinclude-info](includes/machine-learning-amlignore-gitignore.md)]
 
-1. Scaling up your compute cluster (or [serverless compute](./how-to-use-serverless-compute.md)
+1. Scale up your compute cluster or [serverless compute](./how-to-use-serverless-compute.md).
 1. Building or downloading the dockerfile to the compute node 
     1. The system calculates a hash of: 
         - The base image 
         - Custom docker steps (see [Deploy a model using a custom Docker base image](./how-to-deploy-custom-container.md))
-        - The conda definition YAML (see [Manage Azure Machine Learning environments with the CLI (v2)](how-to-manage-environments-v2.md)))
+        - The conda definition YAML (see [Manage Azure Machine Learning environments with the CLI (v2)](how-to-manage-environments-v2.md))
     1. The system uses this hash as the key in a lookup of the workspace Azure Container Registry (ACR)
     1. If it isn't found, it looks for a match in the global ACR
     1. If it isn't found, the system builds a new image (which will be cached and registered with the workspace ACR)
 1. Downloading your zipped project file to temporary storage on the compute node
 1. Unzipping the project file
-1. The compute node executing `python <entry script> <arguments>`
+1. Run the compute node with the command specified by the job, such as `python <entry script> <arguments>` for a Python training script.
 1. Saving logs, model files, and other files written to `./outputs` to the storage account associated with the workspace
 1. Scaling down compute, including removing temporary storage 
 
@@ -119,4 +119,4 @@ Use the VS Code extension to run and manage your training jobs. To learn more, s
 
 ## Next steps
 
-Learn how to [Tutorial: Create production ML pipelines with Python SDK v2 in a Jupyter notebook](tutorial-pipeline-python-sdk.md).
+Next, learn how to [create production ML pipelines with the Python SDK v2 in a Jupyter notebook](tutorial-pipeline-python-sdk.md).

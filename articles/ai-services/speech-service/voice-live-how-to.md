@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 07/17/2026
+ms.date: 08/26/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -176,7 +176,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
-| `threshold` | float | Optional | Activation threshold (0.0–1.0). A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
+| `threshold` | float | Optional | Activation threshold in the range `[0.01, 1.0)`. A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. Starting with API version `2026-04-10`, the default is 400 for `server_vad` and 420 for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. For earlier API versions, the default is 300 for all types. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio, measured in milliseconds, required to start detection. The default value is 200 ms for `server_vad` and 80 ms for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech (default: 500). |
@@ -611,6 +611,10 @@ Refer to this sample code [use avatar in Voice live API](https://github.com/micr
 ### Use a photo avatar
 
 A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (currently `vasa-1`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Talking heads](./text-to-speech-avatar/standard-avatars.md#talking-heads)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+
+A standard photo avatar generates a talking-head video from a single photo, and the expected source photo resolution is 512x512.
+
+Before you can use a custom photo avatar, you need to create it. Creating a custom photo avatar requires a photo of the subject along with about one minute of consent audio, which is used to better match the voice to the avatar. This requirement is separate from the Voice Live session configuration shown here. For more information, see [Create a custom photo avatar](./text-to-speech-avatar/custom-photo-avatar-create.md).
 
 Use the optional `scene` object to adjust the avatar's zoom, position, rotation, and movement amplitude. For the meaning and ranges of each scene field, see [Set avatar scene for photo avatar](./text-to-speech-avatar/real-time-synthesis-avatar.md#set-avatar-scene-for-photo-avatar).
 

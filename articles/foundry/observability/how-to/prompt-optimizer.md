@@ -5,7 +5,7 @@ ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
-ms.date: 07/31/2026
+ms.date: 08/28/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
@@ -34,7 +34,7 @@ Prompt Optimizer uses a multistep process that combines your input with LLM-driv
 
 2. **LLM-based optimization**: An LLM receives your instructions and any suggestions. It applies prompt-engineering best practices to restructure, clarify, and enhance the instructions.
 
-3. **Reasoning generation**: For each modified paragraph, the LLM generates an explanation of *why* the change was made. This reasoning is displayed alongside the optimized text for full transparency.
+3. **Reasoning generation**: For each modified paragraph, the LLM generates an explanation of the change. The explanation appears alongside the revised text so you can review the suggestion.
 
 4. **Iterative refinement**: After the initial optimization, you can provide additional suggestions and reoptimize. Each subsequent optimization uses the latest optimized text as the new baseline, combined with your new suggestion. Repeat this loop until you're satisfied with the result.
 
@@ -66,7 +66,7 @@ If your agent already has instructions, follow these steps:
 
 1. Open Prompt Optimizer. The dialog shows your original instructions in a bordered card.
 1. Optionally, enter a suggestion in the suggestion bar to guide the optimization. For example: *"Add guardrails for off-topic questions"* or *"Make the tone more conversational."*
-1. Select **Optimize**. The optimizer analyzes your current instructions and generates an improved version.
+1. Select **Optimize**. The optimizer analyzes your current instructions and generates suggested revisions.
 1. Review the optimized instructions.
 1. Select **Use prompt** to replace your current instructions with the optimized version. The dialog closes and the **Instructions** field updates with the optimized text.
 
@@ -80,7 +80,7 @@ Prompt Optimizer provides transparent, paragraph-level reasoning for every chang
 - **Individual reasoning**: Select the chat bubble icon (💬) next to any changed paragraph to view why that specific change was made. The reasoning appears in a purple-highlighted box below the paragraph.
 - **Show all reasoning**: Select the **Show all reasoning** toggle to display reasoning for every changed paragraph at once.
 
-Reasoning explanations describe what prompt-engineering principle was applied and why it improves the instructions. This information helps you understand and validate each suggestion before accepting it.
+Reasoning explanations describe the prompt-engineering principle applied and the intended effect of the change. Use this information to review each suggestion, then test the revised instructions before accepting them.
 
 ## Iterate on optimizations
 
@@ -126,7 +126,7 @@ In unsupported regions, the **Optimize** button doesn't appear.
 
 - **Start simple, then refine**: Begin with a short description of your agent's purpose and let the optimizer create the initial structure. Then iterate with targeted suggestions.
 - **Use specific suggestions**: Vague suggestions like "make it better" produce less useful results than specific ones like "add error handling for invalid dates" or "restrict responses to English only."
-- **Review reasoning before accepting**: The per-paragraph reasoning helps you catch changes that might not align with your use case, even if they follow prompt-engineering best practices.
+- **Review reasoning before accepting**: The per-paragraph reasoning helps you identify changes that might not align with your use case, even if they follow prompt-engineering best practices.
 - **Test after optimizing**: After applying optimized instructions, test your agent in the playground to verify the changes produce the expected behavior before deploying.
 - **Preserve your original prompt**: Before optimizing, copy your current instructions if you want to revert. Reloading the page after applying restores your previous instructions as long as you haven't saved the agent.
 - **Run a full evaluation**: After optimizing, run an evaluation with your own dataset to measure whether the changes actually improve your agent's performance. Prompt Optimizer applies general best practices, but your evaluation data validates whether those changes work for your specific use case.

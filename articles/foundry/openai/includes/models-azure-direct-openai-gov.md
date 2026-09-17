@@ -2,15 +2,34 @@
 title: Azure OpenAI in Microsoft Foundry Models in Azure Government
 author: challenp
 ms.author: challenp
-ms.date: 04/03/2026
+ms.date: 09/02/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: classic-and-new
+ai-usage: ai-assisted
 ---
 
 ## Azure OpenAI in Microsoft Foundry models in Azure Government
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list-gov.md)]
+
+## GPT-5.6
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-5.6-sol` (2026-07-09) | See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-5.6-terra` (2026-07-09) | See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-5.6-luna` (2026-07-09) | See the [models table](#model-summary-table-and-region-availability). |
+
+### Capabilities
+
+| Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
+| --- | :--- | :--- | :--- | :---: |
+| `gpt-5.6-sol` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
+| `gpt-5.6-terra` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
+| `gpt-5.6-luna` (2026-07-09) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | June 2026 |
 
 ## GPT-5.1
 
@@ -136,7 +155,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models-gov.md)]
 
-For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
+For more information about provisioned deployments, see [Provisioned throughput in Azure Government](../concepts/provisioned-throughput-gov.md).
 
 ---
 

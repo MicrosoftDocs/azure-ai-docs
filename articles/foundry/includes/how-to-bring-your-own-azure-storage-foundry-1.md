@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/18/2026
 ms.custom: include
 ---
 
@@ -27,10 +27,10 @@ Before connecting your storage, ensure you have:
 [!INCLUDE [azure-subscription](azure-subscription.md)]
 
 1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported) with the following configuration:
-   - `allowSharedKeyAccess` set to `true`
+   - `allowSharedKeyAccess` set to `false`. Foundry uses identity-based (Microsoft Entra) access with the project managed identity and Azure RBAC, so shared key access isn't required.
    - `minimumTlsVersion` set to `TLS1_2`
    - `allowBlobPublicAccess` set to `false`
-   - `allowCrossTenantReplication` set to `false`
+   - `allowCrossTenantReplication` set to `false` (recommended hardening)
 
 1. Contributor or Owner permissions on both the Foundry resource and the storage account.
 1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).

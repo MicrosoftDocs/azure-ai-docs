@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 09/03/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -108,7 +108,8 @@ agent = project.agents.create_version(
             WebSearchTool(
                 user_location=WebSearchApproximateLocation(
                     country="GB", city="London", region="London"
-                )
+                ),
+                # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
             )
         ],
     ),
@@ -162,30 +163,21 @@ Agent deleted
 
 ### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `MCPStreamableHTTPTool`. Install the package with `pip install agent-framework-foundry httpx`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `FoundryToolbox`. Install the package with `pip install agent-framework-foundry`, set the `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` environment variables, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 #### Create a toolbox and run a hosted agent
 
 ```python
 import asyncio
-import httpx
 
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import WebSearchToolboxTool, WebSearchApproximateLocation
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = "Bearer " + self._token_provider()
-        yield request
 
 async def main() -> None:
     credential = AzureCliCredential()
@@ -201,7 +193,8 @@ async def main() -> None:
             WebSearchToolboxTool(
                 user_location=WebSearchApproximateLocation(
                     country="GB", city="London", region="London"
-                )
+                ),
+                # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
             )
         ],
     )
@@ -213,19 +206,13 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a research assistant. Use web search to find current information.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("What are the latest updates to Microsoft Foundry?")
@@ -262,6 +249,30 @@ The web search tool executes server-side in the Foundry Responses API. You can c
 
 The following example shows how to restrict web search to specific domains using a Bing Custom Search instance. This approach gives you control over which websites your agent can search.
 
+#### Create the Bing Custom Search connection with the Azure Developer CLI
+
+The `azd ai connection create` command doesn't currently support the
+`GroundingWithBingCustomSearch` connection category. Define the connection in
+`azure.yaml` instead, and run `azd provision`:
+
+```yaml
+resources:
+  - kind: connection
+    name: bing-custom-search
+    category: GroundingWithBingCustomSearch
+    target: https://api.bing.microsoft.com/
+    credentials:
+      type: ApiKey
+      key: <bing-custom-search-key>
+```
+
+Don't commit the key to source control. Inject it from a secure store before
+you run:
+
+```bash
+azd provision
+```
+
 #### Create the toolbox and domain-restricted agent
 
 ```python
@@ -295,7 +306,8 @@ toolbox = project.toolboxes.create_version(
             custom_search_configuration=WebSearchConfiguration(
                 project_connection_id=BING_CUSTOM_SEARCH_CONNECTION_ID,
                 instance_name=BING_CUSTOM_SEARCH_INSTANCE_NAME,
-            )
+            ),
+            # external_web_access=False,  # optional; set to False to disable live internet access (requires azure-ai-projects>=2.6.0)
         )
     ],
 )
@@ -527,7 +539,7 @@ Agent deleted
 
 ### Hosted agents
 
-This sample creates the web-search toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke web search through the toolbox MCP endpoint. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
+This sample creates the web-search toolbox with the Azure AI Projects SDK, then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make web search available to the hosted agent. Set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables, and sign in with `az login`.
 
 #### Create a toolbox and run a hosted agent
 
@@ -538,6 +550,8 @@ using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -566,25 +580,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [webTool],
         description: "Toolbox with the web search tool");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
-ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(
-        name: AgentName,
-        instructions: AgentInstructions,
-        chatClient: chatClient,
-        toolboxClient: toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output
@@ -940,20 +948,13 @@ The following TypeScript example demonstrates how to create an agent with the we
 
 ### Create a toolbox-backed agent
 
+This sample demonstrates how to run Prompt Agent operations by using the Web Search Tool. It shows how to create an agent with web search capabilities, send a query to search the web, and then clean up resources.
+
+The Web Search tool uses Grounding with Bing, which has **additional costs and terms**: [terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and [privacy statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). **Customer data flows outside the Azure compliance boundary.**
+
 ```typescript
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-
-/**
- * This sample demonstrates how to run Prompt Agent operations using the Web Search Tool.
- *
- * @summary This sample demonstrates how to create an agent with web search capabilities,
- * send a query to search the web, and clean up resources.
- *
- * @warning Web Search tool uses Grounding with Bing, which has additional costs and terms: [terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and [privacy statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). Customer data will flow outside the Azure compliance boundary. Learn more [here](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-search?pivots=rest-api)
- *
- * @azsdk-weight 100
- */
 
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
@@ -1060,6 +1061,164 @@ The following example shows the expected output when running the TypeScript code
 ```console
 Agent created (id: 12345, name: agent-web-search, version: 1)
 Response: The agent returns a grounded response that includes citations.
+Agent deleted
+```
+
+### Domain-restricted search with Bing Custom Search
+
+The following example shows how to restrict web search to specific domains by attaching the web search tool directly to the agent with a Bing Custom Search configuration.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const BING_CUSTOM_SEARCH_CONNECTION_ID = "your_bing_custom_search_connection_id";
+const BING_CUSTOM_SEARCH_INSTANCE_NAME = "your_bing_custom_search_instance_name";
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create an agent with the web search tool configured for Bing Custom Search
+  const agent = await project.agents.createVersion("agent-web-search-custom", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant that can search the web and bing",
+    tools: [
+      {
+        type: "web_search",
+        custom_search_configuration: {
+          project_connection_id: BING_CUSTOM_SEARCH_CONNECTION_ID,
+          instance_name: BING_CUSTOM_SEARCH_INSTANCE_NAME,
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Send a query and stream the response
+  const stream = openai.responses.stream(
+    {
+      input: "What are the latest updates from Microsoft Learn?",
+      tool_choice: "required",
+    },
+    {
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // Process streaming events as they arrive
+  for await (const event of stream) {
+    if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_item.done") {
+      if (event.item.type === "message" && event.item.content) {
+        const lastContent = event.item.content[event.item.content.length - 1];
+        if (lastContent.type === "output_text" && lastContent.annotations) {
+          for (const annotation of lastContent.annotations) {
+            if (annotation.type === "url_citation") {
+              console.log(`\nURL Citation: ${annotation.url}`);
+            }
+          }
+        }
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\n\nResponse completed!");
+    }
+  }
+
+  // Clean up resources
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+```console
+Agent created (id: abc123, name: agent-web-search-custom, version: 1)
+
+URL Citation: https://your-allowed-domain.com/article
+
+Response completed!
+Agent deleted
+```
+
+### Deep research with web search
+
+The following example shows how to use the `o3-deep-research` model with the direct web search preview tool. Don't route web search through a toolbox for deep research because the model requires the direct Responses web search tool.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create a prompt agent with the direct web search preview tool
+  const agent = await project.agents.createVersion("agent-deep-research", {
+    kind: "prompt",
+    model: "o3-deep-research",
+    instructions: "You are a helpful assistant that can search the web",
+    tools: [{ type: "web_search_preview" }],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Create a conversation for the agent interaction
+  const conversation = await openai.conversations.create();
+  console.log(`Created conversation (id: ${conversation.id})`);
+
+  // Send a query to search the web
+  const stream = openai.responses.stream(
+    {
+      conversation: conversation.id,
+      input: "What are the latest advancements in quantum computing?",
+    },
+    {
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // Process streaming events as they arrive
+  for await (const event of stream) {
+    if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.completed") {
+      console.log("\n\nResponse completed!");
+      console.log(`Full response: ${event.response.output_text}`);
+    }
+  }
+
+  // Clean up resources
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+```console
+Agent created (id: abc123, name: agent-deep-research, version: 1)
+Created conversation (id: conv_456)
+
+Response completed!
+Full response: Recent advancements in quantum computing include ...
 Agent deleted
 ```
 :::zone-end
@@ -1206,6 +1365,21 @@ You can configure web search behavior when you create your agent.
 
 - `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
 - `search_context_size`: Controls how much context window space to use for the search. Supported values are `low`, `medium`, and `high`. The default is `medium`.
+- `external_web_access`: When set to `False`, disables live internet access for the tool instance. Requires `azure-ai-projects>=2.6.0`. Default: `[TO VERIFY]`.
+
+### Disable live internet access
+
+`azure-ai-projects` 2.6.0 adds an optional `external_web_access` property to both `WebSearchTool` (used directly on a prompt agent) and `WebSearchToolboxTool` (used in a toolbox). Set it to `False` to disable live internet access for that tool instance. To use this property, install `azure-ai-projects>=2.6.0`. This property is currently available in the Python SDK only.
+
+> [!IMPORTANT]
+> The default value of `external_web_access` is `[TO VERIFY]`. Explicitly set the property when your scenario requires a specific behavior.
+
+| Property | Type | Applies to | Description |
+| --- | --- | --- | --- |
+| `external_web_access` | `bool` | `WebSearchTool`, `WebSearchToolboxTool` | When set to `False`, disables live internet access. Requires `azure-ai-projects>=2.6.0`. Default: `[TO VERIFY]`. |
+
+> [!NOTE]
+> This property applies to the Foundry Agent Service tool surface. The Azure OpenAI Responses API (`web_search_preview`) has separate behavior for web search access. For details, see [Web search with the Responses API](../../../openai/how-to/web-search.md).
 
 ## Security and privacy considerations
 

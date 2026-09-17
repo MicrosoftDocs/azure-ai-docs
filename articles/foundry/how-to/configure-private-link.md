@@ -313,12 +313,15 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 
 If you deploy Foundry with virtual network injection, you might create a firewall to control egress traffic. The following list shows trusted fully qualified domain names (FQDNs) or service tags to allowlist on your firewall depending on the scenario or feature in Foundry.
 
-| Scenario | FQDNs / ServiceTags | Description |
+| Scenario | FQDNs, service tags | Description |
 |---------|--------------------------|-------|
 | Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com` or AAD service tag | Required for the Azure Container App delegation for Agent service. |
-| Evaluations & Traces | `*.blob.core.windows.net`, `settings.sdk.monitor.azure.com` | Used for the evaluators catalogue and for sending results to the linked Application Insights resource. |
+| Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com`, AzureMachineLearning service tag | Used for sending results to the linked Application Insights resource and Evaluators Catalog. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
 | Hosted Agents to A365 | `AzureFrontDoor.Frontend` | Hosted agent to Agent365 (A365) observability/tracing endpoint ServiceTag, port TCP 443 |
+
+> [!NOTE]
+> As an alternative to the `AMLMachineLearning` service tag for evaluations, add `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` to your firewall allow list. Use the region where the evaluation runs. For example, if an evaluation runs in East US, add `eastus.api.azureml.ms`.
 
 ### Private endpoint limitations
 
@@ -346,7 +349,7 @@ If you experience connectivity problems after setting up a private endpoint, try
 
 - **Connection times out on port 443**: Check that your network security group (NSG) rules allow outbound traffic to the private endpoint IP on port 443. Also verify that no firewall is blocking the connection.
 - **Can't reach Foundry from on-premises**: Verify that your VPN or ExpressRoute or VM connection is active and that routing tables include the VNET address space. Test connectivity to the private IP from on-premises.
-- **403 Forbidden errors**: This often indicates authentication issues rather than networking. Verify that your credentials have appropriate RBAC roles on the Foundry project.
+- **403 Forbidden errors**: Confirm that the Foundry endpoint resolves to the private endpoint IP address and that the client can reach it. If the network path is correct, verify that your credentials have the appropriate RBAC roles on the Foundry project.
 
 ### Agent-specific troubleshooting
 

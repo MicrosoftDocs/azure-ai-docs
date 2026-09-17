@@ -8,48 +8,65 @@ ai-usage: ai-assisted
 ---
 
 
-| Language code | Language | MAI-Transcribe-1.5 support | MAI-transcribe-1 support |
+| Language code | Language | MAI-Transcribe-1.5 support | MAI-Transcribe-2 support |
 | ----- | ----- |----- | ----- |
+| `af` | Afrikaans |  | ✅ |
 | `ar` | Arabic | ✅ | ✅ |
-| `as` | Assamese | ✅ |  |
-| `bg` | Bulgarian | ✅ |  |
-| `bn` | Bengali | ✅ |  |
-| `ca` | Catalan | ✅ |  |
+| `as` | Assamese | ✅ | ✅ |
+| `az` | Azerbaijani |  | ✅ |
+| `bg` | Bulgarian | ✅ | ✅ |
+| `bn` | Bengali | ✅ | ✅ |
+| `bs` | Bosnian |  | ✅ |
+| `ca` | Catalan | ✅ | ✅ |
 | `cs` | Czech | ✅ | ✅ |
 | `da` | Danish | ✅ | ✅ |
 | `de` | German | ✅ | ✅ |
-| `el` | Greek | ✅ |  |
+| `el` | Greek | ✅ | ✅ |
 | `en` | English | ✅ | ✅ |
 | `es` | Spanish | ✅ | ✅ |
-| `et` | Estonian | ✅ |  |
+| `et` | Estonian | ✅ | ✅ |
+| `fa` | Persian |  | ✅ |
 | `fi` | Finnish | ✅ | ✅ |
+| `fil` | Filipino |  | ✅ |
 | `fr` | French | ✅ | ✅ |
-| `gu` | Gujarati | ✅ |  |
+| `gl` | Galician |  | ✅ |
+| `gu` | Gujarati | ✅ | ✅ |
+| `he` | Hebrew |  | ✅ |
 | `hi` | Hindi | ✅ | ✅ |
 | `hu` | Hungarian | ✅ | ✅ |
+| `hy` | Armenian |  | ✅ |
 | `id` | Indonesian | ✅ | ✅ |
+| `is` | Icelandic |  | ✅ |
 | `it` | Italian | ✅ | ✅ |
 | `ja` | Japanese | ✅ | ✅ |
-| `kn` | Kannada | ✅ |  |
+| `kk` | Kazakh |  | ✅ |
+| `kn` | Kannada | ✅ | ✅ |
 | `ko` | Korean | ✅ | ✅ |
-| `lt` | Lithuanian | ✅ |  |
-| `ml` | Malayalam | ✅ |  |
-| `mr` | Marathi | ✅ |  |
+| `lt` | Lithuanian | ✅ | ✅ |
+| `lv` | Latvian |  | ✅ |
+| `mk` | Macedonian |  | ✅ |
+| `ml` | Malayalam | ✅ | ✅ |
+| `mr` | Marathi | ✅ | ✅ |
+| `ms` | Malay |  | ✅ |
 | `nb` | Norwegian Bokmål | ✅ | ✅ |
+| `ne` | Nepali |  | ✅ |
 | `nl` | Dutch | ✅ | ✅ |
-| `or` | Odia | ✅ |  |
-| `pa` | Punjabi (Gurmukhi script) | ✅ |  |
+| `or` | Odia | ✅ | ✅ |
+| `pa` | Punjabi (Gurmukhi script) | ✅ | ✅ |
 | `pl` | Polish | ✅ | ✅ |
 | `pt` | Portuguese | ✅ | ✅ |
 | `ro` | Romanian | ✅ | ✅ |
 | `ru` | Russian | ✅ | ✅ |
-| `sk` | Slovak | ✅ |  |
-| `sl` | Slovenian | ✅ |  |
+| `sk` | Slovak | ✅ | ✅ |
+| `sl` | Slovenian | ✅ | ✅ |
 | `sv` | Swedish | ✅ | ✅ |
-| `ta` | Tamil | ✅ |  |
-| `te` | Telugu | ✅ |  |
+| `sw` | Swahili |  | ✅ |
+| `ta` | Tamil | ✅ | ✅ |
+| `te` | Telugu | ✅ | ✅ |
 | `th` | Thai | ✅ | ✅ |
 | `tr` | Turkish | ✅ | ✅ |
-| `uk` | Ukrainian | ✅ |  |
+| `uk` | Ukrainian | ✅ | ✅ |
+| `ur` | Urdu |  | ✅ |
 | `vi` | Vietnamese | ✅ | ✅ |
+| `yue` | Cantonese |  | ✅ |
 | `zh` | Chinese (simplified) | ✅ | ✅ |

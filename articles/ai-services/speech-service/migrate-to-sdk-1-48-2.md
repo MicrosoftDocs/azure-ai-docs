@@ -63,26 +63,14 @@ If your application uses only embedded (on-device) speech recognition or synthes
 
 When your application is online, it uses cloud speech-to-text (STT) or text-to-speech (TTS). These cloud connections are subject to the CRL partitioning issue. Your embedded fallback continues to work when there's no data signal, but cloud features fail unless you take action.
 
-Determine which caching scenario applies to you:
-
-#### CRL disk caching enabled (default)
-
-The SDK persists CRL data to disk using the system temp directory (`$TMPDIR` or `$TMP`). A stale CRL partition entry in the disk cache can cause persistent connection failures that survive application restarts. To resolve this:
-
-- Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
-- Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
-- If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
-
-#### CRL disk caching not enabled
-
-If you use a custom configuration or the `$TMPDIR`/`$TMP` environment variables are unset, the SDK still caches CRLs in memory during the process lifetime. Restarting the application clears the in-memory cache, but the issue reoccurs on the next cross-region connection or certificate rotation. Upgrade or disable CRL checking per the [Required action](#required-action) options.
+To solve this issue, follow one of the [Required action](#required-action) options.
 
 > [!TIP]
 > Hybrid deployments that fall back to embedded speech when offline continue to work in embedded mode, but cloud-dependent features fail until you apply the fix.
 
 ### Cloud-only deployments
 
-All cloud STT/TTS calls are affected. The same two scenarios (CRL disk caching enabled or not enabled) described in [Hybrid deployments](#hybrid-deployments-cloud-with-embedded-fallback) apply to cloud-only deployments.
+All cloud STT/TTS calls are affected. Follow one of the [Required action](#required-action) options.
 
 > [!WARNING]
 > Cloud-only deployments have no fallback. After certificate renewal begins using partitioned CRLs, speech recognition and synthesis calls can fail if you haven't applied the fix. The exact timing depends on when your region's TLS certificates are renewed, but you should take action before July 1, 2026 to avoid any risk of disruption.
@@ -95,17 +83,16 @@ Previously, each certificate issuer maintained a single CRL. With partitioned CR
 
 ## The issue
 
-The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms using only the certificate issuer name as the cache key. With partitioned CRLs, this causes a cache mismatch:
+The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms using only the certificate issuer name as the cache key. With partitioned CRLs, this method can cause a cache mismatch:
 
-- When connecting to one Azure region, the SDK downloads and caches the CRL for that region's TLS certificate
-- When connecting to another region (or after certificate rotation), the cached CRL may not match the new certificate's partition
+- When verifying a certificate during TLS handshake, the SDK downloads and caches the CRL for a TLS certificate.
+- When the SDK verifies another certificate from the same issuer, it might retrieve an incorrect CRL from the cache that doesn't match the current certificate's CDP.
 - OpenSSL rejects the connection with error: `X509_V_ERR_DIFFERENT_CRL_SCOPE` (error code 44)
 
 **This affects you if:**
 - You use the Speech SDK on **Linux or Android**
 - You have **CRL checking enabled** (the default in affected versions)
-- You connect to **multiple Azure regions**, OR
-- Your region's certificate **rotates** (which happens automatically and may assign a different partition)
+- Your region's certificate **rotates** (which happens automatically and might assign an incompatible certificate chain).
 
 **This doesn't affect:**
 - Windows deployments
@@ -113,6 +100,9 @@ The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms
 - SDK version 1.48.2 or later
 
 ## Required action
+
+> [!WARNING]
+> A temporary workaround was mentioned in an early version of this article. However, this workaround doesn't eliminate the underlying defect and might still result in connection failures under certain circumstances. To avoid any service interruption, follow the required actions.
 
 Take one of the following actions **before July 1, 2026**:
 
@@ -171,7 +161,7 @@ For more configuration options, see [How to configure OpenSSL for Linux](how-to-
 
 If you don't upgrade or disable CRL checking before July 1, 2026:
 
-- **Connection failures** can occur when certificate rotation assigns a different CRL partition, or when connecting across regions
+- **Connection failures** can occur whenever certificate validation encounters a certificate whose CRL partition doesn't match a previously cached CRL for the same issuer.
 - Failures manifest as `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED` errors
 - **No advance warning** — the exact timing depends on when your region's TLS certificates are renewed
 - **Service disruption** continues until the SDK is upgraded, CRL checking is disabled, or the CRL cache is cleared
@@ -208,24 +198,6 @@ If you see these errors and are:
 
 Then you're likely affected by this issue.
 
-## Temporary workaround: Clear the CRL disk cache
-
-If you can't upgrade before the deadline or disable CRL checking, you can reduce the duration of impact by **disabling the CRL disk cache**. This limits the problem to in-memory caching only, meaning:
-
-- Impact duration = process lifetime
-- **Restarting your application clears the cache** and restores connectivity (until the next cross-region connection or rotation event)
-
-### How to disable disk caching
-
-Remove or unset the `TMPDIR` or `TMP` environment variables before starting your application. Without these variables, the SDK doesn't persist CRLs to disk.
-
-Alternatively, clear the CRL cache directory manually:
-- Default location: System temp directory (`$TMPDIR` or `$TMP`)
-- Delete cached `.crl` files and restart your application
-
-> [!NOTE]
-> This is a temporary workaround, not a solution. Upgrading to SDK 1.48.2 or later, or disabling CRL checking, is still required.
-
 ## Timeline
 
 | Date | Event |
@@ -247,7 +219,7 @@ No. Windows handles certificate validation differently and isn't affected.
 
 ### I only use one Azure region. Am I still affected?
 
-Yes. Certificate rotation (which happens automatically) might assign your region's certificate to a different partition, triggering the same failure.
+Yes. The issue isn't limited to cross-region traffic. Certificate rotation or validation of certificates associated with different CRL IDPs from the same issuer can trigger the failure.
 
 ### What if I have CRL checking disabled already?
 

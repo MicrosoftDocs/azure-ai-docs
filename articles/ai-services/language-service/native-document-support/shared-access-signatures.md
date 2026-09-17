@@ -5,8 +5,9 @@ ms.service: azure-language-foundry-tools
 ms.topic: how-to
 manager: mcleans
 ms.author: lajanuar
+ai-usage: ai-assisted
 author: laujan
-ms.date: 06/02/2026
+ms.date: 07/24/2026
 ---
 # SAS tokens for your storage containers
 

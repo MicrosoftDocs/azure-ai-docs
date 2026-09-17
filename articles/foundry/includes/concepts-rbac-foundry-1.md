@@ -6,8 +6,9 @@ ms.reviewer: meerakurup
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/04/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Minimum role assignments to get started
@@ -21,7 +22,7 @@ You can verify current assignments by using [Check access for a user to a single
   [!INCLUDE [role-rename-note](./role-rename-note.md)]
 * Assign the **Foundry User** role on your Foundry resource to your **project's managed identity**.
 
-If the user who created the project can assign roles (for example, by having the Azure **Owner** role at subscription or resource group scope), both assignments are added automatically.
+If the user who created the project can assign roles (for example, by having the Azure Owner role at the subscription or resource group scope), both assignments are added automatically **when the project is created through the Microsoft Foundry portal UI**.
 
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
@@ -34,7 +35,7 @@ In the Azure portal, open your Foundry resource and go to **Access control (IAM)
 
 ### Assign a role to your project's managed identity 
 
-In the Azure portal, open your Foundry project and go to **Access control (IAM)**. Create a role assignment for **Foundry User**, set **Members** to **Managed identity**, select your project's managed identity, and then select **Review + assign**.
+In the Azure portal, open your Foundry resource and go to **Access control (IAM)**. Create a role assignment for **Foundry User**, set **Members** to **Managed identity**, select your project's managed identity, and then select **Review + assign**.
 
 ## Terminology for role-based access control in Foundry
 

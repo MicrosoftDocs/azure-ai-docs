@@ -333,7 +333,7 @@ To learn more, see [Optimize costs with the Serverless pricing model in Azure AI
 Capacity and availability can vary by the [supported region](search-region-support.md). Some regions might have constraints on provisioning new services or scaling existing ones.
 
 > [!NOTE]
-> During public preview, the Serverless pricing model is available only in a limited set of regions. See the preview notice at the beginning of this article. 
+> During public preview, the Serverless pricing model is available only in [specific regions](./search-region-support.md#features-subject-to-regional-availability).
 
 If your preferred Azure AI Search region is unavailable due to capacity constraints, see [How to handle regional capacity constraints in Azure AI Search](search-region-capacity.md).
 

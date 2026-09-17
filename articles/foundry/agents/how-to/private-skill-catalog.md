@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 08/03/2026
+ms.date: 09/14/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -34,7 +34,7 @@ Before you create the catalog, decide who manages it and who consumes it.
 | Goal | Who | Where | What to do |
 | --- | --- | --- | --- |
 | Create and manage the skill catalog | Catalog admins | Azure API Center | Create the API Center resource, register skills, and define the allowed tools each skill can access. |
-| Discover skills from the private catalog | Developers | Azure API Center (RBAC) | Assign access so developers can view the registered skills. |
+| Discover skills from the private catalog | Developers | Azure API Center (RBAC) | Assign access at the API Center resource or a parent scope so developers can view the registered skills. |
 | Use skills | Developers | Foundry project | Confirm developers can access the Foundry project and can use skills from the catalog. |
 
 ## Register skills and define allowed tools
@@ -69,7 +69,9 @@ Developers can then view assessment results on each skill's details page in the 
 Assign Azure RBAC permissions so developers can discover skills from your private catalog in Foundry.
 
 1. Decide whether to grant access to a security group or to individual users.
-1. Assign at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) role (or an equivalent custom role) to those users.
+1. On the API Center resource, or on a parent resource group or subscription that contains the API Center, assign the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) role (or an equivalent custom role) to the users who need access to the skill catalog.
+
+The Azure API Center role assignment and the Foundry project role assignment control access to different resources. Assigning permissions only at the Foundry project scope doesn't grant access to API Center catalog data. Users must also have the appropriate Azure API Center role assignment at the API Center resource scope (or an inherited scope such as its parent resource group or subscription). The Azure API Center Data Reader role provides read access to Azure API Center data plane operations.
 
 Role assignments can take up to 24 hours to propagate. If developers don't see the catalog immediately, wait and try again.
 
@@ -78,8 +80,8 @@ Role assignments can take up to 24 hours to propagate. If developers don't see t
 After you grant access, confirm that developers can find and use the catalog in the Foundry portal.
 
 1. In the Foundry portal, open the project that your developers use.
-1. Go to **Build** > **Skills**.
-1. Use search and filters to find your private skill catalog by the API Center name.
+1. Go to **Build** > **Tools** > **Skills**, and then select **Browse skills**.
+1. Under **Registry**, select the API Center name. The catalog isn't listed as a separate item on the page. Its name appears as a registry filter.
 1. Select a skill from the catalog and review its summary, source, compatibility, and allowed tools.
 
 If the catalog appears and displays your registered skills, the configuration is complete.
@@ -90,15 +92,15 @@ If you encounter problems setting up or using your private skill catalog, use th
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| The private skill catalog doesn't appear in Foundry. | You don't have access to the API Center resource, or you're in the wrong Foundry project. | Confirm you have the Azure API Center Data Reader role assignment. Then confirm you're in the expected Foundry project and go to **Build** > **Skills**. |
+| The private skill catalog doesn't appear in Foundry. | You don't have access to the API Center resource, or you're looking for the catalog outside the registry filters. | Confirm that the Azure API Center Data Reader role applies at the API Center resource or a parent scope. Then go to **Build** > **Tools** > **Skills** > **Browse skills** and look for the API Center name under **Registry**. |
 | The catalog appears, but a skill is missing. | The skill isn't registered, or Git sync hasn't run. | Confirm the skill is registered under **Inventory** > **Assets** in API Center, and that any Git repository integration has synced. |
 | A skill runs but can't reach a resource. | The resource isn't in the skill's allowed tools. | Add the required API or MCP server to the skill's **Allowed tools** in API Center. |
-| The catalog doesn't appear after role assignment. | Azure RBAC role assignments can take up to 24 hours to propagate. | Wait up to 24 hours and try again. If the issue persists, verify the role assignment in the Azure portal under **Access control (IAM)**. |
+| The catalog doesn't appear after role assignment. | The role assignment is at the wrong scope, or Azure RBAC propagation isn't complete. | In the Azure portal, open the API Center resource and verify under **Access control (IAM)** that the role assignment applies to the API Center resource. Wait up to 24 hours after correcting the assignment, and then try again. |
 | The skill source can't be opened. | The **Source URL** is incorrect, or the repository is private. | Verify the Git repository URL in the skill registration and confirm the developer has access to the repository. |
 
 ## Related content
 
-[Discover and manage tools in the Foundry tool catalog](../concepts/tool-catalog.md)
+[What is Toolbox in Foundry?](../concepts/toolbox-overview.md)
 
 [Create a private tool catalog (preview)](private-tool-catalog.md)
 

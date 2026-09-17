@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 10/30/2025
 ms.subservice: foundry-openai
+ai-usage: ai-assisted
 ---
 
 In this article, you learn how to use Voice Live with Microsoft Foundry models using the VoiceLive SDK for C#.
@@ -370,8 +371,6 @@ Follow these steps to create a console application and install the Speech SDK.
         ///</summary>
         /// <remarks>
         /// This sample now demonstrates some of the new convenience methods added to the VoiceLive SDK:
-        /// - ClearStreamingAudioAsync() - Clears all input audio currently being streamed
-        /// - CancelResponseAsync() - Cancels the current response generation (existing method)
         /// - ConfigureSessionAsync() - Configures session options (existing method)
         ///
         /// Additional convenience methods available but not shown in this sample:
@@ -394,10 +393,6 @@ Follow these steps to create a console application and install the Speech SDK.
             private VoiceLiveSession? _session;
             private AudioProcessor? _audioProcessor;
             private bool _disposed;
-        // Tracks whether an assistant response is currently active (created and not yet completed)
-        private bool _responseActive;
-        // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
-        private bool _canCancelResponse;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
@@ -571,43 +566,6 @@ Follow these steps to create a console application and install the Speech SDK.
                         {
                             await _audioProcessor.StopPlaybackAsync().ConfigureAwait(false);
                         }
-    
-                        // Only attempt cancellation / clearing if a response is active and cancellable
-                        if (_responseActive && _canCancelResponse)
-                        {
-                            // Cancel any ongoing response
-                            try
-                            {
-                                await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
-                                _logger.LogInformation("🛑 Active response cancelled due to user barge-in");
-                            }
-                            catch (Exception ex)
-                            {
-                                if (ex.Message.Contains("no active response", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    _logger.LogDebug("Cancellation benign: response already completed");
-                                }
-                                else
-                                {
-                                    _logger.LogWarning(ex, "Response cancellation failed during barge-in");
-                                }
-                            }
-    
-                            // Clear any streaming audio still in transit
-                            try
-                            {
-                                await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
-                                _logger.LogInformation("✨ Cleared streaming audio after cancellation");
-                            }
-                            catch (Exception ex)
-                            {
-                                _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
-                            }
-                        }
-                        else
-                        {
-                            _logger.LogDebug("No active/cancellable response during barge-in; skipping cancellation");
-                        }
                         break;
     
                     case SessionUpdateInputAudioBufferSpeechStopped speechStopped:
@@ -623,8 +581,6 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     case SessionUpdateResponseCreated responseCreated:
                         _logger.LogInformation("🤖 Assistant response created");
-                        _responseActive = true;
-                        _canCancelResponse = true;
                         break;
     
                     case SessionUpdateResponseAudioDelta audioDelta:
@@ -645,15 +601,11 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     case SessionUpdateResponseDone responseDone:
                         _logger.LogInformation("✅ Response complete");
-                        _responseActive = false;
-                        _canCancelResponse = false;
                         break;
     
                     case SessionUpdateError errorEvent:
                         _logger.LogError("❌ VoiceLive error: {ErrorMessage}", errorEvent.Error?.Message);
                         Console.WriteLine($"Error: {errorEvent.Error?.Message}");
-                        _responseActive = false;
-                        _canCancelResponse = false;
                         break;
     
                     default:
