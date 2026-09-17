@@ -72,10 +72,10 @@ az cognitiveservices account deployment create \
 To list all available deployments on your resource:
 
 ```bash
-az cognitiveservices account deployment list \ 
-  --resource-group <RESOURCE_GROUP> \ 
-  --name <ACCOUNT_NAME> \ 
-  -o table 
+az cognitiveservices account deployment list \
+  --resource-group <RESOURCE_GROUP> \
+  --name <ACCOUNT_NAME> \
+  -o table
 ```
 
 **Reference:** [az cognitiveservices account deployment list](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-list)
@@ -271,7 +271,7 @@ The following example shows how to perform an image-to-image edit by using an MA
     url = f"{endpoint}/mai/v1/images/edits"
 
     # Replace the file name and type.
-    reference_image = <path_to_your_image.png>
+    reference_image = "<path_to_your_image.png>"
     image_type = "image/png" # or "image/jpeg" based on format of your image. 
     
     files = [
@@ -331,13 +331,11 @@ export DEPLOYMENT_NAME="<your-deployment-name>"
 ```
 
 ```sh
-curl -X POST "https://.services.ai.azure.com/mai/v1/images/edits" \
-  -H "api-key: $AZURE_API_KEY"\
-  -F "prompt=Turn this image into a clean futuristic product shot with studio lighting"\
-  -F "model=$DEPLOYMENT_NAME"\
-  -F "image=@/path/to/your/image.png"\
-
-# Decode and save the output image
+curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/edits" \
+  -H "api-key: $AZURE_API_KEY" \
+  -F "prompt=Turn this image into a clean futuristic product shot with studio lighting" \
+  -F "model=$DEPLOYMENT_NAME" \
+  -F "image=@/path/to/your/image.png" \
 | jq -r '.data[0].b64_json' \
 | base64 --decode > output.png
 ```
