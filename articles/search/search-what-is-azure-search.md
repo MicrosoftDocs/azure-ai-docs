@@ -4,7 +4,7 @@ description: Learn how Azure AI Search helps you build rich search experiences a
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: overview
-ms.date: 08/24/2026
+ms.date: 09/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -45,9 +45,6 @@ When you create a search service, the following capabilities are included:
 + Provide enterprise security, access control, and compliance through Microsoft Entra ID, Azure Private Link, document-level access control, and role-based access.
 
 + Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
-
-> [!NOTE]
-> In the Serverless pricing model (preview), scaling is handled automatically by the service. Unlike Dedicated models where you configure replicas and partitions, Serverless uses consumption-based scaling and service-level limits to manage capacity. For more information, see [Optimize costs with the Serverless pricing model](./serverless-cost-optimization.md).
 
 For more information about specific functionality, see [Features of Azure AI Search](search-features-list.md).
 
