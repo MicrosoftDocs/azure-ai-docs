@@ -222,10 +222,14 @@ const endpointConfig = {
   },
 };
 
-const patchedAgent = await project.agents.patchAgentObject(agentName, {
-  agentEndpoint: endpointConfig,
-});
-console.log(`Agent endpoint configured for agent: ${patchedAgent.name}`);
+async function configureAgentEndpoint() {
+  const patchedAgent = await project.agents.patchAgentObject(agentName, {
+    agentEndpoint: endpointConfig,
+  });
+  console.log(`Agent endpoint configured for agent: ${patchedAgent.name}`);
+}
+
+void configureAgentEndpoint();
 ```
 
 Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
@@ -374,12 +378,16 @@ const endpointConfig = {
   authorization_schemes: [{ type: "Entra" }, { type: "BotServiceRbac" }],
 };
 
-const patchedAgent = await project.agents.patchAgentObject(agentName, {
-  agentEndpoint: endpointConfig,
-});
-console.log(
-  `Protocols and authorization updated for agent: ${patchedAgent.name}`,
-);
+async function configureProtocolsAndAuthorization() {
+  const patchedAgent = await project.agents.patchAgentObject(agentName, {
+    agentEndpoint: endpointConfig,
+  });
+  console.log(
+    `Protocols and authorization updated for agent: ${patchedAgent.name}`,
+  );
+}
+
+void configureProtocolsAndAuthorization();
 ```
 
 Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
@@ -565,10 +573,14 @@ const agentCard = {
   ],
 };
 
-const patchedAgent = await project.agents.patchAgentObject(agentName, {
-  agentCard,
-});
-console.log(`Added an agent card to: ${patchedAgent.name}`);
+async function addAgentCard() {
+  const patchedAgent = await project.agents.patchAgentObject(agentName, {
+    agentCard,
+  });
+  console.log(`Added an agent card to: ${patchedAgent.name}`);
+}
+
+void addAgentCard();
 ```
 
 Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
