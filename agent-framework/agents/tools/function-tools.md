@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/15/2026
+ms.date: 09/17/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -140,6 +140,15 @@ If a tool is implemented outside the framework (for example, client-side in a UI
 The model can still reason about and call the tool, and your application can provide the result later.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/03-workflows/human-in-the-loop/agents_with_declaration_only_tools.py" range="37-50":::
+
+### Parse custom tool results
+
+Set `result_parser` on `FunctionTool` or `@tool` when you need to convert a raw
+return value into a string or a list of `Content` items. If a custom parser
+raises an exception, direct invocation propagates the exception, while
+automatic function invocation returns a normal tool-error result and honors
+`include_detailed_errors`. The raw return value isn't used as a fallback, so
+handle recoverable conversion errors inside the custom parser.
 
 When creating the agent, you can now provide the function tool to the agent, by passing it to the `tools` parameter.
 
