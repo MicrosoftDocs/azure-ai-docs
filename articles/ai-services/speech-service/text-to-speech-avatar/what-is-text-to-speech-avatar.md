@@ -95,6 +95,10 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
 * [Use avatar in Voice live API](https://github.com/microsoft-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
+## Agent Skills
+
+Use skills with your AI coding agent to accelerate text to speech avatar integration into your application. To get started, see [GitHub](https://github.com/microsoft-foundry/voicelive-samples/tree/main/skills/azure-avatar-integrate).
+
 ## Pricing
 
 - Throughout an avatar real-time session or batch content creation, you pay separately for the text to speech.
