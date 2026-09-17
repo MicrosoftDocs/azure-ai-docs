@@ -289,7 +289,7 @@ Follow these steps and configure the compute:
 
 ## Run experiment and view results
 
-Select **Submit training job** to run your experiment. The experiment preparation process can take up to 10 minutes. Training jobs can take an additional 2-3 minutes for each pipeline to finish running. If you specified to generate a Responsible AI dashboard for the best recommended model, it can take up to 40 minutes.
+Select **Submit training job** to run your experiment. The experiment preparation process can take up to 10 minutes. Training jobs can take an extra 2-3 minutes for each pipeline to finish running. If you specify to generate a Responsible AI dashboard for the best recommended model, it can take up to 40 minutes.
 
 > [!NOTE]
 > The algorithms Automated ML employs have inherent randomness that can cause slight variation in a recommended model's final metrics score, like accuracy. Automated ML also performs operations on data such as train-test split, train-validation split, or cross-validation, as necessary. If you run an experiment with the same configuration settings and primary metric multiple times, you likely see variation in each experiment's final metrics score because of these factors. 
@@ -414,7 +414,7 @@ The **Edit and submit** option opens the **Create a new Automated ML job** wizar
 
 ## Deploy your model
 
-After you have the best model, you can deploy it to a managed online endpoint to predict on new data.
+After you select the best model, deploy it to a managed online endpoint to predict on new data.
 
 > [!NOTE]
 > To deploy a model generated via the `automl` package with the Python SDK, you must [register your model](./how-to-deploy-online-endpoints.md) to the workspace. 

@@ -77,7 +77,7 @@ The LLM and Prompt tools use Jinja as a templating language to dynamically gener
 You can set node **Inputs** and **Outputs** in the following ways:
 
 - Set the input **Value** directly.
-- Reference the flow input using `${inputs.<input name>}`.
+- Reference the flow input by using `${inputs.<input name>}`.
 - Reference the node output using `${<node name>.output}` or `${<node name>.output.<field name>}`.
 
 After you finish composing a prompt or Python script, select **Validate and parse input** for the system to automatically parse the node input based on the prompt template and Python function input.
@@ -111,7 +111,7 @@ Prompt flow offers conditional control, which lets you set conditions for the ex
 
 Conditional control provides the capability to associate each node in a flow with an *activate config*. This configuration is a `when` statement that determines when a node should be executed. The power of this feature is realized in complex flows where the execution of certain tasks depends on the outcome of previous tasks. By using conditional control, you can configure your specific nodes to execute only when the specified conditions are met.
 
-Set the activate config for a node by selecting the **Activate config** button in the node card. Add a **When** statement and set the condition. You can set the conditions by referencing the flow input or a node output. For example, you can set the condition `${inputs.<input name>}` or `${<node name>.output}` as specific values. If the condition isn't met, the node is skipped and the node status appears as **Bypassed**.
+Set the activate config for a node by selecting the **Activate config** button in the node card. Add a **When** statement and set the condition. Set the conditions by referencing the flow input or a node output. For example, set the condition `${inputs.<input name>}` or `${<node name>.output}` as specific values. If the condition isn't met, the node is skipped and the node status appears as **Bypassed**.
 
 :::image type="content" source="./media/how-to-develop-flow/conditional-flow.png" alt-text="Screenshot of setting activate config to enable conditional control." lightbox ="./media/how-to-develop-flow/conditional-flow.png":::
 ## Test a flow
