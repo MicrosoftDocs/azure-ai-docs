@@ -64,5 +64,5 @@ In this quickstart, you add semantic ranking to an existing Azure AI Search inde
 
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 + [Configure semantic ranker](semantic-how-to-configure.md)
-+ [Add query rewrite to semantic ranker](semantic-how-to-query-rewrite.md)
++ [Add query rewrite to semantic ranker (preview)](semantic-how-to-query-rewrite.md)
 + [Use scoring profiles with semantic ranker](semantic-how-to-enable-scoring-profiles.md)

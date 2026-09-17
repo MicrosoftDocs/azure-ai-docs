@@ -12,14 +12,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
-
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 A *knowledge source* is a top-level resource on your Azure AI Search service that defines the content used in an agentic retrieval pipeline. Each knowledge source is either indexed or remote, which determines how the content is ingested, processed, and queried. Knowledge sources are required components of a knowledge base.
 

@@ -16,16 +16,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
-
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
@@ -528,7 +519,7 @@ To confirm which mode ran, check whether the knowledge source's references inclu
 
 For knowledge sources that target a search index, the implied query type is `semantic`, and there's no search mode. When reranking runs, query execution uses `semanticConfigurationName`. Other source settings, including `searchFields` and `sourceDataFields`, apply in both modes.
 
-Agentic retrieval doesn't accept `scoringProfile` or `scoringParameters` inputs. If you need recency bias for indexed knowledge sources, use [freshness-aware retrieval](agentic-retrieval-how-to-configure-freshness.md) instead of an index scoring profile.
+Agentic retrieval doesn't accept `scoringProfile` or `scoringParameters` inputs. If you need recency bias for indexed knowledge sources, use [freshness-aware retrieval (preview)](agentic-retrieval-how-to-configure-freshness.md) instead of an index scoring profile.
 
 If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
 
@@ -1272,7 +1263,7 @@ The retrieve action returns three main components:
 
 # [2026-08-01-preview](#tab/2026-08-01-preview)
 
-+ [Extracted response](#extracted-response) or [synthesized answer](agentic-retrieval-how-to-answer-synthesis.md) (depending on output mode)
++ [Extracted response](#extracted-response) or [synthesized answer (preview)](agentic-retrieval-how-to-answer-synthesis.md) (depending on output mode)
 + [Activity array](#activity-array)
 + [References array](#references-array)
 
@@ -1331,12 +1322,12 @@ The activity array includes the following components:
 | Section | Description |
 | --------- | ------------- |
 | Source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
-| `agenticReasoning` | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
+| `agenticReasoning` | This section reports on token consumption for agentic reasoning during retrieval, which depends on the specified [retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). |
 | `modelQueryPlanning` | For knowledge bases that use an LLM for query planning, this section reports on the token count used for input and the token count for the subqueries. It includes a `model` field with a `modelName` field containing the public model name, not the deployment name, of the model that ran the activity. |
-| `modelAnswerSynthesis` | For knowledge bases that use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer and the token count of the answer output. It includes a `model` field with a `modelName` field containing the public model name, not the deployment name, of the model that ran the activity. |
+| `modelAnswerSynthesis` | For knowledge bases that use [answer synthesis (preview)](agentic-retrieval-how-to-answer-synthesis.md), this section reports on the token count for formulating the answer and the token count of the answer output. It includes a `model` field with a `modelName` field containing the public model name, not the deployment name, of the model that ran the activity. |
 | `modelWebSummarization` | For knowledge bases that use web summarization, this section reports on token consumption for summarizing web results. It includes a `model` field with a `modelName` field containing the public model name, not the deployment name, of the model that ran the activity. |
 | `model` | For model-backed activity records, this section identifies the model used to perform the activity. This section appears only when you set `includeActivity` to `true`. |
-| `imageServing` | For knowledge sources that have [image serving](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. Inspect `verbalizationUsed` and `imagesSentToModel` independently. A response can report `verbalizationUsed` as `true` and still send images to the downstream model. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
+| `imageServing` | For knowledge sources that have [image serving (preview)](agentic-retrieval-how-to-image-serving.md) enabled, this section reports `imagesRetrieved`, `imagesSentToModel`, `totalImageSizeBytes`, and whether indexing-time `verbalizationUsed` was on. Inspect `verbalizationUsed` and `imagesSentToModel` independently. A response can report `verbalizationUsed` as `true` and still send images to the downstream model. To find the number of dropped images, subtract `imagesSentToModel` from `imagesRetrieved`. |
 
 # [2026-04-01](#tab/2026-04-01)
 
@@ -2799,7 +2790,7 @@ For a model activity error, use the activity `type` to identify the failed proce
 
 If your application permits partial results, process the successful results and record each failed source or model stage. Correct configuration, authorization, and permission errors before you retry. For throttling, timeout, or transient availability failures, use bounded retries with backoff.
 
-If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
+If results are unsafe without a specific source and its source type supports [`alwaysQuerySource`](#require-a-knowledge-source-to-succeed), set both `alwaysQuerySource` and `failOnError`. The first option ensures the source is selected, and the second returns a hard error if querying it fails. [MCP server knowledge sources (preview)](agentic-knowledge-source-how-to-mcp-server.md) don't support `alwaysQuerySource`; for those sources, `failOnError` applies only when the source is selected. `failOnError` doesn't apply to model activity failures.
 
 ### `502 Bad Gateway`
 
@@ -2820,7 +2811,7 @@ To avoid this behavior, index large source documents as smaller chunks with stab
 
 ## Call the MCP endpoint
 
-> [!IMPORTANT]
+> [!WARNING]
 > MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 [MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
@@ -3063,7 +3054,7 @@ Key points:
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
-+ [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md)
++ [Query-time ACL and RBAC enforcement (preview)](search-query-access-control-rbac-enforcement.md)
++ [Use a blob indexer or knowledge source to ingest RBAC scopes metadata (preview)](search-blob-indexer-role-based-access.md)
 + [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 + [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

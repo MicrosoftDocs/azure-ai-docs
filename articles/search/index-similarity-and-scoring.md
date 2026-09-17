@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 08/27/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Relevance in keyword search (BM25 scoring)
@@ -219,7 +220,7 @@ You can consume these data points in [custom scoring solutions](https://github.c
 
 By default, if you aren't using pagination, the search engine returns the top 50 highest ranking matches for full text search. You can use the `top` parameter to return a smaller or larger number of items (up to 1,000 in a single response). You can use `skip` and `next` to page results. Paging determines the number of results on each logical page and supports content navigation. For more information, see [Shape search results](search-pagination-page-layout.md).
 
-If your full text query is part of a [hybrid query](hybrid-search-how-to-query.md), you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the number of results from the text side of the query.
+If your full text query is part of a [hybrid query](hybrid-search-how-to-query.md), you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to increase or decrease the number of results from the text side of the query.
 
 Full text search is subject to a maximum limit of 1,000 matches (see [API response limits](search-limits-quotas-capacity.md#api-response-limits)). Once 1,000 matches are found, the search engine no longer looks for more.
 
