@@ -50,15 +50,15 @@ This error occurs if you [configured a shared private link](search-indexer-howto
 
 If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
 
-### Indexer doesn't use a shared private link
+### Error using a shared private link
 
-If you created and approved a shared private link but the indexer isn't configured to use the private execution environment, the indexer might return a 403 error similar to the following message:
+If you get error code 403 with the following message, the indexer might be connecting through the public endpoint instead of an approved shared private link:
 
 ```output
 Unexpected error validating provided resource. {"error":{"code":"403","message":"Public access is disabled. Please configure private endpoint."}}
 ```
 
-Check that the shared private link is approved and that the indexer's [`executionEnvironment` property](/rest/api/searchservice/indexers/create-or-update) is set to `private`. Also verify that the connection uses the correct resource endpoint and [group ID](search-indexer-howto-access-private.md#supported-resource-types).
+This error can occur when the indexer isn't configured to use the private execution environment. Confirm that the shared private link is approved, set the indexer's `executionEnvironment` to `private`, and verify that the connection uses the correct resource endpoint and [group ID](search-indexer-howto-access-private.md#supported-resource-types).
 
 ### Firewall rules
 
