@@ -33,7 +33,7 @@ Open a WebSocket connection to the live endpoint, then send a `session.start` ev
 import WebSocket from "ws";
 
 const ws = new WebSocket(
-  "wss://<your-resource-name>.openai.azure.com/openai/v1/live",
+  "wss://<your-resource-name>.openai.azure.com/openai/v1/live/sessions",
   {
     headers: {
       Authorization: `Bearer ${accessToken}`,
