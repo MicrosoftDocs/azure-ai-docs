@@ -34,7 +34,7 @@ In this article you learn:
 > - The difference between *mount* and *download* modes.
 > - How to use user identity and managed identity to access data.
 > - Mount settings available in a job.
-> - Optimum mount settings for common scenarios.
+> - Optimal mount settings for common scenarios.
 > - How to access V1 data assets.
 
 ## Prerequisites
@@ -59,13 +59,14 @@ Before you explore the detailed options available to you when you access data, w
 
 In this example, you submit an Azure Machine Learning job that accesses data from a *public* blob storage account. However, you can adapt the snippet to access your own data in a private Azure Storage account. Update the path as described [here](#paths). Azure Machine Learning seamlessly handles authentication to cloud storage, with Microsoft Entra passthrough. When you submit a job, you can choose:
 
-- **User identity:** Passthrough your Microsoft Entra identity to access the data
-- **Managed identity:** Use the managed identity of the compute target to access data
-- **None:** Don't specify an identity to access the data. Use None when using credential-based (key/SAS token) datastores or when accessing public data
+- **User identity:** Pass through your Microsoft Entra identity to access the data.
+- **Managed identity:** Use the managed identity of the compute target to access data.
+- **None:** Don't specify an identity. Use `None` when you use a credential-based (key or SAS token) datastore or when you access public data.
 
 > [!TIP]
-> If you use keys or SAS tokens to authenticate, we recommend creating an [Azure Machine Learning datastore](how-to-datastore.md). The runtime automatically connects to storage without exposing your credentials.
-
+> If you use keys or SAS tokens to authenticate, create an [Azure Machine Learning datastore](how-to-datastore.md). The runtime automatically connects to storage without exposing your credentials.
+>
+> For public blob examples, you can omit the identity. For private storage, choose either a user identity, a managed identity, or a credential-based datastore that matches your security model.
 # [Python SDK](#tab/python)
 
 ```python
