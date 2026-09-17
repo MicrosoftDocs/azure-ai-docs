@@ -424,7 +424,7 @@ CreateResponseOptions options = new()
     },
 };
 var azureOpenAIResponse = responsesClient.CreateResponse(options);
-Console.WriteLine($"Response output: {azureOpenAIResponse.Value.GetOutputText()}");
+Console.WriteLine($"Response output: {azureOpenAIResponse.GetOutputText()}");
 #pragma warning restore OPENAI001
 ```
 ```output
