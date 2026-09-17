@@ -73,7 +73,7 @@ For all agentic retrieval scenarios, a knowledge base and at least one knowledge
 | Knowledge source | Azure AI Search | Defines the content used in the pipeline. Can be indexed (backed by a search index on your service) or remote (content retrieved at query time from an external platform). |
 | Search index | Azure AI Search | Stores searchable content (text and vectors) with a semantic configuration. Determines which query types run and which optimizations apply. Required for indexed knowledge sources only. |
 | Semantic ranker | Azure AI Search | Used internally by the agentic retrieval pipeline to rerank results for relevance (L2 reranking). |
-| LLM | Azure OpenAI | Plans queries and selects knowledge sources. Used at `low` and `medium` retrieval reasoning effort only. Bypassed at `minimal` effort. |
+| LLM | Azure OpenAI | Can power multiple stages of agentic retrieval: planning queries and selecting knowledge sources (preview), summarizing web results, and generating citation-backed answers through answer synthesis (preview). |
 
 ### Integration requirements
 
