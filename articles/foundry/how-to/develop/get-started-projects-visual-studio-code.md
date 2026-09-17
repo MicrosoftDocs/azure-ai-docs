@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: concept-article
-ms.date: 08/20/2026
+ms.date: 09/10/2026
 ms.reviewer: erichen
 ms.author: rotabor
 author: bobtabor-msft
@@ -77,14 +77,27 @@ Foundry Toolkit provides an end-to-end model development workflow:
 
 ## Build and operate agents
 
-Foundry Toolkit supports prompt agents and code-based hosted agents:
+Foundry Toolkit supports prompt agents and code-based hosted agents. Start with
+[Create an agent](create-agent-visual-studio-code.md) to compare Agent Builder,
+hosted-agent samples, and Copilot-assisted coding.
 
-- Use **Agent Builder** to configure instructions, models, variables, structured
-  outputs, and tools without creating an agent code project.
+| Task | Guide |
+| --- | --- |
+| Configure a model, instructions, and tools without a hosted-agent code project. | [Create a prompt agent](create-prompt-agent-visual-studio-code.md). |
+| Develop, inspect, and deploy code-based orchestration with Microsoft Agent Framework. | [Create hosted agents](vs-code-agents-workflow-pro-code.md). |
+| Maintain an existing declarative workflow and prepare its migration. | [Use and migrate declarative agent workflows](vs-code-agents-workflow-low-code.md). |
+
+Agent Builder also supports locally stored prompts. Their tools, structured
+output, and dataset evaluation options differ from those of Foundry prompt
+agents. Local storage doesn't mean that model inference runs on your machine.
+See [Work with local prompts](create-prompt-agent-visual-studio-code.md#work-with-local-prompts).
+
+During development, you can:
+
+- Use **Agent Builder** to test conversations, save prompt-agent versions, and
+  generate client code that calls a saved Foundry agent.
 - Use the **Tool Catalog** to discover Foundry tools, Model Context Protocol
   (MCP) servers, and toolboxes, and then add them to agents.
-- Scaffold a hosted agent project when you need custom code, frameworks, or
-  orchestration logic.
 - Use **Agent Inspector** to debug local agents, inspect streaming responses and
   tool calls, and visualize workflow execution.
 - Deploy hosted agents to Foundry Agent Service from source code or a container
@@ -94,8 +107,14 @@ Foundry Toolkit supports prompt agents and code-based hosted agents:
 - Evaluate models, prompts, and agents with datasets, built-in evaluators, or
   custom criteria.
 
+> [!IMPORTANT]
+> Declarative workflows in Microsoft Foundry retire on December 1, 2026.
+> Use Microsoft Agent Framework for new workflow development. This retirement
+> doesn't affect code-based orchestration in hosted agents. See the
+> [workflow migration guide](../../agents/concepts/workflow.md#migration-guide).
+
 Some Toolkit experiences are available in preview. Review the
-[Foundry Toolkit changelog](https://microsoft.github.io/foundry-toolkit/) for
+[Foundry Toolkit release notes](https://github.com/microsoft/foundry-dev-tools/blob/main/WHATS_NEW.md) for
 release details.
 
 ## Manage Foundry resources
@@ -106,7 +125,8 @@ Visual Studio Code. You can:
 - Browse Foundry projects and the resources available to your account.
 - Discover and deploy models from the Foundry model catalog.
 - View model endpoints and authentication information.
-- Create, deploy, test, and version prompt agents, workflows, and hosted agents.
+- Create and version prompt agents, and deploy and test hosted agents.
+- Inspect and test existing declarative workflows before migration.
 - Browse tools and knowledge sources used by your agents.
 - Open evaluations, conversations, logs, and traces during development.
 
@@ -119,4 +139,4 @@ code, use the [Microsoft Foundry SDKs](sdk-overview.md).
 - [Install Foundry Toolkit for Visual Studio Code](install-foundry-toolkit-visual-studio-code.md)
 - [Set up a Foundry project in Visual Studio Code](set-up-foundry-project-visual-studio-code.md)
 - [Report a Foundry Toolkit issue](https://aka.ms/AIToolkit/feedback)
-- [Choose how to build with Microsoft Foundry](../../concepts/choose-build-approach.md)
+- [Create an agent with Microsoft Foundry Toolkit](create-agent-visual-studio-code.md)
