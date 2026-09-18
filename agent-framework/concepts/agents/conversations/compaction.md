@@ -777,3 +777,7 @@ Harness Agent isn't currently available in the Go SDK. Register a compaction con
 
 > [!div class="nextstepaction"]
 > [Middleware](../middleware/index.md)
+
+### Go deeper
+
+- [Context providers](context-providers.md)
