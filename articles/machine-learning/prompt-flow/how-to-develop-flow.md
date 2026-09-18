@@ -9,7 +9,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 09/22/2025
+ms.date: 09/17/2026
 ms.custom:
   - ignite-2023
   - build-2024
@@ -62,7 +62,7 @@ The compute session can take a few minutes to start. While the compute session i
 
 In the **Inputs** and **Outputs** sections, you can view, add or remove, and edit inputs and outputs.
 
-- Flow input is the data passed into the flow as a whole. You define the input schema by specifying the name and type, and you set the value of each input to test the flow. You can reference the flow input in the flow nodes by using `${input.<input name>}`.
+- Flow input is the data passed into the flow as a whole. You define the input schema by specifying the name and type, and you set the value of each input to test the flow. You can reference the flow input in the flow nodes by using `${inputs.<input name>}`.
 
 - Flow output is the data produced by the flow as a whole, which summarizes the results of flow execution. You can define the flow output value by referencing a single node output using the syntax `${<node name>.output}` or `${<node name>.output.<field name>}`. You can view and export the output result table after a flow run or batch run completes.
 
@@ -77,7 +77,7 @@ The LLM and Prompt tools use Jinja as a templating language to dynamically gener
 You can set node **Inputs** and **Outputs** in the following ways:
 
 - Set the input **Value** directly.
-- Reference the flow input using `${input.<input name>}`.
+- Reference the flow input by using `${inputs.<input name>}`.
 - Reference the node output using `${<node name>.output}` or `${<node name>.output.<field name>}`.
 
 After you finish composing a prompt or Python script, select **Validate and parse input** for the system to automatically parse the node input based on the prompt template and Python function input.
@@ -111,7 +111,7 @@ Prompt flow offers conditional control, which lets you set conditions for the ex
 
 Conditional control provides the capability to associate each node in a flow with an *activate config*. This configuration is a `when` statement that determines when a node should be executed. The power of this feature is realized in complex flows where the execution of certain tasks depends on the outcome of previous tasks. By using conditional control, you can configure your specific nodes to execute only when the specified conditions are met.
 
-Set the activate config for a node by selecting the **Activate config** button in the node card. Add a **When** statement and set the condition. You can set the conditions by referencing the flow input or a node output. For example, you can set the condition `${input.<input name>}` or `${<node name>.output}` as specific values. If the condition isn't met, the node is skipped and the node status appears as **Bypassed**.
+Set the activate config for a node by selecting the **Activate config** button in the node card. Add a **When** statement and set the condition. Set the conditions by referencing the flow input or a node output. For example, set the condition `${inputs.<input name>}` or `${<node name>.output}` as specific values. If the condition isn't met, the node is skipped and the node status appears as **Bypassed**.
 
 :::image type="content" source="./media/how-to-develop-flow/conditional-flow.png" alt-text="Screenshot of setting activate config to enable conditional control." lightbox ="./media/how-to-develop-flow/conditional-flow.png":::
 ## Test a flow
@@ -133,7 +133,7 @@ After the flow run completes, you can select **View outputs** to check all histo
 
 #### Trace
 
-Tracing is disabled by default, to enable tracing you need to set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following to the python node:
+Tracing is disabled by default. To enable tracing, set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following code to a Python node:
 
 ```python
 import os
@@ -182,7 +182,7 @@ Chat history is structured as a list of inputs and outputs. All interactions in 
     "inputs": {
     "<flow input 1>": "xxxxxxxxxxxxxxx",
     "<flow input 2>": "xxxxxxxxxxxxxxx",
-    "<flow input N>""xxxxxxxxxxxxxxx"
+    "<flow input N>": "xxxxxxxxxxxxxxx"
     },
     "outputs": {
     "<flow output 1>": "xxxxxxxxxxxx",
@@ -194,7 +194,7 @@ Chat history is structured as a list of inputs and outputs. All interactions in 
     "inputs": {
     "<flow input 1>": "xxxxxxxxxxxxxxx",
     "<flow input 2>": "xxxxxxxxxxxxxxx",
-    "<flow input N>""xxxxxxxxxxxxxxx"
+    "<flow input N>": "xxxxxxxxxxxxxxx"
     },
     "outputs": {
     "<flow output 1>": "xxxxxxxxxxxx",
