@@ -5,7 +5,7 @@ author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
-ms.date: 08/05/2026
+ms.date: 09/18/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -218,6 +218,8 @@ The agent fetches the full skill body and resources from the toolbox only when i
 
 ## Feature support
 
+Skills support private networking. For setup instructions, see [Set up private networking for Foundry Agent Service](../virtual-networks.md).
+
 | Feature | REST API | Python | .NET | JavaScript | VS Code | Toolbox | Hosted agent |
 | ------- | -------- | ------ | ---- | ---------- | ------- | ------- | ------------ |
 | Create skill version (JSON inline content) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
@@ -226,10 +228,6 @@ The agent fetches the full skill body and resources from the toolbox only when i
 | Download skill content | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
 | Update skill default version | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
 | Attach skills to a toolbox | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-
-## Limitations
-
-Skills don't support private networking. The Skills API isn't accessible over a private endpoint, so you can't create, manage, or download skills from a Foundry resource that has public network access disabled.
 
 ## Manage skills with the REST API
 
@@ -1294,7 +1292,7 @@ azd ai agent invoke '{"input": "Hi, my name is Alex!"}'
 | The upload has an unsupported archive or file shape. | Upload a ZIP file that contains a `SKILL.md` file, or upload supported individual files. For the CLI, compress a folder before upload. Use `create --force` instead of `update` to replace a skill from a ZIP file. |
 | A create or update operation conflicts with an existing version. | Treat versions as immutable. Create a new version, use numeric version strings such as `"1"` and `"2"`, and set `default_version` to an existing version. |
 | A version can't be deleted because it's the default or is in use. | Set another version as `default_version`, then remove or update toolbox and agent references to the version before you retry deletion. |
-| Skills API operations can't reach the project. | Confirm that public network access is enabled. The Skills API isn't accessible through a private endpoint. |
+| Skills API operations can't reach the project. | Review your network setup. For private networking, see [Set up private networking for Foundry Agent Service](../virtual-networks.md). |
 | A toolbox client doesn't discover an attached skill. | Confirm that the skill and toolbox are in the same Foundry project, publish the toolbox version after imperative `azd` changes, and use a client that supports MCP Resources. |
 | A hosted agent doesn't load a downloaded skill. | Extract the package so each skill is in its own subdirectory, such as `skills/greeting/SKILL.md`, and restart the agent so it reads the skill at startup. |
 
