@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/15/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -227,7 +227,8 @@ cancel the interrupted run instead, set `status` to `"cancelled"` and omit `payl
 
 Configure `checkpoint_storage` on `AgentFrameworkWorkflow` to save the underlying workflow state at the end of each
 superstep. You can instead pass the same argument to `add_agent_framework_fastapi_endpoint` when you register a
-workflow. The storage must be available to the AG-UI wrapper or endpoint to resume a checkpoint through AG-UI.
+workflow. If the underlying workflow was built with checkpoint storage, the adapter can use that builder or runtime
+storage directly, so you don't need to duplicate the configuration on the wrapper or endpoint.
 
 The following example uses in-memory storage for a short-lived workflow:
 
@@ -254,6 +255,10 @@ add_agent_framework_fastapi_endpoint(
 )
 ```
 
+When a run pauses and a pause checkpoint is available, each interrupt in the `RUN_FINISHED` event includes the
+checkpoint ID in `metadata.agent_framework.checkpoint_id`. Use that emitted value to resume the exact pause across
+application instances without a separate latest-checkpoint lookup.
+
 `AgentFrameworkWorkflow.run()` receives the AG-UI request payload, so a client supplies the checkpoint ID through
 forwarded properties instead of a Python `checkpoint_id` argument. A checkpoint-only resume doesn't include a new
 user message:
@@ -263,14 +268,15 @@ user message:
   "threadId": "abc123",
   "messages": [],
   "forwardedProps": {
-    "checkpointId": "checkpoint-id-from-your-storage"
+    "checkpointId": "checkpoint-id-from-interrupt-metadata"
   }
 }
 ```
 
 The adapter restores the saved workflow state and continues execution. If the checkpoint contains a pending interrupt,
 include both the checkpoint ID and the canonical `resume` payload in the same request. The adapter restores the
-checkpoint before it delivers the interrupt response.
+checkpoint before it delivers the interrupt response. Use the value from `metadata.agent_framework.checkpoint_id` as
+`forwardedProps.checkpointId`.
 
 The adapter binds each new checkpoint to the request's Snapshot Scope and client-supplied `threadId`. It rejects a
 resume request when either value doesn't match. Checkpoints written before ownership metadata was introduced remain
