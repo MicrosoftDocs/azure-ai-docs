@@ -304,9 +304,6 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
 {
     switch (workflowEvent)
     {
-        case MessageActivityEvent activityEvent:
-            Console.WriteLine($"Activity: {activityEvent.Message}");
-            break;
         case AgentResponseEvent responseEvent:
             Console.WriteLine($"Response: {responseEvent.Response.Text}");
             break;
@@ -324,7 +321,7 @@ Console.WriteLine("Workflow completed!");
 ```
 Loaded workflow from: C:\path\to\greeting-workflow.yaml
 ----------------------------------------
-Activity: Hello, Alice!
+Response: Hello, Alice!
 Workflow completed!
 ```
 
@@ -436,7 +433,7 @@ AzureAgentProvider agentProvider = new(
 
 ### Workflow Execution
 
-Use `InProcessExecution` to run workflows and handle events:
+Use `InProcessExecution` to run workflows and handle events. This example displays completed responses and handles input requests separately. It doesn't also display streaming updates or activity notifications for the same response:
 
 ```csharp
 using Microsoft.Agents.AI.Workflows;
@@ -460,14 +457,6 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
 {
     switch (workflowEvent)
     {
-        case MessageActivityEvent activity:
-            Console.WriteLine($"Message: {activity.Message}");
-            break;
-            
-        case AgentResponseUpdateEvent streamEvent:
-            Console.Write(streamEvent.Update.Text); // Streaming text
-            break;
-            
         case AgentResponseEvent response:
             Console.WriteLine($"Agent: {response.Response.Text}");
             break;
@@ -489,6 +478,26 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
     }
 }
 ```
+
+#### Choose which response events to display
+
+A workflow event stream contains several views of the same action. For example, a text `SendActivity` action produces:
+
+| Event | Purpose |
+|-------|---------|
+| `MessageActivityEvent` | An activity notification containing the message text. |
+| `AgentResponseUpdateEvent` | An `AgentResponseUpdate` containing text for streaming consumers. |
+| `AgentResponseEvent` | The completed `AgentResponse`, available as workflow output. |
+
+These events don't represent three separate messages or three executions of the action. Printing the text from each event displays the same message repeatedly.
+
+There isn't a `SendActivity` or `Question` YAML setting that selects `AgentResponseEvent` instead of `AgentResponseUpdateEvent`. Choose what your C# event handler displays:
+
+- For completed responses, handle `AgentResponseEvent`, as in the example above. You can still use `RunStreamingAsync` to receive other workflow events promptly.
+- For streaming text, handle `AgentResponseUpdateEvent`. Don't append a completed response's text again if its messages were already streamed. For `SendActivity`, the update and completed response share the response ID and message ID. Track the executor ID and message ID when correlating streamed and completed messages.
+- Handle `RequestInfoEvent` independently so the workflow can receive external input. Filtering response text doesn't remove the need to answer requests.
+
+When using `workflow.AsAIAgent()`, the `includeWorkflowOutputsInResponse` argument controls how workflow outputs are included in agent responses. It doesn't change which events a YAML action emits and isn't a switch for disabling streaming updates.
 
 ### Resuming from Checkpoints
 
@@ -881,6 +890,8 @@ Jumps to a specific action by ID.
 
 Sends a message to the user.
 
+A text activity produces both a streaming update and a completed response, in addition to its activity notification. See [Choose which response events to display](#choose-which-response-events-to-display) to avoid displaying the same text more than once.
+
 ```yaml
 - kind: SendActivity
   id: send_welcome
@@ -1178,6 +1189,8 @@ Workflow workflow = DeclarativeWorkflowBuilder.Build<string>("workflow.yaml", op
 #### Question
 
 Asks the user a question and stores the response.
+
+For direct workflow execution, handle the question's `RequestInfoEvent`. Its `ExternalInputRequest.AgentResponse` contains the prompt; the `AgentResponse` property is a payload, not a separate `AgentResponseEvent`. Return an `ExternalInputResponse` through the request to resume the workflow. The `autoSend` setting below controls how the accepted answer is added to the conversation, not which response events are emitted.
 
 The C# and Python SDKs use different field names for the question prompt.
 This example uses the smallest shared behavior: it asks for text and stores the
