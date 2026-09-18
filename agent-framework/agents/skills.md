@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: SergeyMenshykh
 ms.topic: article
 ms.author: semenshi
-ms.date: 09/16/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -60,6 +60,14 @@ metadata:
 | `compatibility` | No | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
 | `metadata` | No | Arbitrary key-value mapping for additional metadata. |
 | `allowed-tools` | No | Space-delimited list of pre-approved tools the skill may use. Experimental - support may vary between agent implementations. |
+
+Recognized top-level field names must use the lowercase spelling shown in the table and can appear only once. Invalid
+YAML, duplicate recognized fields, incorrect field casing, or a collection where a scalar field is expected prevents
+the skill from loading. Unknown top-level fields are ignored for forward compatibility.
+
+Python file-based and MCP archive loaders treat `metadata` keys as case-sensitive strings. An exact duplicate keeps the
+first valid value and logs a warning. Invalid metadata entries, including nested collections, are skipped with a
+warning instead of preventing the skill from loading.
 
 The markdown body after the frontmatter contains the skill instructions - step-by-step guidance, examples of inputs and outputs, common edge cases, or any content that helps the agent perform the task. Keep `SKILL.md` under 500 lines and move detailed reference material to separate files.
 

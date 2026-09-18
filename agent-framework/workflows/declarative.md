@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/16/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -2209,6 +2209,14 @@ from agent_framework.declarative import DefaultMCPToolHandler, WorkflowFactory
 factory = WorkflowFactory(mcp_tool_handler=DefaultMCPToolHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+Without a `client_provider`, `DefaultMCPToolHandler` reuses MCP sessions through a bounded cache. With a
+`client_provider`, it creates and closes a separate MCP tool and session for every invocation, including `tools/list`,
+even when the provider returns the same client or `None`. The handler closes internally created fallback HTTP clients,
+but caller-supplied `httpx.AsyncClient` instances remain caller-owned.
+
+Provider-backed invocations don't retain server session state. If your workflow requires MCP session continuity,
+implement a custom `MCPToolHandler` with an explicit authentication and lifetime contract.
 
 #### HttpRequestAction
 

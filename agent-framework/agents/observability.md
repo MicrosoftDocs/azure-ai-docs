@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 09/08/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -301,6 +301,18 @@ configure_azure_monitor(
 # This is optional if ENABLE_INSTRUMENTATION and/or ENABLE_SENSITIVE_DATA are set in env vars
 enable_instrumentation(enable_sensitive_data=False)
 ```
+
+To disable the baseline GenAI message events without replacing providers or exporters configured by the third-party
+package, pass `enable_message_events=False`:
+
+```python
+enable_instrumentation(enable_message_events=False)
+```
+
+An explicit `True` or `False` overrides the current message-event setting. Omitting the argument or passing `None`
+preserves the current value. This option affects only the baseline v1.36 message and choice events; it doesn't disable
+spans, metrics, or experimental message span attributes. Message events still require sensitive-data capture to be
+enabled separately.
 
 For [Langfuse](https://langfuse.com/integrations/frameworks/microsoft-agent-framework):
 
