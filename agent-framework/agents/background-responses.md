@@ -7,6 +7,7 @@ ms.topic: reference
 ms.author: semenshi
 ms.date: 05/27/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Background Responses
@@ -39,6 +40,8 @@ The continuation token contains all necessary information to either poll for com
 To enable background responses, set the `AllowBackgroundResponses` property to `true` in the `AgentRunOptions`:
 
 ```csharp
+using Microsoft.Agents.AI;
+
 AgentRunOptions options = new()
 {
     AllowBackgroundResponses = true
@@ -55,10 +58,17 @@ Some agents may not allow explicit control over background responses. These agen
 For non-streaming scenarios, when you initially run an agent, it may or may not return a continuation token. If no continuation token is returned, it means the operation has completed. If a continuation token is returned, it indicates that the agent has initiated a background response that is still processing and will require polling to retrieve the final result:
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+
 AIAgent agent = new AIProjectClient(
     new Uri("<your-foundry-project-endpoint>"),
     new DefaultAzureCredential())
-    .AsAIAgent(model: "<deployment-name>", instructions: "You are a helpful assistant.");
+    .AsAIAgent(
+        model: "<deployment-name>",
+        instructions: "You are a helpful assistant.");
 
 AgentRunOptions options = new()
 {
@@ -67,8 +77,11 @@ AgentRunOptions options = new()
 
 AgentSession session = await agent.CreateSessionAsync();
 
-// Get initial response - may return with or without a continuation token
-AgentResponse response = await agent.RunAsync("Write a very long novel about otters in space.", session, options);
+// Get initial response - may return with or without a continuation token.
+AgentResponse response = await agent.RunAsync(
+    "Write a very long novel about otters in space.",
+    session,
+    options);
 
 // Continue to poll until the final response is received
 while (response.ContinuationToken is not null)
@@ -99,10 +112,17 @@ Console.WriteLine(response.Text);
 In streaming scenarios, background responses work much like regular streaming responses - the agent streams all updates back to consumers in real-time. However, the key difference is that if the original stream gets interrupted, agents support stream resumption through continuation tokens. Each update includes a continuation token that captures the current state, allowing the stream to be resumed from exactly where it left off by passing this token to subsequent streaming API calls:
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+
 AIAgent agent = new AIProjectClient(
     new Uri("<your-foundry-project-endpoint>"),
     new DefaultAzureCredential())
-    .AsAIAgent(model: "<deployment-name>", instructions: "You are a helpful assistant.");
+    .AsAIAgent(
+        model: "<deployment-name>",
+        instructions: "You are a helpful assistant.");
 
 AgentRunOptions options = new()
 {
@@ -113,12 +133,15 @@ AgentSession session = await agent.CreateSessionAsync();
 
 AgentResponseUpdate? latestReceivedUpdate = null;
 
-await foreach (var update in agent.RunStreamingAsync("Write a very long novel about otters in space.", session, options))
+await foreach (var update in agent.RunStreamingAsync(
+    "Write a very long novel about otters in space.",
+    session,
+    options))
 {
     Console.Write(update.Text);
-    
+
     latestReceivedUpdate = update;
-    
+
     // Simulate an interruption
     break;
 }
