@@ -338,12 +338,12 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
             new DefaultAzureCredentialBuilder().build(),
             "https://ai.azure.com/.default")))
     .build();
-Response response = openAIClient.responses().create(
+Response openAIResponse = openAIClient.responses().create(
     ResponseCreateParams.builder()
         .model("gpt-5-mini")
         .input("What is the size of France in square miles?")
         .build());
-response.output().forEach(item -> item.message().ifPresent(message ->
+openAIResponse.output().forEach(item -> item.message().ifPresent(message ->
     message.content().forEach(content -> content.outputText().ifPresent(text ->
         System.out.println("Response output: " + text.text())))));
 ```
@@ -424,7 +424,7 @@ CreateResponseOptions options = new()
     },
 };
 var azureOpenAIResponse = responsesClient.CreateResponse(options);
-Console.WriteLine($"Response output: {azureOpenAIResponse.GetOutputText()}");
+Console.WriteLine($"Response output: {azureOpenAIResponse.Value.GetOutputText()}");
 #pragma warning restore OPENAI001
 ```
 ```output
@@ -594,9 +594,9 @@ HttpRequest request = HttpRequest.newBuilder()
     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
     .build();
 
-HttpResponse<String> response = httpClient.send(
+HttpResponse<String> anthropicResponse = httpClient.send(
     request, HttpResponse.BodyHandlers.ofString());
-System.out.println(response.body());
+System.out.println(anthropicResponse.body());
 ```
 
 ```output
