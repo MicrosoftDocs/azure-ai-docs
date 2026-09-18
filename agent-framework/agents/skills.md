@@ -62,7 +62,7 @@ metadata:
 | `allowed-tools` | No | Space-delimited list of pre-approved tools the skill may use. Experimental - support may vary between agent implementations. |
 
 Recognized top-level field names must use the lowercase spelling shown in the table and can appear only once. Invalid
-YAML, duplicate recognized fields, incorrect field casing, or a collection where a scalar field is expected prevents
+YAML, duplicate recognized fields, incorrect field casing, or a collection where a scalar field is expected prevent
 the skill from loading. Unknown top-level fields are ignored for forward compatibility.
 
 Python file-based and MCP archive loaders treat `metadata` keys as case-sensitive strings. An exact duplicate keeps the
