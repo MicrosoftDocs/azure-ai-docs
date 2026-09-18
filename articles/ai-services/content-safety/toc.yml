@@ -1,13 +1,13 @@
 items:
 - name: Azure AI Content Safety Documentation
   href: index.yml
-- name: Overview
+- name: About Azure AI Content Safety
   expanded: true
   items:
   - name: Azure AI Content Safety overview
     href: overview.md
-  - name: Language support
-    href: language-support.md
+  - name: Region availability and service limits
+    href: region-availability.md
   - name: Pricing
     href: https://aka.ms/content-safety-pricing
     expanded: true
