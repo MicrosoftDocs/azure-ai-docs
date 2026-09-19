@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/03/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -146,6 +146,22 @@ Use `ResponsesHostServer(agent, history_source="agent")` when the agent's histor
 
 The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
 
+### Choose an agent instance or factory
+
+Both `ResponsesHostServer` and `InvocationsHostServer` accept either an agent instance or a zero-argument synchronous or asynchronous callable through the `agent` parameter. An instance is reused for the lifetime of the host. A callable runs once per request, and the returned agent belongs to that request.
+
+Use a callable when the agent retains mutable state outside `AgentSession`. In particular, a `WorkflowAgent` must be created from a factory that builds a fresh workflow, executors, and wrapped agents:
+
+```python
+def create_workflow_agent():
+    return build_workflow().as_agent(name="support-workflow")
+
+
+server = ResponsesHostServer(agent=create_workflow_agent)
+```
+
+Keep the workflow name and executor IDs stable so later Responses requests can locate saved checkpoints. `ResponsesHostServer` continues supported state through its session, checkpoint, and function-approval stores; arbitrary fields on a request-scoped agent aren't persisted. See the [workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows) and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
+
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` configures Foundry-backed stores by default. For non-workflow agents, `AgentSessionStoreProvider` supplies a `FoundryAgentSessionStore`. For workflow agents, `CheckpointStoreProvider` supplies a `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for pending approvals. These stores use Foundry State Store when hosted and local Agent Server state when you run locally.
@@ -225,6 +241,8 @@ agent = Agent(
 server = InvocationsHostServer(agent)
 server.run()
 ```
+
+`InvocationsHostServer` accepts the same instance or request-scoped factory forms described for the Responses host. Its built-in sessions are stored in memory for the lifetime of the host and don't survive a restart. The Invocations protocol doesn't resume workflow runs that are pending or interrupted; use the custom handler pattern below with durable application storage when you need different continuation behavior.
 
 For full control over request handling, use `InvocationAgentServerHost` from the `azure.ai.agentserver.invocations` package directly and implement your own invoke handler:
 

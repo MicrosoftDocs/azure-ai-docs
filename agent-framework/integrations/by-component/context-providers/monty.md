@@ -4,8 +4,9 @@ description: Add cross-platform CodeAct execution to Agent Framework Python agen
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Monty
@@ -30,6 +31,22 @@ pip install agent-framework-monty agent-framework-foundry --pre
 Register host tools on the provider rather than directly on the agent. The model sees `execute_code` and calls those tools from generated code.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/code_act/monty_code_act.py" range="137-171":::
+
+### Control host tool parameter descriptions
+
+`MontyCodeActProvider` and `MontyExecuteCodeTool` accept `tool_description_format`. The default, `"compact"`, includes scalar parameter types, required or optional status, descriptions, enum values, and defaults in the `execute_code` description and CodeAct instructions. Use `"json"` for complete JSON Schema, or select a format by exact, case-sensitive tool name:
+
+```python
+codeact = MontyCodeActProvider(
+    tools=[compute, fetch_data],
+    tool_description_format={
+        "compute": "json",
+        "fetch_data": "compact",
+    },
+)
+```
+
+Tools omitted from a mapping use compact format. Compact rendering automatically falls back to complete JSON Schema when it can't represent a schema without losing constraints, such as nested objects, arrays, references, or unions. Parameter schemas are visible to the model, so don't include credentials or other secrets in descriptions, enum values, defaults, or custom schema fields.
 
 ## Configure capabilities
 
