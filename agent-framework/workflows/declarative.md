@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/18/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -2056,6 +2056,8 @@ With an expression:
 | `activity` | Yes | The activity to send |
 | `activity.text` | Yes | Message text (literal or expression) |
 
+In Python, authored text that starts with `=` is evaluated and emitted as data. The expression result isn't processed again for `{Variable.Path}` interpolation. Author the template directly, such as `Hello, {Local.name}!`, or build the complete string in the expression, such as `="Hello, " & Local.name & "!"`.
+
 ### Agent Invocation Actions
 
 #### InvokeAzureAgent
@@ -2117,7 +2119,9 @@ With external loop (continues until condition is met):
 | `input.externalLoop.when` | No | Condition to continue agent loop |
 | `output.responseObject` | No | Path to store agent response |
 | `output.messages` | No | Path to store conversation messages |
-| `output.autoSend` | No | Automatically send response to user |
+| `output.autoSend` | No | Automatically send the response to workflow output. Accepts a Boolean or a `=` expression and defaults to `true`. |
+
+Python evaluates `output.autoSend` against current workflow state before each invocation, including resumed external-loop turns. A false result suppresses automatic workflow output only; the agent still runs, and configured response and message outputs are still stored.
 
 ### Tool and HTTP Actions
 
@@ -2147,7 +2151,9 @@ Invokes a registered Python function directly from the workflow without going th
 | `arguments` | No | Arguments to pass to the function |
 | `output.result` | No | Path to store the function result |
 | `output.messages` | No | Path to store function messages |
-| `output.autoSend` | No | Automatically send result to user |
+| `output.autoSend` | No | Automatically send the result to workflow output. Accepts a Boolean or a `=` expression and defaults to `true`. |
+
+Python evaluates `output.autoSend` against current workflow state immediately before the tool runs. A false result suppresses automatic workflow output only; the tool still runs, and configured result and message outputs are still stored. A rejected approval completes without evaluating the expression.
 
 **Python setup for InvokeFunctionTool:**
 

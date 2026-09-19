@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 09/17/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -234,6 +234,8 @@ pip install agent-framework-postgres --pre
 pip install agent-framework-qdrant --pre
 pip install agent-framework-redis --pre
 ```
+
+On Python 3.10 through 3.14, `agent-framework-postgres` installs Psycopg's binary distribution. On Python 3.15 or later, it uses pure-Python Psycopg because compatible binary wheels aren't published, so the host must provide a system `libpq` installation.
 
 Each connector implements the common model, collection, CRUD, filter, and
 search contracts. Database-specific capabilities and restrictions still apply.
