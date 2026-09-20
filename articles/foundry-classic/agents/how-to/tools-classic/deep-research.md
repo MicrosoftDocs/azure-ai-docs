@@ -12,7 +12,6 @@ ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: references_regions
 ai-usage: ai-assisted
-ai-usage: ai-assisted
 ---
 
 # Deep Research tool (preview) (classic)
