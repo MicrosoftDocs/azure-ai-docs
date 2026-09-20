@@ -7,6 +7,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 06/02/2026
+ai-usage: ai-assisted
 ---
 
 # Plan and manage costs of an Azure AI Search service
@@ -17,7 +18,7 @@ Azure AI Search is available in two pricing models:
 
 - **Dedicated**: Provisioned capacity with fixed pricing. You select a service tier and you're billed per hour based on Search Units (SUs). Best for steady, predictable, high-utilization workloads.
 
-- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
+- **Serverless (preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
 
 This article explains how billing works under each model and provides guidance for cost estimation, minimization, and monitoring.
 
@@ -39,7 +40,7 @@ For more details on the service tiers available, see [Choose a pricing model and
 
 As you increase or decrease the number of replicas or partitions, your total search units change, and costs scale accordingly. For more information and examples, see [Billing rates](search-sku-tier.md#billing-rates).
 
-### Serverless pricing model (Preview)
+### Serverless pricing model (preview)
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
@@ -82,7 +83,7 @@ Depending on your configuration and usage, the following charges might apply:
 
 + Data traffic might incur networking costs. See the [bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-+ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md)<sup>1</sup> , and [enrichment caches](enrichment-cache-how-to-configure.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
++ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md)<sup>1</sup> , and [enrichment caches (preview)](enrichment-cache-how-to-configure.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
 
 + [Customer-managed keys](search-security-manage-encryption-keys.md), which provide double encryption of sensitive content, require a billable [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 

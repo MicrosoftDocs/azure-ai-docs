@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -27,7 +28,7 @@ This article explains how to invoke the semantic ranker on queries. It assumes y
 + Familiarity with [semantic ranking](semantic-search-overview.md).
 
 > [!NOTE]
-> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Agentic retrieval](agentic-retrieval-overview.md) or [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
+> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite (preview)](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Agentic retrieval](agentic-retrieval-overview.md) or [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
 
 ## Choose a client
 

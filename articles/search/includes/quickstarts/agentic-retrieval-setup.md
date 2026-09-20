@@ -2,6 +2,7 @@
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/23/2026
+ai-usage: ai-assisted
 ---
 
 ## Configure access
@@ -28,7 +29,7 @@ To configure access for this quickstart:
 > + Billing from Azure AI Search for agentic retrieval.
 > + Billing from Azure OpenAI for query planning and answer synthesis.
 >
-> For more information, see [Availability and pricing of agentic retrieval](../../agentic-retrieval-overview.md#availability-and-pricing).
+> For more information, see [Region availability, limits, and billing](../../agentic-retrieval-overview.md#region-availability-limits-and-billing).
 
 ## Get endpoints
 

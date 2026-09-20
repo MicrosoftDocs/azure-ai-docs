@@ -6,7 +6,7 @@ author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
-ms.date: 08/13/2026
+ms.date: 9/17/2026
 ms.author: ssalgado
 ai-usage: ai-assisted
 ---
@@ -105,6 +105,12 @@ The following table lists the current availability of provenance capabilities.
 ### Text 
 
 Text provenance support varies by model. Where available, the underlying model provides invisible watermarking and surfaces it through Microsoft Foundry. Microsoft partners closely with model providers and shares the latest updates on supported models as they become available.  
+
+The following models support invisible watermarking for text output.
+
+| Model Provider | Models |
+| --- | --- |
+| Anthropic | Claude Fable 5.1<br>Claude Mythos 5.1<br>Claude Opus 5 |
 
 ## What are the limitations?  
 Content provenance technologies can improve transparency around AI-generated content, but it's important to understand their limitations. 

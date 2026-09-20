@@ -11,13 +11,14 @@ ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Index data from Azure Database for MySQL Flexible Server (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 > [!IMPORTANT]
 > These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
@@ -26,7 +27,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Database for MySQL and makes it searchable in Azure AI Search. Inputs to the indexer are rows from a single table or view. Output is a search index with searchable content in individual fields.
+The *Azure Database for MySQL indexer* (preview) imports content from Azure Database for MySQL Flexible Server into an Azure AI Search index. Inputs to the indexer are rows from a single table or view. Output is a search index with searchable content in individual fields.
 
 This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from Azure Database for MySQL Flexible Server. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
@@ -34,7 +35,7 @@ When configured to include a high water mark and soft deletion, the indexer take
 
 ## Prerequisites
 
-- [Register for the preview](https://aka.ms/azure-cognitive-search/indexer-preview) to provide scenario feedback. You can access the feature automatically after form submission.
+- Complete the [indexer preview registration form](https://aka.ms/azure-cognitive-search/indexer-preview). Registration is automatically approved.
 
 - [Azure Database for MySQL Flexible Server](/azure/mysql/flexible-server/overview) and sample data. Data must reside in a table or view. A primary key is required. If you're using a view, it must have a [high water mark column](#DataChangeDetectionPolicy). 
 

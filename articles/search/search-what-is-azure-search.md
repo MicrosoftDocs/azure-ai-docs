@@ -4,7 +4,7 @@ description: Learn how Azure AI Search helps you build rich search experiences a
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: overview
-ms.date: 08/05/2026
+ms.date: 09/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -13,14 +13,6 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and large language models (LLMs) can use context, chat history, and multi-source signals to produce reliable, grounded answers.
-
-Azure AI Search is available in two pricing models:
-
-- **Dedicated**: Provisioned capacity with fixed pricing. You select a service tier and you're billed per hour based on Search Units (SUs). Best for steady, predictable, high-utilization workloads.
-
-- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage. Best for infrequent, bursty, or highly variable workloads.
-
-[!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
 Common use cases include *classic search* and retrieval-augmented generation (RAG) using *agentic retrieval*, where the service orchestrates query planning, retrieval, and response construction. These capabilities support scenarios ranging from traditional search experiences to AI-powered agents and chat applications suitable for both enterprise and consumer scenarios.
 
@@ -53,9 +45,6 @@ When you create a search service, the following capabilities are included:
 + Provide enterprise security, access control, and compliance through Microsoft Entra ID, Azure Private Link, document-level access control, and role-based access.
 
 + Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
-
-> [!NOTE]
-> In the Serverless pricing model, scaling is handled automatically by the service. Unlike Dedicated models where you configure replicas and partitions, Serverless uses consumption-based scaling and service-level limits to manage capacity. For more information, see [Optimize costs with the Serverless pricing model](./serverless-cost-optimization.md).
 
 For more information about specific functionality, see [Features of Azure AI Search](search-features-list.md).
 
@@ -108,7 +97,7 @@ Classic search and agentic retrieval are complementary modes of information retr
 | Region restrictions | No | Yes |
 | Status | Generally available | Generally available, with some capabilities in preview |
 | Dedicated pricing model support | Yes | Yes |
-| Serverless pricing model support | Yes | Yes |
+| Serverless pricing model support (preview) | Yes | Yes |
 
 ## How to get started
 
@@ -120,9 +109,9 @@ The portal is useful for service administration and content management, with too
 
 Before you get started, use this checklist to make key decisions:
 
-+ **Choose a pricing model**: Select between the **Dedicated** or **Serverless** pricing model. See [Choose a pricing model and service tier](./search-sku-tier.md) for help with choosing the model that best fits your needs.
++ **Choose a pricing model**: Select between the **Dedicated** or **Serverless** (preview) pricing model. See [Choose a pricing model and service tier](./search-sku-tier.md) for help with choosing the model that best fits your needs.
 
-+ **Choose how you want to retrieve data:** You can query directly from a search index for predictable, low-latency results, or use agentic retrieval to query across multiple indexes through a knowledge base. If you’re building a traditional app without an agent or chatbot, direct index queries can meet most needs with lower cost and complexity. If you want to work across multiple knowledge sources or support more advanced scenarios, consider agentic retrieval with minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
++ **Choose how you want to retrieve data:** You can query directly from a search index for predictable, low-latency results, or use agentic retrieval to query across multiple indexes through a knowledge base. If you’re building a traditional app without an agent or chatbot, direct index queries can meet most needs with lower cost and complexity. If you want to work across multiple knowledge sources or support more advanced scenarios, consider agentic retrieval with minimal [reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 + **Choose a region:** If you're using agentic retrieval, choose a [supported region](search-region-support.md). For classic search, choose a region that offers the features and capacity you need.
 

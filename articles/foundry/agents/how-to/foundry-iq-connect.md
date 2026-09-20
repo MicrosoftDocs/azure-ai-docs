@@ -15,27 +15,16 @@ ai-usage: ai-assisted
 
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
 
-[!INCLUDE [Preview API usage](../../../search/includes/previews/agentic-retrieval-preview-api-usage.md)]
+[!INCLUDE [preview-terms](../../../search/includes/previews/preview-terms.md)]
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates retrieval across its configured knowledge sources. Depending on its configuration, the knowledge base can:
 
-In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
+- Use LLM-based query planning (preview) to decompose a user query into subqueries.
+- Process the subqueries simultaneously by using keyword, vector, or hybrid search.
+- Apply semantic reranking to identify the most relevant results.
+- Use answer synthesis (preview) to combine the results into a natural-language response with source references.
 
-- Plans and decomposes a user query into subqueries.
-- Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
-- Applies semantic reranking to identify the most relevant results.
-- Synthesizes the results into a unified response with source references.
-
-The agent uses the response to ground its answers in enterprise data or web sources, ensuring factual accuracy and transparency through source attribution.
+The agent uses the retrieved or synthesized response to ground its answers in enterprise data or web sources. Source references help users verify the information and trace it to the originating content.
 
 For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
@@ -76,9 +65,9 @@ We recommend role-based access control for production deployments. To assign the
 
 - On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes. If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
 
-- For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement](/azure/search/search-query-access-control-rbac-enforcement).
+- For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement (preview)](/azure/search/search-query-access-control-rbac-enforcement).
 
-- For remote SharePoint knowledge sources, the `x-ms-query-source-authorization` header passes the user's identity, enabling SharePoint to enforce document permissions at query time. Content isn't indexed. Instead, SharePoint applies permissions directly via the Copilot Retrieval API. For more information, see [Create a remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote).
+- For remote SharePoint knowledge sources, the `x-ms-query-source-authorization` header passes the user's identity, enabling SharePoint to enforce document permissions at query time. Content isn't indexed. Instead, SharePoint applies permissions directly via the Copilot Retrieval API. For more information, see [Create a remote SharePoint knowledge source (preview)](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote).
 
 ---
 
@@ -101,7 +90,7 @@ Use the following values in the code samples.
 
 ## Create a project connection
 
-Create a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+Create a `RemoteTool` connection (preview) on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
 
 > [!NOTE]
 > The `RemoteTool` category and `ProjectManagedIdentity` authentication type are specific to Microsoft Foundry project connections.
@@ -201,6 +190,9 @@ This instruction template optimizes for:
 > While this template provides a strong foundation, evaluate and iterate on the instructions based on your specific use case and objectives. Test different variations to find what works best for your scenario.
 
 ## Create an agent with the MCP tool
+
+> [!WARNING]
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 Create an agent that integrates the knowledge base as an MCP tool. The agent uses a system prompt to instruct when and how to call the knowledge base. It follows instructions on how to answer questions and automatically maintains its tool configuration and settings across conversation sessions.
 

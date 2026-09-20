@@ -7,16 +7,16 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 02/19/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# moreLikeThis in Azure AI Search
+# moreLikeThis in Azure AI Search (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT] 
-> This feature is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-`moreLikeThis=[key]` is a query parameter in the [Search Documents API](/rest/api/searchservice/documents/search-post) that finds documents similar to the document specified by the document key. When a search request is made with `moreLikeThis`, a query is generated with search terms extracted from the given document that describe that document best. The generated query is then used to make the search request. The `moreLikeThis` parameter can't be used with the search parameter, `search=[string]`.
+The `moreLikeThis` query parameter (preview), specified as `moreLikeThis=[key]` in the [Search Documents API](/rest/api/searchservice/documents/search-post), finds documents similar to a source document identified by its key. When a search request includes `moreLikeThis`, Azure AI Search generates a query from the terms that best describe the source document. You can't combine `moreLikeThis` with `search=[string]`.
 
 By default, the contents of all top-level searchable fields are considered. If you want to specify particular fields instead, you can use the `searchFields` parameter. 
 

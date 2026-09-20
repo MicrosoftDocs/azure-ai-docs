@@ -20,4 +20,5 @@ ms.custom:
 
 # Harm categories and severity levels in Microsoft Foundry
 
-[!INCLUDE [content-filter-severity-levels content](../includes/concepts-content-filter-severity-levels-content.md)]
+
+[!INCLUDE [Content harms shared content](../../../ai-services/content-safety/includes/content-harms.md)]
