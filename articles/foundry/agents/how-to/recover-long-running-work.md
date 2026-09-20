@@ -67,14 +67,15 @@ Crash recovery reenters your handler. It doesn't resume the stopped process.
 | --- | --- | --- |
 | Persisted request input, work ID, input ID, status, and lease state | Yes | AgentServer uses this platform-managed record to recover the same logical work. |
 | Last response checkpoint and retained response events | Yes, for stored Responses work | Restore `context.persisted_response`, and let reconnecting clients replay events. |
-| `$HOME` and `/files` | Yes, for the same hosted-agent session | Store session-scoped files. Foundry restores them when the same session resumes. |
+| Session `$HOME` | Yes, for the same hosted-agent session | Store session-scoped files directly or upload them through the `/files` endpoint. Foundry restores the filesystem when the same session resumes. |
 | Framework or application checkpoint | Only when your code writes it to durable storage | Restore workflow variables, completed-step results, and the next step. |
 | Process memory, local variables, call stack, open handles, and unflushed buffers | No | Reconstruct them on every handler entry. |
 
-Files under `$HOME` are visible to processes in the same session sandbox. They
-aren't shared with another session. Don't use `$HOME` as agent-wide shared
-storage. Use [Foundry State Store](../concepts/agent-state-store.md), a database,
-or blob storage when state must be independent of one session.
+Files under `$HOME`, including files uploaded through the `/files` endpoint,
+are visible to processes in the same session sandbox. They aren't shared with
+another session. Don't use `$HOME` as agent-wide shared storage. Use
+[Foundry State Store](../concepts/agent-state-store.md), a database, or blob
+storage when state must be independent of one session.
 
 Foundry doesn't commit a `$HOME` file update and a response or workflow
 checkpoint as one transaction. Use retry-safe, versioned file writes, or keep

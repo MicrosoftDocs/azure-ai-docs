@@ -25,12 +25,13 @@ This article explains how to partition data, manage caller identity, create and 
 
 ## What to keep in the state store
 
-A hosted agent's compute is ephemeral, but its session filesystem isn't. Foundry
-persists `$HOME` and `/files` for the same
-[session](hosted-agents.md#sessions-conversations-and-the-state-store) and
-restores them when that session resumes. Process memory, unflushed buffers, and
-files outside the session-persisted filesystem aren't guaranteed to survive
-when compute is replaced.
+A hosted agent's compute is ephemeral, but its session filesystem isn't.
+Foundry persists `$HOME` for the same
+[session](hosted-agents.md#session-storage) and
+restores it when that session resumes. Files uploaded through the `/files`
+endpoint are written into the same session storage. Process memory, unflushed
+buffers, and files outside the session-persisted filesystem aren't guaranteed
+to survive when compute is replaced.
 
 Use `$HOME` for files that belong to one session. Use the state store for JSON
 state that must be addressed independently of session compute, partitioned by

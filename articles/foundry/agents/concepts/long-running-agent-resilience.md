@@ -119,7 +119,7 @@ lifetimes.
 | AgentServer | Work and input identities, serialized input, status, lease state, and recovery bookkeeping. | AgentServer detects the expired lease and reenters the handler. This record isn't an application checkpoint. |
 | Responses protocol | Response ID and status, the last checkpointed response snapshot, response-internal metadata, and retained events. | The recovered handler restores the snapshot, and the client replays retained output. |
 | Your framework or application | Workflow state, completed-step results, tool state, or a reference to larger data. | Your handler loads the checkpoint and selects the first unconfirmed step. |
-| Foundry session storage | Files under `$HOME` and files uploaded through `/files`, scoped to one agent session. | Foundry restores the files when the same session resumes. Other sessions can't access them. |
+| Foundry session storage | The session's `$HOME`, including files placed there through the `/files` endpoint. | Foundry restores the filesystem when the same session resumes. Other sessions can't access it. |
 | Process | Memory, local variables, call stack, open handles, and unflushed buffers. | The state isn't preserved. Reconstruct it on every handler entry. |
 
 `$HOME` is persistent **per session**, not per agent. Processes running in the
