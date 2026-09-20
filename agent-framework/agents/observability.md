@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 09/18/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -430,13 +430,15 @@ See the [OpenTelemetry spec](https://opentelemetry.io/docs/specs/otel/configurat
 
 Microsoft Foundry has built-in support for tracing with visualization for your spans.
 
-Make sure you have your Foundry configured with a Azure Monitor instance, see [details](/azure/ai-foundry/how-to/monitor-applications)
+Make sure your Foundry project is connected to Application Insights. For setup guidance, see [Monitor applications](/azure/ai-foundry/how-to/monitor-applications).
 
 #### Install the `azure-monitor-opentelemetry` package:
 
 ```bash
-pip install azure-monitor-opentelemetry
+pip install --upgrade "azure-monitor-opentelemetry>=1.8.10,<2"
 ```
+
+Version 1.8.10 or later instruments the HTTPX transports used by the OpenAI SDK so client and Foundry service spans can share one distributed trace.
 
 #### Configure observability directly from the `FoundryChatClient`
 
@@ -462,6 +464,33 @@ async def main():
 
 > [!TIP]
 > The arguments for `client.configure_azure_monitor()` are passed through to the underlying `configure_azure_monitor()` function from the `azure-monitor-opentelemetry` package, see [documentation](/python/api/overview/azure/monitor-opentelemetry-readme#usage) for details, we take care of setting the connection string and resource.
+
+#### Trace an existing Foundry agent
+
+Call `configure_azure_monitor()` on a `FoundryAgent` before invoking an existing Prompt Agent or Hosted Agent:
+
+```python
+import os
+
+from agent_framework.foundry import FoundryAgent
+from azure.identity.aio import AzureCliCredential
+
+async def main():
+    async with (
+        AzureCliCredential() as credential,
+        FoundryAgent(
+            project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+            agent_name=os.environ["FOUNDRY_AGENT_NAME"],
+            agent_version=os.getenv("FOUNDRY_AGENT_VERSION"),
+            credential=credential,
+        ) as agent,
+    ):
+        await agent.configure_azure_monitor(enable_live_metrics=False)
+        response = await agent.run("Say hello in one sentence.")
+        print(response.text)
+```
+
+`FOUNDRY_AGENT_VERSION` is required for Prompt Agents and optional for Hosted Agents. After the call, open **Build > Agents > your agent > Traces** in Foundry, select the agent version and a time range that covers the run, and inspect the connected client and service spans. See the [existing-agent tracing sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/observability/foundry_agent_tracing.py) for streaming and non-streaming examples.
 
 #### Configure azure monitor and optionally enable instrumentation
 

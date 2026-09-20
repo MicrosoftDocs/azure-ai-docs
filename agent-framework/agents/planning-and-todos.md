@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 09/18/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -143,6 +143,8 @@ current_mode = get_agent_mode(
     available_modes=mode_provider.available_modes,
 )
 ```
+
+Omit `available_modes` to use the built-in `plan` and `execute` modes. If you supply `available_modes`, it must contain at least one mode; an empty sequence raises `ValueError` before session state is changed.
 
 ### Control mode tools from the application
 
