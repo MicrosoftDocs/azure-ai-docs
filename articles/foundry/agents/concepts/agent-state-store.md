@@ -29,12 +29,19 @@ A hosted agent's compute is ephemeral, but its session filesystem isn't. Foundry
 persists `$HOME` and `/files` for the same
 [session](hosted-agents.md#sessions-conversations-and-the-state-store) and
 restores them when that session resumes. Process memory, unflushed buffers, and
-files outside the session-persisted filesystem are lost when compute is
-replaced.
+files outside the session-persisted filesystem aren't guaranteed to survive
+when compute is replaced.
 
 Use `$HOME` for files that belong to one session. Use the state store for JSON
 state that must be addressed independently of session compute, partitioned by
 end user, or shared through explicit store and item keys.
+
+A `$HOME` write and an agent or workflow checkpoint don't commit as one
+transaction. If the process stops after replacing a file but before advancing
+the checkpoint, the recovered step can run again while the newer file already
+exists. Use versioned or retry-safe file writes. Keep correctness-critical
+progress in the state store or another application store that supports the
+consistency model your application requires.
 
 Typical contents include:
 

@@ -4,7 +4,7 @@ description: "API surface for building long-running, crash-resilient hosted agen
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/10/2026
+ms.date: 09/20/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -25,8 +25,8 @@ The APIs on this page require at least the following package versions. The Pytho
 
 | Protocol | Python (minimum version) | .NET (minimum version) |
 | --- | --- | --- |
-| Core (tasks, streaming, storage) | `azure-ai-agentserver-core` &ge; 2.0.0 | `Azure.AI.AgentServer.Core` &ge; 1.0.0-beta.28 |
-| Responses | `azure-ai-agentserver-responses` &ge; 2.0.0 | `Azure.AI.AgentServer.Responses` &ge; 1.0.0-beta.8 |
+| Core (tasks, streaming, storage) | `azure-ai-agentserver-core` &ge; 2.1.0 | `Azure.AI.AgentServer.Core` &ge; 1.0.0-beta.28 |
+| Responses | `azure-ai-agentserver-responses` &ge; 2.1.0 | `Azure.AI.AgentServer.Responses` &ge; 1.0.0-beta.8 |
 | Invocations | `azure-ai-agentserver-invocations` &ge; 1.0.0 | `Azure.AI.AgentServer.Invocations` &ge; 1.0.0-beta.6 |
 
 > [!NOTE]
@@ -136,7 +136,6 @@ The handler receives a `TaskContext` describing the current attempt.
 | `task_id` | `TaskId` | The durable work identity. |
 | `input_id` | `InputId` | The per-turn/per-input identity. |
 | `entry_mode` | `EntryMode` | `fresh`, `resumed`, or `recovered`. |
-| `metadata` | `Metadata` | Small durable key-value state (`TaskMetadata`). |
 | `retry_attempt` | `RetryAttempt` | 0 on the first try. |
 | — | `RecoveryCount` | Number of crash recoveries for this attempt. |
 | `is_steered_turn` | `IsSteeredTurn` | `True` if this turn was promoted from the steering queue. |
@@ -163,7 +162,6 @@ The handle returned by `start` / `StartAsync`.
 | --- | --- | --- |
 | `task_id` | `TaskId` | The work identity. |
 | `input_id` | `InputId` | The input identity. |
-| `metadata` | `Metadata` | Live metadata reference while in flight. |
 | `is_queued` | `IsQueued` | `True` if this input was queued behind an active steerable turn. |
 | `await run.result()` | `await run.GetResultAsync()` | Await the output. |
 | `await run.cancel()` | `await run.CancelAsync()` | Cooperatively cancel. |
@@ -219,7 +217,9 @@ Properties: `InitialDelay`, `BackoffCoefficient`, `MaxDelay`, `MaxAttempts`, `Ji
 
 ### Force-enable recovery
 
-Declaring a task auto-enables the recovery scan. Force-enable it when tasks are registered lazily after host startup.
+Enable resilient tasks before host startup. Declaring a `@task` or
+`@multi_turn_task` handler doesn't enable the task subsystem or its recovery
+scan.
 
 # [Python](#tab/python)
 
@@ -283,7 +283,6 @@ Available on the response handler's `context` when resilience is enabled.
 | --- | --- | --- |
 | `context.is_recovery` | `IsRecovery` | `True` when the handler was re-invoked after a crash. |
 | `context.persisted_response` | `PersistedResponse` | The last durably checkpointed response snapshot. |
-| `context.conversation_chain_metadata` | `ConversationChainMetadata` | Small cross-turn references and watermarks. |
 | — | `ConversationChainId` | Stable identity of the conversation chain. |
 | `context.is_steered_turn` | `IsSteeredTurn` | `True` if this turn was promoted from the steering queue. |
 | `context.pending_input_count` | `PendingInputCount` | Newer turns waiting in the queue. |
@@ -296,11 +295,13 @@ Pick one backing at startup, then look streams up by a per-turn id.
 # [Python](#tab/python)
 
 ```python
+from pathlib import Path
+
 from azure.ai.agentserver.core.streaming import streams
 
 streams.use_in_memory_live()                                        # no replay, no restart survival
 streams.use_in_memory_replay(cursor_fn=lambda e: e["n"], ttl_seconds=600)
-streams.use_file_backed_replay(storage_dir=Path("/streams"),
+streams.use_file_backed_replay(storage_dir=Path.home() / "streams",
                                cursor_fn=lambda e: e["n"])
 
 stream = await streams.get_or_create(invocation_id)

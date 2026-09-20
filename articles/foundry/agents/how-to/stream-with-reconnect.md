@@ -4,7 +4,7 @@ description: "Stream a hosted agent's output so clients can drop and reconnect w
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/20/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -23,22 +23,39 @@ A [long-running hosted agent](../concepts/long-running-agent-resilience.md) can 
 
 An event stream connects a producer (your agent work) to one or more subscribers (SSE, WebSocket, or polling). Two rules matter most:
 
-- **Use a per-turn stream ID.** Identify one request, turn, or invocation - never reuse a multiturm conversation ID as the stream ID.
+- **Use a per-turn stream ID.** Identify one request, turn, or invocation. Never
+  reuse a multi-turn conversation ID as the stream ID.
 - **Choose a backing that matches the recovery you need.** The backing decides whether late subscribers can replay and whether the stream survives a restart.
+
+The reconnect identity depends on the protocol:
+
+| Protocol | Client reconnect identity | Who provides replay |
+| --- | --- | --- |
+| Responses | Stored response ID and last SSE sequence number. | AgentServer retains and replays response events. |
+| Invocations and task primitives | An application-defined invocation or stream ID and cursor. | Your application and the selected streaming backing. |
+
+A Responses client reconnects to a **response**, not to the original HTTP
+invocation or the worker process that first handled it.
 
 ## Choose a backing
 
 With the Invocations and task primitives, pick a backing once at app startup, then look streams up by ID anywhere in your process:
 
 ```python
+from pathlib import Path
+
 from azure.ai.agentserver.core.streaming import streams
 
 # Pick ONE at startup.
-streams.use_in_memory_live()                                   # no replay, no restart survival
-streams.use_in_memory_replay(cursor_fn=lambda ev: ev["n"],     # replay within a TTL
-                             ttl_seconds=600)
-streams.use_file_backed_replay(storage_dir=Path("/streams"),   # replay AND survives restart
-                               cursor_fn=lambda ev: ev["n"])
+streams.use_in_memory_live()  # no replay, no restart survival
+streams.use_in_memory_replay(
+    cursor_fn=lambda ev: ev["n"],
+    ttl_seconds=600,
+)
+streams.use_file_backed_replay(
+    storage_dir=Path.home() / "streams",
+    cursor_fn=lambda ev: ev["n"],
+)
 ```
 
 | Backing | Replay for late or reconnecting subscribers | Survives process restart |
@@ -58,7 +75,7 @@ The producer and subscriber both call `get_or_create(id)` with the same ID and g
 
 ```python
 # Producer (your @task handler)
-async def produce(stream_id: str) -> None:
+async def produce(stream_id: str, total: int, chunk: str) -> None:
     stream = await streams.get_or_create(stream_id)
     try:
         for n in range(total):
@@ -87,6 +104,21 @@ The server resumes emitting after that sequence number.
 
 > [!IMPORTANT]
 > Teach clients that any `response.in_progress` event *after the first one* is a **snapshot reset**. On such an event the client replaces its local output with the snapshot in the event, discards partially accumulated content, and applies later events additively. Treat output indexes as slot identifiers, not monotonic counters - after a reset, an index might refer to an already-existing slot.
+
+## Handle replayed events in a client callback
+
+Use the same callback for replayed and live events. Make event application and
+cursor advancement one ordered operation:
+
+1. Ignore an event when its sequence number is at or before the last applied
+   sequence.
+1. If a later `response.in_progress` event arrives, replace the locally
+   accumulated response with its snapshot.
+1. Otherwise, apply the event to the current response.
+1. Save the event sequence only after the local update succeeds.
+
+After a disconnect, refresh authentication if needed and reconnect with the
+same response ID and saved sequence. Don't submit the original request again.
 
 ## Stream lifecycle
 

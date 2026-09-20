@@ -4,7 +4,7 @@ description: "Pause a long-running hosted agent indefinitely for human approval 
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/20/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -33,7 +33,28 @@ Because the chain is durable, the wait can be arbitrarily long - minutes, hours,
 ## Implement the approval turn
 
 ```python
+from azure.ai.agentserver.core.storage import FoundryStateStore
 from azure.ai.agentserver.core.tasks import multi_turn_task, TaskContext
+
+
+async def save_expense_id(task_id: str, expense_id: str) -> None:
+    store = await FoundryStateStore.get_or_create(
+        f"expense-approval/{task_id}"
+    )
+    async with store:
+        await store.set_item("expense", {"expense_id": expense_id})
+
+
+async def load_expense_id(task_id: str) -> str:
+    store = await FoundryStateStore.get_or_create(
+        f"expense-approval/{task_id}"
+    )
+    async with store:
+        item = await store.get_item("expense")
+    if item is None:
+        raise RuntimeError("The approval state is missing.")
+    return str(item.value["expense_id"])
+
 
 @multi_turn_task(name="expense-approval")
 async def approve(ctx: TaskContext[dict]) -> dict:
@@ -41,13 +62,14 @@ async def approve(ctx: TaskContext[dict]) -> dict:
         # We're back with the human's decision.
         decision = ctx.input["decision"]
         if decision == "approved":
-            await submit_expense(ctx.metadata["expense_id"])
+            expense_id = await load_expense_id(ctx.task_id)
+            await submit_expense(expense_id)
             return {"status": "submitted"}
         return {"status": "rejected"}
 
     # First turn: prepare the request and ask for a decision.
     expense = await build_expense(ctx.input)
-    ctx.metadata["expense_id"] = expense.id          # small watermark, survives the pause
+    await save_expense_id(ctx.task_id, expense.id)
     return {"status": "awaiting_approval", "summary": expense.summary}
 ```
 
@@ -63,7 +85,9 @@ r2 = await approve.run(task_id="exp-42", input={"decision": "approved"})
 ```
 
 > [!TIP]
-> Keep only small references in `ctx.metadata` (an expense ID, a step number). Store the full request, history, or generated artifacts in your own storage or a framework checkpoint. See [Manage state for long-running agents](manage-task-state.md).
+> Store pause-and-resume state in Foundry State Store, your database, or a
+> framework checkpoint. Don't rely on local variables from the previous turn.
+> See [Manage state for long-running agents](manage-task-state.md).
 
 ## Use a framework interrupt with Responses
 

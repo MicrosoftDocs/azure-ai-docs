@@ -4,7 +4,7 @@ description: "Deploy a long-running hosted agent that keeps working with no clie
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/20/2026
+ms.date: 09/20/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -48,7 +48,9 @@ app = ResponsesAgentServerHost(options=options)
 ```
 
 > [!IMPORTANT]
-> `resilient_background` defaults to `False`. Without it, a background response that crashes is marked `failed` instead of being recovered. See [Recover long-running work after a crash](recover-long-running-work.md).
+> `resilient_background` defaults to `False`. Without it, AgentServer doesn't
+> reenter the handler after process loss. See
+> [Recover long-running work after a crash](recover-long-running-work.md).
 
 ## Run it locally
 
