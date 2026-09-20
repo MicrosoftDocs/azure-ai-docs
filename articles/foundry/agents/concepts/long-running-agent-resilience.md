@@ -8,7 +8,7 @@ ms.reviewer: glennc
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 07/30/2026
+ms.date: 09/20/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -18,6 +18,31 @@ ai-usage: ai-assisted
 Long-running hosted agents can keep working after the request that started them disconnects. They can also recover after their hosting process stops unexpectedly. Foundry Agent Service and the AgentServer SDKs provide durable work identity, persisted inputs, lease-based recovery, and stream replay. Your agent is still responsible for preserving meaningful progress and preventing duplicate side effects.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+## Start with the recovery guarantee
+
+For a stored background response with resilience enabled, Foundry preserves the
+logical work and invokes your handler again when the process that owned the work
+disappears. The recovered handler receives the persisted input and the same
+logical work identity.
+
+The guarantee is **at-least-once handler execution with recovery from a durable
+boundary**. The runtime doesn't restore process memory, the call stack, local
+variables, or an external operation that completed without a durable record.
+
+| Event | What Foundry guarantees | What your application must handle |
+| --- | --- | --- |
+| The initiating client disconnects. | Stored background work continues, and the client can poll or reconnect by using the response ID. | Retain the response ID or stream cursor. |
+| The hosting process stops. | After the lease expires, another process can reclaim the same work and reenter the handler with the persisted input. | Restore application progress from a checkpoint or safely rerun the unfinished step. |
+| The process stops inside a step. | The last durable response and task metadata remain available. | Expect the unconfirmed step to run again. |
+| An external operation commits before the next checkpoint. | Foundry recovers the agent work, but it doesn't roll back or deduplicate the external operation. | Use a stable idempotency key or reconcile the operation before retrying it. |
+
+For the Responses protocol, this guarantee applies when all three conditions are
+true:
+
+- The request sets `store=true`.
+- The request sets `background=true`.
+- The server sets `resilient_background=True`.
 
 ## Background execution and resilience
 
@@ -42,11 +67,51 @@ A resilient unit of work has two identities:
 
 Before a handler starts, the runtime persists its input and acquires a lease on the work record. While the handler runs, the runtime renews the lease. If the process stops and abandons the lease, a later process can reclaim the record and invoke the registered handler with the same identities and input.
 
-:::image type="content" source="../media/long-running-agent-resilience/resilient-work-recovery.png" alt-text="Diagram that shows a handler acquiring a lease on a work record, the hosting process stopping, and a later process reclaiming the lease and reentering the handler with the same work and input identities." lightbox="../media/long-running-agent-resilience/resilient-work-recovery.png":::
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Runtime as Foundry and AgentServer
+    participant P1 as Agent process 1
+    participant State as Durable application state
+    participant P2 as Agent process 2
+
+    Client->>Runtime: Start stored background response
+    Runtime->>Runtime: Persist work identity and input
+    Runtime->>P1: Acquire lease and invoke handler
+    P1->>State: Save completed-step checkpoint
+    P1->>Runtime: Checkpoint response snapshot
+    Note over P1: Process stops unexpectedly
+    Runtime->>Runtime: Detect expired lease
+    Runtime->>P2: Reclaim work and reenter handler
+    P2->>State: Load application checkpoint
+    P2->>Runtime: Continue response
+    Client->>Runtime: Poll or reconnect with response ID
+    Runtime-->>Client: Replay stored output and continue
+```
 
 Recovery reenters the handler from its beginning. It isn't deterministic replay, and it doesn't restore local variables or an in-memory call stack. The handler uses durable checkpoints or watermarks to determine which work is already complete.
 
 Recovery also differs from retry. A retry handles a failure reported by the running handler and can consume retry budget. Recovery continues the same durable attempt after its process disappears.
+
+## Understand what state survives
+
+Resilience uses several durable records. They have different owners and
+lifetimes.
+
+| State | What it contains | What happens after process loss |
+| --- | --- | --- |
+| Runtime task record | Work ID, input ID, serialized input, execution status, lease and recovery bookkeeping, and small task metadata. | AgentServer uses it to detect unfinished work and reenter the handler. The record isn't an application checkpoint. |
+| Stored response | Response ID and status, the last checkpointed response snapshot, conversation-chain metadata, and retained stream events and cursors. | A recovered Responses handler can restore the snapshot. A reconnecting client can replay retained output. |
+| Session filesystem | Files under `$HOME` and files uploaded through `/files`, scoped to one agent session. | Foundry restores the files when the same session resumes, including on newly provisioned compute. Other sessions can't access them. |
+| Application or framework checkpoint | Workflow state, completed-step results, tool state, or a reference to larger data in Foundry State Store or another durable store. | Your handler or framework loads the checkpoint and selects the next step. Foundry doesn't create this checkpoint automatically. |
+| Process-local state | Memory, local variables, call stack, open handles, unflushed buffers, and files outside the session-persisted filesystem. | The state is lost. Reconstruct it when the handler is reentered. |
+
+`$HOME` is persistent **per session**, not per agent. Processes running in the
+same session sandbox can access the same files. A different session receives a
+different filesystem. Foundry deletes a session after 30 days of inactivity.
+Use [session storage](hosted-agents.md#session-storage) for session-scoped files
+and [Foundry State Store](agent-state-store.md) for JSON state that must persist
+independently of session compute or support explicit user isolation.
 
 ## Work shapes
 
@@ -86,6 +151,11 @@ Good metadata values include:
 
 Keep conversation history, model output, tool results, and large intermediate artifacts in an agent framework checkpointer or application-owned storage.
 
+Task metadata is a small recovery index. Updating it doesn't save the handler's
+local variables or commit the external work that the metadata describes. Write
+the application checkpoint or external result first, then advance the metadata
+that points to it.
+
 Choose one of these recovery strategies based on where progress lives:
 
 | Strategy | Where progress lives | Recovery behavior |
@@ -94,7 +164,26 @@ Choose one of these recovery strategies based on where progress lives:
 | Response checkpoints | Persisted response snapshots mark completed phases. | Restore the latest snapshot and continue after its completed output items. |
 | Upstream-owned resume | An agent framework or application store owns checkpoints. | Resume the upstream session or workflow from its latest durable state. |
 
-Any strategy can use a side-effect watermark. Persist the watermark before an operation that can't be safely repeated, and clear it after the operation commits. A recovered handler checks the watermark before it issues the operation again.
+Any strategy can carry a stable operation ID for an external side effect. A
+recovered handler uses that ID to retry through a downstream idempotency API or
+to query whether the operation already committed.
+
+## Walk through a crash at a side-effect boundary
+
+The following example shows why checkpointing and idempotency are separate
+requirements.
+
+| Phase | Durable evidence | Recovery behavior |
+| --- | --- | --- |
+| The handler starts a `publish-report` step. | It derives an operation ID from the work ID and step name, then stores that ID with the checkpoint. | A recovered handler derives the same operation ID. |
+| The publishing service accepts the report. | The downstream service records the operation ID with its result. | Repeating the request with the same operation ID returns the stored result. |
+| The agent process stops before advancing its checkpoint. | The runtime task remains unfinished, and the application checkpoint still points to `publish-report`. | Foundry reenters the handler, which might issue the step again. |
+| The recovered handler retries the operation. | The downstream service recognizes the operation ID. | The report is published once, and the handler records the returned result before advancing the checkpoint. |
+
+A metadata flag by itself doesn't close the crash window. If the process stops
+after an external system commits but before the agent records completion, the
+flag can't prove whether the operation completed. Use downstream idempotency or
+a reconciliation API for this boundary.
 
 ## Replay streamed output
 

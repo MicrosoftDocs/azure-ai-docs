@@ -8,7 +8,7 @@ ms.reviewer: glennc
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/24/2026
+ms.date: 09/20/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -25,7 +25,16 @@ This article explains how to partition data, manage caller identity, create and 
 
 ## What to keep in the state store
 
-A hosted agent's compute is ephemeral. When the container restarts or the platform evicts it after an idle period, your agent loses anything it writes to local disk outside a [session](hosted-agents.md#sessions-conversations-and-the-state-store). The state store holds the state that must outlive the container.
+A hosted agent's compute is ephemeral, but its session filesystem isn't. Foundry
+persists `$HOME` and `/files` for the same
+[session](hosted-agents.md#sessions-conversations-and-the-state-store) and
+restores them when that session resumes. Process memory, unflushed buffers, and
+files outside the session-persisted filesystem are lost when compute is
+replaced.
+
+Use `$HOME` for files that belong to one session. Use the state store for JSON
+state that must be addressed independently of session compute, partitioned by
+end user, or shared through explicit store and item keys.
 
 Typical contents include:
 

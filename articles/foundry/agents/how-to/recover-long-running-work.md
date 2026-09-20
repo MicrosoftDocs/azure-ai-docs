@@ -4,7 +4,7 @@ description: "Make a hosted agent's background responses crash-recoverable, and 
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/20/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -18,6 +18,23 @@ A [long-running hosted agent](../concepts/long-running-agent-resilience.md) can 
 
 > [!NOTE]
 > Long-running agents are in preview. APIs and package versions are subject to change.
+
+## Know what recovery preserves
+
+Crash recovery reenters your handler. It doesn't resume the stopped process.
+
+| State | Preserved after process loss? | How to use it |
+| --- | --- | --- |
+| Persisted request input, work ID, input ID, status, lease, and small task metadata | Yes | AgentServer uses this record to recover the same logical work. |
+| Last response checkpoint and retained response events | Yes, for stored Responses work | Restore `context.persisted_response`, and let reconnecting clients replay events. |
+| `$HOME` and `/files` | Yes, for the same hosted-agent session | Store session-scoped files. Foundry restores them when the same session resumes. |
+| Framework or application checkpoint | Only when your code writes it to durable storage | Restore workflow variables, completed-step results, and the next step. |
+| Process memory, local variables, call stack, open handles, and unflushed buffers | No | Reconstruct them on every handler entry. |
+
+Files under `$HOME` are visible to processes in the same session sandbox. They
+aren't shared with another session. Don't use `$HOME` as agent-wide shared
+storage. Use [Foundry State Store](../concepts/agent-state-store.md), a database,
+or blob storage when state must be independent of one session.
 
 ## Turn on crash recovery
 
@@ -98,6 +115,28 @@ async def research(ctx: TaskContext[dict]) -> dict:
 
 ---
 
+## Walk through one recovered response
+
+Use this sequence when you design and test a checkpointed handler:
+
+1. The client creates a stored background response. AgentServer persists the
+   input before it invokes your handler.
+1. The handler completes one phase and writes any application result to durable
+   storage.
+1. The handler checkpoints the response snapshot or advances a metadata
+   reference to the completed application checkpoint.
+1. The process stops during the next phase. Memory and uncheckpointed output
+   from that phase are lost.
+1. The runtime detects the abandoned lease and reenters the handler in a
+   replacement process with `context.is_recovery=True`.
+1. The handler restores `context.persisted_response` and its application
+   checkpoint, then starts at the first unconfirmed phase.
+1. The client polls or reconnects by using the original response ID. Stored
+   output is replayed before new output continues.
+
+The recovery boundary is the last durable checkpoint, not the last line of code
+that ran. Work after that checkpoint can run again.
+
 ## Choose a resume strategy
 
 Pick a strategy based on where your progress state lives.
@@ -111,15 +150,23 @@ Pick a strategy based on where your progress state lives.
 
 Prefer phase boundaries that checkpoint cleanly: complete one output item per phase, then checkpoint. If a phase crashes before its checkpoint it reruns; after the checkpoint the recovered attempt skips it.
 
-## Fence non-idempotent side effects
+## Protect external side effects
 
-Before an action an upstream system can't deduplicate (for example, sending an email or charging a card), stamp and flush a watermark, then clear it after the side effect commits:
+An agent checkpoint can't make an external operation exactly once. The process
+can stop after the external system commits but before the agent advances its
+checkpoint.
 
-```python
-context.conversation_chain_metadata["email_sent"] = True
-await context.conversation_chain_metadata.flush()   # fence before the side effect
-await email_service.send(...)
-```
+Use this sequence for email, payment, publication, and similar operations:
+
+1. Derive a stable operation ID from the work ID and step name.
+1. Persist the operation ID with the application checkpoint.
+1. Send the operation ID to a downstream API that supports idempotency.
+1. Persist the returned result.
+1. Advance the workflow or response checkpoint.
+
+On recovery, retry with the same operation ID or query the downstream system by
+that ID. A Boolean `pending` or `completed` flag in task metadata can't, by
+itself, determine whether an external commit occurred during the crash window.
 
 ## Handle graceful shutdown
 
