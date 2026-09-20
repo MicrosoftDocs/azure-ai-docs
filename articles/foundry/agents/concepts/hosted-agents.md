@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 09/11/2026
+ms.date: 09/20/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -27,7 +27,8 @@ Choose Hosted agents over prompt-based agents when you need to:
 - **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
 - **Control compute resources** - specify CPU and memory for your agent's sandbox.
-- **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
+- **Run stateful workloads** - persist files across turns by writing to
+  `$HOME` or uploading them through the `/files` endpoint.
 - **Run long-lived work resiliently** - preserve in-progress agent work across process interruptions and replay streamed results to reconnecting clients.
 
 ### How it works
@@ -59,7 +60,11 @@ The platform automatically manages the container lifecycle based on activity, pr
 
 #### Isolation model
 
-Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedicated sandbox with a persistent filesystem (`$HOME` and `/files`), enabling scale-to-zero with stateful resume and predictable cold starts. Sessions are isolated from each other, and state is automatically restored when a session resumes after going idle.
+Hosted agents run in per-session VM-isolated sandboxes. Each session gets a
+dedicated sandbox with a persistent `$HOME` filesystem. Files uploaded through
+the `/files` endpoint are written into that same storage. Sessions are isolated
+from each other, and the filesystem is restored when a session resumes after
+going idle.
 
 ### Protocols: Responses, Invocations, and Invocations (WebSocket)
 
@@ -141,9 +146,13 @@ Hosted agents use **sessions**, **conversations**, and the **state store** to ma
 
 #### Sessions
 
-A session ID identifies a logical session with persisted state, including $HOME and files uploaded via the /files endpoint. The platform provisions compute on demand and restores persisted state onto it.
+A session ID identifies a logical session with a persisted `$HOME` filesystem.
+Files uploaded through the `/files` endpoint are stored in that filesystem.
+The platform provisions compute on demand and restores the filesystem onto it.
 
-- **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
+- **State persistence**: `$HOME`, including files uploaded through the
+  `/files` endpoint, persists across turns and idle periods. When compute is
+  provisioned again, the session filesystem is restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
 - **Session lifetime**: You can configure the idle timeout per agent version from 2 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
@@ -177,13 +186,17 @@ For more information, see [Durable state store for hosted agents](agent-state-st
 
 | State | What happens |
 |-------|----------------------------------------------|
-| **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
+| **Active** | Compute is running. Requests are routed to it. The session's `$HOME`, including uploaded files, is available. |
+| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists the session's `$HOME`. |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
-Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts and releases it when the configured idle timeout elapses after the most recent request. When the session resumes, the platform restores `$HOME` and `/files`, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+Compute follows the session, not the individual request. The platform
+provisions a sandbox when a session starts and releases it when the configured
+idle timeout elapses after the most recent request. When the session resumes,
+the platform restores `$HOME`, including files uploaded through the `/files`
+endpoint. The following diagram shows how a request moves through these states.
 
-:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores the session's persistent home filesystem, including uploaded files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 
