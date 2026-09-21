@@ -71,7 +71,7 @@ How much configuration a guardrail needs depends on the protocol your agent expo
 | `invocations_ws` | Content safety moderation isn't available. |
 
 > [!IMPORTANT]
-> On the `invocations` protocol, a policy attached without `invocations_moderation` is inert. The platform has no way to find the text in your custom body shapes, so nothing is screened and requests pass through unfiltered. The agent still deploys and returns `HTTP 200`, which makes the gap easy to miss.
+> On the `invocations` protocol, a policy attached without `invocations_moderation` is inert. The platform has no way to find the text in your custom body shapes, so it doesn't screen anything and requests pass through unfiltered. The agent still deploys and returns `HTTP 200`, which makes the gap easy to miss.
 
 ## Add a guardrail with the Azure Developer CLI
 
@@ -381,7 +381,7 @@ The platform also forwards a request unscreened when it can't parse the body as 
 
 ### Add moderation with the Azure Developer CLI
 
-Add an `invocationsModeration` block to the `rai_policy` entry in `azure.yaml`. These settings use camel case there, and `azd` maps them to the snake case names the API accepts.
+Add an `invocationsModeration` block to the `rai_policy` entry in `azure.yaml`. These settings use camel case, and `azd` maps them to the snake case names that the API accepts.
 
 1. In your `azure.yaml`, add `invocationsModeration` to the `rai_policy` entry. This example screens the `message` field of the request. The agent streams events shaped like `{"type": "token", "content": "..."}` and a final `{"type": "done", "full_text": "..."}`.
 
