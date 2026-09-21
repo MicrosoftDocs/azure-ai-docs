@@ -626,7 +626,7 @@ To return the search result snippets the model consulted, set `include` to `["we
 
 In Azure OpenAI, `open_page` and `find_in_page` don't return results to your application through `web_search_call.results`, even when you request this option.
 
-The model might still access cached content when available, but that content can be limited. This content isn't retrieved live from the website. Missing results don't necessarily mean the model had no content available.
+The model can still access cached content when available. This content isn't retrieved live from the website. Missing results don't necessarily mean the model had no content available.
 
 # [Python](#tab/python)
 
