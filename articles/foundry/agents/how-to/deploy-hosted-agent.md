@@ -360,7 +360,7 @@ agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0")
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="2.0.0")
         ],
         cpu="1",
         memory="2Gi",
@@ -380,9 +380,9 @@ To expose both protocols, pass both in `protocol_versions`:
 
 ```python
 protocol_versions=[
-    ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS, version="1.0.0"),
-    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.RESPONSES, version="2.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS, version="2.0.0"),
+    ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="2.0.0"),
 ],
 ```
 
@@ -544,7 +544,7 @@ HostedAgentDefinition definition = new(cpu: "1", memory: "2Gi")
 {
     Versions =
     {
-        new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0"),
+        new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0"),
     },
     ContainerConfiguration = new ContainerConfiguration("your-registry.azurecr.io/your-image:tag"),
 };
@@ -560,9 +560,9 @@ To expose more than one protocol, add more `ProtocolVersionRecord` entries:
 ```csharp
 Versions =
 {
-    new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0"),
-    new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0"),
-    new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0"),
+    new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0"),
+    new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "2.0.0"),
+    new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "2.0.0"),
 },
 ```
 
@@ -700,7 +700,7 @@ const agent = await project.agents.createVersion(agentName, {
   container_configuration: {
     image: "your-registry.azurecr.io/your-image:tag",
   },
-  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  protocol_versions: [{ protocol: "responses", version: "2.0.0" }],
   environment_variables: { MODEL_DEPLOYMENT_NAME: "gpt-5-mini" },
 });
 
@@ -711,9 +711,9 @@ To expose both protocols, pass both in `protocol_versions`:
 
 ```typescript
 protocol_versions: [
-  { protocol: "responses", version: "1.0.0" },
-  { protocol: "invocations", version: "1.0.0" },
-  { protocol: "invocations_ws", version: "1.0.0" },
+  { protocol: "responses", version: "2.0.0" },
+  { protocol: "invocations", version: "2.0.0" },
+  { protocol: "invocations_ws", version: "2.0.0" },
 ],
 ```
 
@@ -834,7 +834,7 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
       "cpu": "1",
       "memory": "2Gi",
       "protocol_versions": [
-        {"protocol": "responses", "version": "1.0.0"}
+        {"protocol": "responses", "version": "2.0.0"}
       ],
       "environment_variables": {
         "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
@@ -908,7 +908,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
       "cpu": "1",
       "memory": "2Gi",
       "protocol_versions": [
-        {"protocol": "responses", "version": "1.0.0"}
+        {"protocol": "responses", "version": "2.0.0"}
       ],
       "environment_variables": {
         "MODEL_DEPLOYMENT_NAME": "gpt-5-mini"
