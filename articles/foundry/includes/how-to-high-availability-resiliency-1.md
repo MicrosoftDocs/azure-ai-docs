@@ -303,7 +303,7 @@ for await (const agent of project.agents.list()) {
 
 ### Restore from Cosmos DB point-in-time backup
 
-If you accidentally delete the Cosmos DB database or containers used by your Agent Service runtime:
+If you accidentally delete the Cosmos DB database or containers that your Agent Service runtime uses:
 
 1. Open the [Azure portal](https://portal.azure.com) and go to your Cosmos DB account.
 1. Select **Point in time restore** and choose a restore timestamp from before the deletion.
@@ -323,9 +323,9 @@ az cosmosdb restore \
 ```
 
 > [!NOTE]
-> The restore operation creates the target account in the subscription and resource group specified for the restore operation. The target resource group must already exist. The `--location` parameter sets the write region for the restored account. After restore, update the Agent Service connection and reapply role assignments if you use a system-assigned managed identity. A user-assigned managed identity reduces this overhead.
+> The restore operation creates the target account in the subscription and resource group that you specify for the restore operation. The target resource group must already exist. The `--location` parameter sets the write region for the restored account. After restore, update the Agent Service connection and reapply role assignments if you use a system-assigned managed identity. A user-assigned managed identity reduces this overhead.
 
-For deleted databases or containers, choose the restore scope supported by your scenario. Cosmos DB can restore selected resources to an existing account or restore data to a new account. For details, see [Continuous backup with point-in-time restore in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction).
+For deleted databases or containers, choose the restore scope that your scenario supports. Cosmos DB can restore selected resources to an existing account or restore data to a new account. For details, see [Continuous backup with point-in-time restore in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction).
 
 ### Preserve compliance data
 
