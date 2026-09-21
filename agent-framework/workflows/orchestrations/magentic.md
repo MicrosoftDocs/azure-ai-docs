@@ -179,6 +179,15 @@ workflow = MagenticBuilder(
 >
 > For the prompt parameters and their available placeholders, see the [custom manager prompts sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/magentic_custom_prompts.py). To further customize the manager, subclass `MagenticManagerBase`.
 
+The Python builder's manager options have different ownership behavior:
+
+- `manager_agent` creates a new `StandardMagenticManager` for each workflow while sharing the supplied agent.
+- `manager_agent_factory` and `manager_factory` run once for each call to `build()`.
+- `manager` shares the supplied manager instance across workflows.
+
+> [!WARNING]
+> Don't share a stateful explicit `manager` across concurrent or interleaved workflows. Use `manager_factory` to give each workflow isolated manager state.
+
 ::: zone-end
 
 ## Intermediate Outputs
