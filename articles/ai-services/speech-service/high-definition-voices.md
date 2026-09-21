@@ -101,11 +101,31 @@ The following table lists the available DragonHD voices:
 | `zh-cn-Xiaochen:DragonHDLatestNeural` | Female | GA | |
 | `zh-cn-Yunfan:DragonHDLatestNeural` | Male | GA | |
 
+### Expressive style tags
+Expressive style tags provide a way to direct delivery for HD voice output, making them more expressive and emotional. 
+User can apply supported speaking styles and paralinguistic effects through SSML or square-bracket tags embedded directly in text.
+
+Example in SSML
+```ssml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
+       xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-Ava:DragonHDLatestNeural">
+    <mstts:express-as style="excited">
+      Great news - your order shipped today!
+    </mstts:express-as>
+  </voice>
+</speak>
+```
+Example in inline bracket
+```
+[excited] Great news - your order shipped today!
+```
+
 The following styles and paralinguistic tags are supported in HD voices:
 
 | Type                                | Tag | 
 |-------------------------------------------|--------|
-| Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`, `whispering`   |
+| Styles    |`amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `laughing`, `optimistic`, `panicked`, `pleading`, `quiet`, `reassuring`, `reflective`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shouting`, `shy`, `skeptical`, `slow`, `surprised`, `suspicious`, `sympathetic`, `upset`, `urgent`, `whispering`   |
 | Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`   |
 
 > [!NOTE]
