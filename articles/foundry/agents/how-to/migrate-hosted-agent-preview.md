@@ -3,7 +3,7 @@ title: "Migrate hosted agents to the latest version"
 description: "Migrate your hosted agents from the initial public preview to the latest version, including API, SDK, CLI, protocol library, and identity model changes."
 author: aahill
 ms.author: aahi
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry

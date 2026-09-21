@@ -4,7 +4,7 @@ description: "Make a hosted agent's background responses crash-recoverable, and 
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

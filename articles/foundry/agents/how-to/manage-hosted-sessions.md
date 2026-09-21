@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry

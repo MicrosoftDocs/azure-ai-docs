@@ -4,7 +4,7 @@ description: "Deploy a long-running hosted agent that keeps working with no clie
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

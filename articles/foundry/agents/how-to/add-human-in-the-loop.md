@@ -4,7 +4,7 @@ description: "Pause a long-running hosted agent indefinitely for human approval 
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

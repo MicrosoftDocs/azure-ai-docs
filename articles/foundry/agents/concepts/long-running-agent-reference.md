@@ -4,7 +4,7 @@ description: "API surface for building long-running, crash-resilient hosted agen
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.topic: reference
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service

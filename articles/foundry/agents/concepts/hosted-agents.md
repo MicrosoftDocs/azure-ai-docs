@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry

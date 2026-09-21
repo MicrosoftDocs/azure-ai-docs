@@ -8,7 +8,7 @@ ms.reviewer: glennc
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 09/20/2026
+ms.date: 09/21/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
