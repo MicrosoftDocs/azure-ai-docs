@@ -14,7 +14,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 these policies to control what models your developers can deploy in the Foundry portal.
 
 > [!NOTE]
-> To deploy and use [model router](/azure/ai-foundry/openai/concepts/model-router) while this policy is assigned, include `Microsoft` in the list of allowed publishers, because Microsoft is the publisher of model router. Also include the publisher name of each supported model that you deploy for routing, as listed on the model's card in the [model catalog](/azure/ai-foundry/how-to/model-catalog-overview). For example, to route to Claude models, which you deploy separately, also include `Anthropic`. If the list of allowed publishers doesn't include these names, the policy blocks the model router deployment.
+> To deploy and use [model router](/azure/ai-foundry/openai/concepts/model-router) while the approved-models policy is assigned, model router and every model included in the deployment must satisfy the policy through either an allowed publisher or an allowed asset ID. If you use publisher-based approval, include `Microsoft` for model router and each publisher represented in the selected routing set, such as `Anthropic` for Claude models. Publisher names are listed on each model's card in the [model catalog](/azure/ai-foundry/how-to/model-catalog-overview). With ARM or CLI, any noncompliant model in the requested set causes the entire deployment to fail. In the Foundry portal, noncompliant models can be excluded and a compliant subset deployed.
 
 ## Prerequisites
 

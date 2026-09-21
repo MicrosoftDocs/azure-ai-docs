@@ -10,6 +10,7 @@ ms.topic: overview
 ms.date: 12/30/2025
 ms.author: pafarley
 author: PatrickFarley
+ai-usage: ai-assisted
 ---
 
 # Content Safety in the Microsoft Foundry portal (classic)
@@ -43,7 +44,7 @@ Use Azure AI Content Safety for the following scenarios:
 
 ## Limitations
 
-For supported regions, rate limits, and input requirements for all features, see the [Content Safety service overview](/azure/ai-services/content-safety/overview). For supported languages, see the [Language support](/azure/ai-services/content-safety/language-support) page.
+For supported regions, rate limits, and input requirements for all features, see the [Content Safety service overview](/azure/ai-services/content-safety/overview). For supported languages, see the [region availability](/azure/ai-services/content-safety/region-availability) page.
 
 ## Next step
 

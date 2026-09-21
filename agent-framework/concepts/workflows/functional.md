@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/31/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
 ---
@@ -256,6 +256,13 @@ async def review_pipeline(topic: str, ctx: RunContext) -> str:
 To resume, call `.run(responses={request_id: value})` on the same built workflow. The workflow re-executes from the top, and `request_info()` returns the provided value immediately.
 
 `@step`-decorated functions that ran before the suspension return their cached results on resume instead of re-executing.
+
+For a non-`None` response, `request_info()` coerces and validates the supplied
+value against `response_type` before returning it. A mapping can produce a
+declared model, and a string becomes `Content` when `response_type=Content`.
+If coercion can't produce the requested type, the resume raises `ValueError`.
+An explicit `None` keeps the existing behavior: the workflow logs a warning and
+returns `None`.
 
 **Handling the response:**
 

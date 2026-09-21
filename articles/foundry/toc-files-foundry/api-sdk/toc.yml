@@ -76,6 +76,8 @@ items:
     href: ../../openai/monitor-openai-reference.md
   - name: Realtime API reference
     href: ../../openai/realtime-audio-reference.md
+  - name: GPT-Live event API reference
+    href: ../../openai/gpt-live-reference.md
 
 # Foundry Tools APIs and SDKs
 - name: Foundry Tools SDKs

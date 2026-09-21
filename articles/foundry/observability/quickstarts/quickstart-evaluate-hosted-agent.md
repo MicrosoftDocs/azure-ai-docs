@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Evaluate your hosted agent"
-description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Azure Developer CLI, the Microsoft Foundry portal, or the Microsoft Foundry SDK for Python to create a test suite, run an evaluation, and review the results."
+description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Azure Developer CLI, the Microsoft Foundry portal, or the Microsoft Foundry SDK for Python, C#, or JavaScript/TypeScript."
 author: lgayhardt
 ms.author: lagayhar
 ms.date: 09/03/2026
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > The Azure Developer CLI evaluation experience is currently in preview.
 
-In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows several ways to do the same task: the Azure Developer CLI (`azd`), the Microsoft Foundry portal, the Python SDK, or the JavaScript/TypeScript SDK.
+In this quickstart, you evaluate the hosted agent you deployed in [Deploy your first hosted agent](../../agents/quickstarts/quickstart-hosted-agent.md). You provide a test dataset, choose evaluators, run an evaluation against the deployed agent, and review the scores. Each step shows five ways to do the same task: the Azure Developer CLI (`azd`), the Microsoft Foundry portal, the Python SDK, the C# SDK, and the JavaScript/TypeScript SDK.
 
 Evaluation establishes a quality baseline for your agent and lets you set acceptance thresholds, such as a task adherence passing rate, before you release changes to users.
 
@@ -31,11 +31,12 @@ Before you begin, you need:
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-Each step offers several paths. Use whichever you prefer:
+Each step offers five paths. Use whichever you prefer:
 
 * **Azure Developer CLI**: The `azd ai agent` extension (`azure.ai.agents`), version 0.1.40-preview or later, which provides the `azd ai agent eval` commands. This extension is included in the `microsoft.foundry` extension you installed in the previous quickstart. Verify the installed version with `azd ext list`, and run `azd ext upgrade microsoft.foundry` if needed. Sign in with `azd auth login`.
 * **Foundry portal**: Access to the [Foundry portal](https://ai.azure.com).
 * **Python SDK**: [Python 3.10 or later](https://www.python.org/downloads/), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate. For installation, see [Install the Azure CLI](/cli/azure/install-azure-cli).
+* **C# SDK**: [.NET 10 SDK or later](https://dotnet.microsoft.com/download/dotnet/10.0), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate.
 * **JavaScript/TypeScript SDK**: [Node.js 20 LTS or later](https://nodejs.org/), and the Azure CLI signed in with `az login` so that `DefaultAzureCredential` can authenticate.
 
 ## Step 1: Confirm your deployed agent
@@ -96,6 +97,53 @@ Confirm your deployed agent is registered and available. Replace `<your-agent-na
 ```python
 agent = project_client.agents.get("<your-agent-name>")
 print(f"Found agent: {agent.name}")
+```
+
+The call returns the agent if it exists, or raises an error if the name is wrong or the agent isn't deployed.
+
+### [C# SDK](#tab/csharp)
+
+Install the Foundry SDK and the OpenAI evals client:
+
+```dotnetcli
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package OpenAI
+dotnet add package Azure.Identity
+```
+
+Set two environment variables, and then create the clients. Set `FOUNDRY_PROJECT_ENDPOINT` to your project endpoint and `FOUNDRY_MODEL_NAME` to a chat-completion deployment to use as the judge model. The following code samples assume you run them in this context:
+
+```csharp
+using System.ClientModel;
+using System.Text.Json;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Core;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Evals;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")!;
+var modelDeployment = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_NAME")!;
+
+var credential = new DefaultAzureCredential();
+AIProjectClient projectClient = new(new Uri(endpoint), credential);
+
+// OpenAI-compatible evals client bound to the Foundry project endpoint.
+// A Microsoft Entra token works as the credential because both use "Authorization: Bearer".
+var token = credential.GetToken(new TokenRequestContext(["https://ai.azure.com/.default"])).Token;
+EvaluationClient evalClient = new(
+    new ApiKeyCredential(token),
+    new OpenAIClientOptions { Endpoint = new Uri($"{endpoint}/openai/v1") });
+```
+
+Confirm your deployed agent is registered and available. Replace `<your-agent-name>` with your hosted agent's name:
+
+```csharp
+ProjectsAgentRecord agent = projectClient.AgentAdministrationClient.GetAgent("<your-agent-name>");
+Console.WriteLine($"Found agent: {agent.Name}");
 ```
 
 The call returns the agent if it exists, or raises an error if the name is wrong or the agent isn't deployed.
@@ -252,6 +300,74 @@ evaluation = client.evals.create(
 print(f"Evaluation created: {evaluation.id}")
 ```
 
+### [C# SDK](#tab/csharp)
+
+First, create a JSONL file of test queries for your agent. Each line is a JSON object with a `query` field. Save it as `queries.jsonl`:
+
+```json
+{"query": "Write a haiku about deploying cloud applications."}
+```
+
+Upload the file as a dataset in your project:
+
+```csharp
+AIProjectDataset dataset = projectClient.Datasets.UploadFile(
+    name: "agent-test-queries",
+    version: "1",
+    filePath: "./queries.jsonl");
+```
+
+Next, choose built-in evaluators and map their inputs. The `data_mapping` parameter tells each evaluator where to find the query and the agent response. AI-assisted evaluators need a judge model in `initialization_parameters`; the value must be a chat-completion deployment in your project.
+
+```csharp
+var testingCriteria = new object[]
+{
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "Intent Resolution",
+        evaluator_name = "builtin.intent_resolution",
+        initialization_parameters = new { model = modelDeployment },
+        data_mapping = new { query = "{{item.query}}", response = "{{sample.output_items}}" },
+    },
+    new
+    {
+        type = "azure_ai_evaluator",
+        name = "Task Adherence",
+        evaluator_name = "builtin.task_adherence",
+        initialization_parameters = new { model = modelDeployment },
+        data_mapping = new { query = "{{item.query}}", response = "{{sample.output_items}}" },
+    },
+};
+```
+
+Create the evaluation. It defines the test data schema and testing criteria, and serves as a container for one or more runs:
+
+```csharp
+var createEvaluation = new
+{
+    name = "Agent Quality Evaluation",
+    data_source_config = new
+    {
+        type = "custom",
+        item_schema = new
+        {
+            type = "object",
+            properties = new { query = new { type = "string" } },
+            required = new[] { "query" },
+        },
+        include_sample_schema = true,
+    },
+    testing_criteria = testingCriteria,
+};
+
+ClientResult evaluationResult = evalClient.CreateEvaluation(
+    BinaryContent.Create(BinaryData.FromObjectAsJson(createEvaluation)));
+string evaluationId = JsonDocument.Parse(evaluationResult.GetRawResponse().Content.ToString())
+    .RootElement.GetProperty("id").GetString()!;
+Console.WriteLine($"Evaluation created: {evaluationId}");
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 First, create a JSONL file of test queries for your agent. Each line is a JSON object with a `query` field. Save it as `queries.jsonl`:
@@ -393,6 +509,38 @@ eval_run = client.evals.runs.create(
 print(f"Evaluation run started: {eval_run.id}")
 ```
 
+### [C# SDK](#tab/csharp)
+
+Create a run that sends each test query to your agent and applies the evaluators. Replace `<your-agent-name>` with your hosted agent's name:
+
+```csharp
+var createRun = new
+{
+    name = "Agent Evaluation Run",
+    data_source = new
+    {
+        type = "azure_ai_target_completions",
+        source = new { type = "file_id", id = dataset.Id },
+        input_messages = new
+        {
+            type = "template",
+            template = new object[]
+            {
+                new { type = "message", role = "user", content = new { type = "input_text", text = "{{item.query}}" } },
+            },
+        },
+        // Add a "version" property to the target to pin a specific agent version; omit to use the latest.
+        target = new { type = "azure_ai_agent", name = "<your-agent-name>" },
+    },
+};
+
+ClientResult runResult = evalClient.CreateEvaluationRun(
+    evaluationId, BinaryContent.Create(BinaryData.FromObjectAsJson(createRun)));
+string runId = JsonDocument.Parse(runResult.GetRawResponse().Content.ToString())
+    .RootElement.GetProperty("id").GetString()!;
+Console.WriteLine($"Evaluation run started: {runId}");
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 Create a run that sends each test query to your agent and applies the evaluators. Replace `<your-agent-name>` with your hosted agent's name:
@@ -510,6 +658,55 @@ for item in client.evals.runs.output_items.list(run_id=eval_run.id, eval_id=eval
         print(item.id, result.name, "passed:", result.passed, "score:", result.score)
 ```
 
+### [C# SDK](#tab/csharp)
+
+Poll for completion, and then print the status and the report URL that opens the results in the Foundry portal:
+
+```csharp
+JsonElement run = default;
+while (true)
+{
+    ClientResult runStatus = evalClient.GetEvaluationRun(evaluationId, runId, options: null);
+    run = JsonDocument.Parse(runStatus.GetRawResponse().Content.ToString()).RootElement;
+    string status = run.GetProperty("status").GetString()!;
+    if (status is "completed" or "failed") break;
+    Thread.Sleep(TimeSpan.FromSeconds(5));
+}
+
+Console.WriteLine($"Status: {run.GetProperty("status").GetString()}");
+Console.WriteLine($"Report URL: {run.GetProperty("report_url").GetString()}");
+```
+
+At the run level, you can see aggregated pass and fail counts for each evaluator:
+
+```csharp
+Console.WriteLine(run.GetProperty("result_counts").GetRawText());
+foreach (JsonElement criteria in run.GetProperty("per_testing_criteria_results").EnumerateArray())
+{
+    Console.WriteLine(
+        $"{criteria.GetProperty("testing_criteria").GetString()} " +
+        $"passed: {criteria.GetProperty("passed").GetInt32()} " +
+        $"failed: {criteria.GetProperty("failed").GetInt32()}");
+}
+```
+
+For row-level detail, list the output items. Each result includes the evaluator name, pass or fail, and a score:
+
+```csharp
+ClientResult outputItems = evalClient.GetEvaluationRunOutputItems(
+    evaluationId, runId, limit: 100, order: null, after: null, outputItemStatus: null, options: null);
+foreach (JsonElement item in JsonDocument.Parse(outputItems.GetRawResponse().Content.ToString())
+    .RootElement.GetProperty("data").EnumerateArray())
+{
+    foreach (JsonElement result in item.GetProperty("results").EnumerateArray())
+    {
+        Console.WriteLine(
+            $"{item.GetProperty("id").GetString()} {result.GetProperty("name").GetString()} " +
+            $"passed: {result.GetProperty("passed")} score: {result.GetProperty("score")}");
+    }
+}
+```
+
 ### [JavaScript/TypeScript SDK](#tab/javascript)
 
 Poll for completion, and then print the status and the report URL that opens the results in the Foundry portal:
@@ -575,6 +772,7 @@ To remove the hosted agent and the Azure resources you created, follow the clean
 | `azd ai agent eval` command not found | Run `azd ext list` and verify the `azd ai agent` extension is 0.1.40-preview or later. Upgrade with `azd ext upgrade microsoft.foundry`. |
 | `azd ai agent eval run` fails to find the agent | Confirm the agent is deployed and invokable with `azd ai agent show`. Redeploy with `azd deploy` if needed. |
 | `ModuleNotFoundError` for `azure.ai.projects` or `azure.identity` | Install the SDK: `pip install "azure-ai-projects>=2.0.0" azure-identity`. |
+| C#: `The type or namespace name 'Evals' (or 'AIProjectClient') could not be found` | Add the packages: `dotnet add package Azure.AI.Projects --prerelease`, `dotnet add package OpenAI`, and `dotnet add package Azure.Identity`. |
 | `AuthenticationError`, `DefaultAzureCredential`, or `Forbidden` failure | Sign in with `az login` (or `azd auth login` for the CLI path), and confirm you have the **Foundry User** role on the project. Dataset uploads also require write access to the project's storage. |
 | Agent target not found | Verify the agent name and version with `project_client.agents.get("<your-agent-name>")` or `project_client.agents.list()`. |
 | Many errored rows or unexpectedly low scores | Open the report URL and check whether rows failed with agent response or evaluator errors. Fix the underlying errors, then rerun the evaluation. |
@@ -587,7 +785,7 @@ In this quickstart, you:
 * Created a test dataset and chose evaluators for your hosted agent.
 * Ran an evaluation against the deployed agent.
 * Reviewed aggregated and row-level results.
-* Completed each task with the Azure Developer CLI, the Foundry portal, the Python SDK, or the JavaScript/TypeScript SDK.
+* Completed each task with the Azure Developer CLI, the Foundry portal, the Python SDK, the C# SDK, or the JavaScript/TypeScript SDK.
 
 ## Next steps
 

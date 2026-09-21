@@ -431,7 +431,7 @@ manifest URL with the sample you want to use.
 mkdir my-agent-framework-agent
 cd my-agent-framework-agent
 
-azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/01_basic/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/agent.manifest.yaml
 ```
 
 ::: zone-end
@@ -537,8 +537,8 @@ hosted sandbox.
 ### Protocol version mismatch
 
 If requests fail after an upgrade, confirm that your manifest and hosting
-package both use protocol version 2.0.0. Protocol versions 1.0.0 and 2.0.0 are
-incompatible.
+package both use protocol version 2.0.0. Protocol version 1.0.0 is no longer
+supported.
 
 ## Next step
 

@@ -4,7 +4,7 @@ description: Essential security guidelines for building secure AG-UI application
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/10/2026
+ms.date: 09/14/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -118,6 +118,8 @@ Messages are the primary input vector for user content. Implement validation to 
 ### State Object Validation
 
 The state field accepts arbitrary JSON from clients. Implement schema validation to ensure state conforms to expected structure and size limits.
+
+The Python adapter removes framework-owned and provider-owned session keys from client-supplied state before merging the remaining fields into `AgentSession.state`. For example, client state can't set the Microsoft Foundry hosted-agent runtime session ID that selects a server-owned sandbox. This built-in filtering only covers keys reserved by Agent Framework and its providers, so continue to validate all application-owned state.
 
 **Validation checklist:**
 - Define a JSON schema for expected state structure

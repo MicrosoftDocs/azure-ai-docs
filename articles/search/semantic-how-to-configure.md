@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 Semantic ranking iterates over an initial result set, applying an L2 ranking methodology that promotes the most semantically relevant results to the top of the stack. You can also get semantic captions, with highlights over the most relevant terms and phrases, and [semantic answers](semantic-answers.md).
 
 This article explains how to configure a search index for semantic reranking.
@@ -167,9 +169,7 @@ SearchIndex searchIndex = new(indexName)
 
 ---
 
-## Opt in for prerelease semantic ranking models
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+## Opt in for prerelease semantic ranking models (preview)
 
 Using [preview REST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) and preview Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
 

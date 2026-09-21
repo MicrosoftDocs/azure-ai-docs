@@ -46,7 +46,7 @@ items:
       displayName: quickstart, synchronous, sync, Read, Layout, REST, preview
       href: quickstart/use-synchronous-rest-api.md
     - name: Analyze a document with agentic mode (preview)
-      displayName: quickstart, agentic, reasoning, calculations, validation, REST
+      displayName: quickstart, agentic, reasoning, calculations, validation, REST, Content Understanding Studio, Agentic Extraction
       href: quickstart/agentic-mode.md
   - name: Concepts
     items:

@@ -6,12 +6,13 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 09/10/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, references_regions
+ai-usage: ai-assisted
 ---
 
 # Foundry Agent Service file search tool (classic)
@@ -44,14 +45,14 @@ File search augments agents with knowledge from outside its model, such as propr
 >    * Brazil south
 >    * West Europe
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|Azure AI Foundry Support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|---------|
 | ✔️  | ✔️ | ✔️ | ✔️ | ✔️ |  ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
 
 ## Dependency on agent setup
 
 ### Basic agent setup
-The file search tool has the same functionality as Azure OpenAI Assistants. Microsoft managed search and storage resources are used. 
+The file search tool uses Microsoft-managed search and storage resources.
 - Uploaded files get stored in Microsoft managed storage 
 - A vector store is created using a Microsoft managed search resource 
 

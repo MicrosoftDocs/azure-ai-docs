@@ -49,7 +49,7 @@ items:
     href: ../../agents/how-to/structured-inputs.md
   - name: Deploy and share
     items:
-    - name: Enable incoming A2A (preview)
+    - name: Enable incoming A2A
       href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
     - name: Use routines
       href: ../../agents/how-to/use-routines.md

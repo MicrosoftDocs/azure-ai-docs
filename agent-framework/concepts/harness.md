@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 07/29/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -139,6 +140,13 @@ agent = create_harness_agent(
 Disable defaults with options such as `disable_todo`, `disable_mode`, `disable_file_memory`, `disable_web_search`, `disable_tool_auto_approval`, and `disable_compaction`.
 
 Replace built-in providers with `todo_provider` or `mode_provider`, and add providers with `context_providers`. Skills are opt-in through `skills_provider` or `skills_paths`; file access, background agents, shell tooling, and looping are also opt-in.
+
+When file access is enabled, use `file_access_grep` to find 1-based line numbers, `file_access_read_lines` to inspect an inclusive range, and `file_access_replace_lines` to edit whole lines. `file_access_read_lines` prefixes each line with its number and a tab; omit that prefix when passing the line text as `expected_line`. The expected text prevents a stale or mismatched line number from editing the wrong line.
+
+`file_access_grep` uses case-insensitive regular expressions, accepts patterns up to 256 characters, and applies a 10-second budget to the entire search. Invalid or overlong patterns and searches that exceed the budget return an error. Narrow the directory or pattern before retrying.
+
+> [!IMPORTANT]
+> `file_access_grep` returns matching line text with its line terminator. A custom `AgentFileStore.search()` implementation must return 1-based line numbers that address the same lines as `AgentFileStore.split_lines()` over the text returned by `read()`.
 
 > [!NOTE]
 > `create_harness_agent` is released. Background agents, file access, and looping remain experimental, and shell tooling comes from the pre-release `agent-framework-tools` package.

@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/11/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -230,13 +230,53 @@ if __name__ == "__main__":
     asyncio.run(http_mcp_example())
 ```
 
-For authenticated HTTP endpoints, use `header_provider` so credentials are added only to same-origin requests. During each tool call, the provider receives that run's `function_invocation_kwargs`.
+The HTTP client that `MCPStreamableHTTPTool` creates doesn't persist response
+cookies. If the server requires cookies for authentication, sessions, or load
+balancer affinity, pass a configured `httpx.AsyncClient` through
+`http_client=`. The supplied client retains its cookie behavior and remains
+caller-owned. Scope a cookie-bearing client and its MCP tool session to one
+authenticated principal.
 
-When a run lazily connects the tool, connection-lifetime requests reuse the kwargs from the run that established the connection. These requests include the initialize handshake, tool and prompt discovery, and background pings. Later runs don't replace the connection kwargs until the tool closes.
+For authenticated HTTP endpoints, use `static_headers` for fixed credentials or `header_provider` for values derived from each run. Both paths add headers only to requests for the configured origin and remove them from cross-origin redirects. Fixed headers are copied when the tool is created and don't serialize concurrent calls. When both options supply the same header, the dynamic value from `header_provider` takes precedence.
+
+During each tool call, `header_provider` receives that run's
+`function_invocation_kwargs`. The fixed and dynamic headers together form the
+HTTP session's effective identity. Header names are compared
+case-insensitively, while values remain case-sensitive.
+
+Framework-owned sessions bind this effective identity when they connect. If a
+later run produces a different identity, the tool reconnects before sending the
+call and refreshes session-derived tool and prompt discovery. Initialize,
+discovery, background ping, and other connection-lifetime requests continue to
+use the headers bound to that session.
+
+Caller-supplied sessions remain caller-owned. Because the wrapper can't
+establish or reconnect an unknown identity for those sessions, dynamic header
+resolution with an unknown identity is rejected. A changed identity is also
+rejected; use a separate framework-managed tool instance.
 
 If the tool connects eagerly before a run, the provider receives an empty mapping for connection-lifetime requests. Capture or refresh a construction-time credential in the provider for this case. If a credential only arrives at run time, pass the unconnected tool through `run(tools=[...])` with `function_invocation_kwargs` so that run establishes the connection.
 
-A `KeyError` from the provider is tolerated only when no run seeded the connection, and the request continues without provider headers. After a run seeds the connection, a missing key is a configuration error and the exception is surfaced.
+A `KeyError` from the provider is tolerated only when no run seeded the
+connection, and the request continues without provider headers. After a run
+seeds the connection, a missing key is a configuration error and the exception
+is surfaced.
+
+### Select tools by unambiguous name
+
+When you set `allowed_tools` or list tools in `approval_mode`, use the raw
+remote tool name or an unambiguous prefixed name. If one configured name matches
+multiple raw remote names after normalization, Agent Framework raises
+`ToolExecutionException`. Use an exact raw name or change `tool_name_prefix` to
+make the local names unique.
+
+### MCP sampling deprecation
+
+> [!WARNING]
+> Server-initiated MCP sampling and `sampling_callback` are deprecated as of MCP
+> specification version 2026-07-28 and are removed no later than 2027-07-28.
+> Don't build new integrations on this feature. MCP servers should call model
+> provider APIs directly.
 
 ### Control Host payload retention
 
@@ -244,6 +284,20 @@ When a Host transport, such as AG-UI, consumes an MCP tool result, Agent
 Framework retains the complete JSON-safe result separately from the parsed
 model-facing value. This allows the Host to receive fields such as
 `structuredContent` without adding Host-only data to model history.
+
+Use `tool_result_content` on any MCP transport to select the model-visible value
+when a result contains both `content` and `structuredContent`:
+
+| Value | Model-visible result |
+| --- | --- |
+| `structured_first` | Uses `structuredContent` when present, otherwise `content`. This value is the default. |
+| `content_first` | Uses nonempty `content`, otherwise `structuredContent`. |
+| `content_only` | Ignores `structuredContent`. |
+| `structured_only` | Ignores `content`. |
+| `both` | Appends serialized `structuredContent` after the `content` blocks. |
+
+This selection doesn't change the retained Host payload.
+`parse_tool_results` overrides the selection policy.
 
 Each MCP transport limits a retained Host payload to 1 MiB by default.
 Oversized payloads are omitted from the Host channel, while the parsed result

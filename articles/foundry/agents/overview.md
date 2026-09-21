@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 08/19/2026
+ms.date: 09/11/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -160,7 +160,7 @@ Agent Service provides built-in versioning and publishing so your agents can mov
 
 - **Versioning**: As you iterate on your agent, versions are automatically snapshotted. Roll back to any previous version or compare changes between versions.
 - **[Publishing](how-to/agent-applications.md)**: Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
-- **Distribution**: Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work. Foundry Agent Service supports the OpenResponses and Activity Protocols for Microsoft 365 publishing, an Invocations protocol for flexible endpoint integration with custom apps and services, and the [A2A protocol (preview)](how-to/enable-agent-to-agent-endpoint.md) for agent-to-agent communication.
+- **Distribution**: Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work. Foundry Agent Service supports the OpenResponses and Activity Protocols for Microsoft 365 publishing, an Invocations protocol for flexible endpoint integration with custom apps and services, and the [A2A protocol](how-to/enable-agent-to-agent-endpoint.md) for agent-to-agent communication. A2A v1.0 is generally available, and v0.3 remains in preview.
 
 ## Security, privacy, and compliance
 

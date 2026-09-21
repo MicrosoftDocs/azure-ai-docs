@@ -10,6 +10,7 @@ ms.custom:
   - subject-rbac-steps
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Connect to Azure Cosmos DB using a managed identity (Azure AI Search)
@@ -203,5 +204,5 @@ Connection information and permissions on the remote service are validated at ru
 ## See also
 
 * [Indexing via an Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md)
-* [Indexing via an Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md)
-* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md)
+* [Indexing via an Azure Cosmos DB for MongoDB (preview)](search-how-to-index-cosmosdb-mongodb.md)
+* [Indexing via an Azure Cosmos DB for Apache Gremlin (preview)](search-how-to-index-cosmosdb-gremlin.md)

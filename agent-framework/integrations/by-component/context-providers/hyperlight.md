@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -18,6 +18,7 @@ ai-usage: ai-assisted
     | Getting started                 | ✅ |   ✅   | ❌ | C#/Python documented              |
     | Package installation            | ✅ |   ✅   | ❌ | C#/Python preview                 |
     | HyperlightCodeActProvider       | ✅ |   ✅   | ❌ | No Go Hyperlight package          |
+    | Tool parameter descriptions     | ❌ |   ✅   | ❌ | Python configuration              |
     | Approvals and host tools        | ✅ |   ✅   | ❌ | C#/Python documented              |
     | Manual execute_code wiring      | ✅ |   ✅   | ❌ | C# uses HyperlightExecuteCodeFunction; Python uses HyperlightExecuteCodeTool |
     | Filesystem and network settings | ✅ |   ✅   | ❌ | C#/Python documented              |
@@ -246,8 +247,10 @@ pip install agent-framework-hyperlight --pre
 
 > [!NOTE]
 > The Hyperlight sandbox backend is available on x86-64 Linux and AMD64
-> Windows, including Python 3.14. It requires the corresponding host
-> virtualization support. Other platforms fail when the sandbox is created.
+> Windows for Python 3.10 through 3.14. It requires the corresponding host
+> virtualization support. Python 3.15 and other unsupported environments can
+> install the connector package, but `execute_code` fails when it creates the
+> sandbox because no compatible backend is installed.
 
 ## Use `HyperlightCodeActProvider`
 
@@ -290,6 +293,22 @@ print(result.text)
 ```
 
 Tools registered on the provider are available inside the sandbox through `call_tool(...)`, but they are not exposed as direct agent tools. The provider also exposes CRUD-style management for tools, file mounts, and outbound allow-list entries through methods such as `add_tools(...)`, `remove_tool(...)`, `add_file_mounts(...)`, and `add_allowed_domains(...)`.
+
+### Control host tool parameter descriptions
+
+`HyperlightCodeActProvider` and `HyperlightExecuteCodeTool` accept `tool_description_format`. The default, `"compact"`, includes scalar parameter types, required or optional status, descriptions, enum values, and defaults. Use `"json"` for complete JSON Schema, or select a format by exact, case-sensitive tool name:
+
+```python
+codeact = HyperlightCodeActProvider(
+    tools=[compute, fetch_data],
+    tool_description_format={
+        "compute": "json",
+        "fetch_data": "compact",
+    },
+)
+```
+
+Tools omitted from a mapping use compact format. Compact rendering automatically falls back to complete JSON Schema when it can't represent a schema without losing constraints, such as nested objects, arrays, references, or unions. Parameter schemas are visible to the model, so don't include credentials or other secrets in descriptions, enum values, defaults, or custom schema fields.
 
 ## How approvals and host tools work
 
@@ -361,6 +380,12 @@ To surface text from `execute_code`, end the code with `print(...)`; Hyperlight 
 
 When filesystem access is enabled, write larger artifacts to `/output/<filename>` instead. Returned files are attached to the tool result, while files under `/input` are available for reading inside the sandbox.
 
+The `/output` directory is scoped to one `execute_code` invocation. The
+framework attaches collected files to that invocation's result and then clears
+or isolates the output generation. Consume returned attachments from the
+current result; don't rely on files remaining under `/output` for a later
+`execute_code` call.
+
 For Python, output attachment collection defaults to 20 files, 5 MiB per file,
 and 20 MiB of cumulative raw file data for each invocation. Oversized or
 directory-heavy output returns a structured execution error with no partial
@@ -410,9 +435,9 @@ For workloads that compute totals across a dataset by repeatedly looking up data
 
 This package is still in beta. Plan around the following constraints:
 
-1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP. Python 3.14 is supported.
+1. Platform support follows the published Hyperlight backend wheels: x86-64 Linux with KVM and AMD64 Windows with WHP, using Python 3.10 through 3.14.
 2. The current integration executes Python guest code.
-3. In-memory interpreter state does not persist across separate `execute_code` calls. Use mounted files and `/output` artifacts when data needs to survive across calls.
+3. In-memory interpreter state and `/output` files don't persist across separate `execute_code` calls.
 4. Approval applies to the `execute_code` invocation as a whole, not to each individual `call_tool(...)` inside the same code block.
 5. Tool descriptions, parameter annotations, and return shapes matter more here because the model is writing code against that contract rather than choosing isolated direct tool calls.
 

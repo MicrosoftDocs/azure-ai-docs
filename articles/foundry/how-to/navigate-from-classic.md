@@ -7,7 +7,7 @@ ms.reviewer: nbrady
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: how-to
-ms.date: 09/03/2026
+ms.date: 09/11/2026
 ms.custom:
   - classic-and-new
   - build-2025
@@ -143,7 +143,7 @@ These features are available only in the current Foundry portal:
 | Agent publishing to M365/Teams | GA |
 | Foundry IQ | Preview |
 | Hosted agents | GA |
-| A2A protocol | Preview |
+| A2A protocol | v1.0: GA; v0.3: Preview |
 | Foundry Control Plane | Preview |
 
 ### Classic-only (migration required)

@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 09/09/2026
 ai-usage: ai-assisted
 # customer intent: As a developer or product engineer, I want to understand the details behind how the Azure AI Search Serverless pricing model works so that I can optimize my search service to use the most efficient pricing model suited to my needs and only pay for what I use.
 ---
@@ -18,7 +18,7 @@ Azure AI Search supports two pricing models, each designed for different workloa
 
 - **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a service tier, and you're billed hourly based on provisioned units.
 
-- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
+- **Serverless (preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
@@ -38,6 +38,10 @@ Serverless costs are tied to workload execution:
 - Agentic retrieval consumes compute for search queries and orchestration performed inside the search service.
 
 Storage charges stop only when you delete the index.
+
+To view the cost breakdown and usage rates for your current billing cycle, view the **Scale + Cost** tab in your [Azure portal](https://portal.azure.com/).
+
+:::image type="content" source="media/serverless/serverless-scale-cost-in-portal.png" alt-text="Screenshot of the Scale + Cost tab in the Azure Portal showing the time range for the current billing cycle, cost breakdown, usage details for Compute Units and Storage usage and rates." lightbox="media/serverless/serverless-scale-cost-in-portal.png":::
 
 ### How index size affects compute usage
 
@@ -210,7 +214,7 @@ Query design is a primary driver of variable cost:
 
 - **Use lookups instead of searches when possible**: Retrieving a document by ID is more efficient than running a search query. If you know the document ID, use a lookup instead of a search query. Lookups are more efficient because they retrieve a document directly by key, while search queries invoke the full query pipeline (parsing, index traversal, scoring, and ranking), which increases compute cost.
 
-- **Avoid deep paging (`$skip`)**: Large `$skip` values increase compute because the engine must process and rank all preceding results (for example, `$skip=5000` requires scoring at least 5,000 documents that aren’t returned). This wastes compute (CUs) and increases cost. Instead, use filters to narrow results and limit the number returned with `$top`. Right-size `$top` to match your UI display. For example, `$top=10` costs less than `$top=50` because fewer results are scored and returned. Only request as many results as your application needs, and avoid patterns that require the engine to process large numbers of unused results.
+- **Avoid deep paging (`$skip`)**: Large `$skip` values increase compute because the engine must process, score, and rank the results that precede the requested page. For example, `$skip=5000` requires the engine to process at least 5,000 results that aren't returned. This choice consumes extra compute units (CUs) and can increase cost. Instead, use filters to narrow the result `set` and `$top` to limit the number of results returned. Right-size `$top` for your application or UI. Although `$top` doesn't change how many matching documents are scored, a smaller value reduces the number of results that must be collected, sorted, and serialized. Request only as many results as your application needs, and avoid paging patterns that require the engine to process large numbers of unused results.
 
 - **Minimize facet count and facet scope**: Request only the facets that are displayed in your UI, and keep each facet `count` value as low as practical. Facets require per-query aggregations, and high counts increase compute cost.
 
@@ -242,7 +246,12 @@ Vector queries are compute-intensive because they require similarity calculation
 
 - **Use hybrid search selectively**: Hybrid queries run both keyword and vector retrieval. Use only when necessary for relevance.
 
-- **Tune `maxTextRecallSize` for hybrid queries**: Set `hybridSearch.maxTextRecallSize` to control how many BM25-ranked text results are available to Reciprocal Rank Fusion (RRF). The default is 1,000, and the supported range is 1 through 10,000. Lowering the value can reduce text retrieval and result-fusion work, which can reduce resource utilization and latency. However, it can exclude relevant keyword results, including exact terms, IDs, and acronyms that vector search might miss. Test representative queries, and compare relevance, latency, and the `x-ms-azs-compute-units-consumed` response header before selecting a value. Control vector candidates separately by setting `k` on each vector query.
+- **Lower maxTextRecallSize for hybrid queries**: The `hybridSearch.maxTextRecallSize` setting controls how many BM25-ranked results feed into Reciprocal Rank Fusion. The default is 1,000 (range 1 through 10,000). Compute consumption scales roughly linearly with this value, so lowering it is one of the most direct cost levers for hybrid workloads.
+
+- Values around 500 often cut compute meaningfully with little relevance loss.
+- Going lower can drop keyword matches that vector search misses, such as exact terms, IDs, and acronyms.
+- Control vector candidates separately with k on each vector query.
+- Test representative queries and compare relevance, latency, and the `x-ms-azs-compute-units-consumed` header before settling on a value.
 
 - **Apply filters before vector queries**: Narrow the candidate set before vector search to reduce the amount of data processed. See [How filtering works in vector queries](./vector-search-filters.md#how-filtering-works-in-vector-queries).
 

@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 07/22/2026
 ms.service: agent-framework
+ms.custom: update-code1
 ---
 
 # Self-host Telegram bots

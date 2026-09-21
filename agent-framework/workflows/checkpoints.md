@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 09/04/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -97,6 +97,8 @@ To enable checkpointing, a `CheckpointStorage` needs to be provided when creatin
 
 All three implement the same `CheckpointStorage` protocol, so you can swap providers without changing workflow or executor code.
 
+Built-in orchestration builders accept an optional `name` that becomes the workflow name used to group and discover checkpoints. Their stable defaults are `Concurrent`, `Sequential`, `GroupChat`, `Handoff`, and `Magentic`. Set an explicit name when multiple workflows of the same orchestration type share checkpoint storage. Use the same name when you list or resume their checkpoints.
+
 # [In-Memory](#tab/py-ckpt-inmemory)
 
 `InMemoryCheckpointStorage` keeps checkpoints in process memory. Best for tests, demos, and short-lived workflows where you do not need durability across restarts.
@@ -153,6 +155,14 @@ async for event in workflow.run(input, stream=True):
 # Access checkpoints from the storage
 checkpoints = await checkpoint_storage.list_checkpoints(workflow_name=workflow.name)
 ```
+
+Before writing, `FileCheckpointStorage.save()` verifies that the encoded
+checkpoint can be restored under that storage instance's
+`allowed_checkpoint_types`. It raises `WorkflowCheckpointException` and refuses
+the save if the same instance couldn't decode the checkpoint. The
+`list_checkpoints()`, `list_checkpoint_ids()`, and `get_latest()` operations use
+the same decoding path and consistently skip malformed or otherwise
+undecodable checkpoint files.
 
 See the [Security Considerations](#security-considerations) section for guidance on restricting which Python types can be deserialized via the `allowed_checkpoint_types` parameter.
 
@@ -527,9 +537,11 @@ Ensure that the storage location used for checkpoints is secured appropriately. 
 
 ### Pickle serialization
 
-Both `FileCheckpointStorage` and `CosmosCheckpointStorage` use Python's [`pickle`](https://docs.python.org/3/library/pickle.html) module to serialize non-JSON-native state such as dataclasses, datetimes, and custom objects. To mitigate the risks of arbitrary code execution during deserialization, both providers use a **restricted unpickler** by default. Only a built-in set of safe Python types (primitives, `datetime`, `uuid`, `Decimal`, common collections, etc.) and supported Agent Framework or OpenAI SDK types are permitted during deserialization. Module-prefix allow listing is type-only: helper functions and other non-type globals are rejected.
+`FileCheckpointStorage`, `CosmosCheckpointStorage`, and `FoundryCheckpointStore` use Python's [`pickle`](https://docs.python.org/3/library/pickle.html) module to serialize non-JSON-native state such as dataclasses, datetimes, and custom objects. To mitigate the risks of arbitrary code execution during deserialization, all three stores use a **restricted unpickler** by default. Only a built-in set of safe Python types (primitives, `datetime`, `uuid`, `Decimal`, common collections, etc.) and supported Agent Framework or OpenAI SDK types are permitted during deserialization. Module-prefix allow listing is type-only: helper functions and other non-type globals are rejected.
 
 Agent Framework omits transient `raw_representation` values from framework-native objects before pickling and restores those fields as `None`. Any other unsupported type causes deserialization to fail with a `WorkflowCheckpointException`.
+
+Import a built-in orchestration class from `agent_framework.orchestrations` before loading a checkpoint that contains orchestration state. Loading the orchestration package registers its framework-owned types automatically, so you don't need to add them to `allowed_checkpoint_types`.
 
 To allow additional application-specific types, pass them via the `allowed_checkpoint_types` parameter using `"module:qualname"` format:
 
@@ -565,6 +577,8 @@ storage = CosmosCheckpointStorage(
 )
 ```
 
+`FoundryCheckpointStore` also accepts `allowed_checkpoint_types`. When `ResponsesHostServer` manages workflow checkpoints, create a `CheckpointStoreProvider` with this parameter and pass the provider through `checkpoint_store_provider`.
+
 To register a type for every restricted checkpoint decoder in the current
 Python process, pass the class to `register_checkpoint_type()`:
 
@@ -577,11 +591,11 @@ register_checkpoint_type(SafeState)
 
 Global registration also applies to storage instances created before the call.
 In contrast, `allowed_checkpoint_types` applies only to the
-`FileCheckpointStorage` or `CosmosCheckpointStorage` instance that receives it.
-Prefer the per-store parameter when your code creates the storage. Use global
-registration when your code can't configure the storage instance, such as in a
-hosted environment that creates checkpoint storage for you. Register the type
-before loading a checkpoint that contains it.
+checkpoint storage instance or `CheckpointStoreProvider` that receives it.
+Prefer the per-store or per-provider parameter when your code configures
+storage. Use global registration only when your code can't configure the
+storage instance or provider. Register the type before loading a checkpoint
+that contains it.
 
 Both mechanisms extend the restricted unpickler's allow list; neither makes
 untrusted pickle data safe. Register only trusted application classes because

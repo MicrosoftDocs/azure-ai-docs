@@ -99,6 +99,37 @@ The OpenAI client authenticates with the caller's Microsoft Entra credential, so
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Install the packages with `dotnet add package Azure.AI.Projects --prerelease`, `dotnet add package Azure.AI.Extensions.OpenAI`, and `dotnet add package Azure.Identity`.
+
+```csharp
+using System.ClientModel;
+using System.Text.Json;
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse(
+    "Summarize the latest support tickets");
+
+// The session identifier is returned on the raw response payload.
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+string sessionId = payload.RootElement.GetProperty("agent_session_id").GetString()!;
+Console.WriteLine($"Session: {sessionId}");
+```
+
+The client authenticates with the caller's Microsoft Entra credential, so the session is scoped to that identity.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -162,6 +193,50 @@ Replace `<stable-end-user-id>` with the identifier your service assigns to the s
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+The .NET client sets the header for every request through a pipeline policy:
+
+```csharp
+using System.ClientModel.Primitives;
+
+// Sends the end-user identifier that the platform uses to scope the session.
+public sealed class UserIdentityPolicy(string userId) : PipelinePolicy
+{
+    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        ProcessNext(message, pipeline, index);
+    }
+
+    public override ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("x-ms-user-identity", userId);
+        return ProcessNextAsync(message, pipeline, index);
+    }
+}
+```
+
+Create one client per end user, and then invoke the agent:
+
+```csharp
+var options = new AIProjectClientOptions();
+options.AddPolicy(new UserIdentityPolicy("<stable-end-user-id>"), PipelinePosition.PerCall);
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential(), options);
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint("my-agent");
+
+ClientResult<ResponseResult> result = responsesClient.CreateResponse("Summarize my open tickets");
+
+using JsonDocument payload = JsonDocument.Parse(result.GetRawResponse().Content.ToString());
+Console.WriteLine($"Session: {payload.RootElement.GetProperty("agent_session_id").GetString()}");
+```
+
+Replace `<stable-end-user-id>` with the identifier your service assigns to the signed-in end user. Each end-user identifier gets its own session, so two users invoking the same agent receive different session IDs.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -207,13 +282,16 @@ To see isolation end to end, deploy the [note-taking agent sample](https://githu
 
 By default, each caller sees only their own sessions. An administrator or automation that holds the **Foundry User** role on the project can list and manage every session on the agent, regardless of which identity created it. To manage sessions, see [Manage hosted agent sessions](manage-hosted-sessions.md).
 
-## Isolation keys on container protocol 1.0.0 (deprecated)
+## Isolation keys on container protocol 1.0.0 (unsupported)
 
-Agents on container protocol version 1.0.0 use the earlier isolation-key model, in which the caller supplies an isolation key to scope sessions instead of the platform deriving identity from the Microsoft Entra token. This model - and protocol 1.0.0 itself - is deprecated. Agents on protocol 1.0.0 continue to work until July 31, 2026; afterward, the platform blocks requests to agents that still run on protocol 1.0.0.
+Agents configured with container protocol version 1.0.0 use the earlier
+isolation-key model, in which the caller supplies an isolation key to scope
+sessions instead of the platform deriving identity from the Microsoft Entra
+token. Protocol 1.0.0 is no longer supported, and the platform blocks requests
+to agents that still use it.
 
 Upgrade to protocol 2.0.0 to get the automatic per-user isolation described earlier in this article. Protocol 2.0.0 requires the AgentServer SDK that supports it - [`azure-ai-agentserver-core`](https://pypi.org/project/azure-ai-agentserver-core/) 2.0.0b7 or later for Python, or [`Azure.AI.AgentServer.Core`](https://www.nuget.org/packages/Azure.AI.AgentServer.Core) 1.0.0-beta.26 or later for .NET. Earlier versions use protocol 1.0.0; update them as part of the upgrade.
 
-- If you remain on protocol 1.0.0 for now, see [Pass isolation keys to a hosted agent](pass-isolation-keys.md) for how isolation keys work.
 - To upgrade, see [Migrate hosted agents](migrate-hosted-agent-preview.md).
 
 ## Troubleshoot isolation

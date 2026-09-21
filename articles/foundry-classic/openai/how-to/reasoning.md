@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.date: 09/21/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -956,7 +956,7 @@ print(response.model_dump_json(indent=2))
 
 # [GPT-6 reasoning models](#tab/gpt-6)
 
-| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-17** | **gpt-6-luna**, **2026-09-17** |    
+| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-17** | **gpt-6-luna**, **2026-09-17** |
 | --- | --- | --- | --- |
 | **[Structured outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
 | **Context window** | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens |
@@ -964,19 +964,15 @@ print(response.model_dump_json(indent=2))
 | **Maximum output tokens** | 128,000 tokens | 128,000 tokens | 128,000 tokens |
 | **Input modalities** | Text and images | Text and images | Text and images |
 | **Output modalities** | Text | Text | Text |
-| Chat Completions API | ✅ (without tools) | ✅ (without tools) | ✅ (without tools) |
+| Chat Completions API | ✅ | ✅ | ✅ |
 | Responses API | ✅ | ✅ | ✅ |
 | Streaming | ✅ | ✅ | ✅ |
-| Functions/tools | ✅ (Responses API only) | ✅ (Responses API only) | ✅ (Responses API only) |
-| **[Reasoning effort](#reasoning-effort)** | ✅ (`none` isn't supported) | ✅ | ✅ |
+| Functions/tools | ✅ | ✅ | ✅ |
+| **[Reasoning effort](#reasoning-effort)** | ✅ (including `none`) | ✅ (including `none`) | ✅ (including `none`) |
 | Verbosity | ✅ | ✅ | ✅ |
-| `logprobs` | - | - | - |
-| `temperature` | - | - | - |
-| `top_p` | - | - | - |
-
-Azure OpenAI doesn't currently support mid-conversation reasoning effort changes (`configuration_update`) or mid-turn steering (`response.steer`) for GPT-6 Astra.
-
-Tool calling requires the Responses API. If you use tools with Chat Completions, follow the [Responses API migration guide](/azure/developer/ai/how-to/azure-openai-to-responses).
+| `logprobs` | ✅ | ✅ | ✅ |
+| `temperature` | ✅ | ✅ | ✅ |
+| `top_p` | ✅ | ✅ | ✅ |
 
 # [GPT-5 reasoning models](#tab/gpt-5)
 
@@ -1011,7 +1007,7 @@ Tool calling requires the Responses API. If you use tools with Chat Completions,
 
 | Feature | Description |
 |----|----|
-| `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> GPT-6 Astra doesn't support `none` and requires the Responses API for tool calling. With GPT-5.6 models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](../../../foundry/openai/how-to/reasoning.md#tool-calling-with-reasoning-models). <br><br> **Options (model-dependent)**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
+| `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> With GPT-5.6 models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](../../../foundry/openai/how-to/reasoning.md#tool-calling-with-reasoning-models). <br><br> **Options (model-dependent)**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
 | `verbosity` | A new parameter that gives you more granular control over how concise the model's output is.<br><br>**Options:** `low`, `medium`, `high`. |
 | [`reasoning.context`](../../../foundry/openai/how-to/reasoning.md#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` works only with GPT-6 and GPT-5.6 models, which use this option by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
 | [`reasoning.mode`](../../../foundry/openai/how-to/reasoning.md#reasoning-mode) | Selects standard or pro execution for GPT-6 and GPT-5.6 models with the Responses API. Pro mode does more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
@@ -1054,9 +1050,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 
 ### Unsupported parameters
 
-GPT-6 Astra doesn't support custom `temperature` or `top_p` values or log probabilities (`logprobs`).
-
-Other reasoning models don't support the following parameters:
+Reasoning models other than GPT-6 Astra don't support the following parameters:
 
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
 

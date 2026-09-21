@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/29/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -70,6 +71,12 @@ The package installs `psutil` to terminate child process trees when an execution
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/openai/client_with_local_shell.py" range="3-12,33-97":::
 
+OpenAI provider-hosted shell transcript items remain informational, even when a
+local shell executor is configured. Only a well-formed explicit
+`local_shell_call`, or a shell call marked with `environment.type="local"`,
+enters the local function and approval path. Configuring `LocalShellTool` alone
+doesn't cause provider-hosted shell calls to execute on the host.
+
 Use `mode="stateless"` when each call should run in a fresh process. Use the `AGENT_FRAMEWORK_SHELL` environment variable or the `shell` constructor argument to override the resolved shell.
 
 > [!IMPORTANT]
@@ -83,6 +90,8 @@ Use `mode="stateless"` when each call should run in a fresh process. Use the `AG
 
 > [!WARNING]
 > A command policy is a usability pre-filter, not a security boundary. Shell syntax, aliases, variables, interpreters, and encoded payloads can bypass simple pattern matching.
+
+Prefer string patterns. Python compiles strings with the `regex` engine and applies a one-second budget to each match. A deny-list timeout denies the command, and an allow-list timeout doesn't grant permission. A precompiled `regex.Pattern` uses the same bound. A precompiled standard-library `re.Pattern` preserves its flags but can't be interrupted, so avoid expensive or ambiguous expressions in that form.
 
 ## Add `ShellEnvironmentProvider`
 
