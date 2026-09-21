@@ -63,7 +63,7 @@ Use this pattern when an agent should recall selected relevant information rathe
 
 ### Configure searchable memory
 
-Searchable memory retrieval crosses sessions. Every supplied `application_id`, `agent_id`, and `user_id` is combined as an AND filter, while omitted dimensions remain unfiltered. At least one identifier is required. Supply every stable, trusted identifier that represents an intended isolation boundary.
+Searchable memory retrieval works across sessions. Every supplied `application_id`, `agent_id`, and `user_id` acts as an AND filter, while omitted dimensions remain unfiltered. You need to provide at least one identifier. Supply every stable, trusted identifier that represents an intended isolation boundary.
 
 Add a Redis vectorizer and vector-field settings when you want hybrid retrieval.
 

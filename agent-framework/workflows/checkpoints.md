@@ -460,14 +460,14 @@ the built-in `AgentExecutor` saves and restores:
   agent.
 
 Missing known fields use their defaults, including a new agent session when
-`agent_session` is absent. Unknown fields are ignored. A malformed known field
+`agent_session` is absent. The system ignores unknown fields. A malformed known field
 raises `WorkflowCheckpointException`.
 
 For a custom executor, define a dedicated `TypedDict` for its checkpoint state
 and validate the known fields in `on_checkpoint_restore`. Raise
 `WorkflowCheckpointException` for malformed checkpoint data.
 
-To ensure that the state of a custom executor is captured in a checkpoint, the executor must override the `on_checkpoint_save` method and return its state as a dictionary.
+To capture the state of a custom executor in a checkpoint, override the `on_checkpoint_save` method and return the state as a dictionary.
 
 ```python
 class CustomExecutor(Executor):

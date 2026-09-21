@@ -1746,9 +1746,7 @@ Common functions include:
 
 #### PowerFx state traversal limits
 
-Python validates declarative state before state writes and snapshots, and
-before converting values into PowerFx symbols. Cyclic structures are rejected
-instead of being truncated.
+Python validates declarative state before state writes and snapshots, and before converting values into PowerFx symbols. Cyclic structures are rejected instead of being truncated.
 
 Each traversal uses these fixed limits:
 
@@ -1756,10 +1754,7 @@ Each traversal uses these fixed limits:
 - A maximum of 10,000 visited values, including containers and mapping keys.
 - A maximum aggregate size of 1,048,576 string characters and binary bytes.
 
-Repeated references and aliases count again each time they're traversed. A
-cycle or exceeded limit raises `ValueError` during a state write or snapshot,
-or during PowerFx conversion. These traversal limits don't bound PowerFx
-expression execution or application-defined Python copy or conversion hooks.
+Repeated references and aliases count again each time they're traversed. A cycle or exceeded limit raises `ValueError` during a state write or snapshot, or during PowerFx conversion. These traversal limits don't bound PowerFx expression execution or application-defined Python copy or conversion hooks.
 
 ### Action Types
 

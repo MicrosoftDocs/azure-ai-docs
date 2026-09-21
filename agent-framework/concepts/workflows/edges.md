@@ -1383,7 +1383,7 @@ Run the workflow with ambiguous email content that demonstrates the three-way ro
 
 1. **Cleaner Syntax**: One edge group instead of multiple conditional edges
 2. **Ordered Evaluation**: Cases are evaluated sequentially, stopping at the first match
-3. **Fallback Routing**: The default handles messages when every case predicate returns `False`
+3. **Fallback routing**: The default handles messages when every case predicate returns `False`.
 4. **Better Maintainability**: Adding new cases requires minimal changes
 5. **Type Safety**: Each executor validates its input to catch routing errors
 
