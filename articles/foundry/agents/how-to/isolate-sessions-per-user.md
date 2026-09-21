@@ -285,7 +285,7 @@ By default, each caller sees only their own sessions. An administrator or automa
 ## Isolation keys on container protocol 1.0.0 (unsupported)
 
 Agents configured with container protocol version 1.0.0 used the earlier
-isolation-key model, in which the caller supplied an isolation key to scope
+isolation-key model, in which the caller supplies an isolation key to scope
 sessions instead of the platform deriving identity from the Microsoft Entra
 token. Protocol 1.0.0 is no longer supported, and the platform blocks requests
 to agents that still use it.
