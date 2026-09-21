@@ -19,8 +19,8 @@ The following models are supported for fine-tuning:
 | `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
 | `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text to text |
 | `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | US | ✅ | ❌ | RFT | GA | Text to text |
-| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | US | ✅ | ✅ | RFT | GA<sup>*</sup> | Text to text |
+| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | US | ✅ | ✅ | RFT | GA | Text to text |
+| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | US | ✅ | ❌ | RFT | GA<sup>*</sup> | Text to text |
 | `Ministral-3B` <br> (2411) | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
 | `Qwen-32B` | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
 | `Llama-3.3-70B-Instruct` | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |

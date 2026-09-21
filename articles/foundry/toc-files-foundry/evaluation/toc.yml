@@ -97,28 +97,6 @@ items:
      - name: Analyze evaluation results
        href: ../../observability/how-to/cluster-analysis.md
 
-# Optimization
-- name: Optimization
-  items:
-   - name: Optimize agent prompts
-     href: ../../observability/how-to/prompt-optimizer.md
-   - name: Optimize agents overview (preview)
-     href: ../../agents/concepts/agent-optimizer-overview.md
-   - name: Understand optimizer costs and token usage
-     href: ../../agents/concepts/agent-optimizer-costs.md
-   - name: Optimize a prompt agent
-     href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
-   - name: Optimize a hosted agent
-     items:
-     - name: Quickstart
-       href: ../../agents/quickstarts/quickstart-optimize-hosted-agent.md
-     - name: Make your agent optimization-ready
-       href: ../../agents/how-to/make-agent-optimizer-ready.md
-     - name: Create a custom evaluation dataset
-       href: ../../agents/how-to/create-optimizer-dataset.md
-     - name: Optimize agent instructions and skills
-       href: ../../agents/how-to/optimize-agent-targets.md
-
 # Security Testing
 - name: AI red teaming
   items:

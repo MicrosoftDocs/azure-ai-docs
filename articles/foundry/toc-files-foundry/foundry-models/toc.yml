@@ -199,6 +199,9 @@ items:
   - name: Troubleshoot deployments
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
+  - name: Troubleshoot Azure OpenAI HTTP errors
+    displayName: Troubleshoot common HTTP errors 400 401 403 404 429 500 for Azure OpenAI in Microsoft Foundry
+    href: ../../openai/how-to/troubleshoot-errors.md
 
 - name: Model support
   items:
