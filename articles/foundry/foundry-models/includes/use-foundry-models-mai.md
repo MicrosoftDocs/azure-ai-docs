@@ -466,6 +466,10 @@ When using MAI image models in Foundry, consider these responsible AI practices:
 - **Be transparent**: Disclose that content is AI-generated when sharing or publishing images.
 - **Avoid harmful content**: Don't generate content that could be harmful, misleading, or in violation of privacy.
 
+### Special considerations for editing images of minors
+
+Photorealistic image edits involving minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
+
 ## Related content
 
 - [Explore available models in Foundry](../concepts/models-sold-directly-by-azure.md)
