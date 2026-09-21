@@ -342,7 +342,7 @@ az rest --method POST \
             "cpu": "1",
             "memory": "2Gi",
             "protocol_versions": [
-                {"protocol": "responses", "version": "1.0.0"}
+                {"protocol": "responses", "version": "2.0.0"}
             ]
         }
     }'
@@ -366,7 +366,7 @@ agent = project_client.agents.create_version(
             image="myregistry.azurecr.io/my-agent:v2"
         ),
         protocol_versions=[
-            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+            ProtocolVersionRecord(protocol="responses", version="2.0.0"),
         ],
     ),
 )
@@ -381,7 +381,7 @@ Replace `responses` with `invocations` if your agent uses the Invocations protoc
 
 ```csharp
 var definition = new HostedAgentDefinition(
-    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
     cpu: "1",
     memory: "2Gi")
 {
@@ -407,7 +407,7 @@ const agent = await project.agents.createVersion("my-agent", {
   container_configuration: {
     image: "myregistry.azurecr.io/my-agent:v2",
   },
-  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  protocol_versions: [{ protocol: "responses", version: "2.0.0" }],
 });
 console.log(`Created version: ${agent.version}`);
 ```
@@ -456,7 +456,7 @@ az rest --method POST \
             "cpu": "1",
             "memory": "2Gi",
             "protocol_versions": [
-                {"protocol": "responses", "version": "1.0.0"}
+                {"protocol": "responses", "version": "2.0.0"}
             ]
         }
     }'
@@ -484,7 +484,7 @@ draft = project_client.agents.create_version(
             image="myregistry.azurecr.io/my-agent:experimental"
         ),
         protocol_versions=[
-            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+            ProtocolVersionRecord(protocol="responses", version="2.0.0"),
         ],
     ),
     draft=True,
@@ -498,7 +498,7 @@ print(f"Created draft version: {draft.version}")
 
 ```csharp
 var definition = new HostedAgentDefinition(
-    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
     cpu: "1",
     memory: "2Gi")
 {
