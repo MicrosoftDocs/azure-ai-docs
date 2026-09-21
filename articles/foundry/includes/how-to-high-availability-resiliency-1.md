@@ -6,7 +6,7 @@ ms.reviewer: andyaviles
 ms.author: scottpolly
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/13/2026
+ms.date: 09/21/2026
 ms.custom: include, dev-focus
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,8 @@ ai-usage: ai-assisted
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry account and project. For more information, see the [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md).
 - Azure CLI installed. Required for the lock management, Cosmos DB restore, and verification steps in this article.
-- Azure Cosmos DB continuous backup (7-day or 30-day tier) enabled on the Cosmos DB account that hosts the `enterprise_memory` database, before any incident occurs. Point-in-time restore is unavailable unless you configured this feature in advance.
+- The Azure AI Projects client library and Azure Identity package if you use the SDK examples. Install `azure-ai-projects` and `azure-identity` for Python, or `@azure/ai-projects` and `@azure/identity` for JavaScript or TypeScript.
+- Azure Cosmos DB continuous backup enabled before any incident occurs. Choose the 7-day, 30-day, or 35-day retention tier based on your recovery requirements. Point-in-time restore is unavailable unless you configured this feature in advance.
 - Appropriate RBAC roles:
   - **Contributor** on the resource group to deploy and configure resources.
   - **Owner** on the resource group or individual resources to create and manage resource locks. The **Contributor** role doesn't include `Microsoft.Authorization/locks/write`.
@@ -151,6 +152,8 @@ az cosmosdb update \
 
 **Reference:** [az cosmosdb update](/cli/azure/cosmosdb#az-cosmosdb-update)
 
+Use `Continuous30Days` or `Continuous35Days` instead when your recovery requirements need a longer retention period supported by your account and region.
+
 To enable read replication to a failover region and enable service-managed failover:
 
 ```azurecli
@@ -166,10 +169,10 @@ az cosmosdb update \
 
 ### Deployment modes and recovery implications
 
-In [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup), you host agent state in your own Azure Cosmos DB, Azure AI Search, and Azure Storage accounts. This topology increases incident risk (for example, direct data deletion) but gives you control over recovery procedures. Basic mode provides almost no recovery capabilities for human or automation-based resource loss.
+In [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup), you host agent state in your own Azure Cosmos DB, Azure AI Search, and Azure Storage accounts. This topology increases incident risk (for example, direct data deletion) but gives you control over recovery procedures. Basic mode uses Microsoft-managed resources, so the customer-managed recovery procedures in this article don't apply.
 
-> [!TIP]
-> Agent Service has no availability or state durability Service Level Agreement (SLA). Standard mode offloads SLAs and data durability assurances to the underlying storage components.
+> [!NOTE]
+> Standard mode gives you control over the configuration and recovery of customer-managed dependencies. Review the applicable Azure service-level agreements and configure redundancy, backup, and failover for each dependency.
 
 ### Use user-assigned managed identities
 
@@ -240,7 +243,7 @@ User‑uploaded files attached within conversation threads generally can't be re
 > [!IMPORTANT]
 > The procedures in this section require [Standard agent deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). In Basic mode, Microsoft manages state stores and these recovery options aren't available.
 
-Conversation thread history durability depends on the underlying Standard mode state stores: Cosmos DB `enterprise_memory` database, Azure AI Search indexes, and Storage blobs for attachments. There's no built-in one-click export or import feature for complete conversation histories.
+Conversation thread history durability depends on the underlying Standard mode state stores: Azure Cosmos DB, Azure AI Search indexes, and Storage blobs for attachments. There's no built-in one-click export or import feature for complete conversation histories.
 
 ### Back up agent definitions
 
@@ -265,11 +268,11 @@ with AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential()
 ) as client:
-    agents = client.agents.list_agents()
+    agents = client.agents.list()
     for agent in agents:
-        with open(f"{agent.id}.json", "w") as f:
-            json.dump(agent.model_dump(), f, indent=2)
-        print(f"Saved agent: {agent.name} ({agent.id})")
+      with open(f"{agent.id}.json", "w") as f:
+            json.dump(dict(agent), f, indent=2)
+      print(f"Saved agent: {agent.name} ({agent.id})")
 ```
 
 # [JavaScript/TypeScript](#tab/javascript)
@@ -292,7 +295,7 @@ for await (const agent of project.agents.list()) {
 
 ---
 
-- Reference: [`AIProjectClient.agents.list_agents`](/python/api/overview/azure/ai-projects-readme) (Python)
+- Reference: [`AIProjectClient.agents.list`](/python/api/azure-ai-projects/azure.ai.projects.operations.agentsoperations) (Python)
 - Reference: [`AIProjectClient.agents.list`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 > [!TIP]
@@ -300,11 +303,11 @@ for await (const agent of project.agents.list()) {
 
 ### Restore from Cosmos DB point-in-time backup
 
-If you accidentally delete the `enterprise_memory` database or its containers:
+If you accidentally delete the Cosmos DB database or containers that your Agent Service runtime uses:
 
 1. Open the [Azure portal](https://portal.azure.com) and go to your Cosmos DB account.
 1. Select **Point in time restore** and choose a restore timestamp from before the deletion.
-1. Enter a new target account name for the restored data.
+1. Enter a target account name for the restored data. The target resource group must already exist, and the target region must be eligible for the restore point.
 1. After the restore finishes, update the Foundry Agent Service connection to point to the restored Cosmos DB account. In the Foundry portal, go to your project, select **Settings** > **Connected resources**, find the Cosmos DB connection, and update the endpoint to the new restored account name.
 1. Verify agent functionality by running a test conversation in the restored environment.
 
@@ -320,7 +323,9 @@ az cosmosdb restore \
 ```
 
 > [!NOTE]
-> The restored account is always created in the same subscription and resource group as the source account. If the source resource group was deleted, recreate it with the same name before running this command. The `--location` parameter sets the write region for the restored account, not the target resource group location. After restore, you must update the Agent Service connection string and reapply role assignments if you use system-assigned managed identities. User-assigned managed identities reduce this overhead.
+> The restore operation creates the target account in the subscription and resource group that you specify for the restore operation. The target resource group must already exist. The `--location` parameter sets the write region for the restored account. After restore, update the Agent Service connection and reapply role assignments if you use a system-assigned managed identity. A user-assigned managed identity reduces this overhead.
+
+For deleted databases or containers, choose the restore scope that your scenario supports. Cosmos DB can restore selected resources to an existing account or restore data to a new account. For details, see [Continuous backup with point-in-time restore in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction).
 
 ### Preserve compliance data
 
@@ -420,7 +425,7 @@ Azure OpenAI model deployments are a critical component of most Foundry workload
 
 ### Configure Standard deployments
 
-Standard deployments offer the simplest path to resiliency because Data Zone and Global Standard options distribute requests across multiple regions automatically.
+Global Standard and Data Zone Standard deployments can route inference across their permitted processing scope, but that routing doesn't replace application-level regional failover. Use an API gateway or application logic when your workload must switch between regional project or resource endpoints.
 
 > [!NOTE]
 > If your data-residency requirements allow it, prefer Global Standard deployments. Data Zone deployments (US/EU) are the next best option for organizations that require data processing within a geographic boundary.
@@ -428,15 +433,14 @@ Standard deployments offer the simplest path to resiliency because Data Zone and
 Use the following approach for Standard deployments:
 
 1. Default to Data Zone deployments (US or EU options).
-1. Deploy two Azure OpenAI resources in the same Azure subscription. Place one resource in your preferred region and the other in your secondary (failover) region. Azure OpenAI allocates quota at the subscription-plus-region level, so both resources can share a subscription without affecting quota.
-1. Create one deployment for each model you plan to use in the primary region, and duplicate those model deployments in the secondary region. Allocate the full available quota in each Standard deployment. Full allocation provides higher throughput compared to splitting quota across multiple deployments.
+1. Deploy Azure OpenAI resources and model deployments in the regions required by your workload and confirm quota and model availability for each deployment type. Quota scope and availability depend on the model, deployment type, region, and subscription.
+1. Create one deployment for each model you plan to use in the primary region, and duplicate those model deployments in the secondary region when your failover design requires separate regional endpoints. Size each deployment according to its expected workload instead of assuming that the full available quota is available independently to every deployment.
 1. Select the deployment region based on your network topology. You can deploy an Azure OpenAI resource to any supported region and then create a private endpoint for that resource in a region closer to your application.
     - After traffic enters the Azure OpenAI boundary, the service optimizes routing and processing across available compute in the data zone.
     - Data Zone routing is more efficient and simpler than self-managed load balancing across multiple regional deployments.
-1. If a regional outage makes the primary deployment unreachable, route traffic to the secondary deployment in the passive region within the same subscription.
-    - Because both primary and secondary are Zone deployments, they draw from the same Zone capacity pool across all available regions in the Zone. The secondary deployment protects against the primary Azure OpenAI endpoint being unreachable.
+1. If a regional outage makes the primary deployment unreachable, route traffic to the secondary deployment by using your application or Generative AI Gateway failover logic.
     - Use a Generative AI Gateway that supports load balancing and the circuit-breaker pattern, such as Azure API Management, in front of the Azure OpenAI endpoints to minimize disruption during a regional outage.
-    - If the quota in a given subscription is exhausted, deploy a new subscription in the same manner and place its endpoint behind the Generative AI Gateway.
+    - If quota or model availability prevents deployment in a required region, review the current quota guidance and supported deployment types before selecting another region or subscription.
 
 ### Configure Provisioned deployments
 
@@ -457,11 +461,11 @@ Certain workloads might need their own dedicated provisioned deployment. If so, 
 
 1. Create a dedicated PTU deployment for that application.
 1. Place the workload PTU pool in a different region than the enterprise PTU pool to protect against regional failures. For example, put the workload PTU pool in Region A and the enterprise PTU pool in Region B.
-1. Configure the failover chain so the workload-dedicated deployment fails over first to the enterprise PTU pool and then to the Standard deployment. When utilization of the workload PTU deployment exceeds 100%, requests are still serviced by PTU endpoints, maintaining a higher latency SLA for that application.
+1. Configure the failover chain in your gateway or application so the workload-dedicated deployment can fall back to the enterprise PTU pool or a Standard deployment when those endpoints are available. PTU spillover is documented for routing overage requests to a corresponding Standard deployment; don't assume automatic PTU-to-PTU failover.
 
 :::image type="content" source="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg" alt-text="Diagram showing the failover chain from workload-dedicated PTU to enterprise PTU pool to Standard deployment." lightbox="../how-to/media/disaster-recovery/disaster-recovery-diagram.jpg":::
 
-Traffic flows from the application to the workload-dedicated PTU deployment. If that deployment is saturated (utilization exceeds 100%), traffic overflows to the enterprise PTU pool. If the enterprise pool is unavailable, traffic falls through to the Standard deployment.
+Traffic flows from the application to the workload-dedicated PTU deployment. Your gateway or application can route traffic to another endpoint when the primary deployment is unavailable. When configured, PTU spillover routes overage requests to a corresponding Standard deployment.
 
 This architecture also allows you to stack Standard deployments with Provisioned deployments so that you can balance performance and resiliency. Use PTU for your baseline demand across workloads and Standard deployments for traffic spikes.
 
