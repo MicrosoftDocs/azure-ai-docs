@@ -169,7 +169,7 @@ az cosmosdb update \
 
 ### Deployment modes and recovery implications
 
-In [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup), you host agent state in your own Azure Cosmos DB, Azure AI Search, and Azure Storage accounts. The exact Cosmos DB containers depend on whether your project uses the New or Classic Agent Service runtime. This topology increases incident risk (for example, direct data deletion) but gives you control over recovery procedures. Basic mode uses Microsoft-managed resources, so the customer-managed recovery procedures in this article don't apply.
+In [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup), you host agent state in your own Azure Cosmos DB, Azure AI Search, and Azure Storage accounts. This topology increases incident risk (for example, direct data deletion) but gives you control over recovery procedures. Basic mode uses Microsoft-managed resources, so the customer-managed recovery procedures in this article don't apply.
 
 > [!NOTE]
 > Standard mode gives you control over the configuration and recovery of customer-managed dependencies. Review the applicable Azure service-level agreements and configure redundancy, backup, and failover for each dependency.
@@ -243,7 +243,7 @@ User‑uploaded files attached within conversation threads generally can't be re
 > [!IMPORTANT]
 > The procedures in this section require [Standard agent deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). In Basic mode, Microsoft manages state stores and these recovery options aren't available.
 
-Conversation thread history durability depends on the underlying Standard mode state stores: Azure Cosmos DB, Azure AI Search indexes, and Storage blobs for attachments. The database and container names depend on whether the project uses the New or Classic Agent Service runtime. There's no built-in one-click export or import feature for complete conversation histories.
+Conversation thread history durability depends on the underlying Standard mode state stores: Azure Cosmos DB, Azure AI Search indexes, and Storage blobs for attachments. There's no built-in one-click export or import feature for complete conversation histories.
 
 ### Back up agent definitions
 
