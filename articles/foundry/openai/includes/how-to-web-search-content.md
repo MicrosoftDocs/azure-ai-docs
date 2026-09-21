@@ -399,7 +399,7 @@ A successful response that uses web search typically contains two parts:
 ```
 
 - A `web_search_call` output item that records the action performed:
-  - `search`: a web search action, including the query (and optionally the searched domains).
+  - `search`: a web search action, including the query and optionally the searched domains.
   - `open_page`: indicates the agent opened a page. Available with all reasoning models.
   - `find_in_page`: indicates the agent searched within an opened page. Available with all reasoning models.
 - A message output item containing:
