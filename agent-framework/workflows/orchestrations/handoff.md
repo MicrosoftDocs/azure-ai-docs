@@ -763,7 +763,7 @@ Agents in Agent Framework relies on agent sessions ([`AgentSession`](../../conce
 
 ::: zone pivot="programming-language-python"
 
-Python preserves user text, inline data, URIs, hosted files, and hosted vector stores when it synchronizes handoff history. Non-user messages retain text only, and function calls, function results, approval payloads, and other tool-control content are filtered before forwarding.
+Python preserves user text, inline data, URIs, hosted files, and hosted vector stores when it synchronizes handoff history. Non-user messages retain text only. Before forwarding, the system filters out function calls, function results, approval payloads, and other tool-control content.
 
 ::: zone-end
 
@@ -794,7 +794,7 @@ After broadcasting the response, the participant then checks whether it needs to
 - **with_start_agent()**: Defines which agent receives user input first
 - **add_handoff()**: Configures specific handoff relationships between agents
 - **Output**: By default, `output_from` is set to **all participants**, so every agent's response surfaces as an `"output"` (terminal) event (`AgentResponse` in non-streaming mode, `AgentResponseUpdate` in streaming mode). To designate specific agents as intermediate sources instead, pass `intermediate_output_from=[agent_a, agent_b]` to `HandoffBuilder` — this implicitly demotes those agents from the default output set so their responses become `"intermediate"` events. There is no overlap error; the demotion is silent and intentional.
-- **Context Preservation**: Semantic user content is maintained across handoffs while tool-control content is filtered
+- **Context Preservation**: Preserve semantic user content across handoffs while filtering tool-control content
 - **Request/Response Cycle**: Workflow requests user input, processes responses, and continues until termination condition is met
 - **Tool Approval**: Use `@tool(approval_mode="always_require")` for sensitive operations that need human approval
 - **Function Approval Handling**: When an agent calls a tool requiring approval, a `Content` object with type `"function_approval_request"` is emitted; use `to_function_approval_response(approved=...)` to respond

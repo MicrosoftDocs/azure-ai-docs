@@ -2121,7 +2121,7 @@ With external loop (continues until condition is met):
 | `output.messages` | No | Path to store conversation messages |
 | `output.autoSend` | No | Automatically send the response to workflow output. Accepts a Boolean or a `=` expression and defaults to `true`. |
 
-In Python, `InvokeAzureAgent` evaluates each configured `input.arguments` value and formats nonempty arguments as `key: value` lines. If `input.messages` is also set, its evaluated message text follows the argument lines. When `input.arguments` contains at least one argument and `input.messages` is omitted, Python uses only the argument text and doesn't append fallback values from `Local.input`, `Local.userInput`, `System.LastMessage.Text`, or `Workflow.Inputs`.
+In Python, `InvokeAzureAgent` evaluates each configured `input.arguments` value and formats nonempty arguments as `key: value` lines. If you set `input.messages`, the evaluated message text follows the argument lines. When `input.arguments` contains at least one argument and you omit `input.messages`, Python uses only the argument text and doesn't append fallback values from `Local.input`, `Local.userInput`, `System.LastMessage.Text`, or `Workflow.Inputs`.
 
 Python evaluates `output.autoSend` against current workflow state before each invocation, including resumed external-loop turns. A false result suppresses automatic workflow output only; the agent still runs, and configured response and message outputs are still stored.
 

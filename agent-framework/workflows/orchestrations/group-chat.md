@@ -684,7 +684,7 @@ Calling `WithOutputFrom` or `WithIntermediateOutputFrom` on the group chat build
 
 As mentioned at the beginning of this guide, all agents in a group chat see the synchronized conversation history.
 
-Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concepts/agents/conversations/session.md)) to manage context. In a group chat orchestration, agents **do not** share the same session instance, but the orchestrator synchronizes each agent's session with the conversation history before each turn. To achieve this, after each agent's turn, the orchestrator broadcasts the response to all other agents, making sure all participants have the latest context for their next turn.
+Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concepts/agents/conversations/session.md)) to manage context. In a group chat orchestration, agents **don't** share the same session instance, but the orchestrator synchronizes each agent's session with the conversation history before each turn. The orchestrator broadcasts the response to all other agents after each agent's turn, ensuring all participants have the latest context for their next turn.
 
 ::: zone pivot="programming-language-python"
 
