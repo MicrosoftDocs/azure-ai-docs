@@ -157,6 +157,12 @@ The handler starts with the returned phase index and calls
 `yield stream.checkpoint()` after each completed phase. See the complete
 [resilient-streaming sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/resilient-streaming).
 
+Recovery uses the last response checkpoint that was successfully persisted.
+`yield stream.checkpoint()` requests persistence, but the handler doesn't
+receive a durability acknowledgment. If the provider write fails, AgentServer
+logs `checkpoint persist failed`, the run continues, and a later recovery can
+fall back to an older snapshot.
+
 # [Tasks](#tab/tasks)
 
 ```python
@@ -191,10 +197,10 @@ completed item and crashes while processing `B`.
 
 | Point | Durable state | What runs next |
 | --- | --- | --- |
-| After `A` | The stored response contains output `A`. The application or framework checkpoint says `B` is next. | Start `B`. |
+| After `A` | The successfully persisted response snapshot contains output `A`. The handler derives `B` as the next phase. | Start `B`. |
 | During `B` | The process has local state for `B`, but no checkpoint confirms it. | A crash discards that local state. |
 | After lease expiry | AgentServer still has the original input and stored response. | A replacement worker reenters the handler with `context.is_recovery=True`. |
-| After restore | The handler restores the response snapshot and application checkpoint. | Run `B` again, then continue to `C`. |
+| After restore | The handler restores the response snapshot that contains `A`. | Run `B` again, then continue to `C`. |
 | After client reconnect | The client uses the original response ID and last event cursor. | Replay retained output `A`, then receive new output. |
 
 The recovery boundary is the last durable checkpoint, not the last line of code
@@ -212,10 +218,19 @@ Pick a strategy based on where your progress state lives.
 | --- | --- | --- |
 | Safe rerun | Nowhere | Rerun the whole turn when repeating every operation is safe. |
 | Response checkpoint | Persisted response snapshot | Seed from `context.persisted_response`, then resume after the checkpointed output items. |
-| Upstream-owned resume | Your framework or app store | Rebuild from an agent-framework checkpoint or your database. See [Manage state for long-running agents](manage-task-state.md). |
+| Upstream-owned resume | Your framework or app store | Rebuild from the framework checkpoint associated with the persisted response, when the integration records that association. See [Manage state for long-running agents](manage-task-state.md). |
 | Application checkpoint | Foundry State Store or your database | Load completed-step results and stable operation IDs before continuing. |
 
-Prefer phase boundaries that checkpoint cleanly: complete one output item per phase, then checkpoint. If a phase crashes before its checkpoint it reruns; after the checkpoint the recovered attempt skips it.
+Prefer phase boundaries that checkpoint cleanly: complete one output item per
+phase, then checkpoint. If a phase crashes before its checkpoint, it reruns.
+After a checkpoint is successfully persisted, the recovered attempt skips that
+phase.
+
+When Microsoft Agent Framework (MAF) runs over Responses, its Foundry hosting
+integration records the workflow checkpoint ID in response metadata. Recovery
+uses the checkpoint paired with the persisted response instead of blindly
+loading the newest workflow checkpoint, which might contain progress whose
+output isn't present in the saved response.
 
 ## Protect external side effects
 
@@ -225,7 +240,9 @@ checkpoint.
 
 Use this sequence for email, payment, publication, and similar operations:
 
-1. Derive a stable operation ID from the work ID and step name.
+1. Derive a stable operation ID from the work ID, input or turn ID, and step
+   name. Add an occurrence ID when the same step can run more than once in one
+   turn.
 1. Persist the operation ID with the application checkpoint.
 1. Send the operation ID to a downstream API that supports idempotency.
 1. Persist the returned result.
@@ -261,7 +278,9 @@ if context.shutdown.is_set():
 ```
 
 For a direct resilient task, check `ctx.shutdown.is_set()` and then call
-`await ctx.exit_for_recovery()`.
+`return await ctx.exit_for_recovery()`. The direct-task method returns a
+sentinel that the task manager interprets; the Responses method raises its
+recovery signal internally.
 
 Reference: [`exit_for_recovery`](../concepts/long-running-agent-reference.md#taskcontext)
 

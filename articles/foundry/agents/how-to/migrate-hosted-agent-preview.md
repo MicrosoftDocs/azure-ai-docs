@@ -435,7 +435,7 @@ To migrate:
 1. To partition data your container stores per user, read the `x-agent-user-id` header. For a worked example, see [Multiplex multiple users in one hosted agent session](multiplex-session-users.md).
 
 For the full set of platform headers and environment variables, see
-[Hosted agent runtime specification](../concepts/hosted-agent-contract.md).
+[Hosted agent container requirements](../concepts/hosted-agent-contract.md).
 
 ## Removed APIs
 

@@ -105,7 +105,7 @@ sequenceDiagram
     Runtime-->>Client: Replay stored output and continue
 ```
 
-Recovery reenters the handler from its beginning. It isn't deterministic replay, and it doesn't restore local variables or an in-memory call stack. The handler uses durable checkpoints or watermarks to determine which work is already complete.
+Recovery reenters the handler from its beginning. It isn't deterministic replay, and it doesn't restore local variables or an in-memory call stack. The handler uses durable checkpoints to determine which work is already complete.
 
 Recovery also differs from retry. A retry handles a failure reported by the running handler and can consume retry budget. Recovery continues the same durable attempt after its process disappears.
 
@@ -160,7 +160,7 @@ each agent.
 | Input persistence before handler execution. | Inputs that fit the task payload limit, with large data stored externally. |
 | Lease-based process-loss detection and handler reentry. | A safe rerun path or a recovery branch that resumes from durable progress. |
 | Framework-owned recovery payload and response snapshots. | Checkpoint references, idempotency keys, and side-effect state in application-owned durable storage. |
-| Conversation locking and optional steering queues. | User-visible behavior for queued, rejected, interrupted, and canceled turns. |
+| Conversation serialization and optional steering queues. | User-visible behavior for queued, rejected, interrupted, and canceled turns. |
 | Event retention and cursor-based replay. | Per-turn stream identities and reconnect-aware clients. |
 | Cleanup of terminal or expired runtime records. | Cleanup of external checkpoints, sessions, and application data. |
 
@@ -186,11 +186,16 @@ Choose one of these recovery strategies based on where progress lives:
 | --- | --- | --- |
 | Safe rerun | The operation is inexpensive and repeatable. | Run the handler again from the beginning. |
 | Response checkpoints | Persisted response snapshots mark completed phases. | Restore the latest snapshot and continue after its completed output items. |
-| Upstream-owned resume | An agent framework or application store owns checkpoints. | Resume the upstream session or workflow from its latest durable state. |
+| Upstream-owned resume | An agent framework or application store owns checkpoints. | Resume from the checkpoint associated with the persisted response when the integration records that association. |
 
 Any strategy can carry a stable operation ID for an external side effect. A
 recovered handler uses that ID to retry through a downstream idempotency API or
 to query whether the operation already committed.
+
+For example, the Microsoft Agent Framework Foundry hosting integration records
+the workflow checkpoint ID in response metadata. This pairing prevents
+recovery from loading a newer workflow checkpoint whose output isn't present
+in the saved response.
 
 ## Replay streamed output
 
@@ -221,8 +226,11 @@ Design each handler so that process loss at any point leads to one of two outcom
 
 ## Related content
 
+- [Recover long-running work after a crash](../how-to/recover-long-running-work.md)
+- [Deploy a crash-resilient long-running agent](../how-to/deploy-resilient-agent.md)
+- [Stream long-running agent output with reconnect](../how-to/stream-with-reconnect.md)
 - [Hosted agents in Foundry Agent Service](hosted-agents.md)
 - [Durable state store for hosted agents](agent-state-store.md)
-- [Hosted agent runtime specification](hosted-agent-contract.md)
+- [Hosted agent container requirements](hosted-agent-contract.md)
 - [Add a protocol adapter to your hosted agent](../how-to/add-protocol-adapter.md)
 - [Bring-your-own hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)

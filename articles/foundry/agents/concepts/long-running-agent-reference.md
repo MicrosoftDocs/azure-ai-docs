@@ -34,7 +34,8 @@ The APIs on this page require at least the following package versions. The Pytho
 
 ## Resilient tasks
 
-The task primitives make a unit of work crash-resilient. Declaring a task automatically enables the startup recovery scan.
+The task primitives make a unit of work crash-resilient. In Python, enable the
+task subsystem explicitly before host startup so its recovery scan runs.
 
 ### Declare a task
 
@@ -42,7 +43,15 @@ The task primitives make a unit of work crash-resilient. Declaring a task automa
 
 ```python
 from datetime import timedelta
-from azure.ai.agentserver.core.tasks import task, multi_turn_task, TaskContext, RetryPolicy
+from azure.ai.agentserver.core.tasks import (
+    RetryPolicy,
+    TaskContext,
+    multi_turn_task,
+    set_resilient_tasks_enabled,
+    task,
+)
+
+set_resilient_tasks_enabled(True)
 
 @task(name="summarize", timeout=timedelta(minutes=10), retry=RetryPolicy())
 async def summarize(ctx: TaskContext[str]) -> str:
@@ -64,22 +73,19 @@ async def chat(ctx: TaskContext[dict]) -> dict:
 using Azure.AI.AgentServer.Core.Tasks;
 
 // Register the task engine, then declare tasks.
-builder.Services.AddResilientTasks(credential);
+var tasks = builder.Services.AddResilientTasks(credential);
 
-builder.Services.AddResilientTaskBuilder(tasks =>
+tasks.AddTask<string, string>("summarize", async (TaskContext<string> ctx, CancellationToken ct) =>
 {
-    tasks.AddTask<string, string>("summarize", async (TaskContext<string> ctx, CancellationToken ct) =>
-    {
-        // ...
-        return result;
-    });
-
-    tasks.AddMultiTurnTask<ChatInput, ChatOutput>("chat", async (ctx, ct) =>
-    {
-        // ...
-        return output;
-    }, steerable: true);
+    // ...
+    return result;
 });
+
+tasks.AddMultiTurnTask<ChatInput, ChatOutput>("chat", async (ctx, ct) =>
+{
+    // ...
+    return output;
+}, steerable: true);
 ```
 
 | Method | Purpose |
@@ -144,7 +150,7 @@ The handler receives a `TaskContext` describing the current attempt.
 | `cancel_requested` | `CancelRequested` | Cause: an explicit cancel was requested. |
 | `timeout_exceeded` | `TimeoutExceeded` | Cause: the per-task timeout fired. |
 | `shutdown` | `Shutdown` | The container is shutting down. |
-| `await ctx.exit_for_recovery()` | `await ctx.ExitForRecoveryAsync()` | Defer unfinished work; leaves the record in progress for a later lifetime. |
+| `return await ctx.exit_for_recovery()` | `await ctx.ExitForRecoveryAsync()` | Defer unfinished work; leaves the record in progress for a later lifetime. In Python direct-task handlers, return the sentinel. |
 
 `entry_mode` / `EntryMode` values:
 

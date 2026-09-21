@@ -19,6 +19,14 @@ A [long-running hosted agent](../concepts/long-running-agent-resilience.md) can 
 > [!NOTE]
 > Long-running agents are in preview. APIs and package versions are subject to change.
 
+## Prerequisites
+
+- For Responses, set `store=true` and `background=true`, enable
+  `resilient_background=True` on the server, and retain the response ID and last
+  applied SSE sequence number.
+- For Invocations or direct task primitives, enable resilient tasks before host
+  startup and choose an application stream ID for each request or turn.
+
 ## The streaming model in brief
 
 An event stream connects a producer (your agent work) to one or more subscribers (SSE, WebSocket, or polling). Two rules matter most:
@@ -55,6 +63,7 @@ streams.use_in_memory_replay(
 streams.use_file_backed_replay(
     storage_dir=Path.home() / "streams",
     cursor_fn=lambda ev: ev["n"],
+    ttl_seconds=3600,
 )
 ```
 
@@ -62,9 +71,12 @@ streams.use_file_backed_replay(
 | --- | --- | --- |
 | `use_in_memory_live()` (default) | No | No |
 | `use_in_memory_replay(...)` | Yes, within `ttl_seconds` | No |
-| `use_file_backed_replay(...)` | Yes | Yes |
+| `use_file_backed_replay(...)` | Yes, within `ttl_seconds` | Yes |
 
 For HTTP surfaces, prefer a replay backing so a subscriber can attach late without racing the producer. Choose `use_file_backed_replay` when a producer might crash and a fresh worker must resume the same turn.
+
+Set `ttl_seconds` long enough for your reconnect and recovery window. File
+persistence across a process restart doesn't make retained events permanent.
 
 > [!IMPORTANT]
 > Pass `cursor_fn` if you want cursored reconnect. It receives each event and returns an `int` cursor (a monotonically increasing sequence number is typical). Without it, `subscribe(after=...)` is ignored and `last_cursor()` returns `None`.
@@ -74,14 +86,18 @@ For HTTP surfaces, prefer a replay backing so a subscriber can attach late witho
 The producer and subscriber both call `get_or_create(id)` with the same ID and get the same stream:
 
 ```python
-# Producer (your @task handler)
+# Producer (called from your resilient task handler)
 async def produce(stream_id: str, total: int, chunk: str) -> None:
     stream = await streams.get_or_create(stream_id)
-    try:
-        for n in range(total):
-            await stream.emit({"n": n, "delta": chunk})
-    finally:
-        await stream.close()
+    last = await stream.last_cursor()
+    next_cursor = 0 if last is None else last + 1
+
+    for n in range(next_cursor, total):
+        await stream.emit({"n": n, "delta": chunk})
+
+    # Close only after successful completion. A failed or deferred producer
+    # leaves the stream active so a recovered task can continue it.
+    await stream.close()
 
 # Subscriber (your HTTP layer) - reconnect with the last cursor seen
 async def consume(stream_id: str, last_seen: int | None) -> None:
@@ -90,7 +106,11 @@ async def consume(stream_id: str, last_seen: int | None) -> None:
         yield event
 ```
 
-After a crash, a file-backed producer reads the last persisted cursor and continues emitting from the next one - the same cursor is both the client's reconnect primitive and the producer's recovery primitive. Don't mirror stream cursors into task metadata; the stream log already owns stream progress.
+After a crash, a file-backed producer reads the last persisted cursor and
+continues emitting from the next one. The same cursor is both the client's
+reconnect primitive and the producer's recovery primitive. Don't mirror it
+into separate application state unless another operation must commit
+atomically with stream progress.
 
 ## Reconnect with the Responses protocol
 
