@@ -99,7 +99,7 @@ The `template` field defines the hosted container agent.
 ```yaml
 protocols:
   - protocol: responses    # OpenAI Responses API
-    version: 1.0.0
+    version: 2.0.0
 ```
 
 | Protocol | Description |
@@ -199,7 +199,7 @@ template:
   kind: hosted
   protocols:
     - protocol: responses
-      version: 1.0.0
+      version: 2.0.0
   environment_variables:
     - name: FOUNDRY_MODEL_NAME
       value: ${FOUNDRY_MODEL_NAME}

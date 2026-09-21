@@ -537,8 +537,8 @@ hosted sandbox.
 ### Protocol version mismatch
 
 If requests fail after an upgrade, confirm that your manifest and hosting
-package both use protocol version 2.0.0. Protocol versions 1.0.0 and 2.0.0 are
-incompatible.
+package both use protocol version 2.0.0. Protocol version 1.0.0 is no longer
+supported.
 
 ## Next step
 
