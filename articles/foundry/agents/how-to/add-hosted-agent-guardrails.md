@@ -363,7 +363,7 @@ An event whose `type` matches no selector, or whose `text_field` names no proper
 
 `response_mode` declares the shapes your agent can return. It applies only to output: input screening runs regardless of the value you set. For output, the platform inspects the response `Content-Type` and runs one check, using the streaming check for `text/event-stream` and the buffered check otherwise.
 
-Declare every shape your agent can return. A successful response that carries content in a shape you didn't declare fails rather than skipping moderation. Use `both` only when your agent genuinely answers both ways.
+Declare every shape your agent can return. A successful response that carries content in a shape you didn't declare is rejected with `HTTP 502` rather than skipping moderation. Use `both` only when your agent genuinely answers both ways.
 
 Output screening applies to successful responses that carry content. The platform doesn't screen error responses from your container or empty acknowledgments.
 
@@ -539,6 +539,8 @@ If the request isn't blocked, check that:
 - Each `event_type` matches the `type` value your agent sends in its streamed events.
 - Your `event_type` and `text_field` values match your agent's casing exactly, and name top-level properties rather than nested ones.
 - The policy filters the relevant content category and severity.
+
+If requests fail with `HTTP 502` instead, `response_mode` probably doesn't match what your agent returns. Set it to `both` if your agent answers both ways.
 
 ## Network egress controls (preview)
 
