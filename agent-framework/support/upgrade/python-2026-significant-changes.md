@@ -21,7 +21,7 @@ This document tracks significant Python changes across all 2026 releases, so ple
 
 ## Unreleased
 
-### 🔴 Declarative Power Fx state rejects cycles and enforces traversal limits
+### 🔴 Declarative PowerFx state rejects cycles and enforces traversal limits
 
 **PR:** [#8511](https://github.com/microsoft/agent-framework/pull/8511)
 
@@ -29,13 +29,13 @@ Python declarative workflows now reject cyclic state and enforce fixed limits
 for each state traversal: depth 64 with the root at depth 0, 10,000 visited
 values, and 1,048,576 aggregate string characters and binary bytes. Repeated
 references and aliases count each time. Violations raise `ValueError` during
-state writes, snapshots, or Power Fx conversion.
+state writes, snapshots, or PowerFx conversion.
 
 Remove cycles and reduce or split oversized values before writing them to
-workflow state. Apply separate limits to Power Fx expression execution and
+workflow state. Apply separate limits to PowerFx expression execution and
 application-defined copy or conversion hooks because the traversal limits don't
 bound them. For details, see
-[Power Fx state traversal limits](../../workflows/declarative.md#powerfx-state-traversal-limits).
+[PowerFx state traversal limits](../../workflows/declarative.md#powerfx-state-traversal-limits).
 
 ---
 
@@ -3054,7 +3054,7 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
-| Unreleased | — | 🔴 Breaking | Declarative Power Fx state rejects cycles and enforces fixed per-traversal limits | [#8511](https://github.com/microsoft/agent-framework/pull/8511) |
+| Unreleased | — | 🔴 Breaking | Declarative PowerFx state rejects cycles and enforces fixed per-traversal limits | [#8511](https://github.com/microsoft/agent-framework/pull/8511) |
 | Unreleased | — | 🔴 Breaking | Workflow HTTP requests require absolute HTTP(S) URLs and providers receive the normalized, composed URL | [#8588](https://github.com/microsoft/agent-framework/pull/8588) |
 | Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
 | 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
