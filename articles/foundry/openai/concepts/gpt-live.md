@@ -30,7 +30,7 @@ The turn-based pattern of earlier speech-to-speech models can feel unnatural, es
 GPT-Live splits a voice application into two parts:
 
 - **The live voice model** handles the spoken conversation. It listens, speaks, decides when to respond, and decides when to hand off work. You steer this behavior with a short set of session instructions that cover conversational style and when to delegate.
-- **A backend** handles the work that the live model delegates: reasoning, tool calls, lookups, and longer tasks. You choose the backend model or agent independently of the voice model, and you keep detailed business rules, workflows, and tool definitions there.
+- **A backend** handles delegated reasoning, lookups, tool selection, and longer-running tasks. Hosted tools can run through a configured Responses API backend, while your application executes private functions and remains responsible for permissions, user confirmations, business records, and durable task state.
 
 Your application owns everything outside the spoken exchange: permissions, confirmations, tool execution, business records, and durable task state. Because the live model can keep talking while backend work runs, interrupting speech doesn't cancel that work. Your application decides whether to finish, change, or cancel it.
 
@@ -54,7 +54,7 @@ For guidance on splitting instructions between the voice model and the backend, 
 
 ## Language and translation support
 
-`gpt-live-1` supports speech input and spoken output across all languages and locales. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
+`gpt-live-1`supports multilingual speech and can be used for speech-translation experiences. Quality varies by language and locale, with no guarantee of uniform quality or parity with `gpt-realtime-*`.
 
 The models also support speech translation across all source and target languages and locales. Quality varies by language pair, with no guarantee of parity with `gpt-realtime-translation`.
 
@@ -62,9 +62,8 @@ The models also support speech translation across all source and target language
 
 GPT-Live supports three transports:
 
-- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
+- **WebSocket**: A trusted backend or middle-tier service connects directly and streams audio as base64-encoded PCM16 events. It also supports 16/24-kHz PCM, 8-kHz, G.711, μ-law, and A-law. See [Use GPT-Live for real-time voice](../how-to/gpt-live.md).
 - **WebRTC**: Browser or native clients connect with low-latency, negotiated media tracks. See [Use GPT-Live via WebRTC](../how-to/gpt-live-webrtc.md).
-- **SIP**: SIP is a supported connection transport. Detailed GPT-Live SIP procedures aren't included yet.
 
 ## Choose a voice architecture
 
