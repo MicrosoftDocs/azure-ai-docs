@@ -227,7 +227,7 @@ created = project.agents.create_version_from_code(
             dependency_resolution="remote_build",
         ),
         protocol_versions=[
-            ProtocolVersionRecord(protocol="responses", version="1.0.0")
+            ProtocolVersionRecord(protocol="responses", version="2.0.0")
         ],
         environment_variables={"AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-5.4-mini"},
     ),
@@ -238,7 +238,7 @@ created = project.agents.create_version_from_code(
 print(f"Created version: {created.version}")
 ```
 
-For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="1.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="1.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and ship prebuilt dependencies in the zip. For more information, see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, set the `protocol_versions` entry to `ProtocolVersionRecord(protocol="invocations", version="2.0.0")`. For the Invocations (WebSocket) protocol, use `ProtocolVersionRecord(protocol="invocations_ws", version="2.0.0")`. For `bundled` mode, set `dependency_resolution="bundled"` and include prebuilt dependencies in the zip. For more information, see [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 ### Poll for active
 
@@ -315,7 +315,7 @@ var agentsClient = new AgentAdministrationClient(
 
 var agentDefinition = new HostedAgentDefinition(cpu: "1", memory: "2Gi")
 {
-    Versions = { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    Versions = { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
     CodeConfiguration = new(
         runtime: "dotnet_10",
         entryPoint: ["dotnet", "MyAgent.dll"],
@@ -334,7 +334,7 @@ Console.WriteLine($"Created version: {agentVersion.Version}");
 
 With `remote_build`, point `filePath` at a folder of .NET project sources. Agent Service runs `dotnet restore` and `dotnet publish` for you during provisioning. The `entryPoint` refers to the published assembly name—for example, `["dotnet", "MyAgent.dll"]` for a project named `MyAgent.csproj`.
 
-For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "1.0.0")`. For the Invocations (WebSocket) protocol, use `new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
+For the Invocations protocol, change the `Versions` entry to `new ProtocolVersionRecord(ProjectsAgentProtocol.Invocations, "2.0.0")`. For the Invocations (WebSocket) protocol, use `new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "2.0.0")`. For `bundled` mode, set `dependencyResolution: CodeDependencyResolution.Bundled` and point `filePath` at a folder that holds your `dotnet publish` output. See [Build .NET output (bundled)](#build-net-output-bundled).
 
 ### Poll for active
 
@@ -416,7 +416,7 @@ const created = await project.agents.createVersionFromCode(
           entry_point: ["python", "main.py"],
           dependency_resolution: "remote_build",
         },
-        protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+        protocol_versions: [{ protocol: "responses", version: "2.0.0" }],
         environment_variables: {
           AZURE_AI_MODEL_DEPLOYMENT_NAME: "gpt-5.4-mini",
         },
@@ -432,7 +432,7 @@ const created = await project.agents.createVersionFromCode(
 console.log(`Created version: ${created.version}`);
 ```
 
-For the Invocations protocol, set the `protocol_versions` entry to `{ protocol: "invocations", version: "1.0.0" }`. For the Invocations (WebSocket) protocol, use `{ protocol: "invocations_ws", version: "1.0.0" }`. For `bundled` mode, set `dependency_resolution: "bundled"` and include prebuilt dependencies in the zip.
+For the Invocations protocol, set the `protocol_versions` entry to `{ protocol: "invocations", version: "2.0.0" }`. For the Invocations (WebSocket) protocol, use `{ protocol: "invocations_ws", version: "2.0.0" }`. For `bundled` mode, set `dependency_resolution: "bundled"` and include prebuilt dependencies in the zip.
 
 ### Poll for active
 
@@ -593,7 +593,7 @@ This metadata matches the hello-world zip.
   "definition": {
     "kind": "hosted",
     "protocol_versions": [
-      { "protocol": "responses", "version": "1.0.0" }
+      { "protocol": "responses", "version": "2.0.0" }
     ],
     "cpu": "1",
     "memory": "2Gi",
@@ -609,7 +609,7 @@ This metadata matches the hello-world zip.
 }
 ```
 
-For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "1.0.0" }`. For the Invocations (WebSocket) protocol, use `{ "protocol": "invocations_ws", "version": "1.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
+For the Invocations protocol, replace the `protocol_versions` entry with `{ "protocol": "invocations", "version": "2.0.0" }`. For the Invocations (WebSocket) protocol, use `{ "protocol": "invocations_ws", "version": "2.0.0" }`. For `bundled` mode, set `"dependency_resolution": "bundled"` and follow [Build Linux dependencies locally](#build-linux-dependencies-locally-bundled-python).
 
 `code_configuration` and `container_configuration` are mutually exclusive in the agent definition: include `code_configuration` for source-code deploy (this article) or `container_configuration` for image-based deploy. See [Deploy a hosted agent (container)](deploy-hosted-agent.md) for the image variant.
 
