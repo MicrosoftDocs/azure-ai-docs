@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Quickstart: Vector Search in the Azure portal"
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: mattwojo
@@ -56,9 +56,9 @@ The portal supports the following embedding models for integrated vectorization.
 | [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> |
 | [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>3, 4</sup> | For text:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> |
 
-<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. The wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions).
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. The wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md#supported-regions).
 
-<sup>2</sup> The wizard only supports serverless API deployments for this model. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
+<sup>2</sup> The wizard only supports serverless API deployments for this model. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment (preview).
 
 <sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
@@ -460,7 +460,7 @@ When the wizard completes the configuration, it creates the following objects:
 | Object | Description |
 |--|--|
 | Data source | Represents a connection to your chosen data source. |
-| Index | Contains vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true) so that you can use preview features. |
+| Index | Contains vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true) so that you can use preview features. |
 | Skillset | Contains the following skills and configuration:<br><ul><li>The [Text Split skill](cognitive-search-skill-textsplit.md) for chunking.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) for vectorization.</li><li>The [index projections](search-how-to-define-index-projections.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.</li></ul> |
 | Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
 

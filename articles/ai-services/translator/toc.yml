@@ -16,6 +16,9 @@ items:
   - name: Language Support
     displayName: iso,language code,translation,transliteration,detection,detect,pdf,document
     href: language-support.md
+  - name: Region support
+    displayName: region,regional,geography,endpoint,data residency,availability
+    href: region-support.md
   - name: Pricing
     displayName: cost,free,standard,custom,tier,S1,S2,S3,S4,C2,C3,C4,D3,hosting
     href: https://azure.microsoft.com/pricing/details/cognitive-services/translator

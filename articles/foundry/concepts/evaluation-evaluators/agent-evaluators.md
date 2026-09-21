@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 06/02/2026
+ms.date: 08/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -145,7 +145,7 @@ Your test dataset should contain the fields referenced in your data mappings. Bo
 {"query": "Book a flight to Paris for next Monday", "response": "I've booked your flight to Paris departing next Monday at 9:00 AM."}
 ```
 
-For more complex agent interactions with tool calls, use the conversation array format. This format follows the OpenAI message schema (see [Agent message schema](#agent-message-schema)). The system message is optional but useful for evaluators that assess agent behavior against instructions, including `task_adherence`, `task_completion`, `tool_call_accuracy`, `tool_selection`, `tool_input_accuracy`, `tool_output_utilization`, and `groundedness`:
+For more complex agent interactions with tool calls, use message arrays for `query` and `response`. These arrays use the same OpenAI message structure as the preferred `messages` schema. See [Separate query and response format](../../observability/how-to/evaluation-dataset-schema.md#separate-query-and-response-format). The system message is optional but useful for evaluators that assess agent behavior against instructions, including `task_adherence`, `task_completion`, `tool_call_accuracy`, `tool_selection`, `tool_input_accuracy`, `tool_output_utilization`, and `groundedness`:
 
 ```json
 {
@@ -154,8 +154,8 @@ For more complex agent interactions with tool calls, use the conversation array 
         {"role": "user", "content": "Book a flight to Paris for next Monday"}
     ],
     "response": [
-        {"role": "assistant", "content": [{"type": "tool_call", "name": "search_flights", "arguments": {"destination": "Paris", "date": "next Monday"}}]},
-        {"role": "tool", "content": [{"type": "tool_result", "tool_result": {"flight": "AF123", "time": "9:00 AM"}}]},
+        {"role": "assistant", "content": [{"type": "tool_call", "tool_call_id": "call_123", "name": "search_flights", "arguments": {"destination": "Paris", "date": "next Monday"}}]},
+        {"role": "tool", "tool_call_id": "call_123", "content": [{"type": "tool_result", "tool_result": {"flight": "AF123", "time": "9:00 AM"}}]},
         {"role": "assistant", "content": "I've booked flight AF123 to Paris departing next Monday at 9:00 AM."}
     ]
 }
@@ -163,23 +163,20 @@ For more complex agent interactions with tool calls, use the conversation array 
 
 ### Tool definitions format
 
-The `tool_definitions` field describes the tools available to the agent. It follows the OpenAI function-calling schema — a list of tool objects, where each object contains a `type` (always `"function"`) and a `function` descriptor:
+The `tool_definitions` field describes the tools available to the agent. It contains a list of tool objects with a `name`, `description`, and JSON Schema `parameters` object:
 
 ```json
 [
   {
-    "type": "function",
-    "function": {
-      "name": "search_flights",
-      "description": "Search for available flights to a destination on a given date.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "destination": { "type": "string", "description": "The destination city." },
-          "date": { "type": "string", "description": "The travel date in YYYY-MM-DD format." }
-        },
-        "required": ["destination", "date"]
-      }
+    "name": "search_flights",
+    "description": "Search for available flights to a destination on a given date.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "destination": { "type": "string", "description": "The destination city." },
+        "date": { "type": "string", "description": "The travel date in YYYY-MM-DD format." }
+      },
+      "required": ["destination", "date"]
     }
   }
 ]
@@ -212,7 +209,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -335,59 +332,15 @@ Returns a binary pass/fail result plus precision, recall, and F1 scores:
 
 ## Agent message schema
 
-When using conversation array format, `query` and `response` follow the OpenAI message structure:
-
-- **query**: Contains the conversation history leading up to the user's request. Include the system message to provide context for evaluators that assess agent behavior against instructions.
-- **response**: Contains the agent's reply, including any tool calls and their results.
-
-**Message schema:**
-
-```
-[
-  {
-    "role": "system" | "user" | "assistant" | "tool",
-    "content": "string" | [                // string or array of content items
-      {
-        "type": "text" | "tool_call" | "tool_result",
-        "text": "string",                  // if type == text
-        "tool_call_id": "string",          // if type == tool_call
-        "name": "string",                  // tool name if type == tool_call
-        "arguments": { ... },              // tool args if type == tool_call
-        "tool_result": { ... }             // result if type == tool_result
-      }
-    ]
-  }
-]
-```
-
-**Role types:**
-
-| Role | Description |
-|------|-------------|
-| `system` | Agent instructions (optional, placed at start of query) |
-| `user` | User messages and requests |
-| `assistant` | Agent responses, including tool calls |
-| `tool` | Tool execution results |
-
-**Example:**
-
-```json
-{
-  "query": [
-    {"role": "system", "content": "You are a weather assistant."},
-    {"role": "user", "content": [{"type": "text", "text": "What's the weather in Seattle?"}]}
-  ],
-  "response": [
-    {"role": "assistant", "content": [{"type": "tool_call", "tool_call_id": "call_123", "name": "get_weather", "arguments": {"city": "Seattle"}}]},
-    {"role": "tool", "content": [{"type": "tool_result", "tool_result": {"temp": "62°F", "condition": "Cloudy"}}]},
-    {"role": "assistant", "content": [{"type": "text", "text": "It's currently 62°F and cloudy in Seattle."}]}
-  ]
-}
-```
+Agent evaluators use message arrays when they need instructions, tool
+calls, and tool results. For the canonical message structure, role definitions,
+and example data, see
+[Messages with tool calls](../../observability/how-to/evaluation-dataset-schema.md#messages-with-tool-calls)
+and [Separate query and response format](../../observability/how-to/evaluation-dataset-schema.md#separate-query-and-response-format).
 
 ## Related content
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
 - [Evaluate your AI agents](../../observability/how-to/evaluate-agent.md)
-- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../observability/how-to/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

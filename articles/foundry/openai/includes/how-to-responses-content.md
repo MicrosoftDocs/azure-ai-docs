@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/10/2026
+ms.date: 08/18/2026
 ms.custom: include, classic-and-new, doc-kit-assisted, references_regions
 ai-usage: ai-assisted
 ---
@@ -68,10 +68,11 @@ Before running the examples in this article, confirm that your resource region s
 
 The Responses API supports the following models:
 
+- `gpt-6-astra` (Version: `2026-09-03`)
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
 - `gpt-5.6-luna` (Version: `2026-07-09`)
-- `gpt-chat-latest` (Versions: `2026-06-24`, `2026-05-28`, `2026-05-05`)
+- `gpt-chat-latest` (Versions: `2026-08-06`, `2026-06-24`, `2026-05-28`, `2026-05-05`)
 - `gpt-5.5` (Version: `2026-04-24`)
 - `gpt-5.4-nano` (Version: `2026-03-17`)
 - `gpt-5.4-mini` (Version: `2026-03-17`)
@@ -105,6 +106,8 @@ The Responses API supports the following models:
 - `gpt-image-1` (Version: `2025-04-15`)
 - `gpt-image-1-mini` (Version: `2025-10-06`)
 - `gpt-image-1.5` (Version: `2025-12-16`)
+- `gpt-image-2.5-flare` (Version: `2026-09-09`)
+- `gpt-image-2.5-sunburst` (Version: `2026-09-09`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -115,7 +118,6 @@ Not every model is available in every supported region. Check the [models page](
 > [!NOTE]
 > Not currently supported:
 > - Image generation using multi-turn editing and streaming.
-> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
@@ -2344,7 +2346,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### File ID
 
-Upload an image with the Files API by using `purpose="vision"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
+Upload an image with the Files API by using `purpose="assistants"`, then reference the returned file ID in your request. This approach is useful when you want to reuse the same image across multiple requests without resending its bytes.
 
 # [Python](#tab/python)
 ```python
@@ -2360,7 +2362,7 @@ def create_file(file_path):
     with open(file_path, "rb") as file_content:
         result = client.files.create(
             file=file_content,
-            purpose="vision",
+            purpose="assistants",
         )
         return result.id
 
@@ -2391,6 +2393,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2416,7 +2419,7 @@ byte[] imageBytes = await File.ReadAllBytesAsync("path_to_your_image.jpg");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(imageBytes),
     "path_to_your_image.jpg",
-    FileUploadPurpose.Vision);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2447,7 +2450,7 @@ const client = new OpenAI({
 
 const file = await client.files.create({
   file: fs.createReadStream("path_to_your_image.jpg"),
-  purpose: "vision",
+  purpose: "assistants",
 });
 
 const response = await client.responses.create({
@@ -2471,9 +2474,9 @@ console.log(response.output_text);
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.AzureApiKeyCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputImage;
@@ -2491,7 +2494,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("path_to_your_image.jpg"))
-        .purpose(FilePurpose.VISION)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputImage image = ResponseInputImage.builder()
@@ -2518,9 +2521,9 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the image
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -F purpose="vision" \
+  -F purpose="assistants" \
   -F file="@path_to_your_image.jpg"
 
 # Use the returned file ID with Responses
@@ -2833,6 +2836,7 @@ using Azure.Identity;
 using OpenAI;
 using OpenAI.Files;
 using OpenAI.Responses;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 
 string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
@@ -2858,7 +2862,7 @@ byte[] pdfBytes = await File.ReadAllBytesAsync("nucleus_sampling.pdf");
 OpenAIFile uploadedFile = await fileClient.UploadFileAsync(
     BinaryData.FromBytes(pdfBytes),
     "nucleus_sampling.pdf",
-    FileUploadPurpose.UserData);
+    FileUploadPurpose.Assistants);
 
 CreateResponseOptions options = new()
 {
@@ -2915,9 +2919,9 @@ import com.azure.identity.AuthenticationUtil;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.credential.BearerTokenCredential;
-import com.openai.models.FileCreateParams;
-import com.openai.models.FileObject;
-import com.openai.models.FilePurpose;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FileObject;
+import com.openai.models.files.FilePurpose;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseInputFile;
@@ -2935,7 +2939,7 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
 FileObject uploaded = openAIClient.files().create(
     FileCreateParams.builder()
         .file(Paths.get("document.pdf"))
-        .purpose(FilePurpose.USER_DATA)
+        .purpose(FilePurpose.ASSISTANTS)
         .build());
 
 ResponseInputFile file = ResponseInputFile.builder()
@@ -2961,7 +2965,7 @@ System.out.println(response.outputText());
 # [REST](#tab/rest)
 ```bash
 # Upload the PDF
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/files \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F purpose="assistants" \
   -F file="@your_file.pdf"
@@ -4091,7 +4095,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ---
 
-The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
+The Responses API enables image generation as part of conversations and multistep workflows. It supports image inputs and outputs within context, and it includes built-in tools for generating and editing images.
 
 Compared to the standalone Image API, the Responses API offers two advantages:
 
@@ -4295,6 +4299,29 @@ For examples of how to use reasoning models with the responses API see the [reas
 Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
 
 ## Troubleshooting
+
+<!-- Do not change the following wording without approval. -->
+### Why was my API session ended as a precaution?
+
+When using Astra models, to ensure agents interpret and follow your instructions correctly, we have a system that stops sessions in Responses API if it detects the agent may not have been interpreting your instructions correctly in cases such as transferring sensitive data, accessing sensitive data, or making destructive changes. If your session was ended, this does not necessarily mean the agent made a mistake, only that it is worth reviewing the agent's actions to ensure it interpreted and followed your instructions correctly.
+
+### Which API requests are monitored by this system?
+
+The same system described above asynchronously monitors requests to Astra in the Responses API. The Chat Completions API is not scanned by this specific monitoring system. We recommend using the Responses API for the greatest degree of performance and safety for agentic use cases.
+
+#### How to detect that a conversation has been ended in the API by this system?
+
+When the safety system detects that an agent might have interpreted instructions incorrectly in a significant way, the API returns a safety annotation code misalignment-enforcement. In this case, the given session is unable to be resumed.
+
+#### What should my application do if such a case is detected?
+
+You may want to consider setting up some system to enable somebody to review the actions that the agent took in such conversations, for example by providing a UI to the end-user to review. Once a conversation is stopped for this reason in the API, it is unable to be resumed.
+
+<!-- End of wording that must not be changed without approval. -->
+
+### Resolve common API errors
+
+Use the following guidance to resolve common API errors:
 
 - **401/403**: If you use Microsoft Entra ID, verify your token is scoped for `https://ai.azure.com/.default`. If you use an API key, confirm you're using the correct key for the resource.
 - **404**: Confirm `model` matches your deployment name.

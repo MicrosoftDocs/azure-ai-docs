@@ -30,7 +30,7 @@ items:
     href: ../../agents/how-to/private-skill-catalog.md
   - name: OpenAPI
     href: ../../agents/how-to/tools/openapi.md
-  - name: A2A (preview)
+  - name: A2A
     items:
     - name: Overview
       href: ../../agents/how-to/tools/agent-to-agent.md
@@ -150,5 +150,7 @@ items:
     href: ../../agents/how-to/tools/governance.md
   - name: Identity and authentication
     href: ../../agents/how-to/tools/tool-authentication.md
+  - name: Network isolation
+    href: ../../agents/how-to/tools/toolbox-network-isolation.md
   - name: Best practices
     href: ../../agents/concepts/tool-best-practice.md

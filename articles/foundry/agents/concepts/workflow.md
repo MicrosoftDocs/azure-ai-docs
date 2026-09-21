@@ -44,10 +44,10 @@ Workflows are ideal for scenarios where you need to:
 - Add branching logic (for example, if/else) and variable handling without writing code.
 - Create human-in-the-loop steps (for example, approvals or clarifying questions).
 
-If you want to edit workflow YAML in Visual Studio Code or run workflows in a local playground, see:
+To maintain an existing workflow or build code-based orchestration in Visual Studio Code, see:
 
-- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
-- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
+- [Use and migrate declarative agent workflows](../../how-to/develop/vs-code-agents-workflow-low-code.md)
+- [Create hosted agents](../../how-to/develop/vs-code-agents-workflow-pro-code.md)
 
 ## Understand workflow patterns
 
@@ -352,7 +352,7 @@ Your workflow's YAML definition is the portable artifact you carry to any of the
 1. Switch to the **YAML** view to see the full configuration.
 1. Copy or export the YAML file so you can reuse it in your new environment.
 
-The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration. For more information, see [Develop agents with Agent Inspector](../how-to/agent-inspector.md).
+The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration.
 
 ### Option 1: Microsoft Agent Framework (recommended)
 
@@ -377,5 +377,5 @@ For lightweight scenarios where one agent just needs to call another - without a
 
 - [Foundry Agent Service FAQ](../../agents/faq.yml)
 - [Tool best practices for Foundry agents](tool-best-practice.md)
-- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
-- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
+- [Use and migrate declarative agent workflows](../../how-to/develop/vs-code-agents-workflow-low-code.md)
+- [Create hosted agents](../../how-to/develop/vs-code-agents-workflow-pro-code.md)

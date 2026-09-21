@@ -6,7 +6,7 @@ author: jaep3347
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/22/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -17,13 +17,12 @@ monikerRange: '>=doc-intel-3.1.0'
 
 # Document Intelligence add-on capabilities
 
-
-
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
+::: moniker range="doc-intel-4.0.0"
+**This content applies to:** 🟩 **v4.0 (GA)** | **Previous versions:** 🟦 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.1 (GA)** | **Latest version:** 🟪 [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"

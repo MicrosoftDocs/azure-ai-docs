@@ -10,6 +10,7 @@ ms.topic: include
 ms.custom:
   - references_regions
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # [Chat models](#tab/global-standard-chat)
@@ -116,33 +117,33 @@ ms.custom:
 
 # [Image and Video models](#tab/global-standard-image-and-video)
 
-| **Region** | **gpt-image-2**, **2026-04-21** | **gpt-image-1.5**, **2025-12-16** | **gpt-image-1-mini**, **2025-10-06** | **sora-2**, **2025-10-06** | **gpt-image-1**, **2025-04-15** |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| australiaeast | - | - | - | - | - |
-| brazilsouth | - | - | - | - | - |
-| canadacentral | - | - | - | - | - |
-| canadaeast | - | - | - | - | - |
-| centralus | - | - | - | - | - |
-| eastus | - | - | - | - | - |
-| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| francecentral | - | - | - | - | - |
-| germanywestcentral | - | - | - | - | - |
-| italynorth | - | - | - | - | - |
-| japaneast | - | - | - | - | - |
-| koreacentral | - | - | - | - | - |
-| northcentralus | - | - | - | - | - |
-| norwayeast | - | - | - | - | - |
-| polandcentral | ✅ | ✅ | ✅ | - | ✅ |
-| southafricanorth | - | - | - | - | - |
-| southcentralus | - | - | - | - | - |
-| southeastasia | - | - | - | - | - |
-| southindia | - | - | - | - | - |
-| spaincentral | - | - | - | - | - |
-| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ |
-| switzerlandnorth | - | - | - | - | - |
-| switzerlandwest | - | - | - | - | - |
-| uaenorth | ✅ | ✅ | ✅ | - | ✅ |
-| uksouth | - | - | - | - | - |
-| westeurope | - | - | - | - | - |
-| westus | - | - | - | - | - |
-| westus3 | ✅ | ✅ | ✅ | - | ✅ |
+| **Region** | **gpt-image-2.5-sunburst**, **2026-09-09** | **gpt-image-2.5-flare**, **2026-09-09** | **gpt-image-2**, **2026-04-21** | **gpt-image-1.5**, **2025-12-16** | **gpt-image-1-mini**, **2025-10-06** | **sora-2**, **2025-10-06** | **gpt-image-1**, **2025-04-15** |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| australiaeast | ✅ | ✅ | - | - | - | - | - |
+| brazilsouth | ✅ | ✅ | - | - | - | - | - |
+| canadacentral | ✅ | ✅ | - | - | - | - | - |
+| canadaeast | ✅ | ✅ | - | - | - | - | - |
+| centralus | ✅ | ✅ | - | - | - | - | - |
+| eastus | ✅ | ✅ | - | - | - | - | - |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | ✅ | ✅ | - | - | - | - | - |
+| germanywestcentral | ✅ | ✅ | - | - | - | - | - |
+| italynorth | ✅ | ✅ | - | - | - | - | - |
+| japaneast | ✅ | ✅ | - | - | - | - | - |
+| koreacentral | ✅ | ✅ | - | - | - | - | - |
+| northcentralus | ✅ | ✅ | - | - | - | - | - |
+| norwayeast | ✅ | ✅ | - | - | - | - | - |
+| polandcentral | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| southafricanorth | ✅ | ✅ | - | - | - | - | - |
+| southcentralus | ✅ | ✅ | - | - | - | - | - |
+| southeastasia | ✅ | ✅ | - | - | - | - | - |
+| southindia | ✅ | ✅ | - | - | - | - | - |
+| spaincentral | ✅ | ✅ | - | - | - | - | - |
+| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | ✅ | ✅ | - | - | - | - | - |
+| switzerlandwest | ✅ | ✅ | - | - | - | - | - |
+| uaenorth | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| uksouth | ✅ | ✅ | - | - | - | - | - |
+| westeurope | ✅ | ✅ | - | - | - | - | - |
+| westus | ✅ | ✅ | - | - | - | - | - |
+| westus3 | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |

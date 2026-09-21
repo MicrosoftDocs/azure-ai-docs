@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: none
-ms.date: 08/08/2026
+ms.date: 09/03/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
@@ -25,7 +25,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 - A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Access to the [Foundry portal](https://ai.azure.com).
-- Python 3.9 or later (required for Python SDK steps).
+- Python 3.10 or later (required for Python SDK steps).
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). If those Log Analytics tables are [protected](/azure/azure-monitor/logs/protected-tables-configure) (protection level set to **Protected**), also assign the [Privileged Monitoring Data Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) to read that data.
 
 ## Connect Application Insights
@@ -87,7 +87,7 @@ Use the Foundry portal, the Python SDK, or the .NET SDK to set up recurring eval
 
 # [Python](#tab/python)
 
-This section requires Python 3.9 or later.
+This section requires Python 3.10 or later.
 
 ```bash
 pip install "azure-ai-projects>=2.0.0" python-dotenv
@@ -100,6 +100,14 @@ dotnet add package Azure.AI.Projects
 dotnet add package Azure.AI.Projects.Agents
 dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+This section requires Node.js 22 or later.
+
+```bash
+npm install @azure/ai-projects @azure/identity dotenv
 ```
 
 # [Foundry portal](#tab/portal)
@@ -192,6 +200,37 @@ Console.WriteLine(
 ```
 
 References: [AIProjectClient](/dotnet/api/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity dotenv
+```
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const endpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "";
+
+const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+const openAIClient = project.getOpenAIClient();
+
+const agent = await project.agents.createVersion(
+  process.env["AZURE_AI_AGENT_NAME"] || "",
+  {
+    kind: "prompt",
+    model: process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "",
+    instructions: "You are a helpful assistant that answers general questions",
+  },
+);
+console.log(
+  `Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`,
+);
+```
+
+References: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient), [DefaultAzureCredential class](/javascript/api/@azure/identity/defaultazurecredential)
 
 # [Foundry portal](#tab/portal)
 
@@ -371,6 +410,57 @@ Console.WriteLine(
 
 References: [EvaluationScheduleTask](/dotnet/api/azure.ai.projects.evaluation.evaluationscheduletask), [EvaluationRuleEventType](/dotnet/api/azure.ai.projects.evaluation.evaluationruleeventtype), [EvaluationRule](/dotnet/api/azure.ai.projects.evaluation.evaluationrule)
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+> [!NOTE]
+> The JavaScript/TypeScript SDK currently supports continuous evaluation
+> rules. For scheduled evaluations that run on a fixed recurrence, use the
+> Foundry portal instead.
+
+```javascript
+const dataSourceConfig = { type: "azure_ai_source", scenario: "responses" };
+const testingCriteria = [
+  {
+    type: "azure_ai_evaluator",
+    name: "violence_detection",
+    evaluator_name: "builtin.violence",
+  },
+];
+
+const evalObject = await openAIClient.evals.create({
+  name: "Continuous Evaluation",
+  data_source_config: dataSourceConfig,
+  testing_criteria: testingCriteria,
+});
+console.log(
+  `Evaluation created (id: ${evalObject.id}, name: ${evalObject.name})`,
+);
+
+// Create a continuous evaluation rule that runs on agent response
+// completions
+const continuousEvalRule = await project.evaluationRules.createOrUpdate(
+  "my-continuous-eval-rule",
+  {
+    displayName: "My Continuous Eval Rule",
+    description: "An eval rule that runs on agent response completions",
+    action: {
+      type: "continuousEvaluation",
+      evalId: evalObject.id,
+      maxHourlyRuns: 100,
+    },
+    eventType: "responseCompleted",
+    filter: { agentName: agent.name },
+    enabled: true,
+  },
+);
+console.log(
+  `Continuous Evaluation Rule created (id: ${continuousEvalRule.id}, ` +
+    `name: ${continuousEvalRule.displayName})`,
+);
+```
+
+References: [evaluationRules.createOrUpdate](/javascript/api/@azure/ai-projects/aiprojectclient)
+
 # [Foundry portal](#tab/portal)
 
 1. Open the [Foundry portal](https://ai.azure.com) and go to your project.
@@ -386,7 +476,7 @@ References: [EvaluationScheduleTask](/dotnet/api/azure.ai.projects.evaluation.ev
     - **Scheduled evaluation** runs on a fixed schedule.
     - **Continuous evaluation** samples live traffic as it occurs.
 1. Select a data source available for your evaluation type, such as **Live traffic** for agent traces or **Dataset** for a golden dataset.
-1. For **Live traffic**, optionally select **Random** or [**Intelligent sampling**](../../how-to/develop/cloud-evaluation.md#intelligent-sampling). Then set the maximum number of traces or runs available for the selected evaluation type.
+1. For **Live traffic**, optionally select **Random** or [**Intelligent sampling**](cloud-evaluation-deployed-interactions.md#intelligent-sampling). Then set the maximum number of traces or runs available for the selected evaluation type.
  
 :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png" alt-text="Screenshot of creating recurring evaluation configuration in Foundry with various options." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-recurring-create-wizard.png":::
 
@@ -436,6 +526,19 @@ if (runs.GetArrayLength() > 0)
     {
         Console.WriteLine($"Report URL: {reportUrlElement.GetString()}");
     }
+}
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const evalRunList = await openAIClient.evals.runs.list(evalObject.id, {
+    order: "desc",
+    limit: 10,
+});
+
+if (evalRunList.data.length > 0 && evalRunList.data[0].report_url) {
+    console.log(`Report URL: ${evalRunList.data[0].report_url}`);
 }
 ```
 

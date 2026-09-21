@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/30/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -19,7 +19,7 @@ monikerRange: '>=doc-intel-4.0.0'
 
 # Document Intelligence mortgage document models
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** 
+**This content applies to:** 🟩 **v4.0 (GA)** 
 
 The Document Intelligence Mortgage models use powerful Optical Character Recognition (OCR) capabilities and deep learning models to analyze and extract key fields from mortgage documents. Mortgage documents can be of various formats and quality. The API analyzes mortgage documents and returns a structured JSON data representation. The models currently support English-language documents only. With the latest V4.0, you can now extract signatures from mortgage applications and forms.
 

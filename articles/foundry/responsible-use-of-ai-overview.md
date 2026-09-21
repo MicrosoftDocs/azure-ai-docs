@@ -6,7 +6,7 @@ keywords: Foundry Tools, cognitive
 ms.service: microsoft-foundry
 ms.subservice: foundry-content-safety
 ms.topic: overview
-ms.date: 02/13/2026
+ms.date: 07/21/2026
 ms.author: pafarley
 author: PatrickFarley
 ai-usage: ai-assisted

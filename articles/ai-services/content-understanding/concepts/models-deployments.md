@@ -26,7 +26,7 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models). Please refer to [Model retirement schedule](../../../foundry/openai/concepts/model-retirement-schedule.md) to track Foundry model lifecycle stage and retirement date.
 
 > [!NOTE]
-> GPT-5.2 is now supported across all Content Understanding analyzers. Support for additional models will be added in future updates.
+> The GPT-5 series models, including the mini and nano variants where supported, are available for Content Understanding analyzers. Support for additional models is added in future updates. For the canonical, up-to-date list, see [Service limits - Supported generative models](../service-limits.md#supported-generative-models).
 
 ### Check supported models per analyzer
 

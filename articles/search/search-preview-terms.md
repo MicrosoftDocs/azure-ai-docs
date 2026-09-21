@@ -3,7 +3,7 @@ title: Azure AI Search Preview Terms
 description: Review the supplemental preview terms that apply to features, capabilities, and properties marked (preview) in the Azure AI Search documentation.
 ms.service: azure-ai-search
 ms.topic: legal
-ms.date: 07/29/2026
+ms.date: 08/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -12,8 +12,6 @@ ai-usage: ai-assisted
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
 Azure AI Search releases some features, capabilities, and properties in preview. In the documentation, this functionality is marked (preview). Preview functionality, whether standalone or part of a generally available feature, isn't covered by a service-level agreement, isn't recommended for production workloads, and might change or be constrained before it becomes generally available.
-
-The terms in this article are based on the most recent data plane preview, the `2026-05-01-preview` [Search Service REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true). Depending on the preview version and functionality, some terms might not apply. Nevertheless, you're still responsible for complying with all applicable terms.
 
 ## Licensing and preview terms
 
@@ -32,6 +30,10 @@ Preview features can't modify access permissions that were set outside of Azure 
 ## Cross-origin resource sharing (CORS)
 
 You can use some preview features to enable CORS, which allows browser-based applications to request data directly from the service. Depending on your CORS configuration, external webpages might access or invoke the service and its data by using the user's browser context, which can create security risks. Enabling CORS is at your own risk.
+
+## Model Context Protocol (MCP) security
+
+MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 ## Responsible AI and application testing
 

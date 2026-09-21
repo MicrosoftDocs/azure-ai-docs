@@ -2,14 +2,13 @@
 title: "Immersive Reader JavaScript SDK release notes"
 titleSuffix: Azure AI services
 description: Learn about what's new in the Immersive Reader JavaScript SDK.
-author: rwallerms
+author: sharmas
 manager: guillasi
-
 ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-js
 ms.topic: release-notes
 ms.date: 02/07/2024
-ms.author: rwaller
+ms.author: michtho
 ---
 
 # Release notes for Immersive Reader JavaScript SDK

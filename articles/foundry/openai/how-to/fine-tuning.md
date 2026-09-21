@@ -8,11 +8,12 @@ ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions
   - classic-and-new
   - doc-kit-assisted
+  - dev-focus
 ms.topic: how-to
 ms.date: 07/30/2026
 author: ssalgadodev
 ms.author: ssalgado
-zone_pivot_groups: openai-fine-tuning
+zone_pivot_groups: foundry-fine-tuning
 ai-usage: ai-assisted
 ---
 
@@ -49,6 +50,12 @@ In this article, you learn how to:
 [!INCLUDE [Microsoft Foundry fine-tuning OAI SDK](../includes/fine-tuning-oai-sdk.md)]
 
 # [Foundry SDK](#tab/foundry-sdk)
+
+[!INCLUDE [Microsoft Foundry fine-tuning Foundry SDK](../includes/fine-tuning-foundry-sdk.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [Microsoft Foundry fine-tuning Foundry SDK](../includes/fine-tuning-foundry-sdk.md)]
 

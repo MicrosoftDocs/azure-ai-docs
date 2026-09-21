@@ -29,7 +29,8 @@ Alternatively, telephony integration is supported through third-party providers'
 - [**Twilio Media Streams**](https://www.twilio.com/docs/voice/media-streams)
 - [**Infobip Calls**](https://www.infobip.com/docs/voice-and-video/calls)
 - [**Genesys AudioHook**](https://developer.genesys.cloud/devapps/audiohook/)
-- [**Sinch Programmable Voice**](https://dev.bandwidth.com/docs/voice/programmable-voice/)
+- [**Sinch Voice**](https://developers.sinch.com/docs/voice)
+- [**Bandwidth Voice**](https://dev.bandwidth.com/docs/voice/)
 
 
 :::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::

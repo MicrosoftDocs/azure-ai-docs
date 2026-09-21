@@ -4,7 +4,7 @@ description: Learn how to use langchain-azure-ai with Foundry Memory to build AI
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 07/20/2026
 ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
@@ -154,7 +154,7 @@ This example uses a stable `user_id` as the memory scope. Use `session_id` for p
 conversation context.
 
 ```python
-from langchain_azure_ai.chat_message_histories import AzureAIMemoryChatMessageHistory
+from langchain_azure_ai.chat_history import AzureAIMemoryChatMessageHistory
 from langchain_azure_ai.retrievers import AzureAIMemoryRetriever
 from langchain_core.chat_history import InMemoryChatMessageHistory
 
@@ -216,9 +216,8 @@ from langchain.chat_models import init_chat_model
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import ConfigurableFieldSpec, RunnablePassthrough
 from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
-llm = init_chat_model("azure_ai:gpt4.1" temperature=0.7)
+llm = init_chat_model("azure_ai:gpt-4.1", temperature=0.7)
 
 prompt = ChatPromptTemplate.from_messages(
     [

@@ -6,17 +6,30 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/12/2026
+ms.date: 09/09/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
+## September 2026
+
+### Session affinity for Chat Completions (preview)
+
+Chat Completions applications can now supply an opaque session ID to ask model router to attempt the same eligible model across related conversation turns. Session affinity preserves existing eligibility and fallback behavior and reports whether a request initialized, retained, or switched the model association. For setup and verification guidance, see [Use model router](../../openai/how-to/model-router.md#keep-chat-completions-requests-on-the-same-model-preview).
+
+### Per-request routing metadata (preview)
+
+Chat Completions responses from model router identify the serving model and can now include preview observability metadata when the client opts in to the preview response contract. The metadata reports the routing mode, routing-trace latency, ordered model attempts, HTTP status, and returned errors. Multiple attempts can show when automatic fallback occurred for an individual request. For setup and parsing guidance, see [Monitor model router](../../openai/how-to/monitor-model-router.md).
+
+### Model router expands to 32 regions
+
+Model router is now available in 32 Azure regions. The four additional regions are Canada Central, North Europe, Norway East, and UAE North. North Europe and Norway East support both Global Standard and Data Zone Standard deployments. Canada Central and UAE North support Global Standard deployments only. For the full list, see [Supported regions](../../openai/concepts/model-router.md#supported-regions).
 
 ## August 2026
 
 ### Model router expands to 28 regions
 
-Model router is now available in 28 Azure regions. All 28 regions support Global Standard and Data Zone Standard deployments. For the full list, see [Supported regions](../../openai/concepts/model-router.md#supported-regions).
+Model router is now available in 28 Azure regions. Global Standard was available in all 28 regions, while Data Zone Standard was available in 21. For the full list, see [Supported regions](../../openai/concepts/model-router.md#supported-regions).
 
 ### Model refresh adds GPT-5.6 family and Claude Opus 4.8
 

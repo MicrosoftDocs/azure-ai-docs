@@ -7,12 +7,17 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/26/2026
 ai-usage: ai-assisted
 ---
 # Convert agent traces into evaluation datasets (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+This article covers trace-based dataset generation. For all dataset preparation
+options and the standard field names, see
+[Evaluation datasets in Microsoft Foundry](evaluation-datasets.md) and
+[Evaluation dataset schema](evaluation-dataset-schema.md).
 
 Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to autoselect a representative set, so you get a high-value dataset without manual cleanup.
 
@@ -75,6 +80,8 @@ Drive your deployed agent with realistic traffic, and then use those conversatio
 
 First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
 
+# [Python](#tab/python)
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -85,6 +92,30 @@ project_client = AIProjectClient(
     credential=credential,
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const projectEndpoint =
+  "https://<your-resource>.services.ai.azure.com/api/projects/<your-project>";
+const projectClient = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+```
+
+The JavaScript/TypeScript SDK samples don't yet demonstrate generating a dataset from traces with a time-window trace source. Use the Python SDK or the Foundry portal for that flow. The JavaScript/TypeScript SDK supports the job-management operations shown in [Manage data generation jobs](#manage-data-generation-jobs).
+
+Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
 
 > [!NOTE]
 > Application Insights takes 30–90 seconds to ingest spans. If you submit the job too quickly after capturing traffic, the job runs against an empty window and produces no samples.
@@ -162,11 +193,13 @@ Whether you created the dataset from the portal or the SDK, you can preview it o
 
 After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Evaluate an agent target](cloud-evaluation-targets.md#evaluate-an-agent-target). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
 
 ## Manage data generation jobs
 
 Use `project_client.beta.datasets` APIs to list, inspect, cancel, and delete data generation jobs.
+
+# [Python](#tab/python)
 
 ```python
 from azure.ai.projects.models import DataGenerationJobScenario
@@ -186,6 +219,27 @@ project_client.beta.datasets.cancel_generation_job(job_id="job_...")
 project_client.beta.datasets.delete_generation_job(job_id="job_...")
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+// List recent evaluation jobs.
+for await (const job of projectClient.beta.datasets.listGenerationJobs({
+  limit: 20,
+})) {
+  console.log(`${job.id}  ${job.status}  ${job.inputs?.name}`);
+}
+
+// Cancel a running job.
+await projectClient.beta.datasets.cancelGenerationJob("job_...");
+
+// Delete a job record (produced datasets are not deleted).
+await projectClient.beta.datasets.deleteGenerationJob("job_...");
+```
+
+Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aiprojectclient)
+
+---
+
 ## Limitations
 
 - The Application Insights resource connected to your Foundry project must allow public network access so the service can query Application Insights data. If Application Insights is behind an Azure Monitor Private Link Scope, make sure public network query access is enabled.
@@ -201,7 +255,7 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 
 - [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
-- [Run cloud evaluations](../../how-to/develop/cloud-evaluation.md)
+- [Run cloud evaluations](cloud-evaluation.md)
 - [Multi-turn trace evaluation by ID sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py)
 - [Multi-turn trace evaluation by agent filter sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py)
 - [Trace-based evaluation with intelligent sampling sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py)

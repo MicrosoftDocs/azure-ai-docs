@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/19/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -140,7 +140,7 @@ To reuse the connector across agents and govern it centrally, add it to a [Found
 :::zone pivot="programming-language-rest"
 
 > [!TIP]
-> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same REST flows shown below so the agent can generate connector wiring code for you.
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same REST flows shown in this article so the agent can generate connector wiring code for you.
 
 ### Step 1: Acquire tokens
 
@@ -485,30 +485,76 @@ agent = client.agents.create_version(
 print(f"Created agent: {agent.name}, version: {agent.version}")
 ```
 
+**Prompt agent (.NET SDK):**
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var projectEndpoint = "https://<account>.services.ai.azure.com/api/projects/<project>";
+var toolboxConnectionName = "connector-toolbox-conn";
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+var agentsClient = projectClient.AgentAdministrationClient;
+
+// 1. Add the connector's managed MCP server to a toolbox.
+//    connectionName and serverUrl come from the connector you created earlier.
+AgentToolboxes toolboxes = agentsClient.GetAgentToolboxes();
+MCPToolboxTool connectorTool = new(serverLabel: connectionName)
+{
+    ServerUri = new Uri(serverUrl),
+    ProjectConnectionId = connectionName,
+    ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+};
+ToolboxVersion toolbox = toolboxes.CreateVersion(
+    name: "connector-toolbox",
+    tools: [connectorTool],
+    description: "Toolbox with the connector MCP server");
+
+// 2. The toolbox exposes an MCP-compatible endpoint.
+var toolboxMcpUrl =
+    $"{projectEndpoint}/toolboxes/{toolbox.Name}/versions/{toolbox.Version}/mcp?api-version=v1";
+
+// 3. Create a remote-tool project connection that points at the toolbox endpoint,
+//    once, with the Azure Developer CLI (see the Python example for the command).
+
+// 4. Attach the toolbox to the agent as an MCP tool.
+McpTool toolboxTool = ResponseTool.CreateMcpTool(
+    serverLabel: "toolbox",
+    serverUri: new Uri(toolboxMcpUrl),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval));
+toolboxTool.ProjectConnectionId = toolboxConnectionName;
+
+DeclarativeAgentDefinition definition = new(model: "gpt-4o")
+{
+    Instructions = "You are a helpful assistant.",
+    Tools = { toolboxTool },
+};
+ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
+    agentName: "my-connector-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Created agent: {agent.Name}, version: {agent.Version}");
+```
+
 **Hosted agent (Python SDK):**
 
-Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `MCPStreamableHTTPTool`.
+Use the same toolbox endpoint from a hosted agent by authenticating to the toolbox MCP endpoint and attaching it with `FoundryToolbox`.
 
 ```python
 import asyncio
-import httpx
 
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MCPTool
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = "Bearer " + self._token_provider()
-        yield request
 
 async def main() -> None:
     credential = AzureCliCredential()
@@ -537,19 +583,13 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are an assistant that uses connector actions to complete tasks.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("Use the connector actions to summarize the latest items that need my attention.")
@@ -569,7 +609,7 @@ For other languages and runtime options, see [Connect agents to MCP servers](mod
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) provides commands to create and manage connector connections through the `microsoft.foundry` extension. The `azd` path supports **OAuth2** connectors, which are the connectors supported in Foundry today.
 
 > [!TIP]
-> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugin/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same Azure Developer CLI flows shown below so the agent can generate connector wiring commands for you.
+> If you use GitHub Copilot for Azure or another coding agent that supports skills, point it at the [Foundry tool catalog skill](https://github.com/microsoft/GitHub-Copilot-for-Azure/blob/main/plugins/azure-skills/skills/microsoft-foundry/foundry-agent/create/references/foundry-tool-catalog.md). The skill packages the same Azure Developer CLI flows shown in this article so the agent can generate connector wiring commands for you.
 
 ### Step 1: Install prerequisites
 
@@ -681,6 +721,6 @@ azd ai connection delete <connection-name> --force
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
 - [MCP server authentication](../mcp-authentication.md)
-- [Agent tools overview](../../concepts/tool-catalog.md)
+- [Foundry Toolbox overview](../../concepts/toolbox-overview.md)
 - [Create and use a Foundry Toolbox](toolbox.md)
 

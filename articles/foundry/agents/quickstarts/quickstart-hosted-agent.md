@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your first hosted agent"
 description: "Deploy an AI agent to Foundry Agent Service with Azure Developer CLI, Python, C#, Visual Studio Code, Foundry Skills, or Foundry Canvas."
 author: aahill
 ms.author: aahi
-ms.date: 08/11/2026
+ms.date: 09/17/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -18,22 +18,20 @@ zone_pivot_groups: hosted-agent-quickstart-method
 In this quickstart, you deploy and invoke a hosted agent in Foundry Agent
 Service. Choose the development tool or SDK that fits your workflow.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help you pick a development path and complete the setup, deployment, and invocation steps.
+
 ## Prerequisites
 
 Before you begin, you need:
 
 * An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * If you have an existing Foundry project, you need `Foundry Project Manager` at project scope. If you need to create a new Foundry project, you need the `Owner` role at resource group scope. For the full role matrix, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+
 :::zone pivot="azd"
 
-* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd).
-* The `azd microsoft.foundry` extension. Install and verify the extension after `azd` is installed:
-
-    ```azurecli
-    azd ext install microsoft.foundry
-    ```
-
-* An authenticated `azd` session. Sign in after you install the extension:
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure Developer CLI (`azd >= 1.27.1`) and the Foundry extensions used in this quickstart.
+* An authenticated `azd` session:
 
     ```azurecli
     azd auth login
@@ -44,8 +42,9 @@ Before you begin, you need:
 :::zone pivot="python"
 
 * [Python 3.13 or later](https://www.python.org/downloads/).
-
-* [Azure CLI](/cli/azure/install-azure-cli) installed and authenticated:
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure CLI (`az`).
+* An authenticated Azure CLI session:
 
   ```bash
   az login
@@ -68,7 +67,9 @@ Before you begin, you need:
 :::zone pivot="csharp"
 
 * [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
-* [Azure CLI](/cli/azure/install-azure-cli) installed and authenticated:
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure CLI (`az`).
+* An authenticated Azure CLI session:
 
   ```azurecli
   az login
@@ -95,31 +96,27 @@ Before you begin, you need:
 :::zone pivot="vscode"
 
 * [Visual Studio Code](https://code.visualstudio.com/).
-* [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk).
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure Developer CLI (`azd`) and the Microsoft Foundry Toolkit for VS Code extension used in this quickstart.
 
 :::zone-end
 
 :::zone pivot="canvas"
 
 * [GitHub Copilot App](https://github.com/features/copilot).
-* The Microsoft Foundry Canvas extension. To install it, in the GitHub Copilot App open **Settings** > **Plugins**, search for `microsoft-foundry`, and select **Install**. For more information, see [What is Microsoft Foundry Canvas?](../concepts/foundry-canvas.md#install-microsoft-foundry-canvas)
-* [Azure Developer CLI (azd) 1.27.1 or later](/azure/developer/azure-developer-cli/install-azd). The canvas uses `azd` to test and deploy the agent.
-* The `azd microsoft.foundry` extension. Install and verify the extension after `azd` is installed:
-
-    ```azurecli
-    azd ext install microsoft.foundry
-    ```
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure Developer CLI (`azd >= 1.27.1`) and the Microsoft Foundry Canvas for GitHub Copilot App used in this quickstart.
 
 :::zone-end
 
 :::zone pivot="foundry-skills"
 
 * A coding agent host with the
-  [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md)
-  installed.
-* [Azure CLI](/cli/azure/install-azure-cli) and
-  [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/install-azd)
-  installed and authenticated:
+  [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md).
+* [Foundry Dev Pack](../../how-to/develop/install-cli-sdk.md#install-foundry-devpack).
+  The Foundry Dev Pack installs Azure CLI (`az`), Azure Developer CLI (`azd`),
+  and the Foundry Skill used in this quickstart.
+* Authenticated Azure CLI and `azd` sessions:
 
     ```bash
     az login

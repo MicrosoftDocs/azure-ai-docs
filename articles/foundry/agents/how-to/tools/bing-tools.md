@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 08/19/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -1351,4 +1351,4 @@ To delete Bing resources, unregister the `Microsoft.Bing` resource provider, and
 - [Web search tool](web-search.md) - Use web search without configuring Bing tool parameters
 - [Manage Grounding with Bing in Microsoft Foundry and Azure](../manage-grounding-with-bing.md) - Control and disable Grounding with Bing features
 - [Connect OpenAPI tools to agents](openapi.md) - Integrate custom APIs with your agents
-- [Discover tools in the Foundry Tools (preview)](../../concepts/tool-catalog.md) - Explore all available agent tools in Foundry Agent Service
+- [What is Toolbox in Foundry?](../../concepts/toolbox-overview.md) - Explore all available agent tools in Foundry Agent Service

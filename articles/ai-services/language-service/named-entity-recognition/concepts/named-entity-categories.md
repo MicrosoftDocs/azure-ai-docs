@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 05/08/2026
+ms.date: 07/24/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-ner
 ---
 # Named entity categories and types

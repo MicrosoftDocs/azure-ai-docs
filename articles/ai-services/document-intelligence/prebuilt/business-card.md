@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/07/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ---
 
@@ -22,7 +22,7 @@ ms.author: lajanuar
 >| Business card model|&bullet; v3.1:2023-07-31 (GA)</br>&bullet; v3.0:2022-08-31 (GA)</br>&bullet; v2.1 (GA)|**`prebuilt-businessCard`**|
 
 ::: moniker range=">=doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.0**](?view=doc-intel-3.0.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [**v2.1**](?view=doc-intel-2.1.0&preserve-view=true)
+[!INCLUDE [applies to v3.1 and v3.0](../includes/applies-to-v31-v30.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.0.0"
@@ -30,7 +30,7 @@ ms.author: lajanuar
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [applies to v2.1]../(includes/applies-to-v21.md)]
+[!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
 ::: moniker range=">=doc-intel-3.0.0"

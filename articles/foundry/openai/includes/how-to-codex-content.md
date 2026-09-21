@@ -5,8 +5,9 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/13/2026
+ms.date: 09/03/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 OpenAI's [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT's Codex. You can run this coding agent entirely on Azure infrastructure while keeping your data inside your compliance boundary. You get the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that you can trigger from your terminal, VS Code, or from a GitHub Actions runner. Codex enables you to automatically open pull requests, refactor files, and write tests by using the credentials of your Foundry project and Azure OpenAI deployments.
@@ -27,7 +28,7 @@ OpenAI's [Codex CLI](https://github.com/openai/codex) is the same coding agent t
 ## Deploy a model in Foundry
 
 1. Go to [Foundry](https://ai.azure.com) and create a new project.
-1. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](../how-to/reasoning.md) such as `gpt-5.3-codex`, `gpt-5.2-codex`,`gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+1. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](../how-to/reasoning.md) such as `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.3-codex`, `gpt-5.2-codex`, `gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
 1. To deploy the model from the model catalog, select **Use this model**. If you're using the Azure OpenAI **Deployments** pane, select **deploy model**.
 1. Copy the endpoint **URL** and the **API Key**.
 
@@ -52,6 +53,10 @@ codex --version # verify installation
 If Homebrew can't find the package, follow the latest installation instructions in the [Codex CLI repository](https://github.com/openai/codex).
 
 ---
+
+### Validated versions for GPT-6 Astra
+
+Codex CLI versions `0.152.1` and `0.153.0` are validated with `gpt-6-astra` on Azure OpenAI, including [multi-agent orchestration](../how-to/responses-multi-agent.md) and [prompt caching](../how-to/prompt-caching.md). These versions are currently validated versions, not minimum supported versions.
 
 ## Create and configure config.toml
 

@@ -7,8 +7,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: quickstart
-ms.date: 05/28/2026
+ms.date: 08/13/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-track-js, devx-track-python

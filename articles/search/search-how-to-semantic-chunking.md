@@ -58,7 +58,7 @@ You must use a [supported data source](search-indexer-overview.md#supported-data
 
 - Supported file formats include PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, and HTML.
 
-- Supported indexers are any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-how-to-index-azure-blob-storage.md), [Microsoft OneLake indexers](search-how-to-index-onelake-files.md), and [File indexers](search-file-storage-integration.md).
+- Supported indexers are any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-how-to-index-azure-blob-storage.md), [Microsoft OneLake indexers](search-how-to-index-onelake-files.md), and [File indexers (preview)](search-file-storage-integration.md).
 
 - Supported regions for the portal experience of this feature include East US, West Europe, and North Central US. If you're setting up your skillset programmatically, you can use any Azure Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Supported regions for the Document Layout skill](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 

@@ -53,4 +53,4 @@ Get hands-on with Microsoft Foundry. Each quickstart takes you from zero to a wo
 ## Related content
 
 - [What is Microsoft Foundry?](../what-is-foundry.md)
-- [Choose how to build](../concepts/choose-build-approach.md)
+- [Choose how to build](../what-is-foundry.md#start-by-building-an-agent)

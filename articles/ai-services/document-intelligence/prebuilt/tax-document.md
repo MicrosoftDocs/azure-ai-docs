@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 05/24/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---
@@ -16,12 +16,12 @@ monikerRange: ">=doc-intel-3.0.0"
 # Document Intelligence US tax document models
 
 
-
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** | **Previous versions:** ![blue-checkmark](../media/blue-yes-icon.png) [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=tru)
+::: moniker range="doc-intel-4.0.0"
+**This content applies to:** 🟩 **v4.0 (GA)** | **Previous versions:** 🟦 [**v3.1 (GA)**](?view=doc-intel-3.1.0&preserve-view=true)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** | **Latest version:** ![purple-checkmark](../media/purple-yes-icon.png) [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
+**This content applies to:** 🟩 **v3.1 (GA)** | **Latest version:** 🟪 [**v4.0 (GA)**](?view=doc-intel-4.0.0&preserve-view=true)
 :::moniker-end
 
 The Document Intelligence tax model uses powerful Optical Character Recognition (OCR) capabilities to analyze and extract key fields and line items from a select group of tax documents. Tax documents can be of various formats like 1099, 1098, W2, 1040, 1095A, 1095C, W-4, 1099-SSA. Input format can include phone-captured images, scanned documents, and digital PDFs. The API analyzes document text; extracts key information and returns a structured JSON data representation. The model currently supports certain English tax document formats.

@@ -7,18 +7,19 @@ ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.reviewer: nhudo
 ms.topic: concept-article 
-ms.date: 06/30/2026
+ms.date: 08/31/2026
 ms.custom: responsible-ml 
+ai-usage: ai-assisted
 ---
 # What is human data and why is responsible sourcing important?
 
-[!INCLUDE [SDK/cli v2](includes/machine-learning-dev-v2.md)]
+[!INCLUDE [SDK/CLI v2](includes/machine-learning-dev-v2.md)]
 
 Human data is data collected directly from, or about, people. Human data might include personal data such as names, age, images, or voice clips, and sensitive data such as genetic data, biometric data, gender identity, religious beliefs, or political affiliations. 
 
 Collecting this data can be important to building AI systems that work for all users. But avoid certain practices, especially ones that can cause physical and psychological harm to data contributors.
 
-The best practices in this article help you conduct manual data collection projects from volunteers where everyone involved is treated with respect, and potential harms - especially those faced by vulnerable groups - are anticipated and mitigated. This approach means that:
+The best practices in this article help you conduct manual data collection projects from volunteers where everyone involved is treated with respect, and potential harms, especially those faced by vulnerable groups, are anticipated and mitigated. This approach means that:
 
 - People contributing data aren't coerced or exploited in any way, and they have control over what personal data is collected.
 - People collecting and labeling data have adequate training.
@@ -163,10 +164,10 @@ Follow these best practices when you manually collect human data directly from p
 -----
 
 
->[!NOTE]
->This article focuses on recommendations for human data, including personal data and sensitive data such as biometric data, health data, racial or ethnic data, data collected manually from the general public or company employees, as well as metadata relating to human characteristics, such as age, ancestry, and gender identity, that may be created via annotation or labeling. 
+> [!NOTE]
+> This article focuses on recommendations for human data, including personal data and sensitive data such as biometric data, health data, racial or ethnic data, data collected manually from the general public or company employees, as well as metadata relating to human characteristics, such as age, ancestry, and gender identity, that might be created through annotation or labeling.
 
-[Download the full recommendations here](https://bit.ly/3FK8m8A)
+[Download the full recommendations](https://download.microsoft.com/download/9/c/5/9c577a22-e7d8-449e-a846-f36e64355159/Responsibly%20sourcing%20human%20data%20from%20data%20contributors%20for%20AI%20development%20recommendations.pdf).
 
 ## Best practices for collecting age, ancestry, and gender identity
 
@@ -184,7 +185,7 @@ To enable people to self-identify, consider using the following survey questions
 
 *Select your age range*
 
-[*Include appropriate age ranges as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate age ranges as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - \# to # 
 - \# to # 
@@ -198,7 +199,7 @@ To enable people to self-identify, consider using the following survey questions
 
 *You can select multiple options*
 
-[*Include appropriate categories as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate categories as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - Ancestry group 
 - Ancestry group 
@@ -214,7 +215,7 @@ To enable people to self-identify, consider using the following survey questions
 
 *You can select multiple options*
 
-[*Include appropriate gender identities as defined by project purpose, geographical region, and guidance from domain experts*]
+*Include appropriate gender identities as defined by project purpose, geographical region, and guidance from domain experts.*
 
 - Gender identity 
 - Gender identity 
@@ -223,17 +224,18 @@ To enable people to self-identify, consider using the following survey questions
 - Prefer not to answer 
 
 
->[!CAUTION] 
->In some parts of the world, laws criminalize specific gender categories. It might be dangerous for data contributors to answer this question honestly. Always give people a way to opt out. Work with regional experts and attorneys to conduct a careful review of the laws and cultural norms of each place where you plan to collect data. If needed, avoid asking this question entirely. 
+> [!CAUTION]
+> In some parts of the world, laws criminalize specific gender categories. It might be dangerous for data contributors to answer this question honestly. Always give people a way to opt out. Work with regional experts and attorneys to conduct a careful review of the laws and cultural norms of each place where you plan to collect data. If needed, avoid asking this question entirely.
 
 [Download the full guidance here.](https://bit.ly/3woCOAz)
 
 ## Next steps
-For more information on how to work with your data, see: 
 
-- [Secure data access in Azure Machine Learning](concept-data.md)
-- [Data ingestion options for Azure Machine Learning workflows](concept-data-ingestion.md)
-- [Optimize data processing with Azure Machine Learning](concept-optimize-data-processing.md)
+For more information on how to work with your data, see:
+
+- [Data concepts in Azure Machine Learning](concept-data.md)
+- [Create data assets](how-to-create-data-assets.md)
+- [Access data in an Azure Machine Learning job](how-to-read-write-data-v2.md)
 
 To work with your data after you collect it, follow these how-to guides:
 

@@ -29,7 +29,7 @@ landingContent:
         links:
           - text: Quickstart for Foundry 
             url: ./quickstarts/get-started-code.md
-          - text: Upgrade from GitHub Models
+          - text: Migrate from GitHub Models
             url: ./foundry-models/how-to/quickstart-github-models.md
 
   - title: Microsoft Foundry Models
@@ -137,8 +137,6 @@ landingContent:
             url: ./how-to/develop/sdk-overview.md
           - text: Microsoft Foundry labs
             url: https://ai.azure.com/labs
-          - text: GitHub Models
-            url: https://github.com/marketplace/models
           - text: Visual Studio Code extension
             url: https://aka.ms/azureaifoundry/vscode
 

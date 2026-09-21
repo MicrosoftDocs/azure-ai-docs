@@ -9,12 +9,13 @@ ms.topic: troubleshooting
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Troubleshoot guidance
@@ -121,9 +122,9 @@ The `Trace` section includes each request and response to the LLM tool. You can 
 
 :::image type="content" source="./media/faq/trace-large-language-model-tool.png" alt-text="Screenshot that shows raw request send to LLM model and response from LLM model." lightbox = "./media/faq/trace-large-language-model-tool.png":::
 
-### How do I fix a 409 error from Azure OpenAI? 
+### How do I fix a 429 error from Azure OpenAI?
 
-If you encounter a 409 error from Azure OpenAI, it means you reached the rate limit for Azure OpenAI. You can check the error message in the output section of the LLM node. For more information, see [Azure OpenAI rate limit](/azure/ai-services/openai/quotas-limits).
+If you encounter a 429 error from Azure OpenAI, it means you reached the rate limit for Azure OpenAI. You can check the error message in the output section of the LLM node. For more information, see [Azure OpenAI rate limit](/azure/ai-services/openai/quotas-limits).
 
 :::image type="content" source="./media/faq/429-rate-limit.png" alt-text="Screenshot that shows 429 rate limit error from Azure OpenAI." lightbox = "./media/faq/429-rate-limit.png":::
 
@@ -188,12 +189,13 @@ This error occurs because the connections used in the endpoints and deployments 
 
 ### Vulnerability issues in prompt flow deployments
 
-To address prompt flow runtime vulnerabilities, use the following approaches:
+Prompt flow container images no longer receive security or package updates. To reduce the risk from vulnerabilities in existing deployments, use the following approaches:
 
 - Update the dependency packages in your `requirements.txt` file in your flow folder.
-- If you're using a customized base image for your flow, update the prompt flow runtime to the latest version, rebuild your base image, and redeploy the flow.
- 
-For any other vulnerabilities in managed online deployments, Azure Machine Learning fixes the issues on a monthly basis.
+- If you're using a custom base image for your flow, rebuild it from a supported base image with current security updates, and redeploy the flow.
+- Migrate the deployment to [Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md) before Prompt flow retires.
+
+Don't rely on a newer Prompt flow runtime image to address vulnerabilities.
 
 ### "MissingDriverProgram Error" or "Could not find driver program in the request"
 

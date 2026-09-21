@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: dchirasani
-ms.date: 07/31/2026
+ms.date: 08/28/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -50,7 +50,7 @@ The following key concepts apply throughout this article:
 | Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
 | Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, so you can see the full call stack and sequence of operations.                                                                                         |
 | Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data, making it more informative and useful for analysis.                                                                                                 |
-| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
+| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see the [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai).                  |
 | Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. In Foundry, traces are stored in Azure Monitor Application Insights. To learn how to enable and view traces, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md). |
 
 ## How tracing works in Foundry
@@ -66,9 +66,12 @@ At a high level, tracing captures:
 
 When you enable tracing for your project, you can inspect traces in the Foundry portal and in Azure Monitor Application Insights. For the step-by-step setup and viewing options, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
 
-## Extending OpenTelemetry with multi-agent observability
+## Extend OpenTelemetry with multi-agent observability
 
-Microsoft, in collaboration with Cisco Outshift, introduces new semantic conventions for multi-agent systems, built on [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) and [W3C Trace Context](https://www.w3.org/TR/trace-context/). These conventions standardize telemetry for multi-agent workflows, so you can consistently log metrics for quality, performance, safety, and cost, including tool invocations and collaboration.
+Microsoft, in collaboration with Cisco Outshift, contributes semantic conventions for multi-agent systems. These conventions build on [OpenTelemetry GenAI agent and framework spans](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md) and [W3C Trace Context](https://www.w3.org/TR/trace-context/). They standardize telemetry for multi-agent workflows, including agent invocations, workflow orchestration, planning, model calls, and tool execution.
+
+> [!IMPORTANT]
+> The OpenTelemetry GenAI semantic conventions have Development status and might change in future releases.
 
 These enhancements are integrated into:
 
@@ -80,20 +83,19 @@ These enhancements are integrated into:
 
 For more information, see [tracing integrations](../how-to/trace-agent-framework.md).
 
-The following table describes the semantic conventions for multi-agent observability. Spans capture discrete operations, child spans show nested operations within a parent span, attributes provide metadata, and events mark significant occurrences during execution.
+The following table describes common OpenTelemetry GenAI conventions for multi-agent observability. Spans capture operations, child spans show nested work, and attributes provide metadata. The parent spans shown are common examples; actual nesting depends on the instrumented agent or framework.
 
-| Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
-|--------------|----------------------|-------------------------------|---------------|
-| Span         | —                    | execute_task                  | Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed. |
-| Child Span   | invoke_agent         | agent_to_agent_interaction    | Traces communication between agents. |
-| Child Span   | invoke_agent         | agent.state.management        | Effective context, short or long term memory management. |
-| Child Span   | invoke_agent         | agent_planning                | Logs the agent's internal planning steps. |
-| Child Span   | invoke_agent         | agent_orchestration           | Captures agent-to-agent orchestration. |
-| Attribute    | invoke_agent         | tool_definitions              | Describes the tool's purpose or configuration. |
-| Attribute    | invoke_agent         | llm_spans                     | Records model call spans. |
-| Attribute    | execute_tool         | tool.call.arguments           | Logs the arguments passed during tool invocation. |
-| Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
-| Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
+| Type | Context/Parent Span | Name/Attribute/Event | Purpose |
+| --- | --- | --- | --- |
+| Span | — | `invoke_agent` | Invokes an agent through a remote service or within the same process. |
+| Child span | `invoke_agent` | `invoke_agent` | Traces an invocation of another agent through a parent-child span relationship. |
+| Child span | `invoke_agent` | `plan` | Records an agent planning or task decomposition phase. |
+| Span | — | `invoke_workflow` | Invokes a coordinated workflow that contains agents or other generative AI operations. |
+| Child span | `invoke_agent` or `invoke_workflow` | `execute_tool` | Records a tool execution. |
+| Child span | `invoke_agent` or `invoke_workflow` | `create_memory`, `search_memory`, `update_memory`, `upsert_memory`, or `delete_memory` | Records a memory operation. |
+| Attribute | `invoke_agent` | `gen_ai.tool.definitions` | Records definitions of tools available to an agent or model. |
+| Attribute | `execute_tool` | `gen_ai.tool.call.arguments` | Records the arguments passed to a tool call. |
+| Attribute | `execute_tool` | `gen_ai.tool.call.result` | Records the result returned by a successful tool call. |
 
 ## Best practices
 

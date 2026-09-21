@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 07/23/2026
+ms.date: 08/19/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -628,7 +628,7 @@ see [Use a toolbox with a hosted agent](../how-to/tools/use-toolbox-hosted-agent
 
 ## azure.ai.skill and azure.ai.routine services
 
-A `azure.ai.skill` service defines a reusable behavioral guideline that agents reference by name. A `azure.ai.routine` service defines a trigger (schedule or event) and an action that invokes an agent. Both depend on the resources they use through `uses`. For details, see [Discover tools in Foundry Tools](tool-catalog.md) and [Use routines](../how-to/use-routines.md).
+A `azure.ai.skill` service defines a reusable behavioral guideline that agents reference by name. A `azure.ai.routine` service defines a trigger (schedule or event) and an action that invokes an agent. Both depend on the resources they use through `uses`. To learn more about adding tools for agent use, see [What is Toolbox in Foundry?](toolbox-overview.md) and [Use routines](../how-to/use-routines.md).
 
 Skills and routines are separate resources. Declaring either service controls
 its lifecycle but doesn't automatically attach a skill to the agent or infer a

@@ -10,7 +10,7 @@ ms.reviewer: waynechuang
 author: laujan
 reviewer: wayne-ch
 ms.topic: reference
-ms.date: 08/06/2026
+ms.date: 08/13/2026
 ai-usage: ai-assisted
 ---
 
@@ -37,7 +37,14 @@ Install Foundry Local by using the package manager or installer for your operati
     winget install Microsoft.FoundryLocal
     ```
 
-- **macOS Apple Silicon**: Download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). Homebrew isn't supported for the current CLI preview. If you download the `.pkg`, open it with macOS Installer.
+- **macOS Apple Silicon**: Open a terminal and run:
+
+    ```bash
+    brew tap microsoft/foundrylocal
+    brew install foundrylocal
+    ```
+
+    Alternatively, download the current macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer). If you download the `.pkg`, open it with macOS Installer.
 
 Verify the installation:
 
@@ -308,7 +315,20 @@ Run the command for your operating system to upgrade Foundry Local.
     winget upgrade --id Microsoft.FoundryLocal
     ```
 
-- **macOS Apple Silicon**: Download the newer macOS `.pkg` or `.zip` from the [Foundry Local CLI release assets](https://aka.ms/foundry-local-installer), and install the newer package.
+- **macOS Apple Silicon**: If you're upgrading from Foundry Local 0.8.x, stop the old service before upgrading:
+
+    ```bash
+    foundry service stop
+    brew update
+    brew upgrade microsoft/foundrylocal/foundrylocal
+    ```
+
+    If you're already on the current preview CLI, run:
+
+    ```bash
+    brew update
+    brew upgrade microsoft/foundrylocal/foundrylocal
+    ```
 
 ## Uninstall Foundry Local
 

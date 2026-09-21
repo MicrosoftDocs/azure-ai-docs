@@ -51,6 +51,6 @@ In this tutorial, you accomplished the following:
 ## Related content
 
 - [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
-- [Use chat reasoning models](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md)
+- [Use chat reasoning models](../../../foundry/foundry-models/how-to/use-chat-reasoning.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Microsoft Foundry Models quotas and limits](../quotas-limits.md)

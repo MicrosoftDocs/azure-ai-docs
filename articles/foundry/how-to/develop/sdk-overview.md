@@ -85,6 +85,9 @@ Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
+For Maven, use the `com.azure:azure-ai-projects:2.2.0` and
+`com.azure:azure-ai-agents:2.2.0` dependencies.
+
 Add these dependencies to your Maven `pom.xml` for Foundry projects.
 
 ```xml
@@ -238,6 +241,8 @@ Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectc
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string projectEndpoint =
     "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
@@ -252,6 +257,7 @@ ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
 ResponseResult response = responseClient.CreateResponse(
     "What is the size of France in square miles?");
 Console.WriteLine($"Response output: {response.GetOutputText()}");
+#pragma warning restore OPENAI001
 ```
 
 ```output
@@ -265,7 +271,7 @@ Reference: [AIProjectClient class](/dotnet/api/azure.ai.projects.aiprojectclient
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../agents/quickstarts/prompt-agent.md)
-- [Run batch evaluations](cloud-evaluation.md)
+- [Run batch evaluations](../../observability/how-to/cloud-evaluation.md)
 - [Enable app tracing](../../observability/how-to/trace-agent-setup.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
@@ -332,12 +338,12 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
             new DefaultAzureCredentialBuilder().build(),
             "https://ai.azure.com/.default")))
     .build();
-Response response = openAIClient.responses().create(
+Response openAIResponse = openAIClient.responses().create(
     ResponseCreateParams.builder()
         .model("gpt-5-mini")
         .input("What is the size of France in square miles?")
         .build());
-response.output().forEach(item -> item.message().ifPresent(message ->
+openAIResponse.output().forEach(item -> item.message().ifPresent(message ->
     message.content().forEach(content -> content.outputText().ifPresent(text ->
         System.out.println("Response output: " + text.text())))));
 ```
@@ -417,8 +423,8 @@ CreateResponseOptions options = new()
             "What is the size of France in square miles?")
     },
 };
-var response = responsesClient.CreateResponse(options);
-Console.WriteLine($"Response output: {response.Value.GetOutputText()}");
+var azureOpenAIResponse = responsesClient.CreateResponse(options);
+Console.WriteLine($"Response output: {azureOpenAIResponse.Value.GetOutputText()}");
 #pragma warning restore OPENAI001
 ```
 ```output
@@ -503,13 +509,13 @@ var requestBody = new
     },
     max_tokens = 1048
 };
-var response = await httpClient.PostAsync(
+var anthropicResponse = await httpClient.PostAsync(
     endpoint,
     new StringContent(
         JsonSerializer.Serialize(requestBody), Encoding.UTF8,
         "application/json"));
 
-string result = await response.Content.ReadAsStringAsync();
+string result = await anthropicResponse.Content.ReadAsStringAsync();
 Console.WriteLine(result);
 ```
 
@@ -588,9 +594,9 @@ HttpRequest request = HttpRequest.newBuilder()
     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
     .build();
 
-HttpResponse<String> response = httpClient.send(
+HttpResponse<String> anthropicResponse = httpClient.send(
     request, HttpResponse.BodyHandlers.ofString());
-System.out.println(response.body());
+System.out.println(anthropicResponse.body());
 ```
 
 ```output

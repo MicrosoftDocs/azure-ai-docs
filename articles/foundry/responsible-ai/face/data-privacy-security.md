@@ -20,10 +20,9 @@ This article provides some high level details regarding how Face processes data 
 * Comply with all applicable laws and regulations in your jurisdiction.
 
 >[!NOTE]
->
->For our customer’s convenience, please consider utilizing the following disclosure regarding Microsoft's role when you use of Foundry Tools Face with your end users:
-[Company] uses Microsoft face recognition technology to process [Company’s] users’ biometric data as its service provider ("Processor"). Microsoft may process and store face templates for the purposes of providing face verification and/or identification services on [Company]’s behalf, and only as instructed by [Company]. Microsoft will store this data as long as [Company] requests, which shall be no longer than a limited grace period after the date when (i) [Company] ceases to have a relationship with Microsoft or (ii) when [Company] requests deletion.
+> For our customers' convenience, please consider utilizing the following disclosure regarding Microsoft's role when you use Foundry Tools Face with your end users: [Company] uses Microsoft face recognition technology to process [Company’s] users’ biometric data as its service provider ("Processor"). Microsoft may process and store face templates for the purposes of providing face verification and/or identification services on [Company]’s behalf, and only as instructed by [Company]. Microsoft will store this data as long as [Company] requests, which shall be no longer than a limited grace period after the date when (i) [Company] ceases to have a relationship with Microsoft or (ii) when [Company] requests deletion.
 
+[!INCLUDE [Biometric data privacy note](../includes/biometric-data-privacy-note.md)]
 
 ## What data does Face process, how long is it retained and what protections are in place?
 

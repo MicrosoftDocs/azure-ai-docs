@@ -55,7 +55,7 @@ The following links provide more information about change and deletion detection
 + [Azure SQL](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows)
 + [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md#indexing-deleted-documents)
 + [Azure Database for MySQL (preview)](search-how-to-index-mysql.md#indexing-deleted-rows)
-+ [SharePoint indexer](search-how-to-index-sharepoint-online.md)
++ [SharePoint indexer (preview)](search-how-to-index-sharepoint-online.md)
 + [OneLake indexer](search-how-to-index-onelake-files.md#supported-tasks)
 
 ## Identify specific documents for deletion

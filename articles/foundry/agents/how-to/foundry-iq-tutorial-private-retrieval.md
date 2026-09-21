@@ -17,20 +17,11 @@ ai-usage: ai-assisted
 
 # Validate end-to-end private agentic retrieval
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> The 2026-05-01-preview can't modify access permissions that were set outside of the 2026-05-01-preview. If you use the 2026-05-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-05-01-preview recognizes changes to those access or permission restrictions.
->
-> It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](../../../search/includes/previews/preview-terms.md)]
 
 This article is part three of a three-part tutorial series. In this part of the tutorial, you create a knowledge source and knowledge base, register the MCP endpoint as a project connection, and run a validation prompt through an agent to confirm grounded, cited responses from private content. At this point, the network, identity, and retrieval layers come together in the same runtime path.
+
+This article uses preview REST API surfaces in two places. The knowledge base uses `outputMode` (preview) and `retrievalReasoningEffort` (preview) to explicitly specify extractive output and minimal reasoning, although equivalent behavior is generally available. The project connection uses `RemoteTool` (preview) and the project managed identity to authenticate to Azure AI Search.
 
 ## Prerequisites
 
@@ -224,7 +215,7 @@ To create the knowledge source and knowledge base:
 1. Create a blob knowledge source.
 
     ```http
-   PUT https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-05-01-preview
+   PUT https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-08-01-preview
     Authorization: Bearer <search-access-token>
     Content-Type: application/json
 
@@ -255,7 +246,7 @@ To create the knowledge source and knowledge base:
 1. Create a knowledge base that references the knowledge source.
 
     ```http
-   PUT https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-05-01-preview
+   PUT https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-08-01-preview
     Authorization: Bearer <search-access-token>
     Content-Type: application/json
 
@@ -277,7 +268,7 @@ To create the knowledge source and knowledge base:
 1. Confirm the knowledge source was created successfully.
 
    ```http
-   GET https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-05-01-preview
+   GET https://<search-service-name>.search.windows.net/knowledgesources/ks-private-retrieval?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
@@ -286,7 +277,7 @@ To create the knowledge source and knowledge base:
 1. Confirm the knowledge base was created successfully.
 
    ```http
-   GET https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-05-01-preview
+   GET https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval?api-version=2026-08-01-preview
    Authorization: Bearer <search-access-token>
    ```
 
@@ -297,7 +288,7 @@ To create the knowledge source and knowledge base:
     
 ## Create a project connection
 
-Register the knowledge base MCP endpoint as a project connection in Foundry. This connection lets the agent call the MCP endpoint by using the project managed identity instead of embedded secrets. When you finish this section, you have a reusable connection name that the agent definition references.
+Register the knowledge base MCP endpoint as a `RemoteTool` project connection (preview) in Foundry. This connection lets the agent call the MCP endpoint by using the project managed identity instead of embedded secrets. When you finish this section, you have a reusable connection name that the agent definition references.
 
 To create the project connection:
 
@@ -328,7 +319,7 @@ To create the project connection:
        "properties": {
           "authType": "ProjectManagedIdentity",
           "category": "RemoteTool",
-          "target": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview",
+          "target": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview",
           "isSharedToAll": true,
           "audience": "https://search.azure.com/",
           "metadata": {
@@ -345,9 +336,12 @@ To create the project connection:
     Authorization: Bearer <management-access-token>
     ```
 
-   This request returns HTTP 200. Verify `authType` is `ProjectManagedIdentity`, `target` matches your knowledge base MCP URL, and `name` is `conn-kb-private-retrieval`. You must grant `ProjectManagedIdentity` authorization access to your Azure AI Search service using the "Search Index Data Reader" (and "Search Index Data Contributor" if write access is needed) roles. For help, see [Create a project connection](/azure/foundry/agents/how-to/foundry-iq-connect#create-a-project-connection).
+   This request returns HTTP 200. Verify `authType` is `ProjectManagedIdentity`, `target` matches your knowledge base MCP URL, and `name` is `conn-kb-private-retrieval`. You must grant `ProjectManagedIdentity` authorization to your Azure AI Search service by assigning the **Search Index Data Reader** role and, if write access is needed, the **Search Index Data Contributor** role. For help, see [Create a project connection](/azure/foundry/agents/how-to/foundry-iq-connect#create-a-project-connection).
 
 ## Create an agent and validate citations
+
+> [!WARNING]
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 Create an agent that uses the project connection to call the knowledge base MCP tool, and then run a validation prompt through a conversation. The goal is to confirm end-to-end retrieval behavior: the agent answers from private content and returns grounded citations instead of relying on general model knowledge.
 
@@ -383,7 +377,7 @@ To create the agent and validate citations:
              {
                 "type": "mcp",
                 "server_label": "knowledge-base",
-                "server_url": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview",
+                "server_url": "https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview",
                 "project_connection_id": "conn-kb-private-retrieval",
                 "require_approval": "never",
                 "allowed_tools": ["knowledge_base_retrieve"]
@@ -437,9 +431,9 @@ Use the following table to isolate failures in the retrieval-validation flow.
 | `401` with `Failed to create or update Knowledge Source` and `Unable to retrieve blob container ... using your managed identity` | Azure AI Search runtime dependencies from part two are incomplete | Verify both shared private links show `Approved`, and verify the Azure AI Search managed identity has `Storage Blob Data Reader` on the storage account and `Cognitive Services User` on the Foundry resource. |
 | `400` when creating the knowledge source or knowledge base | Invalid embedding model configuration | Verify the `resourceUri`, `deploymentId`, and `modelName` values for the `text-embedding-3-large` embedding model. |
 | `403 Public access is disabled` during ingestion | The Foundry trusted-service bypass is disabled | Re-enable **Allow Azure services on the trusted services list** on the Foundry resource, and then retry ingestion. The `openai_account` shared private link doesn't currently replace this ingestion-time dependency. |
-| `404` on the MCP endpoint URL | Incorrect knowledge base endpoint | Verify the MCP target is `https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-05-01-preview`. |
+| `404` on the MCP endpoint URL | Incorrect knowledge base endpoint | Verify the MCP target is `https://<search-service-name>.search.windows.net/knowledgebases/kb-private-retrieval/mcp?api-version=2026-08-01-preview`. |
 | `401` or `403` when creating the project connection | Azure Resource Manager authorization or token scope | Verify your caller identity can manage project connections on `<project-resource-id>`. Also verify you requested the token with `--scope https://management.azure.com/.default`. |
-| `401` or `403` when the agent calls the MCP tool | Project managed identity doesn't have the required Search data-plane access, or the role assignment hasn't propagated yet | Verify the project managed identity for the connection has the required Search data-plane role on the Azure AI Search service, and then wait briefly for role propagation before you retry the validation prompt. |
+| `401` or `403` when the agent calls the MCP tool | Project managed identity doesn't have the required Search data-plane access, or the role assignment hasn't propagated yet | Verify the project managed identity for the connection has the required data-plane role on the Azure AI Search service, and then wait briefly for role propagation before you retry the validation prompt. |
 | Agent returns an answer without citations | Agent tool wiring, instructions, or retrieval data availability | Verify the agent includes the MCP tool, `allowed_tools` contains `knowledge_base_retrieve`, and your instructions require grounded citations. Also verify the knowledge base contains retrievable content from `earth-at-night-json`. |
 
 ## Clean up resources

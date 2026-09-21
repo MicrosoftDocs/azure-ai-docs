@@ -14,10 +14,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!NOTE]
-> `strictPostFilter` is currently in preview. This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> `prefilter` and `postfilter` are generally available in the [latest stable REST API version](/rest/api/searchservice/search-service-api-versions).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 In Azure AI Search, you can use a [filter expression](search-filters.md) to add inclusion or exclusion criteria to a [vector query](vector-search-how-to-query.md). You can also specify a filtering mode that applies the filter:
 

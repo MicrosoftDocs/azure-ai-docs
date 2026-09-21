@@ -3,20 +3,24 @@ title: "Use model router with Foundry agents"
 description: "Learn how model router selects the optimal model per request for your Foundry agents, reducing costs while maintaining quality across tool-calling, RAG, and multi-turn scenarios."
 author: sanjeev3
 ms.author: sajagtap
-ms.date: 08/12/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - doc-kit-assisted
+  - dev-focus
 ai-usage: ai-assisted
 ---
 
 # Use model router with Foundry agents
 
-Model router selects the optimal large language model (LLM) for each request your agent makes — per turn, not per session. A simple greeting routes to a fast, inexpensive model. A complex tool-calling chain routes to a frontier model. You deploy one endpoint, write zero routing logic, and get automatic cost optimization across all agent interactions.
+Model router selects the optimal large language model (LLM) for each request your agent makes. A simple greeting routes to a fast, inexpensive model. A complex tool-calling chain routes to a frontier model. You deploy one endpoint, write zero routing logic, and get automatic cost optimization across all agent interactions.
 
 This article explains how model router behaves with Foundry Agent Service agents, which tool types it supports, the routing patterns you can expect, and how to get started.
+
+> [!TIP]
+> Get hands-on with the [Foundry Agent Lab](https://github.com/microsoft-foundry/Foundry-Agent-Lab). Its progressive demos show model router across function tools, web search, code interpretation, RAG, MCP, and Toolbox, with session logs that explain each routing decision.
 
 For general model router concepts, see the [model router overview](../concepts/model-router.md). For deployment steps, see [Use model router](model-router.md).
 
@@ -39,7 +43,7 @@ Without model router, you either over-provision (use an expensive model for ever
 Key benefits for agent workloads:
 
 - **Zero model selection overhead.** One deployment serves all agent scenarios — no per-agent model decisions.
-- **Per-request optimization.** Different turns in the same conversation use different models based on complexity.
+- **Per-request optimization.** Agent Service requests are routed independently based on complexity.
 - **Automatic cost efficiency.** Simple queries use inexpensive models; expensive models only activate when the prompt genuinely needs them.
 - **Tool-aware routing.** The router understands tool-calling patterns and selects models capable of structured invocations.
 - **Multi-agent flexibility.** Deploy multiple model router instances — each with a different model subset and routing mode — and assign each agent the deployment that fits its workload.
@@ -57,9 +61,11 @@ To route agentic requests to Claude models, deploy the Claude models separately 
 
 Model router analyzes the full request context — system message, user message, tool definitions, conversation history — to determine complexity and select a model. For agents, this means:
 
-### Per-request, not per-session
+### Per-request routing in Agent Service
 
-Each turn in a conversation is routed independently. A conversation might use three different models across five turns based on what each turn requires. You can observe which model handled each request through the `model` field in the API response.
+Agent Service routes requests independently. A conversation might use three different models across five turns based on what each turn requires. You can observe which model handled each request through the `model` field in the API response.
+
+The session affinity preview for direct Chat Completions requests doesn't configure affinity for Agent Service sessions. Agent Service support isn't part of this preview.
 
 ### Complexity-aware selection
 
@@ -121,6 +127,8 @@ To set up each deployment with a specific model subset, see [Route to a model su
 
 The following example creates three agents, each pointing to a different model router deployment:
 
+# [Python](#tab/python)
+
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -153,7 +161,47 @@ triage_agent = project.agents.create_agent(
 )
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const project = new AIProjectClient(
+  process.env["PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+// Research agent — Quality-mode router with gpt-5.6-sol, gpt-5, o4-mini
+const researchAgent = await project.agents.createVersion("research-agent", {
+  kind: "prompt",
+  model: "router-frontier",
+  instructions:
+    "You are a research assistant that synthesizes complex information.",
+});
+
+// General assistant — Balanced-mode router with gpt-5-mini, gpt-4.1
+const assistantAgent = await project.agents.createVersion("assistant-agent", {
+  kind: "prompt",
+  model: "router-balanced",
+  instructions: "You are a helpful assistant.",
+});
+
+// Triage agent — Cost-mode router with gpt-5-nano, gpt-4.1-nano
+const triageAgent = await project.agents.createVersion("triage-agent", {
+  kind: "prompt",
+  model: "router-efficient",
+  instructions:
+    "You classify incoming requests and route them to the right team.",
+});
+```
+
+---
+
 Each agent makes independent routing decisions within its assigned model pool. The research agent never uses a nano-tier model, and the triage agent never incurs frontier-model costs.
+
+- Reference: [`AIProjectClient.agents.create_agent`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python)
+- Reference: [`AIProjectClient.agents.createVersion`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 ## Get started
 
@@ -164,6 +212,8 @@ Set model router as the model for your agent. No additional routing configuratio
 In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), select your model router deployment from the **model** dropdown when creating or editing an agent in the agent playground.
 
 For programmatic agent creation, specify your model router deployment name:
+
+# [Python](#tab/python)
 
 ```python
 import os
@@ -181,6 +231,29 @@ agent = project.agents.create_agent(
     instructions="You are a helpful assistant.",
 )
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const project = new AIProjectClient(
+  process.env["PROJECT_ENDPOINT"]!,
+  new DefaultAzureCredential(),
+);
+
+const agent = await project.agents.createVersion("my-agent", {
+  kind: "prompt",
+  model: process.env["MODEL_DEPLOYMENT"]!, // "model-router"
+  instructions: "You are a helpful assistant.",
+});
+```
+
+---
+
+- Reference: [`AIProjectClient.agents.create_agent`](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) (Python)
+- Reference: [`AIProjectClient.agents.createVersion`](/javascript/api/@azure/ai-projects/aiprojectclient) (JavaScript/TypeScript)
 
 ### Observe routing decisions
 
@@ -204,13 +277,12 @@ After observing your agent's routing distribution:
 - **Switch routing mode** — Use Quality mode for critical agents (legal, medical) or Cost mode for high-volume agents (classification, triage). See [Change the routing mode](model-router.md#optional-change-the-routing-mode).
 - **Constrain the model pool** — Use model subset to limit which models the router can select. See [Route to a model subset](model-router.md#optional-route-to-a-model-subset).
 
-## Explore with hands-on demos
-
-The [Foundry Agent Lab](https://github.com/microsoft-foundry/Foundry-Agent-Lab) provides a progressive series of agent demos — all using model router — that demonstrate routing behavior across scenarios including function tools, web search, code interpretation, RAG, MCP, and Toolbox. Each demo includes session logs showing which models the router selected and why.
+Evaluate changes with representative multi-turn traces, including tool calls, retrieval, and complex handoffs from your agent workload. Keep the baseline, instructions, tools, and trace set fixed while you change one routing setting. For guidance on defining acceptance criteria and interpreting tradeoffs, see [Evaluate model router for your workload](evaluate-model-router.md).
 
 ## Related content
 
 - [Model router overview](../concepts/model-router.md)
 - [How model router works](../concepts/model-router-how-it-works.md)
 - [Use model router](model-router.md)
+- [Evaluate model router for your workload](evaluate-model-router.md)
 - [Foundry Agent Service overview](/azure/ai-foundry/agents/overview)

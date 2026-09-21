@@ -23,20 +23,21 @@ Azure Content Understanding in Foundry Tools provides multilingual support in mu
 
 To use Azure Content Understanding, create your Foundry resource in a supported region. Content Understanding is available in the following regions. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Find more information about Foundry deployment types and data zones at  [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
-| Identifier      | Region         | Geography       |
-|-----------------|----------------|-----------------|
-| `australiaeast` | Australia East | Asia Pacific |
-| `eastus` | East US | United States |
-| `eastus2` | East US 2 | United States |
-| `japaneast` | Japan East | Asia Pacific |
-| `northeurope` | North Europe | Europe |
-| `southcentralus` | South Central US | United States |
-| `southeastasia` | Southeast Asia | Asia Pacific |
-| `swedencentral` | Sweden Central | Europe |
-| `uksouth` | UK South | Europe |
-| `westeurope` | West Europe | Europe |
-| `westus` | West US | United States |
-| `westus3` | West US 3 | United States |
+| Identifier      | Region         |
+|-----------------|----------------|
+| `australiaeast` | Australia East |
+| `canadacentral` | Canada Central |
+| `eastus` | East US |
+| `eastus2` | East US 2 |
+| `japaneast` | Japan East |
+| `southcentralus` | South Central US |
+| `southeastasia` | Southeast Asia |
+| `swedencentral` | Sweden Central |
+| `uksouth` | UK South |
+| `westeurope` | West Europe |
+| `westus` | West US |
+| `westus3` | West US 3 |
+
 ## Language support
 
 Azure Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.

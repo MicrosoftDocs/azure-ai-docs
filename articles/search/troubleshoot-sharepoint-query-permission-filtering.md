@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
 
-# Troubleshoot SharePoint permission filtering in Azure AI Search
+# Troubleshoot SharePoint permission filtering in Azure AI Search (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
@@ -19,7 +19,7 @@ Use this article if query-time permission filtering for indexed SharePoint conte
 
 + An index populated by the [SharePoint in Microsoft 365 indexer](search-how-to-index-sharepoint-online.md) with [ACL ingestion configured](search-indexer-sharepoint-access-control-lists.md).
 + Query-time permission filtering configured as described in [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
-+ REST API version `2026-05-01-preview` or an equivalent preview SDK package when you use SharePoint site groups.
++ REST API version `2026-08-01-preview` or an equivalent preview SDK package when you use SharePoint site groups.
 + Access to the index definition, generated or explicit indexer status, and the SharePoint permissions for a test user.
 + **Search Index Data Contributor** or equivalent elevated-read permission if you need to compare filtered and unfiltered results.
 
@@ -70,7 +70,7 @@ If the user token is omitted, permission-protected content isn't returned. The `
 
 ### 5. Check Microsoft Entra permissions
 
-1. Confirm the indexed `UserIds` or `GroupIds` contain the expected Microsoft Entra object ID. Use an [elevated-read query](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) only for this diagnostic comparison.
+1. Confirm the indexed `UserIds` or `GroupIds` contain the expected Microsoft Entra object ID. Use an [elevated-read query](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) only for this diagnostic comparison.
 1. Confirm the test user has a direct assignment or reaches the assigned Microsoft Entra group through transitive Microsoft Entra group membership.
 1. If the Microsoft Entra group is nested within a SharePoint group, change the assignment. This mixed relationship isn't expanded and can cause missing results. Add the user directly to the SharePoint group, or grant permission through a supported Microsoft Entra group assignment.
 
@@ -88,7 +88,7 @@ If the indexed fields are empty or stale, fix ingestion or [synchronize the Shar
 
 ### 7. Check the query request
 
-1. Use REST API version `2026-05-01-preview` or an equivalent preview SDK package for SharePoint site-group permission filters.
+1. Use REST API version `2026-08-01-preview` or an equivalent preview SDK package for SharePoint site-group permission filters.
 1. Confirm `Authorization` authenticates a principal that can query the index.
 1. Confirm `x-ms-query-source-authorization` contains the delegated test-user token.
 1. Retry the same query without unrelated filters or ranking changes so you can isolate permission behavior.

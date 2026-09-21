@@ -6,7 +6,7 @@ ms.reviewer: dantaylo
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/03/2026
 ms.custom: include, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -74,7 +74,7 @@ Before proceeding, confirm each check returns the stated result:
 
 - Confirm that you have the required RBAC role in the Azure portal under **Foundry resource** > **Access control (IAM)**.
 ::: zone pivot="programming-language-python"
-- Run `python --version`. The command exits successfully and reports Python 3.9 or later.
+- Run `python --version`. The command exits successfully and reports Python 3.10 or later.
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 - Run `node --version`. The command exits successfully and reports Node.js 22 or later.

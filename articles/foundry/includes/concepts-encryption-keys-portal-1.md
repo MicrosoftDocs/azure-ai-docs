@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 08/11/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Benefits of customer-managed keys (CMKs)
@@ -36,7 +37,7 @@ To configure a CMK for Foundry, you need:
 - Key store permissions:
 
   - For Key Vault with Azure RBAC, assign the Key Vault Crypto User role to the managed identity.
-  - For Key Vault with vault access policies, grant key-specific permissions to the managed identity, such as `unwrapKey` and `wrapKey`.
+  - For Key Vault with vault access policies, grant the **Encrypt**, **Decrypt**, **Wrap Key**, **Unwrap Key**, **Sign**, and **Verify** key permissions to the managed identity of the Foundry account parent resource and project child resource.
   - For Managed HSM, assign the Managed HSM Crypto User role to the managed identity at the appropriate scope. For more information, see [Managed HSM local RBAC built-in roles](/azure/key-vault/managed-hsm/built-in-roles).
 
 - Sufficient Azure permissions:
@@ -58,7 +59,9 @@ When you use private networking with your Foundry resource, the customer-provide
 
 To configure trusted services access, see [Configure Azure Key Vault firewalls and virtual networks](/azure/key-vault/general/network-security) or [Managed HSM network security](/azure/key-vault/managed-hsm/secure-your-managed-hsm).
 
-## Steps to configure a CMK
+## Configure a customer-managed key
+
+Configuring a CMK takes three steps. First, create or import a key in your key vault or Managed HSM. Next, grant the Foundry resource's managed identity permission to use that key. Finally, enable the CMK on the Foundry resource by using the portal, Bicep or ARM, or the Azure CLI. The following sections walk through each step.
 
 ### Create or import a key in the key store
 
@@ -104,6 +107,10 @@ Configure appropriate permissions for the system-assigned or user-assigned manag
 
 #### Key Vault
 
+Key Vault supports two permission models. Use the steps that match your vault's configuration.
+
+**Azure role-based access control (RBAC)**
+
 1. In the Azure portal, go to your key vault.
 
 1. Select **Access Control (IAM)**.
@@ -113,6 +120,22 @@ Configure appropriate permissions for the system-assigned or user-assigned manag
 1. Assign the Key Vault Crypto User role to the system-assigned managed identity of the Foundry resource or to the user-assigned managed identity.
 
    The managed identity appears in the role assignments list for the key vault.
+
+**Vault access policy**
+
+1. In the Azure portal, go to your key vault.
+
+1. Under **Settings**, select **Access policies**.
+
+1. Select **+ Create**.
+
+1. On the **Permissions** tab, under **Key permissions**, select **Encrypt**, **Decrypt**, **Wrap Key**, **Unwrap Key**, **Sign**, and **Verify**.
+
+1. On the **Principal** tab, select the Foundry resource's managed identity and the project sub-resource's managed identity.
+
+1. Select **Create** to save the access policy.
+
+   The managed identities appear in the access policies list for the key vault.
 
 #### Managed HSM
 
@@ -152,12 +175,12 @@ You can also enable a CMK with a template, such as Bicep or ARM. In the account'
 
 When you use a user-assigned managed identity, also set `identityClientId` to the client ID of that identity. This value tells the resource which identity to use when it accesses the key.
 
-##### User-assigned managed identity
+**User-assigned managed identity**
 
 With a user-assigned identity, you can grant key store access before you create the Foundry resource, so a single deployment is sufficient.
 
 ```bicep
-resource account 'Microsoft.CognitiveServices/accounts@2026-05-01-preview' = {
+resource account 'Microsoft.CognitiveServices/accounts@2026-05-01' = {
   name: aiFoundryName
   location: location
   kind: 'AIServices'
@@ -186,7 +209,7 @@ resource account 'Microsoft.CognitiveServices/accounts@2026-05-01-preview' = {
 
 For a complete example, see [Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
-##### System-assigned managed identity
+**System-assigned managed identity**
 
 When you use a system-assigned managed identity, the identity doesn't exist until the resource is created. Configure CMK by using two deployments:
 
@@ -243,6 +266,15 @@ The `updateEncryption.bicep` module grants key vault permissions and then applie
 
 For a complete example, see [Customer-managed keys with system-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/30-customer-managed-keys).
 
+After deployment, verify that CMK encryption is applied. Run the following command and confirm that `keySource` is `Microsoft.KeyVault` with your key vault URI and key name:
+
+```azurecli
+az cognitiveservices account show \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --query properties.encryption
+```
+
 # [Azure CLI](#tab/cli)
 
 You can also use Azure CLI for the system-assigned identity sequence:
@@ -281,6 +313,12 @@ az cognitiveservices account update \
   --name <resource-name> \
   --resource-group <resource-group> \
   --encryption "{\"keySource\":\"Microsoft.KeyVault\",\"keyVaultProperties\":{\"keyVaultUri\":\"https://<key-vault-name>.vault.azure.net\",\"keyName\":\"<key-name>\",\"keyVersion\":\"<key-version>\"}}"
+
+# Verify that CMK encryption is enabled
+az cognitiveservices account show \
+  --name <resource-name> \
+  --resource-group <resource-group> \
+  --query properties.encryption
 ```
 
 ---
@@ -324,5 +362,4 @@ To maintain optimal security and compliance, implement the following practices:
 - [Azure Key Vault documentation](/azure/key-vault/)
 - [Azure Managed HSM documentation](/azure/key-vault/managed-hsm/)
 - [GitHub Bicep example: Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
-- [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview)
-- 
+- [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview) 

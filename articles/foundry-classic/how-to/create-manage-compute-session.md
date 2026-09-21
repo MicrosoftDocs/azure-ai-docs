@@ -4,16 +4,14 @@ description: "In this article, learn how to create and manage compute sessions t
 ms.service: microsoft-foundry
 ms.subservice: prompt-flow
 ms.custom:
-  - ignite-2023
-  - build-2024
-  - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 09/02/2026
 ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
 ms.collection: ce-skilling-fresh-tier1
+ai-usage: ai-assisted
 # customer intent: Learn how to create and manage prompt flow compute sessions in Microsoft Foundry portal.
 
 ---
@@ -126,7 +124,11 @@ If you want to use a private feed in Azure DevOps, follow these steps:
 
 ### Change the base image
 
-By default, we use the latest prompt flow image as the base image. If you want to use a different base image, you need to build your own base image. The docker image should be built from the prompt flow base image, `mcr.microsoft.com/azureml/promptflow/promptflow-runtime:<newest_version>`. If possible use the [latest version of the base image](https://mcr.microsoft.com/v2/azureml/promptflow/promptflow-runtime/tags/list). 
+By default, the compute session uses the latest prompt flow image as the base image. To use a different base image, build your own base image from the prompt flow base image, `mcr.microsoft.com/azureml/promptflow/promptflow-runtime:<newest_version>`. If possible, use the [latest version of the base image](https://mcr.microsoft.com/v2/azureml/promptflow/promptflow-runtime/tags/list).
+
+> [!IMPORTANT]
+> Prompt flow container images, including `promptflow-runtime`, no longer receive updates of any kind, including security and package updates. Instead of investing in a custom base image, plan your [migration to Microsoft Agent Framework](prompt-flow-migration-overview.md).
+
 
 1. Open the prompt flow.
 1. On the top toolbar, select **Raw file mode** to enable editing in the file editor.
@@ -151,8 +153,9 @@ If you previously created a compute instance runtime, switch it to a compute ses
 
 - You can continue to use the existing compute instance if you would like to manually manage the lifecycle.
 
-## Related resources
+## Related content
 
+- [Migrate from prompt flow to Microsoft Agent Framework](prompt-flow-migration-overview.md)
 - [Learn more about prompt flow](../concepts/prompt-flow.md)
 - [Develop a flow](./flow-develop.md)
 - [Develop an evaluation flow](./flow-develop-evaluation.md)

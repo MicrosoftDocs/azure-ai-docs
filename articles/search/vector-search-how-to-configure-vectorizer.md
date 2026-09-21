@@ -46,8 +46,8 @@ The following table lists the vectorizers and their supported models and associa
 | Vectorizer | Supported models | Associated skill |
 |-----------------|------------|------------------|
 | [Azure OpenAI](vector-search-vectorizer-azure-open-ai.md) | text-embedding-ada-002<br>text-embedding-3-large<br>text-embedding-3-small | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) |
-| [Microsoft Foundry model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> | [AML](cognitive-search-aml-skill.md) |
-| [Azure Vision](vector-search-vectorizer-ai-services-vision.md) | [Multimodal embeddings 4.0 API](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) |
+| [Microsoft Foundry model catalog (preview)](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> | [AML](cognitive-search-aml-skill.md) |
+| [Azure Vision (preview)](vector-search-vectorizer-ai-services-vision.md) | [Multimodal embeddings 4.0 API](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure Vision multimodal embeddings (preview)](cognitive-search-skill-vision-vectorize.md) |
 | [Custom Web API](vector-search-vectorizer-custom-web-api.md) | Any embedding model (hosted externally) | [Custom Web API](cognitive-search-custom-skill-web-api.md) |
 
 <sup>1</sup> You can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.

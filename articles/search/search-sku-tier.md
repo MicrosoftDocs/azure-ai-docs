@@ -1,6 +1,6 @@
 ---
 title: Choose a pricing model and service tier
-description: Learn about the Dedicated and Serverless (Preview) pricing models and service tiers (or SKUs) for Azure AI Search. Serverless tiers are consumption-based and Dedicated tiers are capacity-based with fixed pricing.
+description: Learn about the Dedicated and Serverless (preview) pricing models and service tiers (or SKUs) for Azure AI Search. Serverless tiers are consumption-based and Dedicated tiers are capacity-based with fixed pricing.
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
@@ -18,7 +18,7 @@ When you [create a search service](search-create-service-portal.md), you must ch
 | Pricing model | Best for | How you're billed |
 | --- | --- | --- |
 | Dedicated | Steady, predictable, high-utilization workloads | Fixed capacity via Search Units (SUs); hourly rate based on selection of a [service tier](#tier-descriptions) |
-| Serverless (Preview) | Infrequent, bursty, or highly variable workloads | Consumption-based: measured by [Compute Units](./serverless-cost-optimization.md) (CUs) and indexed storage (GB/month) |
+| Serverless (preview) | Infrequent, bursty, or highly variable workloads | Consumption-based: measured by [Compute Units](./serverless-cost-optimization.md) (CUs) and indexed storage (GB/month) |
 
 > [!NOTE] 
 > Dedicated model Search Units (SUs) and Serverless model Compute Units (CUs) are not the same and cannot be used interchangeably. Don't use SU-based pricing calculators or estimates for Serverless workloads.
@@ -49,15 +49,8 @@ The Serverless Developer tier is in Public Preview and doesn't currently support
 - Index aliases: Not supported
 - Debug sessions: Not supported
 - Private networking for indexers: Not supported
-- File Knowledge Source (Preview): Not supported
 - Shared Private Link resources: No planned support for the Serverless model
 - Service-level agreement (SLA): Not available during Public Preview
-
-Available regions for the Serverless pricing model during preview include:
-
-- West Central US
-- Switzerland North
-- Japan East
 
 To learn more, see [Service Limits in Azure AI Search](./search-limits-quotas-capacity.md).
 
@@ -103,7 +96,7 @@ There is also a free, limited search service tier:
 
 - **Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for small projects, such as tutorials and development. Resources are shared across tenants, and scaling isn't supported. Some premium features are unavailable, and the service might be deleted after periods of inactivity. You can only have one free search service per Azure subscription.
 
-You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page. 
+You see billing rates in the [Azure portal](https://portal.azure.com/auth/login/) when you create a new Azure AI Search service in the **Select Pricing Tier** page.
 
 :::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Screenshot of the Azure portal Select a pricing tier chart listing the service tiers and their associated SKU." border="true":::
 
@@ -132,7 +125,7 @@ Most features are available across all tiers. In some cases, feature availabilit
 
 | Feature | Tier considerations |
 |---------|---------------------|
-| [indexers](search-indexer-overview.md) | Indexers are available on S3 HD with [daily execution quota across indexers and other considerations](search-indexer-high-density-serverless-overview.md). Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
+| [indexers](search-indexer-overview.md) | Indexers are available on S3 HD with [daily execution quota across indexers and other considerations (preview)](search-indexer-high-density-serverless-overview.md). Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
 | [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
 | [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended for large workloads. |
 | [Managed or trusted identities for outbound (indexer) access](search-how-to-managed-identities.md) | Not available on the Free tier.|

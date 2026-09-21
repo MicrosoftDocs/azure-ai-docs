@@ -4,7 +4,7 @@ description: "Learn how to use the Azure OpenAI Responses API to create, retriev
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 01/14/2026
+ms.date: 08/18/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to

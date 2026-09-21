@@ -76,4 +76,3 @@ Imagine 20 sensors from an auto engine generating 20 different signals like rota
 
 * [Quickstart: Detect anomalies in your time series data using the Univariate Anomaly Detection](quickstarts/client-libraries.md)
 * [Quickstart: Detect anomalies in your time series data using the Multivariate Anomaly Detection](quickstarts/client-libraries-multivariate.md)
-* The Anomaly Detector [REST API reference](https://aka.ms/ad-api)

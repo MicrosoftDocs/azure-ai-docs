@@ -49,6 +49,7 @@ Check your code for the REST API version or SDK package version to confirm which
 | Preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
 | Stable | [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | Separates billing consent for semantic ranker and agentic retrieval. `semanticSearch` now only controls semantic ranker billing. Before upgrading, if you have `semanticSearch=standard`, you must also set `knowledgeRetrieval=standard`. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md). |
 | Preview | [2026-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-05-01-preview&preserve-view=true) | No change. |
+| Preview | [2026-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) | No change. |
 
 ## Change logs for Azure SDKs
 
@@ -61,7 +62,7 @@ To determine which semantic features are available in a specific Azure SDK packa
 
 ## 2024-11-01-preview
 
-+ Adds [query rewrite](semantic-how-to-query-rewrite.md) to Search Documents.
++ Adds [query rewrite (preview)](semantic-how-to-query-rewrite.md) to Search Documents.
 + Requires `queryLanguage` for query rewrite workloads. For a list of valid values, see the [REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview#querylanguage&preserve-view=true).
 
 ## 2024-09-01-preview

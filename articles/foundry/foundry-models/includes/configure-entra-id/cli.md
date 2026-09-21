@@ -1,12 +1,13 @@
 ---
 manager: mcleans
-author: santiagxf
-ms.author: fasantia 
+author: msakande
+ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
-ms.date: 01/22/2026
+ms.date: 08/31/2026
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
+ai-usage: ai-assisted
 ---
 
 * Install the [Azure CLI](/cli/azure/)
@@ -100,7 +101,7 @@ To configure Microsoft Entra ID for inference, follow these steps:
 
 ## Use Microsoft Entra ID in your code
 
-After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. The following example shows how to use a chat completions model:
+After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. The following example shows how to use the Responses API:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
@@ -109,7 +110,7 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 ## Disable key-based authentication in the resource
 
 Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. 
-Use PowerShell with the Azure CLI to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
+Use Azure PowerShell to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
 
 ```powershell
 Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true

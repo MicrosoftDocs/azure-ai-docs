@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/12/2026
+ms.date: 09/09/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -23,13 +23,17 @@ Model router now includes built-in automatic failover. When using the default de
 
 For custom deployment configurations:
 - Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
-- Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+- Your configured model subset also works as your fallback set to prevent your prompts from getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
+
+To inspect ordered model attempts and determine whether fallback occurred for an individual Chat Completions request, see [Monitor model router](../how-to/monitor-model-router.md).
 
 ## Prompt caching
 
 Model router supports prompt caching because requests are processed by the underlying models that support it. When model router delegates a request to a model that supports prompt caching, cached tokens are used automatically — no extra configuration is needed.
 
 Cache behavior depends on which underlying model the router selects for a given request. Because routing decisions might vary, caching benefits apply only when the same model handles consecutive requests with overlapping prompt prefixes.
+
+For stateless Chat Completions conversations, you can use [session affinity](../how-to/model-router.md#keep-chat-completions-requests-on-the-same-model-preview) to ask model router to attempt the same eligible model across related turns. This behavior can improve the opportunity for cache reuse, but it doesn't inspect cache state, guarantee a cache hit, or adaptively switch models based on cache savings.
 
 For details on how prompt caching works and which models support it, see [Prompt caching](../how-to/prompt-caching.md).
 

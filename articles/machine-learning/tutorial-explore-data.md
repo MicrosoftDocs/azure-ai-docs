@@ -9,7 +9,7 @@ ms.topic: tutorial
 ms.reviewer: None
 author: s-polly
 ms.author: scottpolly
-ms.date: 08/05/2025
+ms.date: 08/21/2026
 ai-usage: ai-assisted
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In this tutorial, you:
+In this tutorial, you use an Azure Machine Learning notebook to upload a sample dataset, register it as a versioned data asset, and access it with Python for interactive exploration. Specifically, you:
 
 > [!div class="checklist"]
 > * Upload your data to cloud storage
@@ -44,7 +44,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 
 ## Download the data used in this tutorial
 
-For data ingestion, Azure Data Explorer handles raw data in [these formats](/azure/data-explorer/ingestion-supported-formats). This tutorial uses a CSV-format credit card client data sample. The steps take place in an Azure Machine Learning resource. In that resource, you create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
+This tutorial uses a CSV-format credit card client data sample. The steps take place in an Azure Machine Learning resource. In that resource, you create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
 
 > [!NOTE]
 > This tutorial depends on data placed in an Azure Machine Learning resource folder location. For this tutorial, 'local' means a folder location in that Azure Machine Learning resource.
@@ -115,7 +115,7 @@ Azure Machine Learning uses Uniform Resource Identifiers (URIs), which point to 
 
 An Azure Machine Learning data asset is similar to web browser bookmarks (favorites). Instead of remembering long storage paths (URIs) that point to your most frequently used data, you can create a data asset and then access that asset with a friendly name.
 
-Data asset creation also creates a _reference_ to the data source location, along with a copy of its metadata. Because the data remains in its existing location, you incur no extra storage cost and don't risk data source integrity. You can create data assets from Azure Machine Learning datastores, Azure Storage, public URLs, and local files.
+Data asset creation also creates a _reference_ to the data source location, along with a copy of its metadata. When the data already resides in cloud storage, it stays in place, so you incur no extra storage cost and don't risk data source integrity. When you create a data asset from local files, as in this tutorial, Azure Machine Learning uploads them to the workspace's default datastore, which can incur storage costs. You can create data assets from Azure Machine Learning datastores, Azure Storage, public URLs, and local files.
 
 > [!TIP]
 > For smaller data uploads, Azure Machine Learning data asset creation works well for uploading data from local machine resources to cloud storage. This approach avoids the need for extra tools or utilities. However, larger data uploads might require a dedicated tool or utility - for example, **azcopy**. The azcopy command-line tool moves data to and from Azure Storage. For more information about azcopy, see [Get started with AzCopy](/azure/storage/common/storage-use-azcopy-v10).

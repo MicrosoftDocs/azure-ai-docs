@@ -20,7 +20,7 @@ This article is the full event reference for GPT-Live. For task-based guidance, 
 
 ## Base namespace
 
-GPT-Live sessions live under `/openai/v1/live` on your Foundry resource endpoint. A WebSocket client connects to `/openai/v1/live` and sends `session.start`. WebRTC sessions are created with `POST /openai/v1/live/sessions`. A server attaches a sideband connection at `/openai/v1/live/sessions/{session_id}/attach`.
+GPT-Live sessions live under `/openai/v1/live` on your Foundry resource endpoint. A WebSocket client connects to `/openai/v1/live/sessions` and sends `session.start`. WebRTC sessions are created with `POST /openai/v1/live/sessions`. A server attaches a sideband connection at `/openai/v1/live/sessions/{session_id}/attach`.
 
 ## Session configuration
 

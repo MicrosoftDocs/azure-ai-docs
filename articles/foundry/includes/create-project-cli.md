@@ -6,19 +6,27 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/21/2026
+ms.date: 08/25/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
 > [!NOTE]
-> These steps require Azure CLI and **Contributor** or **Owner** role on the resource group. Run `az login` to sign in before you start. For supported regions, see [Region support](../reference/region-support.md).
+> These steps require the Azure CLI version 2.80.0 or later and the **Contributor** or **Owner** role on the resource group. Run `az version` to check your version and `az upgrade` if you need a newer one. Run `az login` to sign in before you start. For supported regions, see [Region support](../reference/region-support.md).
 
 1. Create a resource group or use an existing one. For example, create `my-foundry-rg` in `eastus`:
 
    ```azurecli
    az group create --name my-foundry-rg --location eastus
    ```
+
+   Verify that the resource group exists:
+
+   ```azurecli
+   az group show --name my-foundry-rg --query properties.provisioningState --output tsv
+   ```
+
+   The output shows `Succeeded`.
 
 1. Create the Foundry resource with project management enabled. For example, create `my-foundry-resource` in the `my-foundry-rg` resource group:
 
@@ -30,10 +38,17 @@ ai-usage: ai-assisted
        --sku S0 \
        --location eastus \
        --custom-domain my-foundry-resource \
-       --allow-project-management
+       --assign-identity \
+       --allow-project-management true
    ```
 
-   Set the `--allow-project-management` flag to enable project management. You can't change this flag after resource creation. The `--custom-domain` value must be globally unique - if `my-foundry-resource` is already taken, choose a different name.
+   Use these values:
+
+   | Parameter | Purpose |
+   |---|---|
+   | `--assign-identity` | Creates the managed identity that project management requires. Without it, project creation fails with an error that a managed identity must be enabled on the resource. |
+   | `--allow-project-management` | Enables project management. You can't change this setting after you create the resource. |
+   | `--custom-domain` | Must be globally unique. If `my-foundry-resource` is taken, the command fails with `CustomDomainInUse`. Choose a different name and run the command again. |
 
 1. Create a project. For example, create `my-foundry-project` in the `my-foundry-resource`:
 
@@ -66,4 +81,6 @@ ai-usage: ai-assisted
        --query properties.provisioningState --output tsv
    ```
 
-   The output should show `Succeeded`.
+   The output should show `Succeeded`. If the command fails with a message that a managed identity must be enabled, confirm that you created the resource with `--assign-identity`.
+
+Reference: [az cognitiveservices account project](/cli/azure/cognitiveservices/account/project)

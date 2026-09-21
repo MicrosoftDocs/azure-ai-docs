@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 07/31/2026
+ms.date: 09/08/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -20,4 +20,5 @@ ms.custom:
 
 # Harm categories and severity levels in Microsoft Foundry
 
-[!INCLUDE [content-filter-severity-levels content](../includes/concepts-content-filter-severity-levels-content.md)]
+
+[!INCLUDE [Content harms shared content](../../../ai-services/content-safety/includes/content-harms.md)]

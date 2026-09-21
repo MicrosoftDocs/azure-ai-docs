@@ -6,7 +6,7 @@ manager: mcleanbyron
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 09/04/2026
 author: mattwojo
 ms.author: mattwoj
 reviewer: lindazqli
@@ -31,13 +31,13 @@ You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) proto
 For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 > [!WARNING]
-> When you connect to Work IQ, you may incur costs and data may be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It is your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> When you connect to Work IQ, you might incur costs and data might be sent outside the Azure compliance boundary and processed according to the applicable service terms and data handling policies. It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
+> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
 ## Prerequisites
 
-Before you begin, make sure you have:
+Before you begin, ensure you have:
 
 - The commercial requirement for the connection you use:
 
@@ -63,7 +63,7 @@ Use this map to separate the agent-use flow from dependencies that an administra
 | Goal | Depends on | Continue at |
 | --- | --- | --- |
 | Add Work IQ to an agent and send a query | An existing Work IQ connection, the signed-in user's Microsoft 365 permissions, and the billing or connector licensing listed in the prerequisites. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
-| Create the first Work IQ connection for the organization | The Work IQ service principal, a single-tenant Entra app, delegated `WorkIQAgent.Ask` permission, and tenant-wide admin consent. | [Set up your Entra app](#set-up-your-entra-app-one-time-per-organization) |
+| Create the first Work IQ connection for the organization | The Work IQ service principal, a single-tenant Entra app, delegated `WorkIQAgent.Ask` permission, and tenant-wide admin consent. | [Set up your Entra app](#set-up-your-microsoft-entra-app-one-time-per-organization) |
 | Use a connector-backed Microsoft 365 tool | A connection for that connector and any connector-specific license required for the signed-in user. | [Add the Work IQ tool to your agent](#add-the-work-iq-tool-to-your-agent) |
 
 Complete the agent-use flow first when your organization already has a connection. Use the one-time tenant setup only when an administrator needs to create the first connection.
@@ -164,7 +164,7 @@ with (
     print("Agent deleted")
 ```
 
-**Expected output**: The agent calls Work IQ with the user's query. Work IQ retrieves and synthesizes the user's relevant Microsoft 365 content, grounded in their permissions, and returns the answer.
+**Expected output**: The agent calls Work IQ with the user's query. Work IQ retrieves and synthesizes the user's relevant Microsoft 365 content, based on their permissions, and returns the answer.
 
 ### Hosted agents
 
@@ -276,7 +276,7 @@ Content-Type: application/json
 {}
 ```
 
-The response includes a `id` field. Use it in the next step.
+The response includes an `id` field. Use it in the next step.
 
 **Step 5:** Send a request to the agent:
 
@@ -466,7 +466,7 @@ main().catch((err) => {
 
 ### Add Work IQ to a toolbox with the Azure Developer CLI
 
-Use the Azure Developer CLI to create the Work IQ A2A project connection, then reference it from a minimal toolbox YAML.
+Use the Azure Developer CLI to create the Work IQ A2A project connection, and then reference it from a minimal toolbox YAML.
 
 ```bash
 # Step 1. Create the Work IQ connection
@@ -482,7 +482,7 @@ azd ai connection create my-workiq-conn \
 ```
 
 > [!NOTE]
-> This article uses the Work IQ A2A endpoint `https://workiq.svc.cloud.microsoft/a2a/`. The previous toolbox catalog used `https://agent365.svc.cloud.microsoft/agents/agents/workiq` for its azd workflow; verify the endpoint if your Work IQ connection uses a different A2A or MCP target.
+> This article uses the Work IQ A2A endpoint `https://workiq.svc.cloud.microsoft/a2a/`. The previous toolbox catalog used `https://agent365.svc.cloud.microsoft/agents/agents/workiq` for its azd workflow. Verify the endpoint if your Work IQ connection uses a different A2A or MCP target.
 
 ```yaml
 # Step 2. Define the toolbox (my-toolbox.yaml)
@@ -507,11 +507,11 @@ For end-to-end implementations, use the maintained [Python Teams activity sample
 
 Work IQ uses Microsoft Entra ID delegated authentication. All requests run in the context of the signed-in user. Application-only (app-only) authentication isn't supported. Microsoft 365 permissions are enforced automatically — Work IQ agents can never access data that the signed-in user isn't already permitted to see.
 
-Only **Bring your own Entra app** (On-Behalf-Of authentication) is supported for Work IQ connections. This gives your Entra admin explicit control over which applications can retrieve Microsoft 365 data through Work IQ: the admin reviews and grants the `WorkIQAgent.Ask` permission specifically for your registered app.
+Only **Bring your own Entra app** (On-Behalf-Of authentication) is supported for Work IQ connections. This authentication method gives your Entra admin explicit control over which applications can retrieve Microsoft 365 data through Work IQ. The admin reviews and grants the `WorkIQAgent.Ask` permission specifically for your registered app.
 
-### Set up your Entra app (one-time, per organization)
+### Set up your Microsoft Entra app (one-time, per organization)
 
-An Entra admin must complete the following one-time tenant operation before you can create a Work IQ connection in Foundry. For steps that require the Global Administrator role, use Microsoft Entra PIM to activate the role just in time, and deactivate it when setup is complete. Day-to-day Work IQ users don't need this role.
+A Microsoft Entra admin must complete the following one-time tenant operation before you can create a Work IQ connection in Foundry. For steps that require the Global Administrator role, use Microsoft Entra PIM to activate the role just in time, and deactivate it when setup is complete. Day-to-day Work IQ users don't need this role.
 
 #### Provision the Work IQ service principal (one-time)
 
@@ -551,7 +551,35 @@ Replace `{tenant-id}` with your Directory (tenant) ID from step 7. Select **Save
 :::image type="content" source="../../media/tools/work-iq/edit-connection-portal.png" alt-text="Screenshot of the Foundry portal showing authentication settings for a Work IQ connection." lightbox="../../media/tools/work-iq/edit-connection-portal.png":::
 
 > [!IMPORTANT]
-> Connection fields can't be edited after creation. If you enter incorrect values, delete the connection and create a new one.
+> You can't edit connection fields after creation. If you enter incorrect values, delete the connection and create a new one.
+
+### Create the connection with the Azure Developer CLI
+
+Set the Foundry project endpoint and your app registration values. Keep the
+client secret in your shell or secret store, and don't put it in source
+control.
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+TENANT_ID="<tenant-id>"
+CLIENT_ID="<client-id>"
+CLIENT_SECRET="<client-secret>"
+
+azd ai connection create workiq-conn \
+  --project-endpoint "$PROJECT_ENDPOINT" \
+  --kind remote-a2a \
+  --target https://workiq.svc.cloud.microsoft/a2a/ \
+  --auth-type oauth2 \
+  --authorization-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/authorize" \
+  --token-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
+  --refresh-url "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
+  --client-id "$CLIENT_ID" \
+  --client-secret "$CLIENT_SECRET" \
+  --scopes "api://workiq.svc.cloud.microsoft/WorkIQAgent.Ask,offline_access"
+```
+
+After the connection is created, add its OAuth redirect URL to your app
+registration.
 
 ### Add the redirect URI to your app registration
 
@@ -625,7 +653,15 @@ A successful response returns HTTP 200 or 201. The response body includes a `pro
 
 ## Data governance and compliance
 
-Work IQ permission-trims retrieval against Microsoft 365. A Foundry workflow can also send prompts and retrieved results to downstream Copilot and Foundry processing, so review the boundaries and regional configuration of every service in the request path.
+Work IQ and Foundry are Microsoft services with distinct service and data-processing boundaries. When a Foundry agent calls Work IQ, request data goes beyond the Foundry service boundary and might be processed outside the Azure compliance boundary. Work IQ authenticates requests on behalf of the signed-in user and enforces that user's existing Microsoft 365 permissions and applicable policies. The Microsoft Entra tenant establishes the authorization context; it doesn't, by itself, guarantee where data is processed or stored.
+
+For this Agent-to-Agent (A2A) integration, Work IQ returns a synthesized response that can contain information grounded in the user's Microsoft 365 content. Foundry can further process or store that response according to the agent and project configuration. The complete workflow can involve Work IQ, Copilot, and Foundry processing. Review the applicable service terms, data-handling policies, regional configuration, and certification coverage for every service in the request path. End-to-end processing also depends on the Copilot billing configuration and Foundry project region. Don't infer end-to-end residency or compliance coverage solely from the user's tenant or the location of the original Microsoft 365 content.
+
+Direct traffic between Azure and Microsoft services is expected to use the Microsoft global network, as described in [Global routing and interconnection](/azure/networking/microsoft-global-network#global-routing-and-interconnection). Work IQ uses the public HTTPS endpoint `https://workiq.svc.cloud.microsoft`. Authentication and supported file operations can also require outbound HTTPS access to additional endpoints. A public endpoint can still be reached over the Microsoft global network and doesn't necessarily mean that traffic traverses the public internet. Review and allow the destinations required by your Work IQ scenario.
+
+When the Foundry project is configured for bring-your-own virtual network (BYO VNet) outbound integration, Work IQ tool calls route through the project's single-tenant data proxy. This platform-managed networking component is dedicated to the project and handles outbound tool connectivity, allowing customer-defined network controls to govern that traffic. For more information about the data proxy and request path, see [Deep dive into Foundry Agent Service networking](../../concepts/agents-networking-deep-dive.md#how-traffic-flows). For the available inbound and outbound configurations, see [Networking options for Foundry Agent Service](../../concepts/networking-options.md#networking-options).
+
+A private endpoint for Foundry provides private inbound access to Foundry. It doesn't configure outbound VNet integration or make the outbound connection to Work IQ private. Work IQ remains a public HTTPS destination in this configuration. Routing through the data proxy doesn't establish private ingress to Work IQ or change the service terms and data-handling requirements applicable to Work IQ processing.
 
 ### Data residency
 
@@ -671,4 +707,3 @@ Admin consent for `WorkIQAgent.Ask` is required before any user in your organiza
 - [Work IQ API overview (preview)](/microsoft-365/copilot/extensibility/work-iq-api-overview)
 - [Work IQ API quickstart (preview)](/microsoft-365/copilot/extensibility/work-iq-api-quickstart)
 - [Connect to an A2A agent endpoint from Foundry Agent Service](agent-to-agent.md)
-

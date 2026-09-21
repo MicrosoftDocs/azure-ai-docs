@@ -42,12 +42,12 @@ ms.custom: references_regions
 | `es-ES` | Spanish (Spain) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `es-MX` | Spanish (Mexico) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `es-US` | Spanish (United States)| HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
-| `fi-FI` | Finnish (Finland) | Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
+| `fi-FI` | Finnish (Finland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `fr-BE` | French (Belgium) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `fr-CA` | French (Canada) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `fr-CH` | French (Switzerland) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary|
 | `fr-FR` | French (France) | HD voice<br/><br/>Neural voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
-| `he-IL` | Hebrew (Israel) | Neural voice<br/><br/>Multi-style voice |
+| `he-IL` | Hebrew (Israel) | HD voice<br/><br/>Neural voice<br/><br/>Multi-style voice |
 | `hi-IN` | Hindi (India) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
 | `hr-HR` | Croatian (Croatia) | Neural voice<br/><br/>Multi-style voice |
 | `hu-HU` | Hungarian (Hungary) | HD voice<br/><br/>Neural voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary  |
