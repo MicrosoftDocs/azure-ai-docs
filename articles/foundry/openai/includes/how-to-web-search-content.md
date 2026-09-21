@@ -5,7 +5,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/18/2026
+ms.date: 09/21/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -399,7 +399,7 @@ A successful response that uses web search typically contains two parts:
 ```
 
 - A `web_search_call` output item that records the action performed:
-  - `search`: a web search action, including the query (and optionally the searched domains). **Search actions incur tool call costs** (see [pricing](https://www.microsoft.com/en-us/bing/apis)).
+  - `search`: a web search action, including the query and optionally the searched domains.
   - `open_page`: indicates the agent opened a page. Available with all reasoning models.
   - `find_in_page`: indicates the agent searched within an opened page. Available with all reasoning models.
 - A message output item containing:
@@ -407,6 +407,12 @@ A successful response that uses web search typically contains two parts:
   - URL citations in `message.content[0].annotations`, one or more `url_citation` objects that include the URL, title, and character ranges.
 
 When you use a reasoning model, the `output` array also contains a `reasoning` item alongside `web_search_call` and `message`. Parse the array by `type` rather than by position.
+
+### Web search usage and billing
+
+Web search charges are based on the number of Bing search requests. Use `tool_usage.web_search.num_requests` in the response body to identify this count. The request count is available for all models that support web search.
+
+Don't calculate billable usage by counting `search` actions or `web_search_call` output items. These counts don't reliably represent the number of Bing search requests. For rates, see [Grounding with Bing pricing](https://www.microsoft.com/en-us/bing/apis).
 
 ### Control results by user location
 
@@ -617,6 +623,10 @@ You can limit results to a specific set of domains by using domain filtering. Us
 To return the sources the model consulted, set `include` to `["web_search_call.action.sources"]`. The matched source URLs appear in the `action.sources` array of the `web_search_call` output item. Each entry contains a `type` and a `url`. Page titles aren't returned in `action.sources`; the model's grounded text includes titles in the `url_citation` annotations on the message item instead.
 
 To return the search result snippets the model consulted, set `include` to `["web_search_call.results"]`. The `web_search_call.results` option is supported only when you use a reasoning model.
+
+In Azure OpenAI, `open_page` and `find_in_page` don't return results to your application through `web_search_call.results`, even when you request this option.
+
+The model can still access cached content when available. This content isn't retrieved live from the website. Missing results don't necessarily mean the model had no content available.
 
 # [Python](#tab/python)
 
@@ -856,9 +866,9 @@ To use API key authentication, replace the Microsoft Entra credential with your 
 
 - Live internet access isn't supported. Azure OpenAI always treats the `external_web_access` parameter as `false`.
 - The domain allow list supports up to 100 URLs.
-- Web search call actions incur tool call costs. For more information, see [pricing](https://www.microsoft.com/en-us/bing/apis).
+- Web search charges are based on Bing search requests reported in `tool_usage.web_search.num_requests`, not the number of `search` actions. For more information, see [Web search usage and billing](#web-search-usage-and-billing).
 - The preview version of the web search tool (`web_search_preview`) is supported but not recommended.
-- The `open_page` and `find_in_page` actions are available only with reasoning models.
+- The `open_page` and `find_in_page` actions are available only with reasoning models. These actions don't return results through `web_search_call.results`.
 
 ## Manage web search tool
 
