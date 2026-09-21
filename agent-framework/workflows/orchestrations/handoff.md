@@ -4,9 +4,10 @@ description: In-depth look at Handoff Orchestrations in Microsoft Agent Framewor
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 07/29/2026
+ms.date: 09/21/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -760,6 +761,12 @@ Agents in Agent Framework relies on agent sessions ([`AgentSession`](../../conce
 > [!NOTE]
 > Tool related contents, including handoff tool calls, are not broadcasted to other agents. Only user and agent messages are synchronized across all participants.
 
+::: zone pivot="programming-language-python"
+
+Python preserves user text, inline data, URIs, hosted files, and hosted vector stores when it synchronizes handoff history. Non-user messages retain text only. Before forwarding, the system filters out function calls, function results, approval payloads, and other tool-control content.
+
+::: zone-end
+
 > [!TIP]
 > Agents do not share the same session instance because different [agent types](../../integrations/by-component/model-providers/index.md) may have different implementations of the `AgentSession` abstraction. Sharing the same session instance could lead to inconsistencies in how each agent processes and maintains context.
 
@@ -787,7 +794,7 @@ After broadcasting the response, the participant then checks whether it needs to
 - **with_start_agent()**: Defines which agent receives user input first
 - **add_handoff()**: Configures specific handoff relationships between agents
 - **Output**: By default, `output_from` is set to **all participants**, so every agent's response surfaces as an `"output"` (terminal) event (`AgentResponse` in non-streaming mode, `AgentResponseUpdate` in streaming mode). To designate specific agents as intermediate sources instead, pass `intermediate_output_from=[agent_a, agent_b]` to `HandoffBuilder` — this implicitly demotes those agents from the default output set so their responses become `"intermediate"` events. There is no overlap error; the demotion is silent and intentional.
-- **Context Preservation**: Full conversation history is maintained across all handoffs
+- **Context preservation**: Preserve semantic user content across handoffs while filtering tool-control content.
 - **Request/Response Cycle**: Workflow requests user input, processes responses, and continues until termination condition is met
 - **Tool Approval**: Use `@tool(approval_mode="always_require")` for sensitive operations that need human approval
 - **Function Approval Handling**: When an agent calls a tool requiring approval, a `Content` object with type `"function_approval_request"` is emitted; use `to_function_approval_response(approved=...)` to respond
