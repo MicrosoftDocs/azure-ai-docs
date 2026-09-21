@@ -4,7 +4,7 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 09/15/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -41,7 +41,11 @@ If your agent uses the `invocations` protocol, attaching a policy isn't enough o
     pip install "azure-ai-projects>=2.2.0"
     ```
 
-    The `invocations_moderation` setting isn't available in the released Python SDK yet. To configure moderation for the `invocations` protocol, use the Azure Developer CLI or the REST API.
+    To configure moderation for the `invocations` protocol, use version 2.7.0 or later:
+
+    ```bash
+    pip install "azure-ai-projects>=2.7.0"
+    ```
 
 ## How guardrails apply to hosted agents
 
@@ -424,7 +428,7 @@ These checks cover structure, not meaning. `azd` can't tell whether your paths a
 ### Add moderation with the Python SDK
 
 > [!NOTE]
-> `invocations_moderation` isn't available in the released `azure-ai-projects` package yet. To configure moderation for the `invocations` protocol today, use the [Azure Developer CLI](#add-moderation-with-the-azure-developer-cli) or the [REST API](#add-moderation-with-the-rest-api). The following example shows the syntax to use after the models ship.
+> `invocations_moderation` requires `azure-ai-projects` version 2.7.0 or later.
 
 Pass a `RaiInvocationModeration` object to the `invocations_moderation` parameter of `RaiConfig`.
 
