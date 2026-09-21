@@ -29,6 +29,9 @@ items:
 - name: Evaluation
   href: toc-files-foundry/evaluation/toc.yml
 
+- name: Optimization
+  href: toc-files-foundry/optimization/toc.yml
+
 - name: Trust and safety
   items:
   - name: Guardrails and controls

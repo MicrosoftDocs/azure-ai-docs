@@ -394,14 +394,14 @@ async with A2AAgent(
 
 ## Timeout Configuration
 
-`A2AAgent` accepts a `timeout` parameter for controlling request timeouts:
+`A2AAgent` accepts an `int` or `float` number of seconds. The value applies to the connect, read, write, and pool timeout components. Pass an `httpx.Timeout` object to configure those values separately:
 
 ```python
 import httpx
 from agent_framework.a2a import A2AAgent
 
 # Simple timeout (applies to all components)
-async with A2AAgent(name="remote", url="https://example.com", timeout=120.0) as agent:
+async with A2AAgent(name="remote", url="https://example.com", timeout=120) as agent:
     ...
 
 # Fine-grained timeout

@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 # Work with a data labeling vendor company
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 Learn how to engage a data labeling vendor company to help you label your data. Learn more about these companies, and the labeling services they provide, in their [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/consulting-services?page=1&search=AzureMLVend) listing pages.
 
 

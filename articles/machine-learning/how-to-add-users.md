@@ -15,6 +15,8 @@ ms.custom: sfi-image-nochange
 
 # Add users to your data labeling project
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 This article shows how to add users to your data labeling project so that they can label data, but can't see the rest of your workspace. These steps can add anyone to your project, whether or not they are from a [data labeling vendor company](how-to-outsource-data-labeling.md).
   
 ## Prerequisites

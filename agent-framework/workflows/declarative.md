@@ -1744,6 +1744,18 @@ Common functions include:
 - `If(condition, trueValue, falseValue)` - Conditional expression
 - `IsBlank(value)` - Check if value is empty
 
+#### PowerFx state traversal limits
+
+Python validates declarative state before state writes and snapshots, and before converting values into PowerFx symbols. Cyclic structures are rejected instead of being truncated.
+
+Each traversal uses these fixed limits:
+
+- A maximum depth of 64, with the root value at depth 0.
+- A maximum of 10,000 visited values, including containers and mapping keys.
+- A maximum aggregate size of 1,048,576 string characters and binary bytes.
+
+Repeated references and aliases count again each time they're traversed. A cycle or exceeded limit raises `ValueError` during a state write or snapshot, or during PowerFx conversion. These traversal limits don't bound PowerFx expression execution or application-defined Python copy or conversion hooks.
+
 ### Action Types
 
 Declarative workflows support various action types:
@@ -2282,6 +2294,17 @@ from agent_framework.declarative import DefaultHttpRequestHandler, WorkflowFacto
 factory = WorkflowFactory(http_request_handler=DefaultHttpRequestHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+The default handler rejects URLs that aren't absolute HTTP or HTTPS URLs. It
+normalizes the URL and appends `queryParameters` after any existing query while
+preserving the existing query order and bytes.
+
+A `client_provider` receives a normalized `HttpRequestInfo` snapshot. The
+snapshot has the composed URL in `info.url` and an empty
+`info.query_parameters`; the original request information isn't modified. The
+selected client's defaults still apply. Redirect behavior remains controlled
+by that client's `follow_redirects` setting, and the provider isn't called
+again for redirect hops.
 
 The default handler reuses an internally owned HTTP client, but doesn't persist
 response cookies. If a workflow requires cookies for authentication, session

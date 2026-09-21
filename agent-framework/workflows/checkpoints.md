@@ -448,7 +448,26 @@ protected override async ValueTask OnCheckpointRestoredAsync(IWorkflowContext co
 
 ::: zone pivot="programming-language-python"
 
-To ensure that the state of an executor is captured in a checkpoint, the executor must override the `on_checkpoint_save` method and return its state as a dictionary.
+The public `AgentExecutorCheckpointState` `TypedDict` describes the state that
+the built-in `AgentExecutor` saves and restores:
+
+- `cache`: Messages buffered before the next agent invocation.
+- `full_conversation`: Prior inputs and the assistant or tool outputs from the
+  latest run.
+- `agent_session`: The serialized agent session.
+- `pending_agent_requests`: In-flight agent requests keyed by request ID.
+- `pending_responses_to_agent`: Queued responses waiting to be sent to the
+  agent.
+
+Missing known fields use their defaults, including a new agent session when
+`agent_session` is absent. The system ignores unknown fields. A malformed known field
+raises `WorkflowCheckpointException`.
+
+For a custom executor, define a dedicated `TypedDict` for its checkpoint state
+and validate the known fields in `on_checkpoint_restore`. Raise
+`WorkflowCheckpointException` for malformed checkpoint data.
+
+To capture the state of a custom executor in a checkpoint, override the `on_checkpoint_save` method and return the state as a dictionary.
 
 ```python
 class CustomExecutor(Executor):
