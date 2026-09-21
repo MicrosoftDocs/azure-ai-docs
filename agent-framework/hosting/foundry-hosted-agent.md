@@ -82,6 +82,8 @@ In Foundry, the platform supplies the caller's user context and call context; th
 
 The **Responses** protocol is the recommended starting point for most agents. It exposes an OpenAI-compatible `/responses` endpoint, and the platform manages conversation history, streaming, and session lifecycle automatically.
 
+For Python hosted agents, a response that ends early has an `incomplete` status. Streaming clients receive a terminal `response.incomplete` event, while non-streaming clients receive `status` set to `incomplete`. A `content_filter` finish reason maps to `incomplete_details.reason` set to `content_filter`, and `length` maps to `max_output_tokens`. Any generated output or refusal content remains available in the response.
+
 :::zone pivot="programming-language-csharp"
 
 ```csharp
