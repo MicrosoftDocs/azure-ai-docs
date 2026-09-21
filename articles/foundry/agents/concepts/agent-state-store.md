@@ -30,8 +30,8 @@ Foundry persists `$HOME` for the same
 [session](hosted-agents.md#session-storage) and
 restores it when that session resumes. Files uploaded through the `/files`
 endpoint are written into the same session storage. Process memory, unflushed
-buffers, and files outside the session-persisted filesystem aren't guaranteed
-to survive when compute is replaced.
+buffers, and files outside the session-persisted filesystem might not survive
+when compute is replaced.
 
 Use `$HOME` for files that belong to one session. Use the state store for JSON
 state that must be addressed independently of session compute, partitioned by
@@ -64,13 +64,13 @@ A `FoundryStateStore` client binds to one store name that you choose. That name 
 
 - **Store name is the identity**: You can't change a store name after creation, so choose a stable naming scheme upfront.
 - **Get-or-create is the store-level operation**: A single get-or-create call fetches the store or creates it when it's absent. Creation options apply only on first creation, so the service ignores them when the store already exists. An item write doesn't create a missing store.
-- **Item lifetime**: A store-level idle window removes items. The default is 30 days, and you can configure a store so that items never expire. Writes renew the window, and reads don't. You set this option at creation.
+- **Item lifetime**: A store-level idle window removes items. The default is 30 days, and you can configure a store with no expiration. Writes renew the window, and reads don't. You set this option at creation.
 
 ## Partition data
 
 The store gives you two independent ways to partition data, and most agents need only one of them.
 
-- **By store name**: Every store name is its own partition. Names can contain `/`, so you can use it as a hierarchy separator, as in `checkpoints/thread-abc` or `workflow-state/run-42`. Choose this partition when the code that reads an item always has the partition identifier available to rebuild the name.
+- **By store name**: Every store name is its own partition. Names can contain `/`, so you can use it as a hierarchy separator, as in `checkpoints/thread-abc` or `workflow-state/run-42`. Choose this partition when the code that reads an item has the partition identifier available to rebuild the name.
 - **By end user**: A store created with user isolation partitions its items per end user, so a single store name is safe to share across the users of a multitenant agent. Choose this partition when the same store name serves more than one user. You set this option at creation, and the store resolves the user from the request rather than from anything your code passes. For details, see [Caller identity](#caller-identity).
 
 Prefer the narrowest partition that your lookup path can reconstruct. A store name that encodes an identifier is only useful if every caller that reads the item still has that identifier. When a lookup carries an item key alone, as a framework checkpoint loader typically does, keep the store name flat and let user isolation do the partitioning instead.
@@ -82,7 +82,7 @@ The two axes compose, but keep them separate in kind: a store name should carry 
 
 ## Caller identity
 
-The state store applies the hosted agent identity model. On [container protocol 2.0.0](hosted-agent-contract.md#platform-request-headers-container-protocol-200), each request the platform routes to your agent carries an `x-agent-foundry-call-id` header that identifies the caller, and the store resolves the acting end user from it. The Foundry SDKs forward the header on store calls for you, so most agents never handle it directly.
+The state store applies the hosted agent identity model. On [container protocol 2.0.0](hosted-agent-contract.md#platform-request-headers-container-protocol-200), each request the platform routes to your agent carries an `x-agent-foundry-call-id` header that identifies the caller, and the store resolves the acting end user from it. The Foundry SDKs forward the header on store calls for you, so most agents don't handle it directly.
 
 Two consequences matter when you design with it:
 
@@ -112,7 +112,7 @@ An item is a key and a JSON value, with optional string tags.
 - **Tags are for filtering**: Tags are simple string labels, matched with AND when you list keys. Promote only the fields you need to filter on.
 - **Listing returns keys only**: A page of keys is cheap even when the values are large, so listing and fetching are separate steps.
 - **Optimistic concurrency**: Every item carries an ETag. Use an `If-Match` precondition for read-modify-write operations on mutable items, such as counters, where a lost update would corrupt state. A failed precondition reports the current ETag.
-- **Append-only checkpoints don't need preconditions**: When each save writes a fresh key, there's no write contention, so the checkpoint path never needs `If-Match`.
+- **Append-only checkpoints don't need preconditions**: When each save writes a fresh key and doesn't update an existing key, the checkpoint path doesn't need `If-Match`.
 
 ## Create a store and items
 

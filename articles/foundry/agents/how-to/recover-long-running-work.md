@@ -85,7 +85,7 @@ correctness-critical progress in a transactional application store.
 > Without `resilient_background=True`, a stored background response runs
 > non-durably. If its process stops, the framework doesn't reinvoke the
 > handler, and the response might remain `in_progress`. A foreground response
-> has no process-loss recovery contract.
+> isn't reentered after process loss.
 
 ## Enable invocations and task primitives
 

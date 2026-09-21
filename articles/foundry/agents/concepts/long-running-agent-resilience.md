@@ -24,7 +24,7 @@ application checkpoint boundary and how unfinished work safely runs again.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-## Start with the recovery guarantee
+## Start with the recovery semantics
 
 For a stored background response with resilience enabled, Foundry preserves the
 logical work and invokes your handler again when the process that owned the work
@@ -35,7 +35,7 @@ Design the handler for **at-least-once execution from its last durable
 boundary**. The runtime doesn't restore process memory, the call stack, local
 variables, or an external operation that completed without a durable record.
 
-| Event | What Foundry guarantees | What your application must handle |
+| Event | Foundry behavior | What your application must handle |
 | --- | --- | --- |
 | The initiating client disconnects. | Stored background work continues, and the client can poll or reconnect by using the response ID. | Retain the response ID or stream cursor. |
 | The hosting process stops. | After the lease expires, another process can reclaim the same work and reenter the handler with the persisted input. | Restore application progress from a checkpoint or safely rerun the unfinished step. |
@@ -65,9 +65,10 @@ Background execution and resilience solve different problems. Background executi
 
 For the Responses protocol, full crash recovery applies only to stored background responses when the server opts in to resilient background execution. Foreground responses remain tied to the client connection and aren't reinvoked after a process interruption.
 
-For the Invocations protocol, your application defines the request, response,
-and status contract. Use the AgentServer resilient task primitive to preserve
-execution, and expose the polling or streaming behavior that your clients need.
+For the Invocations protocol, your application defines the request and response
+schemas and status behavior. Use the AgentServer resilient task primitive to
+preserve execution, and expose the polling or streaming behavior that your
+clients need.
 
 Client reconnect by response ID is specific to the Responses protocol. An
 Invocations client reconnects through the invocation or stream identity and
@@ -197,7 +198,7 @@ Use a separate stream identity for each request or turn. Don't reuse a multi-tur
 
 Replayable streams retain events and assign cursors that clients use when they reconnect. A persistent replay backing also lets a recovered producer find its last emitted cursor and continue with the next event.
 
-For a recovered Responses stream, a later `response.in_progress` event is a snapshot reset. A client replaces its locally accumulated output with the snapshot in that event, discards partial output that isn't in the snapshot, and then applies subsequent events. Output indexes identify slots in the current snapshot; they aren't guaranteed to increase across recovery attempts.
+For a recovered Responses stream, a later `response.in_progress` event is a snapshot reset. A client replaces its locally accumulated output with the snapshot in that event, discards partial output that isn't in the snapshot, and then applies subsequent events. Output indexes identify slots in the current snapshot and might reset or repeat across recovery attempts.
 
 ## Handle cancellation and shutdown
 
@@ -214,7 +215,7 @@ Resilient tasks don't provide deterministic replay, workflow orchestration, or b
 - Use an agent framework checkpointer for graph state and human-in-the-loop suspension.
 - Use a workflow engine for fan-out, fan-in, durable timers, or child workflows.
 - Use application storage for large inputs, generated artifacts, and external state.
-- Use idempotency support from downstream services whenever it's available.
+- Use idempotency support from downstream services when it's available.
 
 Design each handler so that process loss at any point leads to one of two outcomes: the operation safely runs again, or durable state identifies the exact boundary from which it resumes.
 
