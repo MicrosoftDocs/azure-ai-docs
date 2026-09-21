@@ -956,7 +956,7 @@ print(response.model_dump_json(indent=2))
 
 # [GPT-6 reasoning models](#tab/gpt-6)
 
-| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-17** | **gpt-6-luna**, **2026-09-17** |
+| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-22** | **gpt-6-luna**, **2026-09-22** |
 | --- | --- | --- | --- |
 | **[Structured outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
 | **Context window** | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens |
