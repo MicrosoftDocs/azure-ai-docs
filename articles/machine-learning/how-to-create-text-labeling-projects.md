@@ -15,6 +15,8 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 # Set up a text labeling project and export labels
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 In Azure Machine Learning, learn how to create and run data labeling projects to label text data. Specify either a single label or multiple labels to apply to each text item.
 
 You can also use the data labeling tool in Azure Machine Learning to [create an image labeling project](how-to-create-image-labeling-projects.md).

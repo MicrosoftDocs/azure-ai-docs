@@ -141,6 +141,21 @@ Disable defaults with options such as `disable_todo`, `disable_mode`, `disable_f
 
 Replace built-in providers with `todo_provider` or `mode_provider`, and add providers with `context_providers`. Skills are opt-in through `skills_provider` or `skills_paths`; file access, background agents, shell tooling, and looping are also opt-in.
 
+File access uses the supplied store as one shared workspace by default. To isolate files by the active session ID, enable session-scoped file access:
+
+```python
+from agent_framework import FileSystemAgentFileStore, create_harness_agent
+
+file_store = FileSystemAgentFileStore("agent-files")
+agent = create_harness_agent(
+    client=client,
+    file_access_store=file_store,
+    file_access_session_scoped=True,
+)
+```
+
+For intentional sharing across selected sessions, construct `FileAccessProvider(store=file_store, scope="tenant-1")` directly and add it through `context_providers`. The scope is an opaque key that maps to a provider-managed folder, not a path. Scoped access fails closed instead of using the shared store root when neither an active session ID nor an explicit scope is available.
+
 When file access is enabled, use `file_access_grep` to find 1-based line numbers, `file_access_read_lines` to inspect an inclusive range, and `file_access_replace_lines` to edit whole lines. `file_access_read_lines` prefixes each line with its number and a tab; omit that prefix when passing the line text as `expected_line`. The expected text prevents a stale or mismatched line number from editing the wrong line.
 
 `file_access_grep` uses case-insensitive regular expressions, accepts patterns up to 256 characters, and applies a 10-second budget to the entire search. Invalid or overlong patterns and searches that exceed the budget return an error. Narrow the directory or pattern before retrying.
