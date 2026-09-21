@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author:  rogerbarreto
 ms.topic: tutorial
 ms.author: rbarreto
-ms.date: 09/04/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -349,6 +349,12 @@ No runnable Agent Framework sample is currently published for `AnthropicVertexCl
 ### Handle request failures
 
 For streaming and non-streaming runs, Anthropic SDK request failures are exposed through Agent Framework exceptions. Authentication and permission failures raise `ChatClientInvalidAuthException`, other HTTP 4xx failures raise `ChatClientInvalidRequestException`, and all other provider failures raise `ChatClientException`.
+
+If Anthropic invalidates a response after a local function call starts, Agent
+Framework raises `ResponseInvalidatedException` and doesn't execute or persist
+the invalidated call. A streaming consumer might have already received partial
+updates when the exception occurs; discard those updates rather than treating
+them as a completed response.
 
 Catch `ChatClientException` when the same error handling should apply across chat providers.
 

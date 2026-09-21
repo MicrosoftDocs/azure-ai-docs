@@ -89,7 +89,7 @@ Use the following table to quickly find which role provides the permissions you 
 | Upload data for indexing <sup>2</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
 | Query an index | ❌ | ❌ | ❌ | ✅ | ✅ |
 | Retrieve from a knowledge base | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Bypass permission filters with [elevated read](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | ❌ | ❌ | ❌ | ✅ | ❌ |
+| Bypass permission filters with [elevated read (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) | ❌ | ❌ | ❌ | ✅ | ❌ |
 
 <sup>1</sup> Includes indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
 
@@ -966,7 +966,7 @@ When you develop applications that use role-based access control for authenticat
 
 + If the authorization token comes from a [managed identity](/entra/identity/managed-identities-azure-resources/overview) and you recently assigned the appropriate permissions, it [might take several hours](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations#limitation-of-using-managed-identities-for-authorization) for the permissions assignments to take effect.
 
-+ If queries with document-level permissions don't return expected results, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) to investigate.
++ If queries with document-level permissions don't return expected results, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) to investigate.
 
 ## Next step
 

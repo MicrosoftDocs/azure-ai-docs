@@ -4,7 +4,7 @@ description: Use Mistral AI chat and embedding models with Agent Framework Pytho
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -32,6 +32,11 @@ MISTRAL_SERVER_URL="<server-url>"
 
 You can also pass `api_key`, `model`, and `server_url` directly to either
 client.
+
+Configure transport settings on the client. Agent Framework rejects
+`server_url`, `http_headers`, `retries`, and `timeout_ms` when you pass them
+per call through `options` or additional keyword arguments. Generation options
+remain available per call.
 
 ## Create a chat agent
 

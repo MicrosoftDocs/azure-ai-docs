@@ -22,7 +22,7 @@ Azure AI Search offers two pricing models that handle capacity differently:
     - Choose a service tier to provision the capacity needed based on expected peak demand.
     - Once you configure capacity upfront, you pay an hourly rate measured by Search Units (SUs), regardless of usage.
 
-- **Serverless (Preview)**: The service automatically manages capacity based on usage and service limits. You don't need to pre-provision capacity. Instead, optimize your workload efficiency to manage cost.
+- **Serverless (preview)**: The service automatically manages capacity based on usage and service limits. You don't need to pre-provision capacity. Instead, optimize your workload efficiency to manage cost.
     - Capacity automatically scales with demand (can scale to zero when idle).
     - You're billed based on actual usage as measured by Compute Units (CUs) and storage.
     - Rather than infrastructure, planning focuses on these cost drivers: Query patterns, Index size and growth, and Data ingestion patterns. See [Optimize cost for the Serverless model](#optimize-cost-for-the-serverless-model).

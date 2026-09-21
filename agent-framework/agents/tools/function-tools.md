@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/09/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -141,6 +141,15 @@ The model can still reason about and call the tool, and your application can pro
 
 :::code language="python" source="~/../agent-framework-code/python/samples/03-workflows/human-in-the-loop/agents_with_declaration_only_tools.py" range="37-50":::
 
+### Parse custom tool results
+
+Set `result_parser` on `FunctionTool` or `@tool` when you need to convert a raw
+return value into a string or a list of `Content` items. If a custom parser
+raises an exception, direct invocation propagates the exception, while
+automatic function invocation returns a normal tool-error result and honors
+`include_detailed_errors`. The raw return value isn't used as a fallback, so
+handle recoverable conversion errors inside the custom parser.
+
 When creating the agent, you can now provide the function tool to the agent, by passing it to the `tools` parameter.
 
 ```python
@@ -176,7 +185,7 @@ Set limits on the chat client to control automatic tool invocation by model roun
 
 `max_function_calls` and `max_duration_seconds` default to `None`, which means unlimited. Set them to positive values. When the client reaches a limit, it stops invoking tools and asks the model for a final text response.
 
-These limits are best effort and are checked after each batch of parallel tool calls, so a batch can exceed the call-count or duration limit. Time spent waiting for tool approval counts toward `max_duration_seconds`.
+These limits are best effort and are checked after each model-requested batch of tool calls, so a batch can exceed the call-count or duration limit. Time spent waiting for tool approval counts toward `max_duration_seconds`.
 
 ```python
 from agent_framework.openai import OpenAIChatCompletionClient
@@ -190,6 +199,22 @@ client.function_invocation_configuration.update(
     }
 )
 ```
+
+### Control concurrent tool invocation
+
+Function calls returned in one assistant message run concurrently by default. Set `allow_concurrent_invocation` to `False` when tools share mutable state or must run in model order:
+
+```python
+client.function_invocation_configuration["allow_concurrent_invocation"] = False
+```
+
+This setting controls client-side tool execution independently of provider-side options such as `allow_multiple_tool_calls`. For session-backed approval batches, decisions can arrive separately, but no tool runs and the model doesn't resume until every approval in the original batch has a decision. Approved tools then run in the model's original order.
+
+### Control tool error details
+
+By default, `include_detailed_errors` is `False`. Function execution and argument-validation failures return generic results to the model and other serialized channels. The original diagnostic remains available to trusted host code in `Content.exception`. `Content.to_dict()` replaces that field with a fixed, non-sensitive failure marker, and protocol conversions don't expose the diagnostic.
+
+Set `client.function_invocation_configuration["include_detailed_errors"] = True` only when the result stays on a trusted channel. Exception text can contain sensitive data, and this setting adds that text to the channel-visible result.
 
 ## Create a class with multiple function tools
 

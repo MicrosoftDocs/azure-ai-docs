@@ -7,16 +7,16 @@ ms.custom:
 ms.topic: how-to
 ms.date: 08/27/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
-# Add spell check to queries in Azure AI Search
+# Add spell check to queries in Azure AI Search (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT]
-> Spell correction is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available through the Azure portal, preview REST APIs, and beta versions of Azure SDK libraries.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-You can improve recall by spell-correcting words in a query before they reach the search engine. The `speller` parameter is supported for all text (non-vector) query types.
+You can improve recall by spell-correcting words in a query before they reach the search engine. The `speller` parameter (preview) is supported for all text (non-vector) query types and is available through the Azure portal, preview REST APIs, and beta versions of Azure SDK libraries.
 
 ## Prerequisites
 

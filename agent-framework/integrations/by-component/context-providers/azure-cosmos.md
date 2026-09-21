@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -77,7 +78,7 @@ pip install agent-framework-azure-cosmos --pre
 
 ### Configure `CosmosHistoryProvider`
 
-The Python provider accepts either an Azure credential or an account key and uses the `session_id` as the partition key.
+The Python provider accepts either an Azure credential or an account key. It uses `session_id` as the partition key. Provider instances that use the same account, database, container, nonempty `session_id`, and `source_id` access the same persisted history. The `source_id` filters history within the partition. These identifiers select stored history; they aren't authentication or authorization boundaries. Bind them to authenticated and authorized application context, and use distinct trusted namespaces when you need isolation.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/conversations/cosmos_history_provider.py" range="56-87":::
 
@@ -127,7 +128,11 @@ A stable `user_id` keeps memory available across sessions and threads. Without o
 
 Memory extraction runs in the background after each turn. Use the provider as an async context manager or call `flush()` before shutdown so pending extraction completes before the clients close.
 
-The provider also supports custom extraction prompts, processor cadence, confidence thresholds, memory types, and retrieval limits.
+The provider also supports custom extraction prompts, processor cadence, confidence thresholds, memory types, and
+retrieval limits. Select facts, procedures, and episodes with `memory_types`. With Agent Memory Toolkit 0.3.0b2 or
+later, facts and selected episodes share the ranked `top_k` result limit. Selected procedures are compiled separately
+for the current task and don't consume that limit. Older supported Toolkit versions retain their generic retrieval
+behavior.
 
 :::zone-end
 

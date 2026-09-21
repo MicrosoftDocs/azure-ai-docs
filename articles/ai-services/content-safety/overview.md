@@ -164,41 +164,11 @@ See the following list for the input requirements for each feature.
 
 [!INCLUDE [language-notice](includes/language-notice.md)]
 
-For more information, see [Language support](/azure/ai-services/content-safety/language-support).
+For more information, see [Language support](/azure/ai-services/content-safety/region-availability).
 
 ### Region availability
 
-To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions with different API versions: 
-
-| Region              | Custom Category (standard)   | Groundedness       | Image | Multimodal(Image with Tex) | Custom Category (rapid) | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | 
-|--------------------|--------------------|--------------------|-------|-----------------------------|-------------------|---------------|---------------------------|---------------------------|------|
-| Australia East     | ✅                  |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Canada East          |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Central US             |                    |                  | ✅    |                            | ✅               | ✅               | ✅                     | ✅                        | ✅    | 
-| East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
-| East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Korea Central         |                    |                    | ✅    |                            |            | ✅             |                ✅        |                           |  ✅   |
-| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |
-| Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
-| South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
-| Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Switzerland West      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |             
-| UAE North            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |              
-| UK South             |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West Europe          |                    |                    | ✅    | ✅                         | ✅               | ✅             | ✅                     | ✅                        | ✅    |
-| West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |  ✅                      | ✅    |
-| FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
-
-
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Follow this link to view [region availability](region-availability.md)
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 

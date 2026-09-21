@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 07/29/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -142,6 +143,26 @@ current_mode = get_agent_mode(
     available_modes=mode_provider.available_modes,
 )
 ```
+
+Omit `available_modes` to use the built-in `plan` and `execute` modes. If you supply `available_modes`, it must contain at least one mode; an empty sequence raises `ValueError` before session state is changed.
+
+### Control mode tools from the application
+
+Hide either built-in mode tool when your application supplies its own UI or model-facing tool:
+
+```python
+mode_provider = AgentModeProvider(
+    default_mode="plan",
+    expose_mode_set=False,
+    expose_mode_get=False,
+)
+```
+
+The two options are independent and default to `True`. Hiding both tools retains session-backed mode state, per-turn
+instructions, and external mode-change notifications. Add a replacement model-facing tool through the agent's `tools`
+argument and have it call `set_agent_mode(..., notify=False)` because the model already observes its tool result.
+Application or UI changes can keep the default `notify=True` so the agent receives the change notification on its next
+run.
 
 ::: zone-end
 

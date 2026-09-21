@@ -75,7 +75,7 @@ Partitioning data into smaller individual data sources enables parallel processi
 
 As with the push API, indexers allow you to configure the number of items per batch. For indexers based on the [Create Indexer REST API](/rest/api/searchservice/indexers/create), set the `batchSize` argument to customize this setting to better match the characteristics of your data.
 
-Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob and SharePoint (Preview) indexing set the batch size at 10 documents in recognition of the larger average document size.
+Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob and SharePoint (preview) indexing set the batch size at 10 documents in recognition of the larger average document size.
 
 ### Schedule indexers for long-running processes
 

@@ -8,6 +8,7 @@ ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Example of shapes and projections in a knowledge store
@@ -661,4 +662,4 @@ When building projections of different types, file and object projections are ge
 The example in this article demonstrates common patterns on how to create projections. Now that you have a good understanding of the concepts, you're better equipped to build projections for your specific scenario.
 
 > [!div class="nextstepaction"]
-> [Configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)
+> [Configure caching for incremental enrichment (preview)](enrichment-cache-how-to-configure.md)

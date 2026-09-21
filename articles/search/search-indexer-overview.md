@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 06/23/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Indexers in Azure AI Search
@@ -24,7 +25,7 @@ You can run indexers on demand or on a recurring data refresh schedule that runs
 A search service runs one indexer job per search unit. If you need concurrent processing, make sure you have [sufficient replicas](/azure/search/search-capacity-planning#add-or-reduce-replicas-and-partitions). Indexers don't run in the background, so you might detect more query throttling than usual if the service is under pressure.
 
 > [!NOTE]
-> Indexer execution on Standard 3 High Density (S3 HD) search services and Serverless search services follows a different model that includes a service-level daily runtime quota. For more information, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
+> Indexer execution on Standard 3 High Density (S3 HD) search services and Serverless search services follows a different model that includes a service-level daily runtime quota. For more information, see [Indexer execution on Serverless and S3 HD (preview)](search-indexer-high-density-serverless-overview.md).
 
 ## Indexer scenarios and use cases
 
@@ -59,11 +60,11 @@ Indexers crawl data stores on Azure and outside of Azure.
 + [Azure SQL Managed Instance](search-how-to-index-sql-managed-instance.md)
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
 + [SQL Server on Azure Virtual Machines](search-how-to-index-sql-server.md)
-+ [Azure Files](search-file-storage-integration.md) (in preview)
-+ [Azure MySQL](search-how-to-index-mysql.md) (in preview)
-+ [SharePoint in Microsoft 365](search-how-to-index-sharepoint-online.md) (in preview)
-+ [Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md) (in preview)
-+ [Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md) (in preview)
++ [Azure Files (preview)](search-file-storage-integration.md)
++ [Azure MySQL (preview)](search-how-to-index-mysql.md)
++ [SharePoint in Microsoft 365 (preview)](search-how-to-index-sharepoint-online.md)
++ [Azure Cosmos DB for MongoDB (preview)](search-how-to-index-cosmosdb-mongodb.md)
++ [Azure Cosmos DB for Apache Gremlin (preview)](search-how-to-index-cosmosdb-gremlin.md)
 
 Azure Cosmos DB for Cassandra is not supported.
 
@@ -89,7 +90,7 @@ You can also enable image extraction during document cracking for an [extra fee]
 
 Depending on the data source, the indexer will try different operations to extract potentially indexable content:
 
-+ When the document is a file with embedded images, such as a PDF, the indexer extracts text, images, and metadata. Indexers can open files from [Azure Blob Storage](search-how-to-index-azure-blob-storage.md#supported-document-formats), [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md#supported-document-formats), and [SharePoint](search-how-to-index-sharepoint-online.md#supported-document-formats).
++ When the document is a file with embedded images, such as a PDF, the indexer extracts text, images, and metadata. Indexers can open files from [Azure Blob Storage](search-how-to-index-azure-blob-storage.md#supported-document-formats), [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md#supported-document-formats), and [SharePoint (preview)](search-how-to-index-sharepoint-online.md#supported-document-formats).
 
 + When the document is a record in [Azure SQL](search-how-to-index-sql-database.md), the indexer will extract non-binary content from each field in each record.
 

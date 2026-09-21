@@ -16,7 +16,7 @@ ms.custom:
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 > [!IMPORTANT]
 > These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
@@ -25,7 +25,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from [Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/introduction) and makes it searchable in Azure AI Search.
+The *Azure Cosmos DB for MongoDB indexer* (preview) imports content from [Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/introduction) and makes it searchable in Azure AI Search.
 
 This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to Cosmos DB. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
@@ -33,7 +33,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 ## Prerequisites
 
-+ [Register for the preview](https://aka.ms/azure-cognitive-search/indexer-preview) to provide scenario feedback. You can access the feature automatically after form submission.
++ Complete the [indexer preview registration form](https://aka.ms/azure-cognitive-search/indexer-preview). Registration is automatically approved.
   
 + An [Azure Cosmos DB account, database, collection, and documents](/azure/cosmos-db/sql/create-cosmosdb-resources-portal). Use the same region for both Azure AI Search and Azure Cosmos DB for lower latency and to avoid bandwidth charges.
 

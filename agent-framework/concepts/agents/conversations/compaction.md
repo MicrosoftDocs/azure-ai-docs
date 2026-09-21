@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 09/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -362,6 +363,10 @@ SummarizationCompactionStrategy summarization = new(
 - Requires a `SupportsChatGetResponse` client.
 - Bounds the summarizer prompt and transcript to 8,000 estimated tokens by default. It selects complete message groups, so a group is never split to fit the budget.
 - Set `max_summary_input_tokens=None` to disable the summarizer input bound, or pass `tokenizer=` when you need model-specific token counting. If no complete group fits, summarization is skipped and the existing history remains unchanged.
+- Includes function and MCP tool names, arguments, results, exceptions, call IDs, and approval decisions in the summarizer transcript so the summary can preserve the tool trajectory.
+
+> [!IMPORTANT]
+> Trust the summarizer client as much as the primary model. Tool arguments and results can contain sensitive data, and `SummarizationStrategy` sends those details to the summarizer.
 
 ```python
 from agent_framework import SummarizationStrategy
@@ -549,6 +554,57 @@ AIAgent agent = agentChatClient
 
 > [!NOTE]
 > When registered through `ChatClientAgentOptions`, the `CompactionProvider` is **not** engaged during the tool-calling loop. Agent-level context providers run before chat history is stored, so any synthetic summary messages produced by `CompactionProvider` can become part of the persisted history when using `ChatHistoryProvider`. To compact only the in-flight request context while preserving the original stored history, register the provider on the `ChatClientBuilder` via `UseAIContextProviders(...)` instead.
+
+
+### Choose between `CompactionProvider` and `IChatReducer`
+
+`CompactionProvider` and `IChatReducer` both reduce the messages sent to a model. They run at different points in the conversation lifecycle and affect history differently.
+
+When you register `CompactionProvider` on `ChatClientBuilder` with `UseAIContextProviders(...)`, it compacts only the in-flight messages sent to the model. The conversation history stored by `ChatHistoryProvider` remains unchanged.
+
+By contrast, an `IChatReducer` configured on `InMemoryChatHistoryProvider` reduces the history managed by the history provider itself. Use this approach when you also want to bound the conversation history that is retained in memory.
+
+`InMemoryChatHistoryProvider` can run the reducer at either of these events:
+
+- `BeforeMessagesRetrieval` (the default) reduces stored history before it is supplied to the agent.
+- `AfterMessageAdded` reduces stored history after each request/response pair is added.
+
+The event controls when reduction occurs; the `IChatReducer` implementation controls how messages are reduced.
+
+By contrast, a `CompactionStrategy` supplies its own `CompactionTrigger` and operates on message groups that preserve tool-call/result pairs.
+
+#### Adapt between the abstractions
+
+The adapters let you use an existing implementation at either integration point. Choose the adapter based on where you want the reduction to run.
+
+To use a `CompactionStrategy` for persistent in-memory history reduction, adapt it to `IChatReducer`:
+
+```csharp
+CompactionStrategy strategy =
+    new SlidingWindowCompactionStrategy(CompactionTriggers.TurnsExceed(20));
+
+InMemoryChatHistoryProviderOptions historyOptions = new()
+{
+    ChatReducer = strategy.AsChatReducer(),
+    ReducerTriggerEvent =
+        InMemoryChatHistoryProviderOptions.ChatReducerTriggerEvent.BeforeMessagesRetrieval
+};
+
+InMemoryChatHistoryProvider historyProvider = new(historyOptions);
+
+```
+To use an existing `IChatReducer` in a compaction pipeline or for in-run request compaction, adapt it to `CompactionStrategy`:
+
+```csharp
+IChatReducer existingReducer = /* your Microsoft.Extensions.AI reducer */;
+
+CompactionStrategy strategy = new ChatReducerCompactionStrategy(
+    existingReducer,
+    CompactionTriggers.TokensExceed(4000));
+
+CompactionProvider provider = new(strategy);
+```
+Avoid converting a strategy to an `IChatReducer` with `AsChatReducer()` and then immediately wrapping that reducer in `ChatReducerCompactionStrategy`. This round trip does not add any capability; use the original strategy directly at the appropriate integration point.
 
 ### Ad-hoc compaction
 
@@ -772,3 +828,7 @@ Harness Agent isn't currently available in the Go SDK. Register a compaction con
 
 > [!div class="nextstepaction"]
 > [Middleware](../middleware/index.md)
+
+### Go deeper
+
+- [Context providers](context-providers.md)

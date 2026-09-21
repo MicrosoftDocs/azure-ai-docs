@@ -5,6 +5,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Add faceted navigation to search results
@@ -249,7 +250,7 @@ Remember that you can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoi
 
 ### Check for bad data
 
-As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. 
+As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check (preview)](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. 
 
 [Normalizers](search-normalizers.md) can mitigate data discrepancies, correcting for casing and character differences. Otherwise, to inspect your data, you can check fields at their source, or run queries that return values from the index.
 
