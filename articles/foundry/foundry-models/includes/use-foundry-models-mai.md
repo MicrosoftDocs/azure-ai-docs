@@ -234,7 +234,7 @@ For the list of models that support image-to-image edits, see [MAI image models 
 The following example shows how to perform an image-to-image edit by using an MAI image model with the [MAI image edits API](#api-endpoints).
 
 > [!NOTE]
-> Requests for image-to-image edits use **multipart form data**. To provide multiple reference images, repeat the `image` field for each file.
+> Requests for image-to-image edits use **multipart form data** and accept up to five reference images. Repeat the `image` field for each file.
 
 # [Python](#tab/python)
 
@@ -383,7 +383,7 @@ After you deploy an MAI image model, use the **MAI image generations API** to ge
     https://<resource-name>.services.ai.azure.com/mai/v1/images/generations
     ```
 
-- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts one or more JPEG or PNG reference images and returns a PNG image. The API endpoint has the following form:
+- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts up to five JPEG or PNG reference images and returns a PNG image. The API endpoint has the following form:
 
     ```
     https://<resource-name>.services.ai.azure.com/mai/v1/images/edits
@@ -399,7 +399,7 @@ The following table lists the request parameters for the image APIs:
 | --------- | --- | ---- | -------- | ----------- |
 | `model` | Both | string | Yes | The deployment name you assigned when you deployed the model. |
 | `prompt` | Both | string | Yes | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
-| `image` | Image edits | file | Yes | A JPEG or PNG reference image passed as multipart form data. Repeat the `image` field to provide multiple reference images. |
+| `image` | Image edits | file | Yes | A JPEG or PNG reference image passed as multipart form data. Provide up to five images by repeating the `image` field for each file. |
 | `width` | Image generations | integer | No | Width of the output image in pixels. <br>Minimum: 768. For MAI-Image-2.6 models, the product of `width` × `height` must not exceed 2,359,296. For MAI-Image-2.5 models, it must not exceed 1,048,576. |
 | `height` | Image generations | integer | No | Height of the output image in pixels. <br>Minimum: 768. For MAI-Image-2.6 models, the product of `width` × `height` must not exceed 2,359,296. For MAI-Image-2.5 models, it must not exceed 1,048,576. |
 | `auto_aspect_ratio` | Both | boolean | No | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
