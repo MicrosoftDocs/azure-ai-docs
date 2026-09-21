@@ -4,7 +4,7 @@ description: "Prototype an enterprise agent: build a single agent with SharePoin
 ms.service: microsoft-foundry
 ms.subservice: foundry-sdk
 ms.topic: tutorial
-ms.date: 07/31/2026
+ms.date: 09/21/2026
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: dantaylo
@@ -44,17 +44,17 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../concepts/foundry-models-overview.md)).
 - Python 3.10 or later
 - .NET SDK 8.0 or later (for the C# sample)
-- SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
-
-  > [!NOTE]
-  > To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md).
-
+- A SharePoint connection configured in your project.
+  - The SharePoint tool is in preview and requires a signed-in user's delegated identity. App-only and service-principal authentication aren't supported.
+  - Developers and end users need either a Microsoft 365 Copilot license or enabled pay-as-you-go access, the **Foundry User** role on the project, and at least **Read** access to the target SharePoint site.
+  - The SharePoint site and Foundry project must be in the same Microsoft Entra tenant. An agent can use one SharePoint tool. For setup instructions, see [Use the SharePoint tool](../agents/how-to/tools/sharepoint.md).
+- The **Foundry User** role to create and test the agent. If you create a project connection to authenticate an MCP server, you also need the **Foundry Project Manager** role.
 - (Optional) Git installed for cloning the sample repository
 
 > [!IMPORTANT]
 > SDK versions and sample repository structure might change after this article is published. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
 
-## Step 1: Get the sample code
+## Get the sample code
 
 Instead of navigating a large repository tree, use one of these approaches:
 
@@ -167,7 +167,7 @@ enterprise-agent-tutorial/
 
 ---
 
-## Step 2: Run the sample immediately
+## Run the sample
 
 Start by running the agent so you see working functionality before diving into implementation details.
 
@@ -183,26 +183,26 @@ Start by running the agent so you see working functionality before diving into i
    python-dotenv
    ```
 
-1. Install dependencies:
+Install dependencies:
 
-   # [Python](#tab/python)
+# [Python](#tab/python)
 
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
+```bash
+python -m pip install -r requirements.txt
+```
 
-   # [C#](#tab/csharp)
+# [C#](#tab/csharp)
 
-   ```bash
-   cd ModernWorkplaceAssistant
-   dotnet restore
+```bash
+cd ModernWorkplaceAssistant
+dotnet restore
 
-   cd ../Evaluate
-   dotnet restore
-   ```
-   ---
+cd ../Evaluate
+dotnet restore
+```
+---
 
-   Verify the install succeeded. You see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
+Verify the install succeeded. You see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
@@ -229,8 +229,8 @@ FOUNDRY_MODEL_NAME=gpt-4o-mini
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
-# SharePoint integration (optional - requires connection name)
-SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
+# SharePoint integration (optional - requires a project connection ID)
+SHAREPOINT_CONNECTION_ID=/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>/projects/<project>/connections/<connection-name>
 ```
 
 # [C#](#tab/csharp)
@@ -250,6 +250,8 @@ MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 ---
 
    Confirm `.env` contains valid values by opening the file and verifying that `FOUNDRY_PROJECT_ENDPOINT` starts with `https://` and `FOUNDRY_MODEL_NAME` matches the name of a deployed model in your project.
+
+For SharePoint integration, set `SHAREPOINT_CONNECTION_ID` in Python to the connection's full project connection ID. In C#, set `SHAREPOINT_CONNECTION_NAME` to the connection name.
 
 > [!TIP]
 > To get your **tenant ID**, run:
@@ -296,14 +298,25 @@ Successful run with SharePoint:
 
 Graceful degradation without SharePoint:
 
+# [Python](#tab/python)
+
+```text
+📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_ID not set)
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
+```
+
+# [C#](#tab/csharp)
+
 ```text
 📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_NAME not set)
 ✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
+---
+
 Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
 
-## Step 3: Set up sample SharePoint business documents
+## Set up sample SharePoint business documents
 
 1. Go to your SharePoint site (configured in the connection).
 1. Create document library "Company Policies" (or use existing "Documents").
@@ -390,6 +403,8 @@ The agent uses SharePoint and can access company policy and procedure documents 
 ---
 
 ### Create the MCP tool for the agent
+
+The .NET SDK support for the MCP tool is currently in preview.
 
 # [Python](#tab/python)
 
@@ -517,9 +532,11 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 4: Evaluate the assistant by using batch evaluation
+## Evaluate the assistant with batch evaluation
 
 The evaluation framework tests realistic business scenarios by using the **batch evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
+
+The Python cloud evaluation requires the **Foundry User** role, a deployed GPT model that supports chat completions, and a region that supports the evaluators you select. Review [supported regions](../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) before you continue.
 
 This evaluation framework demonstrates:
 
@@ -597,6 +614,8 @@ Poll the evaluation run until it finishes, and then retrieve the detailed output
 
 ---
 
+Confirm that the evaluation run completes and `Result Counts` shows `errored: 0` before you review individual output items. If the run fails, verify your role, selected region, deployed model, and evaluator support.
+
 Each output item includes:
 
 - **Label**: Binary pass or fail result
@@ -662,9 +681,12 @@ You can also view detailed results in the Foundry portal by selecting **Evaluati
 |---------|-------|------------|
 | `DefaultAzureCredential` authentication error | Azure CLI session expired or not signed in | Run `az login` and retry |
 | `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `FOUNDRY_MODEL_NAME` in `.env` |
-| `SharePoint tool configured` but agent can't find documents | Documents not uploaded or connection name incorrect | Verify documents appear in the SharePoint library and that `SHAREPOINT_CONNECTION_NAME` matches the connection in your project |
+| SharePoint integration is skipped | The SharePoint environment variable isn't set | In Python, set `SHAREPOINT_CONNECTION_ID` to the full project connection ID. In C#, set `SHAREPOINT_CONNECTION_NAME` to the connection name. |
+| `SharePoint tool configured` but agent can't find documents | Documents aren't uploaded, the connection is incorrect, or the signed-in user lacks access | Verify the documents are in the configured library, the connection targets that library, and the signed-in user has **Read** access. Use delegated user authentication in the same Microsoft Entra tenant as the Foundry project. |
 | MCP tool timeout or connection error | Microsoft Learn MCP server is unreachable | Verify `MCP_SERVER_URL` is set to `https://learn.microsoft.com/api/mcp` and that your network allows outbound HTTPS |
-| `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library |
+| MCP project connection creation is denied | The account lacks the required project role | Assign the **Foundry Project Manager** role to create the connection, then retry. |
+| Cloud evaluation can't start or an evaluator isn't supported | The project region, model, or evaluator combination isn't supported | Verify that your project region supports the evaluator and that the deployed GPT model supports chat completions. |
+| `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library and the **Foundry User** role on the project. |
 
 ## Summary
 
