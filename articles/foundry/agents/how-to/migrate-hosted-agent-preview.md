@@ -434,7 +434,8 @@ To migrate:
 1. Forward the per-request `x-agent-foundry-call-id` header on outbound calls to Foundry services (Storage, Toolbox, and other agents). The official SDK adapters do this automatically when you call those services through their clients. If you make raw HTTP calls yourself, read `x-agent-foundry-call-id` from the inbound request and add it, unchanged, to your outbound request. Don't parse the value - the platform resolves the caller's identity from it.
 1. To partition data your container stores per user, read the `x-agent-user-id` header. For a worked example, see [Multiplex multiple users in one hosted agent session](multiplex-session-users.md).
 
-For the full set of platform headers and environment variables, see [Hosted agent runtime contract](../concepts/hosted-agent-contract.md).
+For the full set of platform headers and environment variables, see
+[Hosted agent runtime specification](../concepts/hosted-agent-contract.md).
 
 ## Removed APIs
 

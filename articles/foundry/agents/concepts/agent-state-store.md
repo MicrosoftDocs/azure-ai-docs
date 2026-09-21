@@ -209,7 +209,7 @@ The service enforces these limits. If you violate a limit, the service returns `
 ## Related content
 
 - [Hosted agents in Foundry Agent Service](hosted-agents.md#sessions-conversations-and-the-state-store)
-- [Hosted agent runtime contract](hosted-agent-contract.md#platform-request-headers-container-protocol-200)
+- [Hosted agent runtime specification](hosted-agent-contract.md#platform-request-headers-container-protocol-200)
 - [Resilience for long-running hosted agents](long-running-agent-resilience.md)
 - [Manage state for long-running agents](../how-to/manage-task-state.md)
 - [Long-running agent API reference](long-running-agent-reference.md)
