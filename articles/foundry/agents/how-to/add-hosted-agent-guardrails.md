@@ -255,12 +255,10 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     "name": "my-agent",
     "definition": {
       "kind": "hosted",
-      "container_configuration": {
-        "image": "myacr.azurecr.io/my-agent:v1"
-      },
+      "image": "myacr.azurecr.io/my-agent:v1",
       "cpu": "1",
       "memory": "2Gi",
-      "protocol_versions": [
+      "container_protocol_versions": [
         {"protocol": "responses", "version": "1.0.0"}
       ],
       "rai_config": {
@@ -464,12 +462,10 @@ Include `invocations_moderation` in the `rai_config` object of the agent definit
   "name": "my-agent",
   "definition": {
     "kind": "hosted",
-    "container_configuration": {
-      "image": "myacr.azurecr.io/my-agent:v1"
-    },
+    "image": "myacr.azurecr.io/my-agent:v1",
     "cpu": "1",
     "memory": "2Gi",
-    "protocol_versions": [
+    "container_protocol_versions": [
       {"protocol": "invocations", "version": "2.0.0"}
     ],
     "rai_config": {
