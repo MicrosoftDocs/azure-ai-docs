@@ -404,7 +404,7 @@ The agent uses SharePoint and can access company policy and procedure documents 
 
 ### Create the MCP tool for the agent
 
-The .NET SDK support for the MCP tool is currently in preview.
+.NET SDK support for the MCP tool is currently in preview.
 
 # [Python](#tab/python)
 
@@ -614,7 +614,7 @@ Poll the evaluation run until it finishes, and then retrieve the detailed output
 
 ---
 
-Confirm that the evaluation run completes and `Result Counts` shows `errored: 0` before you review individual output items. If the run fails, verify your role, selected region, deployed model, and evaluator support.
+Before you review individual output items, confirm that the evaluation run completes and `Result Counts` shows `errored: 0`. If the run fails, verify your role, selected region, deployed model, and evaluator support.
 
 Each output item includes:
 
