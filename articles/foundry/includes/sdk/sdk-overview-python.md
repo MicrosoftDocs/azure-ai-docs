@@ -13,7 +13,9 @@ ms.custom: include, classic-and-new
 
 | SDK Version   | Portal Version  | Status  | Python Package    |
 | -- | -- | --| -- |
-| 2.x  | Foundry (new)   | Stable | `azure-ai-projects>=2.0.0`  |
+| 2.x  | Foundry (new)   | Stable | `azure-ai-projects>=2.3.0`  |
 | 1.x  | Foundry (classic) | Stable  | `azure-ai-projects==1.0.0`    |
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint. Starting in version 2.3.0, hosted-agent and toolbox operations use stable clients instead of beta namespaces.
+
+Requires Python 3.10 or later and `openai>=3.0.0`.
