@@ -6,7 +6,7 @@ ms.reviewer: shiyingfu
 ms.author: aashcraft
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/06/2026
+ms.date: 09/16/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -16,11 +16,11 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 ## Prerequisites
 
 > [!IMPORTANT]
-> For any task that requires viewing available quota we recommend using the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you need to access Azure OpenAI, consult our [Azure role-based access control guide](../../../foundry-classic/openai/how-to/role-based-access-control.md).
+> For any task that requires viewing available quota, use the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. For more information, see [Access quota and usage information](../../concepts/rbac-foundry.md#access-quota-and-usage-information).
 >
-> This role can be found in the Azure portal under **Subscriptions** > **Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**. This role **must be applied at the subscription level**, it doesn't exist at the resource level.
+> In the Azure portal, go to **Subscriptions** > **Access control (IAM)** > **Add role assignment**, and search for **Cognitive Services Usages Reader**. Assign the role at the subscription scope. A resource group or resource-level assignment doesn't authorize access to the subscription-scoped Usages API.
 >
-> If you don't wish to use this role, the subscription **Reader** role provides equivalent access, but it also grants read access beyond the scope of what's needed for viewing quota and model deployment.
+> The subscription **Reader** role also provides access, but it grants read access beyond what's required to view quota and model deployments.
 
 ## Introduction to quota
 

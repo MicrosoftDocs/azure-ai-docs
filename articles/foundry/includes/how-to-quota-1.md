@@ -6,15 +6,16 @@ ms.reviewer: haakar
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/16/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../how-to/create-projects.md).
-- **Cognitive Services Usages Reader** role at the subscription level, to view quota allocations.
+- **Cognitive Services Usages Reader** role at the subscription scope, to view quota allocations. For more information, see [Access quota and usage information](../concepts/rbac-foundry.md#access-quota-and-usage-information).
 - **Owner** or **Contributor** role on the subscription, to request quota increases.
 - **Cognitive Services Contributor** role combined with **Cognitive Services Usages Reader**, to edit quota allocations in the Foundry portal.
 
