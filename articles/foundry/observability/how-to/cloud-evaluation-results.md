@@ -5,8 +5,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.custom:
   - references_regions
+  - doc-kit-assisted
 ms.topic: how-to
-ms.date: 09/11/2026
+ms.date: 09/15/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -288,6 +289,237 @@ identifies the models attributed by the runtime.
 When `completeness` is `partial`, the top-level cost and `model_costs` include
 only the models that the service could price. Check `unpriced_models` before
 using the estimate to compare runs.
+
+### Extract latency and estimated cost
+
+After the evaluation run finishes and is available in `run`, convert the SDK
+response to a dictionary and check the optional target latency:
+
+# [Python](#tab/python)
+
+```python
+run_data = run.to_dict()
+
+target_latency = (run_data.get("latency") or {}).get("target")
+if not target_latency:
+    print("Target latency wasn't reported.")
+else:
+    p50_ms = target_latency.get("p50_ms")
+    p95_ms = target_latency.get("p95_ms")
+    sample_count = target_latency.get("sample_count", 0)
+    if p50_ms is None or p95_ms is None:
+        print("Target latency percentiles weren't reported.")
+    else:
+        print(
+            f"Target latency: p50={p50_ms:,.2f} ms, "
+            f"p95={p95_ms:,.2f} ms ({sample_count:,} samples)"
+        )
+```
+
+Check the estimated total for the target models that the service could price:
+
+```python
+run_data = run.to_dict()
+target_cost = (run_data.get("estimated_cost") or {}).get("target")
+if not target_cost:
+    print("Estimated target cost wasn't reported.")
+else:
+    currency = target_cost.get("currency", "USD")
+    estimated_cost = target_cost.get("estimated_cost", 0)
+    completeness = target_cost.get("completeness", "unknown")
+    print(
+        f"Estimated target cost: {estimated_cost:.6f} {currency} "
+        f"({completeness})"
+    )
+```
+
+Use the model breakdown to review token attribution and find models that the
+service couldn't price:
+
+```python
+run_data = run.to_dict()
+target_cost = (run_data.get("estimated_cost") or {}).get("target")
+if target_cost:
+    currency = target_cost.get("currency", "USD")
+    for model_cost in target_cost.get("model_costs") or []:
+        prompt_tokens = model_cost.get("prompt_tokens", 0)
+        cached_tokens = model_cost.get("cached_tokens", 0)
+        completion_tokens = model_cost.get("completion_tokens", 0)
+        total_tokens = prompt_tokens + cached_tokens + completion_tokens
+        print(
+            f"  {model_cost.get('model_name', 'unknown')}: "
+            f"{model_cost.get('estimated_cost', 0):.6f} {currency}, "
+            f"{total_tokens:,} tokens "
+            f"({prompt_tokens:,} prompt, {cached_tokens:,} cached, "
+            f"{completion_tokens:,} completion)"
+        )
+
+    unpriced_models = target_cost.get("unpriced_models") or []
+    if unpriced_models:
+        print(f"  Unpriced models: {', '.join(unpriced_models)}")
+```
+
+# [C#](#tab/csharp)
+
+After the evaluation run finishes and is available in `evaluationRun`, parse
+the protocol response and check the optional target latency:
+
+```csharp
+using JsonDocument runDocument = JsonDocument.Parse(
+  evaluationRun.GetRawResponse().Content.ToMemory());
+JsonElement runData = runDocument.RootElement;
+
+if (!runData.TryGetProperty("latency", out JsonElement latency)
+  || latency.ValueKind != JsonValueKind.Object
+  || !latency.TryGetProperty("target", out JsonElement targetLatency)
+  || targetLatency.ValueKind != JsonValueKind.Object
+  || !targetLatency.EnumerateObject().MoveNext())
+{
+  Console.WriteLine("Target latency wasn't reported.");
+}
+else if (!targetLatency.TryGetProperty("p50_ms", out JsonElement p50)
+  || !targetLatency.TryGetProperty("p95_ms", out JsonElement p95))
+{
+  Console.WriteLine("Target latency percentiles weren't reported.");
+}
+else
+{
+  long sampleCount = targetLatency.TryGetProperty(
+    "sample_count", out JsonElement count)
+      ? count.GetInt64()
+      : 0;
+  Console.WriteLine(
+    $"Target latency: p50={p50.GetDouble():N2} ms, " +
+    $"p95={p95.GetDouble():N2} ms ({sampleCount:N0} samples)");
+}
+```
+
+Check the estimated total for the target models that the service could price:
+
+```csharp
+using JsonDocument runDocument = JsonDocument.Parse(
+  evaluationRun.GetRawResponse().Content.ToMemory());
+JsonElement runData = runDocument.RootElement;
+
+if (!runData.TryGetProperty(
+    "estimated_cost", out JsonElement estimatedCost)
+  || estimatedCost.ValueKind != JsonValueKind.Object
+  || !estimatedCost.TryGetProperty("target", out JsonElement targetCost)
+  || targetCost.ValueKind != JsonValueKind.Object
+  || !targetCost.EnumerateObject().MoveNext())
+{
+  Console.WriteLine("Estimated target cost wasn't reported.");
+}
+else
+{
+  string currency = targetCost.TryGetProperty(
+    "currency", out JsonElement currencyElement)
+      ? currencyElement.GetString() ?? "USD"
+      : "USD";
+  decimal cost = targetCost.TryGetProperty(
+    "estimated_cost", out JsonElement costElement)
+      ? costElement.GetDecimal()
+      : 0;
+  string completeness = targetCost.TryGetProperty(
+    "completeness", out JsonElement completenessElement)
+      ? completenessElement.GetString() ?? "unknown"
+      : "unknown";
+  Console.WriteLine(
+    $"Estimated target cost: {cost:F6} {currency} ({completeness})");
+}
+```
+
+Use the model breakdown to review token attribution and find models that the
+service couldn't price:
+
+```csharp
+using JsonDocument runDocument = JsonDocument.Parse(
+  evaluationRun.GetRawResponse().Content.ToMemory());
+JsonElement runData = runDocument.RootElement;
+
+if (runData.TryGetProperty("estimated_cost", out JsonElement estimatedCost)
+  && estimatedCost.ValueKind == JsonValueKind.Object
+  && estimatedCost.TryGetProperty("target", out JsonElement targetCost)
+  && targetCost.ValueKind == JsonValueKind.Object)
+{
+  string currency = targetCost.TryGetProperty(
+    "currency", out JsonElement currencyElement)
+      ? currencyElement.GetString() ?? "USD"
+      : "USD";
+
+  if (targetCost.TryGetProperty(
+      "model_costs", out JsonElement modelCosts)
+    && modelCosts.ValueKind == JsonValueKind.Array)
+  {
+    foreach (JsonElement modelCost in modelCosts.EnumerateArray())
+    {
+      string modelName = modelCost.TryGetProperty(
+        "model_name", out JsonElement modelNameElement)
+          ? modelNameElement.GetString() ?? "unknown"
+          : "unknown";
+      decimal cost = modelCost.TryGetProperty(
+        "estimated_cost", out JsonElement costElement)
+          ? costElement.GetDecimal()
+          : 0;
+      long promptTokens = modelCost.TryGetProperty(
+        "prompt_tokens", out JsonElement promptElement)
+          ? promptElement.GetInt64()
+          : 0;
+      long cachedTokens = modelCost.TryGetProperty(
+        "cached_tokens", out JsonElement cachedElement)
+          ? cachedElement.GetInt64()
+          : 0;
+      long completionTokens = modelCost.TryGetProperty(
+        "completion_tokens", out JsonElement completionElement)
+          ? completionElement.GetInt64()
+          : 0;
+      long totalTokens = promptTokens + cachedTokens + completionTokens;
+
+      Console.WriteLine(
+        $"  {modelName}: {cost:F6} {currency}, {totalTokens:N0} tokens " +
+        $"({promptTokens:N0} prompt, {cachedTokens:N0} cached, " +
+        $"{completionTokens:N0} completion)");
+    }
+  }
+
+  if (targetCost.TryGetProperty(
+      "unpriced_models", out JsonElement unpricedModels)
+    && unpricedModels.ValueKind == JsonValueKind.Array
+    && unpricedModels.GetArrayLength() > 0)
+  {
+    List<string> names = new();
+    foreach (JsonElement model in unpricedModels.EnumerateArray())
+    {
+      names.Add(model.GetString() ?? "unknown");
+    }
+    Console.WriteLine($"  Unpriced models: {string.Join(", ", names)}");
+  }
+}
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+Use the Python or C# tab to extract target latency and estimated cost.
+
+# [cURL](#tab/curl)
+
+Use the Python or C# tab to extract target latency and estimated cost from the
+completed run response.
+
+---
+
+For the example response, the output looks like:
+
+```output
+Target latency: p50=812.25 ms, p95=2,400.50 ms (47 samples)
+Estimated target cost: 0.012346 USD (partial)
+  gpt-5-mini: 0.012346 USD, 17,000 tokens (12,000 prompt, 2,000 cached, 3,000 completion)
+  Unpriced models: unpriced-model
+```
+
+The top-level estimate is the sum of the entries in `model_costs`. If
+`completeness` is `partial`, the output identifies the omitted models in
+`unpriced_models`; don't treat the estimate as the full cost of the run.
 
 > [!IMPORTANT]
 > Target cost is an estimate based on reported token usage and published list
