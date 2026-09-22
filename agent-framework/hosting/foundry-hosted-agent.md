@@ -43,7 +43,7 @@ Choose Foundry hosted agents when you want:
 
 ### Related scenarios
 
-- For real-time audio agents, Hosted Agents can be used with Azure Speech in Foundry Tools (Voice Live) for server-side voice activity detection, echo cancellation, and noise reduction. For details, see [Use Voice Live with hosted agents](/azure/ai-services/speech-service/how-to-voice-live-hosted-agent-integration).
+- For real-time audio agents, use hosted agents with Azure Speech in Foundry Tools (Voice Live) for server-side voice activity detection, echo cancellation, and noise reduction. For details, see [Use Voice Live with hosted agents](/azure/ai-services/speech-service/how-to-voice-live-hosted-agent-integration).
 
 > [!NOTE]
 > The Python `agent-framework-foundry-hosting` integration is prerelease. Microsoft Foundry Hosted Agents, the managed hosting service, is generally available.
