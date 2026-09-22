@@ -75,15 +75,15 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-chat-latest | 2026-08-06 | Preview | 2026-12-02 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
-| gpt-image-1.5 | 2025-12-16 | GA | 2027-06-16 | — |
+| gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
 | gpt-image-2 | 2026-04-21 | GA | 2027-10-21 | — |
 | gpt-image-2.5-flare | 2026-09-09 | GA | 2027-09-09 | — |
 | gpt-image-2.5-sunburst | 2026-09-09 | GA | 2027-09-09 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-03-02 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-08-24 | — |
 | gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
-| gpt-realtime-2.1 | 2026-07-07 | Preview | 2027-06-25 | — |
-| gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
+| gpt-realtime-2.1 | 2026-07-07 | GA | 2027-06-25 | — |
+| gpt-realtime-2.1-mini | 2026-07-07 | GA | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-06 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2027-06-15 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
@@ -139,8 +139,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
-| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | — |
+| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-16 | coherelabs-command-a-plus-05-2026-fp8<sup>1</sup>, coherelabs-command-a-plus-05-2026-bf16<sup>1</sup>, coherelabs-command-a-plus-05-2026-w4a4<sup>1</sup> |
 | embed-v-4-0 | 1 | GA | — | — |
+
+<sup>1</sup> Available through the Hugging Face collection, for managed compute deployment.
 
 ### DeepSeek
 

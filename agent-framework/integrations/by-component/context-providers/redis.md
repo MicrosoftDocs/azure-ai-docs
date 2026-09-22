@@ -8,6 +8,7 @@ ms.author: edvan
 ms.date: 09/12/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 <!--
@@ -62,7 +63,9 @@ Use this pattern when an agent should recall selected relevant information rathe
 
 ### Configure searchable memory
 
-Use `application_id`, `agent_id`, and `user_id` to partition memories. Add a Redis vectorizer and vector-field settings when you want hybrid retrieval.
+Searchable memory retrieval works across sessions. Every supplied `application_id`, `agent_id`, and `user_id` acts as an AND filter, while omitted dimensions remain unfiltered. You need to provide at least one identifier. Supply every stable, trusted identifier that represents an intended isolation boundary.
+
+Add a Redis vectorizer and vector-field settings when you want hybrid retrieval.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/redis/redis_basics.py" range="121-148":::
 

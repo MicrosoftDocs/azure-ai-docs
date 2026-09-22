@@ -60,4 +60,4 @@ The following table summarizes processing for each document format, and describe
 * [Indexers in Azure AI Search](search-indexer-overview.md)
 * [AI enrichment in Azure AI Search](cognitive-search-concept-intro.md)
 * [Search over Azure Blob Storage content](search-blob-storage-integration.md)
-* [Index data from SharePoint](search-how-to-index-sharepoint-online.md)
+* [Index data from SharePoint (preview)](search-how-to-index-sharepoint-online.md)

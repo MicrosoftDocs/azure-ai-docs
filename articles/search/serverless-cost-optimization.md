@@ -18,7 +18,7 @@ Azure AI Search supports two pricing models, each designed for different workloa
 
 - **Dedicated**: Fixed pricing measured by Search Units (SUs). You select a service tier, and you're billed hourly based on provisioned units.
 
-- **Serverless (Preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
+- **Serverless (preview)**: Consumption-based pricing measured by Compute Units per hour (CU/hr) and per-GB/month for indexed storage.
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 

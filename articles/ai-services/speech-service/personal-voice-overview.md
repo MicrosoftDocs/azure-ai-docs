@@ -7,7 +7,7 @@ reviewer: patrickfarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 08/24/2026
+ms.date: 09/09/2026
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions, build-2024
@@ -21,7 +21,7 @@ With personal voice, you can enable your users to get AI generated replication o
 
 > [!NOTE]
 > For the current list of regions that support personal voice, see the [Speech service regions table](regions.md?tabs=tts). 
-> For supported locales, see [personal voice language support](./language-support.md?tabs=tts#personal-voice).
+> For supported locales, see [personal voice language support](./language-support.md?tabs=custom-tts#personal-voice).
 
 The following table summarizes the difference between personal voice and professional voice.  
  
@@ -30,11 +30,11 @@ The following table summarizes the difference between personal voice and profess
 | Target scenarios | Business customers to build an app to allow their users to create and use their own personal voice in the app. | Professional scenarios like brand and character voices for chat bots, or audio content reading. |
 | Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note). |
 | Training data | Make sure you follow the code of conduct. | Bring your own data. Recording in a professional studio is recommended. |
-| Required data size | One minute of human speech. | 300-2000 utterances (about 30 minutes to 3 hours of human speech). |
-| Training time | Less than 5 seconds | Approximately 20-40 compute hours. |
+| Required data size | A 5–90-second human speech sample. | Requirements depend on the selected training method and version. |
+| Training time | Less than 5 seconds | Training time depends on the selected training method, version, and data size. |
 | Voice quality | Natural | Highly natural |
-| Multilingual support | Yes. The voice is able to speak about 100 languages, with automatic language detection enabled. | Yes. You need to select the "Neural – cross lingual" feature to train a model that speaks a different language from the training data. |
-| Availability | The personal voice demo is available in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and [Speech Studio](https://aka.ms/speechstudio/) upon registration. Access to the API is restricted to eligible customers and approved use cases. Request access through the intake form. | You can only use professional voice fine-tuning after access is approved. Professional voice fine-tuning access is limited based on eligibility and usage criteria. Request access through the intake form. |
+| Multilingual support | Yes. The voice can speak about 100 languages, with automatic language detection enabled. | Yes. Select a training method and version that supports multilingual synthesis. |
+| Availability | The personal voice demo is available in [Foundry (classic)](https://ai.azure.com/?cid=learnDocs) and [Speech Studio](https://aka.ms/speechstudio/) upon registration. Personal voice customization is available in Foundry (new). Access to the API is restricted to eligible customers and approved use cases. Request access through the intake form. | You can only use professional voice fine-tuning after access is approved. Professional voice fine-tuning access is limited based on eligibility and usage criteria. Request access through the intake form. |
 | Pricing | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)<sup>1</sup>. | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). |
 | Responsible AI requirements | Speaker's verbal statement required. No unapproved use case allowed. | Speaker's verbal statement required. No unapproved use case allowed. |
 
@@ -42,23 +42,21 @@ The following table summarizes the difference between personal voice and profess
 
 ## Try the demo
 
-If you have an S0 resource, you can access the personal voice demo in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://aka.ms/speechstudio/). To create a personal voice project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), see [Create a project for personal voice](./personal-voice-create-project.md). To use the personal voice API, you can apply for access [here](https://aka.ms/customneural).
+The personal voice demo isn't currently available in Foundry (new). You can access the demo in [Foundry (classic)](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://aka.ms/speechstudio/). To create a personal voice customization in Foundry (new), see [Set up a personal voice](./personal-voice-create-project.md?pivots=ai-foundry-portal&tabs=foundry-new). To use the personal voice API, [apply for access](https://aka.ms/customneural).
 
-1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://aka.ms/speechstudio/).
-   
+1. Go to [Foundry (classic)](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://aka.ms/speechstudio/).
 1. Select the **Personal Voice** card.
-   
-1. You can record your own voice and try the voice output samples in different languages. The demo includes a subset of the languages supported by personal voice.
+1. Record your voice and try the voice output samples in different languages. The demo includes a subset of the languages supported by personal voice.
 
-    :::image type="content" source="./media/personal-voice/personal-voice-samples.png" alt-text="Screenshot of the personal voice demo experience in the Microsoft Foundry portal or Speech Studio." lightbox="./media/personal-voice/personal-voice-samples.png":::
+    :::image type="content" source="./media/personal-voice/personal-voice-samples.png" alt-text="Screenshot of the personal voice demo experience in Foundry classic or Speech Studio." lightbox="./media/personal-voice/personal-voice-samples.png":::
 
 
 ## How to create a personal voice
 
 To get started, here's a summary of the steps to create a personal voice:
-1. [Create a project](./personal-voice-create-project.md). 
+1. [Set up a personal voice](./personal-voice-create-project.md).
 1. [Upload consent file](./personal-voice-create-consent.md). With the personal voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
-1. [Get a speaker profile ID](./personal-voice-create-voice.md) for the personal voice. You get a speaker profile ID based on the speaker's verbal consent statement and an audio prompt. The user's voice characteristics are encoded in the `speakerProfileId` property that's used for text to speech. 
+1. [Create a personal voice](./personal-voice-create-voice.md) from the speaker's verbal consent statement and a 5–90-second audio prompt. The custom voice REST API returns the `speakerProfileId` that's used for text to speech.
 
 Once you have a personal voice, you can [use it](./personal-voice-how-to-use.md) to synthesize speech in any of the 91 languages supported across 100+ locales. A locale tag isn't required. Personal voice uses automatic language detection at the sentence level. For more information, see [use personal voice in your application](./personal-voice-how-to-use.md).
 
@@ -77,6 +75,6 @@ We care about the people who use AI and the people who will be affected by it as
 
 ## Next steps
 
-- [Create a project](./personal-voice-create-project.md). 
+- [Set up a personal voice](./personal-voice-create-project.md).
 - Learn more about custom voice in the [overview](custom-neural-voice.md).
-- Explore the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) to create and manage your personal voice project, or use [Speech Studio](https://aka.ms/speechstudio/) for a guided demo experience.
+- Explore [Foundry (new)](https://ai.azure.com/nextgen?cid=learnDocs) to create and manage your personal voice customization, or use [Speech Studio](https://aka.ms/speechstudio/) for the Personal Voice demo.

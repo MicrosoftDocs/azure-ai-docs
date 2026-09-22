@@ -8,7 +8,7 @@ ms.subservice: automl
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 09/22/2025
+ms.date: 09/17/2026
 ms.topic: how-to
 ms.custom:
   - automl
@@ -26,7 +26,7 @@ This article provides a high-level overview of working with Automated ML in the 
 - **Time series forecasting**: [Tutorial: Forecast demand with Automated ML in the studio](tutorial-automated-ml-forecast.md)
 - **Natural Language Processing (NLP)**: [Set up Automated ML to train an NLP model (Azure CLI or Python SDK)](how-to-auto-train-nlp-models.md)
 - **Computer vision**: [Set up AutoML to train computer vision models (Azure CLI or Python SDK)](how-to-auto-train-image-models.md)
-- **Regression**: [Train a regression model with Automated ML (Python SDK)](./v1/how-to-auto-train-models-v1.md)
+- **Regression**: [Set up AutoML for tabular data with the Azure Machine Learning CLI and Python SDK v2](how-to-configure-auto-train.md)
 
 ## Prerequisites
 
@@ -176,7 +176,7 @@ The **Additional configuration** page shows default values based on your experim
 | --- | --- |
 | **Primary metric**           | Identify the main metric for scoring your model. For more information, see [model metrics](how-to-configure-auto-train.md#primary-metric). |
 | **Enable ensemble stacking** | Allow ensemble learning and improve machine learning results and predictive performance by combining multiple models as opposed to using single models. For more information, see [ensemble models](concept-automated-ml.md#ensemble). |
-| **Use all supported models** | Use this option to instruct Automated ML whether to use all supported models in the experiment. For more information, see the [supported algorithms for each task type](/python/api/azureml-automl-core/azureml.automl.core.shared.constants.supportedmodels). <br> - Select this option to configure the **Blocked models** setting. <br> - Deselect this option to configure the **Allowed models** setting. | 
+| **Use all supported models** | Use this option to instruct Automated ML whether to use all supported models in the experiment. For more information, see the [supported algorithms for each task type](how-to-configure-auto-train.md#supported-algorithms). <br> - Select this option to configure the **Blocked models** setting. <br> - Deselect this option to configure the **Allowed models** setting. |
 | **Blocked models**           | (Available when **Use all supported models** is selected) Use the dropdown list and select the models to exclude from the training job.  |
 | **Allowed models**           | (Available when **Use all supported models** isn't selected) Use the dropdown list and select the models to use for the training job. <br> **Important**: Available only for [SDK experiments](how-to-configure-auto-train.md#supported-algorithms). |
 | **Explain best model**       | Choose this option to automatically show explainability on the best model created by Automated ML. |
@@ -217,7 +217,7 @@ The **Limits** section provides configuration options for these settings:
 | **Max trials**                   | Specify the maximum number of trials to try during the Automated ML job, where each trial has a different combination of algorithm and hyperparameters. | Integer between 1 and 1,000 |
 | **Max concurrent trials**        | Specify the maximum number of trial jobs that can be executed in parallel. | Integer between 1 and 1,000 |
 | **Max nodes**                    | Specify the maximum number of nodes this job can use from the selected compute target. | 1 or more, depending on the compute configuration |
-| **Metric score threshold**       | Enter the iteration metric threshold value. When the iteration reaches the threshold, the training job terminates. Keep in mind that meaningful models have a correlation greater than zero. Otherwise, the result is the same as guessing. | Average metric threshold, between bounds [0, 10] |
+| **Metric score threshold**       | Enter the score that the primary metric must reach. When a trial reaches the threshold, the training job terminates. | A value within the valid range for the selected primary metric |
 | **Experiment timeout (minutes)** | Specify the maximum time the entire experiment can run. After the experiment reaches the limit, the system cancels the Automated ML job, including all its trials (child jobs). | Number of minutes |
 | **Iteration timeout (minutes)**  | Specify the maximum time each trial job can run. After the trial job reaches this limit, the system cancels it. | Number of minutes |
 | **Enable early termination**     | Use this option to end the job when the score isn't improving in the short term. | Select the option to enable early end of job |
@@ -231,7 +231,7 @@ The **Validate and test** section provides the following configuration options:
    | Training data size | Validation technique |
    | --- | --- |
    | **Larger than 20,000 rows** | Train/validation data split is applied. The default is to take 10% of the initial training data set as the validation set. In turn, that validation set is used for metrics calculation. |
-   | **Smaller than 20,000& rows** | Cross-validation approach is applied. The default number of folds depends on the number of rows. <br> - **Dataset with less than 1,000 rows**: 10 folds are used <br> - **Dataset with 1,000 to 20,000 rows**: Three folds are used |
+   | **Smaller than 20,000 rows** | Cross-validation approach is applied. The default number of folds depends on the number of rows. <br> - **Dataset with less than 1,000 rows**: 10 folds are used <br> - **Dataset with 1,000 to 20,000 rows**: Three folds are used |
     
 1. Provide the **Test data** (preview) to evaluate the recommended model that Automated ML generates at the end of your experiment. When you provide a test dataset, a test job is automatically triggered at the end of your experiment. This test job is the only job for the best model recommended by Automated ML.
 
@@ -240,7 +240,7 @@ The **Validate and test** section provides the following configuration options:
 
    - Test data is considered separate from training and validation, and it shouldn't bias the results of the test job of the recommended model. For more information, see [Training, validation, and test data](concept-automated-ml.md#training-validation-and-test-data).
 
-   - You can either provide your own test dataset or use a percentage of your training dataset. Test data must be in the form of an [Azure Machine Learning table dataset](how-to-create-data-assets.md#create-data-assets).    
+   - You can either provide your own test dataset or use a percentage of your training dataset. Test data must be in the form of an [Azure Machine Learning table data asset](how-to-create-data-assets.md#create-data-assets).
 
    - The schema of the test dataset should match the training dataset. The target column is optional, but if no target column is indicated, no test metrics are calculated.
 
@@ -289,16 +289,16 @@ Follow these steps and configure the compute:
 
 ## Run experiment and view results
 
-Select **Finish** to run your experiment. The experiment preparing process can take up to 10 minutes. Training jobs can take an additional 2-3 minutes for each pipeline to finish running. If you specified to generate a RAI dashboard for the best recommended model, it can take up to 40 minutes.
+Select **Submit training job** to run your experiment. The experiment preparation process can take up to 10 minutes. Training jobs can take an extra 2-3 minutes for each pipeline to finish running. If you specify to generate a Responsible AI dashboard for the best recommended model, it can take up to 40 minutes.
 
 > [!NOTE]
 > The algorithms Automated ML employs have inherent randomness that can cause slight variation in a recommended model's final metrics score, like accuracy. Automated ML also performs operations on data such as train-test split, train-validation split, or cross-validation, as necessary. If you run an experiment with the same configuration settings and primary metric multiple times, you likely see variation in each experiment's final metrics score because of these factors. 
 
 ### View experiment details
 
-The **Job Detail** screen opens to the **Details** tab. This screen shows a summary of the experiment job including a status bar at the top next to the job number.
+The **Job details** screen opens to the **Details** tab. This screen shows a summary of the experiment job including a status bar at the top next to the job number.
 
-The **Models** tab contains a list of the models created ordered by the metric score. By default, the model that scores the highest based on the chosen metric is at the top of the list. As the training job tries more models, the exercised models are added to the list. Use this approach to get a quick comparison of the metrics for the models produced.
+The **Models + child jobs** tab contains a list of the models created ordered by the metric score. By default, the model that scores the highest based on the chosen metric is at the top of the list. As the training job tries more models, the exercised models are added to the list. Use this approach to get a quick comparison of the metrics for the models produced.
 
 ### View training job details
 
@@ -313,7 +313,7 @@ If you specified a test dataset or opted for a train/test split during your expe
 > 
 > This feature isn't available for these Automated ML scenarios:
 > - [Computer vision tasks](how-to-auto-train-image-models.md)
-> - [Many models and hiearchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
+> - [Many models and hierarchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
 > - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 > - [Automated ML jobs from local computes or Azure Databricks clusters](how-to-configure-auto-train.md#compute-to-run-experiment)
 
@@ -335,7 +335,7 @@ View the test predictions used to calculate the test metrics by following these 
 
    The prediction file can also be viewed and downloaded from the **Outputs + logs** tab. Expand the **Predictions** folder to locate your _predictions.csv_ file.
 
-The model test job generates the _predictions.csv_ file stored in the default datastore created with the workspace. This datastore is visible to all users with the same subscription. Test jobs aren't recommended for scenarios if any of the information used for or created by the test job needs to remain private.
+The model test job generates the _predictions.csv_ file in the default datastore created with the workspace. Access to the file is governed by access to the workspace and its storage account. Apply appropriate role-based access control and network controls when test data or predictions contain sensitive information.
 
 ## Test existing Automated ML model (preview)
 
@@ -346,7 +346,7 @@ After your experiment completes, you can test the models Automated ML generates 
 >
 > This feature isn't available for the following Automated ML scenarios:
 > - [Computer vision tasks](how-to-auto-train-image-models.md)
-> - [Many models and hiearchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
+> - [Many models and hierarchical time-series forecasting training (preview)](how-to-auto-train-forecast.md)
 > - [Forecasting tasks where deep learning neural networks (DNN) are enabled](how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 > - [Automated ML jobs from local computes or Azure Databricks clusters](how-to-configure-auto-train.md#compute-to-run-experiment)
 
@@ -382,7 +382,7 @@ To generate a Responsible AI dashboard for a particular model, follow these step
 
 1. Switch to the **Compute** tab and select **Serverless** for your compute:
 
-   :::image type="content" source="media/how-to-use-automated-ml-for-ml-models/compute-serverless.png" alt-text="Screenshot hat shows the Serverless compute selection.":::
+   :::image type="content" source="media/how-to-use-automated-ml-for-ml-models/compute-serverless.png" alt-text="Screenshot that shows the Serverless compute selection.":::
 
 1. After the operation completes, browse to the **Models** page of your Automated ML job, which contains a list of your trained models.
 
@@ -414,7 +414,7 @@ The **Edit and submit** option opens the **Create a new Automated ML job** wizar
 
 ## Deploy your model
 
-After you have the best model, you can deploy it as a web service to predict on new data.
+After you select the best model, deploy it to a managed online endpoint to predict on new data.
 
 > [!NOTE]
 > To deploy a model generated via the `automl` package with the Python SDK, you must [register your model](./how-to-deploy-online-endpoints.md) to the workspace. 
@@ -429,30 +429,26 @@ Automated ML helps you deploy the model without writing code.
 
       1. After the experiment completes, select **Job 1** and browse to the parent job page.
 
-      1. Select the model listed in the **Best model summary** section and then select **Deploy**. 
+      1. Select the model listed in the **Best model summary** section and then select **Deploy** > **Real-time endpoint**.
 
    - Deploy a specific model iteration from this experiment:
 
-      - Select the desired model from the **Models** tab and then select **Deploy**.
+      - Select the desired model from the **Models + child jobs** tab and then select **Deploy** > **Real-time endpoint**.
 
-1. Populate the **Deploy model** pane:
+1. In the deployment wizard, configure the endpoint and deployment:
 
    | Field | Value |
    | --- | --- |
-   | **Name** | Enter a unique name for your deployment. |
-   | **Description** | Enter a description to better identify the deployment purpose. |
-   | **Compute type** | Select the type of endpoint you want to deploy: [*Azure Kubernetes Service (AKS)*](/azure/aks/intro-kubernetes) or [*Azure Container Instance (ACI)*](/azure/container-instances/container-instances-overview). |
-   | **Compute name** | (Applies to AKS only) Select the name of the AKS cluster you want to deploy to. |
-   | **Enable authentication** | Select to allow for token-based or key-based authentication. |
-   | **Use custom deployment assets** | Enable custom assets if you want to upload your own scoring script and environment file. Otherwise, Automated ML provides these assets for you by default. For more information, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md). |
+   | **Endpoint name** | Enter a name that's unique in the Azure region. |
+   | **Deployment name** | Enter a unique name for the deployment within the endpoint. |
+   | **Virtual machine** | Select a virtual machine size, or keep the recommended default. |
+   | **Instance count** | Specify the number of instances for the deployment. |
+   | **Authentication type** | Select key-based or token-based authentication. |
 
-   > [!IMPORTANT]
-   > File names must be between 1 and 32 characters. The name must begin and end with alphanumerics and can include dashes, underscores, dots, and alphanumerics between.
+   Azure Machine Learning automatically generates the scoring script and environment for an Automated ML model. For more deployment options, see [Deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md).
 
-   The **Advanced** menu offers default deployment features such as data collection and resource utilization settings. You can use the options in this menu to override these defaults. For more information, see [Monitor online endpoints](how-to-monitor-online-endpoints.md).
-
-1. Select **Deploy**. Deployment can take about 20 minutes to complete.
+1. Complete the remaining steps in the wizard, and then select **Deploy**. Deployment can take several minutes to complete.
 
    After deployment starts, the **Model summary** tab opens. You can monitor the deployment progress under the **Deploy status** section. 
 
-Now you have an operational web service to generate predictions! You can test the predictions by querying the service from the [End-to-end AI samples in Microsoft Fabric](/fabric/data-science/use-ai-samples).
+When deployment succeeds, you have an operational managed online endpoint that generates predictions. For information about testing and invoking the endpoint, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).

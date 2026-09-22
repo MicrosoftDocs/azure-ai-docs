@@ -5,15 +5,18 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/10/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Faceted navigation examples
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 This section extends [faceted navigation configuration](search-faceted-navigation.md) with examples that demonstrate basic usage and other scenarios.
 
-Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try new preview features like [facet hierarchies](#facet-hierarchy-example), [facet aggregations](#facet-aggregation-example), and [facet filters](#facet-filtering-example) on existing indexes.
+Facetable fields are defined in an index, but facet parameters and expressions are defined in query requests. If you have an index with facetable fields, you can try [facet hierarchies (preview)](#facet-hierarchy-example-preview), [facet aggregations (preview)](#facet-aggregation-example-preview), and [facet filters (preview)](#facet-filtering-example-preview) on existing indexes.
 
 ## Facet parameters and syntax
 
@@ -195,9 +198,7 @@ Results from this query are as follows:
 }
 ```
 
-## Facet hierarchy example
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+## Facet hierarchy example (preview)
 
 Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
 
@@ -475,9 +476,7 @@ Address/StateProvince
     Category
 ```
 
-## Facet filtering example
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+## Facet filtering example (preview)
 
 Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can configure facet filters.
 
@@ -488,7 +487,7 @@ Facet filtering enables you to constrain the facet values returned to those matc
 
 If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 
-Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example)) on string fields.
+Only those facet values that match the regular expression are returned. You can combine these parameters with other facet options (for example, `count`, `sort`, and [hierarchical faceting](#facet-hierarchy-example-preview)) on string fields.
 
 Because the regular expression is nested within a JSON string value, you must escape both the double quote (`"`) and the backslash (`\`) characters. The regular expression itself is delimited by the forward slash (`/`). For more information about escape patterns, see [Regular expression search](query-lucene-syntax.md#bkmk_regex).
 
@@ -598,9 +597,7 @@ The following example is an abbreviated response (hotel documents are omitted fo
 }
 ```
 
-## Facet aggregation example
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+## Facet aggregation example (preview)
 
 Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-08-01-preview&preserve-view=true) or the Azure portal, you can aggregate facets.
 

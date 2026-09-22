@@ -6,7 +6,7 @@ ms.subservice: foundry-observability
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/17/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -383,6 +383,11 @@ curl --request POST \
 
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
 
+The completed run response can include target latency percentiles and estimated
+model inference cost. See
+[Review model-target latency and estimated cost](cloud-evaluation-results.md#review-model-target-latency-and-estimated-cost)
+for field definitions, availability rules, and cost-estimate limitations.
+
 > [!TIP]
 > To add another evaluation run, use the same code.
 
@@ -521,6 +526,16 @@ testing_criteria = [
         data_mapping={
             "query": "{{item.query}}",
             "response": "{{sample.output_text}}",
+        },
+    ),
+    TestingCriterionAzureAIEvaluator(
+        type="azure_ai_evaluator",
+        name="task_adherence",
+        evaluator_name="builtin.task_adherence",
+        initialization_parameters={"model": model_deployment_name},
+        data_mapping={
+            "query": "{{item.query}}",
+            "response": "{{sample.output_items}}",
         },
     ),
 ]
@@ -801,9 +816,9 @@ For a complete runnable example, see [sample_agent_evaluation.py](https://github
 
 ### Hosted agent invocations protocol
 
-[Hosted agents](../../agents/concepts/hosted-agents.md) that use the invocations protocol support the same `azure_ai_agent` target type but use a **freeform `input_messages`** format. Instead of the structured template format, provide a JSON object that maps directly to the agent's `/invocations` request body. Use `{{item.*}}` placeholders to substitute fields from your input data.
+[Hosted agents](../../agents/concepts/hosted-agents.md) that support only the invocations protocol use the same `azure_ai_agent` target type but require a **freeform `input_messages`** format. Instead of the structured template format, provide a JSON object that maps directly to the agent's `/invocations` request body. Use `{{item.*}}` placeholders to substitute fields from your input data.
 
-If a hosted agent supports both the responses and invocations protocols, the service defaults to using the invocations protocol.
+If a hosted agent supports both the responses and invocations protocols, the service defaults to using the responses protocol. For these agents, use the structured `input_messages` template shown in [Define the message template and target](#define-the-message-template-and-target).
 
 #### Define the message format and target
 

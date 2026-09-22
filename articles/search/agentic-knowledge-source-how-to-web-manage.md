@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 04/30/2026
 ai-usage: ai-assisted
+#customer intent: As an Azure administrator, I want to check, enable, or disable Web Knowledge Source access so that I can govern its use across all Azure AI Search services in a subscription.
 ---
 
 # Manage access to Web Knowledge Source in your Azure subscription

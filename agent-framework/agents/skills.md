@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: SergeyMenshykh
 ms.topic: article
 ms.author: semenshi
-ms.date: 09/12/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -60,6 +60,14 @@ metadata:
 | `compatibility` | No | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
 | `metadata` | No | Arbitrary key-value mapping for additional metadata. |
 | `allowed-tools` | No | Space-delimited list of pre-approved tools the skill may use. Experimental - support may vary between agent implementations. |
+
+Recognized top-level field names must use the lowercase spelling shown in the table and can appear only once. Invalid
+YAML, duplicate recognized fields, incorrect field casing, or a collection where a scalar field is expected prevent
+the skill from loading. Unknown top-level fields are ignored for forward compatibility.
+
+Python file-based and MCP archive loaders treat `metadata` keys as case-sensitive strings. An exact duplicate keeps the
+first valid value and logs a warning. Invalid metadata entries, including nested collections, are skipped with a
+warning instead of preventing the skill from loading.
 
 The markdown body after the frontmatter contains the skill instructions - step-by-step guidance, examples of inputs and outputs, common edge cases, or any content that helps the agent perform the task. Keep `SKILL.md` under 500 lines and move detailed reference material to separate files.
 
@@ -1012,6 +1020,14 @@ async with streamable_http_client(url=mcp_url) as (read, write, _), ClientSessio
 
 For archive entries, use an `application/zip` media type or a `.zip` URL suffix. Agent Framework skips TAR, `.tar.gz`, `.tgz`, and other archive formats as unsupported so the remaining index entries can still load. Repackage existing non-ZIP skills as ZIP; no caller-side code change is required.
 
+When an archive entry supplies a `digest`, it must use `sha256:` followed by 64
+lowercase hexadecimal characters. Agent Framework verifies the digest against
+the decoded archive bytes before extraction. An invalid or mismatched digest
+skips that archive without blocking other entries. An omitted or null digest is
+allowed. Digest verification applies only to `archive` entries, not
+`skill-md` entries or their supporting resources. A matching digest proves
+consistency with the index, not that the MCP server is trustworthy.
+
 `MCPSkillsSource` extracts ZIP content in memory. Use its `archive_*` constructor options to restrict resource extensions, search depth, file count, download size, and total uncompressed size. Scripts in MCP archives are available only as read-only resources and are never exposed as runnable scripts.
 
 > [!NOTE]
@@ -1950,7 +1966,11 @@ internal sealed class WeightConverterSkill : AgentClassSkill<WeightConverterSkil
 
 :::zone pivot="programming-language-python"
 
-Resource and script functions that accept `**kwargs` automatically receive runtime keyword arguments passed to `agent.run()`. This lets skill functions access application context - such as configuration, user identity, or service clients - without hard-coding them into the skill definition.
+Resource and script functions that accept `**kwargs` receive host-supplied
+runtime keyword arguments passed to `agent.run()`. Resource functions receive
+only these runtime arguments. Script functions merge them with entries from the
+model-supplied `args` mapping, so don't treat a value in a script's `**kwargs`
+as proof that the host supplied it.
 
 ### Passing runtime arguments
 
@@ -2012,18 +2032,23 @@ def convert_units(value: float, factor: float, **kwargs: Any) -> str:
     Args:
         value: The numeric value to convert (provided by the agent).
         factor: Conversion factor (provided by the agent).
-        **kwargs: Runtime keyword arguments from agent.run().
+        **kwargs: Additional values from tool-call args or agent.run().
     """
     precision = kwargs.get("precision", 4)
     result = round(value * factor, precision)
     return json.dumps({"value": value, "factor": factor, "result": result})
 ```
 
-The agent provides `value` and `factor` through the tool call `args`; the application provides `precision` through `function_invocation_kwargs`. Script functions without `**kwargs` receive only the agent-provided arguments.
+The agent provides `value` and `factor` through the tool call `args`; the
+application provides `precision` through `function_invocation_kwargs`.
+Undeclared entries in the model-supplied `args` mapping can also bind to
+`**kwargs`. Script functions without `**kwargs` receive only their declared
+agent-provided arguments.
 
 ### Class-based skills with kwargs
 
-Class-based skill methods can also accept `**kwargs` to receive runtime arguments. The pattern works the same way - declare `**kwargs` on resource methods or script methods:
+Class-based skill methods can also accept `**kwargs`. The same resource and
+script argument rules apply.
 
 ```python
 from typing import Any

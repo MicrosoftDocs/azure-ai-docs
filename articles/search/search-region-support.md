@@ -16,8 +16,6 @@ ms.custom:
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
-
 This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
 ## Features subject to regional availability
@@ -63,7 +61,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 <sup>2</sup> This region is in high demand, which prevents the creation of new search services. Please choose a different region.
 
-<sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
+<sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md).
 
 ### Europe
 

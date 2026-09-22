@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -563,6 +564,12 @@ One model response can contain both approval-required tools and tools that do no
 visible interrupt also completes the other tool calls from that batch according to their approval decisions. For
 example, a `never_require` sibling executes and its `TOOL_CALL_RESULT` is streamed in the resumed run even when the
 approval-required sibling is rejected.
+
+Approved calls resume through the normal Agent policy and middleware pipeline;
+approval doesn't bypass admission or scheduling. If function invocation is
+disabled when a grant is resumed, the grant remains pending for an explicit
+retry after invocation is re-enabled. Completed terminal siblings can be
+replayed to restore client state without re-executing their side effects.
 
 Cancelling with `status: "cancelled"` aborts the approval resume and clears queued approval state for the thread.
 Later requests cannot resurface or execute stale tool calls from the cancelled batch.
