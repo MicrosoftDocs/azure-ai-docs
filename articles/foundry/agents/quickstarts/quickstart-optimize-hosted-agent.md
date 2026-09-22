@@ -300,18 +300,55 @@ exact deployment name in `.env`.
 Create a file named `optimize_hosted_agent.py` in the same folder as `.env`:
 
 ```python
+# ------------------------------------
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+# ------------------------------------
+
+"""
+DESCRIPTION:
+    Create an optimization job for a hosted agent using the latest agent
+    optimization API, poll the job to completion, and list its candidates.
+
+USAGE:
+    python optimize_hosted_agent_v3.py
+
+    Before running the sample:
+
+    pip install azure-ai-projects azure-ai-agentserver-optimization azure-identity python-dotenv
+
+    Set these environment variables with your own values:
+    1) FOUNDRY_PROJECT_ENDPOINT - Required. The Microsoft Foundry project endpoint.
+    2) FOUNDRY_AGENT_NAME       - Required. The hosted agent name.
+    3) DATASET_NAME             - Required. The registered training dataset name.
+    4) EVALUATOR_NAME           - Required. The registered evaluator name.
+    5) DATASET_VERSION          - Optional. The dataset version. Defaults to "1".
+    6) EVAL_MODEL               - Optional. The evaluation model. Defaults to "gpt-4o".
+    7) OPTIMIZATION_MODEL       - Optional. The optimization model. Defaults to "gpt-5".
+    8) POLL_INTERVAL_SECONDS    - Optional. Seconds between status polls. Defaults to 10.
+"""
+
 import os
 import time
 
 from azure.ai.agentserver.optimization import load_config
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-  OptimizedAgentIdentifier,
-  AgentOptimizationEvaluatorRef,
-  AgentOptimizationJob,
-  AgentOptimizationJobInputs,
-  AgentOptimizationOptions,
-  AgentOptimizationReferenceDatasetInput,
+    AgentOptimizationBaselineAgentConfiguration,
+    AgentOptimizationCandidateSearchConfiguration,
+    AgentOptimizationConfiguration,
+    AgentOptimizationEvaluationConfiguration,
+    AgentOptimizationEvaluator,
+    AgentOptimizationJobCreate,
+    AgentOptimizationModelConfiguration,
+    AgentOptimizationReferenceDatasetSource,
+    AgentOptimizationSkill,
+    AgentOptimizationSpace,
+    AgentOptimizationTargetCompletionSetInput,
+    AgentOptimizationTargetConfiguration,
+    EvaluationModelConfiguration,
+    JobStatus,
+    TargetAttribute,
 )
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
@@ -327,52 +364,116 @@ eval_model = os.environ.get("EVAL_MODEL", "gpt-4o")
 optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
 poll_interval_seconds = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 
-optimization_config = load_config() # Reads agent optimization config from .agent_configs/baseline/metadata.yaml
+# Reads the hosted agent's baseline config from .agent_configs/baseline/metadata.yaml.
+optimization_config = load_config()
+
+skills = [
+    AgentOptimizationSkill(
+        name=skill.name,
+        description=skill.description,
+        body=skill.body or None,
+    )
+    for skill in optimization_config.skills
+]
+
+target_attributes = [TargetAttribute.INSTRUCTIONS]
+if skills:
+    target_attributes.append(TargetAttribute.SKILLS)
+if optimization_config.tool_definitions:
+    target_attributes.append(TargetAttribute.TOOLS)
+
+baseline_configuration = None
+if (
+    optimization_config.instructions
+    or optimization_config.model
+    or skills
+    or optimization_config.tool_definitions
+):
+    baseline_configuration = AgentOptimizationBaselineAgentConfiguration(
+        system_prompt=optimization_config.instructions,
+        current_model=optimization_config.model,
+        skills=skills or None,
+        tools=optimization_config.tool_definitions or None,
+    )
+
+TERMINAL_STATUSES = {
+    JobStatus.SUCCEEDED,
+    JobStatus.FAILED,
+    JobStatus.CANCELLED,
+}
 
 with (
-  DefaultAzureCredential() as credential,
-  AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  job = AgentOptimizationJob(
-    inputs=AgentOptimizationJobInputs(
-      agent=OptimizedAgentIdentifier(agent_name=agent_name),
-      train_dataset=AgentOptimizationReferenceDatasetInput(
-        name=dataset_name,
-        version=dataset_version,
-      ),
-      evaluators=[AgentOptimizationEvaluatorRef(name=evaluator_name)],
-      options=AgentOptimizationOptions(
-        max_candidates=2,
-        eval_model=eval_model,
-        optimization_model=optimization_model,
-        optimization_config={
-          "system_prompt": optimization_config.instructions,
-          **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
-          **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
-        }
-      ),
+    job_create = AgentOptimizationJobCreate(
+        target_configuration=AgentOptimizationTargetConfiguration(name=agent_name),
+        optimization_model_configuration=AgentOptimizationModelConfiguration(
+            model=optimization_model
+        ),
+        optimization_configuration=AgentOptimizationConfiguration(
+            evaluation_configuration=AgentOptimizationEvaluationConfiguration(
+                training_set=AgentOptimizationTargetCompletionSetInput(
+                    source=AgentOptimizationReferenceDatasetSource(
+                        name=dataset_name,
+                        version=dataset_version,
+                    )
+                ),
+                evaluators=[AgentOptimizationEvaluator(name=evaluator_name)],
+                evaluation_model=EvaluationModelConfiguration(model=eval_model),
+            ),
+            candidate_search_configuration=AgentOptimizationCandidateSearchConfiguration(
+                max_candidates=2
+            ),
+            baseline_agent_configuration=baseline_configuration,
+            agent_optimization_space=AgentOptimizationSpace(
+                target_attributes=target_attributes
+            ),
+        ),
     )
-  )
-  poller = project_client.beta.agents.begin_create_optimization_job(job=job)
-  print(f"Optimization job ID: {poller.details.job_id}")
 
-  print(f"Optimization job started, waiting for completion...")
-  while not poller.done():
-    print(f"\tstatus=`{poller.status()}`")
-    time.sleep(poll_interval_seconds)
+    job = project_client.beta.agents.create_optimization_job(body=job_create)
+    print(f"Optimization job ID: {job.id}")
 
-  result = poller.result()
+    print("Optimization job started, waiting for completion...")
+    while job.status not in TERMINAL_STATUSES:
+        print(f"\tstatus=`{job.status}`")
+        time.sleep(poll_interval_seconds)
+        job = project_client.beta.agents.get_optimization_job(job_id=job.id)
 
-  if result:
-    print(f"Baseline candidate: {result.baseline}")
-    print(f"Best candidate: {result.best}")
+    print(f"\tstatus=`{job.status}`")
+    for warning in job.warnings or []:
+        print(f"[WARNING] {warning}")
 
-    for candidate in result.candidates or []:
-      print(
-        f"{candidate.name}: candidate_id={candidate.candidate_id}, "
-        f"avg_score={candidate.avg_score:.4f}, "
-        f"avg_tokens={candidate.avg_tokens:.0f}"
-      )
+    if job.status == JobStatus.FAILED:
+        message = job.error.message if job.error else "<no error message>"
+        raise RuntimeError(f"Optimization job `{job.id}` failed: {message}")
+    if job.status == JobStatus.CANCELLED:
+        raise RuntimeError(f"Optimization job `{job.id}` was cancelled.")
+    if job.result is None:
+        raise RuntimeError(f"Optimization job `{job.id}` completed without a result.")
+
+    summary = job.result.candidate_summary
+    if summary:
+        print(f"Baseline candidate: {summary.baseline_id}")
+        print(f"Best candidate: {summary.best_id}")
+        print(f"Completed candidates: {summary.completed_candidate_count}")
+
+    for candidate in project_client.beta.agents.list_optimization_candidates(
+        job_id=job.id,
+        expand="mutations",
+    ):
+        details = [
+            f"{candidate.name}: candidate_id={candidate.candidate_id}",
+            f"status={candidate.status}",
+        ]
+        if candidate.evaluation:
+            if candidate.evaluation.score is not None:
+                details.append(f"score={candidate.evaluation.score:.4f}")
+            if candidate.evaluation.avg_tokens is not None:
+                details.append(f"avg_tokens={candidate.evaluation.avg_tokens:.0f}")
+        print(", ".join(details))
+
 ```
 
 Run the script:
