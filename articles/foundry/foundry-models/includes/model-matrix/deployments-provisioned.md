@@ -9,6 +9,7 @@ ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
