@@ -18,4 +18,4 @@ ms.custom: include, classic-and-new
 
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint. Starting in version 2.3.0, hosted-agent and toolbox operations use stable clients instead of beta namespaces.
 
-Requires Python 3.10 or later and `openai>=3.0.0`.
+The 2.x SDK samples require Python 3.10 or later and `openai>=3.0.0`.
