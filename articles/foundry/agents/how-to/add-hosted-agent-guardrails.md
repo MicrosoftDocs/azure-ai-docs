@@ -34,7 +34,7 @@ If your agent uses the `invocations` protocol, attaching a policy isn't enough o
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later. To configure moderation for the `invocations` protocol, use version 1.0.0-beta.12 or later.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.12 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
@@ -379,7 +379,11 @@ Content safety screening has bounds that affect large payloads:
 
 The platform also forwards a request unscreened when it can't parse the body as JSON or when `input_paths` selects nothing. Confirm your paths match your real request bodies rather than assuming a deployed policy is screening them.
 
-### Add moderation with the Azure Developer CLI
+### Add the moderation settings
+
+Choose the method you use to deploy the agent.
+
+#### [Azure Developer CLI](#tab/azd)
 
 Add an `invocationsModeration` block to the `rai_policy` entry in `azure.yaml`. These settings use camel case, and `azd` maps them to the snake case names that the API accepts.
 
@@ -425,7 +429,7 @@ policies[0] invocationsModeration is only supported for agents that expose the '
 
 These checks cover structure, not meaning. `azd` can't tell whether your paths and field names match the bodies your agent actually sends, so verify that yourself with the test in [Test the moderation settings](#test-the-moderation-settings).
 
-### Add moderation with the Python SDK
+#### [Python SDK](#tab/python)
 
 > [!NOTE]
 > `invocations_moderation` requires `azure-ai-projects` version 2.7.0 or later.
@@ -455,7 +459,7 @@ rai_config = RaiConfig(
 
 Pass `rai_config` to `HostedAgentDefinition` as shown in [Add a guardrail with the Python SDK](#add-a-guardrail-with-the-python-sdk), and set `protocol_versions` to the `invocations` protocol.
 
-### Add moderation with the REST API
+#### [REST API](#tab/rest)
 
 Include `invocations_moderation` in the `rai_config` object of the agent definition.
 
@@ -494,6 +498,8 @@ curl -s -X GET "$BASE_URL/agents/my-agent/versions/1?api-version=$API_VERSION" \
   -H "Authorization: ******" | jq '.definition.rai_config.invocations_moderation'
 ```
 
+---
+
 ### What a blocked invocation looks like
 
 The response to a blocked request depends on which stage the platform blocks and whether your agent streams.
@@ -523,7 +529,25 @@ Handle this event in your client. Treat it as terminal. Earlier events might alr
 
 ### Test the moderation settings
 
-To confirm your settings screen the right fields, send a request that your policy is configured to block and check that the platform blocks it:
+To confirm your settings screen the right fields, send a request that your policy is configured to block and check that the platform blocks it.
+
+If you deployed with `azd`, put the request body in a file, such as *blocked-request.json*:
+
+```json
+{
+  "message": "<a prompt that your policy is configured to block>"
+}
+```
+
+Then invoke the agent with that file:
+
+```bash
+azd ai agent invoke -f blocked-request.json
+```
+
+`azd` reads the protocol from `azure.yaml`. Send the body as a file rather than as a message argument: `azd` sends a message argument as `text/plain`, and an `inputContentType` of `json` can't parse it, so the platform forwards the request unscreened.
+
+You can also call the endpoint directly:
 
 ```bash
 curl -i -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
