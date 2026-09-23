@@ -164,7 +164,7 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 If the agent has tools that require delegated user access, explicitly opt in to **creator identity** when you create the routine. Creator identity means only the Microsoft Entra identity of the person or service principal that creates the routine. It isn't the identity of the agent creator, agent publisher, connection creator, a later routine editor, or another end user.
 
-Set the top-level `authorization.identity` field to `"creator"` in a REST create request, or pass `RoutineAuthorization(identity="creator")` in Python. Omitting authorization, or setting the identity to `"agent"`, uses the default agent identity.
+Set the top-level `authorization.identity` field to `"creator"` in a REST create request or JavaScript create options. In Python, pass `RoutineAuthorization(identity="creator")`. Omitting authorization, or setting the identity to `"agent"`, uses the default agent identity.
 
 The examples below create a disabled routine and retrieve it to confirm that `authorization.identity` is stored as `"creator"`. Successful creation and retrieval confirm the saved configuration, not compatibility with every delegated tool. Check each tool's authentication requirements and the creator's permissions and consent separately.
 
@@ -215,6 +215,67 @@ print(saved_routine.authorization.identity)  # Expected: creator
 ```
 
 Reference: [RoutineAuthorization](/python/api/azure-ai-projects/azure.ai.projects.models.routineauthorization?view=azure-python&preserve-view=true).
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+The public API in `Azure.AI.Projects` version `3.0.0-beta.3` exposes experimental routines operations through `client.Routines`, but doesn't expose a creator-identity authorization option. `RoutineAuthorization` and `RoutineDispatchIdentity` are internal types, and the public `ProjectsRoutineOptions` has no authorization property. Stable version `2.0.1` has no routines API.
+
+To select creator identity from a C# application, use the [REST create request](use-routines.md?pivots=programming-language-rest#choose-a-dispatch-identity).
+
+:::zone-end
+
+<!-- markdownlint-disable-next-line MD044 -->
+:::zone pivot="programming-language-javascript"
+
+This example uses `@azure/ai-projects` version `2.7.0`, a verified version for creator-identity configuration, and `@azure/identity`. The same package includes TypeScript types. Access routines through `client.beta.routines`.
+
+Sign in with `az login` before using `AzureCliCredential`. Replace the endpoint and agent placeholders, and choose a routine name that doesn't already exist.
+
+```javascript
+import { AIProjectClient } from "@azure/ai-projects";
+import { AzureCliCredential } from "@azure/identity";
+
+const client = new AIProjectClient(
+  "https://<account>.services.ai.azure.com/api/projects/<project>",
+  new AzureCliCredential(),
+);
+
+await client.beta.routines.createOrUpdate("my-creator-routine", {
+  enabled: false,
+  authorization: { identity: "creator" },
+  triggers: {
+    default: {
+      type: "schedule",
+      cron_expression: "0 9 * * *",
+      time_zone: "America/Los_Angeles",
+    },
+  },
+  action: {
+    type: "invoke_agent_responses_api",
+    agent_name: "<your-agent-name>",
+    input: "test",
+  },
+});
+```
+
+Reference: [RoutineAuthorization](/javascript/api/@azure/ai-projects/routineauthorization?view=azure-node-latest&preserve-view=true).
+
+In version `2.7.0`, the SDK's deserialized routine object omits `authorization`, even when the service stores it. Use a raw REST GET to verify the saved setting:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+ROUTINE_NAME="my-creator-routine"
+TOKEN=$(az account get-access-token \
+  --resource https://ai.azure.com \
+  --query accessToken -o tsv)
+
+curl -sS "$PROJECT_ENDPOINT/routines/$ROUTINE_NAME?api-version=v1" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+In the GET response, confirm that `authorization.identity` is `"creator"` and `enabled` is `false`.
 
 :::zone-end
 
@@ -1923,7 +1984,7 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 | Issue | Resolution |
 |---|---|
-| A tool call fails because it requires delegated user access. | Check the tool's authentication requirements, permissions, and consent. To opt in to creator identity, create a new routine with `authorization.identity` set to `"creator"` through REST or Python. A saved creator-identity setting doesn't confirm that the tool supports delegated access through routines. |
+| A tool call fails because it requires delegated user access. | Check the tool's authentication requirements, permissions, and consent. To opt in to creator identity, create a new routine with `authorization.identity` set to `"creator"` through REST, Python, or JavaScript. A saved creator-identity setting doesn't confirm that the tool supports delegated access through routines. |
 | A routine REST request returns HTTP 400 without an API version. | Include `api-version=v1` in the request URL. |
 | An event trigger stops firing after an identity or permission change. | Confirm that the connector connection is still connected and that its owner can access the configured repository, team, or channel. Connector authentication is separate from routine dispatch identity. |
 | The routine feature isn't available in the project. | Confirm that the project is in a [supported region](#prerequisites). If **Routines** doesn't appear in the Foundry portal, the feature isn't enabled for the region or subscription. |
