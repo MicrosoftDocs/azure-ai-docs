@@ -462,7 +462,7 @@ while pending_responses is not None:
 
 Use `.with_request_info()` to pause after specific agents respond, allowing external input (such as human review) before the next agent begins:
 
-The response under review is available in the `request_info` event. The workflow doesn't emit that response as normal output until you approve it. If resuming the workflow reaches another request-info pause, the workflow still emits no output for the newly pending response.
+The `request_info` event includes the response under review. The workflow doesn't emit that response as normal output until you approve it. If resuming the workflow reaches another request-info pause, the workflow still emits no output for the newly pending response.
 
 ```python
 drafter = Agent(
