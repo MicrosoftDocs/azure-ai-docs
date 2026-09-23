@@ -105,3 +105,4 @@ Steerable conversations are sequential, not forked: newer input can queue behind
 - [Deploy a steerable agent](deploy-steerable-agent.md)
 - [Add a human-in-the-loop approval step](add-human-in-the-loop.md)
 - [Recover long-running work after a crash](recover-long-running-work.md)
+- [Cancel a hosted agent turn](cancel-hosted-agent-turn.md)

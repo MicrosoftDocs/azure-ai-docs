@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 09/18/2026
+ms.date: 09/22/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -98,7 +98,7 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
    * **Deployment name**: Keep the default name or enter a custom name to identify the deployment.
    * **Token Plan**: Select **Pay-per-token** -> Datazone Standard or Global Standard, depending on the model, or **Provisioned Throughput** -> Datazone or Global. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
    * **Model version settings**: Select the model version for the deployment.
-   * **Tokens per Minute Rate Limit**:  Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
+   * **Tokens per Minute Rate Limit**: Set a custom tokens-per-minute limit to manage costs and control usage. For pay-per-token deployments, see [Quotas and rate limits](#quotas-and-rate-limits).
    * **Guardrails**: Select **DefaultV2** or **Default** guardrail configuration. Models use the **Microsoft.DefaultV2** guardrail unless a different one is specified. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
 
 1. Select **Deploy**. The deployment process can take up to 30 minutes.
@@ -107,6 +107,16 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
    > [!TIP]
    > To verify the deployment, navigate to your project's **Deployments** page and confirm the deployment **Status** shows **Succeeded**.
+
+## Quotas and rate limits
+
+For pay-per-token deployments, Global Standard and Data Zone Standard have separate quota pools. Each pool has a default quota of 10 million tokens per minute (TPM) per region, per subscription. Each pool is shared across all Fireworks models, and you can allocate quota to individual model deployments.
+
+Fireworks directly enforces adaptive rate limits within this quota. Your effective limits can be lower than the full quota and adjust automatically as your usage grows.
+
+To use more than 10 million TPM in either pool, submit a [quota increase request](https://aka.ms/fireworks-quota).
+
+Ramp up traffic gradually, and use exponential backoff when retrying HTTP 429 (Too Many Requests) responses. For more information, see [Fireworks adaptive rate limits](https://docs.fireworks.ai/serverless/rate-limits).
 
 ## Improve prompt cache hit rate
 

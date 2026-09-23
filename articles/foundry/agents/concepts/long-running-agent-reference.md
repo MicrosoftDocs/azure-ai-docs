@@ -34,7 +34,7 @@ The APIs on this page require at least the following package versions. The Pytho
 
 ## Resilient tasks
 
-The task primitives make a unit of work crash-resilient. Declaring a task automatically enables the startup recovery scan.
+The task primitives make a unit of work crash-resilient. The resilient task subsystem is **opt-in**: call `set_resilient_tasks_enabled(True)` before host startup so the framework constructs the `TaskManager` and runs the startup recovery scan (see [Enable resilient tasks](#enable-resilient-tasks)).
 
 ### Declare a task
 
@@ -217,9 +217,9 @@ Properties: `InitialDelay`, `BackoffCoefficient`, `MaxDelay`, `MaxAttempts`, `Ji
 | `LastInputIdPreconditionFailed` | `LastInputIdPreconditionFailedException` | `if_last_input_id` / `IfLastInputId` didn't match. |
 | `InputTooLarge` | `InputTooLargeException` | The input exceeded the task payload limit (~10 MiB). |
 
-### Force-enable recovery
+### Enable resilient tasks
 
-Declaring a task auto-enables the recovery scan. Force-enable it when tasks are registered lazily after host startup.
+The resilient task subsystem is **opt-in**. Call `set_resilient_tasks_enabled(True)` before host startup (typically at import time) so `AgentServerHost` constructs the `TaskManager` and runs the startup recovery scan. Without it, `get_task_manager()` raises `TaskManagerNotInitialized` and `.run()` / `.start()` can't run a task—declaring a `@task` or `@multi_turn_task` doesn't enable the subsystem on its own.
 
 # [Python](#tab/python)
 

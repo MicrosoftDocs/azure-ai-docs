@@ -71,7 +71,7 @@ Use these links to jump directly to sections that address common permission issu
 - **Agent can't pull images at runtime**: See [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent interaction fails**: See [Agent interaction](#agent-interaction)
 - **Role assignment fails**: See [Creating that role assignment requires](#azure-resource-setup) sections and [Connections setup](#connections-setup)
-- **Can't publish agent to Teams or Microsoft 365 Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
+- **Can't publish agent to Teams or Microsoft Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
 
 ## Hosted agent solution architecture
 
@@ -324,7 +324,7 @@ The agent has implicit access to core capabilities within its own project, such 
 
 ## Hosted agent deployment
 
-Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
+Hosted agent deployment operations are data plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
 
 ### Push an image to the registry
 
@@ -382,7 +382,7 @@ If instead you use the _agent application_, version selection is configured on t
 
 ### Azure Bot Service setup
 
-Publishing your agent to Microsoft Teams or Microsoft 365 Copilot is optional. When you do, the publishing flow performs control plane operations to create an Azure Bot Service resource and configure its channels, then updates either the agent or the agent application to allow requests from Bot Service.
+Publishing your agent to Microsoft Teams or Microsoft Copilot is optional. When you do, the publishing flow performs control plane operations to create an Azure Bot Service resource and configure its channels, then updates either the agent or the agent application to allow requests from Bot Service.
 
 #### Creating the bot service
 
@@ -420,7 +420,7 @@ The publishing flow sets Channels (Azure Bot Service) as the authentication mode
 - **Agent application scenario**: The agent application object is updated. This is a control plane write operation. The same role requirements apply as documented in [Agent applications](#agent-applications-1).
 - **Agent endpoint scenario**: The agent object is updated. This is a data plane write operation. The same role requirements apply as documented in [Create a new agent version](#create-a-new-agent-version).
 
-For step-by-step guidance on publishing to Teams or M365 Copilot, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams][publish-copilot].
+For step-by-step guidance on publishing to Teams or Microsoft Copilot, see [Publish agents to Microsoft Copilot and Microsoft Teams][publish-copilot].
 
 ## Agent interaction
 
