@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 07/16/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -460,6 +461,8 @@ while pending_responses is not None:
 ### Request Info for Agent Feedback
 
 Use `.with_request_info()` to pause after specific agents respond, allowing external input (such as human review) before the next agent begins:
+
+The `request_info` event includes the response under review. The workflow doesn't emit that response as normal output until you approve it. If resuming the workflow reaches another request-info pause, the workflow still emits no output for the newly pending response.
 
 ```python
 drafter = Agent(

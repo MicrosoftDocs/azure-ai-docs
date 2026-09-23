@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/03/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -113,7 +113,7 @@ In Python, all Foundry-specific clients now live under `agent_framework.foundry`
 pip install agent-framework-foundry
 ```
 
-The same `agent-framework-foundry` package also includes `FoundryEmbeddingClient` for Foundry models-endpoint embeddings.
+The same `agent-framework-foundry` package also includes `FoundryEmbeddingClient` for text embeddings through a Foundry project or text and image embeddings through a Foundry Models endpoint.
 
 ## Configuration
 
@@ -124,7 +124,16 @@ FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
 FOUNDRY_MODEL="gpt-4o-mini"
 ```
 
-### `FoundryEmbeddingClient`
+### `FoundryEmbeddingClient` with a project endpoint
+
+```bash
+FOUNDRY_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
+FOUNDRY_EMBEDDING_MODEL="text-embedding-3-small"
+```
+
+Project-backed embeddings use an OpenAI embedding deployment in the Foundry project. Authenticate with an async token credential, such as `AzureCliCredential`.
+
+### `FoundryEmbeddingClient` with a models endpoint
 
 ```bash
 FOUNDRY_MODELS_ENDPOINT="https://<apim-instance>.azure-api.net/<foundry-instance>/models"
@@ -133,7 +142,9 @@ FOUNDRY_EMBEDDING_MODEL="text-embedding-3-small"
 FOUNDRY_IMAGE_EMBEDDING_MODEL="Cohere-embed-v3-english"  # optional
 ```
 
-`FoundryChatClient` uses the project endpoint. `FoundryEmbeddingClient` uses the separate models endpoint.
+Use the Foundry Models endpoint for image embeddings or for text models deployed to that endpoint. If both endpoint environment variables are set and you don't pass an explicit endpoint or project client, `FOUNDRY_MODELS_ENDPOINT` takes precedence.
+
+`FoundryChatClient` uses the project endpoint. `FoundryEmbeddingClient` supports project-backed text embeddings and models-endpoint text or image embeddings.
 
 ### Choose the right Python client
 
@@ -142,7 +153,8 @@ FOUNDRY_IMAGE_EMBEDDING_MODEL="Cohere-embed-v3-english"  # optional
 | Azure OpenAI resource | `OpenAIChatCompletionClient` / `OpenAIChatClient` | Use the [OpenAI provider page](./openai.md). |
 | Microsoft Foundry project inference | `Agent(client=FoundryChatClient(...))` | Uses the Foundry Responses endpoint. |
 | Microsoft Foundry service-managed agent | `FoundryAgent` | Recommended for Prompt Agents and HostedAgents. |
-| Microsoft Foundry models-endpoint embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_MODELS_ENDPOINT` plus `FOUNDRY_EMBEDDING_MODEL` / `FOUNDRY_IMAGE_EMBEDDING_MODEL`. |
+| Microsoft Foundry project text embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_EMBEDDING_MODEL`, and a token credential. |
+| Microsoft Foundry models-endpoint text or image embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_MODELS_ENDPOINT` plus `FOUNDRY_EMBEDDING_MODEL` / `FOUNDRY_IMAGE_EMBEDDING_MODEL`. |
 | Foundry Local runtime | `Agent(client=FoundryLocalClient(...))` | See [Foundry Local](./foundry-local.md). |
 
 ## Create an agent with `FoundryChatClient`
@@ -382,15 +394,25 @@ For general A2A discovery, sessions, and streaming guidance, see the [A2A agent 
 
 ## Create embeddings with `FoundryEmbeddingClient`
 
-Use `FoundryEmbeddingClient` when you want text or image embeddings from a Foundry models endpoint.
+Use `FoundryEmbeddingClient` with a project endpoint when you want text embeddings from an OpenAI deployment in your Foundry project.
 
 ```python
-from agent_framework.foundry import FoundryEmbeddingClient
+import os
 
-async with FoundryEmbeddingClient() as client:
-    result = await client.get_embeddings(["hello from Agent Framework"])
-    print(result[0].dimensions)
+from agent_framework.foundry import FoundryEmbeddingClient
+from azure.identity.aio import AzureCliCredential
+
+async with AzureCliCredential() as credential:
+    async with FoundryEmbeddingClient(
+        project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        model=os.environ["FOUNDRY_EMBEDDING_MODEL"],
+        credential=credential,
+    ) as client:
+        result = await client.get_embeddings(["hello from Agent Framework"])
+        print(result[0].dimensions)
 ```
+
+For image embeddings, configure `FOUNDRY_MODELS_ENDPOINT`, `FOUNDRY_MODELS_API_KEY`, and `FOUNDRY_IMAGE_EMBEDDING_MODEL` instead. Don't combine project-endpoint configuration with models-endpoint arguments or clients in the same `FoundryEmbeddingClient`.
 
 ## Using the agent
 

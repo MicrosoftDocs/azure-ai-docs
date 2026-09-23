@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/21/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -2231,6 +2231,8 @@ Invokes a tool on an MCP server through the configured `MCPToolHandler`.
 | `output.result` | No | Path to store parsed tool output |
 | `output.messages` | No | Path to store the tool message |
 | `output.autoSend` | No | Emits tool output to the workflow result; defaults to `true` |
+
+When `requireApproval` is `true`, the Python runtime binds the evaluated action headers to the approval request. The request includes header names but not header values. If the headers change, credentials rotate, or a restored legacy request doesn't have verifiable binding state, the workflow emits a replacement approval request with a new request ID and doesn't invoke the tool. Protect workflow checkpoint storage because it contains the separate verification key. Custom handlers remain responsible for credentials they resolve outside the action's `headers`.
 
 **Python setup for InvokeMcpTool:**
 
