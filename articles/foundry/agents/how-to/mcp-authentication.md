@@ -386,7 +386,7 @@ The following steps use the Agent 365 MCP server as an example:
    - Microsoft SharePoint and OneDrive MCP Server (Frontier): `McpServers.OneDriveSharepoint.All`
    - Microsoft SharePoint Lists MCP Server (Frontier): `McpServers.SharepointLists.All`
    - Microsoft Word MCP Server (Frontier): `McpServers.Word.All`
-   - Microsoft 365 Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
+   - Microsoft Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
    - Microsoft 365 Admin Center MCP Server (Frontier): `McpServers.M365Admin.All`
    - Microsoft Dataverse MCP Server (Frontier): `McpServers.Dataverse.All`
 

@@ -168,6 +168,8 @@ items:
       href: ../../agents/how-to/recover-long-running-work.md
     - name: Steer an in-flight turn
       href: ../../agents/how-to/steer-hosted-agent.md
+    - name: Cancel a hosted agent turn
+      href: ../../agents/how-to/cancel-hosted-agent-turn.md
     - name: Add human-in-the-loop approval
       href: ../../agents/how-to/add-human-in-the-loop.md
     - name: Stream with reconnect
@@ -226,7 +228,7 @@ items:
 
 - name: Publish and share
   items:
-  - name: Publish agents to Microsoft 365 Copilot and Microsoft Teams
+  - name: Publish agents to Microsoft Copilot and Microsoft Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Publish with a virtual network
     href: ../../agents/how-to/publish-copilot-virtual-network.md

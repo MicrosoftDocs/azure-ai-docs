@@ -29,7 +29,7 @@ zone_pivot_groups: selection-agent-sharepoint-new
 
 Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access. The agent then generates a response based on that retrieved content.
 
-This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft 365 Copilot Retrieval API integration, see [How it works](#how-it-works).
+This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft Copilot Retrieval API integration, see [How it works](#how-it-works).
 
 > [!IMPORTANT]
 > Before you start: The SharePoint tool requires user identity authentication (no app-only/service principal), your SharePoint site and Foundry agent must be in the same tenant, and only one SharePoint tool per agent is supported. The tool doesn't work when the agent is published to Microsoft Teams. See [Limitations](#limitations) for the full list.
@@ -37,7 +37,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 ## Prerequisites
 
 - Eligible license or pay-as-you-go model:
-  - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+  - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Foundry User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 
@@ -695,17 +695,17 @@ public class SharePointGroundingExample {
 - The SharePoint tool only supports user identity authentication. App-only (service principal) authentication isn't supported.
 - Your SharePoint site and your Microsoft Foundry agent must be in the same tenant.
 - You can add only one SharePoint tool per agent.
-- The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
-- For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+- The underlying Microsoft Copilot Retrieval API returns text extracts. It doesn't support retrieval from nontextual content, including images and charts.
+- For semantic and hybrid retrieval, the Microsoft Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
 - The underlying Retrieval API returns at most 25 results and allows 200 requests per user per hour. The query string can contain at most 1,500 characters.
 
 ## How it works
 
-The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint. This capability is empowered by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with. The SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance the search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint. This capability is empowered by the [Microsoft Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with. The SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance the search and retrieval experience, including intelligent indexing, query processing, and content chunking.
 
 For more information about delegated access and identity passthrough in Foundry, see [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md).
 
-Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By using the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, this capability ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By using the same enterprise-grade retrieval stack that powers Microsoft Copilot, this capability ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
 Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as identity passthrough (On-Behalf-Of) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, Foundry Agent Service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored to specific end users.
 
@@ -720,10 +720,10 @@ Customers rely on data security in SharePoint to access, create, and share docum
 | Slow response times | Large document search scope | Narrow the search scope by specifying specific sites or libraries. Consider using more specific search queries. |
 | Incomplete document retrieval | Content not indexed | Confirm the SharePoint content is indexed by Microsoft Search. Recently added content might need time to be indexed. |
 | `Resource not found` errors | Invalid site or library path | Verify the SharePoint site URL and library paths are correct and accessible to the user. |
-| Inconsistent search results | Semantic index sync delay | Wait for the semantic index to sync. Large content changes might take time to propagate. See [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot). |
+| Inconsistent search results | Semantic index sync delay | Wait for the semantic index to sync. Large content changes might take time to propagate. See [Semantic indexing for Microsoft Copilot](/microsoftsearch/semantic-index-for-copilot). |
 
 ## Related content
 
-- [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview)
+- [Overview of the Microsoft Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview)
 - [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md)
 - [Tool best practices for agents](../../concepts/tool-best-practice.md)

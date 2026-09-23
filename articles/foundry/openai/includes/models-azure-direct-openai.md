@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 08/20/2026
+ms.date: 09/21/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
@@ -456,7 +456,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime-whisper` (2026-05-06) | Audio model for real-time low-latency transcription. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-live-transcribe` (2026-07-29) | Audio model for real-time low-latency transcription. Current recommended model for realtime transcription scenarios. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
-|`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07)<br>**preview** | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
+|`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07) | Audio models for real-time audio processing. `gpt-realtime-2.1` is an incremental update over `gpt-realtime-2` with improved silence and noise handling. `gpt-realtime-2.1-mini` is a smaller variant. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 > [!NOTE]
 > `gpt-realtime-translate`, `gpt-realtime-whisper`, and `gpt-live-transcribe` use duration-based billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).

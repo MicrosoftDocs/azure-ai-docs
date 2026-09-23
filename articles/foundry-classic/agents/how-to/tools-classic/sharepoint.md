@@ -27,9 +27,9 @@ ms.custom: azure-ai-agents
 Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## How it works
-The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint empowered by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, you can enter the sites or folders to connect with, and SharePoint tool will leverage [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint empowered by [Microsoft Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with, and the SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance search and retrieval experience, including intelligent indexing, query processing, and content chunking.
 
-Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
 Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control, allowing end users to receive responses generated from SharePoint documents they have permission to access. With OBO authentication, the Foundry Agent service uses the end user’s identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users. 
 
@@ -41,7 +41,7 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 ## Prerequisites
 
-* Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+* Developers and end users have a Microsoft 365 Copilot license, as required by [Microsoft Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
 * Developers and end users have at least `Foundry User` RBAC role. 
 
   [!INCLUDE [role-rename-note](../../../../foundry/includes/role-rename-note.md)]
@@ -75,5 +75,5 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 * [How to use the SharePoint tool](./sharepoint-samples.md)
 * Reference articles for content retrieval used by the tool:
-    * [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-    * [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)
+    * [Overview of the Microsoft Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+    * [Semantic indexing for Microsoft Copilot](/microsoftsearch/semantic-index-for-copilot)

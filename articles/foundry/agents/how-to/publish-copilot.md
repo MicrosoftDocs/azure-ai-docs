@@ -1,6 +1,6 @@
 ---
-title: "Publish agents to Microsoft 365 Copilot and Microsoft Teams"
-description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams from the Foundry portal."
+title: "Publish agents to Microsoft Copilot and Microsoft Teams"
+description: "Publish a Microsoft Foundry agent to Microsoft Copilot and Microsoft Teams from the Foundry portal."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,9 +12,9 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Publish agents to Microsoft 365 Copilot and Microsoft Teams in the Foundry portal
+# Publish agents to Microsoft Copilot and Microsoft Teams in the Foundry portal
 
-After you build and test an agent, you often want to share it with others in the surfaces where they already work. When you publish a Microsoft Foundry agent to Microsoft 365 Copilot and Teams, you and others can interact with and discover your agent through the Microsoft 365 Copilot and Teams UI. You publish the agent's stable endpoint, so end users always interact with a consistent agent while you seamlessly roll out new agent versions that receive traffic through the endpoint.
+After you build and test an agent, you often want to share it with others in the surfaces where they already work. When you publish a Microsoft Foundry agent to Microsoft Copilot and Teams, you and others can interact with and discover your agent through the Microsoft Copilot and Teams UI. You publish the agent's stable endpoint, so end users always interact with a consistent agent while you seamlessly roll out new agent versions that receive traffic through the endpoint.
 
 This article explains how to publish agents from the Foundry portal. 
 
@@ -26,7 +26,7 @@ This article explains how to publish agents from the Foundry portal.
 > Before you publish an agent to Microsoft 365 and Teams, evaluate whether the resulting data flows and processing are consistent with your organization's compliance, data residency, and governance requirements.
 
 > [!NOTE]
-> Publishing from the Foundry portal isn't supported for projects that disable public network access. To publish these agents, use the REST API and enable the source-IP-filtered public Activity Protocol route with `enable_m365_public_endpoint`. Requests must originate from Azure Bot Service or Microsoft 365 source ranges and still satisfy the configured authorization requirements. For more information, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md).
+> Publishing from the Foundry portal isn't supported for projects that disable public network access. To publish these agents, use the REST API and enable the source-IP-filtered public Activity Protocol route with `enable_m365_public_endpoint`. Requests must originate from Azure Bot Service or Microsoft 365 source ranges and still satisfy the configured authorization requirements. For more information, see [Publish agents to Microsoft Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md).
 
 ## Prerequisites
 
@@ -98,11 +98,11 @@ Content-Type: application/merge-patch+json
 
 ## Publish to Microsoft 365 and Teams
 
-Publishing from the portal calls Foundry's Microsoft 365 publish API and builds the Teams app package for you. To publish by using the REST API instead, for example to automate publishing or to publish from a project that disables public network access, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md). That article also shows how to enable the source-IP-filtered public Activity Protocol route for a private-network agent.
+Publishing from the portal calls Foundry's Microsoft 365 publish API and builds the Teams app package for you. To publish by using the REST API instead, for example to automate publishing or to publish from a project that disables public network access, see [Publish agents to Microsoft Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md). That article also shows how to enable the source-IP-filtered public Activity Protocol route for a private-network agent.
 
-You can open the publish dialog from the **Details** tab (in the **Channels** section, select **Teams & Microsoft 365 Copilot**) or from the **Publish** button. These steps use the **Publish** button.
+You can open the publish dialog from the **Details** tab (in the **Channels** section, select **Teams & Microsoft Copilot**) or from the **Publish** button. These steps use the **Publish** button.
 
-1. In Microsoft Foundry portal, select **Publish**, and then select **Teams and Microsoft 365 Copilot**.
+1. In Microsoft Foundry portal, select **Publish**, and then select **Teams and Microsoft Copilot**.
 
    **Expected result**: The **Publish to Teams and Microsoft 365** dialog opens.
 
@@ -157,7 +157,7 @@ You can open the publish dialog from the **Details** tab (in the **Channels** se
    - App policies in your tenant control which users can access the agent.
    - To check approval status, go to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and look for your agent under **Requests**.
 
-     :::image type="content" source="../media/agent-store.png" alt-text="A screenshot of the Agent store in Microsoft 365 Copilot.":::
+     :::image type="content" source="../media/agent-store.png" alt-text="A screenshot of the Agent store in Microsoft Copilot.":::
 
 1. Select **Publish**.
 
@@ -175,11 +175,36 @@ If you want to customize the agent manifest before distributing it:
 
    **Expected result**: A `.zip` file containing the agent manifest downloads to your local machine.
 
-1. Customize the manifest in the downloaded package as needed.
+   Foundry prepares and validates the downloaded package by using the same process it uses for direct publishing. If the package doesn't pass validation, Foundry returns an error instead of an unvalidated ZIP file.
+
+1. [Inspect the downloaded package](#inspect-the-downloaded-package), and then customize its user-facing metadata or assets as needed.
 
 1. In Microsoft Teams, upload the package you downloaded.
     1. Go to **Apps** > **Manage your apps** > **Upload an app**.
     1. Select  **Upload a custom app** or **Submit an app to your org** and choose the downloaded `.zip` file.
+
+#### Inspect the downloaded package
+
+Extract the ZIP file before you customize or upload it. The package contains `manifest.json`, `icon-color.png`, and `icon-outline.png`. An agent with additional Microsoft 365 capabilities might include other supporting files.
+
+Check these values when you troubleshoot a publishing or package-upload problem:
+
+| Manifest location | What to verify |
+|---|---|
+| `version` | Matches the **Publish version** you entered and uses a new version when you update published metadata. |
+| `name.short` and `name.full` | Contain the expected agent display name. The short name might be shortened to meet the manifest limit. |
+| `description.short` and `description.full` | Contain the descriptions you entered in the publishing dialog. |
+| `developer` | Contains the expected developer name, website, privacy statement, and terms-of-use URLs. |
+| `id` | Contains a GUID that identifies the generated app package. Keep this service-generated value unchanged. |
+| `bots[0].botId`, `webApplicationInfo.id`, and `copilotAgents.customEngineAgents[0].id` | Identify the agent's generated Microsoft Entra application. Keep these service-generated values unchanged. |
+| `bots[0].scopes` | Contains the Microsoft 365 and Teams surfaces where the agent can run. |
+| `icons.color` and `icons.outline` | Reference icon files that exist at the root of the ZIP package. |
+
+When you customize the package, change only the user-facing metadata and supported assets you intend to override. Don't remove generated agent sections or change generated identifiers. For the complete schema, see [Microsoft 365 app manifest schema reference](/microsoft-365/extensibility/schema/).
+
+If **Download ZIP** returns an error, correct the field named in the error and try again. Common causes include an invalid version, a missing required description, an invalid HTTPS URL, an invalid icon, or insufficient permission to update the agent.
+
+To download the same package by using the REST API, see [Download and inspect the app package](./publish-copilot-virtual-network.md#download-and-inspect-the-app-package).
 
 ## Update a published agent in M365/Teams
 
@@ -189,7 +214,7 @@ To roll out a new agent version, update the agent's version selector in the Foun
 
 ### Update end user metadata in M365/Teams
 
-To update metadata visible in Teams and M365 (display name, descriptions, URLs), in the **Publish** dropdown select **Update agent Teams and Microsoft 365 Copilot display properties**. The updated fields overwrite the existing values. Unchanged fields are carried forward. The version auto increments if you don't manually increment it.
+To update metadata visible in Teams and M365 (display name, descriptions, URLs), in the **Publish** dropdown select **Update agent Teams and Microsoft Copilot display properties**. The updated fields overwrite the existing values. Unchanged fields are carried forward. The version auto increments if you don't manually increment it.
 
 ## Limitations
 
@@ -202,10 +227,12 @@ Use the following table to resolve errors that occur while you publish from the 
 | Symptom | Cause | Resolution |
 |-------|-------|------------|
 | Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` isn't null). Confirm the developer name is 32 characters or fewer. |
+| **Download ZIP** doesn't return a package | The request or generated manifest failed validation | Correct the field identified in the error and retry. Foundry doesn't return a package that fails manifest validation. |
+| Teams rejects a package that previously downloaded successfully | A required file, generated identifier, or manifest section changed after download | Download the package again, and limit customizations to supported user-facing metadata and assets. |
 | Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
 | The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
 
-If the portal shows **This agent uses an older format that can no longer be published to Teams and Microsoft 365 Copilot. Upgrade to new format to publish.**, the agent uses the older agent application format, which the generally available publish flow doesn't support for new publishing. Upgrade the agent to the new format, and then publish. Existing agents in the older format keep working and can still be updated. See [Migrate from agent applications to the new agent model](./migrate-agent-applications.md).
+If the portal shows **This agent uses an older format that can no longer be published to Teams and Microsoft Copilot. Upgrade to new format to publish.**, the agent uses the older agent application format, which the generally available publish flow doesn't support for new publishing. Upgrade the agent to the new format, and then publish. Existing agents in the older format keep working and can still be updated. See [Migrate from agent applications to the new agent model](./migrate-agent-applications.md).
 
 ## FAQs
 
@@ -215,7 +242,7 @@ Approve the agent in the Microsoft 365 admin center. After approval, the agent a
 
 **If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
 
-The agent appears under **Your agents** in the agent store for Microsoft 365 Copilot. Share it by sending the agent link to selected users in your organization. 
+The agent appears under **Your agents** in the agent store for Microsoft Copilot. Share it by sending the agent link to selected users in your organization. 
 
 :::image type="content" source="../media/share-published-agent.png" alt-text="Screenshot of how to share an Individual scoped published agent with others in your org." lightbox="../media/agent-store.png":::
 
@@ -226,6 +253,6 @@ If the version selector is set to **Always use latest** (the default), the new v
 ## Related content
 
 - [Configure your agent endpoint and settings](./configure-agent.md)
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md)
+- [Publish agents to Microsoft Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md)
 - [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
