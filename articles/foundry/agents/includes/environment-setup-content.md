@@ -6,8 +6,9 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/09/2026
+ms.date: 08/21/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 In this article, you deploy the infrastructure needed to create agents with Foundry Agent Service. After completing this setup, you can create and configure agents using either the SDK of your choice or the Foundry portal.
@@ -132,7 +133,7 @@ After deployment completes (typically 5-10 minutes), verify that your resources 
 |-------|-------|----------|
 | Deployment fails with quota error | Insufficient quota for GPT-4.1 in the selected region | Request a quota increase or select a different region |
 | Permission denied during deployment | Missing **Role Based Access Administrator** role | Ask your subscription owner to grant you the required role |
-| Resources created but agent creation fails | Project not properly connected to resources | Verify the connection in the Foundry portal under **Project settings** > **Connected resources** |
+| Resources created but agent creation fails | Project not properly connected to resources | Verify the connection in the Foundry portal under **Manage** > **Project details** > **Connected resources** |
 | Model not available | Model not deployed in your region | Check [model region support](../concepts/limits-quotas-regions.md) and select an available region |
 
 ### What's next?

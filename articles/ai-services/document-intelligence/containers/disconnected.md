@@ -6,7 +6,7 @@ ms.service: azure-document-intelligence-foundry-tools
 author: laujan
 manager: mcleans
 ms.topic: reference
-ms.date: 04/25/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
@@ -31,7 +31,7 @@ Support for containers is currently available with Document Intelligence version
 
 :::moniker range=">=doc-intel-3.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+**This content applies to:** 🟩 **v3.0 (GA)** 🟩 **v3.1 (GA)** 🟩 **v4.0 (GA)**
 
 ## What are disconnected containers?
 

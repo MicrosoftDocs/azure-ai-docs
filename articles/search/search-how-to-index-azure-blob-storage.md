@@ -4,13 +4,15 @@ description: Learn how to set up a blob indexer to automate indexing of Azure Bl
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 08/08/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
   - ignite-2024
   - sfi-ropc-nochange
   - ai-assisted
+  - doc-kit-assisted
 ---
 
 # Index data from Azure Blob Storage
@@ -24,7 +26,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, you learn how to configure an [indexer](search-indexer-overview.md) that imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
+The *blob indexer* imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
 
 This article uses the [Search Service REST APIs](/rest/api/searchservice) to demonstrate how to configure and run the indexer. However, you can also use:
 
@@ -32,7 +34,7 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 + [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal
 
 > [!NOTE]
-> Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md).
+> Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata (preview)](search-blob-indexer-role-based-access.md).
 
 ## Prerequisites
 
@@ -41,6 +43,8 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 + [Access tiers](/azure/storage/blobs/access-tiers-overview) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
 
 + Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your pricing tier.
+
+  The blob indexer limits cover the maximum blob size and the number of characters that Azure AI Search extracts from a blob. If you use a skillset, each skill's input or service limit applies separately after document cracking.
 
 + A supported network configuration and data access. At a minimum, you need read permissions in Azure Storage. A storage connection string that includes an access key gives you read access to storage content. If instead you're using Microsoft Entra logins and roles, make sure the [search service's managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
@@ -60,7 +64,7 @@ You can use this indexer for the following tasks:
 
 + **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
 
-+ **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
++ **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments (preview)](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
 

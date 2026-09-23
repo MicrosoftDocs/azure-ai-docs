@@ -62,7 +62,7 @@ The following built-in roles grant permissions to Azure AI Search. Control plane
 | [Owner](/azure/role-based-access-control/built-in-roles#owner) | Control | <ul><li>Full control plane access, including the ability to assign roles and change authentication settings.</li><li>Subscription administrators have this role by default.</li><li>Can manage API keys.</li><li>Can't create search objects, load documents, query indexes, or retrieve from knowledge bases.</li></ul> |
 | [Contributor](/azure/role-based-access-control/built-in-roles#contributor) | Control | <ul><li>Same level of control plane access as Owner, minus the ability to assign roles.</li></ul> |
 | [Reader](/azure/role-based-access-control/built-in-roles#reader) | Control | <ul><li>Read-only control plane access.</li><li>Can view service metrics and object definitions.</li><li>Can't view or manage API keys, load documents, query indexes, or retrieve from knowledge bases.</li></ul> |
-| [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control & Data | <ul><li>Full control plane access. Data plane access is limited to object management.</li><li>Can create indexes, indexers, skillsets, knowledge bases, and other search objects.</li><li>Can't load documents, query indexes, or retrieve from knowledge bases.</li><li>For the full permissions list, see [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/permissions/ai-machine-learning#microsoftsearch).</li></ul> |
+| [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control & Data | <ul><li>Full control plane access. Data plane access is limited to object management.</li><li>Can create indexes, indexers, skillsets, knowledge bases, and other search objects.</li><li>Can retrieve admin and query API keys through control plane operations.</li><li>Can't load documents, query indexes, or retrieve from knowledge bases directly through role-based access.</li><li>For the full permissions list, see [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/permissions/ai-machine-learning#microsoftsearch).</li></ul> |
 | [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles#search-index-data-contributor) | Data | <ul><li>Read-write content access.</li><li>Can load documents, query indexes, and retrieve from knowledge bases.</li><li>Can't modify object definitions or retrieve admin keys.</li></ul> |
 | [Search Index Data Reader](/azure/role-based-access-control/built-in-roles#search-index-data-reader) | Data | <ul><li>Read-only content access.</li><li>Can query indexes and retrieve from knowledge bases.</li><li>Can't load documents, modify object definitions, or retrieve admin keys.</li></ul> |
 
@@ -89,7 +89,7 @@ Use the following table to quickly find which role provides the permissions you 
 | Upload data for indexing <sup>2</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
 | Query an index | ❌ | ❌ | ❌ | ✅ | ✅ |
 | Retrieve from a knowledge base | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Bypass permission filters with [elevated read](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | ❌ | ❌ | ❌ | ✅ | ❌ |
+| Bypass permission filters with [elevated read (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) | ❌ | ❌ | ❌ | ✅ | ❌ |
 
 <sup>1</sup> Includes indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
 
@@ -966,7 +966,7 @@ When you develop applications that use role-based access control for authenticat
 
 + If the authorization token comes from a [managed identity](/entra/identity/managed-identities-azure-resources/overview) and you recently assigned the appropriate permissions, it [might take several hours](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations#limitation-of-using-managed-identities-for-authorization) for the permissions assignments to take effect.
 
-+ If queries with document-level permissions don't return expected results, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) to investigate.
++ If queries with document-level permissions don't return expected results, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) to investigate.
 
 ## Next step
 

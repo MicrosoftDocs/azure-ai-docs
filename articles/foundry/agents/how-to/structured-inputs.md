@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: zhuoqunli
 ms.author: mattwoj
@@ -34,6 +34,9 @@ In this article, you learn how to:
 - The latest SDK package for your language. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and model deployment name.
+
+> [!IMPORTANT]
+> Don't pass secrets, access tokens, or other credentials as structured inputs. Application logs or tracing might capture structured input values as part of the request. Store credentials in project connections or another managed secret store instead.
 
 ## What are structured inputs?
 
@@ -272,7 +275,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -362,26 +365,28 @@ The Java SDK uses `StructuredInputDefinition` for the agent schema and `Map<Stri
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "structured-input-agent",
     "definition": {
       "kind": "prompt",
       "model": "<MODEL_DEPLOYMENT>",
-      "instructions": "You are a helpful assistant. The user'\''s name is {{userName}} and their role is {{userRole}}. Greet them and confirm their details.",
+      "instructions": "You are a helpful assistant. The user's name is {{userName}} and their role is {{userRole}}. Greet them and confirm their details.",
       "structured_inputs": {
         "userName": {
           "type": "string",
-          "description": "The user'\''s name",
+          "description": "The user's name",
           "default_value": "Unknown"
         },
         "userRole": {
           "type": "string",
-          "description": "The user'\''s role",
+          "description": "The user's role",
           "default_value": "User"
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with structured input values
@@ -711,7 +716,8 @@ Response: The sum of x in numbers.csv is 6.
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "code-interp-structured",
     "definition": {
       "kind": "prompt",
@@ -734,7 +740,8 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with the file ID
@@ -1117,6 +1124,8 @@ This example combines a static vector store (`vs_base_kb`) with a dynamic one (`
 
 By using structured inputs, you can dynamically configure the [Azure AI Search](tools/ai-search.md) tool's index `filter` at runtime. Define a handlebar template inside the OData filter expression, and then supply the actual filter value when creating a response. This pattern lets a single agent definition serve users whose queries must be scoped to different subsets of an index without creating a separate agent version per filter value.
 
+Validate values before inserting them into an OData filter. Allow only expected values, escape OData special characters, and don't accept complete filter expressions from untrusted users.
+
 :::zone pivot="python"
 
 ```python
@@ -1459,7 +1468,8 @@ Response: Based on the index, the available outdoor boots include ...
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
+  --data-binary @- <<EOF
+{
     "name": "aisearch-agent-structured-input",
     "definition": {
       "kind": "prompt",
@@ -1474,7 +1484,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
                 "project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
                 "index_name": "$AI_SEARCH_INDEX_NAME",
                 "query_type": "simple",
-                "filter": "search.ismatchscoring('\''{{userFilter}}'\'')"
+                "filter": "search.ismatchscoring('{{userFilter}}')"
               }
             ]
           }
@@ -1488,7 +1498,8 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
         }
       }
     }
-  }'
+}
+EOF
 ```
 
 ### Create a response with the filter value
@@ -1516,13 +1527,13 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-The `{{userFilter}}` template inside the `filter` expression is replaced with `boots` at runtime. The `'\''` sequence in the create-agent body is the standard Bash escape for a literal single quote inside a single-quoted string. If your shell handles quoting differently, supply the JSON body from a file instead.
+At runtime, the `filter` expression replaces the `{{userFilter}}` template with `boots`. The unquoted heredoc expands the connection and index environment variables before `curl` sends the JSON body.
 
 :::zone-end
 
 ## Use structured inputs with MCP servers
 
-By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
+By using structured inputs, you can dynamically configure nonsecret MCP server properties such as the server URL, server label, and routing headers. Use a project connection or another managed authentication mechanism for credentials. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
 
 The following JSON shows the request body for the [Create Agent Version](https://ai.azure.com/api-reference/agent-versions/create-agent-version-agents-create-agent-version-from-code/) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
 
@@ -1539,10 +1550,7 @@ The following JSON shows the request body for the [Create Agent Version](https:/
         "server_label": "{{server_label}}",
         "server_url": "{{server_url}}",
         "require_approval": "never",
-        "headers": {
-          "Authorization": "{{auth_token}}",
-          "X-Project-ID": "{{project_id}}"
-        }
+        "headers": {"X-Project-ID": "{{project_id}}"}
       }
     ],
     "structured_inputs": {
@@ -1557,11 +1565,6 @@ The following JSON shows the request body for the [Create Agent Version](https:/
       },
       "server_url": {
         "description": "MCP server URL",
-        "required": true,
-        "schema": {"type": "string"}
-      },
-      "auth_token": {
-        "description": "Authentication token",
         "required": true,
         "schema": {"type": "string"}
       },
@@ -1588,13 +1591,14 @@ At runtime, supply the actual server configuration values in the request body fo
     "project_name": "CloudSync API",
     "server_label": "cloudsync-repo",
     "server_url": "https://gitmcp.io/myorg/cloudsync-api",
-    "auth_token": "Bearer ghp_xxxxxxxxxxxx",
     "project_id": "proj_12345"
   }
 }
 ```
 
 The SDK patterns for MCP structured inputs follow the same approach shown in the previous examples. Define the template placeholders in the MCP tool properties, declare the structured input schemas in the agent definition, and supply the values at runtime.
+
+:::zone pivot="python"
 
 The following Python example shows the complete pattern:
 
@@ -1619,7 +1623,7 @@ tool = MCPTool(
     server_label="{{server_label}}",
     server_url="{{server_url}}",
     require_approval="never",
-    headers={"Authorization": "{{auth_token}}", "X-Project-ID": "{{project_id}}"},
+    headers={"X-Project-ID": "{{project_id}}"},
 )
 
 # Create agent with structured inputs for MCP configuration
@@ -1639,9 +1643,6 @@ agent = project.agents.create_version(
             "server_url": StructuredInputDefinition(
                 description="MCP server URL", required=True, schema={"type": "string"},
             ),
-            "auth_token": StructuredInputDefinition(
-                description="Authentication token", required=True, schema={"type": "string"},
-            ),
             "project_id": StructuredInputDefinition(
                 description="Project identifier", required=True, schema={"type": "string"},
             ),
@@ -1660,13 +1661,106 @@ response = openai.responses.create(
             "project_name": "CloudSync API",
             "server_label": "cloudsync-repo",
             "server_url": "https://gitmcp.io/myorg/cloudsync-api",
-            "auth_token": "Bearer ghp_xxxxxxxxxxxx",
             "project_id": "proj_12345",
         },
     },
 )
 print(response.output_text)
 ```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+The following TypeScript example shows the same pattern:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+
+export async function main(): Promise<void> {
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Create agent with structured inputs for MCP configuration. The MCP tool
+  // is defined inline so TypeScript infers the literal "mcp" type instead of
+  // widening it to string.
+  const agent = await project.agents.createVersion("mcp-dynamic-agent", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful development assistant for {{project_name}}.",
+    tools: [
+      {
+        type: "mcp",
+        server_label: "{{server_label}}",
+        server_url: "{{server_url}}",
+        require_approval: "never",
+        headers: {
+          Authorization: "{{auth_token}}",
+          "X-Project-ID": "{{project_id}}",
+        },
+      },
+    ],
+    structured_inputs: {
+      project_name: {
+        description: "Project name",
+        required: true,
+        schema: { type: "string" },
+      },
+      server_label: {
+        description: "MCP server label",
+        required: true,
+        schema: { type: "string" },
+      },
+      server_url: {
+        description: "MCP server URL",
+        required: true,
+        schema: { type: "string" },
+      },
+      auth_token: {
+        description: "Authentication token",
+        required: true,
+        schema: { type: "string" },
+      },
+      project_id: {
+        description: "Project identifier",
+        required: true,
+        schema: { type: "string" },
+      },
+    },
+  });
+
+  // Supply MCP server configuration at runtime
+  const conversation = await openai.conversations.create();
+  const response = await openai.responses.create(
+    {
+      conversation: conversation.id,
+      input: "List recent commits",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+        structured_inputs: {
+          project_name: "CloudSync API",
+          server_label: "cloudsync-repo",
+          server_url: "https://gitmcp.io/myorg/cloudsync-api",
+          auth_token: "******",
+          project_id: "proj_12345",
+        },
+      },
+    },
+  );
+  console.log(response.output_text);
+}
+
+main().catch(console.error);
+```
+
+:::zone-end
 
 For more information about connecting to MCP servers, see [Connect agents to MCP servers](tools/model-context-protocol.md).
 
@@ -1737,6 +1831,8 @@ Use handlebar templates in system and developer message content to inject runtim
 
 In SDK code, pass these values by using the same `extra_body` (Python), `body` (TypeScript), or `AzureCreateResponseOptions` (Java/C#) patterns shown in the previous examples.
 
+:::zone pivot="python"
+
 The following Python example shows how to use response-level instructions with structured inputs:
 
 ```python
@@ -1772,11 +1868,63 @@ response = openai.responses.create(
 print(response.output_text)
 ```
 
+:::zone-end
+
+:::zone pivot="typescript"
+
+The following TypeScript example shows the same pattern:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+
+export async function main(): Promise<void> {
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Pass structured inputs with response-level instructions
+  const response = await openai.responses.create(
+    {
+      model: "gpt-5-mini",
+      instructions:
+        "You are assisting {{customerName}} from {{companyName}} located in {{location}}.",
+      input: [
+        {
+          type: "message",
+          role: "user",
+          content: "Hello, who am I?",
+        },
+      ],
+    },
+    {
+      body: {
+        structured_inputs: {
+          customerName: "Bob Johnson",
+          companyName: "Tech Corp",
+          location: "San Francisco",
+        },
+      },
+    },
+  );
+  console.log(response.output_text);
+}
+
+main().catch(console.error);
+```
+
+:::zone-end
+
 ## Advanced template syntax
 
 Structured inputs support full [Handlebars](https://handlebarsjs.com/) template syntax beyond simple variable substitution. You can use conditionals, loops, and other built-in helpers to create dynamic instruction logic within a single agent definition.
 
 The following example creates a weather assistant whose behavior adapts based on runtime inputs. The instructions template uses `{{#if}}` for conditional sections and `{{#each}}` to iterate over a list of user preferences:
+
+:::zone pivot="python"
 
 ```python
 from azure.ai.projects import AIProjectClient
@@ -1857,6 +2005,99 @@ response = openai.responses.create(
 )
 print(response.output_text)
 ```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+The following TypeScript example shows the same pattern:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+
+export async function main(): Promise<void> {
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
+
+  // Define instructions with conditionals and loops
+  const instructions = `You are a weather assistant. Provide a helpful weather summary for the user.
+
+The user asked about: {{location}}
+Use the following units: {{units}}
+
+{{#if includeForecast}}
+Include a brief multi-day forecast in your response.
+{{else}}
+Focus only on the current conditions.
+{{/if}}
+
+{{#if preferences}}
+The user has these additional preferences:
+{{#each preferences}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+Keep the final answer clear and easy to read.`;
+
+  const agent = await project.agents.createVersion("weather-assistant", {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions,
+    structured_inputs: {
+      location: {
+        description: "City or region to check weather for",
+        required: true,
+        schema: { type: "string" },
+      },
+      units: {
+        description: "Temperature units (Celsius or Fahrenheit)",
+        default_value: "Celsius",
+        schema: { type: "string" },
+      },
+      includeForecast: {
+        description: "Whether to include a multi-day forecast",
+        default_value: false,
+        schema: { type: "boolean" },
+      },
+      preferences: {
+        description: "Additional user preferences",
+        schema: { type: "array" },
+      },
+    },
+  });
+
+  // Supply values at runtime — conditionals and loops resolve automatically
+  const conversation = await openai.conversations.create();
+  const response = await openai.responses.create(
+    {
+      conversation: conversation.id,
+      input: "What's the weather like?",
+    },
+    {
+      body: {
+        agent_reference: { name: agent.name, type: "agent_reference" },
+        structured_inputs: {
+          location: "Seattle, WA",
+          units: "Fahrenheit",
+          includeForecast: true,
+          preferences: ["Highlight UV index", "Include wind speed"],
+        },
+      },
+    },
+  );
+  console.log(response.output_text);
+}
+
+main().catch(console.error);
+```
+
+:::zone-end
 
 With these values, the resolved instructions become:
 

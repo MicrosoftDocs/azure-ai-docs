@@ -9,6 +9,8 @@ ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
+  - doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 | **Region** | **gpt-5.5**, **2026-04-24** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4**, **2026-03-05** | **gpt-5.2**, **2025-12-11** | **gpt-5.1**, **2025-11-13** | **gpt-4.1**, **2025-04-14** |

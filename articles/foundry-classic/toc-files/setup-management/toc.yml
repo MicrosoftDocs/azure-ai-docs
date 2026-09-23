@@ -53,8 +53,6 @@ items:
     href: ../../how-to/hub-connections-add.md
   - name: Create a hub project
     href: ../../how-to/hub-create-projects.md
-  - name: "Quickstart: Get started with Microsoft Foundry using a hub"
-    href: ../../quickstarts/hub-get-started-code.md
 - name: Manage projects
   items:
   - name: Create a project

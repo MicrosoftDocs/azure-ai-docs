@@ -5,17 +5,27 @@ description: The Microsoft Foundry Notification Center surfaces security, policy
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 07/09/2026
+ms.date: 09/18/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
+ms.subservice: foundry-observability
 ai-usage: ai-assisted
 ---
 
 # Microsoft Foundry Notification Center
 
-Microsoft Foundry Notification Center centralizes all important observability alerts and notifications for your AI agents, models, and projects. Previously, developers had to manually monitor multiple siloed systems and configure Azure Monitor alerts to catch agent issues - an error-prone and time-consuming process. Now, the Notification Center automatically aggregates critical signals into a single in-app feed, so you can see and address problems directly within the Foundry portal, without complex setup.
+
+Microsoft Foundry Notification Center centralizes all important observability alerts and notifications for your AI agents, models, and projects. Previously, developers had to manually monitor multiple siloed systems and configure Azure Monitor alerts to catch agent issues. This approach was error-prone and time-consuming. Now, the Notification Center automatically aggregates critical signals into a single in-app feed, so you can see and address problems directly within the Foundry portal, without complex setup.
 
 By delivering timely notifications in the same UI where you manage your agents, the Notification Center helps you stay on top of issues in real time and maintain your AI solutions' reliability and compliance.
+
+## When to use the Notification Center
+
+Use the Notification Center when you want a single in-portal feed for critical Foundry signals, without configuring and monitoring multiple Azure Monitor alert rules yourself. For example:
+
+- Catch high-severity Microsoft Defender for Cloud security alerts on your agents or infrastructure.
+- Track Azure Policy or guardrail compliance issues across your projects.
+- Know when long-running evaluation or training jobs finish or fail.
 
 ## Prerequisites
 
@@ -24,17 +34,19 @@ By delivering timely notifications in the same UI where you manage your agents, 
 
 ## Delivery channels
 
-Currently, the Foundry web portal (in-app) delivers notifications. A small badge on the bell icon indicates new unread items whenever they arrive. 
+Currently, the Foundry web portal (in-app) delivers notifications. A small badge on the bell icon indicates new unread items whenever they arrive.
 
 ## Key capabilities and alert coverage
 
 The Foundry Notification Center provides a comprehensive alerting experience integrated into the Foundry web portal. Key capabilities include:
 
 ### Centralized notifications panel
-A bell icon in the Foundry portal's header opens the Notification Center panel. This panel shows recent notifications (unread and read) with timestamps (for example, "3m ago") and short descriptions, giving you an immediate overview of new events. You can click any item to see details or navigate to the relevant resource for resolution. A **Dismiss All** action is available to mark all notifications as read (with a confirmation prompt) for quick cleanup.
 
-### "View all" notifications page
-For deeper review, a dedicated expanded view page lists all notifications in a table format, including older or previously-read items. Unlike the compact bell panel, this page is designed for detailed review, filtering, and auditing of notifications. You can sort or filter notifications by criteria like type, project, or severity (with more filtering options on the way). The **View All** page ensures you can explore your entire notification history across all categories of events, not just the latest alerts.
+A bell icon in the Foundry portal's header opens the Notification Center panel. This panel shows recent notifications (unread and read) with timestamps (for example, "3m ago") and short descriptions, giving you an immediate overview of new events. You can select any item to see details or navigate to the relevant resource for resolution. A **Dismiss all** action is available to mark all notifications as read (with a confirmation prompt) for quick cleanup.
+
+### View all notifications page
+
+For deeper review, a dedicated expanded view page lists all notifications in a table format, including older or previously read items. Unlike the compact bell panel, this page is designed for detailed review, filtering, and auditing of notifications. You can sort or filter notifications by criteria like type, project, or severity (with more filtering options on the way). The **View all** page ensures you can explore your entire notification history across all categories of events, not just the latest alerts.
 
 ### Alert types covered
 The Notification Center aggregates multiple categories of key events from across the Foundry environment. It supports four main types of notifications:
@@ -43,7 +55,6 @@ The Notification Center aggregates multiple categories of key events from across
 
 - **Policy and compliance**: The Notification Center delivers notifications about issues arising from Azure Policy or Foundry's built-in guardrails, such as ML governance policy violations or required compliance actions. You can quickly address governance and compliance concerns.
 
-
 - **Run completion and other events**: Certain long-running operations in Foundry, such as evaluation runs or model training jobs, trigger notifications upon completion or failure. These events push a notification to the center via Foundry's backend API as soon as they occur, ensuring near-real-time updates for these workflows.
 
 ## Use the Notification Center
@@ -51,16 +62,20 @@ The Notification Center aggregates multiple categories of key events from across
 > [!NOTE]
 > These steps require portal access. For RBAC role requirements, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 
-**Accessing notifications**: In the Foundry portal, select the Notification Center (bell) icon to open the notifications panel. The panel displays a scrollable list of your most recent notifications, with each entry showing a concise description and an icon or color indicating its category or importance. New (unread) notifications are highlighted.
+### Access notifications
 
-**Viewing details**: To learn more about a notification, select it in the panel. Selecting a notification opens a detailed view or relevant page:
+In the Foundry portal, select the Notification Center (bell) icon to open the notifications panel. The panel displays a scrollable list of your most recent notifications, with each entry showing a concise description and an icon or color that indicates its category or importance. New (unread) notifications are highlighted.
 
-For agent evaluation alerts or run completions, selecting an item might open the Foundry **Operate** page or evaluation results for the specific agent or run, where you can inspect metrics and logs around the time of the alert.
+### View notification details
 
-For security or policy alerts, selecting a notification directs you to the appropriate details. For example, a deep link to the Azure portal's security center or policy compliance page so you can investigate and remediate the issue.
+To learn more about a notification, select it in the panel. Selecting a notification opens a detailed view or relevant page:
 
-**Marking notifications as read**: After you review an alert, the panel marks it as read automatically (the visual highlight disappears). In the notifications panel, you can use the **Dismiss All** button to mark all current notifications as read at once.
+- For agent evaluation alerts or run completions, selecting an item might open the Foundry **Operate** page or evaluation results for the specific agent or run, where you can inspect metrics and logs around the time of the alert.
+- For security or policy alerts, selecting a notification directs you to the appropriate details. For example, a deep link to the Azure portal security center or policy compliance page so you can investigate and fix the issue.
 
+### Mark notifications as read
+
+After you review an alert, the panel marks it as read automatically and the visual highlight disappears. In the notifications panel, select **Dismiss all** to mark all current notifications as read at once.
 
 
 ## Related content

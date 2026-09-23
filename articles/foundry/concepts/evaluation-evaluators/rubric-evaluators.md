@@ -132,7 +132,7 @@ Rubric evaluators work well for domain-specific or organization-specific quality
 
 The LLM judge reads the rubric, examines the mapped input data, assigns a score, and provides a reason for its scoring decision. This approach combines the flexibility of custom criteria with the consistency of LLM-based evaluation.
 
-For details on running evaluations and configuring data sources, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
+For details on running evaluations and configuring data sources, see [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md).
 
 For a runnable example, see [sample_rubric_evaluator_generation_basic.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_rubric_evaluator_generation_basic.py). For additional rubric samples (all-sources generation, iterative editing, full lifecycle, and manual authoring), see the [evaluations samples README](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md).
 
@@ -273,7 +273,7 @@ For setup steps, see [Monitor agents in the dashboard](../../observability/how-t
 
 ## Related content
 
-- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md)
 - [Monitor agents in the dashboard](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 - [Set up tracing](../../observability/how-to/trace-agent-setup.md)
 - [Custom evaluators](custom-evaluators.md)

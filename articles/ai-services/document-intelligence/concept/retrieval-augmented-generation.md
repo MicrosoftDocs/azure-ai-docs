@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-document-intelligence-foundry-tools
 ms.topic: concept-article
-ms.date: 06/25/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -15,7 +15,7 @@ monikerRange: '>=doc-intel-3.1.0'
 
 <!-- markdownlint-disable MD036 -->
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+**This content applies to:** 🟩 **v4.0 (GA)**
 
 ## Introduction
 

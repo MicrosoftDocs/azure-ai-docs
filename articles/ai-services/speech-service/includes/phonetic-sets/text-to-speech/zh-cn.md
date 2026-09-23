@@ -5,7 +5,10 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-The Speech service phone set for `zh-CN` is based on the native phone <a href="https://en.wikipedia.org/wiki/Pinyin" target="_blank">Pinyin </a> set.
+The Speech service phone set `sapi` for `zh-CN` uses notation based on the native <a href="https://en.wikipedia.org/wiki/Pinyin" target="_blank">Pinyin</a> phone set.
+
+> [!IMPORTANT]
+> In SSML, set the `phoneme` element's `alphabet` attribute to `sapi`, not `pinyin`. For example: `<phoneme alphabet="sapi" ph="ni 3 hao 3">你好</phoneme>`.
 
 ### Pinyin Initials for zh-CN
 

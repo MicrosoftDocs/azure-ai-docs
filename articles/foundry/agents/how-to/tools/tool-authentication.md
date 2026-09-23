@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
 reviewer: zhuoqunli
-ms.date: 07/29/2026
+ms.date: 08/19/2026
 manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -177,7 +177,9 @@ azd ai connection create workiq-conn \
 
 Each tool references its connection by ID. That single reference is the entire difference between running as a shared service account and acting on behalf of the signed-in user. Your agent doesn't need a token broker or per-user token cache.
 
-This example requires `azure-ai-projects` version 2.3.0 or later.
+This example requires `azure-ai-projects` (Python) or `@azure/ai-projects` (TypeScript) version 2.3.0 or later.
+
+# [Python](#tab/python)
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -205,24 +207,101 @@ toolbox_version = project.toolboxes.create_version(
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
 ```
 
+# [C#](#tab/csharp)
+
+Install the prerelease packages with `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`.
+
+```csharp
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+using OpenAI.Responses;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
+AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
+AgentToolboxes toolboxes = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+// Connection IDs from the connections you created earlier.
+var ordersConnectionId = "orders-mcp";
+var workiqConnectionId = "workiq-conn";
+
+ToolboxVersion toolbox = toolboxes.CreateVersion(
+    name: "employee-toolbox",
+    tools:
+    [
+        new MCPToolboxTool(serverLabel: "orders")
+        {
+            ServerUri = new Uri("https://orders-mcp.example.com/mcp"),
+            ProjectConnectionId = ordersConnectionId,
+            ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval),
+        },
+        new WorkIQPreviewToolboxTool(workiqConnectionId),
+    ],
+    description: "Private orders MCP + Work IQ, both via OAuth identity passthrough.");
+Console.WriteLine($"Created toolbox: {toolbox.Name}, version: {toolbox.Version}");
+```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const endpoint =
+  "https://<your-foundry-account>.services.ai.azure.com" +
+  "/api/projects/<your-project>";
+const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+
+const ordersConnection = await project.connections.get("orders-mcp");
+const workiqConnection = await project.connections.get("workiq-conn");
+
+const toolboxVersion = await project.toolboxes.createVersion(
+  "employee-toolbox",
+  [
+    {
+      type: "mcp",
+      server_label: "orders",
+      server_url: "https://orders-mcp.example.com/mcp",
+      require_approval: "never",
+      project_connection_id: ordersConnection.id,
+    },
+    {
+      type: "work_iq_preview",
+      project_connection_id: workiqConnection.id,
+    },
+  ],
+  {
+    description:
+      "Private orders MCP + Work IQ, both via OAuth identity passthrough.",
+  },
+);
+console.log(
+  `Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.version}`,
+);
+```
+
+---
+
+For JavaScript, see the maintained [toolbox project-connection sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentToolboxSearchPreview.js) and [Work IQ sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentWorkIQ.js). The first sample creates an MCP-backed toolbox that uses a project connection and attaches it to an agent. The second sample shows how to reference the Work IQ project connection.
+
 ### 3. Connect the agent to the toolbox
 
 The agent connects to the toolbox's single consumer endpoint, which always serves the default version. The agent authenticates to the platform with its own identity. For each tool, Foundry supplies credentials that represent the user who completed OAuth authorization. The agent carries no per-tool authentication code.
 
 ```python
-import httpx
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from agent_framework import MCPStreamableHTTPTool
+from azure.identity import DefaultAzureCredential
+from agent_framework import FoundryToolbox
 
 # Agent-to-toolbox identity: the agent's own credential, scoped to the platform
 credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
+, timeout=120.0)
 
 # Consumer endpoint always resolves to the toolbox's default version
 CONSUMER_URL = f"{endpoint}/toolboxes/employee-toolbox/mcp?api-version=v1"
 
-toolbox = MCPStreamableHTTPTool(
+toolbox = FoundryToolbox(
     name="employee_toolbox",
     url=CONSUMER_URL,
     http_client=http_client,

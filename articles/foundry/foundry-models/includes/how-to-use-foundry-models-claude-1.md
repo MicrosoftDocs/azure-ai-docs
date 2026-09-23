@@ -6,7 +6,7 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/24/2026
+ms.date: 09/21/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -19,7 +19,7 @@ In this article, you learn how to:
 - Authenticate by using Microsoft Entra ID or API keys
 - Call the Claude Messages API from Python, JavaScript, or REST
 
-For the full list of available Claude models, model versions, capabilities, quotas, and billing, see [Claude models in Microsoft Foundry](../concepts/claude-models.md).
+For available models, model versions, and capabilities, see [Claude models in Microsoft Foundry](../concepts/claude-models.md). For default quota by subscription type, see [Claude model quotas and rate limits](../concepts/claude-models-quotas-limits.md).
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

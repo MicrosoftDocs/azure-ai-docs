@@ -6,6 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
 ms.date: 05/19/2025
+ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: reference
 ms.custom:
@@ -22,26 +23,20 @@ Azure Content Understanding in Foundry Tools provides multilingual support in mu
 
 To use Azure Content Understanding, create your Foundry resource in a supported region. Content Understanding is available in the following regions. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Find more information about Foundry deployment types and data zones at  [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
-| Identifier      | Region         | Geography       |
-|-----------------|----------------|-----------------|
-| `australiaeast` | Australia East | Asia Pacific |
-| `eastus` | East US | United States |
-| `eastus2` | East US 2 | United States |
-| `japaneast` | Japan East | Asia Pacific |
-| `northeurope` | North Europe | Europe |
-| `southcentralus` | South Central US | United States |
-| `southeastasia` | Southeast Asia | Asia Pacific |
-| `swedencentral` | Sweden Central | Europe |
-| `uksouth` | UK South | Europe |
-| `westeurope` | West Europe | Europe |
-| `westus` | West US | United States |
-| `westus3` | West US 3 | United States |
-
-
-
-> [!NOTE]
->
-> [Pro mode (`2025-05-01-preview`)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+| Identifier      | Region         |
+|-----------------|----------------|
+| `australiaeast` | Australia East |
+| `canadacentral` | Canada Central |
+| `eastus` | East US |
+| `eastus2` | East US 2 |
+| `japaneast` | Japan East |
+| `southcentralus` | South Central US |
+| `southeastasia` | Southeast Asia |
+| `swedencentral` | Sweden Central |
+| `uksouth` | UK South |
+| `westeurope` | West Europe |
+| `westus` | West US |
+| `westus3` | West US 3 |
 
 ## Language support
 
@@ -188,24 +183,3 @@ Different locales have different ways to represent numbers, date, and time. Cont
 |Indonesian|`id-ID`|Vietnamese|`vi-VN`|
 |Italian|`it-IT`|||
 
-## Preview API (2025-05-01-preview)
-
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
-
-The preview API version `2025-05-01-preview` includes managed capacity for generative capabilities and has limited regional availability compared to the GA version.
-
-### Region support
-
-To use Azure Content Understanding in Foundry Tools with the preview API, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
-
-| Identifier      | Region         | Geography       | Data Zone        |
-|-----------------|----------------|-----------------|------------------|
-| `westus` | West US | United States | United States |
-| `swedencentral` | Sweden Central | European Union | European Union |
-| `australiaeast` | Australia East | Australia | N/A<sup>†</sup> |
-
-<sup>†</sup> Australia East doesn't support data zone as a processing location.
-
-> [!NOTE]
->
-> [Pro mode (`2025-05-01-preview`)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.

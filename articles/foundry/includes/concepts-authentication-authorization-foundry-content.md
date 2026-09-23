@@ -6,8 +6,9 @@ ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 08/05/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Authentication and authorization in Microsoft Foundry control how principals prove identity and gain permission to perform operations. Foundry divides operations into control plane (resource management) and data plane (runtime usage), each with its own authentication and role-based access control (RBAC) surface.
@@ -100,7 +101,7 @@ import requests
 # This automatically uses environment variables, managed identity, or Azure CLI credentials
 credential = DefaultAzureCredential()
 
-# Get an access token for the Cognitive Services scope
+# Get an access token for the Foundry scope (https://ai.azure.com/.default)
 token = credential.get_token("https://ai.azure.com/.default")
 
 # Use the token in your API request
@@ -110,7 +111,7 @@ headers = {
 }
 
 # Replace with your Foundry endpoint
-endpoint = "https://<your-resource-name>.cognitiveservices.azure.com"
+endpoint = "https://<your-resource-name>.services.ai.azure.com"
 
 # Example: List deployments (adjust the path for your specific API)
 response = requests.get(f"{endpoint}/openai/deployments?api-version=2024-10-21", headers=headers)
@@ -130,7 +131,7 @@ import requests
 
 # Replace with your actual API key and endpoint
 api_key = "<your-api-key>"
-endpoint = "https://<your-resource-name>.cognitiveservices.azure.com"
+endpoint = "https://<your-resource-name>.services.ai.azure.com"
 
 headers = {
     "api-key": api_key,
@@ -168,7 +169,7 @@ Reference the following matrix to understand what capabilities in Foundry suppor
 | Per-request user attribution | No | Yes | Token contains tenant and object IDs. |
 | Revocation (immediate) | Rotate key | Remove role or disable principal | Short token lifetime applies. |
 | Support in automation pipelines | Yes (secret) | Yes (service principal or managed identity) | Entra ID reduces secret rotation. |
-| Assistants API | Yes | Yes | Recommended to use Entra ID. |
+| Assistants API | Yes | Yes | Deprecated; retires August 26, 2026. Use [Foundry Agent Service](../agents/overview.md). |
 | Batch inferencing | Yes | Yes |  |
 | Toolbox | No | Yes | Use Entra ID for managed identity tool access. |
 

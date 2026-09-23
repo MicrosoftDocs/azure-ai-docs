@@ -1,10 +1,10 @@
 ---
 title: "Feature availability across cloud regions"
-description: "This article lists Microsoft Foundry feature availability across cloud regions."
+description: "Find Microsoft Foundry feature availability across cloud regions, including where you can create projects and where key features are supported."
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.topic: concept-article
-ms.date: 04/13/2026
+ms.date: 08/21/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -17,7 +17,7 @@ ms.custom:
 
 # Microsoft Foundry feature availability across cloud regions
 
-[!INCLUDE [foundry-link](../includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While Microsoft strives to make all features available in all regions where Microsoft Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.  
+[!INCLUDE [foundry-link](../includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While Microsoft strives to make all features available in all regions where Microsoft Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.
 
 This article gives you:
 - Regions where you can create a Foundry project.
@@ -27,7 +27,7 @@ This article doesn't include a single real-time matrix for every model and featu
 
 ## Foundry projects
 
-Foundry is currently available in the following Azure regions. 
+Foundry is currently available in the following Azure regions.
 
 [!INCLUDE [reference-region-support-regions](../includes/reference-region-support-regions.md)]
 
@@ -50,7 +50,7 @@ Use this process before you create resources:
 
 1. Select a candidate project region from the **Foundry projects** list in this article.
 1. Verify feature-specific support in the **Foundry features** list links.
-1. Check available quota for a specific model and region. In the Foundry portal, go to **Operate** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you haven't deployed yet. For more information, see [Quota in Foundry Control Plane](../control-plane/overview.md#quota).
+1. Check available quota for a specific model and region. In the Foundry portal, go to **Manage** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you didn't deploy yet. For more information, see [Quota in Foundry Control Plane](../control-plane/overview.md#quota).
 1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
 
 [!INCLUDE [reference-region-support-gov](../includes/reference-region-support-gov.md)]

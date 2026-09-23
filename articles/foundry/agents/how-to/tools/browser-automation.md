@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -44,7 +44,38 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 > The private website feature in Playwright Workspaces is currently available in private preview.
 > Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
 
-### Usage support
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- **Foundry User** role on the Foundry project for day-to-day agent development and use.
+
+  [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
+- **Foundry Project Manager** role on the Foundry project if you create the project connection.
+- **Contributor** role on the target resource group only while you create the Playwright workspace. This role is required for resource provisioning. Activate it just in time through Microsoft Entra Privileged Identity Management (PIM), and deactivate it after provisioning. Day-to-day agent developers and runtime users don't need this role.
+- A Foundry project with a configured endpoint.
+- An AI model deployed in your project (for example, `gpt-5.4`). Confirm that both the model and project region support Browser Automation in [Tool support by region and model](../../concepts/limits-quotas-regions.md#tool-support-by-region-and-model).
+- A Playwright workspace resource.
+- A project connection set up for your Playwright workspace.
+
+### SDK requirements
+
+For Python examples, install the required packages:
+
+```bash
+pip install "azure-ai-projects>=2.0.0"
+```
+
+The .NET SDK is currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+
+### Configuration
+
+**Get your project endpoint**: Open your project in the [Foundry portal](https://ai.azure.com), and copy the endpoint from the project overview page. The format is `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`.
+
+**Connection ID format**: Use `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`. You can find this value on the tool's details page after you connect the Browser Automation tool.
+
+## Usage support
 
 The following table shows SDK and setup support.
 
@@ -66,48 +97,22 @@ An example flow is:
 1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-   The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
-
-## Prerequisites
-
-Before you begin, make sure you have:
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Contributor or Owner role on a resource group.
-- A Foundry project with a configured endpoint.
-- An AI model deployed in your project (for example, `gpt-5.4`).
-- A Playwright workspace resource.
-- A project connection set up for your Playwright workspace.
-
-### SDK requirements
-
-For Python examples, install the required packages:
-
-```bash
-pip install "azure-ai-projects>=2.0.0"
-```
-
-The .NET SDK is currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
-
-### Configuration
-
-**Get your project endpoint**: Open your project in the [Foundry portal](https://ai.azure.com), and copy the endpoint from the project overview page. The format is `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`.
-
-**Connection ID format**: Use `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`. You can find this value on the tool's details page after you connect the Browser Automation tool.
+  The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
 
 ## Set up Browser Automation
 
-### Step 1: Create a Playwright workspace
+### Create a Playwright workspace
 
 1. In the [Azure portal](https://portal.azure.com), create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
 1. After the workspace is created, go to **Settings** > **Access Management**.
 1. Confirm the **Playwright Service Access Token** authentication method is enabled.
 1. Select **Generate Token**, enter a name (for example, `foundry-connection`), and choose an expiry period.
 1. **Copy the token immediately**. You can't view it again after closing the page.
+1. Store the token only in the Foundry project connection. Don't put it in source code, prompts, or application logs. Rotate it before it expires, and revoke it immediately if it is exposed.
 1. On the workspace **Overview** page, copy the **Browser endpoint** (it starts with `wss://`).
-1. Give the project identity a Contributor role on the Playwright workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
+1. [Configure a custom role](https://aka.ms/pww/docs/manage-workspace-access) with only the Playwright permissions that the Foundry project identity requires. If a custom role isn't available, assign **Contributor** only at the Playwright workspace resource scope. The service access token is stored in the project connection; the role assignment separately authorizes the project identity to access the workspace resource.
 
-### Step 2: Connect the Browser Automation tool in Foundry
+### Connect the Browser Automation tool in Foundry
 
 1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
 2. Select **Build** > **Tools**.
@@ -190,7 +195,7 @@ const tools = [
 
 The following Python example demonstrates how to create an AI agent with browser automation capabilities. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Agent Framework [`FoundryChatClient`](../../quickstarts/responses-api.md) to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 ```python
 import json
@@ -198,7 +203,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    BrowserAutomationPreviewTool,
+  BrowserAutomationPreviewTool,
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
@@ -252,7 +257,7 @@ for event in stream_response:
         print(f"Follow-up response created with ID: {event.response.id}")
     elif event.type == "response.output_text.delta":
         print(f"Delta: {event.delta}")
-    elif event.type == "response.text.done":
+    elif event.type == "response.output_text.done":
         print(f"\nFollow-up response done!")
     elif event.type == "response.output_item.done":
         item = event.item
@@ -292,35 +297,25 @@ Agent created (id: ..., name: ..., version: ...)
 
 During streaming, you might also see deltas and tool-call details. Output varies based on the website content and model behavior.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
-This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `browser-automation-toolbox` and connect to its MCP endpoint with `MCPStreamableHTTPTool`. Install the packages with `pip install agent-framework-foundry httpx azure-ai-projects`, replace `PROJECT_ENDPOINT` and `BROWSER_CONNECTION_ID` with your project values, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
+This sample uses [`FoundryChatClient`](../../quickstarts/responses-api.md) from the Microsoft Agent Framework to create the `browser-automation-toolbox` and connect to its MCP endpoint with `FoundryToolbox`. Install the packages with `pip install agent-framework-foundry azure-ai-projects`, replace `PROJECT_ENDPOINT` and `BROWSER_CONNECTION_ID` with your project values, and sign in with `az login`. For the complete hosted-agent toolbox pattern, see the [full sample](https://aka.ms/foundry-toolbox-maf).
 
 ```python
 import asyncio
 
-import httpx
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    BrowserAutomationPreviewTool,
+  BrowserAutomationPreviewToolboxTool,
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.identity import AzureCliCredential
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 BROWSER_CONNECTION_ID = "your-browser-automation-connection-id"
-
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._token_provider()}"
-        yield request
 
 
 async def main() -> None:
@@ -330,14 +325,14 @@ async def main() -> None:
     #    to give agents tools: you curate tools once and reuse the toolbox across agents.
     #    See /azure/foundry/agents/concepts/toolbox-overview
     project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
-    tool = BrowserAutomationPreviewTool(
+    tool = BrowserAutomationPreviewToolboxTool(
         browser_automation_preview=BrowserAutomationToolParameters(
             connection=BrowserAutomationToolConnectionParameters(
                 project_connection_id=BROWSER_CONNECTION_ID,
             )
         )
     )
-    toolbox = project.toolboxes.create_toolbox_version(
+    toolbox = project.toolboxes.create_version(
         name="browser-automation-toolbox",
         description="Toolbox with the Browser Automation tool",
         tools=[tool],
@@ -350,22 +345,16 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions=(
             "You help with browser automation tasks. Use the Browser Automation tool "
             "to navigate and read information from websites."
         ),
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run(
@@ -400,7 +389,7 @@ Before running this sample, complete the setup steps in [Set up Browser Automati
 
 The following C# example demonstrates how to create an AI agent with Browser Automation capabilities. Select **Prompt Agents** to use the Azure AI Projects SDK to create a server-side prompt agent, or **Hosted Agents** to use the Microsoft Agent Framework to build an ephemeral, in-process agent.
 
-### [Prompt Agents](#tab/prompt-agents)
+### Prompt agents
 
 This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [Sample for use of BrowserAutomationPreviewTool and Agents](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample23_BrowserAutomationTool.md) sample in the Azure SDK for .NET repository on GitHub.
 
@@ -494,9 +483,9 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 You see streaming progress messages, such as text deltas, and a completed response. The output varies based on the website content and model behavior.
 
-### [Hosted Agents](#tab/hosted-agents)
+### Hosted agents
 
-This sample creates the Browser Automation toolbox with the Azure AI Projects SDK, then uses `ResponsesServer` from the Microsoft Agent Framework with a custom `ToolboxMcpClient` to discover and invoke the tool through the toolbox MCP endpoint. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`.
+This sample creates the Browser Automation toolbox with the Azure AI Projects SDK, and then uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to make the tool available to the hosted agent. Install the Agent Framework packages, set the `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, and `BROWSER_AUTOMATION_CONNECTION_ID` environment variables, and sign in with `az login`.
 
 ```csharp
 using System.IO;
@@ -507,6 +496,8 @@ using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -532,22 +523,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [browserTool],
         description: "Toolbox with the Browser Automation tool");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-var openAIClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// ToolboxMcpClient discovers tools from the toolbox MCP endpoint and calls them
-// through tools/call. ToolboxHandler maps model tool calls to that MCP client.
-var toolboxClient = new ToolboxMcpClient(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 ### Expected output
@@ -568,8 +556,10 @@ For the complete hosted-agent toolbox pattern, see the [full sample](https://aka
 Get an access token:
 
 ```bash
-export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+AGENT_TOKEN=$(az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv)
 ```
+
+This access token is short-lived. Keep it only in the current shell or process. Never commit, store, print, or log it. Run the command again after it expires. SDK flows use `DefaultAzureCredential` where supported, but these REST requests require the bearer token.
 
 The recommended way to add Browser Automation is through a toolbox, then attach the toolbox to your agent as an MCP tool. See [What is a toolbox?](../../concepts/toolbox-overview.md)
 
@@ -578,6 +568,7 @@ The recommended way to add Browser Automation is through a toolbox, then attach 
 ```bash
 curl --request POST \
   --url "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/browser-automation-toolbox/versions?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
     "description": "Toolbox with the Browser Automation tool",
@@ -650,7 +641,7 @@ JSON
 :::zone pivot="typescript"
 ## Use Browser Automation tool with agents example
 
-The following TypeScript sample demonstrates how to create an agent with Browser Automation tool, perform web browsing tasks, and process streaming responses with browser automation events. For a JavaScript version of this sample, see the [JavaScript sample for Browser Automation tool](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentBrowserAutomation.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample demonstrates how to create an agent with the Browser Automation tool, perform web browsing tasks, and process streaming responses with browser automation events. For a JavaScript version of this sample, see the [JavaScript sample for Browser Automation tool](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentBrowserAutomation.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -753,7 +744,7 @@ export async function main(): Promise<void> {
     },
     {
       body: {
-        agent: { name: agent.name, type: "agent_reference" },
+        agent_reference: { name: agent.name, type: "agent_reference" },
         tool_choice: "required",
       },
     },
@@ -823,7 +814,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -887,9 +878,9 @@ Browser automation can take longer than typical requests.
 
 ## Transparency note
 
-Review the [transparency note](../../../responsible-ai/agents/transparency-note.md#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+Review the [transparency note](../../../responsible-ai/agents/transparency-note.md) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
 
-Review the [responsible AI considerations](../../../responsible-ai/agents/transparency-note.md#considerations-when-choosing-a-use-case) when using this tool.
+Review the [responsible AI considerations](../../../responsible-ai/agents/transparency-note.md) when using this tool.
 
 ## Related content
 

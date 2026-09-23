@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/02/2026
+ms.date: 07/20/2026
 ---
 
 In this quickstart, you use the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -80,7 +80,7 @@ node index.js
 The output should be similar to the following:
 
 ```
-Running Azure AI Search Javascript quickstart...
+Running Azure AI Search JavaScript quickstart...
 Checking if index exists...
 Deleting index...
 Creating index...

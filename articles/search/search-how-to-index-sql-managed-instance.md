@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 07/11/2025
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Indexer connections to Azure SQL Managed Instance through a public endpoint
@@ -20,7 +21,7 @@ ms.update-cycle: 365-days
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-Indexers in Azure AI Search connect to external data sources over a public endpoint. If you're setting up an [Azure SQL indexer](search-how-to-index-sql-database.md) for a connection to a SQL managed instance, follow the steps in this article to ensure the public endpoint is set up correctly. 
+An *Azure SQL indexer* connects Azure AI Search to external data sources over a public endpoint. If you're setting up a connection to Azure SQL Managed Instance, follow the steps in this article to ensure the public endpoint is set up correctly.
 
 Alternatively, for private connections, [create a shared private link](search-indexer-how-to-access-private-sql.md) instead.
 

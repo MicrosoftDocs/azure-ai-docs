@@ -27,6 +27,8 @@ In this article, you create a minimal Agent Framework agent, expose it through
 either the Responses or Invocations protocol, test it through HTTP, and deploy
 it to Foundry with the Azure Developer CLI.
 
+The [Microsoft Foundry Skill](use-microsoft-foundry-skill.md) can help implement the adapter, test the protocols, and deploy with `azd`.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -429,7 +431,7 @@ manifest URL with the sample you want to use.
 mkdir my-agent-framework-agent
 cd my-agent-framework-agent
 
-azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/01_basic/agent.manifest.yaml
+azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/agent.manifest.yaml
 ```
 
 ::: zone-end
@@ -535,8 +537,8 @@ hosted sandbox.
 ### Protocol version mismatch
 
 If requests fail after an upgrade, confirm that your manifest and hosting
-package both use protocol version 2.0.0. Protocol versions 1.0.0 and 2.0.0 are
-incompatible.
+package both use protocol version 2.0.0. Protocol version 1.0.0 is no longer
+supported.
 
 ## Next step
 

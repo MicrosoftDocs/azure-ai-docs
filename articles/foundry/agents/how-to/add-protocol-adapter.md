@@ -246,7 +246,7 @@ services:
     kind: hosted
     protocols:
       - protocol: invocations
-        version: 1.0.0
+        version: 2.0.0
 ```
 
 ## Update your startup command
@@ -291,7 +291,7 @@ services:
       - protocol: responses
         version: 2.0.0
       - protocol: invocations
-        version: 1.0.0
+        version: 2.0.0
 ```
 
 > [!NOTE]
@@ -300,5 +300,6 @@ services:
 ## Related content
 
 * [Hosted agent runtime contract](../concepts/hosted-agent-contract.md)
+* [Resilience for long-running hosted agents](../concepts/long-running-agent-resilience.md)
 * [What are hosted agents?](../concepts/hosted-agents.md)
 * [Author azure.yaml for hosted agents](author-azure-yaml.md)

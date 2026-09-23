@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 09/06/2026
 ms.custom: languages, references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
@@ -27,7 +27,7 @@ Depending on the model you use, the Voice Live API processes speech input by usi
 
 ### Azure speech to text supported languages
 
-Azure speech to text is used for all configuration where a non-multimodal model is being used and for speech input transcriptions with `phi4-mm-realtime`.
+Voice Live uses Azure speech-to-text by default with non-multimodal models and for speech input transcriptions with `phi4-mm-realtime`.
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for Voice Live language processing:

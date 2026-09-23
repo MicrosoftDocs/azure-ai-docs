@@ -8,16 +8,16 @@ ms.custom:
   - references_regions
 ms.topic: reference
 ms.date: 01/16/2026
+ai-usage: ai-assisted
 ---
 
-# Azure Vision multimodal embeddings skill
+# Azure Vision multimodal embeddings skill (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT]
-> This skill is in preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update](/rest/api/searchservice/skillsets/create-or-update) (REST API) supports this feature.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-The **Azure Vision multimodal embeddings** skill uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for text or image input.
+The **Azure Vision multimodal embeddings** skill (preview) uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for text or image input.
 
 For transactions that exceed 20 documents per indexer per day, this skill requires you to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 
@@ -56,7 +56,7 @@ Parameters are case sensitive.
 
 ## Skill inputs
 
-Skill definition inputs include name, source, and inputs. The following table provides valid values for name of the input. You can also specify recursive inputs. For more information, see the [REST API reference](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-05-01-preview#inputfieldmappingentry&preserve-view=true) and [Create a skillset](cognitive-search-defining-skillset.md).
+Skill definition inputs include name, source, and inputs. The following table provides valid values for name of the input. You can also specify recursive inputs. For more information, see the [REST API reference](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-08-01-preview#inputfieldmappingentry&preserve-view=true) and [Create a skillset](cognitive-search-defining-skillset.md).
 
 | Input	 | Description |
 |--------|-------------|

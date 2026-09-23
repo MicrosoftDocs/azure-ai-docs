@@ -3,7 +3,7 @@ title: Include File
 description: Include file for the Foundry IQ banner displayed across Azure AI Search documentation.
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/05/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ---
 

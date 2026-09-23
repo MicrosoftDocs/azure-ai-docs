@@ -51,6 +51,8 @@ Ensure that `uri` points to the endpoint of the application identified by `authR
 
 By default, the connection to the endpoint times out if a response isn't returned within a 30-second window (`PT30S`). The indexing pipeline is synchronous, and indexing produces a timeout error if a response isn't received in that time frame. You can increase the interval to a maximum value of 230 seconds by setting the `timeout` parameter (`PT230S`).
 
+If an endpoint protected by IP access restrictions doesn't respond, temporarily set `timeout` to a short value, such as `PT10S`, to surface the timeout error faster. For an Azure function app, manage inbound IP rules under **Settings** > **Networking** > **Access restrictions**. For the IP addresses to allow, see [Configure IP firewall rules to allow indexer connections](search-indexer-howto-access-ip-restricted.md).
+
 ## Format web API inputs
 
 The web API must accept an array of records to process. Within each record, provide a property bag as input to your web API.

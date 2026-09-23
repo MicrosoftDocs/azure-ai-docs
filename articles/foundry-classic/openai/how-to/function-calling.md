@@ -8,6 +8,7 @@ ms.subservice: foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/10/2026
 manager: mcleans
@@ -54,6 +55,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 * `gpt-5.6-sol` (`2026-07-09`)
 * `gpt-5.6-terra` (`2026-07-09`)
 * `gpt-5.6-luna` (`2026-07-09`)
+* `gpt-6-astra` (`2026-09-03`)
+* `gpt-6-sol` (`2026-09-22`)
+* `gpt-6-luna` (`2026-09-22`)
 * `gpt-chat-latest` (`2026-05-05`)
 * `gpt-chat-latest` (`2026-05-28`)
 

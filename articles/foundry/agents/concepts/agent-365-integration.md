@@ -4,7 +4,7 @@ description: "Learn how Microsoft Foundry integrates with Microsoft Agent 365 to
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: deeikele
-ms.date: 06/05/2026
+ms.date: 08/26/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -38,11 +38,11 @@ With the Entra Agent ID model, organizations can apply governance workflows such
 
 Foundry and Agent 365 connect in two ways:
 
-- **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
+- **Registry sync** &mdash; Every Foundry agent you publish appears in the Agent 365 registry automatically, giving administrators one inventory of every agent without manual registration.
 
-- **Autopilot publishing** &mdash; Foundry Hosted agents can be published as *autopilots* to Agent 365. An autopilot is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the autopilot appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
+- **Autopilots** &mdash; You create an autopilot blueprint from a Foundry hosted agent. An autopilot acts as itself under its own identity rather than on behalf of a user, because it has an Entra agent user account in addition to the agent identity that every Foundry agent has. You set that identity when you create the agent, not when you publish it. After publishing and administrator approval, the blueprint appears in the Agent 365 registry, and people can hire autopilot instances from it in Microsoft Teams and other Microsoft 365 surfaces. For the identity model, see [What is an autopilot in Microsoft Foundry?](autopilot-overview.md)
 
-For step-by-step instructions on publishing a Foundry agent to Agent 365, see [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md).
+For step-by-step instructions, see [Quickstart: Build your first autopilot](../how-to/agent-365.md).
 
 ### Supported agent types
 
@@ -50,8 +50,8 @@ Not all Foundry agent types support the full set of Agent 365 integration featur
 
 | Agent type | Registry sync | Autopilot publishing | Activity data collection |
 | --- | --- | --- | --- |
-| **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ✅ | ✅ |
-| **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using A365 SDK |
+| **[Prompt agent](../quickstarts/prompt-agent.md)** | ✅ | ❌ | ✅ |
+| **[Hosted agent](hosted-agents.md)** | ✅ | ✅ | Supported using the Agent 365 SDK |
 
 Hosted agent telemetry export requires explicit configuration in your hosted agent and Microsoft Entra permissions for the Agent 365 observability service. For the procedure, see [Grant Agent 365 observability permissions](../how-to/grant-agent-365-permissions.md).
 
@@ -63,7 +63,7 @@ Before Foundry can send agent activity data to Agent 365, your organization must
 
 1. **Enable Agent 365 and accept terms** &mdash; A global administrator signs into the [Microsoft 365 admin center](https://admin.microsoft.com/), and selects which users or groups get access. The administrator is prompted to agree to the terms of service before Agent 365 is activated. For the full walkthrough, see [Enable Agent 365](/microsoft-agent-365/overview#enable-agent-365).
 
-Both steps are required before any data flows from Foundry to Agent 365, even if the Azure Resource Manager properties on a Foundry resource are set to enabled for A365. 
+Both steps are required before any data flows from Foundry to Agent 365, even if the Azure Resource Manager properties on a Foundry resource are set to enabled for Agent 365.
 
 After these steps are complete, agent activity data from Foundry is ingested into the Agent 365 control plane, powering the registry, analytics dashboards, and security features. Logging options are controlled per Foundry resource through the `agent365Config` resource provider configuration. For details on how logging works and how to opt out, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
 
@@ -72,19 +72,21 @@ After these steps are complete, agent activity data from Foundry is ingested int
 
 ## Data residency
 
-Microsoft Foundry and Agent 365 follow different data residency models, hence data processing and storage may happen across geographical regions.
+Microsoft Foundry and Agent 365 follow different data residency models, so data processing and storage might happen across geographic regions.
 
 | Platform | Data residency model |
 | --- | --- |
 | **Microsoft Foundry** | Data residency follows the **Azure region** you select when creating the Foundry resource. All agent data, model deployments, and logs are stored in the resource region. |
 | **Microsoft Agent 365** | Data residency follows the **storage location of the Microsoft Entra tenant**. Agent inventory, analytics, and governance data are stored in the geography associated with the tenant. |
 
-When agent activity data flows from Foundry into Agent 365, it moves from the Azure region-based residency model to the Entra tenant residency model. For workloads with specific data residency requirements, you can opt out individual Foundry resources from Agent 365 data collection while keeping other resources enabled. 
+When agent activity data flows from Foundry into Agent 365, it moves from the Azure region-based residency model to the Entra tenant residency model. For workloads with specific data residency requirements, you can opt out individual Foundry resources from Agent 365 data collection while keeping other resources enabled.
 
-This lets you restrict data flows where compliance regulations may require it. For details, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
+This approach lets you restrict data flows where compliance regulations might require it. For details, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
 
 ## Related content
 
+- [What is an autopilot in Microsoft Foundry?](autopilot-overview.md)
+- [Autopilot lifecycle in Microsoft Foundry](autopilot-lifecycle.md)
 - [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md)
-- [Publish an agent as an autopilot in Agent 365](../how-to/agent-365.md)
+- [Quickstart: Build your first autopilot](../how-to/agent-365.md)
 - [Grant Agent 365 observability permissions](../how-to/grant-agent-365-permissions.md)

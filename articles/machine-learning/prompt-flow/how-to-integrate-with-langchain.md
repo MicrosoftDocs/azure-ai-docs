@@ -12,8 +12,9 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 06/30/2026
+ms.date: 08/28/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Integrate LangChain in prompt flows
@@ -39,13 +40,15 @@ Use the following process to convert your local LangChain code to a runnable Azu
 
 ### Convert credentials to a prompt flow connection
 
-Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to store credentials, such as the AzureOpenAI API key necessary for invoking AzureOpenAI models. For example, the following code shows environment variables being set for OpenAI API type, key, base, and version.
+Your LangChain code might [define environment variables](https://python.langchain.com/docs/integrations/platforms/microsoft) to configure access to Azure OpenAI models. For example, the following code maps an API version and key supplied by the calling environment to the variable names expected by an older LangChain integration. Use an API version supported by your integration and Azure OpenAI deployment.
 
 ```python
+import os
+
 os.environ["OPENAI_API_TYPE"] = "azure"
-os.environ["OPENAI_API_VERSION"] = "2023-05-15"
-os.environ["OPENAI_API_BASE"] = "https://contosobamiopenai.openai.azure.com/"
-os.environ["OPENAI_API_KEY"] = "abc123abc123abc123abc123abc123ab"
+os.environ["OPENAI_API_VERSION"] = os.environ["AZURE_OPENAI_API_VERSION"]
+os.environ["OPENAI_API_BASE"] = "https://<resource-name>.openai.azure.com/"
+os.environ["OPENAI_API_KEY"] = os.environ["AZURE_OPENAI_API_KEY"]
 ```
 
 When you run an Azure Machine Learning prompt flow in the cloud, don't expose credentials as environment variables. To securely store and manage credentials separately from your code, convert the environment variables into a prompt flow connection.

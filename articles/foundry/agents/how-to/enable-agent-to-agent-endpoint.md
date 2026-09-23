@@ -3,28 +3,29 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 07/29/2026
+ms.date: 09/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Enable incoming A2A on a Foundry agent (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Enable incoming A2A on a Foundry agent
 
 You can expose your Foundry Agent Service agent as an Agent2Agent (A2A) endpoint so that other agents can discover and call it through the [A2A protocol](https://a2a-protocol.org/latest/). When incoming A2A is enabled, Foundry publishes an agent card for your agent and accepts inbound A2A requests from external callers.
 
-Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**. New integrations should target version 1.0. For details about how clients select a version, see [A2A protocol versions](#a2a-protocol-versions).
+Foundry Agent Service supports generally available A2A protocol **version 1.0**
+and preview **version 0.3**. New integrations should target version 1.0. For
+details about how clients select a version, see
+[A2A protocol versions](#a2a-protocol-versions).
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Supported agent types
 
-Incoming A2A requires the responses protocol. The following agent types support it:
-
-- **Prompt agents**—support the responses protocol by default. All prompt agents can be exposed as A2A endpoints.
-- **Hosted agents**—support incoming A2A only if the Hosted agent is built to handle the responses protocol. If your Hosted agent doesn't implement the responses protocol, you can't enable incoming A2A for it.
+Incoming A2A requires the responses protocol. Prompt agents support the
+responses protocol by default, and you can expose them as A2A endpoints.
 
 > [!TIP]
 > This article covers how to **expose** your agent as an A2A endpoint that other agents can call. If you want your agent to **call** a remote A2A endpoint, see [Connect to an A2A agent endpoint from Foundry Agent Service](tools/agent-to-agent.md).
@@ -32,7 +33,7 @@ Incoming A2A requires the responses protocol. The following agent types support 
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A deployed agent in Foundry Agent Service that uses the responses protocol (prompt agent or a Hosted agent built to support it).
+- A deployed prompt agent in Foundry Agent Service.
 - Required Azure role: **Foundry User** or higher on the Foundry project.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -133,45 +134,126 @@ Update the `agent_card` fields to describe your agent's actual capabilities. The
 Install the required package:
 
 ```bash
-pip install "azure-ai-projects>=2.3.0"
+pip install "azure-ai-projects>=2.5.0"
 ```
 
-Use the `update_details` method to add the A2A protocol to your agent's endpoint:
+Use the `update_details` method to add the agent card and A2A protocol to your agent's endpoint:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    A2AProtocolConfiguration,
-    AgentEndpointConfig,
-    ProtocolConfiguration,
-    ResponsesProtocolConfiguration,
+    A2AProtocolConfiguration, AgentCard, AgentCardSkill, AgentEndpointConfig,
+    ProtocolConfiguration, ResponsesProtocolConfiguration,
 )
-
-# Format: "https://{account}.ai.azure.com/api/projects/{project}"
-PROJECT_ENDPOINT = "your_project_endpoint"
-AGENT_NAME = "your_agent_name"
-
-project_client = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
+# Create the project client.
+project = AIProjectClient(
+    endpoint="your_project_endpoint",
     credential=DefaultAzureCredential(),
 )
-
-endpoint_config = AgentEndpointConfig(
-    protocol_configuration=ProtocolConfiguration(
-        responses=ResponsesProtocolConfiguration(),
-        a2a=A2AProtocolConfiguration(),
+# Add the agent card and enable the A2A protocol.
+patched_agent = project.agents.update_details(
+    agent_name="your_agent_name",
+    agent_endpoint=AgentEndpointConfig(
+        protocol_configuration=ProtocolConfiguration(
+            responses=ResponsesProtocolConfiguration(),
+            a2a=A2AProtocolConfiguration(),
+        ),
+    ),
+    agent_card=AgentCard(
+        version="1.0",
+        description="A helpful assistant that answers questions.",
+        skills=[AgentCardSkill(
+            id="general-qa", name="General Q&A",
+            description="Answers general questions.",
+        )],
     ),
 )
-
-patched_agent = project_client.agents.update_details(
-    agent_name=AGENT_NAME,
-    agent_endpoint=endpoint_config,
-)
+print(f"Enabled incoming A2A for agent: {patched_agent.name}")
 ```
 
-> [!NOTE]
-> Setting the agent card through the Python SDK isn't supported yet. Use the REST API to configure the agent card.
+#### [C# SDK](#tab/csharp)
+
+Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`. Use `PatchAgent` to add the agent card and enable the responses and A2A protocols in one call:
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri("your_project_endpoint"),
+    tokenProvider: new DefaultAzureCredential());
+
+var patchOptions = new PatchAgentOptions
+{
+    AgentEndpoint = new AgentEndpointConfiguration
+    {
+        ProtocolConfiguration = new ProtocolConfiguration
+        {
+            Responses = new ResponsesProtocolConfiguration(),
+            A2a = new A2AProtocolConfiguration(),
+        },
+    },
+    AgentCard = new AgentCard(version: "1.0", skills: new[]
+    {
+        new AgentCardSkill(id: "general-qa", name: "General Q&A")
+        {
+            Description = "Answers general questions.",
+        }
+    })
+    {
+        Description = "A helpful assistant that answers questions.",
+    },
+};
+var patched = agentsClient.PatchAgent("your_agent_name", patchOptions);
+Console.WriteLine($"Enabled incoming A2A for agent: {patched.Value.Name}");
+```
+
+#### [JavaScript/TypeScript SDK](#tab/javascript)
+
+Install the required package:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const project = new AIProjectClient(
+  "your_project_endpoint",
+  new DefaultAzureCredential(),
+);
+
+// Add the agent card and enable the A2A protocol.
+const patchedAgent = await project.agents.patchAgentObject(
+  "your_agent_name",
+  {
+    agentEndpoint: {
+      protocol_configuration: {
+        responses: {},
+        a2a: {},
+      },
+    },
+    agentCard: {
+      version: "1.0",
+      description: "A helpful assistant that answers questions.",
+      skills: [
+        {
+          id: "general-qa",
+          name: "General Q&A",
+          description: "Answers general questions.",
+        },
+      ],
+    },
+  },
+);
+console.log(`Enabled incoming A2A for agent: ${patchedAgent.name}`);
+```
+
+Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ---
 
@@ -183,15 +265,26 @@ Foundry serves both A2A protocol versions on the same base path (`…/endpoint/p
 - **HTTP header**—Set `A2A-Version: 1.0` (or `A2A-Version: 0.3`) on the request.
 - **Query string**—Append `?a2a-version=1.0` (or `?a2a-version=0.3`) to the request URL.
 
+If you provide a version in both the `A2A-Version` header and the
+`a2a-version` query string, the values must match. If the values differ,
+Foundry returns HTTP 400 with the `version-ambiguous` problem type or the
+JSON-RPC `VERSION_AMBIGUOUS` reason. Remove one version selector or make the
+values identical.
+
 > [!IMPORTANT]
-> If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves A2A v0.3 by default, in accordance with the A2A specification. To use v1.0, set the header, set the query string, or have your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
+> If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves preview A2A v0.3 by default, in accordance with the A2A specification. For production integrations, explicitly select generally available v1.0 by setting the header, setting the query string, or having your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
 
 The following table summarizes the supported versions:
 
 | Version | Status | Recommended for |
 |---|---|---|
-| 1.0 | Supported | New integrations |
-| 0.3 | Supported | Existing integrations that already target v0.3 |
+| 1.0 | Generally available (GA) | New integrations |
+| 0.3 | Preview | Existing integrations that already target v0.3 |
+
+## Understand A2A task and context retention
+
+Foundry retains A2A tasks and contexts for 60 days from their most recent
+write. Each new write to a task or context resets its 60-day retention period.
 
 ## Verify the agent card
 
@@ -212,7 +305,10 @@ After you enable incoming A2A, your agent exposes the following URLs that callin
 You author your agent card once (in the `agent_card` PATCH body shown earlier), and Foundry projects the same content into both the v1.0 and v0.3 card shapes.
 
 > [!IMPORTANT]
-> All A2A URLs require Microsoft Entra ID authentication. Anonymous access to the agent card isn't supported. The calling agent must present a valid token with the **Foundry User** role on the Foundry project.
+> All A2A URLs require Microsoft Entra ID authentication. Anonymous access to
+> the agent card isn't supported. The calling identity must have the
+> **Foundry Agent Consumer** role or another Foundry role that grants endpoint
+> access on the Foundry project or agent.
 
 To confirm your agent card is configured correctly, fetch the v1.0 card directly:
 
@@ -237,7 +333,11 @@ The response contains the agent card with the description and skills you configu
 
 ## Configure authentication for incoming requests
 
-Incoming A2A requests require Microsoft Entra ID authentication. Key-based authentication and unauthenticated access aren't supported. The calling agent must present a valid Microsoft Entra token, and the identity behind that token must have the **Foundry Agent Consumer** role (or higher) on the Foundry project that hosts your agent.
+Incoming A2A requests require Microsoft Entra ID authentication. Key-based
+authentication and unauthenticated access aren't supported. The calling agent
+must present a valid Microsoft Entra token. The identity behind that token must
+have the **Foundry Agent Consumer** role, or another Foundry role that grants
+endpoint access, on the target Foundry project or target agent.
 
 Two authentication patterns are supported:
 
@@ -249,7 +349,66 @@ The calling agent passes through the end user's identity. Your agent receives a 
 
 The calling agent authenticates with its own identity—either the platform-assigned agent identity, a service principal, or a managed identity. Your agent sees the calling service's identity, not an individual user. This pattern is appropriate for backend agent-to-agent workflows where individual user context isn't required.
 
-To grant a calling identity access, assign the **Foundry Agent Consumer** role on the Foundry project that hosts your agent. This role provides least-privilege access for interacting with agent endpoints. For more information about role assignments, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+### Grant access to the A2A endpoint
+
+Assign the **Foundry Agent Consumer** role to the identity that sends A2A
+requests. This role provides least-privilege access to agent endpoints without
+granting permission to create or modify agents.
+
+Choose the role-assignment scope based on the access the caller needs:
+
+- Assign the role at the target Foundry project scope to allow the identity to
+  call every agent endpoint in the project.
+- Assign the role at the target agent scope to allow the identity to call only
+  that agent endpoint.
+
+Use the identity represented by the access token:
+
+- For OBO requests, grant access to the end user or a group that contains the
+  user.
+- For service-to-service requests, grant access to the calling agent identity,
+  service principal, or managed identity.
+- For a new-model Foundry agent, use the identity specified by the agent's
+  `instance_identity`. The agent has this unique identity from creation, and
+  publishing doesn't change it.
+- For a legacy Agent Application caller, use the shared project identity
+  before publishing and the distinct Agent Application identity after
+  publishing.
+
+Use the identity's Microsoft Entra object (principal) ID for the role
+assignment, not its application (client) ID.
+
+For more information about the two identity models, see
+[Migrate from agent applications to the new agent endpoint and publishing experience](migrate-agent-applications.md).
+
+The project and agent scope formats are:
+
+```text
+/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>
+
+/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>/agents/<agent>
+```
+
+Assign the role by using its role definition ID:
+
+```azurecli
+PRINCIPAL_TYPE="ServicePrincipal"
+
+az role assignment create \
+  --assignee-object-id "<calling-principal-object-id>" \
+  --assignee-principal-type "$PRINCIPAL_TYPE" \
+  --role "eed3b665-ab3a-47b6-8f48-c9382fb1dad6" \
+  --scope "<target-project-or-agent-scope>"
+```
+
+Set `PRINCIPAL_TYPE` to `User`, `Group`, or `ServicePrincipal` based on the
+calling identity. Agent identities and managed identities use
+`ServicePrincipal`.
+
+When the caller acquires a token directly, request the
+`https://ai.azure.com/.default` scope. For more information about role
+assignments, see
+[Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ## Supported A2A transports
 
@@ -427,14 +586,15 @@ For other authentication options (key-based, OAuth, managed identity), see [Crea
 
 ### Step 2: Create the calling agent with the A2A tool
 
-After the connection exists, create an agent that uses the `A2APreviewTool` to call the target agent:
+After the connection exists, create an agent that uses the `A2ATool` to call the target agent:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
+    A2AProtocolVersion,
+    A2ATool,
     PromptAgentDefinition,
-    A2APreviewTool,
 )
 
 PROJECT_ENDPOINT = "your_project_endpoint"
@@ -449,7 +609,8 @@ openai = project.get_openai_client()
 
 a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
 
-tool = A2APreviewTool(
+tool = A2ATool(
+    a2a_version=A2AProtocolVersion.V1_0,
     project_connection_id=a2a_connection.id,
 )
 
@@ -493,12 +654,12 @@ For more language examples (C#, JavaScript, Java, REST), see [Connect to an A2A 
 
 ## Limitations
 
-- A2A protocol versions 1.0 and 0.3 are supported. Other versions aren't supported.
+- Generally available A2A protocol version 1.0 and preview version 0.3 are supported. Other versions aren't supported.
 - For A2A v1.0, only the JSONRPC transport is supported. HTTP+JSON and gRPC aren't supported for v1.0. See [Supported A2A transports](#supported-a2a-transports).
 - Only **text** modality is supported. File data and other nontext modalities aren't supported.
 - Streaming responses (server-sent events) aren't supported.
 - Incoming A2A requires the responses protocol. Agents that don't use the responses protocol can't be exposed as A2A endpoints.
-- This feature is in preview and isn't recommended for production workloads.
+- A2A v0.3 is in preview and isn't recommended for production workloads. Use v1.0 for production integrations.
 
 ## Related content
 

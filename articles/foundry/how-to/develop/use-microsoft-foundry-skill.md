@@ -5,7 +5,7 @@ keywords: microsoft foundry skill, azure skills plugin, coding agents, copilot, 
 author: junjieli
 ms.author: junjieli
 ms.reviewer:
-ms.date: 05/27/2026
+ms.date: 09/22/2026
 ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
@@ -75,13 +75,21 @@ The installed skill includes specialized sub-skills for those areas. You don't
 usually need to name the sub-skill directly. Ask for the outcome you want, and
 the coding agent uses the skill instructions to route the task.
 
-
-
 ## Installation
+
+### Install just the Foundry skill
+
+If your host already has MCP server configuration and you only need the skill content, install the `microsoft-foundry` skill directly:
+
+```bash
+npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
+```
+
+The skill-only path downloads the Foundry workflow guidance. Use the Azure Skills Plugin when you want the skill, Azure MCP Server configuration, and Foundry MCP Server configuration installed together.
 
 ### [VS Code](#tab/vscode)
 
-The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) comes with the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-vs-code.md).
+The [Foundry Toolkit extension for VS Code](https://aka.ms/foundrytk) includes the Foundry Skill. To install the extension, see [Work with the Microsoft Foundry for Visual Studio Code extension](get-started-projects-visual-studio-code.md).
 
 After installation, reload Visual Studio Code if prompted. Open Copilot Chat,
 switch to agent mode, and confirm that Foundry skills are available. When
@@ -145,19 +153,6 @@ Run the plugin commands inside Claude Code.
 
 ---
 
-### Install just the Foundry Skill
-
-If your host already has MCP server configuration and you only need the skill
-content, install the `microsoft-foundry` skill directly:
-
-```bash
-npx skills add https://github.com/microsoft/azure-skills --skill microsoft-foundry
-```
-
-The skill-only path downloads the Foundry workflow guidance. Use the Azure
-Skills Plugin when you want the skill, Azure MCP Server configuration, and
-Foundry MCP Server configuration installed together.
-
 ## Verify the setup
 
 After installation, try these checks from your coding agent:
@@ -190,6 +185,7 @@ Use these prompt patterns to invoke the skill's capabilities:
 | Deploy an existing hosted agent | `Use the Microsoft Foundry Skill to prepare this hosted agent for deployment to my dev environment.` | Workspace context resolution, container build, ACR push, hosted agent deployment, and smoke test. |
 | Redeploy after code changes | `Use the Microsoft Foundry Skill to redeploy this agent and verify it still responds correctly.` | Deployment update, invocation, and evaluation follow-up. |
 | Test an agent | `Use the Microsoft Foundry Skill to invoke this agent with a short multi-turn test conversation.` | Agent lookup, invocation, and response review. |
+| Pull generated Agent Insights | `Use the Microsoft Foundry Skill to call agent_insights_get with projectEndpoint=<project-endpoint>, agentName=<agent-name>, includeDetails=true, and order=desc. While has_more=true, continue with after set to the previous page's last_id. Include evidence and proposed remediation.` | Read-only retrieval of existing findings, pagination, evidence, and recommendations. |
 | Evaluate quality | `Use the Microsoft Foundry Skill to create an evaluation plan for this agent from eval.yaml.` | Evaluation suite setup, dataset and evaluator checks, batch evaluation, and result summary. |
 | Optimize instructions | `Use the Microsoft Foundry Skill to improve the agent instructions based on recent evaluation results.` | Evaluation analysis, prompt optimization, candidate review, and follow-up evaluation. |
 | Build an evaluation dataset | `Use the Microsoft Foundry Skill to create an evaluation dataset from the last seven days of production traces.` | Trace query, dataset curation, versioning, and lineage tracking. |

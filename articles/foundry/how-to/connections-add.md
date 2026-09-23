@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/04/2026
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -30,6 +30,7 @@ Connections let you authenticate to Microsoft and other resources within your Fo
 
 * If you don't have one, [create a project](../how-to/create-projects.md).
 * Make sure you can open your project in Microsoft Foundry.
+* Create the resource you want to connect to, such as an Azure AI Search service or an Azure Storage account. A resource that doesn't exist yet doesn't appear in the list when you browse for it.
 * Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Foundry User**, **Foundry Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
@@ -53,11 +54,11 @@ Connections let you authenticate to Microsoft and other resources within your Fo
 |Serverless Model|✅|Serverless Model connections allow serverless API deployment. Connection creation is supported only through code.|
 |Azure Databricks|✅|Azure Databricks connections let Foundry Agents access workflows and Genie Spaces during runtime. Connection creation is supported only through code.|
 |SharePoint|✅|SharePoint is a Microsoft platform for document storage and collaboration. It lets agents access and manage organizational documents. Connection creation is supported only through code.|
-|Microsoft Fabric|✅|AI skills let you create conversational Q&A systems on Fabric using generative AI. Connection creation is supported only through code.|
+|Microsoft Fabric|✅|Fabric data agents let you create conversational Q&A systems over Fabric data. Create the connection by adding the **Microsoft Fabric data agent** tool in the Foundry portal or by using the Azure Resource Manager REST API. For both methods, provide the Fabric workspace and artifact IDs.|
 |Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
 |Azure APIM|✅|APIM supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
 |Model Gateway|✅|Model Gateway supports governance for AI models called in Foundry Agent Service. Connection creation is supported only through code.|
-|Copilot Studio Environment| |Bring your Copilot Studio agents into Foundry Control Plane to view. Connection creation is supported in the Admin page through the Foundry portal, connecting directly to your Copilot Studio Environment.|
+|Copilot Studio Environment| |Bring your Copilot Studio agents into Foundry Control Plane to view. Create the connection on the **Manage** > **Project details** > **Connected resources** tab in the Foundry portal, connecting directly to your Copilot Studio Environment.|
 
 ### Azure Key Vault limitations
 
@@ -80,10 +81,9 @@ It supports three connection types: __Jobs__, __Genie__, and __Other__. You can 
 Follow these steps to create a new connection that's available for the current project.
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
-1. Select __Operate__ in the upper-right navigation.
-1. Select __Admin__ in the left pane.
-1. Select your project name in the __Manage all projects__ list.
-1. Select the **Connected resources** tab in the bottom section.
+1. Select **Manage** in the upper-right navigation.
+1. Select **Project details** in the left pane.
+1. Select the **Connected resources** tab.
 1. Select **Add connection**.
 1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.

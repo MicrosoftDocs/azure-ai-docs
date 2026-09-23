@@ -1,15 +1,13 @@
 ---
 title: Azure Data Lake Storage Gen2 Indexer
-description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate indexing of content and metadata for full text search in Azure AI Search.
+description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate indexing of content and metadata for full-text search in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
-ms.custom:
-  - ignite-2023
-  - sfi-ropc-nochange
+ms.custom: [ignite-2023, sfi-ropc-nochange, doc-kit-assisted]
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -23,14 +21,14 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Data Lake Storage (ADLS) Gen2 and makes it searchable in Azure AI Search. Inputs to the indexer are your blobs, in a single container. Output is a search index with searchable content and metadata stored in individual fields.
+The *Azure Data Lake Storage Gen2 indexer* imports content from Azure Data Lake Storage Gen2 (ADLS Gen2) into an Azure AI Search index. Inputs to the indexer are your blobs, in a single container. Output is a search index with searchable content and metadata stored in individual fields.
 
 This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from ADLS Gen2. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
 For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md) on GitHub.
 
 > [!NOTE]
-> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during indexing, see [Indexing access control lists and Azure role-based access control scope using indexers](search-indexer-access-control-lists-and-role-based-access.md).
+> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during indexing, see [Indexing access control lists and Azure role-based access control scope using indexers (preview)](search-indexer-access-control-lists-and-role-based-access.md).
 
 ## Prerequisites
 
@@ -39,6 +37,8 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + [Access tiers](/azure/storage/blobs/access-tiers-overview) for ADLS Gen2 include hot, cool, and archive. Only hot and cool can be accessed by search indexers.
 
 + Blobs containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
+
+  Treat source indexing and AI enrichment as separate processing stages. A skill or external service can have a lower input limit than the amount of content the indexer can extract. Check the [reference article for each skill](cognitive-search-predefined-skills.md) in your skillset.
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
@@ -146,7 +146,7 @@ Indexers can connect to a blob container using the following connections.
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;" }`|
 |This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-how-to-managed-identities.md).|
 
-| Storage account shared access signature** (SAS) connection string |
+| Storage account shared access signature (SAS) connection string |
 |-------------------------------------------------------------------|
 | `{ "connectionString" : "BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl;" }` |
 | The SAS should have the list and read permissions on containers and objects (blobs in this case). |
@@ -160,7 +160,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store blob content and metadata:
 
-    ```http
+    ```json
     {
         "name" : "my-search-index",
         "fields": [
@@ -195,7 +195,7 @@ Once the index and data source have been created, you're ready to create the ind
 
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
-    ```http
+    ```json
     {
       "name" : "my-adlsgen2-indexer",
       "dataSourceName" : "my-adlsgen2-datasource",

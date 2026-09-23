@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 Use `azd ai agent endpoint update` to patch endpoint and card metadata on an already-deployed Microsoft Foundry agent. You can refresh consumer-facing details without cutting a new agent version.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help update endpoint metadata and agent card settings while keeping deployment changes separate.
+
 ## Prerequisites
 
 - An existing hosted agent deployed to a Foundry project. `endpoint update` doesn't create a hosted agent.

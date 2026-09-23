@@ -27,7 +27,7 @@ Model router for Microsoft Foundry is a deployable AI chat model that selects th
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
+> The [Microsoft Foundry (new)](../../../foundry/what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](../../../foundry/openai/how-to/model-router.md) to see the latest features.
 [!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Deploy a model router model

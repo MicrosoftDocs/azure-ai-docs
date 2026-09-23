@@ -1,13 +1,13 @@
 items:
 - name: Azure AI Content Safety Documentation
   href: index.yml
-- name: Overview
+- name: About Azure AI Content Safety
   expanded: true
   items:
   - name: Azure AI Content Safety overview
     href: overview.md
-  - name: Language support
-    href: language-support.md
+  - name: Region availability and service limits
+    href: region-availability.md
   - name: Pricing
     href: https://aka.ms/content-safety-pricing
     expanded: true
@@ -31,7 +31,7 @@ items:
     href: concepts/harm-categories.md
   - name: Microsoft Foundry portal
     href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
-  - name: Provenance Detection
+  - name: Content Provenance Detection
     href: ./concepts/provenance-detection.md
 - name: Quickstarts
   items:
@@ -79,7 +79,7 @@ items:
     href: how-to/improve-performance.md
   - name: Use Content Safety in Foundry portal
     href: how-to/foundry.md
-  - name: Use Provenance Detection API 
+  - name: Use Content Provenance Detection API
     href: how-to/how-to-provenance-detection.md
   - name: Containers (preview)
     items:

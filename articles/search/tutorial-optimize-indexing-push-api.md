@@ -5,7 +5,7 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 07/21/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ms.custom:
   - devx-track-csharp
@@ -211,20 +211,8 @@ Because not all documents are the same size (although they are in this sample), 
 // Returns size of object in MB
 public static double EstimateObjectSize(object data)
 {
-    // converting object to byte[] to determine the size of the data
-    BinaryFormatter bf = new BinaryFormatter();
-    MemoryStream ms = new MemoryStream();
-    byte[] Array;
-
-    // converting data to json for more accurate sizing
-    var json = JsonSerializer.Serialize(data);
-    bf.Serialize(ms, json);
-    Array = ms.ToArray();
-
-    // converting from bytes to megabytes
-    double sizeInMb = (double)Array.Length / 1000000;
-
-    return sizeInMb;
+    byte[] json = JsonSerializer.SerializeToUtf8Bytes(data);
+    return json.Length / 1_000_000d;
 }
 ```
 
@@ -277,7 +265,7 @@ IndexDocumentsResult result = null;
 
 // Define parameters for exponential backoff
 int attempts = 0;
-TimeSpan delay = delay = TimeSpan.FromSeconds(2);
+TimeSpan delay = TimeSpan.FromSeconds(2);
 int maxRetryAttempts = 5;
 ```
 
@@ -292,7 +280,10 @@ do
     try
     {
         attempts++;
-        result = await searchClient.IndexDocumentsAsync(batch).ConfigureAwait(false);
+        Response<IndexDocumentsResult> response = await searchClient
+            .IndexDocumentsAsync(batch)
+            .ConfigureAwait(false);
+        result = response.Value;
 
         var failedDocuments = result.Results.Where(r => r.Succeeded != true).ToList();
 
@@ -344,7 +335,7 @@ From here, wrap the exponential backoff code into a function so it can be easily
 Another function is then created to manage the active threads. For simplicity, that function isn't included here but can be found in *ExponentialBackoff.cs*. You can call the function using the following command, where `hotels` is the data we want to upload, `1000` is the batch size, and `8` is the number of concurrent threads.
 
 ```csharp
-await ExponentialBackoff.IndexData(indexClient, hotels, 1000, 8);
+await ExponentialBackoff.IndexDataAsync(searchClient, hotels, 1000, 8);
 ```
 
 When you run the function, you should see an output similar to the following example:

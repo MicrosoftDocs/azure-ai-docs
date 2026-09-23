@@ -5,7 +5,7 @@ description: "System characteristics and limitations for summarization"
 author: laujan
 ms.author: lajanuar
 manager: mcleans
-ms.service: azure-ai-language
+ms.service: azure-language-foundry-tools
 ms.topic: concept-article
 ms.date: 04/01/2026
 ---

@@ -4,7 +4,7 @@ description: "This article features detailed descriptions and best practices on 
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 02/17/2026
+ms.date: 08/20/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: limits-and-quotas
@@ -13,6 +13,7 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
 
 ROBOTS: NOINDEX, NOFOLLOW

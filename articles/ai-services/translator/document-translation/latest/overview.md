@@ -6,7 +6,7 @@ author: laujan
 manager: mcleans
 ms.service: azure-translator-foundry-tools
 ms.topic: overview
-ms.date: 07/30/2026
+ms.date: 08/07/2026
 ms.author: lajanuar
 ms.custom: references_regions, pilot-ai-workflow-jan-2026
 recommendations: false
@@ -104,7 +104,7 @@ Use asynchronous workflows to translate multiple documents and large files.
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](rest-api/guide-overview.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
-|**Client libraries (SDKs)**|Use the [Document translation client libraries](../document-sdk-overview.md) for [C#/.NET](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
+|**Client libraries (SDKs)**|Use the [Document translation client libraries](../document-sdk-overview.md) for [.NET/C#](/dotnet/api/overview/azure/ai.translation.document-readme?view=azure-dotnet&preserve-view=true), [Python](/python/api/overview/azure/ai-translation-document-readme?view=azure-python&preserve-view=true), [JavaScript/TypeScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-document/README.md), or [Java](/java/api/overview/azure/ai-translation-document-readme?view=azure-java-stable&preserve-view=true).|
 
 ### [**Synchronous**](#tab/sync)
 
@@ -137,18 +137,7 @@ Document translation enforces limits on request size, document count, file size,
 
 ## Document translation data residency
 
-Data residency determines where your document content is processed and temporarily stored during translation. For document translation, the Azure region where you created your Translator resource determines the processing location. The following table maps resource regions to their corresponding request processing data centers:
-
-✔️ Feature: **Document translation**
-✔️ Service endpoint: **Custom domain: `https://<your-resource-name>.cognitiveservices.azure.com`**
-
-|Resource created region| Request processing data center |
-|----------------------------------|-----------------------|
-|**Global**|Closest available data center.|
-|**Americas**|East US 2 &bull; West US 2|
-|**Asia Pacific**| Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland)**| France Central &bull; West Europe|
-|**Switzerland**|Switzerland North &bull; Switzerland West|
+The region where you create the Translator resource determines where document content is processed and temporarily stored. For processing locations, custom endpoint requirements, and managed identity considerations, see [Region support for Azure Translator](../../region-support.md).
 
 ## Service limits and troubleshooting
 

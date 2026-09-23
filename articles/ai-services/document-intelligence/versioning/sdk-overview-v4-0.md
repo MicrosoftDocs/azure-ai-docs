@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 08/15/2026
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 --- 
@@ -24,7 +24,7 @@ monikerRange: 'doc-intel-4.0.0'
 
 # SDK target: REST API v4.0 (GA)
 
-![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-11-30 GA**
+This content applies to: 🟩 v4.0 (GA)
 
 Azure Document Intelligence in Foundry Tools is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 

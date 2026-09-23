@@ -1,32 +1,24 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
-description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 06/02/2026
+description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service through MCP.
+ms.date: 08/06/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
   - build-2025
 ai-usage: ai-assisted
+#customer intent: As an application developer, I want to build and test an end-to-end agentic retrieval solution so that a Foundry agent can use an Azure AI Search knowledge base through MCP to return grounded responses.
 ---
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Preview API usage](./includes/previews/agentic-retrieval-preview-api-usage.md)]
-
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-05-01-preview REST API. The 2026-05-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-05-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for [agentic retrieval](agentic-retrieval-overview.md). You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
+
+This tutorial uses preview REST API surfaces in two places. The knowledge base uses `output_mode` and `retrieval_reasoning_effort` (preview) to explicitly specify extractive output and minimal reasoning, although equivalent behavior is generally available. The project connection uses `RemoteTool` (preview) and the project managed identity to authenticate to Azure AI Search.
 
 In this tutorial, you:
 
@@ -54,9 +46,11 @@ In this tutorial, you:
 
 + A text embedding model deployed to your project for [query-time vectorization](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries). This solution uses `text-embedding-3-large`.
 
-+ An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
++ An LLM deployed to your project for the agent. This solution uses `gpt-5-mini`.
 
-+ Permissions to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
+    GPT-4 family models are deprecated. For retirement dates and current status in Microsoft Foundry, see [Model retirement schedule - Microsoft Foundry](/azure/foundry/openai/concepts/model-retirement-schedule).
+
++ Permission to access and manage Azure AI Search and Microsoft Foundry resources. For more information, see [Configure access](#configure-access).
 
 + [Python 3.8](https://www.python.org/downloads/) or later.
 
@@ -90,7 +84,7 @@ To configure access for this solution:
 1. On your search service, [enable role-based access](search-security-enable-roles.md) and [assign the following roles](search-security-rbac.md).
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Search Service Contributor | Your user account | Create objects |
     | Search Index Data Contributor | Your user account | Load data |
     | Search Index Data Reader | Your user account and project managed identity | Read indexed content |
@@ -98,7 +92,7 @@ To configure access for this solution:
 1. On your project's parent resource, assign the following roles.
 
     | Role | Assignee | Purpose |
-    |------|----------|---------|
+    | ------ | ---------- | --------- |
     | Foundry User | Your user account | Access model deployments and create agents |
     | Foundry Project Manager | Your user account | Create project connection and use MCP tool in agents |
     | Cognitive Services User | Search service managed identity | Access knowledge base |
@@ -131,7 +125,7 @@ To configure access for this solution:
    PROJECT_RESOURCE_ID = /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}
    AZURE_OPENAI_ENDPOINT = https://{your-resource-name}.openai.azure.com
    AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
-   AGENT_MODEL = gpt-4.1-mini
+    AGENT_MODEL = gpt-5-mini
    ```
 
    You can find the endpoints and resource ID in the Azure portal:
@@ -185,7 +179,7 @@ load_dotenv(override=True) # Take environment variables from .env
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
 project_resource_id = os.environ["PROJECT_RESOURCE_ID"]
 project_connection_name = os.getenv("PROJECT_CONNECTION_NAME", "earthknowledgeconnection")
-agent_model = os.getenv("AGENT_MODEL", "gpt-4.1-mini")
+agent_model = os.getenv("AGENT_MODEL", "gpt-5-mini")
 agent_name = os.getenv("AGENT_NAME", "earth-knowledge-agent")
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 credential = DefaultAzureCredential()
@@ -322,9 +316,9 @@ The following code creates a knowledge base that orchestrates agentic retrieval 
 
 For integration with Foundry Agent Service, the knowledge base is configured with the following parameters:
 
-+ `output_mode` is set to extractive data, which provides the agent with verbatim, unprocessed content for grounding and reasoning. The alternative mode, answer synthesis, returns pregenerated answers that limit the agent's ability to reason over source content.
++ `output_mode` (preview) is set to extractive data, which provides the agent with verbatim, unprocessed content for grounding and reasoning. The alternative mode, answer synthesis, returns pregenerated answers that limit the agent's ability to reason over source content.
 
-+ `retrieval_reasoning_effort` is set to minimal effort, which bypasses LLM-based query planning to reduce costs and latency. For other reasoning efforts, the knowledge base uses an LLM to reformulate user queries before retrieval.
++ `retrieval_reasoning_effort` (preview) is set to minimal effort, which bypasses LLM-based query planning to reduce costs and latency. For other reasoning efforts, the knowledge base uses an LLM to reformulate user queries before retrieval.
 
 For more information about this step, see [Create a knowledge base in Azure AI Search](agentic-retrieval-how-to-create-knowledge-base.md).
 
@@ -349,7 +343,7 @@ index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' created or updated successfully")
 
-mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-05-01-preview"
+mcp_endpoint = f"{endpoint.rstrip('/')}/knowledgebases/{base_name}/mcp?api-version=2026-08-01-preview"
 ```
 
 ### Set up a project client
@@ -366,7 +360,7 @@ list(project_client.agents.list())
 
 ### Create a project connection
 
-The following code creates a project connection in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This connection uses your project managed identity to authenticate to Azure AI Search.
+The following code creates a `RemoteTool` project connection (preview) in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This connection uses your project managed identity to authenticate to Azure AI Search.
 
 ```python
 import requests
@@ -399,6 +393,9 @@ print(f"Connection '{project_connection_name}' created or updated successfully."
 ```
 
 ### Create an agent with the MCP tool
+
+> [!WARNING]
+> MCP implementations are susceptible to risks, such as attacks, cascading failures, and loss of human oversight. You can mitigate these risks by vetting MCP servers for security and reliability, following [Microsoft's recommended practices](/azure/api-management/secure-mcp-servers) and [industry best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices), and implementing approval mechanisms and monitoring cascading behaviors.
 
 The following code creates an agent configured with the MCP tool. When the agent receives a user query, it can call your knowledge base through the MCP tool to retrieve relevant content for response grounding.
 
@@ -435,33 +432,18 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-#### (Optional) Connect to a remote SharePoint knowledge source
+#### (Optional) Enforce permissions with per-request headers
 
-[!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
+If any of your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user sees only the documents they're authorized to access. To enable this filtering, forward the signed-in user's identity token in the `x-ms-query-source-authorization` header of the MCP tool connection. Without the token, permission-enabled sources return results unfiltered. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
 
-Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time (preview)](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time-preview).
+[!INCLUDE [vary-mcp-headers-per-request](../foundry/includes/vary-mcp-headers-per-request.md)]
+
+The following code updates the agent from the previous step so the MCP tool reads its authorization header from a structured input.
 
 ```python
-from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
-from azure.search.documents.indexes import SearchIndexClient
-from azure.identity import get_bearer_token_provider
+from azure.ai.projects.models import StructuredInputDefinition
 
-remote_sp_ks = RemoteSharePointKnowledgeSource(
-    name="remote-sharepoint",
-    description="SharePoint knowledge source"
-)
-
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
-index_client.create_or_update_knowledge_source(knowledge_source=remote_sp_ks)
-print(f"Knowledge source '{remote_sp_ks.name}' created or updated successfully.")
-
-knowledge_base.knowledge_sources = [
-    KnowledgeSourceReference(name=remote_sp_ks.name), KnowledgeSourceReference(name=knowledge_source_name)
-]
-
-index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
-print(f"Knowledge base '{base_name}' updated with new knowledge source successfully")
-
+# Reference the token as a placeholder in the header
 mcp_kb_tool = MCPTool(
     server_label="knowledge-base",
     server_url=mcp_endpoint,
@@ -469,20 +451,52 @@ mcp_kb_tool = MCPTool(
     allowed_tools=["knowledge_base_retrieve"],
     project_connection_id=project_connection_name,
     headers={
-        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+        "x-ms-query-source-authorization": "{{search_auth_token}}"
     }
 )
 
+# Declare the structured input so the caller can supply the token per request
 agent = project_client.agents.create_version(
     agent_name=agent_name,
     definition=PromptAgentDefinition(
         model=agent_model,
         instructions=instructions,
-        tools=[mcp_kb_tool]
+        tools=[mcp_kb_tool],
+        structured_inputs={
+            "search_auth_token": StructuredInputDefinition(
+                description="Per-user Azure AI Search bearer token",
+                required=True,
+                schema={"type": "string"},
+            )
+        }
     )
 )
 
 print(f"AI agent '{agent_name}' created or updated successfully")
+```
+
+When you invoke the agent, supply an Azure AI Search token in `structured_inputs`. This example resolves a token from the current `credential`. For a multi-user app, pass the token of each signed-in user instead. For example, use a token obtained through an on-behalf-of flow so the retrieval engine can filter results for that user.
+
+```python
+# Resolve an Azure AI Search token from the current credential (use a per-user token in production)
+from azure.identity import get_bearer_token_provider
+
+search_token = get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+
+openai_client = project_client.get_openai_client()
+conversation = openai_client.conversations.create()
+
+response = openai_client.responses.create(
+    conversation=conversation.id,
+    tool_choice="required",
+    input="{user_query}",
+    extra_body={
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {"search_auth_token": search_token},
+    },
+)
+
+print(f"Response: {response.output_text}")
 ```
 
 ### Chat with the agent
@@ -505,13 +519,13 @@ response = openai_client.responses.create(
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
 ```
 
-The response should be similar to the following:
+The response should be similar to the following example.
 
 ```
 Response: Here are evidence-based explanations to your questions:
@@ -592,7 +606,7 @@ By default, search results from knowledge bases are consolidated into a large, u
 
 ## Control the number of subqueries
 
-You can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) on the knowledge base. The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
+You can control the number of subqueries by [setting the retrieval reasoning effort (preview)](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) on the knowledge base. The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
 For non-minimal reasoning efforts, the LLM determines the number of subqueries based on the following factors:
 
@@ -614,7 +628,7 @@ To optimize performance and reduce latency, consider the following strategies:
 
 + Summarize message threads.
 
-+ Use `gpt-4.1-mini` or a smaller model that performs faster.
++ Use `gpt-5-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
 

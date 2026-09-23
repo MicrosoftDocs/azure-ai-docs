@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 04/24/2026
+ms.date: 07/21/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---

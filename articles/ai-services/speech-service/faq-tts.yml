@@ -68,7 +68,7 @@ sections:
       - question: |
           How much data is required for professional voice fine-tuning?
         answer: |
-          You need training data of at least 300 lines of recordings (or approximately 30 minutes of speech) for professional voice fine-tuning. We recommend 2,000 lines of recordings (or approximately 2-3 hours of speech) to create a voice for production use. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
+          The minimum data requirements vary by training method and recipe version. In the Microsoft Foundry portal, select a training method and version, and then use a dataset that the portal marks as eligible. For guidance about recording quality and script coverage, see [Record custom voice samples](record-custom-voice-samples.md). For method-specific requirements, see [Train your professional voice model](professional-voice-train-voice.md).
       - question: |
           Can we include duplicate text sentences in the same set of training data?
         answer: |
@@ -82,9 +82,9 @@ sections:
         answer: |
           Switching styles via SSML works for both multi-style standard voices and multi-style custom voices. With multi-style training, you can create a voice that speaks in different styles, and you can also adjust these styles via SSML.
       - question: |
-          How does cross-lingual voice work with languages that have different pronunciation structure and assembly?  
+          How does multilingual professional voice work with languages that have different pronunciation structures?
         answer: |
-          Sentence structure and pronunciation naturally vary across languages such as English and Japanese. Each neural voice is trained with audio data recorded by native speaking voice talent. For [cross lingual](professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-voice-model) voice, we transfer the major features like timbre to sound like the original speaker and preserve the right pronunciation. For example, a cross-lingual voice uses the native way to speak Japanese and still sounds similar (but not exactly) like the original English speaker. 
+          Sentence structure and pronunciation vary across languages such as English and Japanese. With [multilingual professional voice](professional-voice-train-voice.md?tabs=foundry-new&pivots=ai-foundry-portal#choose-a-training-method), you can use single-language training data to create a voice that speaks supported secondary languages. The voice preserves characteristics such as the original speaker's timbre while using the pronunciation of the target language.
       - question: |
           Can I use professional voice fine-tuning to customize pronunciation for my domain?
         answer: |
@@ -102,7 +102,7 @@ sections:
         answer: |
           If you want to limit the permission to training, you can limit the user roles and access. See [Role-based access control for Speech resources](role-based-access-control.md).
       - question: |
-          Ca Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
+          Can Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
           The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-the-watermark-algorithm-for-synthetic-voice-identification/3298548).
       - question: |
@@ -112,7 +112,7 @@ sections:
       - question: |
           Do we need to return the written permission from the voice talent back to Microsoft?
         answer: |
-          Microsoft doesn't need the written permission, but you must obtain consent from your voice talent. The voice talent will also be required to record the consent statement and it must be uploaded into Speech Studio before training can begin. See [Set up voice talent for professional voice fine-tuning](professional-voice-create-consent.md).
+          Microsoft doesn't need the written permission, but you must obtain consent from your voice talent. The voice talent must also record the consent statement, and you must upload it in the Microsoft Foundry portal or Speech Studio before training can begin. See [Set up voice talent for professional voice fine-tuning](professional-voice-create-consent.md).
 
 
 
@@ -123,4 +123,3 @@ additionalContent: |
   
   - [Text to speech quickstart](get-started-text-to-speech.md)
   - [What's new](releasenotes.md)
-

@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: concept-article
-ms.date: 04/19/2026
+ms.date: 07/26/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner
 ---
 # Evaluation metrics for custom named entity recognition models

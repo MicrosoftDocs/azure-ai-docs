@@ -6,8 +6,9 @@ ms.reviewer: meerakurup
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/16/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Minimum role assignments to get started
@@ -20,24 +21,22 @@ You can verify current assignments by using [Check access for a user to a single
 
   [!INCLUDE [role-rename-note](./role-rename-note.md)]
 * Assign the **Foundry User** role on your Foundry resource to your **project's managed identity**.
+* If users need to view quota or run deployment eligibility checks, assign the **Cognitive Services Usages Reader** role at the subscription scope. For more information, see [Access quota and usage information](../concepts/rbac-foundry.md#access-quota-and-usage-information).
 
-If the user who created the project can assign roles (for example, by having the Azure **Owner** role at subscription or resource group scope), both assignments are added automatically.
-
-> [!TIP]
-> If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
+If the user who created the project can assign roles (for example, by having the Azure Owner role at the subscription or resource group scope), both assignments are added automatically **when the project is created through the Microsoft Foundry portal UI**.
 
 > [!TIP]
 > If a user or service principal only needs to interact with agents (for example, calling the Responses API) without creating or modifying them, assign **Foundry Agent Consumer** instead of **Foundry User**. This role provides least-privilege access for agent consumers.
 
-To assign these roles manually, use the following quick steps.
+To assign the **Foundry User** role manually, use the following quick steps.
 
-### Assign a role to your user principal
+### Assign Foundry User role to your user principal
 
 In the Azure portal, open your Foundry resource and go to **Access control (IAM)**. Create a role assignment for **Foundry User**, set **Members** to **User, group, or service principal**, select your user principal, and then select **Review + assign**.
 
-### Assign a role to your project's managed identity 
+### Assign Foundry User role to your project's managed identity
 
-In the Azure portal, open your Foundry project and go to **Access control (IAM)**. Create a role assignment for **Foundry User**, set **Members** to **Managed identity**, select your project's managed identity, and then select **Review + assign**.
+In the Azure portal, open your Foundry resource and go to **Access control (IAM)**. Create a role assignment for **Foundry User**, set **Members** to **Managed identity**, select your project's managed identity, and then select **Review + assign**.
 
 ## Terminology for role-based access control in Foundry
 
@@ -49,7 +48,6 @@ To understand role-based access control in Microsoft Foundry, consider two quest
 To help answer these questions, here are descriptions of some terminology used throughout this article. 
 
 * **Permissions**: Allowed or denied actions that an identity can perform on a resource, such as reading, writing, deleting, or managing both control plane and data plane operations.
-* **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Scope**: The set of Azure resources to which a role assignment applies. Typical scopes include subscription, resource group, Foundry resource, Foundry project, or an individual agent.
 * **Role**: A named collection of permissions that defines which actions can be performed on Azure resources at a given scope.
 
@@ -76,5 +74,6 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 |**Foundry Owner**|Grants full access to manage projects and resources and build and develop with projects. Lets you conditionally assign the Foundry User, ACR, and monitoring roles. Highly privileged self-serve role designed for digital natives.|
 
 > [!NOTE]
-> Don't assign built-in roles that start with **Cognitive Services**. These roles are designed for accessing AI Services resources directly and don't apply to Foundry scenarios.
+> Except for **Cognitive Services Usages Reader** when users need quota visibility, don't assign built-in roles that start with **Cognitive Services**. These roles are designed for accessing AI Services resources directly and don't apply to Foundry scenarios.
+>
 > Similarly, don't use the **Azure AI Developer** role for Foundry work. Despite the name, this role is scoped to Azure Machine Learning workspaces and Foundry hubs, not to Foundry projects or Foundry hosted agents. For Foundry project access, use **Foundry User** or **Foundry Owner** instead.

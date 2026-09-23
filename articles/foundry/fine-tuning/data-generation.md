@@ -6,7 +6,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.custom: ignite-2025, doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 09/08/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang
@@ -74,9 +74,9 @@ In this preview, only one reference file is supported. If you have multiple docu
 
 ### Generate synthetic data in the portal
 
-1. In the Foundry portal, select **Data** > **Synthetic Data Generation** from the left menu.
+1. In the Foundry portal, select **Data** > **Data Generation (preview)** from the left menu.
    :::image type="content" source="../media/data-generation/generate-data.png" alt-text="A screenshot showing an example of the generate data button in Foundry." lightbox="../media/data-generation/generate-data.png":::
-1. Select the **Generate data** button.
+1. Select the **Create dataset** and the **Generate synthetic data** button.
 1. Use the synthetic data generation wizard to create a new data generation job:
    :::image type="content" source="../media/data-generation/upload-data.png" alt-text="A screenshot showing an example of the upload data button in Foundry." lightbox="../media/data-generation/upload-data.png":::
    1. Select a **task type**: Simple Q&A or Tool use.

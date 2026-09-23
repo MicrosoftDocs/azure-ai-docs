@@ -8,16 +8,16 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
-# Configure an enrichment cache
+# Configure an enrichment cache (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT] 
-> This feature is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). [Preview REST APIs](/rest/api/searchservice/index-preview) support this feature.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-This article explains how to add caching to a skillset pipeline so that you can modify downstream enrichment steps without a full rebuild every time. By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an *enrichment cache*, the indexer determines which parts of the document tree must be refreshed based on skillset or indexer definition changes. The indexer preserves and reuses existing processed output where possible.
+This article explains how to add caching to a skillset pipeline so that you can modify downstream enrichment steps without a full rebuild every time. Enrichment caching (preview) requires a [preview REST API](/rest/api/searchservice/index-preview). By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an *enrichment cache*, the indexer determines which parts of the document tree must be refreshed based on skillset or indexer definition changes. The indexer preserves and reuses existing processed output where possible.
 
 You place cached content in Azure Storage by using a connection string that you provide. The indexer creates these objects when it runs. Consider the enrichment cache an internal component managed by your search service that you must not modify.
 
@@ -38,7 +38,7 @@ You should be familiar with setting up indexers and skillsets. Start with [index
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint indexer (Preview)](search-how-to-index-sharepoint-online.md), avoid incremental enrichment. Under certain circumstances, the cache becomes invalid. To reload it, perform an [indexer reset and full rebuild](search-howto-run-reset-indexers.md).
+> If you're using the [SharePoint indexer (preview)](search-how-to-index-sharepoint-online.md), avoid incremental enrichment. Under certain circumstances, the cache becomes invalid. To reload it, perform an [indexer reset and full rebuild](search-howto-run-reset-indexers.md).
 
 Large data sources have an additional cache limitation.
 
@@ -79,12 +79,12 @@ In the indexer definition, set `cache` with:
 
 ### [**REST**](#tab/rest)
 
-If you're editing an existing indexer, use [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2026-05-01-preview&preserve-view=true) to get the current configuration.
+If you're editing an existing indexer, use [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2026-08-01-preview&preserve-view=true) to get the current configuration.
 
-1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-05-01-preview&preserve-view=true).
+1. Use the latest preview API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2026-08-01-preview&preserve-view=true).
 
     ```http
-    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2026-05-01-preview
+    PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2026-08-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
         {
@@ -107,7 +107,7 @@ If you're editing an existing indexer, use [GET Indexer](/rest/api/searchservice
 1. [Run the indexer](/rest/api/searchservice/indexers/run). This one-time full rebuild seeds the cache. After it's loaded, incremental reuse applies on subsequent runs.
 
     ```http
-    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2026-05-01-preview
+    POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2026-08-01-preview
         Content-Type: application/json
         api-key: [YOUR-ADMIN-KEY]
     ```

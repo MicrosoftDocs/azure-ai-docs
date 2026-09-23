@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 04/24/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -30,14 +30,14 @@ Semantic ranker is a collection of query-side capabilities that improve the qual
 
 Secondary ranking and "answers" apply to the query response. Query rewrite is part of the query request.
 
-Here are the capabilities of the semantic reranker.
+Semantic ranker has the following capabilities:
 
 | Capability | Description |
 |---------|-------------|
 | L2 ranking | Uses the context or semantic meaning of a query to compute a new relevance score over preranked results. |
 | [Semantic captions and highlights](semantic-how-to-query-request.md) | Extracts verbatim sentences and phrases from fields that best summarize the content, with highlights over key passages for easy scanning. Captions that summarize a result are useful when individual content fields are too dense for the search results page. Highlighted text elevates the most relevant terms and phrases so that users can quickly determine why a match was considered relevant. |
 | [Semantic answers](semantic-answers.md) | An optional and extra substructure returned from a semantic query. It provides a direct answer to a query that looks like a question. It requires that a document has text with the characteristics of an answer. |
-| [Query rewrite](semantic-how-to-query-rewrite.md) | Using text queries or the text portion of a vector query, semantic ranker creates up to 10 variants of the query, perhaps correcting typos or spelling errors, or rephrasing a query using generated synonyms. The rewritten query runs on the search engine. The results are scored using BM25 or RRF scoring, and then rescored by semantic ranker.  |
+| [Query rewrite (preview)](semantic-how-to-query-rewrite.md) | Using text queries or the text portion of a vector query, semantic ranker creates up to 10 variants of the query, perhaps correcting typos or spelling errors, or rephrasing a query using generated synonyms. The rewritten query runs on the search engine. The results are scored using BM25 or RRF scoring, and then rescored by semantic ranker.  |
 
 ## How semantic ranker works
 
@@ -59,16 +59,16 @@ Semantic ranking has three steps:
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. The semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
+1. The semantic ranker starts with a [BM25-ranked result](index-similarity-and-scoring.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
 
-1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
+1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keywords", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
 1. The system trims excessively long strings to ensure the overall length meets the input requirements of the summarization step. This trimming exercise is why it's important to add fields to your semantic configuration in priority order. If you have very large documents with text-heavy fields, the system ignores anything after the maximum limit.
 
    | Semantic field | Token limit |
    |-----------|-------------|
    | "title"   | 128 tokens |
-   | "keywords | 128 tokens |
+   | "keywords" | 128 tokens |
    | "content" | remaining tokens |
 
 1. The summarization output is a summary string for each document, composed of the most relevant information from each field. The system sends summary strings to the ranker for scoring, and to machine reading comprehension models for captions and answers.

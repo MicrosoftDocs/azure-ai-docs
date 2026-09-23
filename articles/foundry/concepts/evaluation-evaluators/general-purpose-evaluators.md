@@ -78,7 +78,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -111,5 +111,5 @@ Use conversation-level coherence evaluation when you want to measure whether the
 
 ## Related content
 
-- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../observability/how-to/cloud-evaluation.md)
 - [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)

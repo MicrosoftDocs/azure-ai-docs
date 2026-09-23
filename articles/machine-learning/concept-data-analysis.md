@@ -9,8 +9,9 @@ ms.topic:  how-to
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki
-ms.date: 06/30/2026
+ms.date: 08/31/2026
 ms.custom: responsible-ml
+ai-usage: ai-assisted
 ---
 
 # Understand your datasets
@@ -32,6 +33,6 @@ Use data analysis when you need to:
 
 ## Next steps
 
-- Learn how to generate the Responsible AI dashboard via [CLI and SDK](how-to-responsible-ai-insights-sdk-cli.md) or [Azure Machine Learning studio UI](how-to-responsible-ai-insights-ui.md).
+- Learn how to generate the Responsible AI dashboard by using the [CLI and SDK](how-to-responsible-ai-insights-sdk-cli.md) or the [Azure Machine Learning studio UI](how-to-responsible-ai-insights-ui.md).
 - Explore the [supported data analysis visualizations](how-to-responsible-ai-dashboard.md#data-analysis) of the Responsible AI dashboard.
 - Learn how to generate a [Responsible AI scorecard](how-to-responsible-ai-scorecard.md) based on the insights observed in the Responsible AI dashboard.

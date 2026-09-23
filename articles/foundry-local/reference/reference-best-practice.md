@@ -6,11 +6,11 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
-ms.date: 06/27/2026
+ms.date: 08/05/2026
 ms.author: lajanuar
 author: laujan
-reviewer: maanavdalal
-ms.reviewer: maanavd
+reviewer: wayne-ch
+ms.reviewer: waynechuang
 ai-usage: ai-assisted
 ---
 
@@ -46,13 +46,7 @@ Reference: [Foundry Local CLI Reference](./reference-cli.md)
 
 ## Licensing considerations
 
-Review the licensing implications for the models you run in Foundry Local. To view the full model license terms for each model in the catalog, run the following command. In the following command, replace the placeholder *`<model>`* with the model name:
-
-```bash
-foundry model info <model> --license
-```
-
-Reference: [Foundry Local CLI Reference](./reference-cli.md)
+Review the license terms from the model publisher before you use a model with Foundry Local. Make sure your intended use complies with those terms and your organization's policies.
 
 ## Performance best practices
 
@@ -76,8 +70,8 @@ Foundry Local is for on-device inference, not distributed, containerized, or mul
 | --- | --- | --- |
 | Slow inference | CPU-only model with a large parameter count. | Use GPU-optimized model variants when available. |
 | Model download failures | Network connectivity issues. | Check your internet connection, and run `foundry cache list` to verify cache status. |
-| Service connection errors (`Request to local service failed. Uri:http://127.0.0.1:0/foundry/list`) | Port binding issues or the service isn't accessible. | Run `foundry service restart` to restart the service and resolve port binding problems. |
-| Service fails to start. | Port conflicts or permission issues. | Run `foundry service restart`, or [report an issue](https://github.com/microsoft/Foundry-Local/issues) with logs using `foundry zip-logs`. |
+| Service connection errors (`Request to local service failed. Uri:http://127.0.0.1:0/foundry/list`) | Port binding issues or the service isn't accessible. | Run `foundry server restart` to restart the daemon and resolve port binding problems. |
+| Service fails to start. | Port conflicts or permission issues. | Run `foundry server restart`. If the issue persists, run `foundry server logs`, and then run `foundry report` to report the issue with diagnostics. |
 | Intel NPU not detected or not working | Missing or outdated Intel NPU driver. | Install the [Intel NPU driver for Windows](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration. |
 | Qualcomm NPU error (`Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`) | Outdated Qualcomm NPU driver or NPU resource conflicts. | Install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). If the issue persists, reboot to clear NPU resource conflicts, especially after using Windows Copilot+ features. |
 | `winget install Microsoft.FoundryLocal --scope machine` fails with “The current system configuration doesn't support the installation of this package.” | Winget blocks MSIX machine-scope installs. | Use the workaround in [Installation issues](#installation-issues). |

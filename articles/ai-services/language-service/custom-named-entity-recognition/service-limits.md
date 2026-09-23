@@ -6,8 +6,9 @@ author: laujan
 manager: mcleans
 ms.service: azure-language-foundry-tools
 ms.topic: limits-and-quotas
-ms.date: 05/13/2026
+ms.date: 07/27/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ms.custom: language-service-custom-ner, references_regions
 ---
 # Custom named entity recognition service limits

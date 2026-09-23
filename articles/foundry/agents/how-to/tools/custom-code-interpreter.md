@@ -1,12 +1,12 @@
 ---
 title: "Configure a custom code interpreter for agents"
-description: "Configure a custom MCP-based code interpreter for Microsoft Foundry agents using Azure Container Apps Dynamic Sessions. Customize Python packages and compute resources."
+description: "Learn how to configure a custom MCP-based code interpreter for Foundry Agent Service by using Azure Container Apps Dynamic Sessions."
 services: azure-ai-agent-service
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 08/21/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -27,6 +27,22 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
 [!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
+## Prerequisites
+
+- [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later.
+- Python 3.12 or later for the maintained sample project.
+- (Optional) [uv](https://docs.astral.sh/uv/getting-started/installation/) for faster Python package management.
+- An Azure subscription and resource group with the following role assignments:
+  - [Foundry User](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-user) on the Foundry project for configuring and running the agent after provisioning.
+
+    [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
+  - [Foundry Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner) on the target resource group only while the sample deployment creates the Foundry resources and project connection.
+  - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor) on the target resource group only while the sample deployment creates the Container Apps environment.
+
+  Activate the provisioning roles just in time through Microsoft Entra Privileged Identity Management (PIM), and deactivate them after deployment. Day-to-day agent developers and runtime users don't need these provisioning roles.
+- A Microsoft Foundry SDK. See the [quickstart](../../../quickstarts/get-started-code.md) for installation.
+- A region supported by both Foundry Agent Service and Azure Container Apps Dynamic Sessions. See [Azure Container Apps Dynamic Sessions regions](/azure/container-apps/sessions#regions).
+
 ## Usage support
 
 This article uses the Azure CLI and a runnable sample project.
@@ -42,17 +58,6 @@ For the latest SDK and API support for agents tools, see [Best practices for usi
 ## SDK support
 
 The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET SDK is currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
-
-## Prerequisites
-
-- [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later.
-- (Optional) [uv](https://docs.astral.sh/uv/getting-started/installation/) for faster Python package management.
-- An Azure subscription and resource group with the following role assignments:
-  - [Foundry Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner)
-
-    [!INCLUDE [role-rename-note](../../../includes/role-rename-note.md)]
-  - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
-- An Azure AI Foundry SDK. See the [quickstart](../../../quickstarts/get-started-code.md) for installation.
 
 ## Before you begin
 
@@ -77,6 +82,14 @@ Clone the [sample code in the GitHub repo](https://github.com/microsoft-foundry/
 
 ### Provision the infrastructure
 
+The maintained direct-agent sample stores the session pool MCP endpoint in the project connection. Toolbox definitions also require the endpoint as `server_url`. Add this output to the cloned `infra.bicep` file:
+
+```bicep
+output MCP_SERVER_URL string = sessionPool.properties.mcpServerSettings.mcpServerEndpoint
+```
+
+Don't use `poolManagementEndpoint`. That value is the Dynamic Sessions management endpoint, not the MCP server endpoint.
+
 To provision the infrastructure, run the following command by using the Azure CLI (`az`):
 
 ```console
@@ -92,9 +105,31 @@ az deployment group create \
 
 ### Configure and run the agent
 
-Copy the `.env.sample` file from the repository to `.env` and populate the values from your deployment output. You can find these values in the Azure portal under the resource group.
+Copy the `.env.sample` file from the repository to `.env`. Map the Bicep deployment outputs to the matching environment variables:
 
-Install the Python dependencies by using `uv sync` or `pip install`. Finally, run `./main.py`.
+| Bicep output | Environment variable | Used for |
+| --- | --- | --- |
+| `AZURE_AI_PROJECT_ENDPOINT` | `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. |
+| `AZURE_AI_CONNECTION_ID` | `AZURE_AI_CONNECTION_ID` | Project connection whose target is the custom code interpreter MCP server. |
+| `MCP_SERVER_URL` | `MCP_SERVER_URL` | Session pool MCP endpoint required by toolbox definitions. |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Agent model deployment. |
+
+The inline examples use `PROJECT_ENDPOINT` for `AZURE_AI_PROJECT_ENDPOINT` and `MCP_CONNECTION_ID` for `AZURE_AI_CONNECTION_ID`. The maintained direct-agent sample resolves the MCP target through the project connection and uses `https://localhost` as a required placeholder URL. For a toolbox, set `MCP_SERVER_URL` to the `mcpServerEndpoint` output because `MCPToolboxTool` requires `server_url` or `connector_id` even when you also provide a project connection.
+
+Install the Python dependencies and run the maintained sample with one of these command pairs:
+
+```bash
+uv sync
+uv run ./main.py
+```
+
+Or create a virtual environment and install the checked-in requirements:
+
+```bash
+python -m venv .venv
+./.venv/bin/pip install -r requirements.txt
+./.venv/bin/python ./main.py
+```
 
 :::zone pivot="python"
 
@@ -105,7 +140,7 @@ The following Python sample shows how to create an agent with a custom code inte
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, MCPTool
+from azure.ai.projects.models import MCPTool, MCPToolboxTool, PromptAgentDefinition
 
 # Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
@@ -123,11 +158,11 @@ openai = project.get_openai_client()
 # Add the custom code interpreter MCP server to a toolbox. Using a toolbox is the
 # recommended way to give agents tools: you curate tools once and reuse the toolbox
 # across agents. See /azure/foundry/agents/concepts/toolbox-overview
-toolbox = project.toolboxes.create_toolbox_version(
+toolbox = project.toolboxes.create_version(
     name="custom-code-interpreter-toolbox",
     description="Toolbox with the custom code interpreter MCP server",
     tools=[
-        MCPTool(
+        MCPToolboxTool(
             server_label="custom-code-interpreter",
             server_url=MCP_SERVER_URL,
             project_connection_id=MCP_CONNECTION_ID,
@@ -181,6 +216,10 @@ print(f"Response: {response.output_text}")
 
 # Clean up
 project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+project.toolboxes.delete_toolbox_version(
+  toolbox_name=toolbox.name,
+  version=toolbox.version,
+)
 print("Agent deleted")
 ```
 
@@ -196,31 +235,22 @@ Agent deleted
 
 ### Use a hosted agent
 
-This sample uses `FoundryChatClient` from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `MCPStreamableHTTPTool`.
+This sample uses `FoundryChatClient` from the Microsoft Agent Framework and connects to the toolbox MCP endpoint using `FoundryToolbox`.
 
 ```python
 import asyncio
-import httpx
 
-from agent_framework import Agent, MCPStreamableHTTPTool
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient, FoundryToolbox
+from azure.identity import AzureCliCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool
+from azure.ai.projects.models import MCPToolboxTool
 
 PROJECT_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>"
 MCP_SERVER_URL = "https://your-mcp-server-url"
 # Optional: set to your project connection ID if your MCP server requires authentication
 MCP_CONNECTION_ID = "your-mcp-connection-id"
 
-
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._token_provider = token_provider
-
-    def auth_flow(self, request):
-        request.headers["Authorization"] = "Bearer " + self._token_provider()
-        yield request
 
 async def main() -> None:
     credential = AzureCliCredential()
@@ -229,11 +259,11 @@ async def main() -> None:
     #    recommended way to give agents tools: curate tools once and reuse the
     #    toolbox across agents. See /azure/foundry/agents/concepts/toolbox-overview
     project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential)
-    toolbox = project.toolboxes.create_toolbox_version(
+    toolbox = project.toolboxes.create_version(
         name="custom-code-interpreter-toolbox",
         description="Toolbox with the custom code interpreter MCP server",
         tools=[
-            MCPTool(
+            MCPToolboxTool(
                 server_label="custom-code-interpreter",
                 server_url=MCP_SERVER_URL,
                 project_connection_id=MCP_CONNECTION_ID,
@@ -248,23 +278,23 @@ async def main() -> None:
     )
 
     # 3. Attach the toolbox to the hosted agent as an MCP tool.
-    token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-    http_client = httpx.AsyncClient(auth=_ToolboxAuth(token_provider), timeout=120.0)
-    mcp_tool = MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_MCP_URL,
-        http_client=http_client,
-        load_prompts=False,
-    )
+, timeout=120.0)
+    toolbox_tool = FoundryToolbox(credential, url=TOOLBOX_MCP_URL)
 
-    agent = Agent(
+agent = Agent(
         client=FoundryChatClient(credential=credential),
         instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
-        tools=[mcp_tool],
+        tools=[toolbox_tool],
     )
 
     result = await agent.run("Calculate the factorial of 10 using Python.")
     print(result.text)
+
+
+    project.toolboxes.delete_toolbox_version(
+      toolbox_name=toolbox.name,
+      version=toolbox.version,
+    )
 
 
 if __name__ == "__main__":
@@ -280,6 +310,7 @@ if __name__ == "__main__":
 The following C# sample shows how to create an agent with a custom code interpreter MCP tool. For more information about working with MCP tools in .NET, see the [MCP tool sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
@@ -360,6 +391,8 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(
 Console.WriteLine("Agent deleted");
 ```
 
+Delete the toolbox version after the agent no longer references it. See [Delete a toolbox version](toolbox.md#delete-a-version) for the verified .NET call.
+
 ### Expected output
 
 ```console
@@ -370,15 +403,18 @@ Agent deleted
 
 ### Use a hosted agent
 
-This sample uses the Microsoft Agent Framework to connect a hosted agent to the toolbox MCP endpoint.
+This sample uses the Microsoft Agent Framework `AddFoundryToolboxes` integration to connect the hosted agent to the toolbox.
 
 ```csharp
+using System;
 using Azure.AI.AgentServer.Responses;
 using Azure.AI.AgentServer.Responses.Models;
 using Azure.AI.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Foundry.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 
@@ -410,25 +446,19 @@ ToolboxVersion toolboxVersion = projectClient.AgentAdministrationClient
         tools: [ProjectsAgentTool.AsProjectTool(customCodeInterpreter)],
         description: "Toolbox with the custom code interpreter MCP server");
 
-// 2. The toolbox exposes an MCP-compatible endpoint.
-string toolboxMcpEndpoint =
-    $"{projectEndpoint}/toolboxes/{toolboxVersion.Name}/versions/{toolboxVersion.Version}/mcp?api-version=v1";
+// Create the hosted agent and register the toolbox integration.
+AIAgent agent = projectClient.AsAIAgent(
+    model: deploymentName,
+    instructions: "You are a helpful assistant with access to the toolbox tools.",
+    name: "hosted-toolbox-agent");
 
-// 3. Attach the toolbox to the hosted agent.
-AzureOpenAIClient openAIClient = new(new Uri(openAiEndpoint), credential);
-ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.Services.AddFoundryToolboxes(credential, toolboxVersion.Name);
 
-// ToolboxMcpClient discovers toolbox tools via MCP tools/list and calls them via tools/call.
-ToolboxMcpClient toolboxClient = new(toolboxMcpEndpoint, credential);
-
-ResponsesServer.Run<ToolboxHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(
-        name: AgentName,
-        instructions: AgentInstructions,
-        chatClient: chatClient,
-        toolboxClient: toolboxClient));
-});
+var app = builder.Build();
+app.MapFoundryResponses();
+app.Run();
 ```
 
 :::zone-end
@@ -437,7 +467,7 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 ### Code example
 
-The following TypeScript sample shows how to create an agent with a custom code interpreter MCP tool. For a JavaScript version, see the [MCP tool sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcp.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample shows how to create an agent with a custom code interpreter MCP tool. For a JavaScript version, see the [MCP tool sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentMcp.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -510,13 +540,14 @@ export async function main(): Promise<void> {
       input: "Calculate the factorial of 10 using Python.",
     },
     {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
+      body: { agent_reference: { name: agent.name, type: "agent_reference" } },
     },
   );
   console.log(`Response: ${response.output_text}`);
 
   // Clean up
   await project.agents.deleteVersion(agent.name, agent.version);
+  await project.toolboxes.deleteVersion(toolbox.name, toolbox.version);
   console.log("Agent deleted");
 }
 
@@ -546,7 +577,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
@@ -643,7 +674,7 @@ export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.
 
 ### Code example
 
-#### 1. Create a toolbox with the custom code interpreter
+#### Create a toolbox with the custom code interpreter
 
 Add the custom code interpreter by creating a toolbox. Then, attach the toolbox to your agent as an MCP tool. For more information, see [What is a toolbox?](../../concepts/toolbox-overview.md)
 
@@ -667,7 +698,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbo
 
 The toolbox exposes an MCP-compatible endpoint at `$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbox/versions/<version>/mcp?api-version=v1`, where `<version>` is the version returned by the previous call.
 
-#### 2. Create a remote-tool connection to the toolbox
+#### Create a remote-tool connection to the toolbox
 
 Create a remote-tool project connection that points to the toolbox endpoint. Use a user Entra token so the caller's identity is passed through (audience `https://ai.azure.com`):
 
@@ -679,7 +710,7 @@ azd ai connection create custom-code-interpreter-toolbox-conn \
   --audience https://ai.azure.com
 ```
 
-#### 3. Create an agent that uses the toolbox
+#### Create an agent that uses the toolbox
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
@@ -704,7 +735,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   }'
 ```
 
-#### 4. Create a response
+#### Create a response
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
@@ -716,10 +747,14 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   }'
 ```
 
-#### 3. Clean up
+#### Clean up
 
 ```bash
 curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/CustomCodeInterpreterAgent?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+
+curl -X DELETE \
+  "$FOUNDRY_PROJECT_ENDPOINT/toolboxes/custom-code-interpreter-toolbox/versions/<version>?api-version=v1" \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
@@ -758,7 +793,7 @@ After you've provisioned the infrastructure and run the sample:
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | Feature registration is still pending | The `az feature register` command returns `Registering` state. | Wait for registration to complete (can take 15-30 minutes). Check status with `az feature show --namespace Microsoft.App --name SessionPoolsSupportMCP`. Then run `az provider register -n Microsoft.App` again. |
-| Deployment fails with permission error | Missing required role assignments. | Confirm you have **Foundry Owner** and **Container Apps ManagedEnvironment Contributor** roles on the subscription or resource group. |
+| Deployment fails with permission error | Missing required role assignments. | For infrastructure deployment, activate **Foundry Owner** and **Container Apps ManagedEnvironment Contributor** on the target resource group through Microsoft Entra PIM. Deactivate them after deployment. For agent operations, confirm you have **Foundry User** on the Foundry project. |
 | Deployment fails with region error | The selected region doesn't support Azure Container Apps Dynamic Sessions. | Try a different region. See [Azure Container Apps regions](/azure/container-apps/overview#regions) for supported regions. |
 | Agent doesn't call the tool | The MCP connection isn't configured correctly, or the agent instructions don't prompt tool use. | Use tracing in Microsoft Foundry to confirm tool invocation. Verify the `MCP_SERVER_URL` matches your deployed Container Apps endpoint. See [Best practices](../../concepts/tool-best-practice.md). |
 | MCP server connection timeout | The Container Apps session pool isn't running or has no standby instances. | Check the session pool status in the Azure portal. Increase `standbyInstanceCount` in your Bicep template if needed. |
@@ -770,6 +805,8 @@ After you've provisioned the infrastructure and run the sample:
 The APIs don't directly support file input or output, or the use of file stores. To get data in and out, you must use URLs, such as data URLs for small files and Azure Blob Service shared access signature (SAS) URLs for large files.
 
 ## Security
+
+Treat generated code and its dependencies as untrusted. Use an approved base image and package allow list, run with the minimum required compute and permissions, and restrict outbound network access to required destinations. Don't mount sensitive data or production credentials into the session.
 
 If you use SAS URLs to pass data in or out of the runtime:
 
@@ -784,9 +821,5 @@ To stop billing for provisioned resources, delete the resources created by the s
 ## Related content
 
 - [Connect to Model Context Protocol servers (preview)](model-context-protocol.md)
-- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Azure Container Apps Dynamic Sessions](/azure/container-apps/sessions)
-- [Session pools with custom containers](/azure/container-apps/session-pool#custom-container-pool)
-- [Azure Container Apps environment](/azure/container-apps/environment)
-- [Install the Azure CLI](/cli/azure/install-azure-cli)
 - [Code Interpreter tool for agents](code-interpreter.md)

@@ -4,7 +4,7 @@ description: Learn how to configure security features in Azure AI Search to prot
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 08/06/2026
 ai-usage: ai-assisted
 ms.custom: horz-security
 ---
@@ -121,7 +121,7 @@ The workflow for authorizing control plane operations is:
 
 ### Authorize data plane operations
 
-Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorization is available through role-based access control, API keys, or both. For configuration steps, see the previous sections on [role-based access control](#recommended-enable-role-based-access-control) and [API key authentication](#configure-api-key-authentication).
+Data plane operations target content hosted on a search service, such as index creation, document loading, and queries. Authorize these operations through role-based access control, API keys, or both. For configuration steps, see [(Recommended) Enable role-based access control](#recommended-enable-role-based-access-control) and [Configure API key authentication](#configure-api-key-authentication).
 
 ### Grant access to individual indexes
 
@@ -232,7 +232,7 @@ We only recommend confidential computing for organizations whose compliance or r
 | Compute type | Description | Limitations | Cost | Availability |
 | ------------ | ----------- | ----------- | ---- | ------------ |
 | Default | Standard VMs with built-in encryption for data at rest and in transit. No hardware-based isolation for data in use. | No limitations. | No change to the base cost of free or billable tiers. | Available in all regions. |
-| Confidential | Confidential VMs (DCasv5 or DCesv5) in hardware-based trusted execution environment. Isolates computations and memory from the host operating system and other VMs. | Disables or restricts [agentic retrieval](agentic-retrieval-overview.md), [semantic ranker](semantic-search-overview.md), [query rewrite](semantic-how-to-query-rewrite.md), [skillset execution](cognitive-search-concept-intro.md), and indexers that run in the [multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment) <sup>1</sup>. | Adds 10% surcharge to the base cost of billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/). | Available in some regions. For more information, see the [list of supported regions](search-region-support.md). |
+| Confidential | Confidential VMs (DCasv5 or DCesv5) in hardware-based trusted execution environment. Isolates computations and memory from the host operating system and other VMs. | Disables or restricts [agentic retrieval](agentic-retrieval-overview.md), [semantic ranker](semantic-search-overview.md), [query rewrite (preview)](semantic-how-to-query-rewrite.md), [skillset execution](cognitive-search-concept-intro.md), and indexers that run in the [multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment) <sup>1</sup>. | Adds 10% surcharge to the base cost of billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/). | Available in some regions. For more information, see the [list of supported regions](search-region-support.md). |
 
 <sup>1</sup> When you enable this compute type, indexers can only run in the private execution environment, meaning they run from the search clusters hosted on confidential computing.
 

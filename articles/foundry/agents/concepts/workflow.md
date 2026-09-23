@@ -9,7 +9,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026 
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 07/31/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: mcleans
@@ -44,10 +44,10 @@ Workflows are ideal for scenarios where you need to:
 - Add branching logic (for example, if/else) and variable handling without writing code.
 - Create human-in-the-loop steps (for example, approvals or clarifying questions).
 
-If you want to edit workflow YAML in Visual Studio Code or run workflows in a local playground, see:
+To maintain an existing workflow or build code-based orchestration in Visual Studio Code, see:
 
-- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
-- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
+- [Use and migrate declarative agent workflows](../../how-to/develop/vs-code-agents-workflow-low-code.md)
+- [Create hosted agents](../../how-to/develop/vs-code-agents-workflow-pro-code.md)
 
 ## Understand workflow patterns
 
@@ -352,7 +352,7 @@ Your workflow's YAML definition is the portable artifact you carry to any of the
 1. Switch to the **YAML** view to see the full configuration.
 1. Copy or export the YAML file so you can reuse it in your new environment.
 
-The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration. For more information, see [Develop agents with Agent Inspector](../how-to/agent-inspector.md).
+The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration.
 
 ### Option 1: Microsoft Agent Framework (recommended)
 
@@ -364,10 +364,10 @@ Use Microsoft Agent Framework for most workflows. The orchestration you build vi
 
 ### Option 2: Azure Logic Apps
 
-If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Logic Apps lets you combine deterministic steps - connectors, conditions, approvals, and hundreds of prebuilt actions - with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, instead of rebuilding them from scratch.
+If a visual designer is the main reason you use workflows, Azure Logic Apps gives you a fully featured, low-code canvas for orchestration and can call Foundry agents as steps. Azure Logic Apps lets you combine deterministic steps, including prebuilt built-in actions, APIs, and MCP servers, with the probabilistic reasoning of Foundry agents in the same run. You can adopt agents incrementally and enrich processes you already have, rather than rebuild them from scratch.
 
 - Build automated workflows with the visual designer: [Azure Logic Apps overview](/azure/logic-apps/logic-apps-overview)
-- Call and orchestrate Foundry agents from a workflow: [Run automated workflows from Foundry agents](/azure/logic-apps/add-agent-action-create-run-workflow?pivots=portal)
+- Call and orchestrate Foundry agents from a workflow: [Automate Foundry agents with workflows in Azure Logic Apps](/azure/logic-apps/automate-foundry-agents-with-workflows)
 
 ### Option 3: Connect agents directly with A2A
 
@@ -377,5 +377,5 @@ For lightweight scenarios where one agent just needs to call another - without a
 
 - [Foundry Agent Service FAQ](../../agents/faq.yml)
 - [Tool best practices for Foundry agents](tool-best-practice.md)
-- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
-- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
+- [Use and migrate declarative agent workflows](../../how-to/develop/vs-code-agents-workflow-low-code.md)
+- [Create hosted agents](../../how-to/develop/vs-code-agents-workflow-pro-code.md)

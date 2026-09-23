@@ -6,7 +6,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -46,8 +46,8 @@ The following table lists the vectorizers and their supported models and associa
 | Vectorizer | Supported models | Associated skill |
 |-----------------|------------|------------------|
 | [Azure OpenAI](vector-search-vectorizer-azure-open-ai.md) | text-embedding-ada-002<br>text-embedding-3-large<br>text-embedding-3-small | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) |
-| [Microsoft Foundry model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> | [AML](cognitive-search-aml-skill.md) |
-| [Azure Vision](vector-search-vectorizer-ai-services-vision.md) | [Multimodal embeddings 4.0 API](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) |
+| [Microsoft Foundry model catalog (preview)](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> | [AML](cognitive-search-aml-skill.md) |
+| [Azure Vision (preview)](vector-search-vectorizer-ai-services-vision.md) | [Multimodal embeddings 4.0 API](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure Vision multimodal embeddings (preview)](cognitive-search-skill-vision-vectorize.md) |
 | [Custom Web API](vector-search-vectorizer-custom-web-api.md) | Any embedding model (hosted externally) | [Custom Web API](cognitive-search-custom-skill-web-api.md) |
 
 <sup>1</sup> You can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
@@ -138,7 +138,10 @@ To define a vectorizer and vector profile in an existing index:
     GET https://my-search-service.search.windows.net/indexes/my-index?api-version=2026-04-01 HTTP/1.1
     Authorization: Bearer <your-access-token> // For API keys, replace this line with api-key: <your-admin-api-key>
     ```
-    
+
+    > [!WARNING]
+    > A retrieved Custom Web API vectorizer contains `<redacted>` for every `httpHeaders` value. When you update the same vectorizer without changing its `name`, `kind`, or `uri`, you can resubmit `<redacted>` for matching existing header names. If you change `uri`, submit actual values for every `httpHeaders` entry. For other update rules, see [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md#update-header-values-after-get).
+
 1. Use [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) to update the index definition. Paste the full index definition in the request body.
 
    ```http
@@ -162,14 +165,15 @@ To define a vectorizer and vector profile in an existing index:
               "resourceUri": "https://url.openai.azure.com",
               "deploymentId": "text-embedding-ada-002",
               "modelName": "text-embedding-ada-002",
-              "apiKey": "mytopsecretkey"
+              "apiKey": "<your-azure-openai-api-key>"
             }
           },
           {
             "name": "my_custom_vectorizer",
             "kind": "customWebApi",
-            "customVectorizerParameters": {
-              "uri": "https://my-endpoint",
+            "customWebApiParameters": {
+              "uri": "https://contoso.embeddings.com",
+              "httpMethod": "POST",
               "authResourceId": null,
               "authIdentity": null
             }

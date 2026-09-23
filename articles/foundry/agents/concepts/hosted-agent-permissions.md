@@ -30,6 +30,8 @@ For end-to-end deployment and lifecycle tasks, see [Deploy a Hosted agent][deplo
 > [!IMPORTANT]
 > Always adhere to the principle of least privilege when assigning permissions. Only grant the permissions necessary for users and agents to perform their tasks, and regularly review and update permissions as needed.
 
+If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help map required roles and permissions to deployment and management tasks in your own Foundry project.
+
 ## Roles in this article
 
 Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Foundry User][role-ai-user], [Foundry Project Manager][role-project-manager], or [Foundry Owner][role-ai-owner].
@@ -69,7 +71,7 @@ Use these links to jump directly to sections that address common permission issu
 - **Agent can't pull images at runtime**: See [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent interaction fails**: See [Agent interaction](#agent-interaction)
 - **Role assignment fails**: See [Creating that role assignment requires](#azure-resource-setup) sections and [Connections setup](#connections-setup)
-- **Can't publish agent to Teams or Microsoft 365 Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
+- **Can't publish agent to Teams or Microsoft Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
 
 ## Hosted agent solution architecture
 
@@ -180,6 +182,10 @@ Creating a Foundry project requires the `Microsoft.CognitiveServices/accounts/pr
 | Foundry Project Manager | Foundry account | ✔ Yes |
 | Foundry Account Owner | Foundry account | ✔ Yes |
 | Foundry Owner | Foundry account | ✔ Yes |
+
+> [!IMPORTANT]
+> Currently, user-assigned managed identities are supported only when configured during the Foundry project creation.
+> Changing the project identity type after creation isn't supported. This limitation includes changing from system-assigned to user-assigned managed identity, or from user-assigned to system-assigned managed identity.
 
 If the creator of the project has the ability to assign the `Foundry User` role at the scope of the account, the system automatically creates two role assignments:
 
@@ -318,7 +324,7 @@ The agent has implicit access to core capabilities within its own project, such 
 
 ## Hosted agent deployment
 
-Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
+Hosted agent deployment operations are data plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
 
 ### Push an image to the registry
 
@@ -376,7 +382,7 @@ If instead you use the _agent application_, version selection is configured on t
 
 ### Azure Bot Service setup
 
-Publishing your agent to Microsoft Teams or Microsoft 365 Copilot is optional. When you do, the publishing flow performs control plane operations to create an Azure Bot Service resource and configure its channels, then updates either the agent or the agent application to allow requests from Bot Service.
+Publishing your agent to Microsoft Teams or Microsoft Copilot is optional. When you do, the publishing flow performs control plane operations to create an Azure Bot Service resource and configure its channels, then updates either the agent or the agent application to allow requests from Bot Service.
 
 #### Creating the bot service
 
@@ -414,7 +420,7 @@ The publishing flow sets Channels (Azure Bot Service) as the authentication mode
 - **Agent application scenario**: The agent application object is updated. This is a control plane write operation. The same role requirements apply as documented in [Agent applications](#agent-applications-1).
 - **Agent endpoint scenario**: The agent object is updated. This is a data plane write operation. The same role requirements apply as documented in [Create a new agent version](#create-a-new-agent-version).
 
-For step-by-step guidance on publishing to Teams or M365 Copilot, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams][publish-copilot].
+For step-by-step guidance on publishing to Teams or Microsoft Copilot, see [Publish agents to Microsoft Copilot and Microsoft Teams][publish-copilot].
 
 ## Agent interaction
 

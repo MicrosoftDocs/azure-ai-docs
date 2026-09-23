@@ -6,8 +6,10 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 08/26/2026
 ms.author: pafarley
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to use the batch processing kit to scale Speech container requests.
 ---
 
@@ -29,6 +31,21 @@ The batch kit container is available for free on [GitHub](https://github.com/mic
 | Endpoint hot-swapping | Add, remove, or modify Speech container endpoints during runtime without interrupting the batch progress. Updates are immediate. |
 | Real-time logging | Real-time logging of attempted requests, timestamps, and failure reasons, with Speech SDK log files for each audio file. |
 
+## Process long audio safely
+
+Speech containers support audio with a maximum duration of 24 hours. Segment any audio longer than 24 hours before you submit it for transcription. File size isn't a reliable substitute for duration because the encoding, sample rate, bit depth, and channel count determine the number of bytes. For example, 1 GB isn't a universal segmentation threshold.
+
+Some audio pipelines use a 32-bit counter to calculate duration. At approximately 37.3 hours, the counter can overflow and produce a shorter, valid-looking duration. In this case, transcription can report success without warning that the result is truncated. The exact code location of this overflow isn't known.
+
+After transcription, compare the original audio duration with the final transcript offset or latest recognized timestamp. Treat a result that ends materially before the source audio as incomplete, even if the transcription reports success.
+
+If you convert source audio to RIFF/WAV, use these values to help identify where an overflow occurred:
+
+- A converted WAV data chunk length of `274,568,704` bytes indicates an overflow during conversion or file writing.
+- A data chunk length of `4,569,536,000` bytes, or a file larger than 4 GB with a correct header, indicates that the file was written correctly and the overflow occurred later in the processing pipeline. Contact Microsoft support to engage engineering for this case.
+
+RF64 and Wave64 (W64) aren't drop-in fixes for this issue. Every reader and duration-checking path in the pipeline must support the selected format. For example, the Python built-in `wave` module rejects RF64 files.
+
 ## Get the container image with `docker pull`
 
 Use the [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) command to download the latest batch kit container.
@@ -41,7 +58,7 @@ docker pull docker.io/batchkit/speech-batch-kit:latest
 
 ## Endpoint configuration
 
-The batch client takes a yaml configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
+The batch client uses a YAML configuration file that specifies the on-premises container endpoints. Write the following example to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
 
 ```yaml
 MyContainer1:
@@ -61,7 +78,7 @@ MyContainer3:
   rtf: 4
 ```
 
-This yaml example specifies three speech containers on three hosts. The first host is specified by a IPv4 address, the second is running on the same VM as the batch-client, and the third container is specified by the DNS hostname of another VM. The `concurrency` value specifies the maximum concurrent file transcriptions that can run on the same container. The `rtf` (Real-Time Factor) value is optional and can be used to tune performance.
+This YAML example specifies three speech containers on three hosts. The first host is specified by an IPv4 address, the second host runs on the same VM as the batch client, and the third container is specified by the DNS hostname of another VM. The `concurrency` value specifies the maximum concurrent file transcriptions that can run on the same container. The `rtf` (Real-Time Factor) value is optional and can be used to tune performance.
 
 The batch client can dynamically detect if an endpoint becomes unavailable (for example, due to a container restart or networking issue), and when it becomes available again. Transcription requests aren't sent to containers that are unavailable, and the client continues using other available containers. You can add, remove, or edit endpoints at any time without interrupting the progress of your batch.
 

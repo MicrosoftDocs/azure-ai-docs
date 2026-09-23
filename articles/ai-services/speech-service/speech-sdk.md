@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 02/25/2026
+ms.date: 08/17/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the Speech SDK.
 ---
 
@@ -35,6 +36,8 @@ The Speech SDK supports the following languages and platforms:
 <sup>1 C# code samples are available in the documentation. The Speech SDK for C# is based on .NET Standard 2.0, so it supports many platforms and programming languages. For more information, see [.NET implementation support](/dotnet/standard/net-standard#net-implementation-support).</sup>  
 <sup>2 C isn't a supported programming language for the Speech SDK.</sup>  
 <sup>3 The Speech SDK for Swift shares client libraries and reference documentation with the Speech SDK for Objective-C.</sup>  
+
+If you need to build Speech SDK binaries from C++ source, see the [Speech SDK source repository](https://github.com/microsoft-foundry/SpeechSDK). The source version doesn't include every feature available in compiled Speech SDK packages.
 
 [!INCLUDE [License Notice](~/articles/ai-services/speech-service/includes/cognitive-services-speech-service-license-notice.md)]
 

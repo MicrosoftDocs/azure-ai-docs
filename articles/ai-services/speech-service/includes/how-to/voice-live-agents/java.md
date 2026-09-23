@@ -62,7 +62,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="8-10,29,55-57":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="240-262,481-532" highlight="8-10,29,55-57":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -84,7 +84,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="4,15-18,31-32,55-58":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="240-262,481-532" highlight="4,15-18,31-32,55-58":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -99,7 +99,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="452-469" highlight="3-17":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="427-444" highlight="3-17":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -120,7 +120,7 @@ For more information, see [Improve tool calling and latency wait times with inte
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="310-335" highlight="5-13,20":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="307-332" highlight="5-13,20":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant.setupSession()`:
 
@@ -132,7 +132,7 @@ In this sample, the interim response setup is applied inside `BasicVoiceAssistan
 
 When users interrupt agent audio, conversation text can drift from what users actually heard. Auto truncation helps keep session context aligned with delivered audio, which improves follow-up response quality after barge-in and keeps voice conversation history logging more accurate.
 
-This sample currently shows interruption handling with `ClientEventResponseCancel` during speech start, but it doesn't configure `auto_truncate` in `turn_detection`.
+This sample doesn't configure `auto_truncate` in `turn_detection`.
 
 > [!NOTE]
 > In Foundry Agent Service, thread messages and tracing agent threads are based on text content in the thread. Without auto truncation, those records can differ from the exact portion of audio the user actually heard before interruption.
@@ -145,7 +145,7 @@ Reconnect to a previous conversation by specifying the conversation ID. This pre
 
 When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event. The sample extracts the session ID and logs it to the conversation file:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="362-379":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="359-376":::
 
 In this event handler, the session ID is extracted from the event JSON using `extractField(event, "id")` and written to the conversation log.
 
@@ -153,12 +153,12 @@ The sample code writes session details to a conversation log file in the `logs/`
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="512,537-540":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="487,512-515":::
 
 In this sample, conversation reconnect is applied in three places:
 
-- In `main()`, `CONVERSATION_ID` is read from the environment (line 512).
-- The value is passed to the `BasicVoiceAssistant(...)` constructor (lines 537-540).
+- In `main()`, `CONVERSATION_ID` is read from the environment (line 487).
+- The value is passed to the `BasicVoiceAssistant(...)` constructor (lines 512-515).
 - In the constructor, the value is set on `AgentSessionConfig` via `config.setConversationId(conversationId)`.
 
 When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
@@ -176,13 +176,13 @@ Log key session metadata, including the session ID, to a timestamped conversatio
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="92-95,362-379,471-482" highlight="1-4,8-9,23-34":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="91-94,359-376,446-457" highlight="1-4,8-9,23-34":::
 
 In this sample, session metadata logging is applied in three places:
 
-- A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 92–95).
-- On `SESSION_UPDATED`, the handler extracts the session ID from the event JSON and writes it to the log (lines 365–366).
-- `writeLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 471–482).
+- A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 91–94).
+- On `SESSION_UPDATED`, the handler extracts the session ID from the event JSON and writes it to the log (lines 362–363).
+- `writeLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 446–457).
 
 Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session.
 

@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 06/15/2026
+ms.date: 08/19/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -29,7 +29,7 @@ The `azd ai` workflow follows the same lifecycle whether you build a small proto
 | Install | Install `azd` and the Foundry extensions. | [Set up your developer environment](../../how-to/develop/install-cli-sdk.md) |
 | Scaffold | Initialize a project from a template or your existing code. | [Quickstart: Deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md) |
 | Define | Configure the agent, model deployment dependencies, protocols, tools, and environment in `azure.yaml`. | [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md) |
-| Develop | Write agent logic, add tools, and test locally. | [Tools overview](tool-catalog.md) |
+| Develop | Write agent logic, add tools using a toolbox, and test locally. | [Toolbox overview](toolbox-overview.md) |
 | Deploy | Provision infrastructure and deploy to Foundry. | [Deploy a hosted agent](../how-to/deploy-hosted-agent.md) |
 | Operate | Monitor logs, manage versions, and automate runs. | [Manage hosted agents](../how-to/manage-hosted-agent.md) |
 | Evaluate | Measure agent quality and improve the prompt. | [Run agent evaluations with the azd CLI](../../observability/how-to/azure-developer-cli-evaluation.md) |

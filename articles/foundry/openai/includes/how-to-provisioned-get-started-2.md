@@ -6,8 +6,9 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 05/25/2026
+ms.date: 09/11/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Scale your deployment
@@ -59,6 +60,13 @@ To view the metric:
 1. If you have more than one deployment in the resource, select **Apply Splitting** to see values split by deployment.
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the Provisioned-managed utilization V2 metric displayed on the resource metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
+
+### Limitations and known issues for image model metrics
+
+Azure Monitor metrics for image models currently have the following limitation and known issue:
+
+- **Limitation:** Azure Monitor doesn't report latency metrics for image model requests.
+- **Known issue:** Request count metrics report two requests for each request made. Divide the reported request count by two to determine the actual number of requests.
 
 ### How utilization works
 
