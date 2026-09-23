@@ -12,6 +12,7 @@ ms.date: 06/05/2024
 ms.custom:
   - devx-track-azurepowershell
   - sfi-ropc-blocked
+ai-usage: ai-assisted
 ---
 
 # Data science with a Windows Data Science Virtual Machine
@@ -49,7 +50,7 @@ In this article, you learn how to use your DSVM to both handle data science task
 
 The Jupyter Notebook provides a browser-based IDE for data exploration and modeling. You can use Python 2, Python 3, or R in a Jupyter Notebook.
 
-To start the Jupyter Notebook, select the **Jupyter Notebook** icon on the **Start** menu or on the desktop. In the DSVM command prompt, you can also run the command ```jupyter notebook``` from the directory that hosts existing notebooks or where you want to create new notebooks.  
+To start the Jupyter Notebook, select the **Jupyter Notebook** icon on the **Start** menu or on the desktop. In the DSVM command prompt, you can also run the command `jupyter notebook` from the directory that hosts existing notebooks or where you want to create new notebooks.  
 
 After you start Jupyter, navigate to the `/notebooks` directory. This directory hosts example notebooks that are prepackaged into the DSVM. You can:
 
@@ -137,7 +138,7 @@ The GitHub code repository hosts code samples and code sources for many tools th
 
 The DSVM comes loaded with client tools on the command line and in the GUI to access the GitHub repository. The Git Bash command-line tool operates with Git and GitHub. Visual Studio is installed on the DSVM and has the Git extensions. Both the **Start** menu and the desktop have icons for these tools.
 
-Use the ```git clone``` command to download code from a GitHub repository. To download the data science repository published by Microsoft into the current directory, for example, run this command in Git Bash:
+Use the `git clone` command to download code from a GitHub repository. To download the data science repository published by Microsoft into the current directory, for example, run this command in Git Bash:
 
 ```bash
 git clone https://github.com/Azure/DataScienceVM.git
@@ -163,7 +164,7 @@ Azure Blob storage is a reliable, economical cloud storage service for both larg
 
 - Confirm that the command-line AzCopy tool is preinstalled, with this command:
 
-    ```C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe```
+    `C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe`
 
   The directory hosting azcopy.exe is already in your PATH environment variable, so you can avoid typing the full command path when you run this tool. For more information about the AzCopy tool, read the [AzCopy documentation](/azure/storage/common/storage-use-azcopy-v10).
 
@@ -271,12 +272,12 @@ Azure Synapse Analytics is an elastic data "warehouse as a service," with an ent
 
 Azure Cosmos DB is a cloud-based NoSQL database. It can handle JSON documents, for example, and can store and query the documents. These example steps show how to access Azure Cosmos DB from the DSVM:
 
-1. The Azure Cosmos DB Python SDK is already installed on the DSVM. To update it, run ```pip install pydocumentdb --upgrade``` from a command prompt.
+1. The Azure Cosmos DB Python SDK is already installed on the DSVM. To update it, run `pip install pydocumentdb --upgrade` from a command prompt.
 1. Create an Azure Cosmos DB account and database from the [Azure portal](https://portal.azure.com).
 1. Download the Azure Cosmos DB Data Migration Tool from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595) and extract it to a directory of your choice.
 1. Import the JSON data (volcano data) stored in a [public blob](https://data.humdata.org/dataset/a60ac839-920d-435a-bf7d-25855602699d/resource/7234d067-2d74-449a-9c61-22ae6d98d928/download/volcano.json) into Azure Cosmos DB with the following command parameters to the migration tool. (Use dtui.exe from the directory where you installed the Azure Cosmos DB Data Migration Tool.) Enter the source and target location with these parameters:
 
-    `/s:JsonFile /s.Files:https://data.humdata.org/dataset/a60ac839-920d-435a-bf7d-25855602699d/resource/7234d067-2d74-449a-9c61-22ae6d98d928/download/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1`
+`/s:JsonFile /s.Files:https://data.humdata.org/dataset/a60ac839-920d-435a-bf7d-25855602699d/resource/7234d067-2d74-449a-9c61-22ae6d98d928/download/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1`
 
 After you import the data, you can go to Jupyter and open the notebook titled *DocumentDBSample*. It contains Python code to access Azure Cosmos DB and handle some basic querying. Visit the Azure Cosmos DB service [documentation page](/azure/cosmos-db/) for more information about Azure Cosmos DB.
 
@@ -288,7 +289,7 @@ You can visualize the Volcano JSON file described in the preceding Azure Cosmos 
 1. The JSON records, imported as a list, should become visible. Convert the list to a table, so that Power BI can work with it.
 1. Select the expand (arrow) icon to expand the columns.
 1. The location is a **Record** field. Expand the record and select only the coordinates. **Coordinate** is a list column.
-1. Add a new column to convert the list coordinate column into a comma-separated **LatLong** column. Use the formula ```Text.From([coordinates]{1})&","&Text.From([coordinates]{0})``` to concatenate the two elements in the coordinate list field.
+1. Add a new column to convert the list coordinate column into a comma-separated **LatLong** column. Use the formula `Text.From([coordinates]{1})&","&Text.From([coordinates]{0})` to concatenate the two elements in the coordinate list field.
 1. Convert the **Elevation** column to decimal, and select the **Close** and **Apply** buttons.
 
 You can use the following code as an alternative to the preceding steps. It scripts out the steps used in the Advanced Editor in Power BI to write the data transformations in a query language:
@@ -324,7 +325,7 @@ For a large-scale analysis project, you might need more CPU, memory, or disk cap
 
 The DSVM offers prebuilt tools that can address many common data-analytics needs. They save time because you don't have to individually install and configure your environments. They also save you money, because you pay for only resources that you use.
 
-You can use other Azure data and analytics services profiled in this article to enhance your analytics environment. In some cases, you might need other tools, including specific proprietary partner tools. You have full administrative access on the virtual machine to install the tools that you need. You can also install other packages in Python and R that aren't preinstalled. For Python, you can use either ```conda``` or ```pip```. For R, you can use ```install.packages()``` in the R console, or use the IDE and select **Packages** > **Install Packages**.
+You can use other Azure data and analytics services profiled in this article to enhance your analytics environment. In some cases, you might need other tools, including specific proprietary partner tools. You have full administrative access on the virtual machine to install the tools that you need. You can also install other packages in Python and R that aren't preinstalled. For Python, you can use either `conda` or `pip`. For R, you can use `install.packages()` in the R console, or use the IDE and select **Packages** > **Install Packages**.
 
 ## Deep learning
 
