@@ -396,8 +396,8 @@ items:
   #   href:
   - name: Realtime API
     items:
-    - name: GPT Realtime 2.x (preview)
-      displayName: GPT Realtime 2.x concept overview (preview)
+    - name: GPT Realtime 2.x
+      displayName: GPT Realtime 2.x concept overview
       href: ../../openai/concepts/realtime-2.md
     - name: Realtime API for speech and audio
       displayName: Use the GPT Realtime API for speech and audio
