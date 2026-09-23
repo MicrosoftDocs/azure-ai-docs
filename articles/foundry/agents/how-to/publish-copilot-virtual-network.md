@@ -7,7 +7,7 @@ ms.reviewer: aahill
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/28/2026
+ms.date: 09/21/2026
 ms.custom: pilot-ai-workflow-jan-2026, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer who runs a Microsoft Foundry agent inside a virtual network, I want to publish it to Microsoft 365 Copilot and Teams so that users can reach it even though public network access is disabled.
@@ -277,6 +277,32 @@ Customize the body before you publish:
 
 A successful response returns the published title ID (`titleId`).
 
+### Download and inspect the app package
+
+Download the generated app package before you publish when you want to inspect the manifest or manually upload the package to Microsoft Teams. The download endpoint accepts the same request body as the publish endpoint.
+
+1. Save the JSON request body from the publish example as `publish-request.json`.
+
+1. Call the package download endpoint with the bearer token from [Get a bearer token](#11-get-a-bearer-token):
+
+   ```bash
+   curl --fail-with-body \
+     --request POST \
+     --url "{{endpoint}}/agents/<agent-name>/microsoft365/zip?api-version=v1" \
+     --header "Authorization: Bearer {{token}}" \
+     --header "Content-Type: application/json" \
+     --data @publish-request.json \
+     --output appPackage.zip
+   ```
+
+   **Expected result**: The request saves the validated package as `appPackage.zip`.
+
+1. Extract the package and inspect `manifest.json` and its referenced assets. For the fields to check and the values that you shouldn't change, see [Inspect the downloaded package](./publish-copilot.md#inspect-the-downloaded-package).
+
+The download request performs the same request validation, agent resolution, package generation, and manifest validation as publishing. Package preparation can update the agent endpoint configuration required for publishing, so the request requires agent write permission. It doesn't submit the package to the Microsoft 365 catalog or create a publish record. If manifest validation fails, the endpoint returns the validation error and doesn't return a ZIP file.
+
+Call this endpoint through the Foundry project endpoint with a token for the `https://ai.azure.com` audience. Your identity needs agent write permission on the project, such as the **Foundry User** role described in [Prerequisites](#prerequisites).
+
 ## Step 5: Review the network path and security controls
 
 The public Activity Protocol route is a service-managed exception to the project's private-network restrictions. It gives Microsoft Copilot and Teams a way to deliver activities without making the project's other endpoints public.
@@ -361,6 +387,9 @@ These errors occur when you publish through the Microsoft 365 publish API.
 | The publish API returns a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service. |
 | The publish API returns an identity error | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
 | The publish API returns a permission error | The acting user doesn't have the required permission on the workspace: `The acting user does not have the required permission on the workspace.` | Assign a role that grants agent write access on the Foundry project. |
+| The package download API returns `400` and no ZIP file | The request fields or generated manifest failed validation. The download endpoint doesn't return an unvalidated package. | Correct the validation error, and call the download endpoint again. The request body follows the same validation rules as the publish request. |
+| The package download API returns `401` or `403` | The token is missing or invalid, the caller lacks agent write permission, or the request wasn't sent through the Foundry project endpoint. | Get a token for the `https://ai.azure.com` audience, confirm the caller has the **Foundry User** role or equivalent agent write permission, and use the project endpoint. |
+| The package download API returns `429` | The service is throttling the request. | Wait for the duration in the `Retry-After` response header, and then retry. |
 
 The following issues are specific to publishing behind a virtual network:
 

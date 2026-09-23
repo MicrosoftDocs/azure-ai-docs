@@ -4,7 +4,7 @@ description: "Publish a Microsoft Foundry agent to Microsoft Copilot and Microso
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 08/26/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -175,11 +175,36 @@ If you want to customize the agent manifest before distributing it:
 
    **Expected result**: A `.zip` file containing the agent manifest downloads to your local machine.
 
-1. Customize the manifest in the downloaded package as needed.
+   Foundry prepares and validates the downloaded package by using the same process it uses for direct publishing. If the package doesn't pass validation, Foundry returns an error instead of an unvalidated ZIP file.
+
+1. [Inspect the downloaded package](#inspect-the-downloaded-package), and then customize its user-facing metadata or assets as needed.
 
 1. In Microsoft Teams, upload the package you downloaded.
     1. Go to **Apps** > **Manage your apps** > **Upload an app**.
     1. Select  **Upload a custom app** or **Submit an app to your org** and choose the downloaded `.zip` file.
+
+#### Inspect the downloaded package
+
+Extract the ZIP file before you customize or upload it. The package contains `manifest.json`, `icon-color.png`, and `icon-outline.png`. An agent with additional Microsoft 365 capabilities might include other supporting files.
+
+Check these values when you troubleshoot a publishing or package-upload problem:
+
+| Manifest location | What to verify |
+|---|---|
+| `version` | Matches the **Publish version** you entered and uses a new version when you update published metadata. |
+| `name.short` and `name.full` | Contain the expected agent display name. The short name might be shortened to meet the manifest limit. |
+| `description.short` and `description.full` | Contain the descriptions you entered in the publishing dialog. |
+| `developer` | Contains the expected developer name, website, privacy statement, and terms-of-use URLs. |
+| `id` | Contains a GUID that identifies the generated app package. Keep this service-generated value unchanged. |
+| `bots[0].botId`, `webApplicationInfo.id`, and `copilotAgents.customEngineAgents[0].id` | Identify the agent's generated Microsoft Entra application. Keep these service-generated values unchanged. |
+| `bots[0].scopes` | Contains the Microsoft 365 and Teams surfaces where the agent can run. |
+| `icons.color` and `icons.outline` | Reference icon files that exist at the root of the ZIP package. |
+
+When you customize the package, change only the user-facing metadata and supported assets you intend to override. Don't remove generated agent sections or change generated identifiers. For the complete schema, see [Microsoft 365 app manifest schema reference](/microsoft-365/extensibility/schema/).
+
+If **Download ZIP** returns an error, correct the field named in the error and try again. Common causes include an invalid version, a missing required description, an invalid HTTPS URL, an invalid icon, or insufficient permission to update the agent.
+
+To download the same package by using the REST API, see [Download and inspect the app package](./publish-copilot-virtual-network.md#download-and-inspect-the-app-package).
 
 ## Update a published agent in M365/Teams
 
@@ -202,6 +227,8 @@ Use the following table to resolve errors that occur while you publish from the 
 | Symptom | Cause | Resolution |
 |-------|-------|------------|
 | Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` isn't null). Confirm the developer name is 32 characters or fewer. |
+| **Download ZIP** doesn't return a package | The request or generated manifest failed validation | Correct the field identified in the error and retry. Foundry doesn't return a package that fails manifest validation. |
+| Teams rejects a package that previously downloaded successfully | A required file, generated identifier, or manifest section changed after download | Download the package again, and limit customizations to supported user-facing metadata and assets. |
 | Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
 | The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
 
