@@ -6,7 +6,7 @@ author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
-ms.date: 9/17/2026
+ms.date: 09/17/2026
 ms.author: ssalgado
 ai-usage: ai-assisted
 ---
