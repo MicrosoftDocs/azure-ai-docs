@@ -325,7 +325,7 @@ For a large-scale analysis project, you might need more CPU, memory, or disk cap
 
 The DSVM offers prebuilt tools that can address many common data-analytics needs. They save time because you don't have to individually install and configure your environments. They also save you money, because you pay for only resources that you use.
 
-You can use other Azure data and analytics services profiled in this article to enhance your analytics environment. In some cases, you might need other tools, including specific proprietary partner tools. You have full administrative access on the virtual machine to install the tools that you need. You can also install other packages in Python and R that aren't preinstalled. For Python, you can use either `conda` or `pip`. For R, you can use `install.packages()` in the R console, or use the IDE and select **Packages** > **Install Packages**.
+Use other Azure data and analytics services profiled in this article to enhance your analytics environment. In some cases, you might need other tools, including specific proprietary partner tools. You have full administrative access on the virtual machine to install the tools that you need. You can also install other packages in Python and R that aren't preinstalled. For Python, use either `conda` or `pip`. For R, use `install.packages()` in the R console, or use the IDE and select **Packages** > **Install Packages**.
 
 ## Deep learning
 
