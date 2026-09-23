@@ -103,7 +103,7 @@ The following table lists the available DragonHD voices:
 
 ### Expressive style tags
 Expressive style tags provide a way to direct delivery for HD voice output, making them more expressive and emotional. 
-User can apply supported speaking styles and paralinguistic effects through SSML or square-bracket tags embedded directly in text.
+You can apply supported speaking styles and paralinguistic effects through SSML or square-bracket tags embedded directly in text.
 
 Example in SSML
 ```ssml
