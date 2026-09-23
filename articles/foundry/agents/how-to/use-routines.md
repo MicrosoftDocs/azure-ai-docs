@@ -166,7 +166,7 @@ If the agent has tools that require delegated user access, explicitly opt in to 
 
 Set the top-level `authorization.identity` field to `"creator"` in a REST create request or JavaScript create options. In Python, pass `RoutineAuthorization(identity="creator")`. Omitting authorization, or setting the identity to `"agent"`, uses the default agent identity.
 
-The examples below create a disabled routine and retrieve it to confirm that `authorization.identity` is stored as `"creator"`. Successful creation and retrieval confirm the saved configuration, not compatibility with every delegated tool. Check each tool's authentication requirements and the creator's permissions and consent separately.
+The following examples create a disabled routine and retrieve it to confirm that `authorization.identity` is stored as `"creator"`. Successful creation and retrieval confirm the saved configuration, not compatibility with every delegated tool. Check each tool's authentication requirements and the creator's permissions and consent separately.
 
 The `authorization` setting is accepted only when you create a routine. An update ignores it. To switch an existing routine between agent and creator identity, delete and recreate the routine with the required `authorization.identity` value.
 
