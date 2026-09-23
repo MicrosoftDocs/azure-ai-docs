@@ -324,7 +324,7 @@ The agent has implicit access to core capabilities within its own project, such 
 
 ## Hosted agent deployment
 
-Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
+Hosted agent deployment operations are data plane operations. For step-by-step deployment guidance, see [Deploy a Hosted agent][deploy].
 
 ### Push an image to the registry
 
