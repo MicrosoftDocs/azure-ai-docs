@@ -75,7 +75,7 @@
   <rect x="24" y="482" width="360" height="126" rx="8" fill="#FFFFFF" stroke="#057A55" stroke-width="1.5"/>
   <text x="204" y="506" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Per-session, VM-isolated sandbox</text>
   <text x="204" y="532" text-anchor="middle" font-size="14" fill="#374151">runs your container code</text>
-  <text x="204" y="555" text-anchor="middle" font-size="14" fill="#374151">$HOME and /files persist</text>
+  <text x="204" y="555" text-anchor="middle" font-size="14" fill="#374151">Session $HOME persists</text>
   <text x="204" y="578" text-anchor="middle" font-size="14" fill="#374151">across turns and idle periods</text>
   <text x="204" y="601" text-anchor="middle" font-size="14" fill="#374151">isolated from other sessions</text>
 
@@ -91,7 +91,7 @@
   <line x1="644" y1="551" x2="666" y2="551" stroke="#4B5563" stroke-width="2" marker-end="url(#ha-arrow)"/>
   <rect x="668" y="530" width="108" height="42" rx="7" fill="#DEF7EC" stroke="#057A55" stroke-width="1.5"/>
   <text x="722" y="557" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Resumed</text>
-  <text x="588" y="596" text-anchor="middle" font-size="14" fill="#374151">$HOME and /files survive the idle gap</text>
+  <text x="588" y="596" text-anchor="middle" font-size="14" fill="#374151">$HOME (including uploads) survives idle</text>
 
   <!-- arrows down -->
   <line x1="144" y1="616" x2="144" y2="660" stroke="#4B5563" stroke-width="2" marker-end="url(#ha-arrow)"/>

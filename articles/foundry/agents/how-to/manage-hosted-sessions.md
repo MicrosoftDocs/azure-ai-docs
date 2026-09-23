@@ -3,7 +3,7 @@ title: "Manage hosted agent sessions"
 description: "Create, invoke, and manage sessions for hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 08/21/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -25,7 +25,7 @@ Sessions and conversations are distinct concepts in Foundry Agent Service:
 
 | Aspect | Session | Conversation |
 |---|---|---|
-| What it represents | Sandbox compute and persisted filesystem (`$HOME`, `/files`) | History of messages, tool calls, and responses |
+| What it represents | Sandbox compute and persistent `$HOME`; the `/files` endpoint stores uploads there | History of messages, tool calls, and responses |
 | Identifier | `agent_session_id` | `previous_response_id` or `conversation` (Responses protocol only) |
 | Used for | File uploads, working state across turns | Threading turns of a chat together |
 | Managed by | The platform, through the `/sessions` API | The platform (Responses); your container code (Invocations) |
@@ -656,7 +656,7 @@ Grant the Foundry User role only to identities that need cross-user session acce
 
 Create a session in advance only when you need to:
 
-- Upload files to the sandbox (`/files`) before the agent's first turn.
+- Upload files through the `/files` endpoint before the agent's first turn.
 - Preallocate a session you can reference from your client code before the first invocation.
 - Pin the session to a specific agent version with `version_indicator`. Each session is bound to a single version at creation time. By default, the platform resolves the version using the agent endpoint's traffic-routing rules (`version_selector`)—for example, `@latest`. Pass `version_indicator` to override that and bind the session to a concrete version (such as `"2"`) so later turns keep using that version even if you publish a newer one. The value must be a concrete version identifier returned by the agent versions API; aliases like `@latest` aren't accepted here.
 

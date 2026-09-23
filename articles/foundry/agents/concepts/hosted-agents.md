@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service"
 description: "Deploy and manage containerized agents on Foundry Agent Service with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 09/11/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -27,7 +27,8 @@ Choose Hosted agents over prompt-based agents when you need to:
 - **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
 - **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
 - **Control compute resources** - specify CPU and memory for your agent's sandbox.
-- **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
+- **Run stateful workloads** - persist files across turns by writing to
+  `$HOME` or uploading them through the `/files` endpoint.
 - **Run long-lived work resiliently** - preserve in-progress agent work across process interruptions and replay streamed results to reconnecting clients.
 
 ### How it works
@@ -59,7 +60,11 @@ The platform automatically manages the container lifecycle based on activity, pr
 
 #### Isolation model
 
-Hosted agents run in per-session VM-isolated sandboxes. Each session gets a dedicated sandbox with a persistent filesystem (`$HOME` and `/files`), enabling scale-to-zero with stateful resume and predictable cold starts. Sessions are isolated from each other, and state is automatically restored when a session resumes after going idle.
+Hosted agents run in per-session VM-isolated sandboxes. Each session gets a
+dedicated sandbox with a persistent `$HOME` filesystem. Files uploaded through
+the `/files` endpoint are written into that same storage. Sessions are isolated
+from each other, and the filesystem is restored when a session resumes after
+going idle.
 
 ### Protocols: Responses, Invocations, and Invocations (WebSocket)
 
@@ -80,7 +85,8 @@ Hosted agent containers can expose one or more protocols. Each protocol is provi
 | Real-time voice agent (microphone in, speech out) | **Invocations (WebSocket)** | Bidirectional streaming over a single persistent connection. Pair with Pipecat, LiveKit, or Voice Live in your container. See [Build a voice agent](../how-to/build-voice-agent.md). |
 
 > [!TIP]
-> **Not sure?** Start with **Responses**. You can always add an Invocations endpoint later—a Hosted agent can support both protocols simultaneously.
+> **Not sure?** Start with **Responses**. You can add an Invocations endpoint
+> later because a Hosted agent can support both protocols simultaneously.
 
 The protocol you choose determines the payload your container receives, and how much of the session, streaming, and background lifecycle the platform manages for you. A single agent can support more than one protocol, so this choice isn't permanent. Use the following decision tree to pick a starting point.
 
@@ -91,8 +97,8 @@ The protocol you choose determines the payload your container receives, and how 
 | | **Responses** | **Invocations** |
 |---|---|---|
 | **Best for** | Most agents—the platform manages conversation history, streaming lifecycle, and background execution | Agents that need full HTTP control, custom payloads, or long-running async workflows |
-| **Payload** | OpenAI-compatible /responses contract | Arbitrary JSON via /invocations—you define the schema |
-| **Client SDK** | Any OpenAI-compatible SDK (Python, JS, C#) works out of the box | Custom client—you define the contract |
+| **Payload** | OpenAI-compatible `/responses` format | Arbitrary JSON via `/invocations`—you define the schema |
+| **Client SDK** | Any OpenAI-compatible SDK (Python, JS, C#) works out of the box | Custom client—you define the schema and client behavior |
 | **Session history** | Platform-managed via conversation ID | You manage sessions (in-memory, Cosmos DB, etc.) |
 | **Streaming** | Platform-managed ResponseEventStream with lifecycle events | Raw SSE—you format and write events directly |
 | **Background / long-running** | Built-in background mode and polling; optional resilient recovery for stored background responses | Resilient tasks in the AgentServer SDK; you define polling or streaming endpoints |
@@ -141,9 +147,13 @@ Hosted agents use **sessions**, **conversations**, and the **state store** to ma
 
 #### Sessions
 
-A session ID identifies a logical session with persisted state, including $HOME and files uploaded via the /files endpoint. The platform provisions compute on demand and restores persisted state onto it.
+A session ID identifies a logical session with a persisted `$HOME` filesystem.
+Files uploaded through the `/files` endpoint are stored in that filesystem.
+The platform provisions compute on demand and restores the filesystem onto it.
 
-- **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
+- **State persistence**: `$HOME`, including files uploaded through the
+  `/files` endpoint, persists across turns and idle periods. When compute is
+  provisioned again, the session filesystem is restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
 - **Session lifetime**: You can configure the idle timeout per agent version from 2 through 60 minutes, with a 15-minute default. If no request arrives within that window, the platform deprovisions the compute and persists the session state. The platform permanently deletes a session after 30 days of inactivity.
@@ -162,7 +172,7 @@ The state store is a durable, server-backed key-value store for application stat
 
 - **Persistence**: Foundry stores items and persists them independently of compute state, so they survive container crashes, restarts, and idle eviction.
 - **Isolation**: Each store name is an independent partition. A store can also partition its items per end user, so one store name is safe to share across the users of a multitenant agent.
-- **Item lifetime**: A store-level idle window ages out items, with a default of 30 days. Writes renew the window, and you can configure a store to never expire its items.
+- **Item lifetime**: A store-level idle window ages out items, with a default of 30 days. Writes renew the window, and you can configure a store with no item expiration.
 - **Any framework**: Because the store is a general-purpose key-value API, an agent can use it to hold framework checkpoints for a bring-your-own framework such as LangGraph or Microsoft Agent Framework, alongside its own application state.
 
 For more information, see [Durable state store for hosted agents](agent-state-store.md).
@@ -177,20 +187,24 @@ For more information, see [Durable state store for hosted agents](agent-state-st
 
 | State | What happens |
 |-------|----------------------------------------------|
-| **Active** | Compute is running. Requests are routed to it. $HOME and /files content are available. |
-| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists session state ($HOME, `/files`). |
+| **Active** | Compute is running. Requests are routed to it. The session's `$HOME`, including uploaded files, is available. |
+| **Idle** | No requests for the configured idle timeout. The platform deprovisions compute and persists the session's `$HOME`. |
 | **Resumed** | Same session ID is referenced again. Platform provisions new compute and restores persisted state. |
 
-Compute follows the session, not the individual request. The platform provisions a sandbox when a session starts and releases it when the configured idle timeout elapses after the most recent request. When the session resumes, the platform restores `$HOME` and `/files`, so your code finds the files it wrote earlier. The following diagram shows how a request moves through these states.
+Compute follows the session, not the individual request. The platform
+provisions a sandbox when a session starts and releases it when the configured
+idle timeout elapses after the most recent request. When the session resumes,
+the platform restores `$HOME`, including files uploaded through the `/files`
+endpoint. The following diagram shows how a request moves through these states.
 
-:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores $HOME and /files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
+:::image type="content" source="../media/hosted-agents/hosted-agent-request-flow.svg" alt-text="Sequence diagram of a hosted agent request. The client sends a request with a conversation or session ID, Agent Service authenticates it with Microsoft Entra ID and provisions compute, and the sandbox restores the session's persistent home filesystem, including uploaded files. Your code loops over model calls and Toolbox tool calls over MCP, then returns a response. After the configured idle timeout elapses without a request, the platform deprovisions compute and persists session state, and the next request restores it onto new compute." lightbox="../media/hosted-agents/hosted-agent-request-flow.svg":::
 
 ## Security and data handling
 
 Treat a Hosted agent like production application code.
 
 > [!IMPORTANT]
-> Use third-party systems at your own risk, and always implement appropriate responsible AI mitigations. You're responsible for managing all data that might flow outside of your organization's compliance and geographic boundaries. [Learn more](#how-it-works).
+> Use third-party systems at your own risk, and implement appropriate responsible AI mitigations. You're responsible for managing all data that might flow outside of your organization's compliance and geographic boundaries. [Learn more](#how-it-works).
 
 - **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
@@ -247,7 +261,7 @@ To right-size, run a representative workload and inspect resource usage in the l
 1. Open the App Insights resource in the Azure portal and select **Investigate** > **Performance**.
 1. Review CPU, available memory, request rate, and average request duration over the time range you tested.
 
-Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Always retest after a change, because each new version is immutable.
+Compare the observed peaks against the cpu and memory you allocated. If sustained peaks exceed roughly 70% of allocation, raise the next agent version's allocation; if peaks stay well below, lower it to reduce cost. Retest after a change because each new version is immutable.
 
 ### Private networking
 

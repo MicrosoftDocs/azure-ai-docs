@@ -52,7 +52,7 @@
 
   <rect x="24" y="458" width="752" height="54" rx="9" fill="#FEF3C7" stroke="#C27803" stroke-width="2"/>
   <text x="400" y="481" text-anchor="middle" font-size="14" font-weight="700" fill="#92400E">After 15 minutes with no requests</text>
-  <text x="400" y="502" text-anchor="middle" font-size="14" fill="#374151">compute is deprovisioned, and $HOME and /files are persisted</text>
+  <text x="400" y="502" text-anchor="middle" font-size="14" fill="#374151">compute is deprovisioned, and session $HOME is persisted</text>
 
   <rect x="24" y="522" width="752" height="54" rx="9" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
   <text x="400" y="545" text-anchor="middle" font-size="14" font-weight="700" fill="#057A55">On the next request</text>

@@ -3,7 +3,7 @@ title: "Migrate hosted agents to the latest version"
 description: "Migrate your hosted agents from the initial public preview to the latest version, including API, SDK, CLI, protocol library, and identity model changes."
 author: aahill
 ms.author: aahi
-ms.date: 08/06/2026
+ms.date: 09/21/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -27,7 +27,9 @@ If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../
 The latest version updates the existing platform with a session-based sandbox model. Key changes:
 
 - **Automatic compute lifecycle** — No manual start, stop, or replica management. The platform provisions compute when a request arrives and deprovisions it after the configured idle timeout, which defaults to 15 minutes. See [CLI command mapping](#cli-command-mapping).
-- **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
+- **Session-based isolation** — Each session gets its own sandbox with a
+  persistent `$HOME` filesystem across turns and idle periods. Files uploaded
+  through the `/files` endpoint are stored there.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
 - **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
@@ -435,7 +437,8 @@ To migrate:
 1. Forward the per-request `x-agent-foundry-call-id` header on outbound calls to Foundry services (Storage, Toolbox, and other agents). The official SDK adapters do this automatically when you call those services through their clients. If you make raw HTTP calls yourself, read `x-agent-foundry-call-id` from the inbound request and add it, unchanged, to your outbound request. Don't parse the value - the platform resolves the caller's identity from it.
 1. To partition data your container stores per user, read the `x-agent-user-id` header. For a worked example, see [Multiplex multiple users in one hosted agent session](multiplex-session-users.md).
 
-For the full set of platform headers and environment variables, see [Hosted agent runtime contract](../concepts/hosted-agent-contract.md).
+For the full set of platform headers and environment variables, see
+[Hosted agent container requirements](../concepts/hosted-agent-contract.md).
 
 ## Removed APIs
 

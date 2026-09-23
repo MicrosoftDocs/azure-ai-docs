@@ -4,7 +4,7 @@ description: "Deploy a long-running hosted agent that keeps working with no clie
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
-ms.date: 08/20/2026
+ms.date: 09/21/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -16,7 +16,10 @@ ai-usage: ai-assisted
 
 In this article, you deploy a [long-running hosted agent](../concepts/long-running-agent-resilience.md) that uses the Responses protocol and the resilient background response feature. You run a stored background response, crash the agent process on purpose, and watch it resume from the last checkpoint after restart.
 
-The agent runs three simulated streamed stages: analyze, generate, and refine. Each completed stage is one checkpointed output item, so a recovered run repeats at most one stage.
+The agent runs three simulated streamed stages: analyze, generate, and refine.
+Each completed stage is one checkpointed output item. When each checkpoint
+persists successfully, a recovered run repeats only the stage that was in
+progress.
 
 > [!NOTE]
 > Long-running agents are in preview. APIs and package versions are subject to change.
@@ -48,7 +51,9 @@ app = ResponsesAgentServerHost(options=options)
 ```
 
 > [!IMPORTANT]
-> `resilient_background` defaults to `False`. Without it, a background response that crashes is marked `failed` instead of being recovered. See [Recover long-running work after a crash](recover-long-running-work.md).
+> `resilient_background` defaults to `False`. Without it, AgentServer doesn't
+> reenter the handler after process loss. See
+> [Recover long-running work after a crash](recover-long-running-work.md).
 
 ## Run it locally
 
