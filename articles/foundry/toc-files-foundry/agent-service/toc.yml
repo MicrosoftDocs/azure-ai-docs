@@ -168,6 +168,8 @@ items:
       href: ../../agents/how-to/recover-long-running-work.md
     - name: Steer an in-flight turn
       href: ../../agents/how-to/steer-hosted-agent.md
+    - name: Cancel a hosted agent turn
+      href: ../../agents/how-to/cancel-hosted-agent-turn.md
     - name: Add human-in-the-loop approval
       href: ../../agents/how-to/add-human-in-the-loop.md
     - name: Stream with reconnect
