@@ -15,13 +15,13 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted, dev-focus
 
 # Configure and share your agent
 
-Every agent in Microsoft Foundry has a stable endpoint from the moment you create it. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
+Every agent in Microsoft Foundry has a stable endpoint from the moment you create it. Behind each endpoint, a Foundry model processes user input according to the agent's instructions and tools. When end users interact with your agent through Microsoft Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
 - **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that behavior isn't what you want, pin traffic to a specific version.
 - **Protocols and authorization schemes** — Ensure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotServiceRbac or BotServiceTenant authorization scheme.
 
 This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
 
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
+- [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md)
 - [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
 > [!NOTE]
@@ -396,7 +396,7 @@ Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 ### Allow Microsoft 365 traffic to a private-network agent
 
-If your project disables public network access, set `enable_m365_public_endpoint` to `true` inside the `activity` protocol configuration before you publish the agent to Microsoft 365 Copilot or Teams.
+If your project disables public network access, set `enable_m365_public_endpoint` to `true` inside the `activity` protocol configuration before you publish the agent to Microsoft Copilot or Teams.
 
 ```http
 PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
@@ -429,7 +429,7 @@ Microsoft 365 doesn't support private network connectivity for agents and requir
 
 If the setting is omitted or set to `false`, private-network controls continue to block all public Activity Protocol requests. This PATCH replaces `protocol_configuration` and `authorization_schemes`, so include every protocol and authorization scheme that the endpoint must retain.
 
-For the complete publishing flow, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams by using the REST API](publish-copilot-virtual-network.md).
+For the complete publishing flow, see [Publish agents to Microsoft Copilot and Microsoft Teams by using the REST API](publish-copilot-virtual-network.md).
 
 ### Add an agent card
 
@@ -647,7 +647,7 @@ Content-Type: application/json
 | --- | --- | --- |
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
 | `protocol_configuration` | object | Protocols enabled, keyed by protocol name (for example, `responses`, `activity`, `a2a`). Each key maps to a protocol configuration object. |
-| `protocol_configuration.activity.enable_m365_public_endpoint` | boolean | When `true`, enables source-IP-filtered public access to the Activity Protocol route for Microsoft 365 Copilot and Teams even if the project disables public network access. |
+| `protocol_configuration.activity.enable_m365_public_endpoint` | boolean | When `true`, enables source-IP-filtered public access to the Activity Protocol route for Microsoft Copilot and Teams even if the project disables public network access. |
 | `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
 
 </details>
@@ -656,5 +656,5 @@ Content-Type: application/json
 
 - [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - [Hosted agents](../concepts/hosted-agents.md)
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
+- [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md)
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)

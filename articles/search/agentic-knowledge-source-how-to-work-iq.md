@@ -80,7 +80,7 @@ Unlike indexed knowledge sources, Work IQ knowledge sources query live data dire
 
 ## Data governance and compliance
 
-Before you enable Work IQ retrieval, review [Data, Privacy, and Security for Microsoft 365 Copilot](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Before you enable Work IQ retrieval, review [Data, Privacy, and Security for Microsoft Copilot](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Data use and privacy
 

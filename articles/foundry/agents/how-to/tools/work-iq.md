@@ -24,7 +24,7 @@ zone_pivot_groups: selection-work-iq
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
+[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
 
 You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) protocol. Your agent delegates natural-language tasks to Work IQ as a peer agent — for example, "Summarize my recent emails about Project Contoso" — and Work IQ handles retrieval, reasoning, and response synthesis against the user's Microsoft 365 data.
 
@@ -96,7 +96,7 @@ Use Foundry Toolkit for Visual Studio Code to add Work IQ as a built-in tool whe
 1. Select the **+ Add Toolbox** icon.
 1. On the **Build a Custom Toolbox** tab, enter the toolbox name and description.
 1. Select **Add tools**, and then select **Work IQ**.
-1. In **Add the Work IQ Tool**, select the Microsoft 365 Copilot data you want to use. **Work IQ Chat** connects through an A2A endpoint. Other options connect through MCP endpoints, including Copilot Chat, Teams, Word, Outlook Calendar, Outlook Mail, Microsoft 365 user profile, SharePoint, and OneDrive.
+1. In **Add the Work IQ Tool**, select the Microsoft Copilot data you want to use. **Work IQ Chat** connects through an A2A endpoint. Other options connect through MCP endpoints, including Copilot Chat, Teams, Word, Outlook Calendar, Outlook Mail, Microsoft 365 user profile, SharePoint, and OneDrive.
 1. For each selected option, choose an existing connection or select **Create new connection**.
 1. Select **Add**.
 1. Select **Publish**.
@@ -665,11 +665,11 @@ A private endpoint for Foundry provides private inbound access to Foundry. It do
 
 ### Data residency
 
-Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
-Review the [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and the Foundry data handling requirements that apply to your deployment. Confirm the complete request path with your privacy and compliance teams.
+Review the [Microsoft Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and the Foundry data handling requirements that apply to your deployment. Confirm the complete request path with your privacy and compliance teams.
 
 ### Access control and permissions
 

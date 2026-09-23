@@ -917,6 +917,17 @@ Session management isn't currently available as a standalone command. Use the RE
 
 :::zone-end
 
+## How stopping a session affects an in-flight turn
+
+Stopping a session is a session-management API (`:stop` on the session, not on any specific response or invocation). It isn't part of the [cancel API](cancel-hosted-agent-turn.md) contract, which is a route on the agent scoped to one turn. Stopping a session doesn't target a turn at all. It ends the container the session runs in. But because that container is what any in-flight long-running turn runs on, stopping the session still affects that turn. This section documents that side effect.
+
+The resilient task subsystem underneath resolves an in-flight turn by using the same shutdown sequence it uses for any container teardown (a redeploy, a scale-in, and so on). There's no dedicated "session stopped" code path:
+
+- If your handler checks for shutdown at a safe point and defers (see [Handle graceful shutdown](recover-long-running-work.md#handle-graceful-shutdown)) before the shutdown grace period elapses, the response or task stays in progress for a later lifetime to recover. It isn't marked canceled, failed, or suspended.
+- If your handler doesn't reach a checkpoint in time, the framework forcibly ends the turn. From that point, the outcome matches an explicit cancel: for a multi-turn conversation, the chain moves to `suspended` and stays resumable; for a one-shot task, the record is deleted.
+
+Resuming a stopped session's work depends on your hosting environment's session-resume behavior. A session you stop yourself isn't guaranteed to restart on its own even when its work was left in progress for recovery. Check your hosting platform's documentation for how to explicitly resume a stopped session before assuming recovery happens automatically.
+
 ## Delete a session
 
 Deleting a session terminates the sandbox and releases its resources. When the agent endpoint uses `Header` isolation, the isolation key must match the value used when the session was created. When the endpoint uses `Entra` isolation, the platform scopes the delete to the calling identity.
@@ -1255,4 +1266,5 @@ azd ai agent files remove --file data.csv
 - [Deploy a Hosted agent](deploy-hosted-agent.md)
 - [Manage Hosted agents](manage-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
+- [Cancel a hosted agent turn](cancel-hosted-agent-turn.md)
 - [Note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) for a container that writes per-session files visible through the Session Files API.

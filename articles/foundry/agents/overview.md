@@ -39,7 +39,7 @@ Foundry meets you anywhere on the spectrum from declarative to full code: define
 | **[Observability](../observability/concepts/trace-agent-concept.md)** | End-to-end tracing, metrics, evaluations, and Application Insights integration. See every decision your agent makes and measure its quality. |
 | **[Optimization](concepts/agent-optimizer-overview.md)** | Agent optimizer (preview) evaluates agent behavior and automatically generates better instructions, skills, tool descriptions, and model selections for prompt agents and Hosted agents. |
 | **[Identity & Security](concepts/agent-identity.md)** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
-| **[Publishing](how-to/publish-copilot.md)** | Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry. |
+| **[Publishing](how-to/publish-copilot.md)** | Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft Copilot, and the Entra Agent Registry. |
 
 ## Choose how to build
 
@@ -160,7 +160,7 @@ Agent Service provides built-in versioning and publishing so your agents can mov
 
 - **Versioning**: As you iterate on your agent, versions are automatically snapshotted. Roll back to any previous version or compare changes between versions.
 - **[Publishing](how-to/agent-applications.md)**: Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
-- **Distribution**: Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work. Foundry Agent Service supports the OpenResponses and Activity Protocols for Microsoft 365 publishing, an Invocations protocol for flexible endpoint integration with custom apps and services, and the [A2A protocol](how-to/enable-agent-to-agent-endpoint.md) for agent-to-agent communication. A2A v1.0 is generally available, and v0.3 remains in preview.
+- **Distribution**: Share published agents through [Microsoft Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work. Foundry Agent Service supports the OpenResponses and Activity Protocols for Microsoft 365 publishing, an Invocations protocol for flexible endpoint integration with custom apps and services, and the [A2A protocol](how-to/enable-agent-to-agent-endpoint.md) for agent-to-agent communication. A2A v1.0 is generally available, and v0.3 remains in preview.
 
 ## Security, privacy, and compliance
 
