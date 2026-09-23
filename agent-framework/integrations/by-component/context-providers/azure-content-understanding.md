@@ -4,8 +4,9 @@ description: Analyze documents, images, audio, and video with Azure Content Unde
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Azure Content Understanding
@@ -39,8 +40,8 @@ Attach `ContentUnderstandingContextProvider` to the agent and send a supported b
 
 - Leave `analyzer_id` unset to select a document, audio, or video search analyzer from the media type.
 - Set `max_wait=None` when the run must wait for analysis to complete.
-- Use `FileSearchConfig` for token-efficient retrieval over large extracted documents.
-- Reuse an `AgentSession` to preserve analyzed-document state across turns.
+- Use `FileSearchConfig` for token-efficient retrieval over large extracted documents. Scope the vector store and matching `file_search` tool to the intended user, tenant, or sharing group.
+- Reuse an `AgentSession` to preserve analyzed-document state across turns. A session doesn't isolate retrieval from a shared vector store.
 
 ## Next steps
 

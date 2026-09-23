@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/16/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -239,10 +239,19 @@ authenticated principal.
 
 For authenticated HTTP endpoints, use `static_headers` for fixed credentials or `header_provider` for values derived from each run. Both paths add headers only to requests for the configured origin and remove them from cross-origin redirects. Fixed headers are copied when the tool is created and don't serialize concurrent calls. When both options supply the same header, the dynamic value from `header_provider` takes precedence.
 
-During each tool call, `header_provider` receives that run's
-`function_invocation_kwargs`. The fixed and dynamic headers together form the
-HTTP session's effective identity. Header names are compared
-case-insensitively, while values remain case-sensitive.
+During generated tool calls, `header_provider` receives only the run's host
+`function_invocation_kwargs`. It doesn't receive model-supplied tool arguments,
+even when a model argument has the same name. A direct `call_tool(...)` call
+passes its caller-supplied keyword arguments to the provider. Model values can
+still take precedence in the separately merged outbound tool arguments, but
+they don't control authentication headers.
+
+The fixed and dynamic headers together form the HTTP session's effective
+identity. Header names are compared case-insensitively, while values remain
+case-sensitive. Runtime keyword arguments are also eligible for outbound tool
+arguments when the server schema allows the same name. To keep credentials out
+of tool arguments, capture them in the provider through a closure or
+`ContextVar`, use `static_headers`, or supply a custom HTTP client.
 
 Framework-owned sessions bind this effective identity when they connect. If a
 later run produces a different identity, the tool reconnects before sending the

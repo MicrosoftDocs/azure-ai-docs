@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,47 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Persisted approval transcripts must use typed approval controls
+
+**PR:** [#8579](https://github.com/microsoft/agent-framework/pull/8579)
+
+Python now treats every matched `function_result` as terminal, regardless of
+its text. A result that contains `[APPROVAL_PENDING]` no longer represents a
+pending approval and can't keep approval authority replayable.
+
+If your application persists or manually replays stateless transcripts, remove
+synthetic pending `function_result` content. Represent pending work with
+authoritative pending state and typed `function_approval_request` controls.
+Keep actual completed function results in history, even when their text happens
+to contain `[APPROVAL_PENDING]`.
+
+---
+
+### 🔴 MCP runtime context and approval headers are now separated
+
+**PR:** [#8589](https://github.com/microsoft/agent-framework/pull/8589)
+
+Generated Python MCP tool calls now give `header_provider` only trusted host
+runtime keyword arguments. Model-supplied tool arguments no longer flow into
+the provider, even when names collide. Move header inputs to
+`function_invocation_kwargs`, a provider closure, or a `ContextVar`. If the
+tool connects before a run supplies runtime values, use a closure or another
+construction-time source.
+
+Declarative `InvokeAzureAgent` execution no longer copies the outer workflow
+and client keyword bag into `additional_function_arguments`. Pass tool
+arguments explicitly in agent options when the tool needs them.
+
+For declarative `InvokeMcpTool` actions that require approval, the runtime now
+binds the evaluated headers to the approval. Changed credentials, changed
+headers, legacy unbound approvals, or missing verification state produce a
+replacement approval request with a new request ID before dispatch. Handle the
+replacement request and protect workflow checkpoint storage. For details, see
+[local MCP authentication](../../agents/tools/local-mcp-tools.md) and
+[declarative MCP tools](../../workflows/declarative.md#invokemcptool-1).
+
+---
 
 ### 🔴 Declarative PowerFx state rejects cycles and enforces traversal limits
 

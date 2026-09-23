@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/19/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -115,6 +115,8 @@ async with DockerShellTool(
 ```
 
 The default image is `mcr.microsoft.com/azurelinux/base/core:3.0`. Pass `docker_binary="podman"` to use Podman. A dedicated runnable `DockerShellTool` sample isn't currently published.
+
+Use `extra_run_args` only for Docker options that don't weaken the configured isolation or resource limits. Validation recognizes long flags, short flags, attached values, and clustered short flags. It rejects overrides such as `-u` / `--user`, `-m` / `--memory`, `-v` / `--volume`, `--network`, and `--pids-limit`; use the corresponding `DockerShellTool` constructor option instead.
 
 ## Choose an execution tier
 
