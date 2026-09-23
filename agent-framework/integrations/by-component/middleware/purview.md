@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: reezaali149
 ms.topic: article
 ms.author: v-reezaali
-ms.date: 07/28/2026
+ms.date: 09/18/2026
 ms.service: purview
+ai-usage: ai-assisted
 ---
 
 # Microsoft Purview
@@ -113,6 +114,17 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+### Python content evaluation and enforcement
+
+The middleware evaluates every non-empty message content item, not only plain text. Text and reasoning text are
+evaluated as text. Base64 data URI payloads are evaluated as binary content. Non-base64 data, URI content, function
+calls, function results, and other structured content are serialized as text so they aren't skipped. Only empty
+content and `usage` content are omitted.
+
+Policy evaluation fails closed when the middleware can't resolve a user ID, tenant, or application location. Derive
+identity from a validated server-side token rather than caller-controlled message fields. Set `ignore_exceptions` only
+when you deliberately prefer availability over enforcement; this setting bypasses enforcement for every error.
 
 ::: zone-end
 

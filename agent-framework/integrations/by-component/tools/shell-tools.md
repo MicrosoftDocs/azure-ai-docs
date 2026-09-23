@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/15/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -91,6 +91,8 @@ Use `mode="stateless"` when each call should run in a fresh process. Use the `AG
 > [!WARNING]
 > A command policy is a usability pre-filter, not a security boundary. Shell syntax, aliases, variables, interpreters, and encoded payloads can bypass simple pattern matching.
 
+Prefer string patterns. Python compiles strings with the `regex` engine and applies a one-second budget to each match. A deny-list timeout denies the command, and an allow-list timeout doesn't grant permission. A precompiled `regex.Pattern` uses the same bound. A precompiled standard-library `re.Pattern` preserves its flags but can't be interrupted, so avoid expensive or ambiguous expressions in that form.
+
 ## Add `ShellEnvironmentProvider`
 
 `ShellEnvironmentProvider` probes the shell family, version, operating system, working directory, and selected CLI versions, then injects that information before the agent runs. The default probe list is `git`, `node`, `python`, and `docker`.
@@ -113,6 +115,8 @@ async with DockerShellTool(
 ```
 
 The default image is `mcr.microsoft.com/azurelinux/base/core:3.0`. Pass `docker_binary="podman"` to use Podman. A dedicated runnable `DockerShellTool` sample isn't currently published.
+
+Use `extra_run_args` only for Docker options that don't weaken the configured isolation or resource limits. Validation recognizes long flags, short flags, attached values, and clustered short flags. It rejects overrides such as `-u` / `--user`, `-m` / `--memory`, `-v` / `--volume`, `--network`, and `--pids-limit`. Use the corresponding `DockerShellTool` constructor option instead.
 
 ## Choose an execution tier
 

@@ -145,7 +145,7 @@ sections:
             of harmful content in text and images using state-of-the-art AI
             models.
           - Azure AI Content Safety supports multilingual content moderation
-            (see [Language support](/azure/ai-services/content-safety/language-support)).
+            (see [Language support](/azure/ai-services/content-safety/region-availability)).
           - Azure AI Content Safety enables responsible AI practices by
             monitoring both user-generated and AI-generated content.
       - question: |
@@ -157,7 +157,7 @@ sections:
             multiple severity levels for the different classes (sexual, violent,
             hate, and self-harm).
           - Azure AI Content Safety supports multilingual content moderation
-            (see [Language support](/azure/ai-services/content-safety/language-support)),
+            (see [Language support](/azure/ai-services/content-safety/region-availability)),
             while Azure Content Moderator's AI classifiers only support English.
           - Azure Content Moderator has a built-in term list and a custom term
             list feature, while Azure AI Content Safety doesn't have a built-in

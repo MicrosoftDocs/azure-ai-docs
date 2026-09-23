@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/03/2026
+ms.date: 09/19/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -25,9 +25,12 @@ ai-usage: ai-assisted
 
 # Foundry Hosted Agents
 
-[Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy Agent Framework agents as containerized applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available.
+[Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy containerized agent applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available and supports agents built with your own code or a preferred agent framework. This article covers the Agent Framework hosting integration specifically.
 
 With the Agent Framework hosting integration, you can expose an `Agent`, including a workflow wrapped with `Workflow.as_agent()`, through the Foundry Responses or Invocations protocol with minimal code.
+
+> [!NOTE]
+> You can also deploy agent code built with other frameworks to Foundry hosted agents by using [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) workflows. For framework-agnostic concepts and deployment guidance, see [What are hosted agents?](/azure/foundry/agents/concepts/hosted-agents) The rest of this article focuses on the Agent Framework integration.
 
 ## When to use hosted agents
 
@@ -37,6 +40,10 @@ Choose Foundry hosted agents when you want:
 - **Built-in session management** — the platform persists `$HOME` and uploaded files across turns and idle periods.
 - **Dedicated agent identity** — every deployed agent gets its own Entra identity for secure access to models, tools, and downstream services.
 - **OpenAI-compatible endpoints** — clients can interact with your agent using any OpenAI-compatible SDK through the Responses protocol.
+
+### Related scenarios
+
+- For real-time audio agents, use hosted agents with Azure Speech in Foundry Tools (Voice Live) for server-side voice activity detection, echo cancellation, and noise reduction. For details, see [Use Voice Live with hosted agents](/azure/ai-services/speech-service/how-to-voice-live-hosted-agent-integration).
 
 > [!NOTE]
 > The Python `agent-framework-foundry-hosting` integration is prerelease. Microsoft Foundry Hosted Agents, the managed hosting service, is generally available.
@@ -81,6 +88,8 @@ In Foundry, the platform supplies the caller's user context and call context; th
 ## Responses protocol
 
 The **Responses** protocol is the recommended starting point for most agents. It exposes an OpenAI-compatible `/responses` endpoint, and the platform manages conversation history, streaming, and session lifecycle automatically.
+
+For Python hosted agents, a response that ends early has an `incomplete` status. Streaming clients receive a terminal `response.incomplete` event, while non-streaming clients receive `status` set to `incomplete`. A `content_filter` finish reason maps to `incomplete_details.reason` set to `content_filter`, and `length` maps to `max_output_tokens`. Any generated output or refusal content remains available in the response.
 
 :::zone pivot="programming-language-csharp"
 
@@ -145,6 +154,22 @@ Don't combine the default history source with a `HistoryProvider` that has `load
 Use `ResponsesHostServer(agent, history_source="agent")` when the agent's history provider or downstream model service must manage conversation history. This mode passes only the current request input from Agent Server and preserves the agent's history and service storage behavior. Custom `SupportsAgentRun` implementations must use this mode. The `store` parameter remains separate: it selects the response provider that persists Responses API inputs and outputs in both modes.
 
 The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
+
+### Choose an agent instance or factory
+
+Both `ResponsesHostServer` and `InvocationsHostServer` accept either an agent instance or a zero-argument synchronous or asynchronous callable through the `agent` parameter. The host reuses an instance for its lifetime. A callable runs once per request, and the returned agent belongs to that request.
+
+Use a callable when the agent retains mutable state outside `AgentSession`. In particular, create a `WorkflowAgent` from a factory that builds a fresh workflow, executors, and wrapped agents:
+
+```python
+def create_workflow_agent():
+    return build_workflow().as_agent(name="support-workflow")
+
+
+server = ResponsesHostServer(agent=create_workflow_agent)
+```
+
+Keep the workflow name and executor IDs stable so later Responses requests can locate saved checkpoints. `ResponsesHostServer` continues supported state through its session, checkpoint, and function-approval stores; it doesn't persist arbitrary fields on a request-scoped agent. See the [workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows) and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
 
 ### Persist state and handle long-running conversations
 
@@ -225,6 +250,8 @@ agent = Agent(
 server = InvocationsHostServer(agent)
 server.run()
 ```
+
+`InvocationsHostServer` accepts the same instance or request-scoped factory forms described for the Responses host. Its built-in sessions are stored in memory for the lifetime of the host and don't survive a restart. The Invocations protocol doesn't resume workflow runs that are pending or interrupted. Use the custom handler pattern in the following section with durable application storage when you need different continuation behavior.
 
 For full control over request handling, use `InvocationAgentServerHost` from the `azure.ai.agentserver.invocations` package directly and implement your own invoke handler:
 

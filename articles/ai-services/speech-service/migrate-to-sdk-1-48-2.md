@@ -152,19 +152,16 @@ speechConfig.properties.SetPropertyByString("OPENSSL_DISABLE_CRL_CHECK", "true")
 
 After setting the property, verify the fix by confirming connections succeed and no CRL-related errors (error 44 or `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED`) appear in SDK logs.
 
-> [!TIP]
-> If you want to keep CRL checking but tolerate download failures, set `OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE` to `"true"` instead. This property allows connections to continue when a CRL can't be retrieved, while still performing CRL validation when CRLs are available.
-
 For more configuration options, see [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md).
 
 ## Risks of not taking action
 
 If you don't upgrade or disable CRL checking before July 1, 2026:
 
-- **Connection failures** can occur whenever certificate validation encounters a certificate whose CRL partition doesn't match a previously cached CRL for the same issuer.
+- **Connection failures** can occur whenever certificate validation encounters a certificate whose CDP doesn't match a cached CRL for the same issuer.
 - Failures manifest as `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED` errors
-- **No advance warning** — the exact timing depends on when your region's TLS certificates are renewed
-- **Service disruption** continues until the SDK is upgraded, CRL checking is disabled, or the CRL cache is cleared
+- **No advance warning** — the exact timing depends on when your region's TLS certificates are renewed, or when CRLs or certificates from dependent CAs are updated
+- **Service disruption** may continue until the SDK is upgraded or CRL checking is disabled
 
 ## How to identify if you're impacted
 

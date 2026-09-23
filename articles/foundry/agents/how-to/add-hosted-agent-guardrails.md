@@ -128,7 +128,7 @@ agent = project.agents.create_version(
         ),
         protocol_versions=[
             ProtocolVersionRecord(
-                protocol=AgentEndpointProtocol.RESPONSES, version="1.0.0"
+                protocol=AgentEndpointProtocol.RESPONSES, version="2.0.0"
             )
         ],
         rai_config=RaiConfig(rai_policy_name=RAI_POLICY_ID),
@@ -162,7 +162,7 @@ AgentAdministrationClient agentsClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 var definition = new HostedAgentDefinition(
-    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "1.0.0") },
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
     cpu: "1",
     memory: "2Gi")
 {
@@ -209,7 +209,7 @@ const agent = await project.agents.createVersion("my-agent", {
   container_configuration: {
     image: "your-registry.azurecr.io/your-image:tag",
   },
-  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  protocol_versions: [{ protocol: "responses", version: "2.0.0" }],
   rai_config: { rai_policy_name: raiPolicyId },
 });
 
@@ -240,7 +240,7 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
       "cpu": "1",
       "memory": "2Gi",
       "protocol_versions": [
-        {"protocol": "responses", "version": "1.0.0"}
+        {"protocol": "responses", "version": "2.0.0"}
       ],
       "rai_config": {
         "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>"
@@ -604,4 +604,3 @@ The following capabilities aren't available yet and are planned for future updat
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md) — create the RAI policy you reference here.
 - [Networking options for Foundry Agent Service](../concepts/networking-options.md) — how egress controls fit with virtual network and private networking options.
 - [Deploy a hosted agent](deploy-hosted-agent.md) — the full deployment workflow for hosted agents.
-

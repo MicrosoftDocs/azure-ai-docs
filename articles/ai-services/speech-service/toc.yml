@@ -228,10 +228,10 @@ items:
               href: how-to-custom-voice-training-data.md
             - name: Record voice samples
               href: record-custom-voice-samples.md
-          - name: "Part 1: Create a professional voice project"
+          - name: "Part 1: Set up a professional voice"
             displayName: custom voice, neural voice, cnv
             href: professional-voice-create-project.md
-          - name: "Part 2: Add voice talent consent to your project"
+          - name: "Part 2: Add voice talent consent"
             href: professional-voice-create-consent.md
           - name: "Part 3: Add training datasets"
             href: professional-voice-create-training-set.md

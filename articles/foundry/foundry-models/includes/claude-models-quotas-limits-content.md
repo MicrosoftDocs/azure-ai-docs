@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: ambadal
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/11/2026
+ms.date: 09/21/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -54,6 +54,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 |:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|---------:|
 | claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
 | claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
+| claude-opus-5-5   | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    | 8,000    |
+| claude-opus-5-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    | 8,000    |
 | claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    | 8,000    |
 | claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    | 8,000    |
 | claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    | 8,000    |
@@ -75,6 +77,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 |:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|-----------:|----------:|
 | claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
 | claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 4,000     | 4,000,000  | 800,000   |
+| claude-opus-5-5   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-opus-5-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
@@ -96,6 +100,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 |:------------------|:------------------------|:--------------------------:|:---------------------------------------------:|----------:|----------:|---------:|
 | claude-fable-5-1  | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
 | claude-fable-5    | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
+| claude-opus-5-5   | Global Standard         | Yes                        | Yes                                           | 0         | 0         | 0        |
+| claude-opus-5-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         | 0        |
 | claude-opus-5     | Global Standard         | Yes                        | Yes                                           | 0         | 0         | 0        |
 | claude-opus-5     | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         | 0        |
 | claude-opus-4-8   | Global Standard         | Yes                        | Yes                                           | 0         | 0         | 0        |

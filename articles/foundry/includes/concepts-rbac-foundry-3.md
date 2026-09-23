@@ -6,7 +6,7 @@ ms.reviewer: meerakurup
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/04/2026
+ms.date: 09/16/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---

@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
-ms.date: 08/20/2026
+ms.date: 09/21/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -899,12 +899,12 @@ Persisted reasoning is about continuity, not transparency. The reasoning items s
 | --- | --- |
 | `auto` | Uses the model's default. Omitting `reasoning.context` has the same effect. |
 | `current_turn` | Makes the active turn's reasoning available to the model, but doesn't render reasoning from earlier turns into the next sample. |
-| `all_turns` | Renders available, compatible reasoning items from earlier turns into the next sample. Only the `gpt-5.6` models support this value. |
+| `all_turns` | Renders available, compatible reasoning items from earlier turns into the next sample. The GPT-5.4, GPT-5.5, GPT-5.6, and GPT-6 models support this value. |
 
-The `gpt-5.6` models support `all_turns` and use it by default. Earlier reasoning models default to `current_turn`.
+The GPT-5.4, GPT-5.5, and GPT-5.6 models support `all_turns`. GPT-5.6 models use it by default, while GPT-5.4 and GPT-5.5 models default to `current_turn`.
 
 > [!IMPORTANT]
-> Because `all_turns` renders more reasoning items into context, it increases the tokens billed for a request. If you upgrade an existing workload to a `gpt-5.6` model, expect higher token consumption on multi-turn conversations even when your code doesn't change. Set `reasoning.context` to `current_turn` to keep the earlier behavior.
+> Because `all_turns` renders more reasoning items into context, it increases the tokens billed for a request. If you upgrade an existing workload to a GPT-5.6 model, expect higher token consumption on multi-turn conversations even when your code doesn't change. Set `reasoning.context` to `current_turn` to keep the earlier behavior.
 
 Keep these behaviors in mind:
 
@@ -1325,6 +1325,8 @@ print(response.model_dump_json(indent=2))
 | Model | Region | Limited access |
 | --- | --- | --- |
 | `gpt-6-astra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
+| `gpt-6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
@@ -1360,23 +1362,23 @@ Input and output limits share the available context budget and aren't additive. 
 
 # [GPT-6 reasoning models](#tab/gpt-6)
 
-| **Feature** | **gpt-6-astra**, **2026-09-03** |
-| --- | --- |
-| **[Structured outputs](./structured-outputs.md)** | ✅ |
-| **Context window** | 1,050,000 tokens |
-| **Maximum input tokens** | 922,000 tokens |
-| **Maximum output tokens** | 128,000 tokens |
-| **Input modalities** | Text and images |
-| **Output modalities** | Text |
-| Chat Completions API | ✅ |
-| Responses API | ✅ |
-| Streaming | ✅ |
-| Functions/tools | ✅ |
-| **[Reasoning effort](#reasoning-effort)** | ✅ (including `none`) |
-| Verbosity | ✅ |
-| `logprobs` | ✅ |
-| `temperature` | ✅ |
-| `top_p` | ✅ |
+| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-22** | **gpt-6-luna**, **2026-09-22** |
+| --- | --- | --- | --- |
+| **[Structured outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
+| **Context window** | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens |
+| **Maximum input tokens** | 922,000 tokens | 922,000 tokens | 922,000 tokens |
+| **Maximum output tokens** | 128,000 tokens | 128,000 tokens | 128,000 tokens |
+| **Input modalities** | Text and images | Text and images | Text and images |
+| **Output modalities** | Text | Text | Text |
+| Chat Completions API | ✅ | ✅ | ✅ |
+| Responses API | ✅ | ✅ | ✅ |
+| Streaming | ✅ | ✅ | ✅ |
+| Functions/tools | ✅ | ✅ | ✅ |
+| **[Reasoning effort](#reasoning-effort)** | ✅ (including `none`) | ✅ (including `none`) | ✅ (including `none`) |
+| Verbosity | ✅ | ✅ | ✅ |
+| `logprobs` | ✅ | ✅ | ✅ |
+| `temperature` | ✅ | ✅ | ✅ |
+| `top_p` | ✅ | ✅ | ✅ |
 
 # [GPT-5 reasoning models](#tab/gpt-5)
 
@@ -1394,7 +1396,7 @@ Input and output limits share the available context budget and aren't additive. 
 | `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
 | System Messages <sup>3</sup> | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ |
 | [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Persisted reasoning](#preserve-reasoning-across-calls)<sup>8</sup> | ✅ | ✅ | ✅ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| [Persisted reasoning](#preserve-reasoning-across-calls)<sup>8</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | Streaming | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
@@ -1404,7 +1406,7 @@ Input and output limits share the available context budget and aren't additive. 
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
 <sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
 <sup>7</sup> `gpt-5.6`, `gpt-5.5`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. To use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.<br><br>
-<sup>8</sup> The `gpt-5.6` and later models support `all_turns` for the `reasoning.context` parameter and use it by default. Earlier reasoning models support only `auto` and `current_turn`.<br><br>
+<sup>8</sup> GPT-5.4, GPT-5.5, GPT-5.6, and GPT-6 models support `all_turns` for the `reasoning.context` parameter. GPT-5.6 and GPT-6 models use it by default. Earlier models support only `auto` and `current_turn`.<br><br>
 <sup>9</sup> The `gpt-5.6` models support the Chat Completions API and function tools, but not both at the same time unless `reasoning_effort` is `none`. Use the Responses API for tool calling. For details and workarounds, see [Tool calling with reasoning models](#tool-calling-with-reasoning-models).
 
 ### GPT-5 and GPT-6 reasoning features
@@ -1413,7 +1415,7 @@ Input and output limits share the available context budget and aren't additive. 
 | ---- | ---- |
 | `reasoning_effort` | `max` works only with GPT-6 or GPT-5.6 models and the Responses API. <br> `xhigh` works only with GPT-6, GPT-5.6, GPT-5.5, GPT-5.4, and `gpt-5.1-codex-max` models. <br> `minimal` works only with the original GPT-5 reasoning models. `minimal` doesn't work with `gpt-5.1` or greater. <sup>*</sup> <br> With GPT-5.6 models on the Chat Completions API, `none` is the only value you can combine with function tools. See [Tool calling with reasoning models](#tool-calling-with-reasoning-models). <br><br> **Options (model-dependent)**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` |
 | `verbosity` | A new parameter that gives you more granular control over how concise the model's output is.<br><br>**Options:** `low`, `medium`, `high`. |
-| [`reasoning.context`](#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` works only with GPT-6 and GPT-5.6 models, which use this option by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
+| [`reasoning.context`](#preserve-reasoning-across-calls) | Controls which available reasoning items the model renders into its next context. `all_turns` works with GPT-5.4, GPT-5.5, GPT-5.6, and GPT-6 models. GPT-5.6 and GPT-6 models use this option by default.<br><br>**Options:** `auto`, `current_turn`, `all_turns`. |
 | [`reasoning.mode`](#reasoning-mode) | Selects standard or pro execution for GPT-6 and GPT-5.6 models with the Responses API. Pro mode does more model work on a request before returning a single answer, which increases latency and token usage. Azure OpenAI uses `standard` as the default.<br><br>**Options:** `standard`, `pro`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |

@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,82 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Persisted approval transcripts must use typed approval controls
+
+**PR:** [#8579](https://github.com/microsoft/agent-framework/pull/8579)
+
+Python now treats every matched `function_result` as terminal, regardless of
+its text. A result that contains `[APPROVAL_PENDING]` no longer represents a
+pending approval and can't keep approval authority replayable.
+
+If your application persists or manually replays stateless transcripts, remove
+synthetic pending `function_result` content. Represent pending work with
+authoritative pending state and typed `function_approval_request` controls.
+Keep actual completed function results in history, even when their text happens
+to contain `[APPROVAL_PENDING]`.
+
+---
+
+### 🔴 MCP runtime context and approval headers are now separated
+
+**PR:** [#8589](https://github.com/microsoft/agent-framework/pull/8589)
+
+Generated Python MCP tool calls now give `header_provider` only trusted host
+runtime keyword arguments. Model-supplied tool arguments no longer flow into
+the provider, even when names collide. Move header inputs to
+`function_invocation_kwargs`, a provider closure, or a `ContextVar`. If the
+tool connects before a run supplies runtime values, use a closure or another
+construction-time source.
+
+Declarative `InvokeAzureAgent` execution no longer copies the outer workflow
+and client keyword bag into `additional_function_arguments`. Pass tool
+arguments explicitly in agent options when the tool needs them.
+
+For declarative `InvokeMcpTool` actions that require approval, the runtime now
+binds the evaluated headers to the approval. Changed credentials, changed
+headers, legacy unbound approvals, or missing verification state produce a
+replacement approval request with a new request ID before dispatch. Handle the
+replacement request and protect workflow checkpoint storage. For details, see
+[local MCP authentication](../../agents/tools/local-mcp-tools.md) and
+[declarative MCP tools](../../workflows/declarative.md#invokemcptool-1).
+
+---
+
+### 🔴 Declarative PowerFx state rejects cycles and enforces traversal limits
+
+**PR:** [#8511](https://github.com/microsoft/agent-framework/pull/8511)
+
+Python declarative workflows now reject cyclic state and enforce fixed limits
+for each state traversal: depth 64 with the root at depth 0, 10,000 visited
+values, and 1,048,576 aggregate string characters and binary bytes. Repeated
+references and aliases count each time. Violations raise `ValueError` during
+state writes, snapshots, or PowerFx conversion.
+
+Remove cycles and reduce or split oversized values before writing them to
+workflow state. Apply separate limits to PowerFx expression execution and
+application-defined copy or conversion hooks because the traversal limits don't
+bound them. For details, see
+[PowerFx state traversal limits](../../workflows/declarative.md#powerfx-state-traversal-limits).
+
+---
+
+### 🔴 Workflow HTTP requests require absolute HTTP(S) URLs
+
+**PR:** [#8588](https://github.com/microsoft/agent-framework/pull/8588)
+
+Python's `DefaultHttpRequestHandler` now rejects relative and non-HTTP(S) URLs.
+It normalizes the URL and composes its query before calling `client_provider`.
+The provider receives the composed URL in `info.url` and an empty
+`info.query_parameters`. Existing URL query order and bytes are preserved,
+selected-client defaults still apply, and redirects remain client-controlled.
+
+Use absolute HTTP or HTTPS workflow URLs. Update providers to inspect
+`info.url` instead of reading `info.query_parameters`, and configure defaults
+and redirect behavior on the returned `httpx.AsyncClient`. For details, see
+[HttpRequestAction](../../workflows/declarative.md#httprequestaction).
+
+---
 
 ### 🔴 Lab installs separately, and Foundry supports Projects 2.6
 
@@ -3019,6 +3095,8 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
+| Unreleased | — | 🔴 Breaking | Declarative PowerFx state rejects cycles and enforces fixed per-traversal limits | [#8511](https://github.com/microsoft/agent-framework/pull/8511) |
+| Unreleased | — | 🔴 Breaking | Workflow HTTP requests require absolute HTTP(S) URLs and providers receive the normalized, composed URL | [#8588](https://github.com/microsoft/agent-framework/pull/8588) |
 | Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
 | 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
 | 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Encrypted reasoning is opt-in for Foundry chat | [#7536](https://github.com/microsoft/agent-framework/pull/7536) |

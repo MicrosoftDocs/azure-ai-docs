@@ -215,7 +215,7 @@ agent = project.agents.create_version(
     agent_name="my-voice-agent",
     definition=HostedAgentDefinition(
         protocol_versions=[
-            ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="1.0.0"),
+            ProtocolVersionRecord(protocol=AgentEndpointProtocol.INVOCATIONS_WS, version="2.0.0"),
         ],
         cpu="1",
         memory="2Gi",
@@ -244,7 +244,7 @@ AgentAdministrationClient agentsClient = new(
 
 // Declare the invocations_ws protocol for full-duplex voice streaming.
 var definition = new HostedAgentDefinition(
-    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "1.0.0") },
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.InvocationsWs, "2.0.0") },
     cpu: "1",
     memory: "2Gi")
 {

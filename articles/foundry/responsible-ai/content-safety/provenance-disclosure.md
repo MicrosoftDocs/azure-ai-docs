@@ -106,9 +106,9 @@ The following table lists the current availability of provenance capabilities.
 
 Text provenance support varies by model. Where available, the underlying model provides invisible watermarking and surfaces it through Microsoft Foundry. Microsoft partners closely with model providers and shares the latest updates on supported models as they become available.  
 
-The following models support invisible watermarking for text output in Foundry.
+The following models support invisible watermarking for text output.
 
-| Provider | Models |
+| Model Provider | Models |
 | --- | --- |
 | Anthropic | Claude Fable 5.1<br>Claude Mythos 5.1<br>Claude Opus 5 |
 

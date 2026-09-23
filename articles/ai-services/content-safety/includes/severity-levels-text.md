@@ -10,7 +10,7 @@ ms.author: ssalgado
 ---
 
 
-## Text content
+## Full-scale text content
 
 #### [Warning](#tab/warning)
 

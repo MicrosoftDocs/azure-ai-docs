@@ -229,7 +229,7 @@ agent = project.agents.create_version(
         protocol_versions=[
             ProtocolVersionRecord(
                 protocol=AgentEndpointProtocol.RESPONSES,
-                version="1.0.0",
+                version="2.0.0",
             )
         ],
         cpu="1",
@@ -286,7 +286,7 @@ az rest --method POST \
             "protocol_versions": [
                 {
                     "protocol": "responses",
-                    "version": "1.0.0"
+                    "version": "2.0.0"
                 }
             ],
             "environment_variables": {

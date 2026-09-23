@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/16/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -304,9 +304,6 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
 {
     switch (workflowEvent)
     {
-        case MessageActivityEvent activityEvent:
-            Console.WriteLine($"Activity: {activityEvent.Message}");
-            break;
         case AgentResponseEvent responseEvent:
             Console.WriteLine($"Response: {responseEvent.Response.Text}");
             break;
@@ -324,7 +321,7 @@ Console.WriteLine("Workflow completed!");
 ```
 Loaded workflow from: C:\path\to\greeting-workflow.yaml
 ----------------------------------------
-Activity: Hello, Alice!
+Response: Hello, Alice!
 Workflow completed!
 ```
 
@@ -436,7 +433,7 @@ AzureAgentProvider agentProvider = new(
 
 ### Workflow Execution
 
-Use `InProcessExecution` to run workflows and handle events:
+Use `InProcessExecution` to run workflows and handle events. This example displays completed responses and handles input requests separately. It doesn't also display streaming updates or activity notifications for the same response:
 
 ```csharp
 using Microsoft.Agents.AI.Workflows;
@@ -460,14 +457,6 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
 {
     switch (workflowEvent)
     {
-        case MessageActivityEvent activity:
-            Console.WriteLine($"Message: {activity.Message}");
-            break;
-            
-        case AgentResponseUpdateEvent streamEvent:
-            Console.Write(streamEvent.Update.Text); // Streaming text
-            break;
-            
         case AgentResponseEvent response:
             Console.WriteLine($"Agent: {response.Response.Text}");
             break;
@@ -489,6 +478,26 @@ await foreach (WorkflowEvent workflowEvent in run.WatchStreamAsync())
     }
 }
 ```
+
+#### Choose which response events to display
+
+A workflow event stream contains several views of the same action. For example, a text `SendActivity` action produces:
+
+| Event | Purpose |
+|-------|---------|
+| `MessageActivityEvent` | An activity notification containing the message text. |
+| `AgentResponseUpdateEvent` | An `AgentResponseUpdate` containing text for streaming consumers. |
+| `AgentResponseEvent` | The completed `AgentResponse`, available as workflow output. |
+
+These events don't represent three separate messages or three executions of the action. Printing the text from each event displays the same message repeatedly.
+
+There isn't a `SendActivity` or `Question` YAML setting that selects `AgentResponseEvent` instead of `AgentResponseUpdateEvent`. Choose what your C# event handler displays:
+
+- For completed responses, handle `AgentResponseEvent`, as in the example above. You can still use `RunStreamingAsync` to receive other workflow events promptly.
+- For streaming text, handle `AgentResponseUpdateEvent`. Don't append a completed response's text again if its messages were already streamed. For `SendActivity`, the update and completed response share the response ID and message ID. Track the executor ID and message ID when correlating streamed and completed messages.
+- Handle `RequestInfoEvent` independently so the workflow can receive external input. Filtering response text doesn't remove the need to answer requests.
+
+When using `workflow.AsAIAgent()`, the `includeWorkflowOutputsInResponse` argument controls how workflow outputs are included in agent responses. It doesn't change which events a YAML action emits and isn't a switch for disabling streaming updates.
 
 ### Resuming from Checkpoints
 
@@ -881,6 +890,8 @@ Jumps to a specific action by ID.
 
 Sends a message to the user.
 
+A text activity produces both a streaming update and a completed response, in addition to its activity notification. See [Choose which response events to display](#choose-which-response-events-to-display) to avoid displaying the same text more than once.
+
 ```yaml
 - kind: SendActivity
   id: send_welcome
@@ -1178,6 +1189,8 @@ Workflow workflow = DeclarativeWorkflowBuilder.Build<string>("workflow.yaml", op
 #### Question
 
 Asks the user a question and stores the response.
+
+For direct workflow execution, handle the question's `RequestInfoEvent`. Its `ExternalInputRequest.AgentResponse` contains the prompt; the `AgentResponse` property is a payload, not a separate `AgentResponseEvent`. Return an `ExternalInputResponse` through the request to resume the workflow. The `autoSend` setting below controls how the accepted answer is added to the conversation, not which response events are emitted.
 
 The C# and Python SDKs use different field names for the question prompt.
 This example uses the smallest shared behavior: it asks for text and stores the
@@ -1731,6 +1744,18 @@ Common functions include:
 - `If(condition, trueValue, falseValue)` - Conditional expression
 - `IsBlank(value)` - Check if value is empty
 
+#### PowerFx state traversal limits
+
+Python validates declarative state before state writes and snapshots, and before converting values into PowerFx symbols. Cyclic structures are rejected instead of being truncated.
+
+Each traversal uses these fixed limits:
+
+- A maximum depth of 64, with the root value at depth 0.
+- A maximum of 10,000 visited values, including containers and mapping keys.
+- A maximum aggregate size of 1,048,576 string characters and binary bytes.
+
+Repeated references and aliases count again each time they're traversed. A cycle or exceeded limit raises `ValueError` during a state write or snapshot, or during PowerFx conversion. These traversal limits don't bound PowerFx expression execution or application-defined Python copy or conversion hooks.
+
 ### Action Types
 
 Declarative workflows support various action types:
@@ -2043,6 +2068,8 @@ With an expression:
 | `activity` | Yes | The activity to send |
 | `activity.text` | Yes | Message text (literal or expression) |
 
+In Python, authored text that starts with `=` is evaluated and emitted as data. The expression result isn't processed again for `{Variable.Path}` interpolation. Author the template directly, such as `Hello, {Local.name}!`, or build the complete string in the expression, such as `="Hello, " & Local.name & "!"`.
+
 ### Agent Invocation Actions
 
 #### InvokeAzureAgent
@@ -2100,11 +2127,15 @@ With external loop (continues until condition is met):
 | `agent.name` | Yes | Name of the registered agent |
 | `conversationId` | No | Conversation context identifier |
 | `input.messages` | No | Messages to send to the agent |
-| `input.arguments` | No | Additional arguments for the agent |
+| `input.arguments` | No | Arguments to evaluate and add to the agent input text |
 | `input.externalLoop.when` | No | Condition to continue agent loop |
 | `output.responseObject` | No | Path to store agent response |
 | `output.messages` | No | Path to store conversation messages |
-| `output.autoSend` | No | Automatically send response to user |
+| `output.autoSend` | No | Automatically send the response to workflow output. Accepts a Boolean or a `=` expression and defaults to `true`. |
+
+In Python, `InvokeAzureAgent` evaluates each configured `input.arguments` value and formats nonempty arguments as `key: value` lines. If you set `input.messages`, the evaluated message text follows the argument lines. When `input.arguments` contains at least one argument and you omit `input.messages`, Python uses only the argument text and doesn't append fallback values from `Local.input`, `Local.userInput`, `System.LastMessage.Text`, or `Workflow.Inputs`.
+
+Python evaluates `output.autoSend` against current workflow state before each invocation, including resumed external-loop turns. A false result suppresses automatic workflow output only; the agent still runs, and configured response and message outputs are still stored.
 
 ### Tool and HTTP Actions
 
@@ -2134,7 +2165,9 @@ Invokes a registered Python function directly from the workflow without going th
 | `arguments` | No | Arguments to pass to the function |
 | `output.result` | No | Path to store the function result |
 | `output.messages` | No | Path to store function messages |
-| `output.autoSend` | No | Automatically send result to user |
+| `output.autoSend` | No | Automatically send the result to workflow output. Accepts a Boolean or a `=` expression and defaults to `true`. |
+
+Python evaluates `output.autoSend` against current workflow state immediately before the tool runs. A false result suppresses automatic workflow output only; the tool still runs, and configured result and message outputs are still stored. A rejected approval completes without evaluating the expression.
 
 **Python setup for InvokeFunctionTool:**
 
@@ -2199,6 +2232,8 @@ Invokes a tool on an MCP server through the configured `MCPToolHandler`.
 | `output.messages` | No | Path to store the tool message |
 | `output.autoSend` | No | Emits tool output to the workflow result; defaults to `true` |
 
+When `requireApproval` is `true`, the Python runtime binds the evaluated action headers to the approval request. The request includes header names but not header values. If the headers change, credentials rotate, or a restored legacy request doesn't have verifiable binding state, the workflow emits a replacement approval request with a new request ID and doesn't invoke the tool. Protect workflow checkpoint storage because it contains the separate verification key. Custom handlers remain responsible for credentials they resolve outside the action's `headers`.
+
 **Python setup for InvokeMcpTool:**
 
 Pass an MCP tool handler to `WorkflowFactory`. Use a custom handler when you need authentication, managed connections, or URL allowlisting.
@@ -2209,6 +2244,14 @@ from agent_framework.declarative import DefaultMCPToolHandler, WorkflowFactory
 factory = WorkflowFactory(mcp_tool_handler=DefaultMCPToolHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+Without a `client_provider`, `DefaultMCPToolHandler` reuses MCP sessions through a bounded cache. With a
+`client_provider`, it creates and closes a separate MCP tool and session for every invocation, including `tools/list`,
+even when the provider returns the same client or `None`. The handler closes internally created fallback HTTP clients,
+but caller-supplied `httpx.AsyncClient` instances remain caller-owned.
+
+Provider-backed invocations don't retain server session state. If your workflow requires MCP session continuity,
+implement a custom `MCPToolHandler` with an explicit authentication and lifetime contract.
 
 #### HttpRequestAction
 
@@ -2253,6 +2296,17 @@ from agent_framework.declarative import DefaultHttpRequestHandler, WorkflowFacto
 factory = WorkflowFactory(http_request_handler=DefaultHttpRequestHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+The default handler rejects URLs that aren't absolute HTTP or HTTPS URLs. It
+normalizes the URL and appends `queryParameters` after any existing query while
+preserving the existing query order and bytes.
+
+A `client_provider` receives a normalized `HttpRequestInfo` snapshot. The
+snapshot has the composed URL in `info.url` and an empty
+`info.query_parameters`; the original request information isn't modified. The
+selected client's defaults still apply. Redirect behavior remains controlled
+by that client's `follow_redirects` setting, and the provider isn't called
+again for redirect hops.
 
 The default handler reuses an internally owned HTTP client, but doesn't persist
 response cookies. If a workflow requires cookies for authentication, session

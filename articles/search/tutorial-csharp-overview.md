@@ -5,7 +5,7 @@ ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 08/07/2026
+ms.date: 09/21/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -33,7 +33,7 @@ This sample website provides access to a catalog of 10,000 books. You can search
 
 When the query finishes, the website displays the list of books with a portion of their details. You can select a book to see its complete details, which are stored in the search index.
 
-:::image type="content" source="media/tutorial-csharp-overview/cognitive-search-enabled-book-website-2.png" alt-text="Screenshot of the sample app in a browser window.":::
+:::image type="content" source="media/tutorial-csharp-overview/cognitive-search-enabled-book-website-2.png" alt-text="Screenshot of the sample app showing search results for dog, with author and language facets and pagination controls.":::
 
 The search experience includes:
 

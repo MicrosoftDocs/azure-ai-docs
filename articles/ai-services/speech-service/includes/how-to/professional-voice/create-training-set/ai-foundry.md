@@ -5,8 +5,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 12/29/2025
+ms.date: 09/07/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 When you're ready to create a custom text-to-speech voice for your application, start by gathering audio recordings and associated scripts to train the voice model. For details on recording voice samples, see [the tutorial](../../../../record-custom-voice-samples.md). The Speech service uses this data to create a unique voice tuned to match the voice in the recordings. After you train the voice, you can start synthesizing speech in your applications.
@@ -22,22 +23,66 @@ All data you upload must meet the requirements for the data type that you choose
 > [!TIP]
 > For a sample consent statement and training data, see the [GitHub repository](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). 
 
-When you're ready to upload your data, go to the **Prepare training data** tab to add your first training set and upload data. A *training set* is a set of audio utterances and their mapping scripts used for training a voice model. You can use a training set to organize your training data. The service checks data readiness for each training set. You can import multiple data files to a training set.
-
 To upload training data, follow these steps:
 
 # [Foundry (new)](#tab/foundry-new)
 
-These steps continue from the **Fine-tune a model** wizard you opened in [Create a professional voice](../../../../professional-voice-create-project.md).
+These steps continue from the **Customize a model** page you opened in [Set up a professional voice](../../../../professional-voice-create-project.md).
 
-1. On the **Training data** pane of the wizard, select **Create new dataset**.
-1. In the **Upload data** flyout, choose a [data type](../../../../how-to-custom-voice-training-data.md). If you're using the sample data, select **Individual utterances + matching transcript**.
-1. Select the **Recording file** and **Script file**. You can upload local files from your computer or enter the Azure Blob storage URL.
-1. Enter a name and description for the dataset.
-1. Confirm the upload.
-1. On the **Training data** pane, select the new dataset from the **Select dataset** dropdown.
+If you closed the page, [resume your draft customization](../../../../professional-voice-create-project.md?tabs=foundry-new&pivots=ai-foundry-portal#resume-an-unfinished-customization) before continuing.
+
+In Foundry (new), organize your training data in datasets. You can create multiple datasets, upload data to each one, and select eligible datasets when you configure training.
+
+1. On the **Training data** step, select **Create new dataset**.
+1. In the **Create new dataset** pane, enter a **Dataset name**, and then select **Create**.
+1. Select the new dataset from the **Select dataset** dropdown, and then select **Add data**.
+1. In the **Add data** pane, choose a [data type](../../../../how-to-custom-voice-training-data.md). If you're using the sample data, select **Individual utterances + matching transcript**.
+1. For **Processed as**, choose a mode supported by your data type:
+
+   - **Segmented**: Use this mode for **Individual utterances + matching transcript**. You can also use it for **Long audio + transcript** or **Audio only** to split recordings into utterances.
+   - **Contextual**: Available for **Long audio + transcript** and **Audio only** in supported languages. This mode preserves contextual information and natural intonation. You can't combine contextual data with segmented data.
+
+   See [Training data types](../../../../how-to-custom-voice-training-data.md#types-of-data-for-professional-voice-fine-tuning) for supported combinations and language restrictions.
+
+1. Upload the data by using one of these methods:
+
+   - **Local files**: Select the **Recording file** from your computer. For data types with a transcript, also select the **Script file**.
+   - **Azure Blob**: Enter the **Recording blob URL**. For data types with a transcript, also enter the **Script blob URL**.
+
+   For **Audio only**, don't provide a script. The service generates the transcript during processing.
+
+1. Select **Upload**. The **Data preview** section displays the validation results after processing finishes.
+
+If your dataset isn't ready for training, review **Data preview** and [resolve data issues](#review-data-issues). Then check eligibility for the selected [training method and version](../../../../professional-voice-train-voice.md?tabs=foundry-new&pivots=ai-foundry-portal#choose-a-training-method) before continuing.
+
+### View or delete an existing dataset
+
+If you uploaded the wrong training data, find the dataset on the **Data** tab under **Services**. This tab is separate from **Data** in the left navigation.
+
+1. Open the Foundry project that contains the dataset.
+1. Select **Build** > **Services**, and then select the **Data** tab.
+1. Find the dataset with the **Text to Speech** and **Professional voice** tags. Select its name to review the details, including **Accepted data** and **Rejected data**.
+
+To delete an unwanted dataset:
+
+1. Return to **Services** > **Data**.
+1. In the dataset's row, open the **Actions** menu (three dots), and then select **Delete**.
+
+   :::image type="content" source="../../../../media/custom-voice/professional-voice/foundry-new-services-data.png" alt-text="Screenshot of Build Services showing datasets and voice talents, with the Data tab and a dataset Actions menu outlined." lightbox="../../../../media/custom-voice/professional-voice/foundry-new-services-data.png":::
+
+1. In the **Delete AI service resource** dialog, confirm that the displayed name matches the dataset you want to remove.
+1. Select **Delete** to confirm, or **Cancel** to keep the dataset.
+
+> [!IMPORTANT]
+> Deletion can't be undone. Confirm that you selected the unwanted dataset before deleting it.
+
+To create a replacement dataset, return to **Training data** in your customization and follow [Upload your data](#upload-your-data).
 
 # [Foundry (classic)](#tab/foundry-classic)
+
+In Foundry (classic), organize your audio utterances and mapping scripts in
+training sets. The service checks data readiness for each training set, and you
+can import multiple data files into a training set.
 
 1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
@@ -66,13 +111,13 @@ These steps continue from the **Fine-tune a model** wizard you opened in [Create
 > 
 > Duplicate audio names are removed from the training. Make sure the data you select don't contain the same audio names within the .zip file or across multiple .zip files. If utterance IDs (either in audio or script files) are duplicates, they're rejected.
 
-Data files are automatically validated when you select **Upload data**. Data validation includes a series of checks on the audio files to verify their file format, size, and sampling rate. If there are any errors, fix them and submit again. 
+The service automatically validates uploaded data. Validation checks the audio files for requirements such as file format, size, and sampling rate. If there are errors, fix them and upload the data again.
 
-After you upload the data, you can check the details in the training set detail view. On the detail page, you can check the pronunciation issue and the noise level for each of your data. The pronunciation score at the sentence level ranges from 0-100. A score below 70 normally indicates a speech error or script mismatch. Utterances with an overall score lower than 70 are rejected. A heavy accent can reduce your pronunciation score and affect the generated digital voice.
+Review the validation results before you train the model. You can review pronunciation issues and the noise level for each utterance. The pronunciation score at the sentence level ranges from 0 through 100. A score below 70 normally indicates a speech error or script mismatch. Utterances with an overall score lower than 70 are rejected. A heavy accent can reduce your pronunciation score and affect the generated digital voice.
 
-## Resolve data issues online
+## Review data issues
 
-After you upload the data, you can check the data details for the training set. Before you continue to [train your voice model](../../../../professional-voice-train-voice.md), try to resolve any data problems.
+Before you continue to [train your voice model](../../../../professional-voice-train-voice.md), review the validation results and resolve any data problems.
 
 ### Typical data issues
 
@@ -80,7 +125,7 @@ The following tables describe common data problems.
 
 **Auto-rejected**
 
-The training process excludes data with these problems. The import process ignores data with these problems, so you don't need to delete them. You can [fix these data problems online](#resolve-data-issues-online) or upload corrected data for training.  
+The training process excludes data with these problems. The import process ignores them, so you don't need to delete them. Address the issues in the source files, and then upload the corrected data for training.
 
 | Category | Name | Description |
 | --------- | ----------- | --------------------------- |
@@ -132,4 +177,3 @@ Unresolved problems listed in the next table affect the quality of training, but
 
 > [!div class="nextstepaction"]
 > [Train the professional voice](../../../../professional-voice-train-voice.md)
-

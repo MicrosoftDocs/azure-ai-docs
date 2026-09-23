@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/16/2026
+ms.date: 09/18/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -128,7 +128,11 @@ A stable `user_id` keeps memory available across sessions and threads. Without o
 
 Memory extraction runs in the background after each turn. Use the provider as an async context manager or call `flush()` before shutdown so pending extraction completes before the clients close.
 
-The provider also supports custom extraction prompts, processor cadence, confidence thresholds, memory types, and retrieval limits.
+The provider also supports custom extraction prompts, processor cadence, confidence thresholds, memory types, and
+retrieval limits. Select facts, procedures, and episodes with `memory_types`. With Agent Memory Toolkit 0.3.0b2 or
+later, facts and selected episodes share the ranked `top_k` result limit. Selected procedures are compiled separately
+for the current task and don't consume that limit. Older supported Toolkit versions retain their generic retrieval
+behavior.
 
 :::zone-end
 
