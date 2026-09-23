@@ -419,6 +419,12 @@ When you create a managed private endpoint from the Foundry managed virtual netw
 
 To simplify this requirement, assign the `Azure AI Enterprise Network Connection Approver` role (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) to the Foundry account's managed identity. This role includes the necessary permissions for most commonly used Azure services and typically provides sufficient access for Foundry to create and approve private endpoints on your behalf. Once you approve the connection, Foundry fully manages the private endpoint and requires no additional customer configuration. 
 
+> [!NOTE]
+> For an Azure SQL outbound rule, keep the **Azure AI Enterprise Network Connection Approver** role assigned to the Foundry account's managed identity on the target Azure SQL server. Also assign the **Reader** role to the same identity at the scope of the target SQL resource group. Wait briefly for role assignment changes to propagate, and then retry creating the outbound rule.
+> 
+> For an Azure Container Registry outbound rule, assign the **Reader** role to the Foundry account's managed identity as well.
+
+
 ## Required outbound rules 
 
 In **Allow Only Approved Outbound** mode of the managed virtual network, the system creates a few required outbound rules for features like the Agent service. These rules include the following destinations: 
