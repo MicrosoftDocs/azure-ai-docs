@@ -4,7 +4,7 @@ description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Mic
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 08/26/2026
+ms.date: 09/23/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -197,7 +197,7 @@ For agent publishing limitations, including requirements when your project disab
 
 ## Troubleshoot publishing
 
-Use the following table to resolve errors that occur while you publish from the portal. For more extensive troubleshooting, including how to find a published agent in the store and resolve errors when you chat with it, see [Troubleshooting](./publish-copilot-virtual-network.md#troubleshooting).
+Use the following table to resolve errors that occur while you publish from the portal. For more extensive troubleshooting, including how to find a published agent in the store, resolve errors when you chat with it, or troubleshoot a sign-in card redirect, see [Runtime issues](./publish-copilot-virtual-network.md#runtime-issues).
 
 | Symptom | Cause | Resolution |
 |-------|-------|------------|

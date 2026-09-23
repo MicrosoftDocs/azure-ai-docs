@@ -7,7 +7,7 @@ ms.reviewer: aahill
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/28/2026
+ms.date: 09/23/2026
 ms.custom: pilot-ai-workflow-jan-2026, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer who runs a Microsoft Foundry agent inside a virtual network, I want to publish it to Microsoft 365 Copilot and Teams so that users can reach it even though public network access is disabled.
@@ -396,6 +396,7 @@ Use the following table for errors when you chat with a published agent in Micro
 | **MCP approval required.** Requests fail with an error that an MCP approval request wasn't approved. | A required MCP tool approval was missed or dismissed. | Approve the pending MCP request in the conversation. If the approval card is no longer available, start a new conversation and retry. |
 | **Missing required license.** Tool calls fail because required services are unavailable. | The required licenses or service plans aren't assigned to the user. | Verify that all required licenses and service plans are assigned and enabled. |
 | **Authentication timeout.** Sign-in or authentication fails or times out. | The authentication process wasn't completed before the timeout period expired. | Retry the sign-in process, and complete authentication before you submit the request again. |
+| **Login card redirect fails.** The sign-in card opens, but the redirect URL doesn't load or authentication doesn't complete. | A firewall or proxy on the user's network blocks the Foundry redirect domain. | Allow outbound HTTPS access on TCP port 443 to `*.azureml.ms`, and then retry signing in from the Teams card. |
 | **Rate limit exceeded.** Requests fail with a rate-limit error. | Request volume exceeded the available capacity for the model deployment. | Wait and retry later. Reduce request frequency, or increase deployment capacity if the issue occurs frequently. |
 | **Context length exceeded.** Requests fail because the prompt or conversation is too large. | The combined prompt, conversation history, or attachments exceed the model's context window. | Start a new conversation, or reduce the amount of content in the request. |
 | **Unsupported file type.** A file upload fails. | The uploaded file type isn't supported. | Upload a supported file type, or convert the file to a supported format. |
