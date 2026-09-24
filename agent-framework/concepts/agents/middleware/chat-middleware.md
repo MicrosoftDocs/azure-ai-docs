@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Chat-Level Middleware
@@ -331,6 +332,46 @@ async def main() -> None:
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+### Preserve compaction for replacement messages
+
+When Python chat middleware creates provider-specific messages from caller-owned
+history, record the replacement before calling downstream middleware. This lets
+downstream compaction persist a summary against the original history without
+persisting the provider-specific message.
+
+```python
+class ProviderMessageMiddleware(ChatMiddleware):
+    async def process(
+        self,
+        context: ChatContext,
+        call_next: Callable[[], Awaitable[None]],
+    ) -> None:
+        rewritten: list[Message] = []
+
+        for message in context.messages:
+            if message.role == "tool" and message.text:
+                replacement = Message(
+                    role="user",
+                    contents=[f"Tool result: {message.text}"],
+                )
+                rewritten.append(
+                    context.record_message_replacement(replacement, message)
+                )
+            else:
+                rewritten.append(message)
+
+        context.messages = rewritten
+        await call_next()
+```
+
+`record_message_replacement` records provenance only. It doesn't modify
+`context.messages` or persist the replacement. Pass a sequence of source
+messages when one replacement combines multiple messages. If one source becomes
+multiple replacements, record every replacement so compaction can verify that a
+summary covers the complete rewrite. Unregistered or partially summarized
+replacements are rejected during reconciliation, the original history remains
+unchanged, and Agent Framework logs a warning.
 
 ### Decorator-based chat middleware
 

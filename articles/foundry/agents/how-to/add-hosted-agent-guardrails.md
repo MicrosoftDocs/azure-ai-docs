@@ -4,7 +4,7 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 09/17/2026
+ms.date: 09/24/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -22,6 +22,8 @@ This article shows you how to attach guardrails to a hosted agent in Microsoft F
 
 You reference the guardrail by its RAI policy resource ID on the agent definition. You can attach it when you deploy by using the Azure Developer CLI (`azd`), the Python SDK, or the REST API. The same attach steps apply to both kinds of guardrails. To learn what guardrails are, the risks they detect, and how to create one, see [Guardrails and controls overview](../../guardrails/guardrails-overview.md).
 
+If your agent uses the `invocations` protocol, attaching a policy isn't enough on its own. You also declare where the text to screen lives in your request and response bodies. See [Add a guardrail to an agent that uses the invocations protocol](#add-a-guardrail-to-an-agent-that-uses-the-invocations-protocol).
+
 ## Prerequisites
 
 * A [Microsoft Foundry project](../../how-to/create-projects.md).
@@ -32,11 +34,17 @@ You reference the guardrail by its RAI policy resource ID on the agent definitio
     /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
     ```
 
-* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.1 or later.
+* For the Azure Developer CLI method: the `azd ai agent` extension, version 1.0.0-beta.12 or later.
 * For the Python SDK method: the [Azure AI Projects client library](/python/api/overview/azure/ai-projects-readme) for Python, version 2.2.0 or later:
 
     ```bash
     pip install "azure-ai-projects>=2.2.0"
+    ```
+
+    To configure moderation for the `invocations` protocol, use version 2.7.0 or later:
+
+    ```bash
+    pip install "azure-ai-projects>=2.7.0"
     ```
 
 ## How guardrails apply to hosted agents
@@ -51,6 +59,19 @@ Always use the full ARM resource ID for `rai_policy_name`, not the bare policy n
 > Don't rely on deploy-time validation to catch a bad policy ID. On many subscriptions an agent that references a policy that doesn't exist is created successfully and reports `active`, but **no content filtering is applied** - the guardrail fails open and harmful prompts reach the agent. Confirm the policy exists on the account, then [test the guardrail](#test-content-safety-filtering) before you rely on the agent's content safety.
 
 `rai_config` is the shape the Foundry API accepts, so the Python SDK and REST examples in this article set it directly. The Azure Developer CLI doesn't expose `rai_config` in `azure.yaml`; it uses a `policies` list instead and maps it to `rai_config` when it deploys.
+
+### Protocol differences
+
+How much configuration a guardrail needs depends on the protocol your agent exposes:
+
+| Protocol | Configuration |
+| --- | --- |
+| `responses` | Set `rai_policy_name`. The platform knows the request and response shapes, so it locates the text to screen on its own. |
+| `invocations` | Set `rai_policy_name` **and** `invocations_moderation`. Request and response bodies are defined by your agent, so you declare where the text lives. |
+| `invocations_ws` | Content safety moderation isn't available. |
+
+> [!IMPORTANT]
+> On the `invocations` protocol, a policy attached without `invocations_moderation` is inert. The platform has no way to find the text in your custom body shapes, so it doesn't screen anything and requests pass through unfiltered. The agent still deploys and returns `HTTP 200`, which makes the gap easy to miss.
 
 ## Add a guardrail with the Azure Developer CLI
 
@@ -302,6 +323,248 @@ A prompt that passes the policy returns `HTTP 200` with the agent's response. If
 1. The policy is configured to filter the relevant content category and severity.
 
 The guardrail applies to streaming requests too. By using `"stream": true`, a violating prompt is rejected with the same `HTTP 400` before any event is emitted.
+
+## Add a guardrail to an agent that uses the invocations protocol
+
+On the `responses` protocol, the platform knows the request and response shapes, so `rai_policy_name` is all you need. The `invocations` protocol accepts request and response bodies that your agent defines, so the platform can't tell which fields hold user or agent text. Add an `invocations_moderation` object to `rai_config` that declares where the text lives.
+
+Until you do, the policy is attached but screens nothing.
+
+### Moderation settings
+
+| Setting | Required | Description |
+| --- | --- | --- |
+| `response_mode` | Yes | The response shapes your agent can produce: `non_streaming`, `streaming`, or `both`. |
+| `input_content_type` | No | How to parse the request body: `json` (default) or `text`. |
+| `output_content_type` | No | How to parse the response body: `json` (default) or `text`. |
+| `input_paths` | When `input_content_type` is `json` | Path expressions that select the user text in the request body. |
+| `output_paths` | When `response_mode` is `non_streaming` or `both`, and `output_content_type` is `json` | Path expressions that select the agent text in a buffered response body. |
+| `stream_selectors` | When `response_mode` is `streaming` or `both`, and `output_content_type` is `json` | Pairs of `event_type` and `text_field` that locate text in streamed events. |
+
+Set `input_content_type` or `output_content_type` to `text` when that body is plain text. The platform then screens the body itself and you don't provide paths for that direction.
+
+You can attach only one RAI policy to an agent, so `invocations_moderation` applies to that single policy.
+
+#### Path expressions
+
+`input_paths` and `output_paths` accept `$` for the document root, dot notation for members, array indexes, and `[*]` wildcards. For example, `$.messages[*].content` selects the `content` field of every element in the `messages` array. When a path selects several values, the platform joins them and screens them together.
+
+#### Stream selectors
+
+For a streamed response, the platform reads the `type` field of each event and compares it to `event_type`. On a match, it reads the field named by `text_field` and screens that text.
+
+Both `event_type` and `text_field` are exact, case-sensitive matches against top-level properties of the event's JSON payload. You can't select a nested field.
+
+`text_field` is a field name, not a path expression. Use `content`, not `$.content`.
+
+An event whose `type` matches no selector, or whose `text_field` names no property, contributes no text. That event's content goes unscreened, and if no selector ever yields text, the response isn't screened at all. When you omit `text_field`, the platform uses `delta`.
+
+#### Response modes
+
+`response_mode` declares the shapes your agent can return. It applies only to output: input screening runs regardless of the value you set. For output, the platform inspects the response `Content-Type` and runs one check, using the streaming check for `text/event-stream` and the buffered check otherwise.
+
+Declare every shape your agent can return. A successful response that carries content in a shape you didn't declare is rejected with `HTTP 502` rather than skipping moderation. Use `both` only when your agent genuinely answers both ways.
+
+Output screening applies to successful responses that carry content. The platform doesn't screen error responses from your container or empty acknowledgments.
+
+#### Limits
+
+Content safety screening has bounds that affect large payloads:
+
+| Limit | Behavior |
+| --- | --- |
+| Request body larger than 2 MB | Forwarded to your agent without input screening. |
+| Buffered response body larger than 1 MB | Rejected with `HTTP 502`. The response never reaches the client. |
+| Text longer than 10,000 characters in a single check | Truncated before analysis. |
+
+The platform also forwards a request unscreened when it can't parse the body as JSON or when `input_paths` selects nothing. Confirm your paths match your real request bodies rather than assuming a deployed policy is screening them.
+
+### Add the moderation settings
+
+Choose the method you use to deploy the agent.
+
+#### [Azure Developer CLI](#tab/azd)
+
+Add an `invocationsModeration` block to the `rai_policy` entry in `azure.yaml`. These settings use camel case, and `azd` maps them to the snake case names that the API accepts.
+
+1. In your `azure.yaml`, add `invocationsModeration` to the `rai_policy` entry. This example screens the `message` field of the request. The agent streams events shaped like `{"type": "token", "content": "..."}` and a final `{"type": "done", "full_text": "..."}`.
+
+    ```yaml
+    services:
+      my-agent:
+        host: azure.ai.agent
+        project: src/my-agent
+        kind: hosted
+        name: my-hosted-agent
+        policies:
+          - type: rai_policy
+            raiPolicyName: /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>
+            invocationsModeration:
+              responseMode: streaming
+              inputPaths:
+                - $.message
+              streamSelectors:
+                - eventType: token
+                  textField: content
+                - eventType: done
+                  textField: full_text
+        protocols:
+          - protocol: invocations
+            version: "2.0.0"
+    ```
+
+1. Deploy the agent:
+
+    ```bash
+    azd deploy
+    ```
+
+    The platform applies the moderation settings when it creates the agent version.
+
+`azd` checks the block before it deploys, so a structural mistake fails locally instead of at runtime. For example, declaring moderation on an agent that doesn't expose the `invocations` protocol returns:
+
+```output
+policies[0] invocationsModeration is only supported for agents that expose the 'invocations' protocol; add it to 'protocols' or remove the moderation block
+```
+
+These checks cover structure, not meaning. `azd` can't tell whether your paths and field names match the bodies your agent actually sends, so verify that yourself with the test in [Test the moderation settings](#test-the-moderation-settings).
+
+#### [Python SDK](#tab/python)
+
+> [!NOTE]
+> `invocations_moderation` requires `azure-ai-projects` version 2.7.0 or later.
+
+Pass a `RaiInvocationModeration` object to the `invocations_moderation` parameter of `RaiConfig`.
+
+```python
+from azure.ai.projects.models import (
+    RaiConfig,
+    RaiInvocationMode,
+    RaiInvocationModeration,
+    RaiSseTextSelector,
+)
+
+rai_config = RaiConfig(
+    rai_policy_name=RAI_POLICY_ID,
+    invocations_moderation=RaiInvocationModeration(
+        response_mode=RaiInvocationMode.STREAMING,
+        input_paths=["$.message"],
+        stream_selectors=[
+            RaiSseTextSelector(event_type="token", text_field="content"),
+            RaiSseTextSelector(event_type="done", text_field="full_text"),
+        ],
+    ),
+)
+```
+
+Pass `rai_config` to `HostedAgentDefinition` as shown in [Add a guardrail with the Python SDK](#add-a-guardrail-with-the-python-sdk), and set `protocol_versions` to the `invocations` protocol.
+
+#### [REST API](#tab/rest)
+
+Include `invocations_moderation` in the `rai_config` object of the agent definition.
+
+```json
+{
+  "name": "my-agent",
+  "definition": {
+    "kind": "hosted",
+    "container_configuration": {
+      "image": "myacr.azurecr.io/my-agent:v1"
+    },
+    "cpu": "1",
+    "memory": "2Gi",
+    "protocol_versions": [
+      {"protocol": "invocations", "version": "2.0.0"}
+    ],
+    "rai_config": {
+      "rai_policy_name": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account>/raiPolicies/<policy-name>",
+      "invocations_moderation": {
+        "response_mode": "streaming",
+        "input_paths": ["$.message"],
+        "stream_selectors": [
+          {"event_type": "token", "text_field": "content"},
+          {"event_type": "done", "text_field": "full_text"}
+        ]
+      }
+    }
+  }
+}
+```
+
+To confirm the settings were applied, get the agent version and inspect `definition.rai_config.invocations_moderation`:
+
+```bash
+curl -s -X GET "$BASE_URL/agents/my-agent/versions/1?api-version=$API_VERSION" \
+  -H "Authorization: ******" | jq '.definition.rai_config.invocations_moderation'
+```
+
+---
+
+### What a blocked invocation looks like
+
+The response to a blocked request depends on which stage the platform blocks and whether your agent streams.
+
+A blocked request returns `HTTP 400` before your agent runs. The message ends with the request ID, which you can use when you file a support request:
+
+```json
+{
+  "error": {
+    "code": "content_filter",
+    "message": "The request was blocked due to content safety policy violation at input stage. [Request ID: <request-id>]",
+    "type": "content_safety_error"
+  }
+}
+```
+
+A blocked buffered response also returns `HTTP 400`, with a message that names the output stage.
+
+A blocked streamed response is different. The platform sends response headers before it screens the agent's output, so the status stays `HTTP 200`. The platform discards the events it was holding, sends a single error event, and ends the stream:
+
+```text
+event: error
+data: {"type":"error","code":"content_filter","message":"The response was blocked due to content safety policy violation."}
+```
+
+Handle this event in your client. Treat it as terminal. Earlier events might already have reached the client, so the user could see partial output before the block. A `200` status alone doesn't mean the response passed the policy.
+
+### Test the moderation settings
+
+To confirm your settings screen the right fields, send a request that your policy is configured to block and check that the platform blocks it.
+
+If you deployed with `azd`, put the request body in a file, such as *blocked-request.json*:
+
+```json
+{
+  "message": "<a prompt that your policy is configured to block>"
+}
+```
+
+Then invoke the agent with that file:
+
+```bash
+azd ai agent invoke -f blocked-request.json
+```
+
+`azd` reads the protocol from `azure.yaml`. Send the body as a file rather than as a message argument: `azd` sends a message argument as `text/plain`, and an `inputContentType` of `json` can't parse it, so the platform forwards the request unscreened.
+
+You can also call the endpoint directly:
+
+```bash
+curl -i -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
+  -H "Authorization: ******" \
+  -H "Content-Type: application/json" \
+  -d '{"message":"<a prompt that your policy is configured to block>"}'
+```
+
+If the request isn't blocked, check that:
+
+- `input_paths` matches the field that holds the user text. A path that selects nothing means nothing is screened.
+- Each `text_field` is a field name, such as `content`, rather than a path such as `$.content`.
+- Each `event_type` matches the `type` value your agent sends in its streamed events.
+- Your `event_type` and `text_field` values match your agent's casing exactly, and name top-level properties rather than nested ones.
+- The policy filters the relevant content category and severity.
+
+If requests fail with `HTTP 502` instead, `response_mode` probably doesn't match what your agent returns. Set it to `both` if your agent answers both ways.
 
 ## Network egress controls (preview)
 
