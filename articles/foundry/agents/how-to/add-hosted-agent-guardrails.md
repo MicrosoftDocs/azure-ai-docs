@@ -73,7 +73,11 @@ How much configuration a guardrail needs depends on the protocol your agent expo
 > [!IMPORTANT]
 > On the `invocations` protocol, a policy attached without `invocations_moderation` is inert. The platform has no way to find the text in your custom body shapes, so it doesn't screen anything and requests pass through unfiltered. The agent still deploys and returns `HTTP 200`, which makes the gap easy to miss.
 
-## Add a guardrail with the Azure Developer CLI
+## Add a guardrail
+
+Choose the method you use to deploy the agent. These examples attach a guardrail to an agent on the `responses` protocol. On the `invocations` protocol, you also need moderation settings, which [Add a guardrail to an agent that uses the invocations protocol](#add-a-guardrail-to-an-agent-that-uses-the-invocations-protocol) covers.
+
+### [Azure Developer CLI](#tab/azd)
 
 When you use `azd`, declare the guardrail in the `policies` list on the `azure.ai.agent` service in `azure.yaml`. Add an entry with `type: rai_policy` and set `raiPolicyName` to the full ARM resource ID of the RAI policy. When you deploy, `azd` maps that entry to `rai_config.rai_policy_name` on the agent definition it sends to Foundry.
 
@@ -107,7 +111,7 @@ The platform attaches the guardrail when it creates the agent version.
 > [!NOTE]
 > In `azure.yaml` the field is camelCased as `raiPolicyName`. The deprecated standalone `agent.yaml` uses the snake_case `rai_policy_name`. Both map to `rai_config.rai_policy_name` on the agent version. Don't declare the guardrail in `agent.manifest.yaml` - `azd` reads that file only during `azd ai agent init` and ignores it at deploy time.
 
-## Add a guardrail with the Python SDK
+### [Python SDK](#tab/python)
 
 When you create an agent version with the SDK, pass a `RaiConfig` to the `rai_config` parameter of `HostedAgentDefinition`.
 
@@ -161,7 +165,7 @@ print(f"Agent created: {agent.name}, version: {agent.version}")
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition), [ContainerConfiguration](/python/api/azure-ai-projects/azure.ai.projects.models.containerconfiguration), and [RaiConfig](/python/api/azure-ai-projects/azure.ai.projects.models.raiconfig).
 
-## Add a guardrail with the .NET SDK
+### [.NET SDK](#tab/dotnet)
 
 When you create an agent version with the .NET SDK, set the `ContentFilterConfiguration` property on `HostedAgentDefinition`. Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
 
@@ -196,7 +200,7 @@ ProjectsAgentVersion agent = agentsClient.CreateAgentVersion(
 Console.WriteLine($"Agent created: {agent.Name}, version: {agent.Version}");
 ```
 
-## Add a guardrail with the JavaScript/TypeScript SDK
+### [JavaScript/TypeScript SDK](#tab/javascript)
 
 When you create an agent version with the SDK, add an `rai_config` object with a `rai_policy_name` field to the hosted agent definition.
 
@@ -239,7 +243,7 @@ console.log(`Agent created: ${agent.name}, version: ${agent.version}`);
 
 Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
-## Add a guardrail with the REST API
+### [REST API](#tab/rest)
 
 When you create the agent over REST, include a `rai_config` object in the `definition`.
 
@@ -269,6 +273,8 @@ curl -X POST "$BASE_URL/agents?api-version=$API_VERSION" \
     }
   }'
 ```
+
+---
 
 ## Verify the guardrail is applied
 
@@ -457,7 +463,7 @@ rai_config = RaiConfig(
 )
 ```
 
-Pass `rai_config` to `HostedAgentDefinition` as shown in [Add a guardrail with the Python SDK](#add-a-guardrail-with-the-python-sdk), and set `protocol_versions` to the `invocations` protocol.
+Pass `rai_config` to `HostedAgentDefinition` as shown in [Add a guardrail](#add-a-guardrail), and set `protocol_versions` to the `invocations` protocol.
 
 #### [REST API](#tab/rest)
 
