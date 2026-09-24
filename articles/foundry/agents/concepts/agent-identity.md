@@ -18,7 +18,7 @@ An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entr
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
-This article explains how agent identities relate to Microsoft Entra ID objects, how Foundry uses them when an agent calls tools, and how to apply least-privilege access with Azure role-based access control (RBAC).
+This article explains how agent identities relate to Microsoft Entra ID objects, how Foundry uses them when an agent calls tools, and how to apply least-privilege access with Azure role-based access control (RBAC). The same identity model applies to text-based prompt agents and voice-based prompt agents. In voice-based scenarios, Foundry manages the real-time voice runtime and WebSocket connection while the agent identity still authenticates downstream tools and resources.
 
 ## Prerequisites
 
@@ -199,6 +199,8 @@ Agents access remote resources and tools by using agent identities for authentic
 
 * **Unpublished agents**: Authenticate by using the shared project's agent identity.
 * **Published agents**: Authenticate by using the unique agent identity that's associated with the agent application.
+
+This authentication method applies to text-based and voice-based prompt agents alike. Voice-based agents use the same agent identity to authenticate tool calls while Foundry manages the real-time speech session and Voice Live connection.
 
 When you [publish an agent](../how-to/agent-applications.md), you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. This reassignment ensures that the published agent maintains appropriate access while operating under its distinct identity.
 

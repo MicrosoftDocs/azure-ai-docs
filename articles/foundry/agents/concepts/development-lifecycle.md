@@ -28,7 +28,7 @@ This article is for developers who want to build, test, and ship production-read
 
 Use this lifecycle as a practical checklist while you build and ship an agent.
 
-1. **Choose an agent type**: Start with a prompt-based agent or a Hosted agent.
+1. **Choose an agent type**: Start with a prompt-based agent, a voice-based prompt agent, or a Hosted agent.
 1. **Create your agent and start testing**: Iterate in the playground or in code.
 1. **Add tools and data**: Attach tools for retrieval and actions, and validate the configuration before you save.
 1. **Save changes as versions**: Capture meaningful milestones and compare versions.
@@ -40,13 +40,15 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 
 ## Agent types in Microsoft Foundry
 
-There are two types of agents:
+There are three types of agents:
 
 - **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines a Foundry model, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../concepts/concept-playgrounds.md) in the Foundry portal.
 
+- **Voice-based prompt agents**: A voice-based prompt agent is a prompt-based agent optimized for real-time spoken interactions. Configure the model, instructions, audio settings, optional greeting, and tools, then connect to it over a WebSocket with Voice Live. Foundry manages the runtime, tool execution, and lifecycle while you focus on the spoken experience. For details, see [Quickstart: Create a voice-based prompt agent](../quickstarts/prompt-voice-agent.md).
+
 - **Hosted**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit Hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are Hosted agents?](./hosted-agents.md)
 
-Create prompt-based agents in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
+Create prompt-based and voice-based prompt agents in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../quickstarts/get-started-code.md).
 
 ## Creating a prompt-based agent
 

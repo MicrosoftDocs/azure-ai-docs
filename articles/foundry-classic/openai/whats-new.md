@@ -42,7 +42,7 @@ New concept articles describe the capabilities and use cases for the latest real
 ### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
 
 The `gpt-realtime-1.5` and `gpt-audio-1.5` models are now available.
-- These models build on last year's GPT-Realtime and GPT-Audio with improvements in instruction following, multilingual support, and tool calling, while preserving the low-latency, real-time interactions developers need for voice-first applications.
+- These models build on last year's GPT-Realtime and GPT-Audio with improvements in instruction following, multilingual support, and tool calling, while preserving the low-latency, real-time interactions developers need for voice-based applications.
 - Try them with the existing chat completion APIs in Microsoft Foundry.
 
 ## December 2025

@@ -37,6 +37,17 @@ When you build agents in Microsoft Foundry Agent Service, tools extend what your
 
 ## Improve tool-calling reliability
 
+### Design tools for voice-based prompt agents
+
+Voice-based prompt agents use tools during a live audio conversation, so tool latency and response length affect the caller's experience. Keep tool descriptions concise, return only the information the agent needs to answer the current request, and provide a short spoken progress response when a tool call takes time.
+
+- Use native function tools when the connected client must perform the action.
+- Use MCP or toolbox tools when the agent service or Voice Live integration performs the tool call.
+- Set `tool_choice` deliberately for opening or other time-sensitive turns. Use `none` when the agent should speak without calling a tool, `auto` when the model decides, or `required` when a tool call is necessary.
+- Test interruptions and tool failures in a live voice session. The agent should remain usable when a caller speaks while a tool is running or when a tool returns no result.
+
+For setup, see [Quickstart: Create a voice-based prompt agent](../quickstarts/prompt-voice-agent.md).
+
 ### Control tool calling with `tool_choice`
 
 Use `tool_choice` for the most deterministic control over tool calling.

@@ -87,6 +87,14 @@ For `invocations` agents, check the sample's README or inspect the handler entry
    azd ai agent invoke --protocol invocations -f request.json
    ```
 
+### Voice agent limitations
+
+`azd ai agent invoke` doesn't implement voice conversations. When `azure.yaml` identifies the selected service as `voice` or `prompt-voice`, the command returns `voice agents cannot be invoked with this command` and directs you to the [Foundry portal](https://ai.azure.com).
+
+This restriction also applies to a voice wrapper that uses `conversationEngine` to reference a hosted target. Selecting `--protocol responses` doesn't bypass the voice-service check.
+
+Use the playground to test a voice agent, as described in the [voice agent quickstart](../quickstarts/prompt-voice-agent.md#test-the-voice-agent).
+
 ## Manage sessions
 
 Sessions are persisted per-agent. When you invoke an agent, `azd` saves the session ID locally so the next `invoke` automatically continues the same session and maintains conversation history across calls.
