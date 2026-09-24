@@ -66,7 +66,7 @@ When you create the Browser Automation connection, select the authentication met
 
 ## Grant Playwright workspace access
 
-Browser Automation Tool uses the **Foundry project managed identity** to access the Playwright workspace. This identity is different from a Hosted agent's dedicated agent identity:
+Browser Automation Tool uses the **Foundry project managed identity** to access the Playwright workspace. This identity is different from a hosted agent's dedicated agent identity:
 
 - **Project managed identity:** Project-wide identity used by Foundry platform services and Browser Automation connections.
 - **Agent identity:** Per-agent identity created when you deploy a Hosted agent. Use it for the agent's runtime access to downstream resources.
