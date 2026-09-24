@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: overview
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -73,6 +74,18 @@ agent = Agent(
 ```
 
 The same `Agent` interface works across supported model providers. Direct agent types such as `FoundryAgent`, `A2AAgent`, `GitHubCopilotAgent`, and `ClaudeAgent` connect to managed or remote agent runtimes instead.
+
+Use `async with agent` when the client or MCP tools manage async resources. The context manager opens and closes them automatically. For explicit application lifecycle control, call `open()` once and close the agent in a `finally` block:
+
+```python
+await agent.open()
+try:
+    response = await agent.run("Hello")
+finally:
+    await agent.close()
+```
+
+`close()` also releases MCP tools that connect lazily during a run. If `open()` fails partway through startup, the agent closes resources that were already opened.
 
 For available inference clients, see [Model providers](../../integrations/by-component/model-providers/index.md).
 
