@@ -62,7 +62,7 @@ When you create the Browser Automation connection, select the authentication met
 | --- | --- | --- |
 | **API key** | You are prototyping or your organization permits service access tokens. | The key is stored in the Foundry project connection. Don't place it in source code, prompts, or logs. Rotate and revoke it according to your organization's policy. |
 | **Project managed identity** | Multiple agents in the same Foundry project need to access the same Playwright workspace. | Use the Foundry project's Microsoft Entra identity and grant it only the required permissions on the workspace. This identity is the recommended default for enterprise workloads when supported by the connection. |
-| **Agent identity** | A deployed Hosted agent needs its own access boundary for browser automation or downstream resources. | A Hosted agent receives a dedicated Microsoft Entra identity when it is deployed. Assign permissions to that identity when the agent requires access that should not be shared with other agents in the project. |
+| **Agent identity** | A deployed Hosted agent needs its own access boundary for browser automation or downstream resources. | A Hosted agent receives a dedicated Microsoft Entra identity when it is deployed. Assign permissions to that identity when the agent requires access that shouldn't be shared with other agents in the project. |
 
 ## Grant Playwright workspace access
 
