@@ -15,39 +15,18 @@ zone_pivot_groups: voice-agent-telephony-setup
 
 # Integrate telephony channels with a voice agent
 
-You can now directly import a phone number you purchased from Teams and connect it to your voice agent. 
+You can now directly import a phone number you purchased from a telephony provider and connect it to your voice agent. 
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+## Compare the channel integrations
 
-## Prerequisites
+| Path | Use it when | What you provide in Foundry |
+| --- | --- | --- |
+| Microsoft Teams | Your organization owns a service number in Teams and routes it through a Teams resource account to Azure Communication Services. | Teams resource-account object ID|
+| Twilio | Your organization owns one or more active voice-capable numbers in Twilio. | Twilio Account SID and Auth Token. |
 
-- [Get Microsoft Teams Calling Plan phone numbers for your tenant](https://learn.microsoft.com/microsoftteams/getting-phone-numbers-for-your-users).
-- Follow the setup for [Teams Phone System extensibility](https://learn.microsoft.com/azure/communication-services/quickstarts/tpe/teams-phone-extensibility-quickstart).
-- A saved voice-first agent in a Foundry project that passes browser testing. See [Quickstart: Create a voice-first prompt agent](../quickstarts/prompt-voice-agent.md).
-- [Foundry User role](../../concepts/rbac-foundry.md) on the project, to create and manage telephony bindings.
-
-  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-  - Permission to update the agent and its channels.
-  - Access to the selected Azure Communication Services resource.
-  - Permission to create or update a Foundry project connection.
-  - Permission to create or update telephony bindings.
-  - Event Grid write permission on the Azure Communication Services resource.
-  - Help from a tenant administrator when secure webhook setup requires Microsoft Entra application or app-role changes.
-
-The current project-managed-identity flow requires the Foundry project and Azure Communication Services resource to be in the same Microsoft Entra tenant.
-
-
-### Twilio prerequisites
-
-For the Twilio path, you need:
-
-- A Twilio account with at least one active, voice-capable phone number.
-- The Twilio Account SID and Primary Auth Token if you need to create a Foundry project connection.
-- Permission to create or read connections in the Foundry project.
-- Permission to create telephony bindings for the agent.
-
-Treat the Twilio Auth Token as a secret. Enter it only in the Foundry connection dialog, and don't include it in documentation, logs, screenshots, or support requests.
+The Twilio option appears only in supported public-cloud environments.
 
 ## Understand the call path
 
@@ -74,58 +53,53 @@ Because the Teams number stays in Teams, the agent can act as one destination am
 
 For Twilio, Foundry uses the selected project connection to discover the numbers in your Twilio account and create a binding for each number you select. You don't create an Azure Communication Services resource or Event Grid subscription for the Twilio path.
 
-## Compare the channel integrations
 
-| Path | Use it when | What you provide in Foundry |
-| --- | --- | --- |
-| Microsoft Teams Phone Extensibility | Your organization owns a service number in Teams and routes it through a Teams resource account to Azure Communication Services. | `28:orgid:<resource-account-object-id>` |
-| Twilio | Your organization owns one or more active voice-capable numbers in Twilio. | An existing Twilio project connection, or the Account SID and Primary Auth Token for a new connection. |
 
-Direct SIP and Azure Communication Services purchased numbers aren't supported customer options in the current **Add a number** menu. The Twilio option appears only in supported public-cloud environments.
+## Prerequisites
 
-## Understand telephony bindings
+### Voice agent prerequisites
 
-A telephony binding connects a provider-specific destination to one voice agent in your project. For a Teams Phone REST binding, set `provider` to `teams_phone_extension` and pass the resource account GUID in `resource_account_object_id`. The incoming-call identifier `28:orgid:{resource-account-guid}` isn't the value of that REST property.
+- A saved voice-first agent in a Foundry project that passes browser testing. See [Quickstart: Create a voice-first prompt agent](../quickstarts/prompt-voice-agent.md).
+- [Foundry User role](../../concepts/rbac-foundry.md) on the project, to create and manage telephony bindings.
 
-A binding holds:
+  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
-- A service-generated binding `id`.
-- The provider and its destination, such as the Teams resource account object ID.
-- A `status` of `active` or `suspended`, which lets you take a number offline without deleting the mapping.
-- A `connection` that names the Foundry project connection for your provider. Secrets aren't stored in the binding itself.
-- An `incoming_call_url` that the service generates for incoming-call delivery.
 
-The agent that owns the binding is identified by the request path. Create and list bindings at `{projectEndpoint}/agents/{agentName}/telephony/bindings`. To get, update, or delete one binding, append `/{bindingId}`.
+### Teams Phone prerequisites
 
-Binding reads return an `ETag`. Send that value in `If-Match` when updating or deleting the binding to avoid overwriting a concurrent change. Transfer targets are configured separately for the agent, not on each binding.
+For the Teams path, you need:
+- [Get Microsoft Teams Calling Plan phone numbers for your tenant](/microsoftteams/getting-phone-numbers-for-your-users).
+- A Teams or Microsoft 365 administrator usually completes these steps:
 
-## Prepare Microsoft Teams Phone Extensibility
+  - Follow [Teams Phone System extensibility quick start](/azure/communication-services/quickstarts/tpe/teams-phone-extensibility-quickstart) to provision the application, bot, resource account, and Azure Communication Services association.
+  - Create or select the Azure Communication Services resource that receives calls for the resource account.
+  - Create the Teams resource account with the Phone Extensibility application ID.
+  - Associate the resource account with the Azure Communication Services resource, and synchronize the resource account.
+  - Acquire a Teams service number and assign it to the resource account. The number can use Calling Plan, Operator Connect, or Direct Routing according to your Teams telephony configuration.
+  - Assign the **Microsoft Teams Phone Resource Account** license when required.
+  - Provide Azure Communication Services server consent for the exact tenant and resource-account object ID.
+  - Place a controlled call and confirm that Azure Communication Services emits `Microsoft.Communication.IncomingCall`.
 
-A Teams or Microsoft 365 administrator usually completes these steps.
+- The Foundry owner needs to prepare:
+  - The callable Teams number.
+  - The Azure Communication Services ARM resource ID.
+  - The resource-account object ID.
+  - Confirmation that Azure Communication Services received the test call.
 
-1. Follow [Teams Phone System extensibility quick start](/azure/communication-services/quickstarts/tpe/teams-phone-extensibility-quickstart) to provision the application, bot, resource account, and Azure Communication Services association.
-1. Create or select the Azure Communication Services resource that receives calls for the resource account.
-1. Create the Teams resource account with the Phone Extensibility application ID.
-1. Associate the resource account with the Azure Communication Services resource, and synchronize the resource account.
-1. Acquire a Teams service number and assign it to the resource account. The number can use Calling Plan, Operator Connect, or Direct Routing according to your Teams telephony configuration.
-1. Assign the **Microsoft Teams Phone Resource Account** license when required.
-1. Provide Azure Communication Services server consent for the exact tenant and resource-account object ID.
-1. Place a controlled call and confirm that Azure Communication Services emits `Microsoft.Communication.IncomingCall`.
-
-Provide the Foundry owner with:
-
-- The callable Teams number.
-- The Azure Communication Services ARM resource ID.
-- The resource-account object ID.
-- Confirmation that Azure Communication Services received the test call.
-
-The expected incoming destination is:
-
-```text
-28:orgid:<resource-account-object-id>
-```
+The current project-managed-identity flow requires the Foundry project and Azure Communication Services resource to be in the same Microsoft Entra tenant.
 
 <!-- Screenshot: Teams resource account showing the service number and application association. Alt text: "Teams resource account with its assigned service number and Phone Extensibility application." -->
+
+### Twilio prerequisites
+
+For the Twilio path, you need:
+
+- A [Twilio](https://www.twilio.com/phone-numbers) account with at least one active, voice-capable phone number.
+- The Twilio **Account SID** and **Auth Token** if you need to create a Foundry project connection.
+  
+Treat the Twilio Auth Token as a secret. Enter it only in the Foundry connection dialog, and don't include it in documentation, logs, screenshots, or support requests.
+
+
 
 ::: zone pivot="foundry-portal"
 
@@ -154,8 +128,7 @@ When **Secure incoming-call delivery** is shown, choose the approved mode.
 | Option | Use it when |
 | --- | --- |
 | **Automatic configuration (Recommended)** | Use when the tenant allows Foundry to create or update the webhook app, app-role assignments, and Event Grid subscription. |
-| **Use a customer-managed app registration and let Foundry configure Event Grid** | Use an approved dedicated single-tenant application. The signed-in user must own it or an administrator must complete the changes. |
-| **Event Grid and app registration are already configured** | Use only when authenticated Event Grid delivery to the exact Foundry webhook is already complete. Foundry skips that bootstrap work. |
+| **Manual configuration** | **Use a customer-managed app registration and let Foundry configure Event Grid** - Use an approved dedicated single-tenant application. The signed-in user must own it or an administrator must complete the changes. Or **Event Grid and app registration are already configured** - Use only when authenticated Event Grid delivery to the exact Foundry webhook is already complete. Foundry skips that bootstrap work. |
 
 For a customer-managed application:
 
@@ -189,20 +162,7 @@ Enter the **Resource account object ID** that the Teams administrator provides. 
 28:orgid:<resource-account-object-id>
 ```
 
-### Add the number
-
-Select **Add number**.
-
-The portal:
-
-1. Verifies the voice agent.
-1. Creates or updates the Azure Communication Services project connection.
-1. Creates or updates the telephony binding.
-1. Creates the `Microsoft.Communication.IncomingCall` Event Grid subscription when required by the selected delivery mode.
-
-The number appears in the **Phone numbers** card after provisioning succeeds.
-
-### Connect Twilio numbers
+### Connect a Twilio number
 
 1. In **Phone numbers**, select **Add a number** > **Twilio**.
 1. Select a compatible existing Twilio connection. If none is available, select **Create a new Twilio connection**.
@@ -237,6 +197,22 @@ The **Phone numbers** card shows each connected number, its optional label, and 
 ::: zone-end
 
 ::: zone pivot="api"
+
+## Understand telephony bindings
+
+A telephony binding connects a provider-specific destination to one voice agent in your project.
+
+A binding holds:
+
+- A service-generated binding `id`.
+- The provider and its destination, such as the Teams resource account object ID.
+- A `status` of `active` or `suspended`, which lets you take a number offline without deleting the mapping.
+- A `connection` that names the Foundry project connection for your provider. Secrets aren't stored in the binding itself.
+- An `incoming_call_url` that the service generates for incoming-call delivery.
+
+The agent that owns the binding is identified by the request path. Create and list bindings at `{projectEndpoint}/agents/{agentName}/telephony/bindings`. To get, update, or delete one binding, append `/{bindingId}`.
+
+Binding reads return an `ETag`. Send that value in `If-Match` when updating or deleting the binding to avoid overwriting a concurrent change. Transfer targets are configured separately for the agent, not on each binding.
 
 ## Connect a number by using the API
 

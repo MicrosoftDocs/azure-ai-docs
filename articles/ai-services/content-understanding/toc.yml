@@ -65,6 +65,9 @@ items:
     - name: Foundry model deployments
       displayName: foundry, model, deployments
       href: concepts/models-deployments.md
+    - name: Guardrails
+      displayName: harmful content, warnings, errors, filtering, field suppression, annotate
+      href: concepts/guardrails.md
     - name: Agentic mode (preview)
       displayName: agentic, reasoning, calculations, validation, complex documents
       href: concepts/agentic-mode.md

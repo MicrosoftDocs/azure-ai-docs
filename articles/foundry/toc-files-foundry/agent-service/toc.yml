@@ -80,10 +80,6 @@ items:
         href: ../../agents/how-to/use-subagent-voice-first-agent.md
       - name: Integrate a telephony channel
         href: ../../agents/how-to/voice-agent-telephony-channels.md
-      - name: Connect to a Teams phone number
-        href: ../../agents/how-to/voice-agent-teams-phone.md
-      - name: Connect to a Twilio phone number
-        href: ../../agents/how-to/voice-agent-twilio-phone.md
       - name: Best practices
         href: ../../agents/concepts/voice-agent-best-practice.md
       - name: Optimize a voice agent
