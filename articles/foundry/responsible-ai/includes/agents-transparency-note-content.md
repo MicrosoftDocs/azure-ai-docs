@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [non-english-translation](non-english-translation.md)]
@@ -105,7 +106,7 @@ Developers can connect an Agent to external systems, APIs, and services through 
 * **Computer Use**: (a tool to perform tasks by interacting with computer systems and applications through their UIs)   
 * **Browser Automation Tool** (a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention in the middle)
 * **Image Generation** (a tool to generate and edit images)
-* **Agent2Agent** (a custom service connected using the agent-to-agent protocol through an existing agent endpoint to a Foundry agent). 
+* **Agent2Agent** (a Foundry or non-Foundry agent connected using the agent-to-agent protocol through an existing agent endpoint to a Foundry agent).
 
 #### Orchestrating multi-agent systems
 
@@ -166,6 +167,7 @@ We encourage customers to use Agent Service in their innovative solutions or app
     - [Task adherence](https://aka.ms/taskadherence-sample): Measures how well the agent’s final response adheres to its assigned tasks, according to its system message and prior steps. 
 * **Provide trusted data:** Retrieving or uploading untrusted data into your systems could compromise the security of your systems or applications. To mitigate these risks in your applications using Agent Service, we recommend logging and monitoring LLM interactions (inputs/outputs) to detect and analyze potential prompt injections, clearly delineating user input to minimize risk of prompt injection, restricting the LLM’s access to sensitive resources, limiting its capabilities to the minimum required, and isolating it from critical systems and resources. Learn about additional mitigation approaches in [Security guidance for Large Language Models.](/ai/playbook/technology-guidance/generative-ai/mlops-in-openai/security/security-recommend)
 * **Choose and integrate tools thoughtfully:** Select tools that are stable, well-documented, and suited to the agent’s intended uses and objectives. For instance, use a reliable database connector for factual lookups or a well-tested API for executing specific actions. Limit the number of tools to those that genuinely enhance functionality and specify how and when the agent should use them.
+* **When using Agent2Agent (A2A), treat connected agents, particularly non-Foundry agents, as external trust boundaries:** Validate the data exchanged, apply appropriate authentication and least-privilege access, and assess the risk of prompt injection and unintended disclosure of sensitive data.
 * **Provide user proactive controls for system boundaries:** Consider creating user controls to give users operating the AI agent the ability to proactively set boundaries on what actions or tools are permitted, and what domains the agent can operate in.
 * **Establish real-time oversight and human-in-the-loop processes:** Consider providing users with adequate real-time controls to authorize, verify, review, and approve agentic system behavior, including actions, planned tasks, operating environments or domain boundaries, and knowledge or action tool access. Particularly for critical or high-stakes tasks, consider incorporating mandatory human review and approval steps by the user. Ensure that a user or human operator can easily intervene, correct, or override the agent’s decisions, especially when those decisions have safety or legal implications. For more information, see [Overreliance on AI](/ai/playbook/technology-guidance/overreliance-on-ai/overreliance-on-ai?wt.mc_id=reliance_v1_multichannel_cnl_csadai).
 * **Ensure intelligibility and traceability for human decision-making**: Provide users with information before, during, and after actions are taken to help them understand justifications for decisions, identify where to intervene, and troubleshoot issues. Incorporate instrumentation or logging within the system, such as OpenTelemetry traces from Agent Service, to trace outputs, including prompts, model steps, and tool calls. This enables reconstruction of the agent’s reasoning process, isolation of issues, tuning of prompts, refinement of tool integration, and verification of guideline adherence. For more information, see [Tracing using Application Insights](/azure/ai-services/agents/concepts/tracing).
