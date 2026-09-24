@@ -44,6 +44,50 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 > The private website feature in Playwright Workspaces is currently available in private preview.
 > Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
 
+## Choose your setup path
+
+Choose the agent type and development approach before you configure **Browser Automation Tool**. All options use a Playwright workspace and a Browser Automation toolbox. The difference is where your agent logic runs and how much code you manage.
+
+| Choose | Use this option when | Next step |
+| --- | --- | --- |
+| **Prompt agent** | You want the fastest path to a browser-enabled agent. Define instructions, a model, and tools in Foundry, and let Foundry run the agent. | Follow the Prompt agent sample. |
+| **Hosted agent with Microsoft Agent Framework** | You need custom agent code but want a recommended starting framework and Foundry-managed hosting, scaling, identity, and observability. | Follow the Hosted agent quickstart. Select **Agent Framework** when you create the sample. |
+| **Hosted agent with your own framework** | You already use a framework such as LangGraph, OpenAI Agents SDK, Semantic Kernel, or custom code, and need to retain your existing orchestration logic. | Create a Hosted agent, then connect to the Browser Automation toolbox by using your framework's MCP client. |
+
+## Choose an authentication type
+
+When you create the Browser Automation connection, select the authentication method that meets your organization's security requirements.
+
+| Authentication type | Use when | Considerations |
+| --- | --- | --- |
+| **API key** | You are prototyping or your organization permits service access tokens. | The key is stored in the Foundry project connection. Don't place it in source code, prompts, or logs. Rotate and revoke it according to your organization's policy. |
+| **Project managed identity** | Multiple agents in the same Foundry project need to access the same Playwright workspace. | Use the Foundry project's Microsoft Entra identity and grant it only the required permissions on the workspace. This is the recommended default for enterprise workloads when supported by the connection. |
+| **Agent identity** | A deployed Hosted agent needs its own access boundary for browser automation or downstream resources. | A Hosted agent receives a dedicated Microsoft Entra identity when it is deployed. Assign permissions to that identity when the agent requires access that should not be shared with other agents in the project. |
+
+## Grant Playwright workspace access
+
+Browser Automation Tool uses the **Foundry project managed identity** to access the Playwright workspace. This identity is different from a Hosted agent's dedicated agent identity:
+
+- **Project managed identity:** Project-wide identity used by Foundry platform services and Browser Automation connections.
+- **Agent identity:** Per-agent identity created when you deploy a Hosted agent. Use it for the agent's runtime access to downstream resources.
+
+Grant the project managed identity the minimum permissions required to use the Playwright workspace:
+
+1. In the Azure portal, open the Playwright workspace.
+2. Select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
+3. Select a custom role that contains only the Playwright permissions required by the Foundry project identity. If a custom role isn't available, assign **Playwright Workspace Contributor** at the **Playwright workspace resource scope**.
+4. On the **Members** tab, select the Foundry project managed identity.
+5. Select **Review + assign**.
+
+## Monitor browser automation sessions
+
+Browser Automation Tool provides observability features to help you validate, troubleshoot, and review browser-based agent runs.
+
+- **Live View:** Provides a real-time view of an active browser session. Use it during development and testing to verify navigation, page state, and browser interactions as the agent runs.
+- **Session recording:** Lets you review a completed browser session, including video, actions, logs, and metadata. Use recordings together with run details and logs to investigate failures, compare outcomes, and share evidence with collaborators.
+- **Take control:** Supports human-in-the-loop workflows. Use it when a person needs to intervene in a browser session before the agent continues.
+- For production workflows, review run summaries, traces, and diagnostic logs to investigate outcomes without continuously monitoring active sessions.
+
 ## Prerequisites
 
 Before you begin, make sure you have:
@@ -98,6 +142,27 @@ An example flow is:
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
   The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
+
+## Use cases
+
+Use **Browser Automation Tool** for browser-based workflows that require navigation, information extraction, form interaction, or validation across websites and business applications.
+
+For example, a finance operations team can use an agent with **Browser Automation Tool** to retrieve invoice details from a vendor portal, validate the information against its internal system, and enter the required data into a legacy finance application. The agent can use the browser when these systems don't provide APIs or when the workflow spans multiple browser-based applications.
+
+### Common scenarios
+
+- **Form filling and third-party integration:** Complete forms and move information between browser-based applications when an API isn't available.
+
+- **Web research and data extraction:** Navigate websites, filter results, and collect or compare information across sources.
+
+- **Quality assurance and regression testing:** Validate end-to-end user flows, reproduce reported issues, and investigate failures in a real browser session.
+
+- **Customer support and issue replication:** Re-create a customer journey, gather context from a website, and help support teams investigate browser-based issues.
+
+- **Legacy-system automation:** Automate repetitive interactions with internal or vendor portals that don't provide modern APIs.
+
+- **Employee and business operations:** Support supervised workflows such as employee-lifecycle tasks, invoice processing, and other browser-based operational processes.
+
 
 ## Set up Browser Automation
 
