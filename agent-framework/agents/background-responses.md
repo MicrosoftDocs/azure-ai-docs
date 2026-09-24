@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: sergeymenshykh
 ms.topic: reference
 ms.author: semenshi
-ms.date: 05/27/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -184,7 +184,9 @@ response = await agent.run(
 ```
 
 > [!NOTE]
-> Currently, only agents that use the OpenAI Responses API support background responses: [OpenAI Responses Agent](../integrations/by-component/model-providers/openai.md) and [Azure OpenAI Responses Agent](../integrations/by-component/model-providers/azure-openai.md).
+> Python agents backed by the OpenAI Responses API, Azure OpenAI Responses API, or [Microsoft Foundry](../integrations/by-component/model-providers/microsoft-foundry.md) support background responses.
+
+With `FoundryChatClient`, background responses can run local function tools with either provider-side response storage (`store=True`) or stateless replay (`store=False`). Keep the same session while polling so the resumed response can continue the local tool loop.
 
 ## Non-Streaming Background Responses
 

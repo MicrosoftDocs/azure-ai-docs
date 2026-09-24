@@ -4,7 +4,7 @@ description: In-depth look at Handoff Orchestrations in Microsoft Agent Framewor
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 09/21/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
 ai-usage: ai-assisted
@@ -447,6 +447,20 @@ workflow = (
 > [!NOTE]
 > Even with custom handoff rules, all agents are still connected in a mesh topology. This is because agents need to share context with each other to maintain conversation history (see [Context Synchronization](#context-synchronization) for more details). The handoff rules only govern which agents can take over the conversation next.
 
+By default, a user response returns to the agent that requested it. To have the start agent evaluate every user response before routing it again, disable return-to-previous routing.
+
+```python
+workflow = (
+    HandoffBuilder(
+        name="customer_support_handoff",
+        participants=[triage_agent, refund_agent, order_agent, return_agent],
+    )
+    .with_start_agent(triage_agent)
+    .enable_return_to_previous(False)
+    .build()
+)
+```
+
 ## Run Handoff Agent Interaction
 
 Unlike other orchestrations, handoff is interactive because an agent may not decide to handoff after every turn. If an agent doesn't handoff, human input is required to continue the conversation. See [Autonomous Mode](#autonomous-mode) for bypassing this requirement. In other orchestrations, after an agent responds, the control either goes to the orchestrator or the next agent.
@@ -793,6 +807,7 @@ After broadcasting the response, the participant then checks whether it needs to
 - **HandoffBuilder**: Creates workflows with automatic handoff tool registration
 - **with_start_agent()**: Defines which agent receives user input first
 - **add_handoff()**: Configures specific handoff relationships between agents
+- **enable_return_to_previous()**: Controls whether user responses return to the requesting agent or route through the start agent.
 - **Output**: By default, `output_from` is set to **all participants**, so every agent's response surfaces as an `"output"` (terminal) event (`AgentResponse` in non-streaming mode, `AgentResponseUpdate` in streaming mode). To designate specific agents as intermediate sources instead, pass `intermediate_output_from=[agent_a, agent_b]` to `HandoffBuilder` — this implicitly demotes those agents from the default output set so their responses become `"intermediate"` events. There is no overlap error; the demotion is silent and intentional.
 - **Context preservation**: Preserve semantic user content across handoffs while filtering tool-control content.
 - **Request/Response Cycle**: Workflow requests user input, processes responses, and continues until termination condition is met
