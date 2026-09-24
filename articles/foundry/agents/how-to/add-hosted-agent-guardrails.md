@@ -389,7 +389,7 @@ The platform also forwards a request unscreened when it can't parse the body as 
 
 Choose the method you use to deploy the agent.
 
-#### [Azure Developer CLI](#tab/azd)
+#### [Azure Developer CLI](#tab/azd-invocations)
 
 Add an `invocationsModeration` block to the `rai_policy` entry in `azure.yaml`. These settings use camel case, and `azd` maps them to the snake case names that the API accepts.
 
@@ -435,7 +435,7 @@ policies[0] invocationsModeration is only supported for agents that expose the '
 
 These checks cover structure, not meaning. `azd` can't tell whether your paths and field names match the bodies your agent actually sends, so verify that yourself with the test in [Test the moderation settings](#test-the-moderation-settings).
 
-#### [Python SDK](#tab/python)
+#### [Python SDK](#tab/python-invocations)
 
 > [!NOTE]
 > `invocations_moderation` requires `azure-ai-projects` version 2.7.0 or later.
@@ -465,7 +465,7 @@ rai_config = RaiConfig(
 
 Pass `rai_config` to `HostedAgentDefinition` as shown in [Add a guardrail](#add-a-guardrail), and set `protocol_versions` to the `invocations` protocol.
 
-#### [REST API](#tab/rest)
+#### [REST API](#tab/rest-invocations)
 
 Include `invocations_moderation` in the `rai_config` object of the agent definition.
 
