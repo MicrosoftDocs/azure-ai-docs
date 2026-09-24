@@ -15,6 +15,28 @@ ms.author: ssalgado
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## September 2026
+
+### Content Safety Model Update
+We are preparing an update to content safety classification and prompt injection detection in Azure AI Content Safety and Foundry Guardrails. The update is intended to address reported classification issues, expand multilingual training coverage, and improve the balance between detecting harmful content and avoiding unnecessary filtering. 
+ 
+#### What is changing 
+Expanded training coverage for direct and indirect prompt attack detection in Chinese, French, German, Italian, and Portuguese, intended to help distinguish attacks from ordinary content in these languages. 
+Targeted training updates informed by reported classification issues, intended to improve how the service handles similar scenarios. 
+Planned adjustments to classification sensitivity, intended to better balance detection of harmful content with avoidance of false detections. 
+What customers may observe 
+Some inputs may receive different classifications, severity levels, or filtering outcomes. Detection of violence, in particular, is expected to become more sensitive, so some content that previously passed may be flagged or blocked, depending on your configuration. Prompt attack detection results may also change.
+ 
+Results will continue to vary by input, language, content category, and configured filtering settings. These changes do not guarantee that every reported issue is resolved or that every scenario will improve. 
+ 
+#### Expected rollout 
+Deployment is planned in stages, subject to final validation. During rollout, behavior may temporarily differ across regions and between requests routed to different regions, including requests using global deployments. 
+ 
+#### Customer action 
+Review representative application inputs and your filtering configuration, and monitor classification and blocking behavior as the update reaches your deployments. 
+ 
+If you observe unexpected results, submit an Azure support request. Include the affected service and region or deployment, request timestamp and time zone, request or correlation ID if available, filtering settings, and expected versus actual results. Share a minimal reproducible example through the support channel, removing secrets and unnecessary personal or confidential information.  
+
 ## November 2025
 
 ### Task Adherence public preview
