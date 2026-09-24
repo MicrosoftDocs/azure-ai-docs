@@ -5,10 +5,11 @@ description: Install and run language identification containers with Docker to p
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
-ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
+ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python, doc-kit-assisted, dev-focus
 ms.topic: how-to
-ms.date: 12/29/2025
+ms.date: 09/14/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
 #Customer intent: As a developer, I want to learn how to install and run language identification containers with Docker.
@@ -85,6 +86,8 @@ docker pull mcr.microsoft.com/azure-cognitive-services/speechservices/language-d
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. 
 
+# [Language identification](#tab/container)
+
 The following table represents the various `docker run` parameters and their corresponding descriptions:
 
 | Parameter | Description |
@@ -110,6 +113,67 @@ This command:
 * Allocates 1 CPU core and 1 GB of memory.
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.
 * Automatically removes the container after it exits. The container image is still available on the host computer.
+
+# [Disconnected language identification](#tab/disconnected)
+
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Foundry Tools documentation.
+
+If you're approved to run the container disconnected from the internet, the following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
+
+The `DownloadLicense=True` parameter in your `docker run` command downloads a license file that enables your Docker container to run when it isn't connected to the internet. The license file contains an expiration date, after which it is invalid. You can only use a license file with the appropriate container that you're approved for. For example, you can't use a license file for a `speech-to-text` container with a `language-detection` container.
+
+| Placeholder | Description |
+| ----------- | ----------- |
+| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speechservices/language-detection:latest` |
+| `{LICENSE_MOUNT}` | The path where the license is downloaded and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
+| `{ENDPOINT_URI}` | The endpoint for authenticating your service request. You can find it on your resource's **Key and endpoint** page in the Azure portal.<br/><br/>For example: `https://<your-resource-name>.cognitiveservices.azure.com` |
+| `{API_KEY}` | The key for your Speech resource. You can find it on your resource's **Key and endpoint** page in the Azure portal. |
+| `{CONTAINER_LICENSE_DIRECTORY}` | The license folder on the container's local file system.<br/><br/>For example: `/path/to/license/directory` |
+
+```bash
+docker run --rm -it -p 5000:5003 \
+-v {LICENSE_MOUNT} \
+{IMAGE} \
+Eula=accept \
+Billing={ENDPOINT_URI} \
+ApiKey={API_KEY} \
+DownloadLicense=True \
+Mounts:License={CONTAINER_LICENSE_DIRECTORY}
+```
+
+After the license file is downloaded, you can run the container in a disconnected environment. The following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
+
+Wherever you run the container, you must mount the license file and specify the license folder on the container's local file system with `Mounts:License=`. You must also specify an output mount so that billing usage records can be written.
+
+| Placeholder | Description |
+| ----------- | ----------- |
+| `{IMAGE}` | The container image you want to use.<br/><br/>For example: `mcr.microsoft.com/azure-cognitive-services/speechservices/language-detection:latest` |
+| `{MEMORY_SIZE}` | The amount of memory to allocate for your container.<br/><br/>For example: `1g` |
+| `{NUMBER_CPUS}` | The number of CPUs to allocate for your container.<br/><br/>For example: `1` |
+| `{LICENSE_MOUNT}` | The path where the license is located and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
+| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Foundry Tools documentation. |
+| `{CONTAINER_LICENSE_DIRECTORY}` | The license folder on the container's local file system.<br/><br/>For example: `/path/to/license/directory` |
+| `{CONTAINER_OUTPUT_DIRECTORY}` | The output folder on the container's local file system.<br/><br/>For example: `/path/to/output/directory` |
+
+```bash
+docker run --rm -it -p 5000:5003 --memory {MEMORY_SIZE} --cpus {NUMBER_CPUS} \
+-v {LICENSE_MOUNT} \
+-v {OUTPUT_PATH} \
+{IMAGE} \
+Eula=accept \
+Mounts:License={CONTAINER_LICENSE_DIRECTORY} \
+Mounts:Output={CONTAINER_OUTPUT_DIRECTORY}
+```
+
+Speech containers provide `/license` and `/output` as the default directories for writing the license file and billing log at runtime.
+
+Before you run the container, set the ownership of the local directories that you mount to `user:group nonroot:nonroot`.
+
+```bash
+sudo chown -R nonroot:nonroot <YOUR_LOCAL_MACHINE_PATH_1> <YOUR_LOCAL_MACHINE_PATH_2> ...
+```
+
+---
 
 For more information about `docker run` with Speech containers, see [Install and run Speech containers with Docker](speech-container-howto.md#run-the-container).
 
