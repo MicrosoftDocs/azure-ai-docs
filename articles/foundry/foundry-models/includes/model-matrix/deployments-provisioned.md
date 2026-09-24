@@ -3,7 +3,7 @@ title: Model region availability for Provisioned deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Provisioned deployment options
 manager: mcleans
-ms.date: 09/03/2026
+ms.date: 09/23/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -44,6 +44,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.6-sol | 2026-07-09 | - | - | ✅ | ✅ | - | - | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-sol | 2026-09-22 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -74,6 +75,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.6-sol | 2026-07-09 | - | - | - | ✅ | - | - | ✅ | ✅ | - | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-sol | 2026-09-22 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -104,6 +106,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.6-sol | 2026-07-09 | ✅ | - | - | - | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-sol | 2026-09-22 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -134,6 +137,7 @@ For **Global deployments**, prompts and responses can be processed in any Azure 
 | gpt-5.6-sol | 2026-07-09 | - | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ |
 | gpt-6-astra | 2026-09-03 | ✅ | ✅ |
+| gpt-6-sol | 2026-09-22 | ✅ | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ |
@@ -202,6 +206,7 @@ For **Data Zone** deployments, prompts and responses are processed anywhere with
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-terra | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-6-astra | 2026-09-03 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| gpt-6-sol | 2026-09-22 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o1 | 2024-12-17 | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3 | 2025-04-16 | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | o3-mini | 2025-01-31 | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -361,6 +366,7 @@ For **Standard/Regional** deployments, prompts and responses are processed in th
 | gpt-4o | 2024-11-20 | - | ✅ |
 | gpt-5-mini | 2025-08-07 | - | ✅ |
 | gpt-5.1 | 2025-11-13 | - | ✅ |
+| gpt-6-sol | 2026-09-22 | - | ✅ |
 | o1 | 2024-12-17 | - | ✅ |
 | o3-mini | 2025-01-31 | - | ✅ |
 | o4-mini | 2025-04-16 | - | ✅ |
