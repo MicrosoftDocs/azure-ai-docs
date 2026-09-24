@@ -41,6 +41,7 @@ Agent Service features and tools are available in both regions unless noted othe
 | Agent type | Available |
 | --- | --- |
 | Prompt agents | Yes |
+| Voice-based prompt agents | No |
 | Workflows | Preview |
 | Hosted agents | No |
 

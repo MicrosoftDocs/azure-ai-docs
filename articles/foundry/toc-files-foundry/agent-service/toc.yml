@@ -1,3 +1,4 @@
+# Voice-first agent public preview scope: reorganize current Prompt agents content under Text-based agent and add Voice-first agent content for create, configure, optimize, publish, Teams phone, WebRTC, pricing, best practices, and observability links.
 items:
 - name: Overview
   href: ../../agents/overview.md
@@ -21,47 +22,80 @@ items:
 
 - name: Prompt agents
   items:
-  - name: Quickstarts
+  - name: Text-based agents
     items:
-    - name: Create an agent
-      href: ../../agents/quickstarts/prompt-agent.md
-    - name: Use the Responses API
-      href: ../../agents/quickstarts/responses-api.md
-  - name: Build
+    - name: Quickstarts
+      items:
+      - name: Create an agent
+        href: ../../agents/quickstarts/prompt-agent.md
+      - name: Use the Responses API
+        href: ../../agents/quickstarts/responses-api.md
+    - name: Build
+      items:
+      - name: Use connected Foundry models
+        href: ../../agents/how-to/connected-models.md
+      - name: Use structured inputs
+        href: ../../agents/how-to/structured-inputs.md
+      - name: Agent applications
+        href: ../../agents/how-to/agent-applications.md
+      - name: Configure an agent
+        href: ../../agents/how-to/configure-agent.md
+      - name: Best practices
+        href: ../../agents/concepts/tool-best-practice.md
+      - name: Agent optimizer overview
+        href: ../../agents/concepts/agent-optimizer-overview.md
+      - name: Understand optimizer costs and token usage
+        href: ../../agents/concepts/agent-optimizer-costs.md
+      - name: Optimize a prompt agent
+        href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
+    - name: Deploy and share
+      items:
+      - name: Enable incoming A2A (preview)
+        href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
+      - name: Use routines (preview)
+        href: ../../agents/how-to/use-routines.md
+    - name: Migrate
+      items:
+      - name: Migrate prompt agents to the new agent service
+        href: ../../agents/how-to/migrate.md
+      - name: Migrate from agent applications to the new agent model
+        href: ../../agents/how-to/migrate-agent-applications.md
+      - name: Disable creation of classic agents
+        href: ../../agents/how-to/disable-classic-agents.md
+  - name: Voice-first agents
     items:
-    - name: Use connected Foundry models
-      href: ../../agents/how-to/connected-models.md
-    - name: Use structured inputs
-      href: ../../agents/how-to/structured-inputs.md
-    - name: Agent applications
-      href: ../../agents/how-to/agent-applications.md
-    - name: Configure an agent
-      href: ../../agents/how-to/configure-agent.md
-    - name: Best practices
-      href: ../../agents/concepts/tool-best-practice.md
-    - name: Agent optimizer overview
-      href: ../../agents/concepts/agent-optimizer-overview.md
-    - name: Understand optimizer costs and token usage
-      href: ../../agents/concepts/agent-optimizer-costs.md
-    - name: Optimize a prompt agent
-      href: ../../agents/quickstarts/quickstart-optimize-prompt-agent.md
-  - name: Structured inputs
-    href: ../../agents/how-to/structured-inputs.md
-  - name: Deploy and share
-    items:
-    - name: Enable incoming A2A
-      href: ../../agents/how-to/enable-agent-to-agent-endpoint.md
-    - name: Use routines
-      href: ../../agents/how-to/use-routines.md
-  - name: Migrate
-    items:
-    - name: Migrate prompt agents to the new agent service
-      href: ../../agents/how-to/migrate.md
-    - name: Migrate from agent applications to the new agent model
-      href: ../../agents/how-to/migrate-agent-applications.md
-    - name: Disable creation of classic agents
-      href: ../../agents/how-to/disable-classic-agents.md
+    - name: Quickstarts
+      items:
+      - name: Create a voice agent
+        href: ../../agents/quickstarts/prompt-voice-agent.md
+    - name: Build
+      items:
+      - name: Configure a voice agent
+        href: ../../agents/how-to/configure-voice-agent.md
+      - name: Deploy a hosted voice agent with azd
+        href: ../../agents/how-to/deploy-hosted-voice-agent.md
+      - name: Use a hosted agent as the conversation engine
+        href: ../../how-to/voice-first-with-hosted-agent.md
+      - name: Use a subagent
+        href: ../../agents/how-to/use-subagent-voice-first-agent.md
+      - name: Integrate a telephony channel
+        href: ../../agents/how-to/voice-agent-telephony-channels.md
+      - name: Connect to a Teams phone number
+        href: ../../agents/how-to/voice-agent-teams-phone.md
+      - name: Connect to a Twilio phone number
+        href: ../../agents/how-to/voice-agent-twilio-phone.md
+      - name: Best practices
+        href: ../../agents/concepts/voice-agent-best-practice.md
+      - name: Optimize a voice agent
+        href: ../../agents/how-to/optimize-voice-agent-instructions.md
+      - name: Tracing, monitoring, and evaluation
+        href: ../../agents/concepts/voice-agent-observability.md
+      - name: Pricing
+        href: ../../agents/concepts/voice-agent-pricing.md
+    - name: Deploy and share
+      href: ../../agents/how-to/voice-agent-channels-publish.md
 
+# Voice-first agent scope: insert the new Voice-first agent node here or under the agreed parent after product naming and ownership are finalized.
 - name: Hosted agents
   items:
   - name: Concepts
@@ -182,6 +216,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
+    - name: Deploy a hosted voice agent with azd (preview)
+      href: ../../agents/how-to/deploy-hosted-voice-agent.md
     - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle

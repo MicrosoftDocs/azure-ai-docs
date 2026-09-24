@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: reference
-ms.date: 08/19/2026
+ms.date: 09/17/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -49,6 +49,8 @@ The `azure.ai.agents` extension provides the `azure.ai.agent` host. The
 later. For installation and upgrade instructions, see [Install the Azure
 Developer CLI Foundry extensions](../how-to/install-cli-foundry-extensions.md).
 
+Public-preview voice services require Azure Developer CLI version 1.32.0 or later and an agent extension that exposes the voice CLI options. The general minimum versions below don't establish voice feature support. Check the [voice agent prerequisites](../quickstarts/prompt-voice-agent.md#prerequisites).
+
 You can declare the minimum compatible versions in `azure.yaml`:
 
 ```yaml
@@ -89,7 +91,7 @@ Under `services`, each entry is a named service with a `host` field that identif
 | Host | Resource | Purpose |
 | ---- | -------- | ------- |
 | `azure.ai.project` | Foundry project | Owns model deployments and optional private networking. |
-| `azure.ai.agent` | Hosted or prompt agent | Carries the agent definition and its build and deploy settings. |
+| `azure.ai.agent` | Hosted, prompt, or voice agent | Carries the agent definition and its build and deploy settings. |
 | `azure.ai.connection` | Project connection | Links the project to an external resource, such as an MCP server or a search index. |
 | `azure.ai.toolbox` | Toolbox (Foundry Toolset) | A named bundle of connection-backed tools that agents reference. |
 | `azure.ai.skill` | Skill | A reusable behavioral guideline shared across agents. |
@@ -288,7 +290,7 @@ The agent service carries the agent definition and its build and deploy settings
 | Field | Description |
 | ----- | ----------- |
 | `host` | Must be `azure.ai.agent`. |
-| `kind` | Agent kind. Use `hosted` for containerized agents built from source. |
+| `kind` | Agent kind: `hosted`, `prompt`, or `voice`. `prompt-voice` is a compatibility alias for `voice`. |
 | `name` | Agent name. Reusing a name creates a new version of the existing agent. |
 | `displayName` | Optional human-friendly display name. |
 | `description` | Optional description of the agent. |
@@ -304,6 +306,57 @@ The agent service carries the agent definition and its build and deploy settings
 | `image` | Prebuilt container image URL. When set, `azd` deploys the image directly and skips the Dockerfile build. |
 | `metadata` | Optional metadata key-value pairs. |
 | `agentCard` | Agent-level discovery metadata, including `skills`. |
+
+### Voice services
+
+Use `kind: voice` for a declarative voice service. The CLI also accepts `kind: prompt-voice` and continues to generate that alias during prompt voice initialization. Voice services use the same `azure.ai.agent` host as hosted and prompt agents.
+
+| Field | Purpose |
+| --- | --- |
+| `modelType` | For model-backed voice services, `managed` uses a service-hosted model and `self_deployed` uses your own model deployment. |
+| `model.id` | The managed model name or, for BYOM, the existing deployment name. Declaring a BYOM name doesn't create the deployment. |
+| `voice` | Output voice name. Use `audio.output` for detailed output-audio configuration. |
+| `audio`, `outputModalities`, `greeting`, `store` | Configure the voice experience. |
+| `conversationEngine` | For a hosted voice wrapper, references the hosted target instead of selecting a model on the wrapper. |
+| `telephony.bindings` | Phone-provider bindings for a prompt voice service. |
+
+For model and audio examples, see [Configure a voice agent](../how-to/configure-voice-agent.md).
+
+#### Hosted conversation engine
+
+Set these fields on the voice wrapper, not on the hosted target:
+
+```yaml
+conversationEngine:
+  type: hosted_agent
+  name: voice-live-bridge-basic-python
+  version: deployed
+```
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | Must be `hosted_agent`. |
+| `name` | Yes | The hosted target's service name in `azure.yaml`, in the same Foundry project. |
+| `version` | No | The only supported value is `deployed`, which is also the default. Pins the wrapper to the target version deployed by the current `azd` environment. |
+
+Include the hosted target in the wrapper's `uses` list to order deployment. The target must be active and declare `invocations_ws` version `1.0.0`, with `voiceLiveCompatible: "true"` and `bridgeProtocolVersion: "1.0"` metadata.
+
+Model calls, instructions, and tools belong to the target. Audio and greeting settings belong to the wrapper. The older `modelType: hosted_agent` and `targetAgent` settings aren't supported; use `conversationEngine`.
+
+For the complete two-service sample, see [Deploy a hosted voice agent with azd](../how-to/deploy-hosted-voice-agent.md).
+
+#### Telephony bindings
+
+Each entry in `telephony.bindings` requires `provider`, `identifier`, and `connection`. `connection` is the name of an existing Foundry project connection, not a provider credential.
+
+| `provider` | `identifier` format |
+| --- | --- |
+| `twilio` | An E.164 phone number, such as `+14255550123`. |
+| `acs` | `28:orgid:<resource-account-guid>` for Teams Phone Extensibility. |
+
+The CLI maps `acs` to the service provider value `azure-communication-service`. Use these identifiers in `azure.yaml`; don't copy them into REST properties that expect a different representation.
+
+Bindings are create-only. Deployment accepts a matching existing binding but fails if its configuration differs. Provider-side callbacks and phone resources aren't created by this declaration. For an example and lifecycle guidance, see [Add a telephony binding](../how-to/configure-voice-agent.md#add-a-telephony-binding).
 
 ### `agentCard.skills` and `azure.ai.skill`
 

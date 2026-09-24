@@ -44,11 +44,15 @@ Build your first agent in minutes, or open the portal to explore models and tool
 
 | Capability | Description |
 | --- | --- |
-| **Agents** | Build declarative [prompt agents](./agents/quickstarts/prompt-agent.md) in the portal or SDK, or deploy [hosted agents](./agents/quickstarts/quickstart-hosted-agent.md) that run your own code. Learn more in [Foundry Agent Service](./agents/overview.md). |
+| **Agents** | Build declarative [prompt agents](./agents/quickstarts/prompt-agent.md) and managed [voice-based prompt agents](./agents/quickstarts/prompt-voice-agent.md) in the portal or SDK, or deploy [hosted agents](./agents/quickstarts/quickstart-hosted-agent.md) that run your own code. Learn more in [Foundry Agent Service](./agents/overview.md). |
 | **Models** | Access more than 10,000 models from Microsoft, OpenAI, Anthropic, Meta, and others. Browse the [Foundry Models catalog](./concepts/foundry-models-overview.md). |
 | **Tools and knowledge** | Extend agents with built-in tools, memory, and retrieval using a [Foundry Toolbox](./agents/concepts/toolbox-overview.md). |
 
 Not sure where to start? See the [product and capability map](./concepts/capabilities.md) to match your goal to a starting point.
+
+### Voice-based prompt agents
+
+Build real-time, spoken experiences with a voice-based prompt agent in Foundry Agent Service. Configure the model, instructions, audio settings, optional greeting, and tools. Then connect to the agent through Voice Live. Foundry manages the agent lifecycle and voice orchestration, so you don't need to host that infrastructure yourself. For more information, see [Quickstart: Create a voice-based prompt agent](./agents/quickstarts/prompt-voice-agent.md).
 
 ## Enterprise-ready platform
 
@@ -62,7 +66,7 @@ Foundry brings platform capabilities to every project. Some capabilities are in 
 
 Most projects on Foundry center on an agent: a model paired with instructions and tools that can reason over a request and take action. The main decision is how much you want to customize and control how that agent runs. Think of it as a spectrum from declarative to full code.
 
-- **Declarative, with the least to manage.** Specify instructions, choose a model, and attach tools in the Foundry portal or with the SDK. Foundry hosts and runs the agent for you, with no application code or containers to maintain. In Foundry, this is a **prompt agent**. [Create a prompt agent](./agents/quickstarts/prompt-agent.md).
+- **Declarative, with the least to manage.** Specify instructions, choose a model, and attach tools in the Foundry portal or with the SDK. Foundry hosts and runs the agent for you, with no application code or containers to maintain. In Foundry, this is a **prompt agent**. [Create a prompt agent](./agents/quickstarts/prompt-agent.md). For a real-time spoken experience, build a **voice-based prompt agent**. [Create a voice-based prompt agent](./agents/quickstarts/prompt-voice-agent.md).
 - **Full code, with the most control.** Bring your own code or framework (for example, Microsoft Agent Framework, LangGraph, or Semantic Kernel), package it as a container, and Foundry runs it with a managed endpoint, scaling, identity, and observability. In Foundry, this is a **hosted agent**. [Deploy a hosted agent](./agents/quickstarts/quickstart-hosted-agent.md).
 
 You can start declarative and move to code as your needs grow. For a detailed comparison, see [What are hosted agents?](./agents/concepts/hosted-agents.md). For the end-to-end build, test, and ship cycle, see the [agent development lifecycle](./agents/concepts/development-lifecycle.md).

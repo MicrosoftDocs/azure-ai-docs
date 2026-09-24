@@ -23,7 +23,7 @@ ms.custom: include
 - NSP governs data-plane traffic. Control-plane (management) operations might still succeed unless separately restricted.
 - Use a managed identity (system or user-assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
 - Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, and so on) in the same NSP when you need mutual access with minimal outbound allow rules.
-- For diagnostic log export to customer-owned destinations (Log Analytics, Storage, Event Hub), use Microsoft Entra ID authentication for full perimeter coverage of logging traffic. **TO VERIFY:** The exact NSP filtering behavior for API key-authenticated log traffic needs confirmation with the feature team before it's stated here.
+- For diagnostic log export to customer-owned destinations (Log Analytics, Storage, Event Hub), use Microsoft Entra ID authentication for full perimeter coverage of logging traffic. 
 
 For more information, see [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts).
 

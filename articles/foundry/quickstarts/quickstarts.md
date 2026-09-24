@@ -4,7 +4,7 @@ description: "Find a Microsoft Foundry quickstart. Create resources, build your 
 author: aahill
 ms.author: aahi
 ms.reviewer: aahi
-ms.date: 06/19/2026
+ms.date: 08/26/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
@@ -27,6 +27,7 @@ Get hands-on with Microsoft Foundry. Each quickstart takes you from zero to a wo
 | Quickstart | Description |
 |---|---|
 | [Create a prompt agent](../agents/quickstarts/prompt-agent.md) | Build a prompt agent with the Microsoft Foundry SDK. |
+| [Create a voice-based prompt agent](../agents/quickstarts/prompt-voice-agent.md) | Create a managed real-time voice agent, connect over WebSocket, and complete a spoken turn. |
 | [Optimize a prompt agent](../agents/quickstarts/quickstart-optimize-prompt-agent.md) | Run the agent optimizer in the portal to improve a prompt agent's instructions, tool descriptions, and model selection, then promote the best candidate. |
 | [Build agents using the Responses API](../agents/quickstarts/responses-api.md) | Call the Responses API from your own code with the Agent Framework or the OpenAI SDK. |
 | [Chat with an agent in code](get-started-code.md) | Use the Microsoft Foundry SDK to build an AI chat application. |

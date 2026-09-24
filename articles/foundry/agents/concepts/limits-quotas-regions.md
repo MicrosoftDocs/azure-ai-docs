@@ -18,6 +18,8 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 > [!NOTE]
 > Foundry Agent Service is generally available (GA). Some sub-features are in public preview and might have different constraints.
 
+Voice-based agents support real-time spoken conversations. Availability depends on the region, selected model, audio features, channel, and enabled preview features. For model configuration, see [Configure a voice agent](../how-to/configure-voice-agent.md). For publishing options, see [Publish and connect voice agent channels](../how-to/voice-agent-channels-publish.md).
+
 ## Prerequisites
 
 - An Azure subscription.
@@ -26,42 +28,42 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-The following table shows regional support for the [Responses API](../../openai/how-to/responses.md), Agents, and private class A IP address ranges.
+The following table shows regional support for the [Responses API](../../openai/how-to/responses.md), agents, and voice-based agents (preview). It also shows support for private Class A IP address ranges.
 
-| Region | Responses API | Agents | Private VNet | 
-| --- | --- | --- | --- | 
-| Australia East | Yes | Yes | Yes | 
-| Brazil South | Yes | Yes | Yes | 
-| Canada Central | Yes | Yes | Yes |
-| Canada East | Yes | Yes | Yes | 
-| Central US | Yes | Yes | Yes | 
-| East US | Yes | Yes | Yes | 
-| East US 2 | Yes | Yes | Yes |
-| France Central | Yes | Yes | Yes | 
-| Germany West Central | Yes | Yes | Yes | 
-| Italy North | Yes | Yes | Yes | 
-| Japan East | Yes | Yes | Yes | 
-| Japan West | Yes | Yes | Yes | 
-| Korea Central | Yes | Yes | Yes | 
-| North Central US | Yes | Yes | Yes | 
-| Norway East | Yes | Yes | Yes |
-| Poland Central | Yes | Yes | Yes | 
-| South Africa North | Yes | Yes | Yes | 
-| South Central US | Yes | Yes | Yes | 
-| Southeast Asia | Yes | Yes | Yes |
-| South India | Yes | Yes | Yes | 
-| Spain Central | Yes | Yes | Yes | 
-| Sweden Central | Yes | Yes | Yes | 
-| Switzerland North | Yes | Yes | Yes | 
-| Switzerland West | Yes | Yes | Yes | 
-| UAE North | Yes | Yes | Yes |
-| UK South | Yes | Yes | Yes | 
-| US Gov Arizona | Yes | Yes | No |
-| US Gov Virginia | Yes | Yes | No |
-| West Central US | Yes | Yes | Yes | 
-| West Europe | Yes | Yes | Yes | 
-| West US | Yes | Yes | Yes | 
-| West US 3 | Yes | Yes | Yes |
+For voice-based agents, the region must support Agent Service and the required Voice Live capabilities for the selected model and channel.
+
+| Region | Responses API | Agents | Voice-based agents (preview) | Private VNet |
+| --- | --- | --- | --- | --- |
+| Australia East | Yes | Yes | Yes | Yes |
+| Brazil South | Yes | Yes | Yes | Yes |
+| Canada Central | Yes | Yes | Yes | Yes |
+| Canada East | Yes | Yes | Yes | Yes |
+| Central US | Yes | Yes | Yes | Yes |
+| East US | Yes | Yes | Yes | Yes |
+| East US 2 | Yes | Yes | Yes | Yes |
+| France Central | Yes | Yes | Yes | Yes |
+| Germany West Central | Yes | Yes | Yes | Yes |
+| Italy North | Yes | Yes | Yes | Yes |
+| Japan East | Yes | Yes | Yes | Yes |
+| Japan West | Yes | Yes | Yes | Yes |
+| Korea Central | Yes | Yes | Yes | Yes |
+| North Central US | Yes | Yes | Yes | Yes |
+| Norway East | Yes | Yes | Yes | Yes |
+| Poland Central | Yes | Yes | No | Yes |
+| South Africa North | Yes | Yes | Yes | Yes |
+| South Central US | Yes | Yes | Yes | Yes |
+| Southeast Asia | Yes | Yes | Yes | Yes |
+| South India | Yes | Yes | Yes | Yes |
+| Spain Central | Yes | Yes | No | Yes |
+| Sweden Central | Yes | Yes | Yes | Yes |
+| Switzerland North | Yes | Yes | Yes | Yes |
+| Switzerland West | Yes | Yes | Yes | Yes |
+| UAE North | Yes | Yes | Yes | Yes |
+| UK South | Yes | Yes | Yes | Yes |
+| West Central US | Yes | Yes | Yes | Yes |
+| West Europe | Yes | Yes | Yes | Yes |
+| West US | Yes | Yes | Yes | Yes |
+| West US 3 | Yes | Yes | Yes | Yes |
 
 Some Azure OpenAI models aren't available in every region. For details, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
 
@@ -294,6 +296,13 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum number of versions per agent | 1,000 |
 
 The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Rate limiting for model calls is applied at the model deployment level; see [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
+
+Voice-based agents can also incur voice-session, audio, channel, or Voice Live limits.
+
+| Voice-based agent limit or setting | Value |
+| --- | --- |
+| Maximum voice session duration | 60 minutes |
+| Stored voice conversations and Microsoft-managed audio retention | 60 days |
 
 ## Limit error reference
 

@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 09/11/2026
+ms.date: 09/17/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -27,7 +27,7 @@ keywords:
 
 Foundry Agent Service is a managed platform for building, deploying, and scaling AI agents. Build with any framework, any [supported model](https://ai.azure.com/catalog/models?capabilities=agentsv2&cid=learnDocs) from the Foundry model catalog, and a single entry point for model inference and tools.
 
-Foundry meets you anywhere on the spectrum from declarative to full code: define a **prompt agent** and let Foundry run it, package your own code as a **hosted agent**, or call the **Responses API** from an agent you already run elsewhere. [Choose how to build](#choose-how-to-build) covers each path.
+Foundry meets you anywhere on the spectrum from declarative to full code: define a **prompt agent** or a **voice-based prompt agent** and let Foundry run it, package your own code as a **hosted agent**, or call the **Responses API** from an agent you already run elsewhere. [Choose how to build](#choose-how-to-build) covers each path.
 
 ## Agent Service at a glance
 
@@ -48,17 +48,19 @@ Foundry meets you anywhere on the spectrum from declarative to full code: define
 
 Foundry gives you several ways to build, from a single model call to a fully containerized agent. Choose your path based on what you're trying to do:
 
-- **Want the least to manage?** [Start with a prompt agent](./quickstarts/prompt-agent.md). Configure instructions, a model, and tools; Foundry runs it with no code or infrastructure.
+- **Want the least to manage for text?** [Start with a prompt agent](./quickstarts/prompt-agent.md). Configure instructions, a model, and tools; Foundry runs it with no code or infrastructure.
+- **Want a managed real-time voice experience?** [Create a voice-based prompt agent](quickstarts/prompt-voice-agent.md). Configure the voice experience and connect it through Voice Live without hosting the orchestration code yourself.
 - **Want full control in Foundry?** [Deploy a hosted agent](quickstarts/quickstart-hosted-agent.md). Bring your own code and framework as a container; Foundry runs it with a managed endpoint, scaling, and identity.
 - **Already run agent code elsewhere?** [Call the Responses API](quickstarts/responses-api.md) directly to use Foundry models and tools, with no agent resource to manage.
 
-Prompt agents and hosted agents are the two agent types in Foundry. The next section breaks down the value of each so you can choose with confidence.
+Prompt agents, voice-based prompt agents, and hosted agents are the agent types covered in this overview. The next section breaks down the value of each so you can choose with confidence.
 
 ## Agent types
 
-Agent Service offers two agent types. Your choice sets how much you build versus how much Foundry manages:
+Agent Service offers three agent types. Your choice sets how much you build versus how much Foundry manages:
 
 - **[Prompt agents](#prompt-agents)**: the fastest path. Define instructions, a model, and tools, and Foundry runs the agent for you with no code or infrastructure to manage.
+- **[Voice-based prompt agents](quickstarts/prompt-voice-agent.md)**: managed real-time voice agents. Configure the model, instructions, audio, and tools, then connect to the agent through Voice Live.
 - **[Hosted agents](#hosted-agents)**: the most control. Bring your own code and framework, and Foundry runs it as a container with a managed endpoint, scaling, and identity.
 
 ### Prompt agents
@@ -72,6 +74,14 @@ Two paths to get started:
 
 **Best for**: Getting started fast, internal tools, production agents that don't need custom orchestration logic, and teams that want a managed runtime without infrastructure overhead.
 
+### Voice-based prompt agents
+
+Voice-based prompt agents are managed agents for real-time, spoken conversations. Configure a model, instructions, audio settings, optional greeting, and tools in the agent definition. Foundry Agent Service manages the agent lifecycle and uses Voice Live for speech recognition, turn taking, model interaction, and speech synthesis.
+
+Voice-based prompt agents support managed models and, where supported, your own model deployment. You connect to the agent over a real-time WebSocket instead of sending individual text requests. For the setup and supported client languages, see [Quickstart: Create a voice-based prompt agent](quickstarts/prompt-voice-agent.md). For the voice architectures, resources, and current preview limits, see [How voice-based agents work](#how-voice-based-agents-work).
+
+**Best for**: Customer-facing voice experiences, call-center scenarios, and applications that need low-latency audio interaction without implementing the voice orchestration service yourself.
+
 ### Hosted agents
 
 [Hosted agents](concepts/hosted-agents.md) are code-based agents you build with [Agent Framework](https://github.com/microsoft/agent-framework), [LangGraph](https://github.com/langchain-ai/langgraph), the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), the [Anthropic Agent SDK](https://github.com/anthropics/anthropic-sdk-python), the [GitHub Copilot SDK](https://github.com/github/copilot-sdk), or your own code. Ship your agent as either a container image or a .zip file of your source code (Foundry builds the image for you when you bring a .zip file), and Foundry runs it with a managed endpoint, automatic scaling, a dedicated Microsoft Entra identity, session-level state persistence, and end-to-end observability.
@@ -82,18 +92,18 @@ Under the hood, your agent code calls your Foundry project endpoint for model in
 
 ### Compare agent types
 
-| | Prompt agents | Hosted agents |
-| --- | --- | --- |
-| **Authoring surface** | Portal, SDK, or REST | Agent Framework, LangGraph, OpenAI Agents SDK, Anthropic Agent SDK, GitHub Copilot SDK, custom code |
-| **Foundry models + platform tools** | Yes | Yes (via the Responses API on the Foundry project endpoint) |
-| **Skill support** | Yes | Yes |
-| **Runtime code to maintain** | None | Yes, your agent logic |
-| **Compute to manage** | None, fully managed | Container compute, Foundry-managed |
-| **Managed endpoint** | Yes | Yes |
-| **Autoscale** | Automatic, Foundry-managed; scales with request volume | Automatic, Foundry-managed; scales container instances per session and request volume |
-| **Agent identity (Entra)** | Yes | Automatic, dedicated per agent |
-| **Cost model** | Per-call inference + tool usage | Per-call inference + tool usage + container compute |
-| **Best for** | Fast start, production agents without custom orchestration | Agents that call into custom code; secondarily, custom orchestration logic |
+| | Prompt agents | Voice-based prompt agents | Hosted agents |
+| --- | --- | --- | --- |
+| **Authoring surface** | Portal, SDK, or REST | Agent definition through the portal, SDK, or REST | Agent Framework, LangGraph, OpenAI Agents SDK, Anthropic Agent SDK, GitHub Copilot SDK, custom code |
+| **Foundry models + platform tools** | Yes | Yes, through Voice Live and configured agent tools | Yes (via the Responses API on the Foundry project endpoint) |
+| **Skill support** | Yes | Yes | Yes |
+| **Runtime code to maintain** | None | None for the managed voice orchestration | Yes, your agent logic |
+| **Compute to manage** | None, fully managed | None, fully managed | Container compute, Foundry-managed |
+| **Managed endpoint** | Yes | Yes, real-time WebSocket | Yes |
+| **Autoscale** | Automatic, Foundry-managed; scales with request volume | Managed by Foundry and Voice Live | Automatic, Foundry-managed; scales container instances per session and request volume |
+| **Agent identity (Entra)** | Yes | Yes | Automatic, dedicated per agent |
+| **Cost model** | Per-call inference + tool usage | Voice Live and model usage; see service pricing | Per-call inference + tool usage + container compute |
+| **Best for** | Fast start, production agents without custom orchestration | Real-time spoken interactions without hosting voice orchestration code | Agents that call into custom code; secondarily, custom orchestration logic |
 
 ### Use the Responses API for ephemeral agents
 
@@ -105,6 +115,81 @@ Use this pattern when you want:
 - **Foundry capabilities without the resource overhead.** You still get catalog models, platform tools, project-scoped data, On-Behalf-Of authentication, and project-level observability and governance. All through your Foundry project endpoint.
 
 See [Quickstart: Use the Responses API](quickstarts/responses-api.md) for information.
+
+## How voice-based agents work
+
+Voice-based prompt agents run real-time, spoken conversations. You configure the agent in the Foundry portal or through the SDK, test it with a microphone, and make it available through a browser experience or a phone-number channel. Foundry manages the agent lifecycle and voice orchestration, so you don't host that infrastructure yourself.
+
+> [!IMPORTANT]
+> Voice-based agents and some related monitoring, evaluation, avatar, WebRTC, and telephony capabilities are in preview. Preview capabilities are provided without a service-level agreement and aren't recommended for production workloads until you review their support, security, compliance, and availability requirements.
+
+Voice-based agents support two model architectures.
+
+### Native speech-to-speech
+
+```text
+Caller audio
+  -> realtime speech model
+  -> spoken response
+```
+
+This architecture is optimized for natural, low-latency conversation. The realtime model handles spoken input and output directly. Supported settings and voice families depend on the selected model.
+
+### Cascaded text model
+
+```text
+Caller audio
+  -> speech recognition
+  -> text model
+  -> speech synthesis
+  -> spoken response
+```
+
+This architecture provides broader text-model and Azure voice choices. It also provides explicit control over transcription, phrase lists, turn detection, and interim responses, but each stage contributes to end-to-end latency.
+
+### Core resources
+
+A typical portal-created voice agent uses:
+
+- A Foundry resource and project.
+- A versioned voice-based prompt agent.
+- A fully managed Voice Live model, or an eligible customer-deployed model.
+- Azure Speech in Foundry Tools capabilities for transcription or synthesis when required by the selected architecture.
+- Application Insights for traces, monitoring, and evaluation data.
+- Azure Communication Services and Azure Event Grid for phone-number channels.
+
+You don't need to deploy a separate audio model when you use a fully managed Voice Live model. Model availability and behavior are loaded dynamically for your resource and region.
+
+### Support boundaries in the current portal
+
+| Capability | Current voice-based behavior |
+| --- | --- |
+| Browser testing | Supported from the agent playground. |
+| Preview web app | Available when the agent endpoint supports the Responses protocol. |
+| Phone numbers | Microsoft Teams Phone Extensibility and Twilio. |
+| Direct SIP | Not currently offered as a supported customer flow. |
+| Microsoft Teams and Microsoft 365 Copilot app publishing | The standard text-agent card isn't currently shown in the voice-based Channels layout. Don't describe this as the phone integration path. |
+| Avatar | Browser visual output over WebRTC; telephone callers receive audio only. |
+| Monitoring | Voice-specific summary cards, token breakdowns, and connection-latency charts require Application Insights. |
+| Tracing | Voice traces use a single trace-oriented view because voice traces don't have a Responses API `response_id`. |
+| Evaluation | Full-conversation evaluation from existing conversations is supported. Single-turn and simulated-conversation evaluation aren't currently supported for voice agents. |
+| Dataset creation from traces | The trace-page action isn't currently available for voice agents. |
+
+### Availability and pricing
+
+Availability depends on the Foundry resource region, selected model, selected voice, subscription, and enabled preview features. Check the portal before you rely on a specific model.
+
+Potential charges include generative AI model input and output, speech recognition and synthesis, custom voice training and hosting, avatar usage, Application Insights ingestion and retention, Azure Communication Services calling and phone numbers, Microsoft Teams and telephony services, and connected tools and data services. For cost details, see [Pricing for voice-based agents](concepts/voice-agent-pricing.md).
+
+### Voice-based agent documentation
+
+| Article | Use it to |
+| --- | --- |
+| [Create a voice-based prompt agent](quickstarts/prompt-voice-agent.md) | Create a managed voice agent, connect to a live session, and complete a spoken turn. |
+| [Configure a voice agent](how-to/configure-voice-agent.md) | Choose a model and configure transcription, languages, voices, avatars, turn detection, audio enhancement, interim responses, and tools. |
+| [Integrate a telephony channel](how-to/voice-agent-telephony-channels.md) | Integrate Microsoft Teams Phone or Twilio with a voice agent. |
+| [Voice agent tracing, monitoring, and evaluation](concepts/voice-agent-observability.md) | Trace, monitor, and evaluate voice conversations. |
+| [Best practices for voice-based agents](concepts/voice-agent-best-practice.md) | Apply instructions, latency, recognition, safety, privacy, handoff, testing, and release controls. |
 
 ## Model support
 
@@ -178,5 +263,8 @@ Agent Service is designed for enterprise workloads where you need strong control
 - [Deploy your first Hosted agent](quickstarts/quickstart-hosted-agent.md)
 - [Foundry Toolbox overview](concepts/toolbox-overview.md)
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
+- [Create a voice-based prompt agent](quickstarts/prompt-voice-agent.md)
+- [Best practices for voice-based agents](concepts/voice-agent-best-practice.md)
+- [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
 - For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).

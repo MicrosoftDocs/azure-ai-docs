@@ -7,7 +7,8 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 09/22/2026
-ms.custom: include
+ms.custom: include, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 Priority processing provides low-latency performance with the flexibility of pay-as-you-go. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
@@ -30,6 +31,7 @@ The following table lists the *latency target value* for each model that support
 
 | Model | Latency target value | 
 | --- | --- |
+| gpt-6-sol, 2026-09-22 | 99% > 80 TPS |
 | gpt-5.6-terra, 2026-07-09 | 99% > 70 TPS |
 | gpt-5.6-sol, 2026-07-09 | 99% > 50 TPS |
 | gpt-5.5, 2026-04-24 | 99% > 50 TPS |

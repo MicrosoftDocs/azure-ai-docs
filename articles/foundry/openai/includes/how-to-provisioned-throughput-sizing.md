@@ -6,18 +6,18 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/11/2026
+ms.date: 09/23/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
 
 Before creating a provisioned deployment, estimate how many provisioned throughput units (PTUs) your workload needs. This article provides the per-model throughput parameters you need and shows how to calculate PTU requirements using sizing formulas or the Foundry capacity calculator.
 
-If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md). When you're ready to create your deployment, see [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).
+If you're new to provisioned throughput, start with [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md) When you're ready to create your deployment, see [Quickstart: Create a provisioned throughput deployment](../provisioned-quickstart.md).
 
 ## Prerequisites
 
-- Familiarity with the concepts in [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md).
+- Familiarity with the concepts in [What is provisioned throughput for Foundry Models?](../concepts/provisioned-throughput.md)
 - An estimate of your workload characteristics: expected peak requests per minute (RPM), average prompt size in tokens, and average response size in tokens.
 
 ## Estimate PTUs for text-only model
@@ -42,7 +42,7 @@ You can estimate the PTUs your workload requires by using the model-specific val
 
 | Input | Description |
 |---|---|
-| **Model** | The model you plan to deploy, for example, `gpt-5.2`. Determines which *Input TPM per PTU* and *output-to-input ratio* values to use from the [deployment parameters tables](#deployment-parameters-and-throughput-values-by-model). |
+| **Model** | The model you plan to deploy, such as `gpt-5.2`. This value determines which *Input TPM per PTU* and *output-to-input ratio* values to use from the [deployment parameters tables](#deployment-parameters-and-throughput-values-by-model). |
 | **Deployment type** | The provisioned deployment type: Global Provisioned, Data Zone Provisioned, or Regional Provisioned. |
 | **Peak RPM** | The expected peak number of calls per minute sent to the model. |
 | **Average prompt size** | The average number of input tokens per request. |
@@ -92,8 +92,8 @@ Use the [capacity calculator](https://ai.azure.com/nextgen/goto/build/models/ptu
 |---|---|
 | **Model** | The model you plan to use. |
 | **Version** | The version of the model you plan to use. |
-| **Peak calls per min** | The number of calls per minute expected to be sent to the model. |
-| **Tokens in prompt call** | The number of tokens in the prompt for each call to the model. Calls with larger prompts consume more PTU capacity. The calculator assumes a single prompt value—for workloads with wide variance in prompt size, benchmark a deployment against your actual traffic for a more accurate estimate. |
+| **Peak calls per min** | The number of calls per minute you expect to send to the model. |
+| **Tokens in prompt call** | The number of tokens in the prompt for each call to the model. Calls with larger prompts consume more PTU capacity. The calculator assumes a single prompt value. For workloads with wide variance in prompt size, benchmark a deployment against your actual traffic for a more accurate estimate. |
 | **Tokens in model response** | The number of tokens generated per call, also called generation size. Calls with larger generation sizes consume more PTU capacity. As with prompt tokens, the calculator assumes a single value. |
 | **Cache rate** | Percentage of input tokens served from the prompt cache. |
 
@@ -105,7 +105,7 @@ After you fill in the required details, select **Calculate**. The output shows:
 
 ## How input and output tokens affect throughput
 
-The throughput (measured as tokens per minute, or TPM) that a deployment gets per PTU depends on the model and the mix of input and output tokens in a given minute. Generating output tokens requires more processing capacity than consuming input tokens.
+The throughput that a deployment gets per PTU depends on the model and the mix of input and output tokens in a given minute. Throughput is measured as tokens per minute, or TPM. Generating output tokens requires more processing capacity than consuming input tokens.
 
 For GPT-4.1 models and later, the system determines an *output-to-input ratio* to match the global standard price ratio between input and output tokens, [with exceptions for some models](#models-with-a-non-standard-output-to-input-ratio). For example,
 
@@ -113,7 +113,7 @@ For GPT-4.1 models and later, the system determines an *output-to-input ratio* t
 - For gpt-4.1, one output token counts as four input tokens.
 - Older models use different ratios.
 
-For all deployments, cached tokens are deducted 100% from the utilization calculation, meaning repeated prompt tokens don't consume PTU capacity. See [Prompt caching](../how-to/prompt-caching.md) for more information.
+For all deployments, cached tokens are deducted 100% from the utilization calculation, so repeated prompt tokens don't consume PTU capacity. See [Prompt caching](../how-to/prompt-caching.md) for more information.
 
 ### Models with a non-standard output-to-input ratio
 
@@ -129,65 +129,87 @@ The tables in this section list the throughput and deployment parameters for eac
 >
 > Long-context requests that exceed 128K prompt tokens aren't supported for `gpt-5.4`, `gpt-4.1`, `gpt-4.1-mini`, and `gpt-4.1-nano`. The system routes these requests to [spillover deployments](../how-to/spillover-traffic-management.md), if available. Otherwise, the requests return an error.
 
-| Topic | **gpt-6-astra**,<br>**2026-09-03** | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-image-2**,<br>**2026-04-21** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 100 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 100 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 100  | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 100 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Output-to-input ratio | See [GPT-6 Astra sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | 6 | 6 | 6 | 6 | See [GPT-image-2 sizing guidance](#estimate-ptus-for-image-model) | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 50 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Topic | **gpt-6-sol**,<br>**2026-09-22** | **gpt-6-astra**,<br>**2026-09-03** | **gpt-5.6-luna**,<br>**2026-07-09** | **gpt-5.6-terra**,<br>**2026-07-09** | **gpt-5.6-sol**,<br>**2026-07-09** | **gpt-5.5**,<br>**2026-04-24** | **gpt-image-2**,<br>**2026-04-21** | **gpt-5.4**,<br>**2026-03-05** | **gpt-5.4-mini**,<br>**2026-03-17** | **gpt-5.3-codex**,<br>**2026-02-24** | **gpt-5.2**,<br>**2025-12-11** | **gpt-5.2-codex**,<br>**2026-01-14** | **gpt-5.1**,<br>**2025-11-13** | **gpt-5.1-codex**,<br>**2025-11-13** | **gpt-5**,<br>**2025-08-07** | **gpt-5-mini**,<br>**2025-08-07** | **gpt-4.1**,<br>**2025-04-14** | **gpt-4.1-mini**,<br>**2025-04-14** | **gpt-4.1-nano**,<br>**2025-04-14** | **o3**,<br>**2025-04-16** | **o4-mini**,<br>**2025-04-16** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 100 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 100 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 100  | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 100 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 3,000 | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Output-to-input ratio | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | 6 | 6 | 6 | 6 | See [GPT-image-2 sizing guidance](#estimate-ptus-for-image-model) | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Latency target value<sup>1</sup> | 99% > 80 TPS | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 66.5 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
 <sup>2</sup> Latency SLA not defined.
 
-#### Normalized token pricing for GPT-6 Astra
+<a id="normalized-token-pricing-for-gpt-6-astra"></a>
+<a id="normalized-token-pricing"></a>
 
-With GPT-6 Astra, PTUs support [prompt cache breakpoints](../how-to/prompt-caching.md#configure-prompt-cache-breakpoints), enabling higher cache hit rates and a more deterministic caching experience. Cache reads and writes significantly increase cache hit rates, especially for agentic workloads. As cache reuse grows, GPT-6 Astra uses normalized tokens to align PTU throughput accounting with Global Standard pay-as-you-go pricing.
+#### Normalized token pricing for GPT-6 Astra and newer models
+
+GPT-6 Astra, GPT-6 Sol, and newer Azure OpenAI models use normalized tokens to align PTU capacity consumption with Global Standard pay-as-you-go token pricing. This method accounts for input, cached input, cache writes, and output, including different weights for short- and long-context requests.
+
+GPT-6 Astra and GPT-6 Sol support [prompt cache breakpoints](../how-to/prompt-caching.md#configure-prompt-cache-breakpoints) for explicit control over prompt caching. Cache reads and writes are included in normalized-token accounting.
 
 > [!NOTE]
+> One short-context input token is one normalized token. Calculate every other token weight by dividing its price by the same model's short-context input price. For newer models, apply this method using that model's own prices; don't assume its weights are unchanged.
 >
-> One short-context input token equals one normalized token. Every other token type is weighted by its Global Standard list price relative to short-context input.
+> Cached input and cache writes consume PTU capacity at their respective weights. The older sizing rule that deducts cached input entirely doesn't apply to models using this accounting method.
 
-The following table shows Global Standard prices and normalized token costs for GPT-6 Astra. The final two columns intentionally match. For example, one short-context output token costs five times as much as an input token and therefore consumes five normalized tokens.
+##### Pay-as-you-go prices and token weights
 
-| Token type | Global Standard price per 1M tokens | Price relative to short-context input | Normalized token cost |
-|---|---:|---:|---:|
-| Short-context input | $10.00 | 1.0× | 1.0 |
-| Short-context cached input | $1.00 | 0.1× | 0.1 |
-| Short-context cache write | $12.50 | 1.25× | 1.25 |
-| Short-context output | $50.00 | 5.0× | 5.0 |
-| Long-context input | $20.00 | 2.0× | 2.0 |
-| Long-context cached input | $2.00 | 0.2× | 0.2 |
-| Long-context cache write | $25.00 | 2.5× | 2.5 |
-| Long-context output | $75.00 | 7.5× | 7.5<sup>1</sup> |
+The following prices give GPT-6 Astra and GPT-6 Sol the same normalized token weights. For either model, a short-context output token consumes 5 normalized tokens, and a long-context output token consumes 7.5 normalized tokens. Prices are in USD per 1 million tokens.
 
-<sup>1</sup>For GPT-6 Astra, the normalized token cost for long-context output is currently 10. We're working to reduce it to 7.5. Check this article for updates.
+| Token type | GPT-6 Astra Global Standard price | GPT-6 Sol Global Standard price | Price relative to the model's short-context input | Normalized token cost |
+|---|---:|---:|---:|---:|
+| Short-context input | $10.00 | $2.00 | 1.0× | 1.0 |
+| Short-context cached input | $1.00 | $0.20 | 0.1× | 0.1 |
+| Short-context cache write | $12.50 | $2.50 | 1.25× | 1.25 |
+| Short-context output | $50.00 | $10.00 | 5.0× | 5.0 |
+| Long-context input | $20.00 | $4.00 | 2.0× | 2.0 |
+| Long-context cached input | $2.00 | $0.40 | 0.2× | 0.2 |
+| Long-context cache write | $25.00 | $5.00 | 2.5× | 2.5 |
+| Long-context output | $75.00 | $15.00 | 7.5× | 7.5 |
 
-`Normalized token cost = token-type price ÷ $10.00`
+`Normalized token cost = token-type price ÷ the model's short-context input price`
 
-One GPT-6 Astra PTU provides a baseline of 600 short-context input tokens per minute. Because each short-context input token equals one normalized token, this value is equivalent to 600 normalized tokens per minute.
+For GPT-6 Astra, divide by $10.00. For GPT-6 Sol, divide by $2.00. Use the same pricing unit in the numerator and denominator. For example, GPT-6 Sol long-context output has a weight of `$15.00 ÷ $2.00 = 7.5`.
 
-Assuming list prices, no discounts, 100% sustained utilization, and a 30-day month:
+##### Convert normalized tokens to PTUs
 
-| Metric | PTU | Global standard pay-as-you-go |
-|---|---:|
-| Monthly normalized-token volume | `600 × 60 × 24 × 30` = **25.92M** | **25.92M** |
-| Monthly cost for that volume | **$260.00** | `25.92M × $10/M` ~= **$260.00** |
-| Effective cost per 1M normalized tokens | `$260.00 ÷ 25.92` ~= **$10.00** | `$259.20 ÷ 25.92` ~= **$10.00** |
+Each PTU supplies a model-specific normalized-token budget per minute. Because short-context input has a weight of 1, that budget equals the model's Input TPM per PTU value.
 
-At list price and full utilization, PTU and Global Standard are approximately equivalent on a normalized-token basis. Because both offerings use the same token weights, this comparison is independent of token mix. This comparison covers normalized-token capacity only.
+| Model | Version | Short-context input TPM per PTU | Normalized TPM per PTU |
+|---|---|---:|---:|
+| gpt-6-astra | 2026-09-03 | 600 | 600 |
+| gpt-6-sol | 2026-09-22 | 3,000 | 3,000 |
 
-For the latest prices, see the [pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
+- Normalized TPM = Sum of (tokens per minute in each token category × that category's normalized token cost).
+- Raw PTUs required = Normalized TPM ÷ the model's normalized TPM per PTU.
+
+Assign each token to its applicable category once; don't count a cached or cache-write token again as ordinary input. Round the raw PTU requirement up to a supported deployment size, using the minimum and scale increment in the [deployment table](#latest-azure-openai-models).
+
+##### PTU and pay-as-you-go comparison
+
+This illustration uses **one PTU at $260.00 per month**, retaining the existing article's example cost and applying it to both models. It assumes 100% sustained utilization for 30 days, no discounts, and the token prices above. It's a capacity comparison, not a quote for a deployable configuration; deployment minimums still apply.
+
+| Metric | GPT-6 Astra PTU | GPT-6 Astra pay-as-you-go | GPT-6 Sol PTU | GPT-6 Sol pay-as-you-go |
+|---|---:|---:|---:|---:|
+| Monthly normalized-token volume | **25.92M** (`600 × 60 × 24 × 30`) | **25.92M** | **129.60M** (`3,000 × 60 × 24 × 30`) | **129.60M** |
+| Monthly cost for that volume | **$260.00** (example assumption) | **$259.20** (`25.92M × $10.00/M`) | **$260.00** (example assumption) | **$259.20** (`129.60M × $2.00/M`) |
+| Effective cost per 1M normalized tokens | **~$10.03** (`$260.00 ÷ 25.92`) | **$10.00** (`$259.20 ÷ 25.92`) | **~$2.01** (`$260.00 ÷ 129.60`) | **$2.00** (`$259.20 ÷ 129.60`) |
+
+Under these assumptions, PTU and pay-as-you-go costs are approximately equal at full utilization. Using the same token weights makes this a token-mix-independent comparison of normalized-token capacity, not a guarantee of realized workload throughput or cost. Lower utilization increases the effective PTU cost per token.
+
+For current Azure prices and purchase terms, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 ### Previous Azure OpenAI models
 
 | Topic | **gpt-4o** | **gpt-4o-mini** | **o3-mini** | **o1** |
 |---|---|---|---|---|
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 |
+| Global and data zone provisioned minimum deployment | 15 | 15 | 15 | 15 |
+| Global and data zone provisioned scale increment | 5 | 5 | 5 | 5 |
 | Regional provisioned minimum deployment | 50 | 25 | 25 | 25 |
 | Regional provisioned scale increment | 50 | 25 | 25 | 50 |
 | Input TPM per PTU | 2,500 | 37,000 | 2,500 | 230 |
@@ -198,7 +220,7 @@ For the latest prices, see the [pricing page](https://azure.microsoft.com/pricin
 
 ### Foundry Models sold by Azure
 
-This section lists other Foundry Models sold by Azure, not including the Azure OpenAI in Foundry Models listed in the previous tables.
+This section lists other Foundry models sold by Azure, not including the Azure OpenAI in Foundry Models listed in the previous tables.
 
 | Topic | **Llama-3.3-70B-Instruct** |
 |---|---|
