@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 ### Speech SDK 1.52: 2026-September release
 
 #### New features
-  * Added support for force commit with `PushAudioInputStream` (preview).
+  * Added commit support for `PushAudioInputStream` (preview).
   * **Android:** Updated OpenSSL to 3.5.8.
 
 #### Bug fixes
