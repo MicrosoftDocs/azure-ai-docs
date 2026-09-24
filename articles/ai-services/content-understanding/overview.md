@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools solutions,
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 08/04/2026
+ms.date: 09/15/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: overview
 ms.custom:
@@ -60,7 +60,7 @@ Some common industry-specific applications for Content Understanding include:
 |:---------|:----------|
 |Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.|
 |Mortgage application processing|Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provided all the necessary documentation to secure a mortgage.|
-|Invoice contract verification|Review invoices and contractual agreements with clients carefully. Apply a multi-step reasoning process to analyze the data. Ensure that conclusions, such as validating the consistency between the invoice and the contract, are accurate and thorough.|
+|Invoice contract verification|Review invoices and contractual agreements with clients carefully. Apply a multistep reasoning process to analyze the data. Ensure that conclusions, such as validating the consistency between the invoice and the contract, are accurate and thorough.|
 |Retrieval-augmented generation (RAG) ingestion| Organizations can enhance their RAG workflows by extracting comprehensive information from documents that would otherwise be missed. Figure descriptions capture information from charts, diagrams, and visualizations, making them searchable. Layout analysis preserves document structure including tables, sections, and hierarchies. Annotation detection captures handwritten notes, underlines, and strikeouts.|
 |Post-call analytics| Businesses and call centers can generate insights from call recordings to track key performance indicators (KPIs), improve product experience, generate business insights, create differentiated customer experiences, and answer queries faster and more accurately.|
 |Media asset management| Software and media vendors can use Content Understanding to extract richer, targeted information from videos for media asset management solutions.|
@@ -111,24 +111,17 @@ Content Understanding is a Foundry service. To use Content Understanding, you mu
 
 ## Responsible AI
 
-Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. The service uses the standard Foundry infrastructure, including the Azure AI Content Safety, integrating content safety results into the Content Understanding output. For more information and a full list of prohibited content, see the [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and the [**Code of Conduct**](https://aka.ms/AI-CoC).
+Content Understanding is designed to guard against processing harmful content by inheriting the [guardrails in Microsoft Foundry](../../foundry/guardrails/guardrails-overview.md) applied to Foundry model deployments.  Guardrails detections can appear as warnings or errors in the Content Understanding response. For more information and a full list of prohibited content, see the [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and the [**Code of Conduct**](https://aka.ms/AI-CoC).
 
-### Content filtering and Guardrails
+<a id="content-filtering-and-guardrails"></a>
 
-Content Understanding surfaces content filter results directly from the Foundry model deployment it uses. Each Foundry model deployment has an associated **Guardrails** instance that evaluates both the prompts sent to the model and the completions returned. When the Guardrails instance flags content, the result is included in the Content Understanding analyze response as a `content_filters` array. 
+### Guardrails in Microsoft Foundry
 
-To change the content filtering behavior for your analyzers, update the Guardrails instance associated with the model deployment in your Azure AI Foundry project. You can adjust the thresholds for each category or switch from blocking to annotating mode. For details, see [Content filtering](../../ai-foundry/openai/concepts/content-filter.md).
+An analyzer can extract document content as Markdown, pages, and paragraphs, and perform field extraction using language models. Guardrails can restrict field generation while preserving extracted source content. Analysis can therefore succeed with warnings even when some field values aren't returned.
 
-You can modify content filters to adjust the severity blocked or annotate rather than block content, giving you the ability to handle potentially harmful content in your own workflow.
+The guardrail assigned to your Foundry model deployment controls whether potentially harmful content is blocked or allowed through with warnings. Blocking can limit field extraction or prevent analysis from completing. By using the required approval, you can use annotate-only behavior to retain detections for human review instead of automatically blocking content.
 
-For more information on content filter types, see [Content filter types](../openai/concepts/content-filter.md#content-filter-types).
-
-> [!IMPORTANT]
->
-> * Apply for modified content filters by using this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-> * For more information, see [**Content filtering**](../../ai-foundry/openai/concepts/content-filter.md).
-
-
+Review warnings before using results in automated workflows. For response details, examples, severity thresholds, and annotate-only approval and configuration, see [Guardrails in Content Understanding](concepts/guardrails.md).
 
 
 ## Data privacy and security

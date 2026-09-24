@@ -57,7 +57,7 @@ Create a prompt agent using your deployed model. The agent uses a `PromptAgentDe
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/agents/CreateAgent.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/foundry/samples/CreateAgent.java":::
 
 # [REST API](#tab/rest)
 
@@ -87,7 +87,7 @@ Use the agent you created to interact by asking a question and a related follow-
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/foundry/samples/ChatWithAgent.java":::
 
 # [REST API](#tab/rest)
 

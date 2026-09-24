@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 09/14/2026
 ms.author: pafarley
+ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 keywords: on-premises, Docker, container
 # Customer intent: As a developer, I want to learn about the Speech containers available in the Microsoft Container Registry (MCR).
@@ -26,12 +27,10 @@ The following table lists the Speech containers available in the Microsoft Conta
 | [Speech to text](speech-container-stt.md) | Transcribes continuous real-time speech or batch audio recordings with intermediate results.  | Latest: 5.1.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/speech-to-text/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/speech-to-text/tags/list).|
 | [Custom speech to text](speech-container-cstt.md) | Using a custom model from the [custom speech portal](https://speech.microsoft.com/customspeech), transcribes continuous real-time speech or batch audio recordings into text with intermediate results. | Latest: 5.1.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/custom-speech-to-text/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/speech-to-text/tags/list). |
 | [Fast transcription](speech-container-ft.md)<sup>1</sup> | Transcribes audio files synchronously and faster than real-time. Supports speaker diarization, multi-channel processing, and word-level timestamps. | Latest preview: 1.0.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/fast-transcription/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/fast-transcription/tags/list). |
-| [Speech language identification](speech-container-lid.md)<sup>1, 2</sup> | Detects the language spoken in audio files. | Latest preview: 1.18.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/language-detection/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/language-detection/tags/list). |
+| [Speech language identification](speech-container-lid.md)<sup>1</sup> | Detects the language spoken in audio files. | Latest preview: 1.18.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/language-detection/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/language-detection/tags/list). |
 | [Neural text to speech](speech-container-ntts.md) | Converts text to natural-sounding speech by using deep neural network technology, which allows for more natural synthesized speech. | Latest: 4.1.0<br/><br/>For all supported versions and locales, see the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/speechservices/neural-text-to-speech/tags) and [JSON tags](https://mcr.microsoft.com/v2/azure-cognitive-services/speechservices/neural-text-to-speech/tags/list). |
 
 <sup>1</sup> The container is available in public preview. Containers in preview are still under development and don't meet Microsoft's stability and support requirements.
-
-<sup>2</sup> Not available as a disconnected container.
 
 ## Request approval to run containers disconnected from the internet
 

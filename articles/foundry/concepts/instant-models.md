@@ -54,7 +54,7 @@ Support for instant access continues to expand over time. The exact set changes 
 
 [!INCLUDE [instant-model-code-intro](../includes/instant-model-code-intro.md)]
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/foundry/samples/CreateResponse.java":::
 
 # [REST API](#tab/rest)
 
