@@ -447,7 +447,7 @@ workflow = (
 > [!NOTE]
 > Even with custom handoff rules, all agents are still connected in a mesh topology. This is because agents need to share context with each other to maintain conversation history (see [Context Synchronization](#context-synchronization) for more details). The handoff rules only govern which agents can take over the conversation next.
 
-By default, a user response returns to the agent that requested it. To have the start agent evaluate every user response before routing it again, disable return-to-previous routing:
+By default, a user response returns to the agent that requested it. To have the start agent evaluate every user response before routing it again, disable return-to-previous routing.
 
 ```python
 workflow = (
@@ -807,7 +807,7 @@ After broadcasting the response, the participant then checks whether it needs to
 - **HandoffBuilder**: Creates workflows with automatic handoff tool registration
 - **with_start_agent()**: Defines which agent receives user input first
 - **add_handoff()**: Configures specific handoff relationships between agents
-- **enable_return_to_previous()**: Controls whether user responses return to the requesting agent or route through the start agent
+- **enable_return_to_previous()**: Controls whether user responses return to the requesting agent or route through the start agent.
 - **Output**: By default, `output_from` is set to **all participants**, so every agent's response surfaces as an `"output"` (terminal) event (`AgentResponse` in non-streaming mode, `AgentResponseUpdate` in streaming mode). To designate specific agents as intermediate sources instead, pass `intermediate_output_from=[agent_a, agent_b]` to `HandoffBuilder` — this implicitly demotes those agents from the default output set so their responses become `"intermediate"` events. There is no overlap error; the demotion is silent and intentional.
 - **Context preservation**: Preserve semantic user content across handoffs while filtering tool-control content.
 - **Request/Response Cycle**: Workflow requests user input, processes responses, and continues until termination condition is met

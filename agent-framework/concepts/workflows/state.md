@@ -252,7 +252,7 @@ await workflow.run(
 ```
 
 > [!TIP]
-> Executor-targeted kwargs use workflow executor IDs. For wrapped agents, that is the agent name by default. If you pass a different explicit `id` to `AgentExecutor(...)`, `WorkflowInvocationKwargs.executor_kwargs` can still use the agent name when it's unique. Use executor IDs when agent names are duplicated.
+> Executor-targeted kwargs use workflow executor IDs. For wrapped agents, that ID is the agent name by default. If you pass a different explicit `id` to `AgentExecutor(...)`, `WorkflowInvocationKwargs.executor_kwargs` can still use the agent name when it's unique. Use executor IDs when agent names are duplicated.
 
 ::: zone-end
 
