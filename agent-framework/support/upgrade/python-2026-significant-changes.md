@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/23/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -1663,7 +1663,7 @@ placeholder: FunctionTool = FunctionTool(...)
 
 ### 🔴 Pydantic Settings replaced with `TypedDict` + `load_settings()`
 
-**PRs:** [#3843](https://github.com/microsoft/agent-framework/pull/3843), [#4032](https://github.com/microsoft/agent-framework/pull/4032)
+**PRs:** [#3843](https://github.com/microsoft/agent-framework/pull/3843), [#4032](https://github.com/microsoft/agent-framework/pull/4032), [#8709](https://github.com/microsoft/agent-framework/pull/8709)
 
 The `pydantic-settings`-based `AFBaseSettings` class has been replaced with a lightweight, function-based settings system using `TypedDict` and `load_settings()`. The `pydantic-settings` dependency was removed entirely.
 
@@ -1696,6 +1696,8 @@ model = settings["model"]
 > - Setting environment variables directly in your shell or IDE
 >
 > The `load_settings` resolution order is: explicit overrides → `.env` file values (when `env_file_path` is provided) → environment variables → defaults. If you specify `env_file_path`, the file must exist or a `FileNotFoundError` is raised.
+>
+> Invalid numeric or Boolean values from an environment variable or `.env` file raise a `ValueError` that identifies the setting and source. They no longer silently fall back to an incompatible value.
 
 ---
 
