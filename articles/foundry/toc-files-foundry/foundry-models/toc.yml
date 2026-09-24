@@ -199,6 +199,9 @@ items:
   - name: Troubleshoot deployments
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
+  - name: Troubleshoot Azure OpenAI HTTP errors
+    displayName: Troubleshoot common HTTP errors 400 401 403 404 429 500 for Azure OpenAI in Microsoft Foundry
+    href: ../../openai/how-to/troubleshoot-errors.md
 
 - name: Model support
   items:
@@ -393,8 +396,8 @@ items:
   #   href:
   - name: Realtime API
     items:
-    - name: GPT Realtime 2.x (preview)
-      displayName: GPT Realtime 2.x concept overview (preview)
+    - name: GPT Realtime 2.x
+      displayName: GPT Realtime 2.x concept overview
       href: ../../openai/concepts/realtime-2.md
     - name: Realtime API for speech and audio
       displayName: Use the GPT Realtime API for speech and audio

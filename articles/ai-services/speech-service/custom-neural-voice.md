@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 09/04/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 # What is custom voice?
@@ -23,23 +24,23 @@ Custom voice is based on the neural text to speech technology and the multilingu
 
 ## How does it work?
 
-To create a custom voice, use [Speech Studio](https://aka.ms/speechstudio/customvoice) to upload the recorded audio and corresponding scripts, train the model, and deploy the voice to a custom endpoint. 
+To create a custom voice, use the [Microsoft Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) or [Speech Studio](https://aka.ms/speechstudio/customvoice) to upload the recorded audio and corresponding scripts, train the model, and deploy the voice to a custom endpoint.
 
 Creating a great custom voice requires careful quality control in each step, from voice design and data preparation, to the deployment of the voice model to your system. 
 
-Before you get started in Speech Studio, here are some considerations:
+Before you get started, consider the following guidance:
 
 - [Design a persona](record-custom-voice-samples.md#choose-your-voice-talent) of the voice that represents your brand by using a persona brief document. This document defines elements such as the features of the voice, and the character behind the voice. This helps to guide the process of creating a custom voice model, including defining the scripts, selecting your voice talent, training, and voice tuning.
 - [Select the recording script](record-custom-voice-samples.md#script-selection-criteria) to represent the user scenarios for your voice. For example, you can use the phrases from bot conversations as your recording script if you're creating a customer service bot. Include different sentence types in your scripts, including statements, questions, and exclamations.
 
-Here's an overview of the steps to create a custom voice in Speech Studio:
+Here's an overview of the steps to create a custom voice:
 
-1. [Create a project](professional-voice-create-project.md) to contain your data, voice models, tests, and endpoints. Each project is specific to a country/region and language. If you're going to create multiple voices, it's recommended that you create a project for each voice.
-1. [Set up voice talent](professional-voice-create-project.md). Before you can fine-tune a professional voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data for professional voice fine-tuning.
+1. [Set up a professional voice](professional-voice-create-project.md).
+1. [Set up voice talent](professional-voice-create-consent.md). Before you can fine-tune a professional voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data for professional voice fine-tuning.
 1. [Prepare fine-tuning data](professional-voice-create-training-set.md) in the right [format](how-to-custom-voice-training-data.md). It's a good idea to capture the audio recordings in a professional quality recording studio to achieve a high signal-to-noise ratio. The quality of the voice model depends heavily on your fine-tuning data. Consistent volume, speaking rate, pitch, and consistency in expressive mannerisms of speech are required.
-1. [Train your voice model](professional-voice-train-voice.md). Select at least 300 utterances to create a custom voice. A series of data quality checks are automatically performed when you upload them. To build high-quality voice models, you should fix any errors and submit again.
-1. [Test your voice](professional-voice-train-voice.md#test-your-voice-model). Prepare test scripts for your voice model that cover the different use cases for your apps. It’s a good idea to use scripts within and outside the training dataset, so you can test the quality more broadly for different content.
+1. [Train your voice model](professional-voice-train-voice.md). Select a training method and version, and then choose a dataset that meets the eligibility requirements shown in the portal. The requirements vary by method and version. A series of data quality checks are automatically performed when you upload the data. To build high-quality voice models, fix any errors and upload the data again.
 1. [Deploy and use your voice model](professional-voice-deploy-endpoint.md) in your apps.
+1. [Test the deployed endpoint in the text to speech playground](professional-voice-deploy-endpoint.md#test-your-custom-voice). Use text that covers your application scenarios and includes content within and outside the training dataset.
 
 You can tune, adjust, and use your custom voice, similarly as you would use a standard voice. Convert text into speech in real-time, or generate audio content offline with text input. You use the [REST API](./rest-text-to-speech.md), the [Speech SDK](./get-started-text-to-speech.md), or the [Speech Studio](https://speech.microsoft.com/audiocontentcreation).
 
@@ -74,6 +75,6 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ## Next steps
 
-* [Create a project](professional-voice-create-project.md) 
+* [Set up a professional voice](professional-voice-create-project.md)
 * [Prepare fine-tuning data](professional-voice-create-training-set.md)
 * [Train model](professional-voice-train-voice.md)

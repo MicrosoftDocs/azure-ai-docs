@@ -42,7 +42,7 @@ Publishing gives you capabilities that project-level development doesn't provide
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
-- **Integration with Microsoft 365 Copilot and Teams** — Distribute your Agent Application to channels like Microsoft 365 Copilot and Teams.
+- **Integration with Microsoft Copilot and Teams** — Distribute your Agent Application to channels like Microsoft Copilot and Teams.
 ### What changes when you publish?
 
 The most important change is identity. An unpublished agent uses the project's shared agent identity. Once published, the agent receives its own dedicated agent identity. Any tools that use agent identity authentication will switch from the project's shared identity to the agent application's unique agent identity.
@@ -365,7 +365,7 @@ For more information about Azure RBAC, see [Role-based access control for Micros
 
 After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the activity protocol. The activity protocol is used when your agent is published to Microsoft 365 and Teams.
 
-To use your Agent Application in Microsoft 365 Copilot and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
+To use your Agent Application in Microsoft Copilot and Teams, see [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
 
 To publish your agent as an autopilot, see [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
@@ -491,7 +491,7 @@ Published agents use a publisher-pays model: the publisher (the Foundry project 
 - [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#publish-agents) — role requirements for publishing agents.
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Learn about [Hosted agents](../concepts/hosted-agents.md)
-- Learn how to [publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
+- Learn how to [publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
 
 ## Next steps

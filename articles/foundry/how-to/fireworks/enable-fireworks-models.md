@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: mcleans
-ms.date: 09/02/2026
+ms.date: 09/22/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
@@ -96,9 +96,9 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 1. In the deployment window, configure the following settings:
 
    * **Deployment name**: Keep the default name or enter a custom name to identify the deployment.
-   * **Token Plan**: Select **Pay-per-token** -> Datazone Standard or **Provisioned Throughput** -> Datazone or Global. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
+   * **Token Plan**: Select **Pay-per-token** -> Datazone Standard or Global Standard, depending on the model, or **Provisioned Throughput** -> Datazone or Global. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
    * **Model version settings**: Select the model version for the deployment.
-   * **Tokens per Minute Rate Limit**:  Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
+   * **Tokens per Minute Rate Limit**: Set a custom tokens-per-minute limit to manage costs and control usage. For pay-per-token deployments, see [Quotas and rate limits](#quotas-and-rate-limits).
    * **Guardrails**: Select **DefaultV2** or **Default** guardrail configuration. Models use the **Microsoft.DefaultV2** guardrail unless a different one is specified. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
 
 1. Select **Deploy**. The deployment process can take up to 30 minutes.
@@ -107,6 +107,16 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
    > [!TIP]
    > To verify the deployment, navigate to your project's **Deployments** page and confirm the deployment **Status** shows **Succeeded**.
+
+## Quotas and rate limits
+
+For pay-per-token deployments, Global Standard and Data Zone Standard have separate quota pools. Each pool has a default quota of 10 million tokens per minute (TPM) per region, per subscription. Each pool is shared across all Fireworks models, and you can allocate quota to individual model deployments.
+
+Fireworks directly enforces adaptive rate limits within this quota. Your effective limits can be lower than the full quota and adjust automatically as your usage grows.
+
+To use more than 10 million TPM in either pool, submit a [quota increase request](https://aka.ms/fireworks-quota).
+
+Ramp up traffic gradually, and use exponential backoff when retrying HTTP 429 (Too Many Requests) responses. For more information, see [Fireworks adaptive rate limits](https://docs.fireworks.ai/serverless/rate-limits).
 
 ## Improve prompt cache hit rate
 
@@ -133,6 +143,7 @@ The following Fireworks models are available in the Foundry model catalog. In th
 | **DeepSeek** | DeepSeek V4 Flash | `FW-DeepSeek-V4-Flash` | Chat completions | PTU | Streamlined MoE model optimized for fast, cost-efficient reasoning and coding at 1M-token context scale. |
 | **DeepSeek** | DeepSeek V4 Flash 0731 | `FW-DeepSeek-V4-Flash-0731` | Chat completions | Pay-per-token and PTU | Updated DeepSeek V4 Flash model with enhanced agentic capabilities, speculative decoding, and 1M context. |
 | **DeepSeek** | DeepSeek V4 Pro | `FW-DeepSeek-V4-Pro` | Chat completions | Pay-per-token and PTU | Flagship 1.6T-parameter MoE model for frontier reasoning, coding, and long-context agentic workloads. |
+| **DeepSeek** | DeepSeek V4.1 Flash | `FW-DeepSeek-V4.1-Flash` | Chat completions | Pay-per-token (Global Standard) | Multimodal MoE model with 552B parameters, image input, and 1M context. |
 | **Google** | Gemma 4 26B A4B IT | `FW-Gemma-4-26B-A4B-IT` | Chat completions | PTU | Multimodal MoE instruction-tuned model with image input, function calling, and 256K context. |
 | **Google** | Gemma 4 31B IT | `FW-Gemma-4-31B-IT` | Chat completions | PTU | Multimodal dense instruction-tuned model with image input, function calling, and 256K context. |
 | **Meta** | Llama 3.1 8B Instruct | `FW-Llama-v3.1-8B-Instruct` | Chat completions | PTU | Multilingual instruction-tuned model optimized for dialogue workloads. |
@@ -142,9 +153,9 @@ The following Fireworks models are available in the Foundry model catalog. In th
 | **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | 1T-parameter MoE instruction model with 262K context, improved coding, and tool use. |
 | **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | MoE reasoning model for step-by-step tool-using agents with 262K context. |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | PTU | Multimodal MoE agentic model with reasoning controls, tool use, and 262K context. |
-| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Pay-per-token and PTU | Open-source multimodal agentic model for long-horizon coding and task orchestration. |
-| **Moonshot AI** | Kimi K2.7 Code | `FW-Kimi-K2.7-Code` | Chat completions | Pay-per-token and PTU | Coding-focused multimodal agentic model for long-horizon software engineering workflows. |
-| **Moonshot AI** | Kimi K3 | `FW-Kimi-K3` | Chat completions | Pay-per-token | Multimodal 2.8T-parameter MoE model with native visual understanding and 1M context. |
+| **Moonshot AI** | Kimi K2.6 | `FW-Kimi-K2.6` | Chat completions | Pay-per-token (retires September 25, 2026) and PTU | Open-source multimodal agentic model for long-horizon coding and task orchestration. |
+| **Moonshot AI** | Kimi K2.7 Code | `FW-Kimi-K2.7-Code` | Chat completions | Pay-per-token (retires September 25, 2026) and PTU | Coding-focused multimodal agentic model for long-horizon software engineering workflows. |
+| **Moonshot AI** | Kimi K3 | `FW-Kimi-K3` | Chat completions | Pay-per-token (Global Standard) | Multimodal 2.8T-parameter MoE model with native visual understanding and 1M context. |
 | **NVIDIA** | NVIDIA Nemotron 3 Super 120B A12B BF16 | `FW-Nemotron-3-Super-120B-A12B-BF16` | Chat completions | PTU | Hybrid LatentMoE model with 120B total parameters for agentic workflows, long-context reasoning, and tool use. |
 | **NVIDIA** | NVIDIA Nemotron 3 Ultra NVFP4 | `FW-Nemotron-3-Ultra-NVFP4` | Chat completions | Pay-per-token and PTU | Nemotron reasoning model with 262K context for agentic and long-context workloads. |
 | **NVIDIA** | NVIDIA Nemotron Lightning 3.5 30B A3B | `FW-Nemotron-Lightning-3.5-30B-A3B` | Chat completions | Pay-per-token and PTU | Hybrid Mamba-Transformer MoE model with configurable reasoning and 262K context. |
@@ -161,20 +172,25 @@ The following Fireworks models are available in the Foundry model catalog. In th
 | **Qwen** | Qwen3.5 397B A17B | `FW-Qwen3.5-397B-A17B` | Chat completions | PTU | 396B-parameter MoE Qwen model with image input and 262K context. |
 | **Qwen** | Qwen3.6 27B | `FW-Qwen3.6-27B` | Chat completions | PTU | 27B-parameter dense Qwen model with image input, function calling, and 262K context. |
 | **Qwen** | Qwen3.6 35B A3B | `FW-Qwen3.6-35B-A3B` | Chat completions | PTU | 35B-parameter MoE Qwen model with 262K context. |
-| **Thinking Machines Lab** | Inkling | `FW-Inkling` | Chat completions | Pay-per-token and PTU | Multimodal 975B-parameter MoE model with text, image, and audio input and 1M context. |
+| **Thinking Machines Lab** | Inkling | `FW-Inkling` | Chat completions | Pay-per-token (retires September 25, 2026) and PTU | Multimodal 975B-parameter MoE model with text, image, and audio input and 1M context. |
 | **Z.ai** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | 352B-parameter MoE model for coding, reasoning, and agentic workflows. |
 | **Z.ai** | GLM-5 | `FW-GLM-5` | Chat completions | PTU | MoE model for complex systems engineering and long-horizon agentic tasks. |
 | **Z.ai** | GLM-5.1 | `FW-GLM-5.1` | Chat completions | PTU | MoE model for agentic engineering, coding, and long-horizon tasks. |
 | **Z.ai** | GLM-5.2 | `FW-GLM-5.2` | Chat completions | Pay-per-token and PTU | MoE model with 1M-token context and multi-effort coding capabilities for long-horizon tasks. |
 | **Z.ai** | GLM-5.2 Fast | `FW-GLM-5.2-Fast` | Chat completions | Pay-per-token and PTU | High-throughput GLM-5.2 variant optimized for latency-sensitive coding and agentic workloads. |
 | **Z.ai** | GLM-5.3 | `FW-GLM-5.3` | Chat completions | Pay-per-token | GLM-5.2 successor with improved complex coding and long-horizon task performance. |
+| **Z.ai** | GLM-5.3 Flash | `FW-GLM-5.3-Flash` | Chat completions | Pay-per-token (Global Standard) | Multimodal MoE model with 320B total parameters, 18B active parameters, and 1M context. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for Chat Completions API and the [Foundry SDK](../develop/sdk-overview.md#foundry-sdk) and endpoint for accessing the Responses API.
 
 > [!IMPORTANT]
+> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
+>
 > The pay-per-token offering is deprecated for `FW-GPT-OSS-120B`, `FW-DeepSeek-V3.2`, `FW-Kimi-K2.5`, `FW-GLM-5`, `FW-GLM-5.1`, and `FW-MiniMax-M2.5`. Provisioned throughput (PTU) remains available for all six models.
 >
-> Fireworks models on Standard (Per-Token) inference offerings are subject to a **15-day notice period** prior to model retirement. Plan your deployments accordingly and monitor notifications for upcoming retirement dates.
+> The pay-per-token (pay-as-you-go) offerings for `FW-Kimi-K2.6`, `FW-Kimi-K2.7-Code`, and `FW-Inkling` retire on September 25, 2026. Provisioned throughput (PTU) remains available for these three models.
+
+
 
 ## Custom models (bring your own model)
 

@@ -6,8 +6,9 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 09/21/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Set up WebRTC
@@ -56,7 +57,7 @@ The session configuration includes:
 | `session.type` | Yes | Must be `realtime` |
 | `session.model` | Yes | Your model deployment name |
 | `session.instructions` | No | System prompt for the assistant |
-| `session.audio.output.voice` | No | Voice for audio output: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, or `verse` |
+| `session.audio.output.voice` | No | Voice for audio output: `alloy`, `ash`, `ballad`, `coral`, `cedar`, `echo`, `marin`, `sage`, `shimmer`, or `verse` |
 
 ```python
 from flask import Flask, jsonify

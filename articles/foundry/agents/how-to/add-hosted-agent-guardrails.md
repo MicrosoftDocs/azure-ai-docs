@@ -4,7 +4,7 @@ description: "Attach Responsible AI content safety and network egress guardrail 
 author: amitbhave
 ms.author: amitbhave
 ms.manager: pranavp
-ms.date: 09/21/2026
+ms.date: 09/24/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -598,6 +598,24 @@ Deploy in **Audit** mode first, review the egress decisions, refine your rules, 
 > [!NOTE]
 > Audit mode changes only how **Deny** actions behave: a request that would be denied is logged instead of blocked. **Transform** and **Rewrite** actions are applied in both Audit and Enforce modes, so header transforms and redirects still take effect while you audit.
 
+### Common egress control use cases
+
+Use egress controls to limit a hosted agent to the external services required
+for its task. The following patterns are common starting points:
+
+| Use case | Policy approach |
+| --- | --- |
+| Discover an agent's outbound dependencies | Start with **Audit** mode and a **Deny** default action. Run representative tasks, review the egress decisions, and add the required hosts before you enforce the policy. |
+| Restrict a coding agent to approved package and source repositories | Allow the package registries, download hosts, and source-control APIs that the agent needs. Use a **Deny** default action for all other destinations. |
+| Limit an integration agent to approved SaaS APIs | Allow only the API hosts for the services that the agent integrates with, such as an issue tracker or source-control provider. |
+| Add request metadata for an enterprise API | Use a **Transform** rule with a static header value to add a workload identifier or correlation tag. Don't put credentials or other secrets in a static header value. |
+| Route requests through an enterprise gateway | Use a **Rewrite** rule to redirect a matched host to an approved gateway. Test rewrites in a nonproduction environment before you use them with agent workloads. |
+
+Package managers and SDKs can follow redirects or use separate download
+hosts. Don't assume that the registry host is the only destination required.
+Use Audit mode with representative workloads to identify the complete host
+set.
+
 ### Add egress rules by using the Azure Developer CLI
 
 Add the RAI policy ARM resource to your `azd` project's Bicep infrastructure. The `azd provision` command deploys the resource through ARM.
@@ -689,6 +707,70 @@ To review the configured rules, send a GET request to the same URL and inspect `
 
 For a complete request body that combines a default action with several rule types, see the [`PutRaiPolicyWithEgress.json`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/CognitiveServices.Management/examples/2026-05-15-preview/PutRaiPolicyWithEgress.json) example in the Azure REST API specs.
 
+### Example: restrict a dependency research agent
+
+Consider a coding agent that researches Python dependencies and their source
+repositories. It needs to read package metadata from PyPI, download package
+files, and retrieve repository metadata from the GitHub API. It shouldn't
+connect to unrelated internet destinations.
+
+Start with the following egress policy in Audit mode. Replace the
+`egressPolicy` object in the REST request from the previous section with this
+object:
+
+```json
+{
+  "mode": "Audit",
+  "defaultAction": "Deny",
+  "rules": [
+    {
+      "name": "allow-pypi-metadata",
+      "ruleType": "Fqdn",
+      "match": { "host": "pypi.org" },
+      "action": { "actionType": "Allow" }
+    },
+    {
+      "name": "allow-python-package-downloads",
+      "ruleType": "Fqdn",
+      "match": { "host": "files.pythonhosted.org" },
+      "action": { "actionType": "Allow" }
+    },
+    {
+      "name": "allow-github-api",
+      "ruleType": "Fqdn",
+      "match": { "host": "api.github.com" },
+      "action": { "actionType": "Allow" }
+    }
+  ]
+}
+```
+
+Validate and enforce the policy:
+
+1. Create or update the RAI policy with `mode` set to `Audit`.
+1. Attach the policy to the hosted agent and deploy a new agent version.
+1. Run representative tasks, such as retrieving Python package metadata,
+   inspecting a package's source repository, and downloading a package.
+1. Have the agent attempt a request to an unrelated host, such as
+   `example.com`. Audit mode allows the request but records that the policy
+   would deny it.
+1. [Review the egress decisions](#view-egress-decisions). Add any legitimate
+   redirect or download hosts that appear in the agent's normal workflow.
+1. Change `mode` from `Audit` to `Enforced`, update the RAI policy, and deploy
+   a new agent version.
+1. Start a new session or resume the session, and run the same tasks again.
+   Running sandboxes don't reload policy changes. Requests to the approved
+   package and source-control hosts succeed. A request to an unapproved host
+   returns `HTTP 403`.
+
+The exact host set depends on the package manager, SDK, and services that your
+agent uses. Keep the allow list specific to the workload instead of copying the
+example unchanged.
+
+For a runnable hosted-agent sample that exercises Allow, Deny, Transform,
+Rewrite, Audit, wildcard, and rule-ordering scenarios, see the
+[egress control sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework/responses/18-egress-control).
+
 ### Transform request headers
 
 When a rule's `action.actionType` is `Transform` (or `Rewrite`), you can modify the headers of the outbound request by using an `action.headers` array. Each entry describes one header operation:
@@ -715,12 +797,19 @@ Each header object supports the following fields:
 | --- | --- | --- |
 | `operation` | Yes | The header operation: `Set`, `Insert`, or `Remove`. Operation names are case-insensitive. If you omit it, `Set` is used. |
 | `name` | Yes | The name of the header to modify. |
-| `value` | For `Set` and `Insert` | The static header value. Not used for `Remove`. |
+| `value` | For `Set` and `Insert` when `valueRef` isn't used | The static header value. Not used for `Remove`. |
+| `valueRef` | For `Set` and `Insert` when `value` isn't used | A managed identity value reference. Not used for `Remove`. |
 
 You must include `headers` when `actionType` is `Transform`. You can omit `headers` when `actionType` is `Rewrite`. Header transforms apply only to requests that match the rule.
 
 > [!NOTE]
-> During preview, header transforms support **static `value`** only. Dynamic value references (`valueRef`) that inject a **managed identity** token or a **secret** are **coming soon** and aren't enforced yet. A rule that uses `valueRef` is accepted but the header isn't injected at runtime.
+> Header transforms support static values and managed identity value references.
+> For a managed identity value reference, set
+> `valueRef.managedIdentityRef.resource` to the target resource URI, such as
+> `https://storage.azure.com/`. Set `format` to the bearer scheme with the
+> `{token}` placeholder. Grant the deployed agent's
+> `instance_identity.principal_id` the required role on the target resource.
+> Secret value references aren't supported during preview.
 
 #### Header operations
 
@@ -743,7 +832,7 @@ You can also author egress rules in the Foundry portal as a **Network** control 
    :::image type="content" source="../media/add-hosted-agent-guardrails/network-egress-control.png" alt-text="Screenshot of the Network control in a guardrail showing the Egress rules row and the Outbound requests default action." lightbox="../media/add-hosted-agent-guardrails/network-egress-control.png":::
 
 1. Select **Egress rules**, and set the **Outbound requests** default action to **Deny** or **Allow**.
-1. Select **Add rules**, choose a **Mode** (**Audit** or **Enforce**), enter a **Host match** and an **Action**, and then select **Add**. Reorder rules as needed; the first match wins. For a **Transform** action, use a **Static value** for the header. (**Managed identity** and **Secret reference** value sources appear in the dialog but aren't enforced yet - see [Preview limitations](#preview-limitations-and-whats-coming-next).)
+1. Select **Add rules**, choose a **Mode** (**Audit** or **Enforce**), enter a **Host match** and an **Action**, and then select **Add**. Reorder rules as needed; the first match wins. For a **Transform** action, use a **Static value** or **Managed identity** value source for the header. The **Secret reference** value source appears in the dialog but isn't supported during preview. Don't use this option. For more information, see [Preview limitations](#preview-limitations-and-whats-coming-next).
 
    :::image type="content" source="../media/add-hosted-agent-guardrails/egress-rule-list.png" alt-text="Screenshot of the Create egress rules dialog with Audit and Enforce modes, a host match field, and an action list." lightbox="../media/add-hosted-agent-guardrails/egress-rule-list.png":::
 
@@ -857,7 +946,7 @@ Network egress controls are an additive feature. During preview:
 
 The following capabilities aren't available yet and are planned for future updates:
 
-- **Dynamic header values** — injecting a header value from a **managed identity** or a **secret** (`valueRef`). During preview, use a static `value`.
+- **Secret header values** — Injecting a header value from a secret reference isn't supported during preview.
 - Rule types such as Azure service tags and IP address ranges.
 - MCP tool policies, PII and data-loss-prevention inspection, and custom webhook hooks.
 

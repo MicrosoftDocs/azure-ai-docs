@@ -7,7 +7,7 @@ ms.reviewer: hanch
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 09/17/2026
+ms.date: 09/22/2026
 ai-usage: ai-assisted
 ---
 
@@ -29,6 +29,7 @@ In this article, you learn how to:
 - Prepare an agent and its telemetry for Insights in Foundry.
 - Run an Insights scan in the Microsoft Foundry portal.
 - Review an Insight and validate its supporting evidence.
+- Pull generated Insights into a local coding agent.
 - Route a confirmed Insight to the appropriate next action.
 - Run on-demand analysis and configure a schedule with the Python SDK.
 - Troubleshoot common setup and result-quality issues.
@@ -37,7 +38,7 @@ In this article, you learn how to:
 
 Before you begin, you need:
 
-- A Foundry project with a supported model deployment and a connected Azure Monitor Application Insights resource.
+- A Foundry project with a GPT-5 or newer GPT model deployment and a connected Azure Monitor Application Insights resource.
 - For the Python examples, Python 3.10 or later and Azure CLI. Sign in by running `az login`.
 - Permission to create role assignments at the required resource scopes, or an administrator who can assign the following roles before you run the workflow.
 - For a Prompt agent, the interactive user must have the **Foundry User** role on the project. For a Hosted agent, the user must have the **Foundry Project Manager** role.
@@ -47,6 +48,10 @@ Before you begin, you need:
 - Recent, representative traces for the selected agent.
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+### Choose a supported judge model
+
+Insights in Foundry supports only GPT models as the judge model that analyzes traces. Use GPT-5 or a newer GPT model. Mini and nano variants are supported, but for better Insight quality, use a larger model variant.
 
 ### Choose a suitable agent
 
@@ -108,7 +113,7 @@ Depending on the available trace data and supported configuration, an Insight ca
 1. Open the Foundry project that contains your agent.
 1. Select **Build** > **Agents**, and then select the agent.
 1. Select the **Insights** tab.
-1. Under **Configuration**, select the **Judge model** used to generate Insights.
+1. Under **Configuration**, select a [supported **Judge model**](#choose-a-supported-judge-model) to generate Insights.
 1. Select **Run scan now**.
 
 :::image type="content" source="../../media/observability/agent-insights/empty-state.png" alt-text="Screenshot of the Insights page before its first analysis, showing model configuration and the Run scan now action." lightbox="../../media/observability/agent-insights/empty-state.png":::
@@ -143,6 +148,41 @@ Start with an Insight that:
 - Describes a behavior that the agent owner can confirm or challenge.
 
 A large linked-trace count doesn't by itself prove business impact. Review the evidence and the affected workflow.
+
+## Pull Insights into a local coding agent
+
+Use Foundry MCP or the Microsoft Foundry Skill to retrieve generated Insights in a local coding agent. Retrieval is read-only: it reads findings from an existing Insights monitor and doesn't start a scan, create a monitor, change an Insight status, or modify your agent.
+
+Before you begin, identify the Foundry project endpoint and the exact agent name. The project endpoint has the following format:
+
+`https://<account>.services.ai.azure.com/api/projects/<project>`
+
+### Use Foundry MCP
+
+Complete [Foundry MCP Server setup](../../mcp/get-started.md), open your agent's source folder in Visual Studio Code, and select **Agent** mode in GitHub Copilot Chat. Confirm that the Foundry tools are enabled, and then use a prompt such as:
+
+> Use `agent_insights_get` to retrieve all generated Insights for agent `<agent-name>` in project `<project-endpoint>`. Include details, list newest findings first, follow pagination until all findings are retrieved, and summarize each finding's severity, status, evidence, and proposed remediation. Don't start a new analysis, change Insight status, or modify files.
+
+Depending on the coding-agent host, `agent_insights_get` appears directly or through the Foundry tool. The coding agent maps the request to these inputs:
+
+| Input | Value |
+| --- | --- |
+| `projectEndpoint` | The Foundry project endpoint. |
+| `agentName` | The exact agent name. Don't use a monitor ID or an agent name and version. |
+| `includeDetails` | `true` to include available trace evidence and proposed remediation. |
+| `order` | `desc` to return newest findings first. |
+
+When a response has `has_more` set to `true`, the coding agent passes that page's `last_id` as `after` in the next request. It retains the same endpoint, agent name, filters, detail setting, and sort order until all requested pages are retrieved.
+
+The tool returns existing generated findings. An empty result means that no findings match the request; it doesn't prove that the agent is healthy. If the tool reports that the monitor doesn't exist, [run an Insights scan](#run-an-insights-scan-in-the-portal) before you retry retrieval.
+
+### Use the Microsoft Foundry Skill
+
+Install the skill by following [Use the Microsoft Foundry Skill in coding agents](../../how-to/develop/use-microsoft-foundry-skill.md). Open the folder that contains your agent code, and then use a prompt such as:
+
+> Use the Microsoft Foundry Skill to call `agent_insights_get` with `projectEndpoint` set to `<project-endpoint>`, `agentName` set to `<agent-name>`, `includeDetails=true`, and `order=desc`. While `has_more=true`, retrieve the next page with `after` set to the previous page's `last_id`. Include supporting evidence and proposed remediation, and compare relevant findings with the code in this workspace. Don't apply any proposed fix, modify agent code, or change Insight status.
+
+The skill resolves the available MCP tool, retrieves all result pages with expanded details, and summarizes the findings. Review the returned trace evidence and recommendations before you ask the coding agent to make a separate code or prompt change.
 
 ## Validate an Insight
 
@@ -232,7 +272,7 @@ Before you run the examples:
 | --- | --- |
 | `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint. |
 | `FOUNDRY_AGENT_NAME` | The exact name of your existing registered agent, not a name prefix. |
-| `FOUNDRY_MODEL_NAME` | The deployment name of the model used to analyze traces. |
+| `FOUNDRY_MODEL_NAME` | The deployment name of a [supported judge model](#choose-a-supported-judge-model) used to analyze traces. |
 
 Install version 2.6.1 or later of the Azure AI Projects client library and Azure Identity:
 
@@ -426,7 +466,7 @@ Check that:
 - You assigned the required user and managed-identity roles at the correct scopes.
 - You can read protected trace content when required.
 - Role assignments have propagated.
-- The selected insight-generation model is available and has quota.
+- The selected insight-generation model meets the [judge model requirements](#choose-a-supported-judge-model), is available, and has quota.
 
 A `404` response from the preview API can indicate that Insights in Foundry isn't enabled for the selected subscription context. A `403` response indicates that the endpoint is reachable but the caller isn't authorized.
 

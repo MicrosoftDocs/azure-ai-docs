@@ -25,8 +25,7 @@ The sample is a Responses protocol agent that turns on resilience and steering w
 
 - An Azure subscription with Microsoft Foundry access.
 - [Python 3.13](https://www.python.org/downloads/).
-- The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension.
-- The [Azure CLI (`az`)](/cli/azure/install-azure-cli) and [`curl`](https://curl.se/) to call the deployed agent.
+- The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension (`azd extension install azure.ai.agents`), version `azd-ext-azure-ai-agents_1.0.0-beta.16` or later for the `--long-running` invoke flag and the `invocations` lifecycle commands. `azd` handles authentication when it calls the deployed agent.
 
 ## Get the sample
 
@@ -63,38 +62,19 @@ azd up
 
 ## Steer the deployed agent
 
-`azd up` prints the Responses endpoint. Save it, remove its query string, and get an access token:
+Steering redirects an in-flight turn, so the first turn must keep running while you send the second. Start the first turn as a long-running background response in a fresh conversation, and return immediately with `--no-wait`:
 
 ```bash
-ENDPOINT="<responses-endpoint-from-azd-up>"
-RESPONSES_ENDPOINT="${ENDPOINT%%\?*}"
-TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
+azd ai agent invoke --long-running --no-wait --new-session "Explain quantum computing in detail, including its history, principles, algorithms, hardware, error correction, and applications."
 ```
 
-Steering needs stored background responses (`store: true` and `background: true`). Start the first turn and note the `conversation` ID in the response:
+`--long-running` sends `store=true` and `background=true`, and `azd ai agent invoke` reuses that conversation on your next invocation by default. While the first turn is still running, send a new instruction to steer the in-flight turn. Omit `--no-wait` this time so the CLI stays attached and streams the steered turn through completion:
 
 ```bash
-curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"input": "Explain quantum computing in detail, including its history, principles, algorithms, hardware, error correction, and applications.", "store": true, "background": true}'
+azd ai agent invoke --long-running "Instead, explain relativity and focus on practical examples."
 ```
 
-While the first turn is still running, immediately send a new instruction on the *same conversation* so it steers the in-flight turn:
-
-```bash
-curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"input": "Instead, explain relativity and focus on practical examples.", "conversation": "<conversation-id-from-turn-1>", "store": true, "background": true}'
-```
-
-The first turn observes the queued input and winds down at its next safe point. The queued turn then runs to completion. Stream either response with its `id` to watch the handoff:
-
-```bash
-curl -sS "$RESPONSES_ENDPOINT/<response-id>?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer $TOKEN"
-```
+The first turn observes the queued input and winds down at its next safe point. The queued turn then streams to completion in your terminal, so you can watch the handoff. To replay a specific response by ID instead, use `azd ai agent invocations follow --id <response-id>`.
 
 ## Clean up
 

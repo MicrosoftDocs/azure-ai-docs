@@ -5,14 +5,15 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 12/19/2025
+ms.date: 09/07/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 In this article, you learn how to fine-tune a professional voice through the Microsoft Foundry portal.
 
 > [!IMPORTANT]
-> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to a Microsoft Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to a Microsoft Foundry resource in another region as needed. For supported training locations, check the **Custom voice training** column and footnotes in the [Text to speech regions table](../../../../regions.md?tabs=tts#regions).
 
 Training duration varies depending on how much data you use. It takes about 10 compute hours on average to fine-tune a professional voice. With a Microsoft Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
@@ -21,32 +22,44 @@ Training duration varies depending on how much data you use. It takes about 10 c
 
 ## Choose a training method
 
-After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
+# [Foundry (new)](#tab/foundry-new)
 
-- [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model): Create an HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+On the **Training data** step of **Customize a model**, select one of these training methods:
 
-- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
+- **Neural - HD**: Create an HD voice in the same language as your training data. HD voices are LLM-based and optimized for dynamic conversations. For more information, see [High-definition voices](../../../../high-definition-voices.md).
+- **Neural - Default**: Create a voice in the same language as your training data.
+- **Neural - Multi lingual**: Create a voice that speaks multiple languages from single-language training data.
+- **Neural - Multi style**: Create a voice that speaks in multiple styles and emotions.
 
-- [Neural - multilingual](?tabs=multilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
+After you select a method, select a recipe **Version**. The portal evaluates whether your datasets are eligible for that method and version.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
+After you validate your data files, use them to build your custom voice model.
+In Foundry (classic), choose one of these training methods:
+
+- [Neural - HD Voice](?tabs=foundry-classic%2Chdvoice#train-your-custom-voice-model): Create an HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about [high-definition voices](../../../../high-definition-voices.md).
+
+- [Neural](?tabs=foundry-classic%2Cneural#train-your-custom-voice-model): Create a voice in the same language as your training data.
+
+- [Neural - multilingual](?tabs=foundry-classic%2Cmultilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` and other secondary languages.
 
   The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for multilingual voice training. You don't need to prepare training data in the secondary languages.
 
-- [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
+- [Neural - multi style](?tabs=foundry-classic%2Cmultistyle#train-your-custom-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
-  To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
+  To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=foundry-classic%2Cmultistyle#available-preset-styles-across-different-languages).
 
-- [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model): Create a voice that speaks a different language from your training data. For example, with the `zh-CN` training data, you can create a voice that speaks `en-US`.
+> [!NOTE]
+> Neural - cross lingual retires on August 25, 2026. Voice models that you create by using this retired method aren't affected.
 
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice or multiple style training.
 
-  > [!NOTE]
-   > Neural - cross lingual retires on August 25, 2026. The voice models you already created by using these retired methods aren't affected.
-
-The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross-lingual, or multiple style training.
+---
 
 ## Train your custom voice model
 
-To create a custom voice in Microsoft Foundry portal, follow these steps for one of the following methods:
+To create a custom voice in the Microsoft Foundry portal, follow these steps for one of the following methods:
 
 # [Foundry (new)](#tab/foundry-new)
 
@@ -61,6 +74,24 @@ In the Microsoft Foundry (classic) portal, select a training method below and fo
 ---
 
 ## Monitor the training process
+
+# [Foundry (new)](#tab/foundry-new)
+
+1. [!INCLUDE [foundry-sign-in](../../../../../../foundry/includes/foundry-sign-in.md)]
+1. Select **Build** from the upper-right menu.
+1. Select **Services** in the left pane.
+1. Select the **Customizations** tab to view your Professional Voice customization jobs and their status.
+
+   :::image type="content" source="../../../../media/custom-voice/professional-voice/foundry-new-customizations-status.png" alt-text="Screenshot of a succeeded Professional Voice customization job in the new Foundry portal." lightbox="../../../../media/custom-voice/professional-voice/foundry-new-customizations-status.png":::
+
+1. To stop a model that's still training, select its name, and then select **Cancel training**. You aren't charged for canceled training.
+1. After the status changes to **Succeeded**, select the model name to open its **Details** page. The page displays the training and deployment status, task parameters, model attributes, training data, engine version, creation time, and model ID.
+
+### Troubleshoot training
+
+If training fails, review the reported error before starting another job. For data-related errors, [review your dataset's validation results](../../../../professional-voice-create-training-set.md?tabs=foundry-new&pivots=ai-foundry-portal#review-data-issues) and correct the affected recordings or transcripts. If you can't resolve the failure, [contact support](/azure/ai-services/cognitive-services-support-options).
+
+# [Foundry (classic)](#tab/foundry-classic)
 
 The **Train model** table displays a new entry that corresponds to this newly created model. The status reflects the process of converting your data to a voice model, as described in this table:
 
@@ -77,7 +108,7 @@ While the model status is **Processing**, you can select the model and then sele
 
 After you finish training the model successfully, you can review the model details and [Test your voice model](#test-your-voice-model).
 
-## Rename your model
+### Rename your model
 
 You have to clone your model to rename it. You can't rename the model directly. 
 
@@ -86,12 +117,12 @@ You have to clone your model to rename it. You can't rename the model directly.
 1. Enter the new name on the **Clone voice model** window.
 1. Select **Submit**. The text *Neural* is automatically added as a suffix to your new model name.
 
-## Test your voice model
+### Test your voice model
 
 After your voice model is successfully built, you can use the generated sample audio files to test it before you deploy it.
 
 > [!NOTE]
-> [Neural - multilingual](?tabs=multilingual#train-your-custom-voice-model) and [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model) do not support this type of testing.
+> [Neural - multilingual](?tabs=foundry-classic%2Cmultilingual#train-your-custom-voice-model) and [Neural - HD Voice](?tabs=foundry-classic%2Chdvoice#train-your-custom-voice-model) don't support this type of testing.
 
 The quality of the voice depends on many factors, such as:
 
@@ -127,9 +158,24 @@ Each paragraph of the utterance results in a separate audio. If you want to comb
 > [!NOTE]
 > The generated audio files are a combination of the automatic test scripts and custom test scripts.
 
-### Update engine version for your voice model
+---
+
+## Update engine version for your voice model
 
 Azure text to speech engines are updated from time to time to capture the latest language model that defines the pronunciation of the language. After you train your voice, you can apply your voice to the new language model by updating to the latest engine version.
+
+# [Foundry (new)](#tab/foundry-new)
+
+1. Select **Build** > **Services** > **Customizations**.
+1. Select the name of the Professional Voice model.
+1. When the model details page indicates that a new engine is available, select **Install the latest engine**.
+1. In the **Install the latest engine** dialog, select **Confirm**. The update creates a new engine version at no extra cost and keeps the existing versions.
+
+The new engine version becomes the default version. To use another installed version as the default, select the **Engine version** value on the model details page, select the version, and then select **Done**.
+
+:::image type="content" source="../../../../media/custom-voice/professional-voice/foundry-new-engine-version.png" alt-text="Screenshot of the Engine version dialog in the new Foundry portal." lightbox="../../../../media/custom-voice/professional-voice/foundry-new-engine-version.png":::
+
+# [Foundry (classic)](#tab/foundry-classic)
 
 - When a new engine is available, you're prompted to update your neural voice model.
 - Go to the model details page and follow the on-screen instructions to install the latest engine.
@@ -140,6 +186,8 @@ The updated version is automatically set as default. But you can change the defa
 
 If you want to test each engine version of your voice model, you can select a version from the list, then select **DefaultTests** under **Testing** to listen to the sample audio files. If you want to upload your own test scripts to further test your current engine version, first make sure the version is set as default, then follow the steps in [Test your voice model](#test-your-voice-model).
 
+---
+
 Updating the engine creates a new version of the model at no extra cost. After you update the engine version for your voice model, you need to deploy the new version to [create a new endpoint](../../../../professional-voice-deploy-endpoint.md#add-a-deployment-endpoint). You can only deploy the default version.
 
 After you create a new endpoint, you need to [transfer the traffic to the new endpoint in your product](../../../../professional-voice-deploy-endpoint.md#switch-to-a-new-voice-model-in-your-product).
@@ -148,24 +196,38 @@ To learn more about the capabilities and limits of this feature, and the best pr
 
 ## Copy your voice model to another project
 
-> [!NOTE]
-> In this context "project" refers to a fine-tuning task rather than a Microsoft Foundry project. 
+# [Foundry (new)](#tab/foundry-new)
 
-After training you can copy your voice model to another project for the same region or another region. 
+After training, you can copy your voice model to another Microsoft Foundry project in the same region or another region. For example, you can train a Professional Voice model in a [supported training region](../../../../regions.md?tabs=tts#regions) and copy it to a Foundry resource and project in another region.
 
-For example, you can copy a professional voice model that was trained in one region, to a project for another region. Professional voice fine-tuning is currently only [available in some regions](../../../../regions.md#regions). 
+1. Select **Build** > **Services** > **Customizations**.
+1. Select the row for the model that you want to copy. In the model details pane, select **Copy to**.
 
-To copy your custom voice model to another project:
+   :::image type="content" source="../../../../media/custom-voice/professional-voice/foundry-new-model-actions.png" alt-text="Screenshot of the Customizations model list and model details pane, with the selected model name and Copy to action outlined." lightbox="../../../../media/custom-voice/professional-voice/foundry-new-model-actions.png":::
+
+1. In the **Copy speech model** dialog, select the **Subscription**, **Resource group**, **Target foundry resource**, and **Target foundry project**.
+
+   :::image type="content" source="../../../../media/custom-voice/professional-voice/foundry-new-copy-model.png" alt-text="Screenshot of the Copy speech model dialog in the new Foundry portal." lightbox="../../../../media/custom-voice/professional-voice/foundry-new-copy-model.png":::
+
+1. Select **Copy**. The copied model appears in the target project's **Customizations** list after the copy operation finishes.
+
+# [Foundry (classic)](#tab/foundry-classic)
+
+In Foundry (classic), *project* refers to a fine-tuning task. After training,
+you can copy your voice model to another fine-tuning task in the same region or
+another region.
 
 1. On the **Train model** tab, select a voice model that you want to copy, and then select **Copy to project**.
 1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (Foundry resource), and **Target fine-tuning task** where you want to copy the model. 
 1. Select **Copy to** to copy the model.
 1. Select **View model** under the notification message for the successful copying.
 
-Navigate to the project where you copied the model to [deploy the model copy](../../../../professional-voice-deploy-endpoint.md).
+Navigate to the fine-tuning task where you copied the model to
+[deploy the model copy](../../../../professional-voice-deploy-endpoint.md).
+
+---
 
 ## Next steps
 
 > [!div class="nextstepaction"]
 > [Deploy the professional voice endpoint](../../../../professional-voice-deploy-endpoint.md)
-

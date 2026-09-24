@@ -25,9 +25,12 @@ ai-usage: ai-assisted
 
 # Foundry Hosted Agents
 
-[Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy Agent Framework agents as containerized applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available.
+[Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy containerized agent applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available and supports agents built with your own code or a preferred agent framework. This article covers the Agent Framework hosting integration specifically.
 
 With the Agent Framework hosting integration, you can expose an `Agent`, including a workflow wrapped with `Workflow.as_agent()`, through the Foundry Responses or Invocations protocol with minimal code.
+
+> [!NOTE]
+> You can also deploy agent code built with other frameworks to Foundry hosted agents by using [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) workflows. For framework-agnostic concepts and deployment guidance, see [What are hosted agents?](/azure/foundry/agents/concepts/hosted-agents) The rest of this article focuses on the Agent Framework integration.
 
 ## When to use hosted agents
 
@@ -37,6 +40,10 @@ Choose Foundry hosted agents when you want:
 - **Built-in session management** — the platform persists `$HOME` and uploaded files across turns and idle periods.
 - **Dedicated agent identity** — every deployed agent gets its own Entra identity for secure access to models, tools, and downstream services.
 - **OpenAI-compatible endpoints** — clients can interact with your agent using any OpenAI-compatible SDK through the Responses protocol.
+
+### Related scenarios
+
+- For real-time audio agents, use hosted agents with Azure Speech in Foundry Tools (Voice Live) for server-side voice activity detection, echo cancellation, and noise reduction. For details, see [Use Voice Live with hosted agents](/azure/ai-services/speech-service/how-to-voice-live-hosted-agent-integration).
 
 > [!NOTE]
 > The Python `agent-framework-foundry-hosting` integration is prerelease. Microsoft Foundry Hosted Agents, the managed hosting service, is generally available.
@@ -81,6 +88,8 @@ In Foundry, the platform supplies the caller's user context and call context; th
 ## Responses protocol
 
 The **Responses** protocol is the recommended starting point for most agents. It exposes an OpenAI-compatible `/responses` endpoint, and the platform manages conversation history, streaming, and session lifecycle automatically.
+
+For Python hosted agents, a response that ends early has an `incomplete` status. Streaming clients receive a terminal `response.incomplete` event, while non-streaming clients receive `status` set to `incomplete`. A `content_filter` finish reason maps to `incomplete_details.reason` set to `content_filter`, and `length` maps to `max_output_tokens`. Any generated output or refusal content remains available in the response.
 
 :::zone pivot="programming-language-csharp"
 

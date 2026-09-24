@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 08/20/2026
+ms.date: 09/21/2026
 ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
@@ -87,15 +87,18 @@ For model availability across all regions, grouped by deployment category, see [
 | Model ID | Description | Context Window | Max Output Tokens | Training Data (up to) |
 | --- | :--- | :--- | :--- | :---: |
 | `gpt-6-astra` (2026-09-03) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Streaming. <br> - Structured outputs. <br> - Text and image input with text output. <br> - Functions, tools, and parallel tool calling. <br> - Reasoning effort and verbosity. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | April 2026 |
+| `gpt-6-luna` (2026-09-22) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Streaming. <br> - Structured outputs. <br> - Text and image input with text output. <br> - Functions, tools, and parallel tool calling. <br> - Reasoning effort and verbosity. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | May 2026 |
+| `gpt-6-sol` (2026-09-22) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - [Multi-agent orchestration](../how-to/responses-multi-agent.md) (preview). <br>- Chat Completions API. <br> - Streaming. <br> - Structured outputs. <br> - Text and image input with text output. <br> - Functions, tools, and parallel tool calling. <br> - Reasoning effort and verbosity. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md). | 1,050,000 <br><br>Input: 922,000<br>Output: 128,000 | 128,000 | April 2026 |
 
 <!-- Do not change this note's wording without approval. -->
 > [!NOTE]
 > In certain circumstances, Astra may apply enhanced safety controls when safety systems identify elevated risk. These controls may include modifying classifier thresholds at inference time and supplementing customer prompts with system-generated safety instructions intended to support safe and policy-compliant model behaviors.
 
-Keep the following in mind when you deploy and call the `gpt-6-astra` model:
+Keep the following in mind when you deploy and call GPT-6 models:
 
-- Some [quota tiers](../quotas-limits.md) require quota requests for `gpt-6-astra` to deploy this model. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
+- Some [quota tiers](../quotas-limits.md) require quota requests for the GPT-6 family to deploy these models. Tier 5 and Tier 6 subscriptions have quota by default. See [Microsoft Foundry Models quotas and limits](/azure/foundry/foundry-models/quotas-limits) for more information about quotas and limits in Microsoft Foundry.
 - Standard pay-as-you-go deployments of GPT-6 models use separate pricing categories for short-context and long-context requests. Each GPT-6 model handles both request types. The number of input tokens determines the category, as explained in [Short context and long context](#short-context-and-long-context). For GPT-6 thresholds, rates, and how pricing applies to the request, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/azure-openai/).
+
 ## GPT-5.6
 
 For model availability across all regions, grouped by deployment category, see [Region availability for Foundry Models sold by Azure](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md).
@@ -453,7 +456,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-realtime-whisper` (2026-05-06) | Audio model for real-time low-latency transcription. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-live-transcribe` (2026-07-29) | Audio model for real-time low-latency transcription. Current recommended model for realtime transcription scenarios. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 |`gpt-realtime-2` (2026-05-07) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | September 2024 |
-|`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07)<br>**preview** | Audio models for real-time audio processing. Minor updates over `gpt-realtime-2` with improved silence and noise handling. |Input: 32,000  <br> Output: 4,096 | September 2024 |
+|`gpt-realtime-2.1` (2026-07-07)<br>`gpt-realtime-2.1-mini` (2026-07-07) | Audio models for real-time audio processing. `gpt-realtime-2.1` is an incremental update over `gpt-realtime-2` with improved silence and noise handling. `gpt-realtime-2.1-mini` is a smaller variant. |Input: 32,000  <br> Output: 4,096 | September 2024 |
 
 > [!NOTE]
 > `gpt-realtime-translate`, `gpt-realtime-whisper`, and `gpt-live-transcribe` use duration-based billing. Most other realtime models use token-based input and output pricing. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).

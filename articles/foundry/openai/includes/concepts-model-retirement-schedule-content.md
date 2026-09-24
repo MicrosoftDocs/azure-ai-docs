@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 09/02/2026
+ms.date: 09/21/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -26,10 +26,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4.1-nano | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4o | 2024-05-13 | Deprecated | 2026-12-09 | gpt-5.6-sol |
 | gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | Legacy | 2027-04-14 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | — |
@@ -81,7 +81,7 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-image-2.5-sunburst | 2026-09-09 | GA | 2027-09-09 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-03-02 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-08-24 | — |
-| gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
+| gpt-realtime-2 | 2026-05-06 | Preview | — | gpt-realtime-2.1 |
 | gpt-realtime-2.1 | 2026-07-07 | GA | 2027-06-25 | — |
 | gpt-realtime-2.1-mini | 2026-07-07 | GA | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-06 | — |

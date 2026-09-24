@@ -1,18 +1,19 @@
 ---
-title: Add voice talent consent to the professional voice project - Speech service
+title: Add voice talent consent for professional voice - Speech service
 titleSuffix: Foundry Tools
-description: Learn about how to add voice talent consent to the professional voice project. 
+description: Learn how to add voice talent consent for professional voice.
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 12/29/2025
+ms.date: 09/04/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-rest
-#Customer intent: As a developer, I want to learn how to add voice talent consent to the professional voice project.
+#Customer intent: As a developer, I want to add voice talent consent for professional voice.
+ai-usage: ai-assisted
 ---
 
-# Add voice talent consent to the professional voice project
+# Add voice talent consent for professional voice
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/how-to/professional-voice/create-consent/ai-foundry.md)]
@@ -25,4 +26,3 @@ zone_pivot_groups: foundry-speech-studio-rest
 ::: zone pivot="rest-api"
 [!INCLUDE [REST API include](./includes/how-to/professional-voice/create-consent/rest.md)]
 ::: zone-end
-

@@ -93,7 +93,7 @@ If you have an Agent Application published to M365/Teams and want to migrate to 
 
 1. **Create a new agent using the same definition** as the agent behind your Agent Application (instructions, tools, model configuration). The new agent automatically receives a unique identity and stable endpoint. See [Path 2](#path-2-upgrade-a-legacy-agent) for details.
 
-2. **Publish the new agent to Microsoft 365 and Teams** from the Foundry portal. Publishing is only available through the Foundry portal—there's no public publish API. For steps, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
+2. **Publish the new agent to Microsoft 365 and Teams** from the Foundry portal. You can only publish through the Foundry portal—there's no public publish API. For steps, see [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
 
 3. **Verify the new agent works** in M365/Teams with the new stable endpoint.
 
@@ -154,5 +154,5 @@ With the new model, the agent has a unique identity from creation—so there's n
 ## Related content
 
 - [Agent applications in Microsoft Foundry](./agent-applications.md)
-- [Publish agents to Microsoft 365 Copilot and Teams](./publish-copilot.md)
+- [Publish agents to Microsoft Copilot and Teams](./publish-copilot.md)
 - [Agent identity concepts in Foundry](../concepts/agent-identity.md)

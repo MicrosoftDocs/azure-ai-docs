@@ -164,24 +164,9 @@ For required and optional fields of each action type, see [Action fields](#actio
 
 If the agent has tools that require delegated user access, explicitly opt in to **creator identity** when you create the routine. Creator identity means only the Microsoft Entra identity of the person or service principal that creates the routine. It isn't the identity of the agent creator, agent publisher, connection creator, a later routine editor, or another end user.
 
-Add the following top-level `authorization` object to the create request. Omitting this object, or setting `identity` to `"agent"`, uses the default agent identity.
+Set the top-level `authorization.identity` field to `"creator"` in a REST create request or JavaScript create options. In Python, pass `RoutineAuthorization(identity="creator")`. Omitting authorization, or setting the identity to `"agent"`, uses the default agent identity.
 
-```json
-{
-  "authorization": {
-    "identity": "creator"
-  },
-  "triggers": {
-    "...": {
-      "type": "..."
-    }
-  },
-  "action": {
-    "type": "invoke_agent_responses_api",
-    "agent_name": "<your-agent-name>"
-  }
-}
-```
+The following examples create a disabled routine and retrieve it to confirm that `authorization.identity` is stored as `"creator"`. Successful creation and retrieval confirm the saved configuration, not compatibility with every delegated tool. Check each tool's authentication requirements and the creator's permissions and consent separately.
 
 The `authorization` setting is accepted only when you create a routine. An update ignores it. To switch an existing routine between agent and creator identity, delete and recreate the routine with the required `authorization.identity` value.
 
@@ -192,7 +177,151 @@ Creator identity has these constraints:
 - Recreating the routine as a different principal changes the routine creator identity.
 - Authentication for an event trigger's connector connection is separate from the identity used to dispatch the agent. The `authorization` object doesn't change the connection identity.
 
-The current SDK and Azure Developer CLI routine models use the default agent identity. Use the REST create request to select creator identity.
+:::zone pivot="programming-language-python"
+
+This example uses `azure-ai-projects==2.6.1`, a verified version for typed creator-identity configuration, and `azure-identity`. Sign in with `az login` before using `AzureCliCredential`. Replace the endpoint and agent placeholders, and choose a routine name that doesn't already exist.
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import RoutineAuthorization
+from azure.identity import AzureCliCredential
+
+client = AIProjectClient(
+    endpoint="https://<account>.services.ai.azure.com/api/projects/<project>",
+    credential=AzureCliCredential(),
+)
+
+routine_name = "my-creator-routine"
+routine = client.beta.routines.create_or_update(
+    routine_name=routine_name,
+    enabled=False,
+    authorization=RoutineAuthorization(identity="creator"),
+    triggers={
+        "default": {
+            "type": "schedule",
+            "cron_expression": "0 9 * * *",
+            "time_zone": "America/Los_Angeles",
+        }
+    },
+    action={
+        "type": "invoke_agent_responses_api",
+        "agent_name": "<your-agent-name>",
+        "input": "test",
+    },
+)
+
+saved_routine = client.beta.routines.get(routine_name)
+print(saved_routine.authorization.identity)  # Expected: creator
+```
+
+Reference: [RoutineAuthorization](/python/api/azure-ai-projects/azure.ai.projects.models.routineauthorization?view=azure-python&preserve-view=true).
+
+:::zone-end
+
+:::zone pivot="programming-language-csharp"
+
+The public API in `Azure.AI.Projects` version `3.0.0-beta.3` exposes experimental routines operations through `client.Routines`, but doesn't expose a creator-identity authorization option. `RoutineAuthorization` and `RoutineDispatchIdentity` are internal types, and the public `ProjectsRoutineOptions` has no authorization property. Stable version `2.0.1` has no routines API.
+
+To select creator identity from a C# application, use the [REST create request](use-routines.md?pivots=programming-language-rest#choose-a-dispatch-identity).
+
+:::zone-end
+
+<!-- markdownlint-disable-next-line MD044 -->
+:::zone pivot="programming-language-javascript"
+
+This example uses `@azure/ai-projects` version `2.7.0`, a verified version for creator-identity configuration, and `@azure/identity`. The same package includes TypeScript types. Access routines through `client.beta.routines`.
+
+Sign in with `az login` before using `AzureCliCredential`. Replace the endpoint and agent placeholders, and choose a routine name that doesn't already exist.
+
+```javascript
+import { AIProjectClient } from "@azure/ai-projects";
+import { AzureCliCredential } from "@azure/identity";
+
+const client = new AIProjectClient(
+  "https://<account>.services.ai.azure.com/api/projects/<project>",
+  new AzureCliCredential(),
+);
+
+await client.beta.routines.createOrUpdate("my-creator-routine", {
+  enabled: false,
+  authorization: { identity: "creator" },
+  triggers: {
+    default: {
+      type: "schedule",
+      cron_expression: "0 9 * * *",
+      time_zone: "America/Los_Angeles",
+    },
+  },
+  action: {
+    type: "invoke_agent_responses_api",
+    agent_name: "<your-agent-name>",
+    input: "test",
+  },
+});
+```
+
+Reference: [RoutineAuthorization](/javascript/api/@azure/ai-projects/routineauthorization?view=azure-node-latest&preserve-view=true).
+
+In version `2.7.0`, the SDK's deserialized routine object omits `authorization`, even when the service stores it. Use a raw REST GET to verify the saved setting:
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+ROUTINE_NAME="my-creator-routine"
+TOKEN=$(az account get-access-token \
+  --resource https://ai.azure.com \
+  --query accessToken -o tsv)
+
+curl -sS "$PROJECT_ENDPOINT/routines/$ROUTINE_NAME?api-version=v1" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+In the GET response, confirm that `authorization.identity` is `"creator"` and `enabled` is `false`.
+
+:::zone-end
+
+:::zone pivot="programming-language-rest"
+
+Include `api-version=v1` in routine requests. Replace the endpoint and agent placeholders, and choose a routine name that doesn't already exist.
+
+```bash
+PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
+AGENT_NAME="<your-agent-name>"
+ROUTINE_NAME="my-creator-routine"
+
+TOKEN=$(az account get-access-token \
+  --resource https://ai.azure.com \
+  --query accessToken -o tsv)
+
+curl -sS -X PUT \
+  "$PROJECT_ENDPOINT/routines/$ROUTINE_NAME?api-version=v1" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "enabled": false,
+    "authorization": {
+      "identity": "creator"
+    },
+    "triggers": {
+      "default": {
+        "type": "schedule",
+        "cron_expression": "0 9 * * *",
+        "time_zone": "America/Los_Angeles"
+      }
+    },
+    "action": {
+      "type": "invoke_agent_responses_api",
+      "agent_name": "'"$AGENT_NAME"'",
+      "input": "test"
+    }
+  }'
+
+curl -sS "$PROJECT_ENDPOINT/routines/$ROUTINE_NAME?api-version=v1" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+In the GET response, confirm that `authorization.identity` is `"creator"` and `enabled` is `false`.
+
+:::zone-end
 
 ## Create a routine
 
@@ -235,7 +364,7 @@ TOKEN=$(az account get-access-token \
   --query accessToken -o tsv)
 
 # Using Responses API action
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -260,7 +389,7 @@ To use the Invocations API action instead, replace the `action` object with the 
 
 ```bash
 # Using Invocations API action
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -467,7 +596,7 @@ The **Run at** value is interpreted in your browser's local time zone. A one-tim
 
 ```bash
 # Using Responses API action
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/once-on-release-day" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/once-on-release-day?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -707,7 +836,7 @@ For the complete connector reference, see [Add managed MCP servers powered by co
 **Step 5: Create the routine** that references the connection by name.
 
 ```bash
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/on-issue-opened" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/on-issue-opened?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -985,7 +1114,7 @@ For the complete connector reference, see [Add managed MCP servers powered by co
 **Step 5: Create the routine** that references the connection by name.
 
 ```bash
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/teams-new-message" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/teams-new-message?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1178,14 +1307,14 @@ From the same page, you can also:
 **Disable a routine:**
 
 ```bash
-curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:disable" \
+curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:disable?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
 **Enable a routine:**
 
 ```bash
-curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:enable" \
+curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:enable?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -1272,7 +1401,7 @@ Use the `dispatch_async` operation to queue the run. You can omit `payload` to r
 **Responses API routine with an input override:**
 
 ```bash
-curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
+curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1286,7 +1415,7 @@ curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
 **Invocations API routine with an input override:**
 
 ```bash
-curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async" \
+curl -sS -X POST "$PROJECT_ENDPOINT/routines/my-invocations-routine:dispatch_async?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1312,7 +1441,7 @@ Use the `dispatch_id` to find the run in the run history.
 **Without an input override:**
 
 ```bash
-curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async" \
+curl -sS -X POST "$PROJECT_ENDPOINT/routines/daily-summary:dispatch_async?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{}'
@@ -1429,7 +1558,7 @@ Run history records every time a routine fires and the outcome of each attempt.
 **List all runs for a routine:**
 
 ```bash
-curl -sS "$PROJECT_ENDPOINT/routines/daily-summary/runs" \
+curl -sS "$PROJECT_ENDPOINT/routines/daily-summary/runs?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -1458,7 +1587,7 @@ The list is paginated. The response returns a `data` array and, when more result
       "response_id": "resp-xyz456"
     }
   ],
-  "next_link": "https://<account>.services.ai.azure.com/api/projects/<project>/routines/daily-summary/runs?after=run-abc123&limit=1"
+  "next_link": "https://<account>.services.ai.azure.com/api/projects/<project>/routines/daily-summary/runs?api-version=v1&after=run-abc123&limit=1"
 }
 ```
 
@@ -1529,7 +1658,7 @@ The **Routines** page shows all routines in your project. Select any routine to 
 **List all routines in the project:**
 
 ```bash
-curl -sS "$PROJECT_ENDPOINT/routines" \
+curl -sS "$PROJECT_ENDPOINT/routines?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -1538,7 +1667,7 @@ The list is paginated. The response returns a `data` array and, when more result
 **Retrieve a specific routine:**
 
 ```bash
-curl -sS "$PROJECT_ENDPOINT/routines/daily-summary" \
+curl -sS "$PROJECT_ENDPOINT/routines/daily-summary?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -1619,7 +1748,7 @@ To change a routine's trigger or action, send a new create-or-update request wit
 Reissue the `PUT` request with the updated body. Include all fields. Omitted fields reset to defaults.
 
 ```bash
-curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary" \
+curl -sS -X PUT "$PROJECT_ENDPOINT/routines/daily-summary?api-version=v1" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -1738,7 +1867,7 @@ When you delete a routine, you remove it and stop all future trigger deliveries.
 :::zone pivot="programming-language-rest"
 
 ```bash
-curl -sS -X DELETE "$PROJECT_ENDPOINT/routines/daily-summary" \
+curl -sS -X DELETE "$PROJECT_ENDPOINT/routines/daily-summary?api-version=v1" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -1855,7 +1984,8 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 | Issue | Resolution |
 |---|---|
-| A tool call fails because it requires delegated user access. | The default agent identity doesn't provide the routine creator's delegated access. Delete and recreate the routine with `authorization.identity` set to `"creator"`, and confirm that the routine creator has access to the tool's resource. |
+| A tool call fails because it requires delegated user access. | Check the tool's authentication requirements, permissions, and consent. To opt in to creator identity, create a new routine with `authorization.identity` set to `"creator"` through REST, Python, or JavaScript. A saved creator-identity setting doesn't confirm that the tool supports delegated access through routines. |
+| A routine REST request returns HTTP 400 without an API version. | Include `api-version=v1` in the request URL. |
 | An event trigger stops firing after an identity or permission change. | Confirm that the connector connection is still connected and that its owner can access the configured repository, team, or channel. Connector authentication is separate from routine dispatch identity. |
 | The routine feature isn't available in the project. | Confirm that the project is in a [supported region](#prerequisites). If **Routines** doesn't appear in the Foundry portal, the feature isn't enabled for the region or subscription. |
 | The scheduled routine is rejected or fires at an unexpected time. | Use a five-field cron expression with an interval of at least five minutes. Set `time_zone` to the intended IANA or Windows time zone identifier. |
@@ -1885,7 +2015,7 @@ Routines have the following known issues and limitations:
 - **Network and encryption.** Routines support projects secured by a virtual network and inherit the project's network configuration. Routines don't support customer-managed key (CMK) encryption.
 - **Schedule minimum interval.** A `schedule` trigger fires at most once every five minutes. Cron expressions that resolve to a shorter interval are rejected.
 - **Regional availability.** Routines aren't available in UK West, Switzerland West, Japan West, UAE North, or Norway East. If you don't see **Routines** in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
-- **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
+- **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async?api-version=v1` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
 - **Acknowledgment isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
 - **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults). The routine run is marked failed if all attempts time out.
 - **Successful delivery doesn't guarantee end-to-end completion.** A completed routine run means the downstream API returned success for the dispatch request. It doesn't guarantee that asynchronous work started by the agent has finished.

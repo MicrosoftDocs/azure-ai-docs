@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/21/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -1744,6 +1744,18 @@ Common functions include:
 - `If(condition, trueValue, falseValue)` - Conditional expression
 - `IsBlank(value)` - Check if value is empty
 
+#### PowerFx state traversal limits
+
+Python validates declarative state before state writes and snapshots, and before converting values into PowerFx symbols. Cyclic structures are rejected instead of being truncated.
+
+Each traversal uses these fixed limits:
+
+- A maximum depth of 64, with the root value at depth 0.
+- A maximum of 10,000 visited values, including containers and mapping keys.
+- A maximum aggregate size of 1,048,576 string characters and binary bytes.
+
+Repeated references and aliases count again each time they're traversed. A cycle or exceeded limit raises `ValueError` during a state write or snapshot, or during PowerFx conversion. These traversal limits don't bound PowerFx expression execution or application-defined Python copy or conversion hooks.
+
 ### Action Types
 
 Declarative workflows support various action types:
@@ -2220,6 +2232,8 @@ Invokes a tool on an MCP server through the configured `MCPToolHandler`.
 | `output.messages` | No | Path to store the tool message |
 | `output.autoSend` | No | Emits tool output to the workflow result; defaults to `true` |
 
+When `requireApproval` is `true`, the Python runtime binds the evaluated action headers to the approval request. The request includes header names but not header values. If the headers change, credentials rotate, or a restored legacy request doesn't have verifiable binding state, the workflow emits a replacement approval request with a new request ID and doesn't invoke the tool. Protect workflow checkpoint storage because it contains the separate verification key. Custom handlers remain responsible for credentials they resolve outside the action's `headers`.
+
 **Python setup for InvokeMcpTool:**
 
 Pass an MCP tool handler to `WorkflowFactory`. Use a custom handler when you need authentication, managed connections, or URL allowlisting.
@@ -2282,6 +2296,17 @@ from agent_framework.declarative import DefaultHttpRequestHandler, WorkflowFacto
 factory = WorkflowFactory(http_request_handler=DefaultHttpRequestHandler())
 workflow = factory.create_workflow_from_yaml_path("workflow.yaml")
 ```
+
+The default handler rejects URLs that aren't absolute HTTP or HTTPS URLs. It
+normalizes the URL and appends `queryParameters` after any existing query while
+preserving the existing query order and bytes.
+
+A `client_provider` receives a normalized `HttpRequestInfo` snapshot. The
+snapshot has the composed URL in `info.url` and an empty
+`info.query_parameters`; the original request information isn't modified. The
+selected client's defaults still apply. Redirect behavior remains controlled
+by that client's `follow_redirects` setting, and the provider isn't called
+again for redirect hops.
 
 The default handler reuses an internally owned HTTP client, but doesn't persist
 response cookies. If a workflow requires cookies for authentication, session

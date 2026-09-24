@@ -68,6 +68,8 @@ Before running the examples in this article, confirm that your resource region s
 
 The Responses API supports the following models:
 
+- `gpt-6-luna` (Version: `2026-09-22`)
+- `gpt-6-sol` (Version: `2026-09-22`)
 - `gpt-6-astra` (Version: `2026-09-03`)
 - `gpt-5.6-sol` (Version: `2026-07-09`)
 - `gpt-5.6-terra` (Version: `2026-07-09`)
