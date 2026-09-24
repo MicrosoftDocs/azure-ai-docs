@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: TaoChenOSU
 ms.topic: article
 ms.author: taochen
-ms.date: 09/09/2026
+ms.date: 09/24/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -225,8 +225,8 @@ For values that should flow to agents and tools without becoming shared workflow
 
 - A plain mapping with no executor ID keys is global, and every matching agent executor receives it.
 - A plain mapping with executor ID keys is targeted, and each executor receives only its own entry.
-- Use `WorkflowInvocationKwargs` to combine shared values with executor-specific overrides. Overrides win when the same key appears in both mappings.
-- The same rules apply to `function_invocation_kwargs` and `client_kwargs`, and mixed values are preserved through nested workflows.
+- Use `WorkflowInvocationKwargs` to combine shared values with executor-specific overrides. Its `executor_kwargs` keys can use executor IDs or unique wrapped-agent names. Overrides win when the same key appears in both mappings.
+- The same rules apply to `function_invocation_kwargs` and `client_kwargs`. In nested workflows, keys matched by a parent executor stay scoped to the parent graph, while global values and entries that target only child executors continue to the child workflow.
 
 ```python
 from agent_framework import WorkflowInvocationKwargs
@@ -252,7 +252,7 @@ await workflow.run(
 ```
 
 > [!TIP]
-> Executor-targeted kwargs use workflow executor IDs. For wrapped agents, that is the agent name by default, or the explicit `id` you pass to `AgentExecutor(...)`.
+> Executor-targeted kwargs use workflow executor IDs. For wrapped agents, that is the agent name by default. If you pass a different explicit `id` to `AgentExecutor(...)`, `WorkflowInvocationKwargs.executor_kwargs` can still use the agent name when it's unique. Use executor IDs when agent names are duplicated.
 
 ::: zone-end
 
