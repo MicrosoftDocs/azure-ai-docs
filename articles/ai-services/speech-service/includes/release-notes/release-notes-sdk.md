@@ -19,6 +19,7 @@ ai-usage: ai-assisted
 
 #### New features
   * Added commit support for `PushAudioInputStream` (preview).
+  * Added support for selecting a streaming model for speech recognition.
   * **Android:** Updated OpenSSL to 3.5.8.
 
 #### Bug fixes
@@ -33,7 +34,7 @@ ai-usage: ai-assisted
 ### Speech SDK for JavaScript (1.52)
 
 #### New features
-  * Added support for setting a custom model for speech recognition and translation.
+  * Added support for selecting a streaming model for speech recognition.
 
 #### Bug fixes
   * Fixed audio offset calculation for reliable reconnect.
