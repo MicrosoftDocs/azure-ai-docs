@@ -1,13 +1,13 @@
 ---
 title: "Agent development with the Azure Developer CLI"
-description: "Understand the end-to-end developer workflow for building, deploying, and operating hosted agents on Microsoft Foundry with the Azure Developer CLI."
+description: "Understand the end-to-end Azure Developer CLI workflow for building, deploying, and operating hosted and prompt-based voice agents on Microsoft Foundry."
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/19/2026
+ms.date: 08/27/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Azure Developer CLI (`azd`) and its `azd ai agent` extension give you a single command-line workflow to go from idea to a production-ready hosted agent on Microsoft Foundry. This article explains the developer journey, the files that define an agent, and the core concepts you encounter along the way.
+The Azure Developer CLI (`azd`) and its `azd ai agent` extension give you a single command-line workflow to go from idea to a production-ready agent on Microsoft Foundry. You can develop code-based hosted agents and declarative prompt-based voice agents. This article explains the developer journey, the files that define an agent, and the core concepts you encounter along the way.
 
 This article is for developers who prefer a terminal-first, scriptable workflow over the Foundry portal or language SDKs.
 
@@ -27,7 +27,7 @@ The `azd ai` workflow follows the same lifecycle whether you build a small proto
 | Stage | What you do | Where to learn more |
 | ----- | ----------- | ------------------- |
 | Install | Install `azd` and the Foundry extensions. | [Set up your developer environment](../../how-to/develop/install-cli-sdk.md) |
-| Scaffold | Initialize a project from a template or your existing code. | [Quickstart: Deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md) |
+| Scaffold | Initialize a hosted agent from a template or your existing code, or create a prompt-based voice agent. | [Quickstart: Deploy a hosted agent](../quickstarts/quickstart-hosted-agent.md) or [Quickstart: Create a prompt voice agent](../quickstarts/prompt-voice-agent.md) |
 | Define | Configure the agent, model deployment dependencies, protocols, tools, and environment in `azure.yaml`. | [Author azure.yaml for hosted agents](../how-to/author-azure-yaml.md) |
 | Develop | Write agent logic, add tools using a toolbox, and test locally. | [Toolbox overview](toolbox-overview.md) |
 | Deploy | Provision infrastructure and deploy to Foundry. | [Deploy a hosted agent](../how-to/deploy-hosted-agent.md) |
@@ -36,14 +36,25 @@ The `azd ai` workflow follows the same lifecycle whether you build a small proto
 
 ## Agent types
 
-The `azd ai agent` extension focuses on hosted agents.
+The `azd ai agent` extension supports code-based and declarative agent types.
 
 | Type | Description | When to use |
 | ---- | ----------- | ----------- |
 | Hosted agent | A containerized application you build in code, package as a Docker image, and deploy to Foundry. | You need custom logic, framework integration, or full control over behavior. |
 | Prompt agent | An agent defined entirely through instructions and tool configurations, with no custom code. | You want a quick, config-driven agent without writing application code. |
+| Prompt-based voice agent | A declarative voice agent that uses a managed or self-deployed model without custom runtime code. | You want a real-time conversational voice experience without building and hosting an audio pipeline. |
+| Hosted voice agent with a managed wrapper | A hosted target handles conversation logic, while a separate voice service delegates to it through `conversationEngine`. Voice Live handles the audio experience. | You need custom agent logic without implementing speech recognition and synthesis in the hosted target. |
 
 Hosted agents give you full control over the runtime, framework, and tool integrations, while Foundry handles infrastructure, scaling, and session management.
+
+Prompt-based voice agents don't require a custom container. If you need to run
+a custom speech-to-speech or cascaded audio pipeline in your own container,
+build a [voice agent with a hosted agent](../how-to/build-voice-agent.md) and
+use the `invocations_ws` protocol.
+
+To keep conversation logic in a hosted text agent while Voice Live handles audio, use the [hosted voice wrapper workflow](../how-to/deploy-hosted-voice-agent.md). The wrapper and target are separate services in the same `azure.yaml` project. This flow doesn't replace the existing custom `invocations_ws` audio-pipeline flow.
+
+Before using the public-preview voice CLI options, check your installed extension as described in the [voice agent quickstart prerequisites](../quickstarts/prompt-voice-agent.md#prerequisites).
 
 ## Configuration files
 
@@ -54,6 +65,15 @@ A hosted agent project uses one `azure.yaml` file at the project root to declare
 | `azure.yaml` | Declares the Foundry project, model deployments, hosted agent service, dependencies, protocols, tools, environment variables, container resources, and deployment settings. Agent identity, model, protocols, tools, and environment values live in the `azure.ai.agent` service. | Initialization generates it. You customize it as needed. |
 
 The `azure.ai.agent` service defines your hosted agent inline and uses `uses:` to reference other services, such as the project, connections, toolboxes, skills, and routines. There is no standalone `agent.yaml` or `agent.manifest.yaml` file in the current hosted-agent `azd` project model.
+
+For a prompt-based voice agent, `azure.yaml` stores the declarative agent
+definition, including `kind: prompt-voice`, the model, the model type, and the
+agent name. It doesn't include a hosted-agent container runtime. To customize
+instructions, audio, turn detection, transcription, voice output, tools, and
+greetings, see
+[Configure a voice agent](../how-to/configure-voice-agent.md).
+
+For a hosted voice wrapper, `conversationEngine.name` references the hosted target's service name. The wrapper's `uses` dependency orders deployment, and `conversationEngine.version` defaults to the version deployed by the current environment. See the [voice service reference](azure-yaml-reference.md#voice-services) for the configuration fields.
 
 ### Variable substitution
 
@@ -77,6 +97,11 @@ A protocol defines the HTTP contract between Foundry and your agent container. Y
 | `invocations` | Custom JSON contract (`POST /invocations`) | When you need full control over request and response payloads. |
 
 For the full specification, see [Hosted agent runtime contract](hosted-agent-contract.md).
+
+These protocol settings apply to hosted-agent containers. Prompt-based voice
+agents don't configure a hosted-agent protocol.
+
+`azd ai agent invoke` doesn't implement voice conversations for prompt-based voice agents or hosted voice wrappers. For the CLI behavior and testing guidance, see [Voice agent limitations](../how-to/invoke-hosted-agent.md#voice-agent-limitations).
 
 ## Sessions and conversations
 
@@ -113,6 +138,9 @@ For details, see [Run agent evaluations with the azd CLI](../../observability/ho
 
 The full developer loop condenses into a short sequence of commands. Scaffold once, then use the direct commands as your project grows.
 
+For the managed voice-agent path, see
+[Quickstart: Create a prompt voice agent](../quickstarts/prompt-voice-agent.md).
+
 ```bash
 # Scaffold a project from a template or your existing code
 azd ai agent init
@@ -138,6 +166,8 @@ azd down
 
 ## Related content
 
+* [Quickstart: Create a prompt voice agent](../quickstarts/prompt-voice-agent.md)
+* [Configure a voice agent](../how-to/configure-voice-agent.md)
 * [Quickstart: Deploy your first hosted agent](../quickstarts/quickstart-hosted-agent.md)
 * [What are hosted agents?](hosted-agents.md)
 * [Hosted agent runtime contract](hosted-agent-contract.md)

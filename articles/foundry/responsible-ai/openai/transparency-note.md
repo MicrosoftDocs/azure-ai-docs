@@ -556,6 +556,14 @@ The same considerations apply to `gpt-realtime-2.1` and `gpt-realtime-2.1-mini` 
 
 - GPT-Live is in public preview. Capabilities, performance, and availability might change before general availability. Evaluate the model with your intended scenarios and provide feedback during the preview.
 
+### GPT-Live limitations
+
+- GPT-Live is in public preview. Capabilities, performance, and availability might change before general availability. Evaluate the model with your intended scenarios and provide feedback during the preview.
+
+### GPT-Live limitations
+
+- GPT-Live is in public preview. Capabilities, performance, and availability might change before general availability. Evaluate the model with your intended scenarios and provide feedback during the preview.
+
 ### Risk and limitations of Computer Use (Preview) 
 
 > [!WARNING]

@@ -51,6 +51,8 @@ Foundry supports multiple deployment types for model hosting, grouped by data-pr
 
 For details on how to choose the right deployment type, see [Deployment types for Foundry Models](../foundry-models/concepts/deployment-types.md).
 
+Voice-based prompt agents also support voice-native model patterns. A speech-to-speech model, such as GPT-Realtime, processes audio input and produces spoken output in one model. A cascaded voice experience uses separate speech recognition, text-model, and speech synthesis stages. Choose the pattern based on your latency, model, voice, and language requirements. The available models and regions depend on the selected Foundry model deployment.
+
 ### Agents, evaluations, and batch processing
 
 Agents, evaluations, and batch jobs are fully managed by Microsoft. Agent workloads run inside the platform's container infrastructure, which supports [virtual network integration](#virtual-network-integration) for network-isolated scenarios. Evaluations invoke model endpoints, compare outputs against grading criteria, and store results within the project scope. Batch processing queues inference requests for asynchronous execution at reduced per-token pricing. Results for all three workload types are accessible through the portal or SDK.

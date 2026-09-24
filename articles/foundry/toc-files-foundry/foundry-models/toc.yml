@@ -1,3 +1,4 @@
+# Voice-first agent public preview scope: verify model deployment and Voice Live navigation for voice-agent scenarios.
 items:
 - name: Overview
   displayName: Microsoft Foundry Models overview

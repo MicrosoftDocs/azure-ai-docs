@@ -716,10 +716,23 @@ groups:
     title: Foundry portal
   - id: speech-studio
     title: Speech Studio
-  - id: rest-api
-    title: REST
   - id: speech-cli
     title: Speech CLI
+  - id: rest-api
+    title: REST
+- id: voice-agent-quickstart-tools
+# Owner: pafarley
+  title: Development tool
+  prompt: Choose a development tool
+  pivots:
+  - id: portal
+    title: Foundry portal
+  - id: python
+    title: Python SDK
+  - id: javascript
+    title: JavaScript SDK
+  - id: azd
+    title: Azure Developer CLI
 - id: foundry-speech-studio
 # Owner: eur
   title: Programming languages
@@ -2393,3 +2406,25 @@ groups:
     title: Foundry portal
   - id: azure-cli
     title: Azure CLI
+# Owner: sgilley
+- id: voice-agent-config-method
+  title: Configuration method
+  prompt: Choose a configuration method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: python
+    title: Python SDK
+  - id: javascript
+    title: JavaScript SDK
+  - id: azure-cli
+    title: Azure CLI
+# Owner: sgilley
+- id: voice-agent-telephony-setup
+  title: Setup method
+  prompt: Choose a setup method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: api
+    title: API and CLI

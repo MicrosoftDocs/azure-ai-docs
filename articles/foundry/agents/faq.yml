@@ -56,6 +56,14 @@ sections:
 
           - [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
           - New Foundry experience: [Quickstart: Get started with agents in code](../quickstarts/get-started-code.md)
+      - question: |
+          What are voice-first agents?
+        answer: |
+          Voice-first agents are a type of prompt agent for real-time spoken conversations. Use them when users speak to the agent and hear spoken responses instead of primarily typing and reading text.
+
+          Voice-first agents use the same core Agent Service concepts as other prompt agents, including projects, saved agent versions, tools, identity, tracing, and monitoring. They can also have voice-specific model, audio, channel, and preview availability requirements.
+
+          For more information, see [How voice-based agents work](overview.md#how-voice-based-agents-work).
   - name: General
     questions:
       - question: |

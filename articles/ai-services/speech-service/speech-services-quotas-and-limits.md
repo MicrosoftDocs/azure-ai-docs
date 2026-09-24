@@ -34,7 +34,7 @@ The following table summarizes the quotas and limits for Voice Live per Azure Sp
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| New connections per minute | Not applicable | 30 |
+| New connections per minute | Not applicable | 100 |
 | Maximum connection length | Not applicable | <= 60 minutes per session |
 | Tokens per minute | Not applicable | <= 120,000 |
 
