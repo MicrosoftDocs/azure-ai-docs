@@ -5,7 +5,7 @@ description: Learn how Content Understanding maps analyzer models to Foundry dep
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 07/20/2026
+ms.date: 09/15/2026
 ai-usage: ai-assisted
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
@@ -220,11 +220,13 @@ Analyze responses include a `usage` property. This property reports token usage 
 
 For details on how billing works for Content Understanding, see the [pricing explainer](../pricing-explainer.md).
 
-## Content filtering and Guardrails
+<a id="content-filtering-and-guardrails"></a>
 
-Each Foundry model deployment has an associated **Guardrails** instance that evaluates content for safety. Content Understanding surfaces the Guardrails output directly in the analyze response as a `content_filters` array. If a Guardrails instance blocks content, the analyze operation returns an error; if it annotates content, the result passes through with filter metadata attached.
+## Guardrails in Microsoft Foundry
 
-To adjust content filter thresholds or switch from blocking to annotating, update the Guardrails configuration on the model deployment in your Azure AI Foundry project. For more information, see [Content filtering and Guardrails](../overview.md#content-filtering-and-guardrails) and the [`content_filters` response object reference](analyzer-reference.md#content-filter-results-in-the-analyze-response).
+Content Understanding uses the guardrails assigned to your Foundry model deployment to detect potentially harmful content. Depending on the configured actions and severity thresholds, guardrails can return warnings, restrict field extraction, or prevent analysis from completing.
+
+You can adjust the blocking threshold or, with the required approval, use annotate-only behavior to retain detections for human review. For response details, examples, and configuration guidance, see [Guardrails in Content Understanding](guardrails.md).
 
 ## Related content
 
