@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/22/2026
+ms.date: 09/24/2026
 ms.custom: include, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -33,7 +33,7 @@ The following table lists the *latency target value* for each model that support
 | --- | --- |
 | gpt-6-sol, 2026-09-22 | 99% > 80 TPS |
 | gpt-5.6-terra, 2026-07-09 | 99% > 70 TPS |
-| gpt-5.6-sol, 2026-07-09 | 99% > 50 TPS |
+| gpt-5.6-sol, 2026-07-09 | 99% > 66.5 TPS |
 | gpt-5.5, 2026-04-24 | 99% > 50 TPS |
 | gpt-5.4-mini, 2026-03-17 | 99% > 100 TPS |
 | gpt-5.4, 2026-03-05<sup>1</sup> | 99% > 50 TPS |
