@@ -68,7 +68,7 @@ For Twilio, Foundry uses the selected project connection to discover the numbers
 ### Teams Phone prerequisites
 
 For the Teams path, you need:
-- [Get Microsoft Teams Calling Plan phone numbers for your tenant](https://learn.microsoft.com/microsoftteams/getting-phone-numbers-for-your-users).
+- [Get Microsoft Teams Calling Plan phone numbers for your tenant](/microsoftteams/getting-phone-numbers-for-your-users).
 - A Teams or Microsoft 365 administrator usually completes these steps:
 
   - Follow [Teams Phone System extensibility quick start](/azure/communication-services/quickstarts/tpe/teams-phone-extensibility-quickstart) to provision the application, bot, resource account, and Azure Communication Services association.
