@@ -21,6 +21,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/foundry/agents/how-to/voice-agent-twilio-phone.md",
+      "redirect_url": "/azure/foundry/agents/how-to/voice-agent-telephony-channels",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/foundry/control-plane/how-to-optimize-cost-performance.md",
       "redirect_url": "/azure/foundry/agents/concepts/agent-optimizer-overview",
       "redirect_document_id": false
