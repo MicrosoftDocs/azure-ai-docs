@@ -137,7 +137,7 @@ The tables in this section list the throughput and deployment parameters for eac
 | Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 100 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Input TPM per PTU | 3,000 | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
 | Output-to-input ratio | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | 6 | 6 | 6 | 6 | See [GPT-image-2 sizing guidance](#estimate-ptus-for-image-model) | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 80 TPS | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 66.5 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Latency target value<sup>1</sup> | 99% > 80 TPS | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 80 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
