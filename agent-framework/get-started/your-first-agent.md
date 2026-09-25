@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 1: Your First Agent
@@ -16,7 +17,6 @@ Create an agent and get a response — in just a few lines of code.
 :::zone pivot="programming-language-csharp"
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```

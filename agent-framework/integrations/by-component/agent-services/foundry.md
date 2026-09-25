@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 07/28/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -39,7 +40,6 @@ For direct model inference where your application owns the agent definition, see
 ## Install the packages
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```

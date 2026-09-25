@@ -7,6 +7,7 @@ ms.service: agent-framework
 ms.topic: tutorial
 ms.date: 07/23/2026
 ms.author: dmkorolev
+ai-usage: ai-assisted
 ---
 
 # Host agents with A2A
@@ -55,7 +56,6 @@ Install the following packages:
   dotnet add package Microsoft.Agents.AI.Hosting.A2A.AspNetCore --prerelease
 
   # Libraries to connect to Microsoft Foundry
-  dotnet add package Azure.AI.Projects --prerelease
   dotnet add package Azure.Identity
   dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 

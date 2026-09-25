@@ -140,7 +140,6 @@ You'll create an email processing workflow that demonstrates conditional routing
 First, install the required packages for your .NET project:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Workflows --prerelease
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease

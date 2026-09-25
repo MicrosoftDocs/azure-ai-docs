@@ -66,7 +66,6 @@ Install the hosting NuGet package:
 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Foundry.Hosting --prerelease
-dotnet add package Azure.AI.Projects --prerelease
 ```
 
 :::zone-end

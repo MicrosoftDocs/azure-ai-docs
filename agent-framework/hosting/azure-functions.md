@@ -67,7 +67,6 @@ In a .NET project, choose the package set for your hosting model.
 For Azure Functions hosting, add the Azure Functions integration package and the Functions worker packages.
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 dotnet add package Microsoft.Agents.AI.Hosting.AzureFunctions --prerelease

@@ -512,8 +512,10 @@ await builder.Build().RunAsync();
 Install the required NuGet packages:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.Hosting --prerelease
-dotnet add package ModelContextProtocol --prerelease
+dotnet add package Azure.Identity
+dotnet add package Microsoft.Agents.AI.Foundry --prerelease
+dotnet add package Microsoft.Extensions.Hosting
+dotnet add package ModelContextProtocol
 ```
 
 ::: zone-end

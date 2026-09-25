@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: taochen
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -64,7 +65,6 @@ You'll create a workflow that:
 First, install the required packages for your .NET project:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
 dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 dotnet add package Microsoft.Agents.AI.Workflows --prerelease
