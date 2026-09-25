@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: overview
-ms.date: 09/17/2026
+ms.date: 09/25/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -156,7 +156,7 @@ A typical portal-created voice agent uses:
 - A fully managed Voice Live model, or an eligible customer-deployed model.
 - Azure Speech in Foundry Tools capabilities for transcription or synthesis when required by the selected architecture.
 - Application Insights for traces, monitoring, and evaluation data.
-- Azure Communication Services and Azure Event Grid for phone-number channels.
+- Azure Communication Services and Azure Event Grid for Teams Phone extensibility inbound calls, or a Twilio project connection for Twilio phone-number channels.
 
 You don't need to deploy a separate audio model when you use a fully managed Voice Live model. Model availability and behavior are loaded dynamically for your resource and region.
 
@@ -166,7 +166,7 @@ You don't need to deploy a separate audio model when you use a fully managed Voi
 | --- | --- |
 | Browser testing | Supported from the agent playground. |
 | Preview web app | Available when the agent endpoint supports the Responses protocol. |
-| Phone numbers | Microsoft Teams Phone Extensibility and Twilio. |
+| Phone numbers | Teams Phone extensibility and Twilio. |
 | Direct SIP | Not currently offered as a supported customer flow. |
 | Microsoft Teams and Microsoft 365 Copilot app publishing | The standard text-agent card isn't currently shown in the voice-based Channels layout. Don't describe this as the phone integration path. |
 | Avatar | Browser visual output over WebRTC; telephone callers receive audio only. |
@@ -187,7 +187,7 @@ Potential charges include generative AI model input and output, speech recogniti
 | --- | --- |
 | [Create a voice-based prompt agent](quickstarts/prompt-voice-agent.md) | Create a managed voice agent, connect to a live session, and complete a spoken turn. |
 | [Configure a voice agent](how-to/configure-voice-agent.md) | Choose a model and configure transcription, languages, voices, avatars, turn detection, audio enhancement, interim responses, and tools. |
-| [Integrate a telephony channel](how-to/voice-agent-telephony-channels.md) | Integrate Microsoft Teams Phone or Twilio with a voice agent. |
+| [Integrate a telephony channel](how-to/voice-agent-telephony-channels.md) | Integrate Teams Phone extensibility or Twilio with a voice agent. |
 | [Voice agent tracing, monitoring, and evaluation](concepts/voice-agent-observability.md) | Trace, monitor, and evaluate voice conversations. |
 | [Best practices for voice-based agents](concepts/voice-agent-best-practice.md) | Apply instructions, latency, recognition, safety, privacy, handoff, testing, and release controls. |
 
