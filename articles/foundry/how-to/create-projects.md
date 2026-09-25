@@ -86,6 +86,17 @@ To create a Foundry project, follow these steps:
 
 ---
 
+## Configure agent storage
+
+If your project runs agents, you can declare the Azure resources that store agent state, vector data, and files. Set these resources on the Foundry account to establish defaults for every project it contains, then let each project inherit the defaults or override an individual store.
+
+Two points affect how you plan the deployment:
+
+- **Inheritance**: A project inherits each setting it doesn't set itself. A GET on the project returns the effective configuration, which combines inherited account values with any project overrides. Changing the account defaults later doesn't update existing projects.
+- **Authorization**: For capability settings requests, the caller needs **Storage Blob Data Contributor** on the referenced Azure Storage account and **Cosmos DB Operator** on the referenced Azure Cosmos DB account. Azure AI Search doesn't require a caller role. Configure runtime access for the project managed identity separately.
+
+For settings, permissions, and Bicep examples, see [Configure agent capability settings](configure-capability-settings.md).
+
 ## Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]

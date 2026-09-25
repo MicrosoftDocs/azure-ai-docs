@@ -8,9 +8,10 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
-This article describes how to recover from human or automation errors that cause Azure resource or data loss for Microsoft Foundry Agent Service projects that use the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
+This article describes how to recover from human or automation errors that cause Azure resource or data loss for Microsoft Foundry Agent Service projects that use the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that holds agent state.
 
 The following table summarizes each recovery scenario, expected recovery time, and the degree of data loss.
 
@@ -27,7 +28,7 @@ The following table summarizes each recovery scenario, expected recovery time, a
 | AI Search service deleted | 20+ min | Thread state lost; agent knowledge rebuilt | [AI Search service deleted](#ai-search-service-is-deleted) |
 | AI Search index deleted | Minutes | Thread state lost; agent knowledge rebuilt | [AI Search index deleted](#an-index-in-your-ai-search-service-is-deleted) |
 | Storage account deleted | 20+ min | Thread state lost; agent knowledge rebuilt | [Storage account deleted](#storage-account-deleted) |
-| Capability host destructive reset | Minutes | Complete state loss (single project) | [Destructive reset](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host) |
+| Agent state destructive reset | Minutes | Complete state loss (single project) | [Destructive reset](#perform-a-destructive-reset-of-the-projects-agent-state) |
 
 > [!IMPORTANT]
 > This article is part of a three-part series.
@@ -42,7 +43,7 @@ The following table summarizes each recovery scenario, expected recovery time, a
 
 - Azure subscription with access to the affected Foundry account
 - Familiarity with the [Agent Service disaster recovery overview](../how-to/agent-service-disaster-recovery.md)
-- Infrastructure as code (IaC) assets for your Foundry projects, capability hosts, and dependencies
+- Infrastructure as code (IaC) assets for your Foundry projects, capability settings, and dependencies
 - Required RBAC roles:
   - **Owner** or **Contributor** on the resource group containing your Foundry account
   - **Cosmos DB Account Contributor** for Azure Cosmos DB restore operations
@@ -103,7 +104,7 @@ The following sections describe recovery strategies for incidents that affect a 
 
 1. Account recovery doesn't restore private endpoints. Recreate the three private endpoints in your environment.
 
-1. Account recovery doesn't restore projects. Recreate each project and its capability host, one at a time, from your infrastructure-as-code assets. Start with the project's former *default* project. Use the same project name you had before. Reuse the same capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage) that connected to this project before the incident.
+1. Account recovery doesn't restore projects. Recreate each project and its capability settings, one at a time, from your infrastructure-as-code assets. Start with the project's former *default* project. Use the same project name you had before. Reuse the same agent state resources (Azure Cosmos DB, Azure AI Search, and Azure Storage) that connected to this project before the incident.
 
    1. Associate the project's former user-assigned managed identity. If you used a system-assigned managed identity, re-enable it. Recreate required role assignments on downstream dependencies and remove orphaned assignments that reference old principal IDs.
 
@@ -145,10 +146,10 @@ The following sections describe recovery strategies for incidents that affect a 
 >
 > This data resides in the currently associated Azure Cosmos DB, Azure AI Search, and Azure Storage account resources. This data no longer associates with this project.
 
-1. Recreate the project and its capability host from your infrastructure-as-code assets. Use the same project name you had before and reuse the same capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage) that connected to this project before the incident.
+1. Recreate the project and its capability settings from your infrastructure-as-code assets. Use the same project name you had before and reuse the same agent state resources (Azure Cosmos DB, Azure AI Search, and Azure Storage) that connected to this project before the incident.
 
    - Reassign the same user-assigned managed identity. If you used a system-assigned managed identity, re-enable it. Recreate required role assignments on downstream dependencies and remove orphaned assignments that reference old principal IDs.
-   - Deploy the same capability host configuration referencing the same downstream dependencies.
+   - Deploy the same capability settings referencing the same downstream dependencies.
 
 1. Redeploy agents (definitions, knowledge files, and tools) from source control or application code. They become new agents with new IDs and have **no access** to prior threads or files.
 
@@ -165,7 +166,7 @@ The following sections describe recovery strategies for incidents that affect a 
 - Recovery point: Total loss of thread text and uploaded files for all agents that were in the project. No recovery of this data is supported.
 
   > [!IMPORTANT]
-  > Even if you use the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous project's agents isn't reused and is unreachable. There's no supported method to migrate orphaned data to the new project's new capability host.
+  > Even if you use the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous project's agents isn't reused and is unreachable. There's no supported method to migrate orphaned data to the new project's newly provisioned infrastructure.
 
 **Verify recovery:** Invoke an agent in the restored project to confirm it can create threads and respond to requests.
 
@@ -259,7 +260,7 @@ The following sections describe recovery strategies for incidents that are local
    > To find available restore points, use `az cosmosdb restorable-database-accounts list` or navigate to the **Restore** pane for your Cosmos DB account in the Azure portal. Choose the latest available timestamp for `{timestamp-in-UTC}`.
 
    > [!TIP]
-   > When you delete your account, you release your account name to the public. Act quickly because if another customer claims your account name before you restore, you experience complete data loss and need to [perform a destructive reset of the capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
+   > When you delete your account, you release your account name to the public. Act quickly because if another customer claims your account name before you restore, you experience complete data loss and need to [perform a destructive reset of the project's agent state](#perform-a-destructive-reset-of-the-projects-agent-state).
 
 1. Apply a [*delete* resource lock](/azure/azure-resource-manager/management/lock-resources) on the Cosmos DB account.
 
@@ -400,7 +401,7 @@ Generally, no specific recovery capabilities exist for this scenario. If you los
 
 Don't confuse this instance with AI Search indexes that connect to products and act as a durable knowledge store for workload data. To recover those search indexes, follow the guidelines in [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search). This instance is specifically the dedicated instance that supports the Agent Service runtime.
 
-**During the incident:** Agents that use file-based knowledge generate errors when they consult that knowledge. Threads that involve uploaded files return errors if the agent recalls indexed data. Attempts to add files as knowledge to agents or into threads fail. Agents that don't use file-based knowledge and workloads without file uploads likely see no change. The capability host is considered broken and future behavior is undefined.
+**During the incident:** Agents that use file-based knowledge generate errors when they consult that knowledge. Threads that involve uploaded files return errors if the agent recalls indexed data. Attempts to add files as knowledge to agents or into threads fail. Agents that don't use file-based knowledge and workloads without file uploads likely see no change. The project's agent runtime infrastructure is considered broken and future behavior is undefined.
 
 **Recovery steps:**
 
@@ -411,7 +412,7 @@ Don't confuse this instance with AI Search indexes that connect to products and 
    - Ensure Azure Diagnostics configuration is restored.
 
    > [!TIP]
-   > When you delete your service, you release your service name to the public. Act quickly because if another customer claims your service name before you restore it, you'll experience complete data loss and need to [perform a destructive reset of the capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
+   > When you delete your service, you release your service name to the public. Act quickly because if another customer claims your service name before you restore it, you'll experience complete data loss and need to [perform a destructive reset of the project's agent state](#perform-a-destructive-reset-of-the-projects-agent-state).
 
 1. Apply a *delete* resource lock on the AI Search service.
 
@@ -458,7 +459,7 @@ If the index was tied to knowledge uploaded as part of a thread, there are no re
 
 **Scenario:** You accidentally delete the Azure Storage account that stores blob data (such as uploaded files and file-based knowledge) for one or more projects.
 
-**During the incident:** Agents that use file-based knowledge can't access their source files. File uploads into threads fail. Agents that don't use file-based knowledge and threads without file uploads might continue to work, but the capability host is in a degraded state and future behavior is undefined.
+**During the incident:** Agents that use file-based knowledge can't access their source files. File uploads into threads fail. Agents that don't use file-based knowledge and threads without file uploads might continue to work, but the project's agent runtime infrastructure is in a degraded state and future behavior is undefined.
 
 **Recovery steps:**
 
@@ -475,7 +476,7 @@ If the index was tied to knowledge uploaded as part of a thread, there are no re
    **Reference:** [Recover a deleted storage account](/azure/storage/common/storage-account-recover)
 
    > [!TIP]
-   > When you delete your Storage account, you release the account name. Act quickly because if another customer claims the name before you recover, you experience complete data loss and need to [perform a destructive reset of the capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
+   > When you delete your Storage account, you release the account name. Act quickly because if another customer claims the name before you recover, you experience complete data loss and need to [perform a destructive reset of the project's agent state](#perform-a-destructive-reset-of-the-projects-agent-state).
 
 1. If soft delete isn't enabled or the retention period expired, use your IaC to deploy a new Storage account.
 
@@ -500,14 +501,17 @@ If the index was tied to knowledge uploaded as part of a thread, there are no re
 
 **Verify recovery:** Upload a file to a new thread and invoke an agent with file-based knowledge. Confirm the agent can access its knowledge files and that new file uploads succeed.
 
-## Perform a destructive reset of the Azure AI Agent Service capability host
+## Perform a destructive reset of the project's agent state
 
-When other recovery options aren't available, you can perform a complete reset of your project's AI Agent Service capability host. This reset is a *fresh start* that restores functionality but permanently orphans all agents, threads, and related state.
+When other recovery options aren't available, you can perform a complete reset of your project's agent state. This reset is a *fresh start* that restores functionality but permanently orphans all agents, threads, and related state.
 
 > [!CAUTION]
 > Performing these steps permanently orphans all existing agent state, making all agent data permanently unretrievable through any Foundry Agent Service API call. This process restores functionality but *provides no data recovery point*.
 >
 > This reset is a **last resort** after you exhaust all other options. **All agents and threads are permanently lost.**
+
+> [!NOTE]
+> The direct capability host REST API remains available for backward compatibility. This legacy flow uses the project managed identity during provisioning. Before you send the request, confirm that the project managed identity has the required roles on Azure Cosmos DB, Azure AI Search, and Azure Storage.
 
 1. Remove the *delete* lock from the Foundry account.
 
@@ -532,7 +536,7 @@ When other recovery options aren't available, you can perform a complete reset o
    - The project's managed identity has the same permissions to these resources as before the reset.
 
    > [!IMPORTANT]
-   > Even if you reuse the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous association isn't reused and is unreachable. No supported method exists to migrate orphaned data to the new capability host.
+   > Even if you reuse the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous association isn't reused and is unreachable. No supported method exists to migrate orphaned data to the newly provisioned infrastructure.
 
 1. Redeploy agents from source control or from application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical data.
 
@@ -541,11 +545,11 @@ When other recovery options aren't available, you can perform a complete reset o
 | Symptom | Possible cause | Resolution |
 | --------- | --------------- | ------------ |
 | Account recovery command fails with "not found" | More than 48 hours elapsed since deletion, or the account was purged | The account can't be recovered. Recreate the account and all projects from IaC. |
-| Cosmos DB or Storage account name already claimed | Another customer registered the same name after deletion | You can't recover to the original name. [Perform a destructive reset of the capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host) with a new dependency account. |
+| Cosmos DB or Storage account name already claimed | Another customer registered the same name after deletion | You can't recover to the original name. [Perform a destructive reset of the project's agent state](#perform-a-destructive-reset-of-the-projects-agent-state) with a new dependency account. |
 | Role assignment errors after restore | Restore operations don't preserve role assignments (except database and container restores) | Redeploy role assignments from your IaC. Remove orphaned assignments that reference old principal IDs. |
 | Agents return errors after Cosmos DB restore | The restore point is slightly behind the latest writes | In-flight operations at the exact deletion time might not persist. Redeploy affected agents from source control. |
 | Private endpoints not working after account recovery | Account recovery doesn't restore private endpoints | Recreate private endpoints in your environment by using your IaC. |
-| Capability host recreation fails | Dependencies (Cosmos DB, AI Search, Storage) aren't deployed or accessible | Verify all three dependency resources exist and that the project's managed identity has the correct role assignments. |
+| Project infrastructure recreation fails | Dependencies (Cosmos DB, AI Search, Storage) aren't deployed or accessible | Verify all three dependency resources exist and that the project's managed identity has the correct role assignments. |
 
 ## Related content
 

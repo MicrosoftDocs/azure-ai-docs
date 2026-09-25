@@ -27,7 +27,7 @@ ai-usage: ai-assisted
   - **Storage Account Contributor** for Azure Storage configuration.
 
 > [!IMPORTANT]
-> Microsoft and you jointly operate the Foundry Agent Service. Microsoft runs the control plane and capability host platform. You own the durability of stateful dependencies (Azure Cosmos DB, Azure AI Search, Azure Storage) when you use Standard agent deployment mode. In Basic mode, Microsoft manages those data components and recovery options are limited. This shared responsibility model means your HA/DR design must cover each customer-managed component individually.
+> You and Microsoft jointly operate the Foundry Agent Service. Microsoft runs the control plane and the agent runtime infrastructure. You own the durability of stateful dependencies (Azure Cosmos DB, Azure AI Search, Azure Storage) when you use Standard agent deployment mode. In Basic mode, Microsoft manages those data components and recovery options are limited. This shared responsibility model means your HA/DR design must cover each customer-managed component individually.
 
 ## Identify Azure services for Foundry
 
@@ -66,7 +66,7 @@ The following table describes the protections and limitations for each resource:
 
 | Resource                 | Protection provided | Limitations |
 | :----------------------- | :------------------ | :---------- |
-| Foundry account | Prevents deletion of account, projects, models, connections, and agent capability hosts. | Doesn't protect individual agents or threads. |
+| Foundry account | Prevents deletion of account, projects, models, connections, and agent runtime infrastructure. | Doesn't protect individual agents or threads. |
 | Azure Cosmos DB account  | Prevents deletion of account, `enterprise_memory` database, and containers. | Doesn't protect data within containers. |
 | Azure AI Search service  | Prevents deletion of the search service instance. | Doesn't protect indexes or data within indexes. |
 | Azure Storage account | Prevents deletion of account and blob containers. | Doesn't protect individual blobs. Users with the **Owner** role can remove the lock before deleting a container. |
@@ -187,7 +187,7 @@ A user-assigned managed identity avoids this effort. After you restore the fault
 
 ### Use repeatable deployment techniques
 
-Define the account, projects, capability host, and dependencies in infrastructure as code (IaC) such as Bicep or Terraform. Some recovery steps require redeploying resources exactly as they were. Treat IaC as the source of truth to reproduce configuration and role assignments quickly. Build your IaC modular so that you can independently deploy each project.
+Define the account, projects, capability settings, and dependencies in infrastructure as code (IaC) such as Bicep or Terraform. Some recovery steps require redeploying resources exactly as they were. Treat IaC as the source of truth to reproduce configuration and role assignments quickly. Build your IaC modular so that you can independently deploy each project.
 
 Make agents redeployable. For ephemeral agents, existing application code is usually sufficient. For long‑lived agents, store their JSON definitions and knowledge or tool bindings in source control and automate deployment via pipeline calls to the Foundry APIs. Automatically update client configuration for new agent IDs. This process rehydrates agent definitions, knowledge files, and tool connections.
 

@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 08/13/2026
 ms.custom: include, references_regions
+ai-usage: ai-assisted
 ---
 
 ### Supported regions for data generation

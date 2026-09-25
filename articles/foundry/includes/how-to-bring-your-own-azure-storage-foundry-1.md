@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 08/18/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [feature-preview](feature-preview.md)]
@@ -17,7 +18,7 @@ Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services tog
 This article shows you how to connect your storage to Foundry by using two overarching approaches:
 
 - **Connections**: recommended baseline for most features. Connections provide the shared data pointer.
-- **Capability hosts**: optionally override or explicitly bind a specific feature (for example, Agents standard setup) to one connection among several.
+- **Capability settings**: declare the storage account that Foundry Agent Service uses for agent files.
 - **userOwnedStorage field:** a resource-level binding used only by Speech and Language.
 
 ## Prerequisites
@@ -42,20 +43,20 @@ Before connecting your storage, ensure you have:
 ## Understand storage connection approaches
 
 | Approach | What it is | Features supported | Scope | When to use |
-|----------|------------|--------------------|-------|-------------|
+| --- | --- | --- | --- | --- |
 | Foundry connections (shared data pointer) | Sub-resource holding endpoint and authentication; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
-| Capability hosts (feature override binding) | Explicit per-feature binding selecting which connection a feature uses | Agents (standard setup) | Resource and project level | When multiple connections exist and you must force one for Agents |
+| Capability settings (agent storage declaration) | Account and project properties naming the storage account that holds agent files | Agents (standard setup) | Account and project level | When agents must store files in a storage account you own |
 | userOwnedStorage field (resource storage binding) | Resource property assigning one storage account for Speech and Language (shared) | Speech, Language | Resource level only | To enable customer-managed storage for Speech and Language at creation time |
 
 ### Foundry connections
 
-Foundry connections act as shared data pointers across Foundry capabilities (agents, evaluations, datasets, content understanding). Each connection wraps the target storage endpoint plus authentication so users with project access can use the data without direct storage account permissions. Use connections as the default pattern; create a capability host only when you need to explicitly bind (override) a single feature to one connection among several.
+Foundry connections act as shared data pointers across Foundry capabilities (agents, evaluations, datasets, content understanding). Each connection wraps the target storage endpoint plus authentication so users with project access can use the data without direct storage account permissions. Use connections as the default pattern for evaluations, datasets, and content understanding.
 
-### Capability hosts
+### Capability settings
 
-[Capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, Foundry uses Microsoft-managed storage for that feature.
+Capability settings are properties on the Foundry account and project that declare which Azure resources hold agent state, vector data, and files. Set `blobStore` to the resource ID of your storage account, and Agent Service provisions the required underlying infrastructure and the connection to that account. You don't create or bind the connection yourself.
 
-See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual details.
+If you don't set `blobStore`, Foundry uses Microsoft-managed storage for agent files. See [Configure agent capability settings](../how-to/configure-capability-settings.md) for settings, permissions, and Bicep examples.
 
 ### userOwnedStorage (resource storage binding)
 

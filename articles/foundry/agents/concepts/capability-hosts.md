@@ -19,4 +19,7 @@ ai-usage: ai-assisted
 
 # Capability hosts
 
+> [!NOTE]
+> To declare the Azure resources that Foundry Agent Service uses for agent state, vector data, and files, see [Configure agent capability settings](../../how-to/configure-capability-settings.md). This article is retained for reference.
+
 [!INCLUDE [capability-hosts content](../includes/concepts-capability-hosts-content.md)]

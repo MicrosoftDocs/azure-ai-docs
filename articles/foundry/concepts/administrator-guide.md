@@ -113,7 +113,7 @@ Standard agent setup requires you to provision and manage your own Azure Cosmos 
 | Assign cross-service roles (Cosmos DB, Search, Storage) | **Owner** *or* **Role Based Access Control Administrator** | Resource group | [Standard agent setup](../agents/concepts/standard-agent-setup.md) |
 | Provision agent resources | **Foundry Account Owner** *or* **Owner** | Subscription | [Set up your agent resources](../agents/environment-setup.md) |
 
-Assign the following data-plane roles to the Foundry project managed identity on the backing resources:
+Assign the following data-plane roles to the Foundry project managed identity on the backing resources. These roles govern runtime access for running agents. They're separate from the permissions the deploying identity needs to provision those resources, which are described in [Configure agent capability settings](../how-to/configure-capability-settings.md#permissions).
 
 | Resource | Role |
 |----------|------|
