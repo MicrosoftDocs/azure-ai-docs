@@ -42,6 +42,29 @@ Sign in with `az login`. Set `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_VOICE_AGENT
 
 ::: zone-end
 
+::: zone pivot="csharp"
+
+Use the [.NET 8 SDK or later](https://dotnet.microsoft.com/download). Create a console project and install the Azure AI Projects Agents client library, its OpenAI extensions dependency, and Azure Identity:
+
+```dotnetcli
+dotnet new console --name ConfigureVoiceAgent --framework net8.0
+cd ConfigureVoiceAgent
+dotnet add package Azure.AI.Extensions.OpenAI --version 3.0.0-beta.1
+dotnet add package Azure.AI.Projects.Agents --version 3.0.0-beta.3
+dotnet add package Azure.Identity
+```
+
+Reference: [Azure AI Projects Agents client library for .NET](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects.Agents).
+
+Sign in with `az login`. Set these environment variables in the shell where you run the application:
+
+- `FOUNDRY_PROJECT_ENDPOINT`: your project endpoint, in the form `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`.
+- `FOUNDRY_VOICE_AGENT_NAME`: the name of the voice agent to configure.
+
+Pass `foundryFeatures: "VoiceAgents=V1Preview"` when you create a voice agent version, as shown in [Save and test the agent](#save-and-test-the-agent).
+
+::: zone-end
+
 ::: zone pivot="javascript"
 
 Install version 2.7.0 or later of the Azure AI Projects client library as shown in [Install the packages](../quickstarts/prompt-voice-agent.md?pivots=javascript#install-the-packages).
@@ -411,6 +434,364 @@ wss://{project-endpoint}/agents/{agent-name}/endpoint/protocols/voice?api-versio
 Authenticate the upgrade with a Microsoft Entra bearer token. To test a version that isn't the active one, pass the version override on the connect request instead of changing the active version.
 
 For an end-to-end walkthrough, see [Quickstart: Create a voice-based prompt agent](../quickstarts/prompt-voice-agent.md).
+
+::: zone-end
+
+::: zone pivot="csharp"
+
+## Choose the model
+
+The SDK examples build a single definition. Start with this example in `Program.cs`, add the configuration snippets you need, and finish with [Save and test the agent](#save-and-test-the-agent). Place all `using` directives at the top of the file. Run the input-audio example before the transcription and output-audio examples, which reuse its configuration objects.
+
+Set `ModelType` and `Model` together. `ModelType` selects how the model is served, and `Model` names it:
+
+- `VoiceModelType.Managed`: the service hosts the model. Set `Model` to a service-managed model name, such as `gpt-realtime-2.1`.
+- `VoiceModelType.SelfDeployed`: the service uses your own deployment. Set `Model` to the Foundry deployment name.
+
+The service derives the architecture, real-time or cascaded, from the model you select. You don't configure it separately.
+
+```csharp
+#pragma warning disable AAIP001, OPENAI002
+
+using Azure.AI.Projects.Agents;
+
+VoiceAgentDefinition definition = new()
+{
+    ModelType = VoiceModelType.Managed,
+    Model = "gpt-realtime-2.1",
+    Instructions = "You are a friendly voice assistant. " +
+        "Keep replies short and natural.",
+};
+```
+
+Reference: [VoiceAgentDefinition](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentDefinition.cs).
+
+The `#pragma` directive acknowledges the experimental SDK types used by these examples. Keep it at the top of `Program.cs`.
+
+## Write instructions and a greeting
+
+`Instructions` is the system message inserted into the model's context. Write it for speech: short sentences, no markdown, and no lists that a caller can't hear. For detailed guidance, see [Optimize voice agent instructions](optimize-voice-agent-instructions.md).
+
+### Configure a session-start greeting
+
+Set `definition.Greeting` to make the agent speak when a session starts, before the caller sends a turn. Choose one of two modes:
+
+- `VoiceAgentTemplateGreetingConfig`: the agent speaks the exact rendered `Text`. Use this mode when the opening line must be predictable or preapproved.
+- `VoiceAgentLlmGeneratedGreetingConfig`: the session model authors the opening turn from a `Prompt`. Its `ToolChoice` defaults to `none`.
+
+Both modes accept Handlebars placeholders that resolve against `StructuredInputs`. Declare one entry for every placeholder you use. If a placeholder has no matching entry, the session fails to start.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+
+definition.Greeting = new VoiceAgentTemplateGreetingConfig(
+    "Welcome to {{company_name}}. I can help with orders and returns. " +
+    "What do you need today?");
+
+definition.StructuredInputs["company_name"] = new StructuredInputDefinition
+{
+    Description = "The company name spoken in the greeting.",
+    Schema = { ["type"] = BinaryData.FromObjectAsJson("string") },
+    DefaultValue = BinaryData.FromObjectAsJson("Contoso"),
+};
+```
+
+Reference: [VoiceAgentTemplateGreetingConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentTemplateGreetingConfig.cs), [StructuredInputDefinition](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/StructuredInputDefinition.cs).
+
+Templates render once per session, before the live session starts.
+
+To let the session model write the opening line instead, replace the greeting with a scoped prompt:
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+
+definition.Greeting = new VoiceAgentLlmGeneratedGreetingConfig(
+    "Greet the caller warmly in one sentence and ask how you can help.")
+{
+    ToolChoice = BinaryData.FromObjectAsJson("none"),
+};
+```
+
+Reference: [VoiceAgentLlmGeneratedGreetingConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentLlmGeneratedGreetingConfig.cs).
+
+Set `definition.Greeting` to `null` if the agent should wait for the caller instead. After changing the greeting, [save and test a new agent version](#save-and-test-the-agent).
+
+The greeting streams through the normal response events. Receive the greeting's response before sending the first user turn; don't send a user message or `response.create` to trigger it.
+
+## Configure input audio
+
+`Audio.Input` controls how the agent listens.
+
+### Set turn detection
+
+Turn detection decides when the caller stops speaking. Server-side turn detection is on by default. When you turn off turn detection, your client must trigger each response.
+
+| C# type | Use it when |
+|---|---|
+| `VoiceAgentServerVadTurnDetection` | You want straightforward silence-based detection. This type suits most business scenarios. |
+| `VoiceAgentSemanticVadTurnDetection` | You want the OpenAI semantic end-of-turn model. |
+| `VoiceAgentAzureSemanticVadTurnDetection` | You want Azure semantic detection with an explicit `Languages` list. |
+| `VoiceAgentAzureSemanticVadEnTurnDetection` | Your callers speak English only. |
+| `VoiceAgentAzureSemanticVadMultilingualTurnDetection` | Your callers switch languages within a call. |
+
+The Azure semantic types share these options:
+
+| Property | Effect |
+|---|---|
+| `Threshold` | Activation sensitivity, from 0 to 1. Raise it in noisy environments. |
+| `PrefixPaddingMs` | Audio kept before detected speech. |
+| `SilenceDurationMs` | Silence required before the turn ends. Increase it when callers pause often. |
+| `IdleTimeoutMs` | Maximum idle time before the detector ends the turn. |
+| `SpeechDurationMs` | Minimum speech needed to trigger detection. |
+| `RemoveFillerWords` | Drops filler words from transcription. Defaults to `false`. |
+| `CreateResponse` | Creates a response automatically when speech stops. Defaults to `true`. |
+| `InterruptResponse` | Lets caller speech interrupt the agent. Defaults to `true`. |
+| `EndOfUtteranceDetection` | Adds a semantic end-of-utterance model. |
+
+For Azure semantic turn detection, duration properties use `TimeSpan`. In the server VAD example, `PrefixPaddingMs` and `SilenceDurationMs` take integer milliseconds instead.
+
+Set `AutoTruncate` to `true` on the turn-detection configuration to truncate the input audio buffer automatically when speech stops.
+
+```csharp
+using Azure.AI.Projects.Agents;
+using OpenAI.Realtime;
+
+VoiceAgentAudioInputConfig inputAudio = new()
+{
+    Format = new RealtimePcmAudioFormat(),
+    TurnDetection = new VoiceAgentServerVadTurnDetection
+    {
+        Threshold = 0.5,
+        PrefixPaddingMs = 300,
+        SilenceDurationMs = 500,
+    },
+};
+VoiceAgentAudioConfig audioConfig = new() { Input = inputAudio };
+definition.Audio = audioConfig;
+```
+
+Reference: [VoiceAgentAudioInputConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentAudioInputConfig.cs), [VoiceAgentServerVadTurnDetection](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentServerVadTurnDetection.cs).
+
+`RealtimePcmAudioFormat` defaults to 24-kHz PCM. Send audio in the configured format.
+
+### Reduce noise and echo
+
+Set `inputAudio.NoiseReduction` to a `VoiceAgentNoiseReduction` instance. Choose `VoiceAgentNoiseReductionType.NearField` for headsets and handsets, `FarField` for speakerphones and rooms, or `AzureDeepNoiseSuppression` for noisy environments.
+
+Set `inputAudio.EchoCancellation` to a `VoiceAgentEchoCancellation` instance when the agent's output can be picked up by the caller's microphone. `ReferenceSource` defaults to `Server`. Use `Client` with two interleaved input channels when your client supplies the reference signal.
+
+### Transcribe caller speech
+
+`Transcription` runs asynchronous transcription of input audio. Set `Model` to a transcription model name, not a Foundry deployment name. Supported names include `azure-speech`, `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe`.
+
+Two Foundry extensions help with domain vocabulary:
+
+- `PhraseList`: phrase hints that bias recognition toward domain terms, such as product names.
+- `CustomSpeech`: your custom speech deployments, keyed by locale.
+
+```csharp
+using Azure.AI.Projects.Agents;
+
+inputAudio.Transcription = new VoiceAgentInputTranscription(
+    VoiceAgentInputTranscriptionModel.AzureSpeech)
+{
+    PhraseList = { "Contoso Aurora", "SKU 4471" },
+};
+```
+
+Reference: [VoiceAgentInputTranscription](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentInputTranscription.cs).
+
+## Configure output audio
+
+`Audio.Output` controls how the agent sounds. `VoiceType` selects the voice implementation and determines which other properties apply:
+
+| `VoiceType` value | Applicable properties |
+|---|---|
+| `Openai` | `Voice`, `Speed` |
+| `AzureStandard` | `Voice`, `VoiceLocale`, `Speed`, `VoiceTemperature`, `CustomLexiconUrl`, `CustomTextNormalizationUrl`, `PreferLocales`, `Style`, `Pitch`, `Volume` |
+| `AzureCustom` | The `AzureStandard` properties except `Style`, plus `CustomVoiceEndpointId` |
+| `AzurePersonal` | The `AzureStandard` properties except `Style`, plus `PersonalVoiceModel` |
+| `AvatarVoiceSync` | The `AzureStandard` properties except `Voice` and `Style`, plus `PersonalVoiceModel`. The voice name comes from the avatar. |
+| `AzureRealtimeNative` | `Voice`, `Speed` |
+
+`Format` and `OutputAudioTimestampTypes` apply to every voice type. Output defaults to 24-kHz PCM. `Speed` accepts values from 0.25 through 1.5 and defaults to 1.
+
+```csharp
+using Azure.AI.Projects.Agents;
+
+audioConfig.Output = new VoiceAgentAudioOutputConfig
+{
+    Voice = "en-US-AvaNeural",
+    VoiceType = VoiceType.AzureStandard,
+    Speed = 1.0f,
+};
+```
+
+Reference: [VoiceAgentAudioOutputConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentAudioOutputConfig.cs).
+
+Add `VoiceAgentAudioTimestampType.Word` to `OutputAudioTimestampTypes` when your client needs word-level timing, for example to highlight text as the agent speaks.
+
+`OutputModalities` defaults to audio. To request both audio and text, add `VoiceOutputModality.Audio` and `VoiceOutputModality.Text` to the collection. Use `Animation` and `Avatar` only when you configure an avatar.
+
+## Attach tools
+
+The `Tools` collection defines what the agent can do during a call. The service supports four kinds of tools:
+
+| Kind | Executed by | Notes |
+|---|---|---|
+| `function` | Your client | The service forwards the call over the live session, and your app returns the result. |
+| `mcp` | The service | Points at a remote MCP server. |
+| `toolbox` | The service | References a versioned Foundry toolbox. |
+| `system` | The service | Session controls that need no code or external credentials. `VoiceAgentEndConversationSystemTool` lets the agent end the call. |
+
+Attach server-side tools such as web search, Azure AI Search, and OpenAPI tools through a toolbox rather than declaring them directly. See [Create and manage a toolbox in Foundry](tools/toolbox.md).
+
+For MCP and toolbox tools, `ResponseScheduling` decides when the result turns into speech. Set it to a `VoiceAgentToolResponseScheduling` value:
+
+| Value | Behavior |
+|---|---|
+| `WhenIdle` | Responds when the conversation is idle. This value is the default. |
+| `Interrupt` | Interrupts the active response. |
+| `SkipIfBusy` | Responds only when no response is active. |
+| `Silent` | Doesn't create a follow-up response. |
+
+`ToolChoice` defaults to `auto`. Use `BinaryData.FromObjectAsJson("none")` to block tool calls, or `BinaryData.FromObjectAsJson("required")` to force at least one. You can also select a specific function or MCP tool.
+
+```csharp
+using System;
+using System.ClientModel.Primitives;
+using Azure.AI.Projects.Agents;
+using OpenAI;
+
+VoiceAgentFunctionTool getOrderStatus = new("get_order_status")
+{
+    Description = "Look up the status of a customer order.",
+    Parameters = ModelReaderWriter.Read<RealtimeFunctionToolParameters>(
+        BinaryData.FromObjectAsJson(new
+        {
+            type = "object",
+            properties = new
+            {
+                order_id = new
+                {
+                    type = "string",
+                    description = "The order number.",
+                },
+            },
+            required = new[] { "order_id" },
+        })),
+};
+
+definition.Tools.Add(getOrderStatus);
+definition.Tools.Add(new VoiceAgentEndConversationSystemTool());
+```
+
+Reference: [VoiceAgentFunctionTool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentFunctionTool.cs), [ModelReaderWriter.Read](/dotnet/api/system.clientmodel.primitives.modelreaderwriter.read).
+
+This example registers the function schema. Your realtime client must implement `get_order_status` and return its result when the agent calls it.
+
+## Cover tool latency with interim responses
+
+Silence during a tool call sounds like a dropped call. By using `InterimResponse`, the agent can speak while it waits.
+
+Add `VoiceAgentInterimResponseTrigger.Latency`, `Tool`, or both to `Triggers`. The default latency threshold is 2,000 milliseconds. Choose one of two modes:
+
+- `VoiceAgentStaticInterimResponseConfig`: the service picks from your `Texts` collection. This mode adds no model latency.
+- `VoiceAgentLlmInterimResponseConfig`: a model authors the filler from `Instructions`. The default value for `MaxCompletionTokens` is 50.
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+
+definition.InterimResponse = new VoiceAgentStaticInterimResponseConfig
+{
+    Triggers =
+    {
+        VoiceAgentInterimResponseTrigger.Latency,
+        VoiceAgentInterimResponseTrigger.Tool,
+    },
+    Texts =
+    {
+        "Let me check that for you.",
+        "One moment while I look that up.",
+    },
+    LatencyThresholdMs = TimeSpan.FromMilliseconds(1500),
+};
+```
+
+Reference: [VoiceAgentStaticInterimResponseConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentStaticInterimResponseConfig.cs), [VoiceAgentInterimResponseConfig](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/Models/VoiceAgentInterimResponseConfig.cs).
+
+In C#, `LatencyThresholdMs` takes a `TimeSpan`. The SDK serializes it as milliseconds.
+
+## Persist conversations
+
+The default value for `Store` is `false`, so nothing is persisted. Set `definition.Store = true` to persist the conversation, which includes the transcript, the event timeline, and raw audio. There's no separate audio-logging switch: audio is persisted only as part of `Store`.
+
+A client can override this setting for a single session by using the `store` query parameter in the connect request. For information about what you can read back afterward, see [Voice agent tracing, monitoring, and evaluation](../concepts/voice-agent-observability.md).
+
+## Limit response length
+
+Set `MaxOutputTokens` to `BinaryData.FromObjectAsJson(200)` to cap each response at 200 tokens, or to `BinaryData.FromObjectAsJson("inf")` for no cap. Capping output is an effective way to keep spoken replies short.
+
+Use `Include` to add optional fields to service output. For example, add `VoiceAgentSessionIncludeOption.InputAudioTranscriptionLogprobs` or `VoiceAgentSessionIncludeOption.InputAudioTranscriptionPhrases`.
+
+## Save and test the agent
+
+After applying your selected configuration snippets, create a version for the agent named in `FOUNDRY_VOICE_AGENT_NAME`. The following code uses your project endpoint and credentials, with the `VoiceAgents=V1Preview` feature option enabled:
+
+```csharp
+using System;
+using System.ClientModel;
+using System.ClientModel.Primitives;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+string projectEndpoint =
+    Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("Set FOUNDRY_PROJECT_ENDPOINT.");
+string agentName =
+    Environment.GetEnvironmentVariable("FOUNDRY_VOICE_AGENT_NAME")
+    ?? throw new InvalidOperationException("Set FOUNDRY_VOICE_AGENT_NAME.");
+
+AgentAdministrationClient agentsClient = new(
+    new Uri(projectEndpoint), new DefaultAzureCredential());
+
+BinaryData request = ModelReaderWriter.Write(
+    new ProjectsAgentVersionCreationOptions(definition));
+using BinaryContent content = BinaryContent.Create(request);
+ClientResult result = await agentsClient.CreateAgentVersionAsync(
+    agentName,
+    content,
+    foundryFeatures: "VoiceAgents=V1Preview");
+ProjectsAgentVersion created = ModelReaderWriter.Read<ProjectsAgentVersion>(
+    result.GetRawResponse().Content)
+    ?? throw new InvalidOperationException("The agent response is empty.");
+
+Console.WriteLine(
+    $"Created voice agent '{agentName}', version {created.Version}");
+```
+
+Reference: [AgentAdministrationClient](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects.Agents/src/Generated/AgentAdministrationClient.cs), [Voice agent .NET sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample_VoiceAgent.md).
+
+This example uses the `BinaryContent` overload to preserve function-tool parameter schemas in SDK version 3.0.0-beta.3. `ModelReaderWriter.Write` uses JSON format by default, which retains those schema properties.
+
+Run the application:
+
+```dotnetcli
+dotnet run
+```
+
+The application prints the agent name and new version. The agent endpoint is live as soon as the version exists. Connect to it over the voice protocol WebSocket route:
+
+```text
+wss://{project-endpoint}/agents/{agent-name}/endpoint/protocols/voice?api-version=v1
+```
+
+Authenticate the upgrade with a Microsoft Entra bearer token. To test a version that isn't the active one, pass the version override on the connect request instead of changing the active version.
+
+For a C# client walkthrough, see the [Voice agent .NET sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample_VoiceAgent.md). To test a spoken conversation in the playground, see [Quickstart: Create a voice-based prompt agent](../quickstarts/prompt-voice-agent.md?pivots=foundry-portal).
 
 ::: zone-end
 

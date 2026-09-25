@@ -2415,6 +2415,8 @@ groups:
     title: Foundry portal
   - id: python
     title: Python SDK
+  - id: csharp
+    title: C# SDK
   - id: javascript
     title: JavaScript SDK
   - id: azure-cli
