@@ -21,7 +21,6 @@ This integration stores the full transcript; it doesn't extract semantic memorie
 
 ```bash
 dotnet add package Microsoft.Agents.AI.Valkey --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 

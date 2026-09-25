@@ -37,10 +37,9 @@ For direct model inference where your application owns the agent definition, see
 
 :::zone pivot="programming-language-csharp"
 
-## Install the packages
+## Install the package
 
 ```bash
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 

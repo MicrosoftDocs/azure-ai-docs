@@ -24,7 +24,6 @@ Install the ASP.NET Core hosting package (it pulls in the core hosting package a
 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Hosting.A2A.AspNetCore --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 

@@ -55,8 +55,7 @@ Install the following packages:
   # Hosting.A2A.AspNetCore for A2A protocol integration
   dotnet add package Microsoft.Agents.AI.Hosting.A2A.AspNetCore --prerelease
 
-  # Libraries to connect to Microsoft Foundry
-  dotnet add package Azure.Identity
+  # Library to connect to Microsoft Foundry
   dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 
   # Swagger to test app

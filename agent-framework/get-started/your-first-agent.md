@@ -17,7 +17,6 @@ Create an agent and get a response — in just a few lines of code.
 :::zone pivot="programming-language-csharp"
 
 ```dotnetcli
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 
