@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 In this article, you learn how to recover your Foundry Agent Service projects from Azure platform incidents that take an entire region or a regional dependency offline. Examples of these incidents include prolonged regional outages or loss of a stateful dependency.
@@ -34,7 +35,7 @@ Before you implement the disaster recovery procedures in this article, ensure yo
   - **Storage Account Contributor** for initiating Storage account failover
   - For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 - Agent definitions, knowledge assets, and tool bindings stored in source control for redeployment.
-- Infrastructure as code (IaC) templates (Bicep, ARM, or Terraform) for your capability host dependencies (Azure Cosmos DB, Azure AI Search, Azure Storage).
+- Infrastructure as code (IaC) templates (Bicep, ARM, or Terraform) for your agent state resources (Azure Cosmos DB, Azure AI Search, Azure Storage).
 - Familiarity with the [disaster recovery overview](../how-to/agent-service-disaster-recovery.md) and the [high availability and resiliency guidance](../how-to/high-availability-resiliency.md).
 
 ## Architecture preparation
@@ -86,14 +87,14 @@ Don't fail over a project's agents if required knowledge stores and tools don't 
 
 For *each project* you choose to recover, follow these steps:
 
-1. Deploy the project's capability host dependencies (Azure Cosmos DB, Azure AI Search, Azure Storage) in the recovery region by using your infrastructure as code (IaC) assets. Match topology and configuration. If multiple projects share the same dependencies, do this step only once.
+1. Deploy the project's agent state resources (Azure Cosmos DB, Azure AI Search, Azure Storage) in the recovery region by using your infrastructure as code (IaC) assets. Match topology and configuration. If multiple projects share the same dependencies, do this step only once.
 
       > [!TIP]
    > Pre-provisioning these resources reduces recovery time but increases cost and operational overhead. A hybrid approach is possible. For example, Azure Storage is already deployed because it's inexpensive when idle; Azure AI Search isn't.
 
 1. Create the project's user-assigned managed identity. Give it access to the new regional dependencies.
 
-1. Create the project in the standby Foundry account via IaC and assign the managed identity. Point the project's capability host to the new regional dependencies. Apply role assignments for clients, operators, and automation principals.
+1. Create the project in the standby Foundry account via IaC and assign the managed identity. Set the project's capability settings to the new regional resources. Apply role assignments for clients, operators, and automation principals.
 
 1. Redeploy agents (definitions, knowledge files, and tool connections) from source control or application code. They're new agents with new IDs and have **no access** to prior threads or files.
 
@@ -124,7 +125,7 @@ For each failed-over project:
 
 1. Delete the project's managed identity.
 
-1. If this project is the last one referencing them, delete the three capability host dependencies in the failover region.
+1. If this project is the last one referencing them, delete the three agent state resources in the failover region.
 
       > [!IMPORTANT]
    > This step permanently deletes all state created during the failover period. There's no recovery or merge capability for this data.
@@ -173,7 +174,7 @@ The Azure Cosmos DB team initiates a service-managed failover automatically base
 **Recovery steps:** None. Wait until the Azure AI Search service is restored in your primary region. Consider going into a graceful degradation state in your workload that avoids any file uploads during this period.
 
 > [!IMPORTANT]
-> If you have a business-critical need to fail over sooner, [Perform a destructive reset of the Azure AI Agent Service capability host](../how-to/agent-service-operator-disaster-recovery.md#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host) and use a new AI Search instance in your failover region. This action causes *complete data loss* in your production instance. When AI Search is available again in your primary region, perform the same destructive reset action again.
+> If you have a business-critical need to fail over sooner, [Perform a destructive reset of the project's agent state](../how-to/agent-service-operator-disaster-recovery.md#perform-a-destructive-reset-of-the-projects-agent-state) and use a new AI Search instance in your failover region. This action causes *complete data loss* in your production instance. When AI Search is available again in your primary region, perform the same destructive reset action again.
 >
 > We don't advise this approach unless your users are tolerant of thread loss and your agents can easily rehydrate their file-based knowledge.
 

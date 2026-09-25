@@ -43,8 +43,7 @@ The following lists and diagram illustrate the separation between control plane 
 Control plane actions within Foundry include:
 * Foundry resource creation
 * Foundry project creation
-* Account Capability Host creation
-* Project Capability Host creation
+* Account and project [capability settings](../how-to/configure-capability-settings.md) configuration
 * Model deployment
 * Account and project connection creation
 

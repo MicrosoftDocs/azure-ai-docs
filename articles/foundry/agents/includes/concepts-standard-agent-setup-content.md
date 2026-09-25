@@ -28,7 +28,7 @@ In this setup:
 - An [Azure AI Search](/azure/search/search-what-is-azure-search) resource.
 - An [Azure Key Vault](/azure/key-vault/general/overview) resource for secrets management.
 - Azure CLI version 2.50 or later. Run `az --version` to verify.
-- Sufficient permissions to assign roles. You need the **Owner** or **User Access Administrator** role on the resource group.
+- Permissions for the identity that runs a capability settings deployment. Beyond creating the account and project, this identity needs **Storage Blob Data Contributor** on the storage account and **Cosmos DB Operator** on the Cosmos DB account. Azure AI Search doesn't require a caller role. See [Configure agent capability settings](../../how-to/configure-capability-settings.md#permissions).
 - A deployed agent-compatible model (for example, gpt-4o).
 
 ## Resource overview
@@ -72,16 +72,13 @@ The older containers belong to the **Classic** experience and are not used by th
 
 Standard setup enforces project-level data isolation by default. Two blob storage containers are automatically provisioned in your storage account: one for files and one for intermediate system data (chunks, embeddings). Three containers are provisioned in your Cosmos DB account: one for user threads, one for system messages, and one for agent configuration data such as instructions, tools, and names. This default behavior reduces setup complexity while still enforcing strict data boundaries between projects.
 
-## Capability hosts
+## Capability settings
 
-[Capability hosts](../concepts/capability-hosts.md) are sub-resources on both the account and the project that enable interaction with Agent Service.
+Capability settings are properties on the Foundry account and the project that declare which Azure resources hold agent state, vector data, and files. Set them on the account to establish defaults for its projects, and override an individual store on a project when that project needs a different resource.
 
-- **Account capability host**: Has an empty request body except for the parameter `capabilityHostKind="Agents"`.
-- **Project capability host**: Specifies resources for storing agent state, either Microsoft-managed multitenant (basic setup) or customer-owned (standard setup) single-tenant resources. The project capability host functions as the project settings.
+Agent Service provisions the required underlying infrastructure and the connections to your resources during provisioning. These capability-settings-managed connections are immutable while in use, so you can't edit or delete them directly. You also can't update capability settings on an existing project. To change which resources a project uses, delete and recreate the project with the desired settings.
 
-### Limitations
-
-- You can't update the capability host after it's set for a project or account.
+For the full settings list, permissions, and Bicep examples, see [Configure agent capability settings](../../how-to/configure-capability-settings.md).
 
 ## Provision resources step by step
 
@@ -99,36 +96,27 @@ Follow these steps to manually provision all resources needed for standard agent
     * [Optional] Azure Application Insights resource
     * [Optional] Existing Foundry resource
 
-#### Phase 2: Create foundry resources and connections
+#### Phase 2: Create Foundry resources and capability settings
 
 2. Create a Microsoft Foundry resource.
 3. Create account-level connections:
     * Create an account connection to the Application Insights resource.
 4. Deploy gpt-4o or another agent-compatible model.
-5. Create a project.
-6. Create project connections:
-    * [If provided] Project connection to the Foundry resource.
-    * Project connection to the Azure Storage account.
-    * Project connection to the Azure AI Search resource.
-    * Project connection to the Cosmos DB account.
+5. Set capability settings on the account, referencing the resource IDs of your Cosmos DB account, Azure AI Search service, and Storage account.
+6. Create a project. The project inherits the account capability settings unless you override an individual store. Agent Service provisions the required underlying infrastructure and the connections to your resources as part of this step.
 
-#### Phase 3: Assign roles to the project managed identity
+#### Phase 3: Assign runtime roles to the project managed identity
 
-The project managed identity includes both System-assigned Managed Identity (SMI) and User-assigned Managed Identity (UMI).
+The project managed identity includes both System-assigned Managed Identity (SMI) and User-assigned Managed Identity (UMI). These roles govern runtime access for running agents. They're separate from the permissions the deploying identity needs, and one doesn't substitute for the other.
 
 7. Assign the project managed identity (for SMI) the following roles:
     * **Cosmos DB Operator** at the account level for the Cosmos DB resource.
     * **Storage Account Contributor** at the account level for the Storage Account resource.
 
-#### Phase 4: Configure capability hosts
+#### Phase 4: Assign granular resource permissions
 
-8. Set the account capability host with an empty properties section.
-9. Set the project capability host with Cosmos DB, Azure Storage, and AI Search connections.
-
-#### Phase 5: Assign granular resource permissions
-
-10. Assign the project managed identity (both SMI and UMI) the following roles on the specified resource scopes:
-    * **Azure AI Search** (assign either before or after capability host creation):
+8. Assign the project managed identity (both SMI and UMI) the following roles on the specified resource scopes:
+    * **Azure AI Search**:
         * Search Index Data Contributor
         * Search Service Contributor
     * **Azure Blob Storage Container**: `<workspaceId>-azureml-blobstore`
@@ -139,9 +127,9 @@ The project managed identity includes both System-assigned Managed Identity (SMI
         * Cosmos DB Built-in Data Contributor
         * Scope: Database level to cover all containers (no individual container-specific role assignment is needed).
 
-#### Phase 6: Grant developer access
+#### Phase 5: Grant developer access
 
-11. Assign all developers who need to create or edit agents in the project the **Foundry User** role on the project scope.
+9. Assign all developers who need to create or edit agents in the project the **Foundry User** role on the project scope.
 
    [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
@@ -185,7 +173,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 An Azure Cosmos DB for NoSQL account is created for each Foundry account. For throughput requirements and multi-project scaling, see [Cosmos DB throughput requirements](#cosmos-db-throughput-requirements).
 
 > [!NOTE]
-> Insufficient RU/s capacity in the Cosmos DB account results in capability host provisioning failures during deployment.
+> Insufficient RU/s capacity in the Cosmos DB account causes provisioning failures during deployment.
 
 1. Sign in to the Azure CLI and select the subscription with your Cosmos DB account:
 
@@ -232,22 +220,22 @@ An Azure Cosmos DB for NoSQL account is created for each Foundry account. For th
 After you complete provisioning, verify the setup is working correctly:
 
 1. In the Azure portal, navigate to your Foundry project and confirm that all connections (Storage, Cosmos DB, AI Search) appear under the project settings.
-1. Check that the capability host status shows as **Succeeded** for both the account and project.
+1. Confirm that a GET on the project returns the capability settings you expect, including any values inherited from the account.
 1. Verify role assignments by navigating to each resource's **Access control (IAM)** page and confirming the project managed identity has the expected roles.
 1. Create a test agent to confirm end-to-end functionality.
 
 ## Troubleshoot common issues
 
 | Symptom | Cause | Resolution |
-|---------|-------|------------|
-| `CapabilityHostProvisioningFailed` or capability host status shows **Failed** | Insufficient Cosmos DB throughput | Ensure your Cosmos DB account has at least 3000 RU/s (1000 RU/s per container × 3 containers). For multiple projects, multiply by the number of projects. |
+| --- | --- | --- |
+| Provisioning fails with a Cosmos DB throughput error | Insufficient Cosmos DB throughput | Ensure your Cosmos DB account has at least 3000 RU/s (1000 RU/s per container × 3 containers). For multiple projects, multiply by the number of projects. |
 | `403 Forbidden` when the agent reads or writes files | Missing storage role assignments | Verify the project managed identity has **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container and **Storage Blob Data Owner** on the `<workspaceId>-azureml-agent` container. |
 | `SearchIndexNotFound` or `403` on search operations | Missing search roles | Confirm that the project managed identity has both **Search Index Data Contributor** and **Search Service Contributor** on your Azure AI Search resource. |
 | `AuthorizationFailed` when creating or editing agents | Missing user role | Assign the **Foundry User** role to the developer on the project scope. |
-| Update request to capability host returns `400 BadRequest` | Update not supported | Capability hosts can't be updated after creation. Delete and recreate the project if configuration changes are needed. |
+| Deployment fails before any resource is provisioned | The deploying identity is missing a provisioning role | Confirm the caller holds **Storage Blob Data Contributor** and **Cosmos DB Operator**. See [Configure agent capability settings](../../how-to/configure-capability-settings.md#permissions). |
 
 ## Related content
 
 - [Set up your environment for Foundry Agent Service](../environment-setup.md)
-- [Capability hosts](../concepts/capability-hosts.md)
+- [Configure agent capability settings](../../how-to/configure-capability-settings.md)
 - [Standard agent setup Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep)

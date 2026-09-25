@@ -2,7 +2,7 @@
 title: "Connect to your own storage"
 ms.reviewer: andyaviles
 description: "Learn how to bring your own storage to Microsoft Foundry for agents, evaluations, datasets, and other capabilities."
-# customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
+# customer intent: As a developer, I want to configure agent capability settings so that I can use my own storage instead of Microsoft-managed storage.
 author: s-polly
 ms.author: scottpolly
 ms.service: microsoft-foundry

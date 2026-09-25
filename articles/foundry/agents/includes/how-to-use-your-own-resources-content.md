@@ -39,7 +39,7 @@ If you want to continue using your hub-based project and connection string, you 
 ### Azure Cosmos DB for NoSQL to store conversations
 
 - Your existing Azure Cosmos DB for NoSQL account used in a [standard setup](#choose-basic-or-standard-agent-setup) must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported.
-- Three to five containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s. Three are created during capability host provisioning, and up to two more are created dynamically when you create agents that use the Responses API.
+- Three to five containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s. Three are created when Agent Service provisions the required underlying infrastructure, and up to two more are created dynamically when you create agents that use the Responses API.
 
 > [!NOTE]
 > * Make sure your Azure OpenAI resource and Foundry account and project are in the same region. 
@@ -156,7 +156,7 @@ An Azure Cosmos DB for NoSQL account is created for each Foundry account.
 
 For every project under a Foundry account, three to five containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s. Container names are prefixed with the project ID:
 
-- `<project-id>-thread-message-store`, `<project-id>-system-thread-message-store`, and `<project-id>-agent-entity-store` are created during capability host provisioning.
+- `<project-id>-thread-message-store`, `<project-id>-system-thread-message-store`, and `<project-id>-agent-entity-store` are created when Agent Service provisions the required underlying infrastructure.
 - `<project-id>-agent-definitions-v1` and `<project-id>-run-state-v1` are created dynamically when the project's first agent that uses the Responses API is invoked.
 
 For example, if two projects are deployed under the same Foundry account and both use Responses API agents, the Cosmos DB account must be configured with at least 10,000 RU/s (5 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput. If projects use only classic agents (Assistants API), 6,000 RU/s is sufficient.
@@ -164,7 +164,7 @@ For example, if two projects are deployed under the same Foundry account and bot
 Both provisioned throughput and serverless modes are supported.
 
 > [!NOTE]
-> Insufficient RU/s capacity in the Cosmos DB account causes capability host provisioning failures during deployment.
+> Insufficient RU/s capacity in the Cosmos DB account causes provisioning failures during deployment.
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     

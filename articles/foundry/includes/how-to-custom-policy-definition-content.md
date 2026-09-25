@@ -8,13 +8,14 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 08/20/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Learn how to use custom Azure policies to enable teams to self-manage Microsoft Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
 
 By using custom policies, you can:
 
-- **Enforce governance**: Prevent unauthorized creation of Foundry accounts, projects, connections, or capability hosts.
+- **Enforce governance**: Prevent unauthorized creation of Foundry accounts, projects, or connections, and control which Azure resources accounts and projects can declare in their capability settings.
 - **Control resource behavior**: Ensure security configurations, enforce tagging, or allow only approved integrations.
 - **Ensure compliance**: Apply enterprise security and operational standards consistently across environments.
 
@@ -128,7 +129,7 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
 - **Deny connections that use API keys as the authentication type**  
   Require all other authentication types because API keys are typically less secure.
 
-- **Audit Foundry resources without a valid Agent capability host**  
+- **Audit Foundry resources without valid agent capability settings**  
   Check for the existence of a virtual network subnet ARM ID and custom storage resources when using Agent service in a regulated environment.
 
 - **Deny creation of account kinds that don't have full Foundry capabilities**  

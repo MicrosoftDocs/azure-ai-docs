@@ -37,7 +37,7 @@ When you add Bicep infrastructure, the templates are based on the [azd-ai-starte
 
 The templates create more resources conditionally, based on the services and dependencies declared in `azure.yaml`:
 
-* Capability host -- supports hosted agent deployment on the Foundry project. Created when you need custom storage of conversations.
+* Agent capability settings -- declare the Azure resources that hold agent state, vector data, and files. Set them when you need agents to use storage you own.
 * Grounding with Bing or Grounding with Bing Custom Search -- for the web search tool.
 * Azure AI Search -- for search grounding.
 * Azure Storage -- for file operations.
