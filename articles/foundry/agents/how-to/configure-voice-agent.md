@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 09/22/2026
+ms.date: 09/25/2026
 ms.custom: preview
 ai-usage: ai-assisted
 zone_pivot_groups: voice-agent-config-method
@@ -846,7 +846,7 @@ For more information about audio formats and turn detection, see [How to use the
 
 ### Add a telephony binding
 
-A prompt voice service can declare Foundry-side phone bindings in `azure.yaml`. Before adding a binding, configure the phone provider account or resource, the phone number, and a Foundry project connection for that provider. Configure provider-side delivery, such as a Twilio webhook or an Azure Communication Services Event Grid subscription, separately.
+A prompt voice service can declare Foundry-side phone bindings in `azure.yaml`. Before adding a binding, configure the phone provider account or resource, the phone number, and a Foundry project connection for that provider. For provider-specific connection and incoming-call delivery requirements, see [Integrate telephony channels with a voice agent](voice-agent-telephony-channels.md).
 
 Add `telephony` at the same indentation level as `kind`, `model`, and `name`:
 
@@ -890,7 +890,7 @@ Use the Foundry playground to test the voice, greeting, interruption, and transc
 
 ### Remove a telephony binding
 
-This PowerShell example removes the Twilio binding configured in this section. It uses azd's telephony route, `/agents/{agentName}/telephony/{bindingId}`, with `api-version=2025-11-15-preview`. Don't substitute the `/telephony/bindings` routes or `api-version=v1` from the separate Teams Phone REST examples.
+This PowerShell example removes the Twilio binding configured in this section. It uses azd's telephony route, `/agents/{agentName}/telephony/{bindingId}`, with `api-version=2025-11-15-preview`. Don't mix this route's identifier format with the `/telephony/bindings` routes and `api-version=v1` in the [telephony SDK and REST guide](voice-agent-telephony-channels.md#understand-telephony-bindings).
 
 Install the [Azure CLI](/cli/azure/install-azure-cli) and sign in with `az login` to the project's Microsoft Entra tenant. Replace `<project-endpoint>`, `<agent-name>`, and the example phone number with the values for your binding. Read the binding and review the returned provider, identifier, and connection before deleting it:
 

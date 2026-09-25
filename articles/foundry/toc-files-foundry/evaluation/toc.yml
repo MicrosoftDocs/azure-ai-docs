@@ -2,6 +2,8 @@ items:
 # Fundamentals
 - name: Rate limits and regions
   href: ../../concepts/evaluation-regions-limits-virtual-network.md
+- name: Virtual network support 
+  href: ../../concepts/evaluation-virtual-network.md
 - name: Safety evaluations transparency note
   href: ../../concepts/safety-evaluations-transparency-note.md
 

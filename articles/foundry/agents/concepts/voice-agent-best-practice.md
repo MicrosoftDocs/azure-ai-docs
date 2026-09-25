@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 09/17/2026
+ms.date: 09/25/2026
 ms.custom: preview
 ai-usage: ai-assisted
 ---
@@ -180,8 +180,8 @@ Every change creates a new immutable version. Test a new version against the end
 - [ ] Monitoring alerts and investigation ownership are defined.
 - [ ] Evaluation uses representative existing conversations.
 - [ ] Preview web app access is tested with intended users.
-- [ ] Phone-number security and Event Grid delivery are validated.
-- [ ] Model, Speech, avatar, ACS, Teams, and monitoring costs are reviewed.
+- [ ] Phone-number security and provider callbacks are validated, including Event Grid delivery for Teams inbound calls.
+- [ ] Model, Speech, avatar, telephony-provider, and monitoring costs are reviewed.
 - [ ] A versioned rollback plan exists.
 
 ## Related content
