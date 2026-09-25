@@ -50,8 +50,10 @@ The following sample shows how to:
 First, create an MCP client that connects to your desired MCP server:
 
 ```csharp
+using ModelContextProtocol.Client;
+
 // Create an MCPClient for the GitHub server
-await using var mcpClient = await McpClientFactory.CreateAsync(new StdioClientTransport(new()
+await using var mcpClient = await McpClient.CreateAsync(new StdioClientTransport(new()
 {
     Name = "MCPServer",
     Command = "npx",
@@ -81,6 +83,11 @@ The `ListToolsAsync()` method returns a collection of tools that the MCP server 
 Create your agent and provide the MCP tools during initialization:
 
 ```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+
 AIAgent agent = new AIProjectClient(
     new Uri(endpoint),
     new DefaultAzureCredential())
@@ -131,7 +138,7 @@ var deploymentName = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT
 Always properly dispose of MCP client resources:
 
 ```csharp
-await using var mcpClient = await McpClientFactory.CreateAsync(...);
+await using var mcpClient = await McpClient.CreateAsync(...);
 ```
 
 Using `await using` ensures the MCP client connection is properly closed when it goes out of scope.

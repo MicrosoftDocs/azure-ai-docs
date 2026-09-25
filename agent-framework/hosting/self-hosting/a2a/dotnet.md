@@ -81,7 +81,7 @@ app.MapWellKnownAgentCard(new AgentCard
 app.Run();
 ```
 
-The agent is now reachable at `/a2a/weather-agent` over the A2A HTTP+JSON protocol binding, and its agent card is discoverable at `/.well-known/agent.json`. Any A2A-compliant client can discover and communicate with this agent.
+The agent is now reachable at `/a2a/weather-agent` over the A2A HTTP+JSON protocol binding, and its agent card is discoverable at `/.well-known/agent-card.json`. Any A2A-compliant client can discover and communicate with this agent.
 
 ## Protocol bindings
 

@@ -48,6 +48,7 @@ dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 Create an `AIProjectClient` for the Foundry project and wrap an `AgentReference` as a `FoundryAgent`. Pin the version when the application must use a specific Prompt Agent definition.
 
 ```csharp
+using Azure.AI.Extensions.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Projects.Agents;
 using Azure.Identity;

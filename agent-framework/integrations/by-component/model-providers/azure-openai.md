@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: westey
 ms.date: 07/28/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Azure OpenAI
@@ -43,6 +44,8 @@ using System;
 using Azure.AI.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI;
+using OpenAI.Chat;
+using OpenAI.Responses;
 
 AzureOpenAIClient client = new AzureOpenAIClient(
     new Uri("https://<myresource>.openai.azure.com"),
@@ -96,7 +99,11 @@ You can provide custom function tools to any Azure OpenAI agent:
 
 ```csharp
 using System.ComponentModel;
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using OpenAI.Chat;
 
 [Description("Get the weather for a given location.")]
 static string GetWeather([Description("The location to get the weather for.")] string location)

@@ -98,6 +98,7 @@ You can also simply edit the `appsettings.json`, but that's not recommended for 
 
 Replace the contents of `Program.cs` with the following code and run the application:
 ```csharp
+using A2A;
 using A2A.AspNetCore;
 using Azure.AI.Projects;
 using Azure.Identity;
@@ -125,8 +126,9 @@ IChatClient chatClient = new AIProjectClient(
 
 builder.Services.AddSingleton(chatClient);
 
-// Register an agent
+// Register an agent and its A2A server
 var pirateAgent = builder.AddAIAgent("pirate", instructions: "You are a pirate. Speak like a pirate.");
+pirateAgent.AddA2AServer();
 
 var app = builder.Build();
 
@@ -134,12 +136,24 @@ app.MapOpenApi();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Expose the agent via A2A protocol. You can also customize the agentCard
-app.MapA2A(pirateAgent, path: "/a2a/pirate", agentCard: new()
+// Expose the agent via the A2A HTTP+JSON protocol binding
+app.MapA2AHttpJson(pirateAgent, "/a2a/pirate");
+
+// Publish the agent card for discovery
+app.MapWellKnownAgentCard(new AgentCard
 {
     Name = "Pirate Agent",
     Description = "An agent that speaks like a pirate.",
-    Version = "1.0"
+    Version = "1.0",
+    SupportedInterfaces =
+    [
+        new AgentInterface
+        {
+            Url = "http://localhost:5000/a2a/pirate",
+            ProtocolBinding = ProtocolBindingNames.HttpJson,
+            ProtocolVersion = "1.0",
+        }
+    ]
 });
 
 app.Run();
@@ -158,39 +172,36 @@ The input format complies with the A2A specification. You can provide values for
 
 ```http
 # Send A2A request to the pirate agent
-POST {{baseAddress}}/a2a/pirate/v1/message:stream
+POST {{baseAddress}}/a2a/pirate/message:send
 Content-Type: application/json
 {
   "message": {
-    "kind": "message",
-    "role": "user",
+    "role": "ROLE_USER",
     "parts": [
       {
-        "kind": "text",
-        "text": "Hey pirate! Tell me where have you been",
-        "metadata": {}
+        "text": "Hey pirate! Tell me where have you been"
       }
     ],
-	"messageId": null,
+    "messageId": null,
     "contextId": "foo"
   }
 }
 ```
-_Note: Replace `{{baseAddress}}` with your server endpoint._
+_Note: Replace `{{baseAddress}}` with your server endpoint. To stream the response as server-sent events, send the same request to `{{baseAddress}}/a2a/pirate/message:stream`._
 
 This request returns the following JSON response:
 ```json
 {
-	"kind": "message",
-	"role": "agent",
-	"parts": [
-		{
-			"kind": "text",
-			"text": "Arrr, ye scallywag! Ye’ll have to tell me what yer after, or be I walkin’ the plank? 🏴‍☠️"
-		}
-	],
-	"messageId": "chatcmpl-CXtJbisgIJCg36Z44U16etngjAKRk",
-	"contextId": "foo"
+  "message": {
+    "role": "ROLE_AGENT",
+    "parts": [
+      {
+        "text": "Arrr, ye scallywag! Ye’ll have to tell me what yer after, or be I walkin’ the plank? 🏴‍☠️"
+      }
+    ],
+    "messageId": "e20b2618a5504913815bc513ce315cd2",
+    "contextId": "foo"
+  }
 }
 ```
 
@@ -198,20 +209,29 @@ The response includes the `contextId` (conversation identifier), `messageId` (me
 
 ## AgentCard Configuration
 
-The `AgentCard` provides metadata about your agent for discovery and integration:
+The `AgentCard` provides metadata about your agent for discovery and integration. Publish it with `MapWellKnownAgentCard`, which the A2A SDK package (`A2A.AspNetCore`) provides:
 ```csharp
-app.MapA2A(agent, "/a2a/my-agent", agentCard: new()
+app.MapWellKnownAgentCard(new AgentCard
 {
     Name = "My Agent",
     Description = "A helpful agent that assists with tasks.",
     Version = "1.0",
+    SupportedInterfaces =
+    [
+        new AgentInterface
+        {
+            Url = "http://localhost:5000/a2a/my-agent",
+            ProtocolBinding = ProtocolBindingNames.HttpJson,
+            ProtocolVersion = "1.0",
+        }
+    ]
 });
 ```
 
 You can access the agent card by sending this request:
 ```http
-# Send A2A request to the pirate agent
-GET {{baseAddress}}/a2a/pirate/v1/card
+# Get the agent card
+GET {{baseAddress}}/.well-known/agent-card.json
 ```
 _Note: Replace `{{baseAddress}}` with your server endpoint._
 
@@ -220,19 +240,24 @@ _Note: Replace `{{baseAddress}}` with your server endpoint._
 - **Name**: Display name of the agent
 - **Description**: Brief description of the agent
 - **Version**: Version string for the agent
-- **Url**: Endpoint URL (automatically assigned if not specified)
+- **SupportedInterfaces**: The URL, protocol binding, and protocol version of each endpoint that serves the agent
 - **Capabilities**: Optional metadata about streaming, push notifications, and other features
 
 ## Exposing Multiple Agents
 
-You can expose multiple agents in a single application, as long as their endpoints don't collide. Here's an example:
+You can expose multiple agents in a single application, as long as their endpoints don't collide. Register an A2A server for each agent, then map each one to its own path. Here's an example:
 
 ```csharp
 var mathAgent = builder.AddAIAgent("math", instructions: "You are a math expert.");
 var scienceAgent = builder.AddAIAgent("science", instructions: "You are a science expert.");
 
-app.MapA2A(mathAgent, "/a2a/math");
-app.MapA2A(scienceAgent, "/a2a/science");
+mathAgent.AddA2AServer();
+scienceAgent.AddA2AServer();
+
+var app = builder.Build();
+
+app.MapA2AHttpJson(mathAgent, "/a2a/math");
+app.MapA2AHttpJson(scienceAgent, "/a2a/science");
 ```
 
 ::: zone-end
