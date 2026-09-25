@@ -318,11 +318,13 @@ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) specifies 
 
 | Resource | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 | Serverless Developer |
 |--|--|--|--|--|--|--|--|--|--|
-| Maximum knowledge sources per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
-| Maximum knowledge bases per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 0 | 10 | 10 | 30 |
-| Maximum knowledge sources per knowledge base | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 | 10 |
+| Maximum knowledge sources per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service <sup>2</sup> | 10 | 10 | 30 |
+| Maximum knowledge bases per service | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service <sup>2</sup> | 10 | 10 | 30 |
+| Maximum knowledge sources per knowledge base | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 10 <sup>2</sup> | 10 | 10 | 10 |
 
 <sup>1</sup> Basic services created before April 3, 2024 have lower limits (5) on knowledge sources and knowledge bases.
+
+<sup>2</sup> These limits apply to S3 HD services that support knowledge bases and knowledge sources. Some older S3 HD services don't support these resources.
 
 ### Knowledge source selection during retrieval
 
@@ -330,10 +332,10 @@ A knowledge base can contain up to the tier-specific maximum shown above, regard
 
 | API version | Retrieval reasoning effort | Free | Basic | S1 | S2 | S3 | S3 HD | L1 | L2 |
 |--|--|--|--|--|--|--|--|--|--|
-| `2026-05-01-preview` and later | `minimal`, `low`, `medium` | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 |
-| `2026-04-01`, `2025-11-01-preview` | `minimal` <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 0 | 10 | 10 |
-| `2025-11-01-preview` | `low` | 3 | 3 | 3 | 3 | 3 | 0 | 3 | 3 |
-| `2025-11-01-preview` | `medium` | 3 | 5 | 5 | 5 | 5 | 0 | 5 | 5 |
+| `2026-05-01-preview` and later | `minimal`, `low`, `medium` | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 10 | 10 | 10 |
+| `2026-04-01`, `2025-11-01-preview` | `minimal` <sup>2</sup> | 3 | 5 or 10 <sup>1</sup> | 10 | 10 | 10 | 10 | 10 | 10 |
+| `2025-11-01-preview` | `low` | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| `2025-11-01-preview` | `medium` | 3 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
 
 The `2025-08-01-preview` uses the legacy knowledge agent contract and doesn't support `retrievalReasoningEffort`.
 
