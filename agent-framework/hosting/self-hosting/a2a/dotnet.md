@@ -20,7 +20,7 @@ The Agent Framework provides hosting packages that expose your AI agents via the
 
 ## Getting started
 
-Install the ASP.NET Core hosting package (it pulls in the core hosting package and the A2A SDK packages automatically):
+Install the ASP.NET Core hosting package (it automatically installs the core hosting package and the A2A SDK packages):
 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Hosting.A2A.AspNetCore --prerelease
