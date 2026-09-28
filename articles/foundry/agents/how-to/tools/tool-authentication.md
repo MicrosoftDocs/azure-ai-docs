@@ -20,6 +20,8 @@ Toolbox authentication in Microsoft Foundry determines how tools authenticate to
 
 This article explains how toolbox authentication works and shows how to configure OAuth identity passthrough for a private MCP server and Work IQ while preserving each user's permissions and access boundaries.
 
+For user delegation with MCP and other tools, the recommended approach is to connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
+
 A [toolbox](../../concepts/toolbox-overview.md) centralizes authentication on the connection. Authentication is a property of the connection, not code in your agent. When you connect a tool, you select an authentication type and Foundry handles token acquisition, exchange, refresh, and injection on the service side. Your agent code remains focused on business logic rather than authentication flows.
 
 ## Why per-user authentication is hard to build yourself
@@ -35,9 +37,7 @@ If you wire up per-user access to Entra-protected tools yourself, you take on se
 The mental model to hold onto: there are always two identities in play, and everything hard about per-user authentication lives in keeping them correct, separate, and never crossed across concurrent users.
 
 - **Agent-to-toolbox boundary (the stable one).** The agent authenticates to the platform with its own agent identity. This identity gates access to the *toolbox itself*, not the individual tools inside it.
-- **Tool-to-data boundary.** For a connection configured with per-user authentication, Foundry supplies the downstream service with credentials that represent the user. Those credentials come from an OAuth authorization flow or an audience-specific Microsoft Entra access token. The downstream service enforces the user's permissions. Other connection types use anonymous access, shared credentials, or service identities instead.
-
-Agent authentication alone doesn't establish user delegation. A hosted agent must forward the current request's caller context to Foundry's toolbox proxy. The connection must use the appropriate per-user authentication type (`oauth2` or `user-entra-token`), and the user needs downstream permissions and any required consent.
+- **Tool-to-data boundary (the per-user one).** For the actual data call, Foundry supplies the downstream service with credentials that represent the signed-in user. Depending on the authentication type, those credentials come from an OAuth authorization flow or an audience-specific Microsoft Entra access token. The downstream service returns only what the user can access and honors their permissions and sensitivity labels.
 
 ## How a toolbox handles authentication
 
@@ -177,7 +177,7 @@ azd ai connection create workiq-conn \
 
 ### 2. Add both tools to a toolbox
 
-Each tool references its connection by ID. The connection's authentication type determines which credentials Foundry uses downstream. Per-user access also requires caller context from the hosted integration and the user's permissions and consent. Your agent doesn't need a token broker or per-user token cache.
+Each tool references its connection by ID. That single reference is the entire difference between running as a shared service account and acting on behalf of the signed-in user. Your agent doesn't need a token broker or per-user token cache.
 
 This example requires `azure-ai-projects` (Python) or `@azure/ai-projects` (TypeScript) version 2.3.0 or later.
 
@@ -290,27 +290,37 @@ For JavaScript, see the maintained [toolbox project-connection sample](https://g
 
 ### 3. Connect the agent to the toolbox
 
-The agent connects to the toolbox's consumer endpoint, which serves the default version, and authenticates with its own identity. For the OAuth connections in this walkthrough, Foundry supplies downstream credentials for the user who authorized the connection.
+The agent connects to the toolbox's single consumer endpoint, which always serves the default version. The agent authenticates to the platform with its own identity. For each tool, Foundry supplies credentials that represent the user who completed OAuth authorization. The agent carries no per-tool authentication code.
 
-Use Microsoft Agent Framework's `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET with the Foundry hosting integration. In Python, import `FoundryToolbox` from `agent_framework.foundry`; the preview `agent-framework-foundry-hosting` package supplies it alongside `agent-framework-foundry`. Follow [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md) for package installation and complete hosting examples.
+```python
+from azure.identity import DefaultAzureCredential
+from agent_framework import FoundryToolbox
 
-These integrations authenticate each MCP request and forward the hosted runtime's per-request `x-agent-foundry-call-id`. Foundry's toolbox proxy uses this value to resolve caller context for user delegation. A generic MCP client that sends only a bearer token doesn't provide that context. Don't hard-code the call ID or reuse it across requests.
+# Agent-to-toolbox identity: the agent's own credential, scoped to the platform
+credential = DefaultAzureCredential()
+, timeout=120.0)
+
+# Consumer endpoint always resolves to the toolbox's default version
+CONSUMER_URL = f"{endpoint}/toolboxes/employee-toolbox/mcp?api-version=v1"
+
+toolbox = FoundryToolbox(
+    name="employee_toolbox",
+    url=CONSUMER_URL,
+    http_client=http_client,
+    load_prompts=False,
+)
+
+agent = chat_client.as_agent(
+    name="employee-agent",
+    instructions="Help employees with their orders and Microsoft 365 context.",
+    tools=[toolbox],
+)
+```
 
 Foundry generates a consent link the first time a particular user needs to authorize a tool. After they consent, subsequent calls use that user's credentials. The user might need to authorize the tool again if the refresh token expires or is revoked.
 
 > [!NOTE]
 > Consumers of an agent that uses OAuth identity passthrough need at least the **Foundry Agent Consumer** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project; cross-tenant token exchange isn't supported.
-
-## Verify end-to-end user delegation
-
-Test the deployed agent through the client or channel your users use. A successful MCP `tools/list` response or a local run with developer credentials doesn't prove end-to-end user delegation.
-
-1. Sign in as a user with known permissions on the downstream service.
-1. Ask the deployed agent to call a tool configured with `oauth2` or `user-entra-token`. Complete any required consent flow.
-1. Verify that the tool returns data the user can access and doesn't return data outside those permissions.
-1. Repeat with a different user whose permissions differ. Confirm that results reflect that user's access, not the first user's or the agent's permissions.
-
-For a maintained consent-flow example, see [Hosted-Toolbox-AuthPaths](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths). If discovery succeeds but delegated calls fail, see [Troubleshoot the connection](use-toolbox-hosted-agent.md#troubleshoot-the-connection).
 
 ## Beyond passthrough: what else a toolbox gives you
 

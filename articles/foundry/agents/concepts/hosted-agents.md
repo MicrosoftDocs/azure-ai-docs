@@ -134,7 +134,7 @@ When integrated via Microsoft 365 channels (for example, Teams), hosted agents c
 
 In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
 
-Agent authentication alone doesn't establish delegated user access to toolbox tools. The hosted integration must forward the current request's caller context to Foundry. The tool's connection must use the appropriate per-user authentication type (`oauth2` or `user-entra-token`), and the user needs downstream permissions and any required consent. See [Toolbox authentication](../how-to/tools/tool-authentication.md).
+For user delegation with MCP and other tools, the recommended approach is to connect those tools through a [Foundry toolbox](../how-to/tools/toolbox.md). For Microsoft Agent Framework integration, see [Toolbox in Foundry](#toolbox-in-foundry).
 
 For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
@@ -217,11 +217,7 @@ For configuration and analysis guidance, see [Enable tracing in your project](..
 
 ### Toolbox in Foundry
 
-Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more.
-
-For Microsoft Agent Framework hosted agents, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET with the Foundry hosting integration. These integrations authenticate each MCP request and forward the hosted runtime's per-request `x-agent-foundry-call-id`. Foundry's toolbox proxy uses that value to resolve caller context for user delegation. A generic MCP client that sends only a bearer token doesn't provide that context. Don't hard-code the call ID or reuse it across requests.
-
-For setup and package requirements, see [Use a toolbox with a hosted agent](../how-to/tools/use-toolbox-hosted-agent.md). Other runtimes must implement the hosted-agent runtime contract, including forwarding caller context for delegated tool calls.
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. When adding a toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET instead of a generic MCP client. Other runtimes connect by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
