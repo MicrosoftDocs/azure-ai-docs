@@ -4,7 +4,7 @@ description: Add cross-platform CodeAct execution to Agent Framework Python agen
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/19/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -58,7 +58,18 @@ Tools omitted from a mapping use compact format. Compact rendering automatically
 - Monty resource limits
 - files returned from read-write mounts as Agent Framework content
 
-Monty doesn't provide an outbound URL allow list. Provide network access through a narrow host tool that validates destinations and inputs.
+## Network access and Python packages
+
+Monty runs its own Python interpreter, not the host's Python environment. This
+integration doesn't provide `pip` or another package-installation option.
+Installing a dependency on the host doesn't make it importable in Monty code.
+Use the interpreter's supported modules for code that runs inside Monty.
+
+Monty doesn't provide an `allowed_domains` option. For external API calls or
+operations that require host-installed packages, register a narrow host tool
+and invoke it from Monty code. Keep credentials, authorization, and
+destination allow-list checks in that function because it executes on the
+host, outside the Monty interpreter.
 
 ## Choose Monty or Hyperlight
 
