@@ -343,7 +343,7 @@ Include the hosted target in the wrapper's `uses` list to order deployment. The 
 
 Model calls, instructions, and tools belong to the target. Audio and greeting settings belong to the wrapper. The older `modelType: hosted_agent` and `targetAgent` settings aren't supported; use `conversationEngine`.
 
-For the complete two-service sample, see [Deploy a hosted voice agent with azd](../how-to/deploy-hosted-voice-agent.md).
+For the complete two-service sample, see [Use a hosted agent as the conversation engine in a voice-based agent](../../how-to/voice-first-with-hosted-agent.md#deploy-both-agents-with-the-azure-developer-cli).
 
 #### Telephony bindings
 

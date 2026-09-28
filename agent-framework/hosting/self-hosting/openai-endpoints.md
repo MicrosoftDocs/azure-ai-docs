@@ -7,6 +7,7 @@ ms.service: agent-framework
 ms.topic: tutorial
 ms.date: 08/17/2026
 ms.author: dmkorolev
+ai-usage: ai-assisted
 ---
 
 # OpenAI-Compatible Endpoints
@@ -69,14 +70,12 @@ Install the following packages:
   Run the following commands in your project directory to install the required NuGet packages:
   
   ```bash
-  # Hosting.A2A.AspNetCore for OpenAI ChatCompletions/Responses protocol(s) integration
+  # Hosting.OpenAI for OpenAI ChatCompletions/Responses protocol(s) integration
   dotnet add package Microsoft.Agents.AI.Hosting.OpenAI --prerelease
 
   # Libraries to connect to Azure OpenAI
   dotnet add package Azure.AI.OpenAI --prerelease
   dotnet add package Azure.Identity
-  dotnet add package Microsoft.Extensions.AI
-  dotnet add package Microsoft.Extensions.AI.OpenAI --prerelease
 
   # Swagger to test app
   dotnet add package Microsoft.AspNetCore.OpenApi

@@ -377,6 +377,8 @@ The gateway forwards these caller headers to the Responses and Invocations proto
 
 The gateway never forwards credential headers such as `Authorization`, or `Host`, `Cookie`, and `x-forwarded-*`. Any header that doesn't match the allowlist is dropped, so don't rely on custom headers outside the `x-client-*` prefix reaching your container.
 
+For application-managed delegated API access, see [Use on-behalf-of flow with hosted agents](../how-to/use-on-behalf-of-flow.md). The middle tier performs the token exchange and forwards the downstream token through an `x-client-*` header; header forwarding doesn't perform OBO.
+
 ## Related content
 
 * [What are hosted agents?](hosted-agents.md)

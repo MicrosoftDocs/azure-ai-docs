@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry/agents/how-to/deploy-hosted-voice-agent.md",
+      "redirect_url": "/azure/foundry/how-to/voice-first-with-hosted-agent",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/foundry-classic/openai/how-to/assistant.md",
       "redirect_url": "/previous-versions/azure/foundry-classic/openai/how-to/assistant",
       "redirect_document_id": false

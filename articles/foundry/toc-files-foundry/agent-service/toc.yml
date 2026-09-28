@@ -72,8 +72,6 @@ items:
       items:
       - name: Configure a voice agent
         href: ../../agents/how-to/configure-voice-agent.md
-      - name: Deploy a hosted voice agent with azd
-        href: ../../agents/how-to/deploy-hosted-voice-agent.md
       - name: Use a hosted agent as the conversation engine
         href: ../../how-to/voice-first-with-hosted-agent.md
       - name: Use a subagent
@@ -144,6 +142,8 @@ items:
       href: ../../agents/how-to/update-hosted-agent-model.md
     - name: Add a protocol adapter
       href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Use on-behalf-of flow
+      href: ../../agents/how-to/use-on-behalf-of-flow.md
     - name: Host Microsoft Agent Framework agents
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
@@ -212,8 +212,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
-    - name: Deploy a hosted voice agent with azd (preview)
-      href: ../../agents/how-to/deploy-hosted-voice-agent.md
+    - name: Use a hosted agent as a voice agent's conversation engine (preview)
+      href: ../../how-to/voice-first-with-hosted-agent.md
     - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle
