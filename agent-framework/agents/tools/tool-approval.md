@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/01/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Using function tools with human in the loop approvals
@@ -171,7 +172,11 @@ Since you now have a function that requires approval, the agent might respond wi
 You can check the response for any user input requests, which indicates that the agent requires user approval for a function.
 
 ```python
-result = await agent.run("What is the detailed weather like in Amsterdam?")
+session = agent.create_session()
+result = await agent.run(
+    "What is the detailed weather like in Amsterdam?",
+    session=session,
+)
 
 if result.user_input_requests:
     for user_input_needed in result.user_input_requests:
@@ -187,7 +192,8 @@ This can be shown to the user, so that they can decide whether to approve or rej
 Once the user has provided their input, you can create a response using the `to_function_approval_response` method on the user input request.
 Pass `True` to approve the function call, or `False` to reject it.
 
-The response can then be passed to the agent in a new `Message`, to get the result back from the agent.
+Pass the response to the agent in a new `Message` with the same `AgentSession`
+that recorded the approval request.
 
 ```python
 from agent_framework import Message
@@ -202,11 +208,7 @@ approval_message = Message(
 )
 
 # Continue the conversation with the approval
-final_result = await agent.run([
-    "What is the detailed weather like in Amsterdam?",
-    Message(role="assistant", contents=[user_input_needed]),
-    approval_message
-])
+final_result = await agent.run(approval_message, session=session)
 print(final_result.text)
 ```
 
@@ -217,26 +219,24 @@ When working with multiple function calls that require approval, you may need to
 ```python
 async def handle_approvals(query: str, agent) -> str:
     """Handle function call approvals in a loop."""
+    session = agent.create_session()
     current_input = query
 
     while True:
-        result = await agent.run(current_input)
+        result = await agent.run(current_input, session=session)
 
         if not result.user_input_requests:
             # No more approvals needed, return the final result
             return result.text
 
-        # Build new input with all context
-        new_inputs = [query]
+        # Build the approval responses for the requests stored in the session.
+        new_inputs = []
 
         for user_input_needed in result.user_input_requests:
             if user_input_needed.function_call is None:
                 continue
             print(f"Approval needed for: {user_input_needed.function_call.name}")
             print(f"Arguments: {user_input_needed.function_call.arguments}")
-
-            # Add the assistant message with the approval request
-            new_inputs.append(Message(role="assistant", contents=[user_input_needed]))
 
             # Get user approval (in practice, this would be interactive)
             user_approval = True  # Replace with actual user input
@@ -256,6 +256,15 @@ print(result_text)
 
 Whenever you are using function tools with human in the loop approvals, remember to check for user input requests in the response, after each agent run, until all function calls have been approved or rejected.
 
+> [!IMPORTANT]
+> By default, a local approval response authorizes a tool call only when it
+> matches a pending approval request recorded in the same `AgentSession`. The
+> framework ignores an unbound response and logs a warning. Set
+> `client.function_invocation_configuration["disable_approval_response_binding"] = True`
+> only when your application enforces equivalent binding before messages reach
+> the agent. This opt-out restores the previous unbound behavior and can let a
+> fabricated or replayed response approve a privileged tool call.
+
 ### Complete example
 
 ```python
@@ -269,7 +278,7 @@ from agent_framework import Agent, AgentResponse, Message, tool
 from agent_framework.openai import OpenAIChatClient
 
 if TYPE_CHECKING:
-    from agent_framework import SupportsAgentRun
+    from agent_framework import AgentSession, SupportsAgentRun
 
 """
 Demonstration of a tool with approvals.
@@ -301,16 +310,15 @@ def get_weather_detail(location: Annotated[str, "The city and state, e.g. San Fr
     )
 
 
-async def handle_approvals(query: str, agent: "SupportsAgentRun") -> AgentResponse:
-    """Handle function call approvals.
-
-    When we don't have a thread, we need to ensure we include the original query,
-    the approval request, and the approval response in each iteration.
-    """
-    result = await agent.run(query)
+async def handle_approvals(
+    query: str,
+    agent: "SupportsAgentRun",
+    session: "AgentSession",
+) -> AgentResponse:
+    """Handle function call approvals with an authoritative session."""
+    result = await agent.run(query, session=session)
     while len(result.user_input_requests) > 0:
-        # Start with the original query
-        new_inputs: list[Any] = [query]
+        new_inputs: list[Any] = []
 
         for user_input_needed in result.user_input_requests:
             print(
@@ -318,9 +326,6 @@ async def handle_approvals(query: str, agent: "SupportsAgentRun") -> AgentRespon
                 f"\n  Function: {user_input_needed.function_call.name}"
                 f"\n  Arguments: {user_input_needed.function_call.arguments}"
             )
-
-            # Add the assistant message with the approval request
-            new_inputs.append(Message("assistant", [user_input_needed]))
 
             # Get user approval
             user_approval = await asyncio.to_thread(input, "\nApprove function call? (y/n): ")
@@ -330,18 +335,17 @@ async def handle_approvals(query: str, agent: "SupportsAgentRun") -> AgentRespon
                 Message("user", [user_input_needed.to_function_approval_response(user_approval.lower() == "y")])
             )
 
-        # Run again with all the context
-        result = await agent.run(new_inputs)
+        result = await agent.run(new_inputs, session=session)
 
     return result
 
 
-async def handle_approvals_streaming(query: str, agent: "SupportsAgentRun") -> None:
-    """Handle function call approvals with streaming responses.
-
-    When we don't have a thread, we need to ensure we include the original query,
-    the approval request, and the approval response in each iteration.
-    """
+async def handle_approvals_streaming(
+    query: str,
+    agent: "SupportsAgentRun",
+    session: "AgentSession",
+) -> None:
+    """Handle streaming function approvals with an authoritative session."""
     current_input: str | list[Any] = query
     has_user_input_requests = True
     while has_user_input_requests:
@@ -349,7 +353,7 @@ async def handle_approvals_streaming(query: str, agent: "SupportsAgentRun") -> N
         user_input_requests: list[Any] = []
 
         # Stream the response
-        async for chunk in agent.run(current_input, stream=True):
+        async for chunk in agent.run(current_input, stream=True, session=session):
             if chunk.text:
                 print(chunk.text, end="", flush=True)
 
@@ -359,8 +363,7 @@ async def handle_approvals_streaming(query: str, agent: "SupportsAgentRun") -> N
 
         if user_input_requests:
             has_user_input_requests = True
-            # Start with the original query
-            new_inputs: list[Any] = [query]
+            new_inputs: list[Any] = []
 
             for user_input_needed in user_input_requests:
                 print(
@@ -368,9 +371,6 @@ async def handle_approvals_streaming(query: str, agent: "SupportsAgentRun") -> N
                     f"\n  Function: {user_input_needed.function_call.name}"
                     f"\n  Arguments: {user_input_needed.function_call.arguments}"
                 )
-
-                # Add the assistant message with the approval request
-                new_inputs.append(Message("assistant", [user_input_needed]))
 
                 # Get user approval
                 user_approval = await asyncio.to_thread(input, "\nApprove function call? (y/n): ")
@@ -394,15 +394,16 @@ async def run_weather_agent_with_approval(stream: bool) -> None:
         instructions=("You are a helpful weather assistant. Use the get_weather tool to provide weather information."),
         tools=[get_weather, get_weather_detail],
     ) as agent:
+        session = agent.create_session()
         query = "Can you give me an update of the weather in LA and Portland and detailed weather for Seattle?"
         print(f"User: {query}")
 
         if stream:
             print(f"\n{agent.name}: ", end="", flush=True)
-            await handle_approvals_streaming(query, agent)
+            await handle_approvals_streaming(query, agent, session)
             print()
         else:
-            result = await handle_approvals(query, agent)
+            result = await handle_approvals(query, agent, session)
             print(f"\n{agent.name}: {result}\n")
 
 
