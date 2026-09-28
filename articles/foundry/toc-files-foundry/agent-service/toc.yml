@@ -144,6 +144,8 @@ items:
       href: ../../agents/how-to/update-hosted-agent-model.md
     - name: Add a protocol adapter
       href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Use on-behalf-of flow
+      href: ../../agents/how-to/use-on-behalf-of-flow.md
     - name: Host Microsoft Agent Framework agents
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
