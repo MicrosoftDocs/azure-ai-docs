@@ -63,6 +63,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 | claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    | 8,000    |
 | claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    | 8,000    |
 | claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 40        | 40,000    | 8,000    |
+| claude-sonnet-5.5 | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    | 8,000    |
+| claude-sonnet-5.5 | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    | 8,000    |
 | claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 40        | 40,000    | 8,000    |
 | claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 40        | 40,000    | 8,000    |
 | claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 80        | 80,000    | 16,000   |
@@ -86,6 +88,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 | claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5.5 | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
+| claude-sonnet-5.5 | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 10,000    | 10,000,000 | 2,000,000 |
 | claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 10,000    | 10,000,000 | 2,000,000 |
@@ -109,6 +113,8 @@ Your Azure subscription type determines your default rate limits. The **Version 
 | claude-opus-4-7   | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
 | claude-opus-4-6   | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
 | claude-opus-4-5   | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
+| claude-sonnet-5.5 | Global Standard         | Yes                        | Yes                                           | 0         | 0         | 0        |
+| claude-sonnet-5.5 | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         | 0        |
 | claude-sonnet-5   | Global Standard         | Yes                        | Yes                                           | 0         | 0         | 0        |
 | claude-sonnet-5   | Data Zone Standard (US) | Yes                        | N/A                                           | 0         | 0         | 0        |
 | claude-sonnet-4-6 | Global Standard         | N/A                        | Yes                                           | 0         | 0         | 0        |
