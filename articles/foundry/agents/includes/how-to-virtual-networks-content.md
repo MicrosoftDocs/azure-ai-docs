@@ -6,7 +6,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/03/2026
+ms.date: 09/28/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -167,6 +167,7 @@ az role assignment create \
   - Ensure that none of the address spaces in your VNet or any peered VNet overlap with existing networks in your Azure environment or these reserved ranges: `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, `192.0.2.0/24`, `0.0.0.0/8`, `127.0.0.0/8`, `100.100.0.0/17`, `100.100.192.0/19`, and `100.100.224.0/19`.
 - **Agent subnet exclusivity**: The agent subnet can't be shared by multiple Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environments`. For more on subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
+- **Agent subnet name length**: For Azure Container Apps-backed deployments, the delegated agent subnet name must not exceed 63 UTF-8 bytes. This limit applies to the subnet name, not the virtual network name or the full subnet resource ID.
 - **Agent subnet egress firewall allow list**: If you integrate an Azure Firewall with your private network secured standard agent, add to the allow list the Fully Qualified Domain Names (FQDNs) listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag **AzureActiveDirectory**. If you apply Network Security Groups (NSGs) to the delegated agent subnet or related subnets, configure matching outbound allow rules for required dependencies, including the AzureActiveDirectory service tag for Microsoft Entra ID authentication. If either firewall or NSG rules block required dependencies, agent provisioning and runtime operations can fail.
     - Verify that no TLS inspection happens in the Firewall that could add a self-signed certificate. During failures, inspect whether there's any traffic landing on the Firewall and what traffic is being blocked.
     - For source-code agent deployments, also allow the deployment endpoints listed in [Firewall requirements for private virtual networks](../how-to/deploy-hosted-agent-code.md#firewall-requirements-for-private-virtual-networks).
