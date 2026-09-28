@@ -1,6 +1,6 @@
 ---
 title: Agent Harness 
-description: Understand how the Agent Framework Harness composes an agentic runtime and how to create and customize a harness agent.
+description: Learn what an AI harness is and how Agent Framework Harness composes an agentic runtime for creating and customizing agents.
 zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: article
@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 # Agent Harness 
 
-An *agent harness* is the runtime scaffolding that turns a language model into an agent that can perform work. It drives model and tool calls, manages conversation state and context, applies approval policies, and can keep the agent progressing through a multi-step task.
+An *agent harness*, sometimes called an *AI harness*, is the runtime scaffolding that turns a language model into an agent that can perform work. It drives model and tool calls, manages conversation state and context, applies approval policies, and can keep the agent progressing through a multi-step task.
 
 Agent Framework provides an opinionated, batteries-included Harness for research, coding, data analysis, and other long-running work. You provide a chat client and customize only the capabilities your application needs.
 
