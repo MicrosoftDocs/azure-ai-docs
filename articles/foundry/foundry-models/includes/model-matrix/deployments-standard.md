@@ -596,7 +596,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | gpt-5.4 | 2026-03-05 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.4-mini | 2026-03-17 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gpt-5.6-sol | 2026-07-09 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| gpt-6.1-sol | 2026-09-29 | ✅ | ✅ | ✅ | ✅ | - |
+| gpt-6.1-sol | 2026-09-29 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | model-router | 2025-05-19 | ✅ | - | - | - | ✅ |
 | model-router | 2025-08-07 | ✅ | - | - | - | ✅ |
 | model-router | 2025-11-18 | ✅ | - | - | - | ✅ |
