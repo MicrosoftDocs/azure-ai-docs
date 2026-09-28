@@ -267,7 +267,7 @@ Where your agent data lives depends on which setup option you choose. The setup 
 | Vector stores, embeddings, and retrieval indexes | Microsoft-managed vector search | Azure AI Search |
 | Threads, conversation history, messages, and agent definitions | Microsoft-managed storage | Azure Cosmos DB |
 
-[Capability hosts](capability-hosts.md) tell Agent Service where to store and process file uploads, vector stores, and conversation history. To store agent data in your own resources, see [Standard agent setup](standard-agent-setup.md).
+[Capability settings](../../how-to/configure-capability-settings.md) tell Agent Service where to store and process file uploads, vector stores, and conversation history. To store agent data in your own resources, see [Standard agent setup](standard-agent-setup.md).
 
 Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview).
 
@@ -375,7 +375,7 @@ The limits in this article are default values for Foundry Agent Service. If your
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
-- [Capability hosts](capability-hosts.md)
+- [Configure agent capability settings](../../how-to/configure-capability-settings.md)
 - [Standard agent setup](standard-agent-setup.md)
 - [Tool support by region and model](#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)

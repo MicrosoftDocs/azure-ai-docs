@@ -34,9 +34,9 @@ sections:
         answer: |
           **Basic setup** stores agent state in Microsoft-managed resources.
 
-          **Standard setup** stores agent data (threads, files, and vector stores) in your Azure resources that you connect through capability hosts.
+          **Standard setup** stores agent data (threads, files, and vector stores) in your Azure resources that you declare through capability settings.
 
-          To compare setup options and choose the right one, see [Set up your environment](environment-setup.md#choose-your-setup) and [Capability hosts](concepts/capability-hosts.md).
+          To compare setup options and choose the right one, see [Set up your environment](environment-setup.md#choose-your-setup) and [Configure agent capability settings](../how-to/configure-capability-settings.md).
       - question: |
           What permissions (RBAC roles) do I need?
         answer: |
@@ -128,9 +128,9 @@ sections:
       - question: |
           How do I bring my own storage, Azure Cosmos DB, or Azure AI Search for agent data?
         answer: |
-          Use capability hosts and connect your own resources.
+          Declare those resources in the capability settings on your Foundry account or project.
 
-          - Concepts: [Capability hosts](concepts/capability-hosts.md)
+          - How-to: [Configure agent capability settings](../how-to/configure-capability-settings.md)
           - How-to: [Use your own resources](how-to/use-your-own-resources.md)
   - name: Monitoring and operations
     questions:

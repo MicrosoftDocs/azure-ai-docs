@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 05/12/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 Use this article as the starting point for disaster recovery (DR) planning for Foundry Agent Service in the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). It explains what you can and can't recover, what to prepare before an incident, and where to find recovery procedures for platform outages and resource or data loss.
@@ -26,7 +27,7 @@ Use this article as the starting point for disaster recovery (DR) planning for F
 This series focuses on DR for Foundry projects that use Agent Service in Standard deployment mode.
 
 - **Blast radius boundary**: In most workloads, a single Foundry project is the recovery unit.
-- **State**: Agent definitions, conversation threads (including user-uploaded files), and any file-based knowledge stored in the capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage).
+- **State**: Agent definitions, conversation threads (including user-uploaded files), and any file-based knowledge stored in the agent state resources (Azure Cosmos DB, Azure AI Search, and Azure Storage).
 - **Data plane APIs**: APIs used to create, update, and invoke agents and threads. For details, see [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/).
 
 > [!NOTE]
@@ -41,16 +42,16 @@ Complete these actions before you rely on Agent Service in production:
 1. Choose a recovery strategy per project (for example, warm standby and reconstruction) and document your recovery objectives.
 1. Configure required baseline protections and recovery features on your dependencies. For guidance, see [High availability and resiliency for Foundry projects and agent services](../how-to/high-availability-resiliency.md).
 1. Treat agent definitions as code. Store agent definitions, knowledge assets, and tool bindings in source control so you can redeploy them quickly.
-1. Automate redeployment of agents and any client updates needed for new agent IDs. Use the [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/) or the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) to script agent creation. Store and version infrastructure as code (IaC) templates for your capability host dependencies.
+1. Automate redeployment of agents and any client updates needed for new agent IDs. Use the [Azure AI Foundry REST API reference](https://ai.azure.com/api-reference/) or the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) to script agent creation. Store and version infrastructure as code (IaC) templates for your agent state resources.
 1. Practice recovery. Run periodic drills so operators can execute the recovery steps under time pressure.
-1. Set up monitoring and alerts. Configure [Azure Monitor](/azure/azure-monitor/overview) alerts for your capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage) to detect availability degradation early.
+1. Set up monitoring and alerts. Configure [Azure Monitor](/azure/azure-monitor/overview) alerts for your agent state resources (Azure Cosmos DB, Azure AI Search, and Azure Storage) to detect availability degradation early.
 
 ## Incident types and affected components
 
 Agent Service deployments can encounter incidents that affect availability and data integrity in these components:
 
 - **Data plane APIs**: Services responsible for creating, updating, and invoking agents
-- **Agent capability host**: Per-project infrastructure that houses your agents
+- **Agent runtime infrastructure**: Per-project infrastructure that Agent Service provisions to house your agents
 - **Agent definitions**: Prompts, knowledge connections, file-based context, and tool integrations
 - **Conversation threads**: Text conversations and user-uploaded files
 
@@ -96,7 +97,7 @@ Configure your resources to support recovery before an incident happens. Enable 
 
 ## Recover from Azure outages
 
-In the standard deployment model, the Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
+In the standard deployment model, the Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and the agent runtime infrastructure. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
 
 > [!div class="nextstepaction"]
 > [Agent Service platform outage recovery strategies](../how-to/agent-service-platform-disaster-recovery.md)

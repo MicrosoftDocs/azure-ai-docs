@@ -11,85 +11,34 @@ ms.custom: include
 ai-usage: ai-assisted
 ---
 
-## Configure capability host for agents (combined resource and project steps)
+## Configure agent storage
 
-You create two capability hosts - one at the resource level and one at the project level - each referencing the same connection chain so agents route to your storage.
+Declare your storage account in the capability settings on the Foundry account or project. Agent Service provisions the required underlying infrastructure and the connection to that account, so you don't create or bind a connection for agent files yourself.
 
-1. Create a resource-level connection (as described earlier) if you don't already have one.
-   > [!NOTE]
-   > As described in the previous section, select **Manage** > **Resource details** > **Connected resources** > **Add connection** and choose **Azure Storage**.
-1. Create a resource-level capability host that references that connection.
-1. Create or open a project under the resource.
-1. Create a project-level capability host that references the resource-level capability host.
-1. Verify that agents data now writes to the bound storage account.
+1. Get the full Azure resource ID of your storage account.
+1. Set `blobStore` in `capabilitySettings` on the Foundry account to establish the default for its projects.
+1. Create or open a project. The project inherits the account value unless you override `blobStore` on the project.
+1. Verify that agent data now writes to your storage account.
 
-### Example (REST API)
+### Example (Bicep)
 
-Use the [Capability Hosts - Create Or Update](/rest/api/microsoftfoundry/accountmanagement/account-capability-hosts/create-or-update) REST API to create a capability host. Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
+The following `properties` block sets the storage account that agents use for files. Use it with API version `2026-07-15-preview`.
 
-```http
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2026-07-01
-
-{
-  "properties": {
-    "capabilityHostKind": "Agents",
-    "storageConnections": [
-      "<connection-arm-resource-id>"
-    ]
+```bicep
+properties: {
+  allowProjectManagement: true
+  customSubDomainName: accountName
+  capabilitySettings: {
+    blobStore: storageAccountId
   }
 }
 ```
 
-Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
-
-> [!NOTE]
-> Set `storageConnections` on the project-level capability host, which binds agents to your storage. The resource-level (account) capability host body is typically just `capabilityHostKind: "Agents"`.
-
-> [!NOTE]
-> For Azure CLI and PowerShell, use the REST API through `az rest` or `Invoke-AzRestMethod` until dedicated cmdlets are available.
-
-### ARM template snippet
-```json
-{
-  "type": "Microsoft.CognitiveServices/accounts/capabilityHosts",
-  "apiVersion": "2026-07-01",
-  "name": "[concat(parameters('foundryName'), '/agents-host')]",
-  "properties": {
-    "capabilityHostKind": "Agents",
-    "storageConnections": [
-      "[resourceId('Microsoft.CognitiveServices/accounts/connections', parameters('foundryName'), 'myblobconnection')]"
-    ]
-  }
-}
-```
-
-## Configure capability hosts for agents
-
-Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to use your storage connection for agents standard setup. You need to configure capability hosts at both the resource and project levels.
-
-### Create resource-level capability host
-
-1. Use the [Azure REST API](/rest/api/microsoftfoundry/accountmanagement/account-capability-hosts/create-or-update) through `az rest` or `Invoke-AzRestMethod` to create a resource-level capability host. Dedicated Azure CLI and PowerShell cmdlets aren't available yet.
-
-1. Reference your previously created storage connection in the capability host configuration.
-
-1. Set the capability type to support agents.
-
-### Create project-level capability host
-
-After creating your Foundry project:
-
-1. Create a project-level capability host that references the resource-level capability host.
-
-1. Configure the capability host to enable agents functionality.
-
-1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup).
-
-Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
+The identity that runs this deployment needs **Storage Blob Data Contributor** on the storage account, in addition to permission to create the Foundry account. For the full permission model, see [Configure agent capability settings](../how-to/configure-capability-settings.md#permissions).
 
 ## Verify your storage configuration
 
-After you configure storage connections and capability hosts, confirm that data routes to your storage account:
+After you configure storage connections and capability settings, confirm that data routes to your storage account:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open your storage account.
 1. Navigate to **Containers** under **Data storage**.
@@ -99,7 +48,7 @@ After you configure storage connections and capability hosts, confirm that data 
 
 If data doesn't appear in your storage account, check the following:
 
-- Both resource-level and project-level capability hosts exist and reference the correct connection.
+- A GET on the project returns the `blobStore` value you expect, either set on the project or inherited from the account.
 - The project managed identity has the required storage roles: **Storage Account Contributor** on the storage account, **Storage Blob Data Contributor** on the `<workspaceId>-azureml-blobstore` container, and **Storage Blob Data Owner** on the `<workspaceId>-agents-blobstore` container. See [Standard agent setup](../agents/concepts/standard-agent-setup.md) for the complete role list.
 - Network settings on the storage account allow access from Microsoft Foundry.
 

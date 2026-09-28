@@ -32,7 +32,7 @@ The new agent object model collapses **Agent Applications** and **Agent Deployme
 
 1. **Resource model**: Only Agent objects exist (data plane and control plane). They absorb the responsibilities previously owned by Agent Application and Deployment.
 1. **Agent object properties**: `id`, `name`, `versions`, `agent_endpoint` (stable endpoint), `protocol_configuration`, `authorization_schemes`, `version_selector`, `blueprint`, `instance_identity`, and `agent_card` (surfaces agent details and capabilities to consumers and A2A).
-1. **Identity**: Newly created agents receive a unique Entra Agent Blueprint and Entra Agent Identity by default. Bring-your-own Entra Agent Blueprint is supported but not the default.
+1. **Identity**: Newly created agents receive a unique Entra Agent Blueprint and Entra Agent Identity by default.
 1. **Publishing**: Two equivalent gestures. First, select an agent version to expose via the stable endpoint. Second, publish the agent's stable endpoint to M365/Teams.
 
 :::image type="content" source="../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::

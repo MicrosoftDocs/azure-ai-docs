@@ -7,7 +7,7 @@ ms.reviewer: fosteramanda
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 09/03/2026
-ms.custom: include, classic-and-new
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -24,16 +24,8 @@ If you don't have an existing virtual network, the Standard Setup with private n
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Ensure that the individual creating the account and project has the **Foundry Account Owner** role at the subscription scope.
-
-  [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-- The user creating this setup must also have permissions to assign roles to required resources (Azure Cosmos DB, Azure AI Search, Azure Storage).
-    - The built-in role needed is **Role Based Access Administrator**.
-    - Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
-    - The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
+- The permissions described in [Permissions](#permissions). Provisioning and runtime use two different identities, and each needs its own roles.
 - [Python 3.10 or later](https://www.python.org/)
-- Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Foundry User** [RBAC role](../../concepts/rbac-foundry.md) for the project.
-    - The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**
 - Register providers. The following providers must be registered:
     - `Microsoft.KeyVault`
     - `Microsoft.CognitiveServices`
@@ -64,9 +56,33 @@ If you don't have an existing virtual network, the Standard Setup with private n
 >
 > All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
 
+## Permissions
+
+The provisioning identity depends on the deployment path. Capability settings that you submit through ARM REST or Bicep use the caller identity. Portal deployments and calls to the legacy capability host REST API continue to use the project managed identity for provisioning.
+
+### Caller permissions for provisioning
+
+For a deployment that uses capability settings with API version `2026-07-15-preview`, the caller can be an interactive user, a CI/CD service principal, or a workload identity. In addition to the permissions needed to deploy the account and network resources, capability settings require only the following roles. Azure AI Search doesn't require a caller role.
+
+| Role | Scope | Why the caller needs it |
+| --- | --- | --- |
+| **Storage Blob Data Contributor** | Each Azure Storage account you bring | Provision the required blob containers and storage setup |
+| **Cosmos DB Operator** | Each Azure Cosmos DB account you bring | Provision the required Cosmos DB resources |
+
+A caller that can create the Foundry account but lacks **Storage Blob Data Contributor** or **Cosmos DB Operator** fails capability settings provisioning.
+
+### Runtime access after deployment
+
+The project managed identity is what running agents use to reach Azure Cosmos DB, Azure AI Search, and Azure Storage. Grant it data-plane roles on each resource before agents run. The caller roles in the previous table enable capability settings provisioning only. They don't replace the roles the project managed identity needs at runtime. For portal and legacy capability host REST API deployments, the project managed identity also performs provisioning. For the per-resource role list, see [Standard agent setup](../concepts/standard-agent-setup.md).
+
+After the environment is configured, assign each team member who creates or edits agents the built-in **Foundry User** [RBAC role](../../concepts/rbac-foundry.md) on the project. The minimum permissions are **agents/*/read**, **agents/*/action**, and **agents/*/delete**.
+
 ## Configure a network-secured environment
 
 You can create this setup in the Azure portal or deploy it by using Bicep or Terraform.
+
+> [!NOTE]
+> Portal deployments use the backward-compatible capability host flow and the project managed identity for provisioning.
 
 At a high level, the deployment involves these steps:
 
@@ -110,7 +126,7 @@ Select your preferred deployment method by using the following tabs:
 
 Use one of the following infrastructure-as-code samples:
 
-- **Bicep templates**: Follow instructions in [this sample from GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+- **Bicep templates**: Follow the [network-secured Standard agent setup sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup). This sample uses the capability host flow and the project managed identity for provisioning.
 - **Terraform configuration**: Follow instructions in [this sample from GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
 
 After deployment finishes, continue with the checks in [Verify the deployment](#verify-the-deployment).
@@ -167,7 +183,7 @@ az role assignment create \
 
 ## Architecture diagram
 
-:::image type="content" source="../media/private-network-isolation.png" alt-text="Diagram showing the virtual network architecture for Foundry Agent Service private networking, including the agent subnet, private endpoint subnet, and private DNS zones.":::
+:::image type="content" source="../media/private-network-isolation.png" alt-text="Diagram that shows agent and private endpoint subnets, connected Azure resources, and an optional firewall in Agent Service.":::
 
 ## Review the provisioned networking resources
 
@@ -237,7 +253,7 @@ Refer to this guide to resolve errors during or after a Standard Agent deploymen
 
 `"Agents CapabilityHost supports a single, non empty value for threadStorageConnections property."`
 
-**Solution**: Providing all connections to all Bring-your-Own (BYO) resources, requires connections to all BYO resources. You can't create a secured standard agent in Foundry without all three resources provided.
+**Solution**: Your deployment didn't supply all three bring-your-own (BYO) resources. A secured standard setup requires an Azure Cosmos DB account, an Azure Storage account, and an Azure AI Search service. Set all three on the account or project through [capability settings](../../how-to/configure-capability-settings.md) before you create the project. If the project already exists, delete and recreate it with the required settings because capability settings updates aren't supported.
 
 `"Provided subnet must be of the proper address space. Please provide a subnet which has address space in the range of 172 or 192."` 
 
@@ -249,7 +265,7 @@ Refer to this guide to resolve errors during or after a Standard Agent deploymen
 
 `"Failed to create Aml RP virtual workspace due to System.Exception: Failed async operation."` or `"The resource operation completed with terminal provisioning state 'Failed'. Capability host operation failed."` 
 
-**Solution**: This is a catch-all error. Create a support ticket request to investigate your setup. Check the capability host for the error.
+**Solution**: This error message can indicate many problems. For an ARM REST or Bicep capability settings deployment, confirm the caller has every role listed in [Caller permissions for provisioning](#caller-permissions-for-provisioning). For a portal or legacy capability host REST API deployment, confirm the project managed identity has the required provisioning and runtime roles. If the deploying identity has all required roles, create a support ticket to investigate your setup.
 
 `"Subnet requires any of the following delegation(s) [Microsoft.App/environments] to reference service association link /subscriptions/11111-aaaaa-2222-bbbb-333333333/resourceGroups/agentRANGEChange/providers/Microsoft.Network/virtualNetworks/my-agent-vnet/subnets/agent-subnet/serviceAssociationLinks/legionservicelink."` 
 

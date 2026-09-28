@@ -274,5 +274,6 @@ items:
     displayName: sovereign cloud, USGov, Azure Government, parity, Agent Service
   - name: Capability hosts
     href: ../../agents/concepts/capability-hosts.md
+    displayName: capabilityHost, threadStorageConnections, vectorStoreConnections, storageConnections
   - name: FAQ
     href: ../../agents/faq.yml
