@@ -1145,7 +1145,7 @@ New prompt voice initialization rejects `--model-deployment`. Configure BYOM thr
 
 Changing `modelType` and `model.id` doesn't create the BYOM deployment. Create or confirm it in the Foundry resource before running `azd deploy`. For model deployment steps, see [Deploy models](../../how-to/deploy-models-managed.md).
 
-Keep the existing audio and advanced settings compatible with the selected model. For a voice wrapper that delegates conversation logic to a hosted agent, use `conversationEngine` instead of these model fields. See [Deploy a hosted voice agent with azd](deploy-hosted-voice-agent.md).
+Keep the existing audio and advanced settings compatible with the selected model. For a voice wrapper that delegates conversation logic to a hosted agent, use `conversationEngine` instead of these model fields. See [Use a hosted agent as the conversation engine in a voice-based agent](../../how-to/voice-first-with-hosted-agent.md#deploy-both-agents-with-the-azure-developer-cli).
 
 ### Add the advanced settings
 
