@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/24/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,45 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Foundry invocation sessions now use persistent storage
+
+**PR:** [#8593](https://github.com/microsoft/agent-framework/pull/8593)
+
+`InvocationsHostServer` now saves serialized `AgentSession` state through an
+`AgentSessionStoreProvider` instead of retaining arbitrary live session objects
+for the process lifetime. The default provider uses Foundry storage when hosted
+and file-backed storage locally, with a separate `invocation_sessions` logical
+store.
+
+Make custom session state serializable, and register codecs for custom types
+with `register_state_type()`. Restored state doesn't preserve Python object
+identity. New default stores expire sessions 30 days after their last write;
+custom providers control retention. Coordinate overlapping requests for the
+same session, and use separate local storage roots or providers for independent
+applications. For details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
+### 🔴 Local tool approvals require the issuing session
+
+**PR:** [#8750](https://github.com/microsoft/agent-framework/pull/8750)
+
+A local `function_approval_response` now authorizes a tool call only when it
+matches a pending approval request recorded in the same authoritative
+`AgentSession`. Pass the same session to the run that produces the approval
+request and the run that resumes it. Without that session, the framework drops
+the unbound response and logs a warning.
+
+Hosted approvals and replayed conversations whose tool calls already have
+terminal results are unchanged. Set
+`disable_approval_response_binding=True` only when your application enforces
+equivalent binding before messages reach the agent. For the recommended
+session-backed flow, see
+[Tool approval](../../agents/tools/tool-approval.md?pivots=programming-language-python).
+
+---
 
 ### 🔴 Persisted approval transcripts must use typed approval controls
 

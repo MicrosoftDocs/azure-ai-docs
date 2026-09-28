@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/19/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -173,11 +173,29 @@ Keep the workflow name and executor IDs stable so later Responses requests can l
 
 ### Persist state and handle long-running conversations
 
-`ResponsesHostServer` configures Foundry-backed stores by default. For non-workflow agents, `AgentSessionStoreProvider` supplies a `FoundryAgentSessionStore`. For workflow agents, `CheckpointStoreProvider` supplies a `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for pending approvals. These stores use Foundry State Store when hosted and local Agent Server state when you run locally.
+`ResponsesHostServer` and `InvocationsHostServer` configure persistent session
+stores by default. `AgentSessionStoreProvider` supplies a
+`FoundryAgentSessionStore`; Responses sessions use the `agent_sessions` logical
+store, while Invocations sessions use the separate `invocation_sessions`
+store. These stores use Foundry State Store when hosted and the SDK's
+file-backed storage when you run locally.
+
+For Responses workflow agents, `CheckpointStoreProvider` supplies a
+`FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a
+`FoundryFunctionApprovalStore` for pending approvals.
 
 With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
-To customize storage, pass a `StoreProvider` to `agent_session_store_provider` or `function_approval_store_provider`. Pass a `ContextScopedStoreProvider` to `checkpoint_store_provider`. For example, implement `SessionStore` and `StoreProvider[SessionStore]` to use your own non-workflow agent session store.
+Both hosts accept a `StoreProvider[SessionStore]` through
+`agent_session_store_provider`. Session state must support `AgentSession`
+serialization. Register codecs for custom state types with
+`register_state_type()`; restored state doesn't preserve Python object
+identity. New default stores expire sessions 30 days after their last write.
+Custom providers control their own retention.
+
+For Responses-specific storage, pass a `StoreProvider` to
+`function_approval_store_provider` or a `ContextScopedStoreProvider` to
+`checkpoint_store_provider`.
 
 Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass it to `ResponsesHostServer` through the `options` parameter. The available long-running conversation options depend on the agent type:
 
@@ -251,7 +269,22 @@ server = InvocationsHostServer(agent)
 server.run()
 ```
 
-`InvocationsHostServer` accepts the same instance or request-scoped factory forms described for the Responses host. Its built-in sessions are stored in memory for the lifetime of the host and don't survive a restart. The Invocations protocol doesn't resume workflow runs that are pending or interrupted. Use the custom handler pattern in the following section with durable application storage when you need different continuation behavior.
+`InvocationsHostServer` accepts the same instance or request-scoped factory
+forms described for the Responses host. It restores serialized sessions from
+the configured store, so completed conversations can continue after the host
+restarts. For storage behavior, retention, and customization, see
+[Persist state and handle long-running conversations](#persist-state-and-handle-long-running-conversations).
+
+When hosted, the platform session ID and user ID together identify the saved
+session. Treat `AgentSession.session_id` as one opaque value; don't parse or
+depend on its internal representation. Local runs use the platform session ID
+unchanged. Applications must coordinate overlapping requests for the same
+session because the store doesn't provide transactions or exactly-once
+execution.
+
+The Invocations protocol doesn't resume workflow runs that are pending or
+interrupted. Use the custom handler pattern in the following section when you
+need different workflow continuation behavior.
 
 For full control over request handling, use `InvocationAgentServerHost` from the `azure.ai.agentserver.invocations` package directly and implement your own invoke handler:
 
