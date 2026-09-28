@@ -58,7 +58,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 * `gpt-6-astra` (`2026-09-03`)
 * `gpt-6-sol` (`2026-09-22`)
 * `gpt-6-luna` (`2026-09-22`)
-* `gpt-6-astra-minor` (`2026-09-29`)
+* `gpt-6.1-sol` (`2026-09-29`)
 * `gpt-chat-latest` (`2026-05-05`)
 * `gpt-chat-latest` (`2026-05-28`)
 

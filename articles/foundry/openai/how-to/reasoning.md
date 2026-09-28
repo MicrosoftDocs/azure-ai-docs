@@ -1327,7 +1327,7 @@ print(response.model_dump_json(indent=2))
 | `gpt-6-astra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
-| `gpt-6-astra-minor` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
+| `gpt-6.1-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. |
 | `gpt-5.6-sol` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-terra` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
 | `gpt-5.6-luna` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure-region-availability.md?pivots=standard) | No access request needed. Quota request required depending on [quota tier](../quotas-limits.md). Tier 5 and Tier 6 subscriptions have quota by default. |
@@ -1363,7 +1363,7 @@ Input and output limits share the available context budget and aren't additive. 
 
 # [GPT-6 reasoning models](#tab/gpt-6)
 
-| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-22** | **gpt-6-luna**, **2026-09-22** | **gpt-6-astra-minor**, **2026-09-29** |
+| **Feature** | **gpt-6-astra**, **2026-09-03** | **gpt-6-sol**, **2026-09-22** | **gpt-6-luna**, **2026-09-22** | **gpt-6.1-sol**, **2026-09-29** |
 | --- | --- | --- | --- | --- |
 | **[Structured outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ |
 | **Context window** | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens | 1,050,000 tokens |
