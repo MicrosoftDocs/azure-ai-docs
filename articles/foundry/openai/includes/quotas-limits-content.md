@@ -27,7 +27,7 @@ Starting with Realtime Translate and Realtime Whisper, and soon all models, Foun
 
 This change consolidates quota into shared pools:
 
-* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription. Standard and [Flex processing](../how-to/flex-processing.md) requests use this pool.
 * **Data Zone Standard**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
 To learn more about quota allocation at the subscription level, see [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).

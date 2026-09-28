@@ -153,6 +153,9 @@ items:
   - name: Batch processing
     displayName: Getting started with Azure OpenAI batch deployments
     href: ../../openai/how-to/batch.md
+  - name: Flex processing (preview)
+    displayName: Use Flex processing with Azure OpenAI in Microsoft Foundry Models
+    href: ../../openai/how-to/flex-processing.md
   - name: Priority processing
     displayName: Enable priority processing for Microsoft Foundry models
     href: ../../openai/concepts/priority-processing.md
