@@ -26,7 +26,7 @@ ms.subservice: foundry-platform
 
 Language and vision models process inputs by breaking them down into tokens. Text, image, and audio workloads can all use token-based metering. The billing unit and rate can vary by model, deployment type, and meter. Check the pricing page for the exact meter names and units for your deployment. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
-For Azure OpenAI models with short-context and long-context pricing categories, see [Short context and long context](../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#short-context-and-long-context) to understand how input length differs from the model's total context window.
+For delay-tolerant Azure OpenAI workloads, [Flex processing](../openai/how-to/flex-processing.md) provides discounted token rates and dedicated meters for cost analysis.
 
 ### Foundry Models sold by Azure
 
