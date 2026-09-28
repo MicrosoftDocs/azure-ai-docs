@@ -192,8 +192,7 @@ This can be shown to the user, so that they can decide whether to approve or rej
 Once the user has provided their input, you can create a response using the `to_function_approval_response` method on the user input request.
 Pass `True` to approve the function call, or `False` to reject it.
 
-Pass the response to the agent in a new `Message` with the same `AgentSession`
-that recorded the approval request.
+Resume the run with the approval response and the same `AgentSession`:
 
 ```python
 from agent_framework import Message

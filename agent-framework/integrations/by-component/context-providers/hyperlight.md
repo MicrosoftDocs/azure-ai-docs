@@ -217,7 +217,7 @@ The same `FileMounts` and `AllowedDomains` collections, plus tools, can also be 
 
 `AllowedDomains` controls outbound requests from the guest. It doesn't install
 packages or make dependencies from the host process available inside the
-guest. `CreateForWasm(modulePath)` selects an existing guest module; the Agent
+guest. `CreateForWasm(modulePath)` selects an existing guest module. The Agent
 Framework integration doesn't provide a custom guest build or package
 installation workflow.
 
@@ -387,13 +387,13 @@ codeact = HyperlightCodeActProvider(
 
 `allowed_domains` controls outbound requests from the guest. It doesn't install
 Python packages or make packages from the host environment importable in
-sandboxed code. `module_path` selects an existing guest module; the Agent
+sandboxed code. `module_path` selects an existing guest module. The Agent
 Framework integration doesn't provide a custom guest build or package
 installation workflow.
 
 For operations that require host-installed libraries or external APIs,
 register a narrow host tool. Keep credentials, authorization, and destination
-allow-list checks in that function because host callbacks run outside the
+allow list checks in that function because host callbacks run outside the
 guest and aren't restricted by `allowed_domains`.
 
 ## Output guidance
