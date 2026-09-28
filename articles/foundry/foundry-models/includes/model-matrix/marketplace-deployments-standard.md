@@ -34,7 +34,7 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | claude-sonnet-4-6 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-sonnet-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-sonnet-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
-| claude-sonnet-5.5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| claude-sonnet-5-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | Codestral-2501 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Scout-17B-16E-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Ministral-3B | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -63,7 +63,7 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | claude-sonnet-4-6 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-sonnet-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-sonnet-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
-| claude-sonnet-5.5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-sonnet-5-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | Codestral-2501 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Llama-4-Scout-17B-16E-Instruct | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Ministral-3B | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -107,7 +107,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 | claude-opus-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-opus-5-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-sonnet-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| claude-sonnet-5.5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| claude-sonnet-5-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Europe](#tab/az-europe)
 
