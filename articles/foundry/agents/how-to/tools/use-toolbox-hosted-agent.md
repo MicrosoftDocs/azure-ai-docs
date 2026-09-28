@@ -50,6 +50,10 @@ https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbo
 
 The agent authenticates to the toolbox endpoint with its Microsoft Entra identity and the `https://ai.azure.com/.default` scope. The connection for each toolbox tool determines which identity or credential reaches the downstream service.
 
+Agent authentication alone doesn't establish delegated user access. Use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET with the Foundry hosting integration for delegated tool calls. These integrations authenticate each MCP request and forward the hosted runtime's per-request `x-agent-foundry-call-id`. Foundry's toolbox proxy uses the call ID to resolve caller context. A generic MCP client that sends only a bearer token doesn't provide that context. Don't hard-code the call ID or reuse it across requests.
+
+Configure the tool's connection with the appropriate per-user authentication type (`oauth2` or `user-entra-token`). The user also needs downstream permissions and any required consent. After deployment, [verify end-to-end user delegation](tool-authentication.md#verify-end-to-end-user-delegation).
+
 Don't put downstream API keys or OAuth tokens in the agent code. Configure those credentials on the project connection that the toolbox tool references. For details about supported authentication types, consent, and role requirements, see [Toolbox authentication](tool-authentication.md).
 
 ## Connect the hosted agent
@@ -58,7 +62,13 @@ Don't put downstream API keys or OAuth tokens in the agent code. Configure those
 
 ### Use Microsoft Agent Framework
 
-The maintained Python sample uses `FoundryToolbox` from the Agent Framework hosting package. The class resolves the toolbox from `TOOLBOX_ENDPOINT`, or from `FOUNDRY_PROJECT_ENDPOINT` and `TOOLBOX_NAME`. It also authenticates MCP requests and forwards the hosted runtime's per-request call ID.
+The maintained Python sample imports `FoundryToolbox` from `agent_framework.foundry`. It's supplied by the preview `agent-framework-foundry-hosting` package, installed alongside `agent-framework-foundry`:
+
+```bash
+pip install agent-framework-foundry-hosting agent-framework-foundry --pre
+```
+
+The class resolves the toolbox from `TOOLBOX_ENDPOINT`, or from `FOUNDRY_PROJECT_ENDPOINT` and `TOOLBOX_NAME`. Use it with the Foundry hosting integration, such as `ResponsesHostServer`, to authenticate MCP requests and forward the hosted runtime's per-request caller context. For a complete example, see [Microsoft Foundry Toolbox in Agent Framework](/agent-framework/integrations/by-component/tools/foundry-toolbox).
 
 Install Python 3.12 or later, Azure Developer CLI (`azd`) 1.25 or later, and the `microsoft.foundry` extension before you initialize the sample.
 
@@ -236,6 +246,7 @@ Use `require_approval: never` unless your runtime can pause the pending tool cal
 | The agent returns no toolbox tools. | Confirm that the toolbox has a default version, the toolbox name matches, and the agent identity can access the Foundry project. |
 | Startup or readiness fails. | A toolbox enumerates all its tool sources together. Check agent logs for a failing connection, unavailable MCP server, or invalid allowed-tool name. Fix or remove that source, create a new version, and promote it. |
 | A tool returns `401` or `403`. | Verify the agent-to-toolbox identity and the downstream authentication configured on the tool's project connection. These are separate authorization boundaries. |
+| Tool discovery succeeds, but delegated tool calls fail. | Verify that the hosting integration forwards the current request's caller context, the connection uses per-user authentication, and the user has permissions and consent. Follow [Verify end-to-end user delegation](tool-authentication.md#verify-end-to-end-user-delegation). |
 | A tool requests consent. | Return the consent request to the signed-in user and resume the call after consent. Review the tenant and role requirements in [Toolbox authentication](tool-authentication.md). |
 | A version change doesn't appear. | Confirm that the agent uses the unversioned consumer endpoint and that you promoted the intended version to `default_version`. |
 

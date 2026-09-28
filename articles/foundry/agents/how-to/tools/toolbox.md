@@ -610,6 +610,10 @@ Tool-specific `tools/call` argument examples:
 
 ## Integrate the toolbox into your agent
 
+For hosted agents that call tools on behalf of a user, use Microsoft Agent Framework's `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET with the Foundry hosting integration. They authenticate each MCP request and forward the hosted runtime's per-request `x-agent-foundry-call-id` so Foundry can resolve caller context. Sending only a bearer token from a generic MCP client doesn't establish user delegation. Don't hard-code or reuse the call ID.
+
+The tool's connection also needs the appropriate per-user authentication type, and the user needs permissions and any required consent. For package requirements and hosting setup, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md). Before relying on delegated access, [verify it end to end](tool-authentication.md#verify-end-to-end-user-delegation).
+
 :::zone pivot="python"
 
 ### LangGraph
