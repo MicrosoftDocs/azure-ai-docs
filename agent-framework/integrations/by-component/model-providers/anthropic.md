@@ -38,7 +38,6 @@ If you're using Microsoft Foundry, also add:
 
 ```powershell
 dotnet add package Anthropic.Foundry --prerelease
-dotnet add package Azure.Identity
 ```
 
 ## Configuration
