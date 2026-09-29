@@ -3,7 +3,7 @@ title: "Deploy a hosted agent from source code"
 description: "Deploy your hosted agent directly from source code—without building a container—by using the Azure Developer CLI, Python SDK, .NET SDK, JavaScript/TypeScript SDK, or REST API."
 author: aahill
 ms.author: aahi
-ms.date: 07/09/2026
+ms.date: 09/29/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -136,6 +136,11 @@ All source-code deployments require outbound access to:
 
 - `mcr.microsoft.com`
 - `*.login.microsoft.com`
+
+Agent code that uses the Foundry hosting libraries (such as `azure-ai-agentserver-core` or `agent-framework-foundry-hosting`) also sends telemetry from the agent. Allow these endpoints so that traces aren't dropped:
+
+- `agent365.svc.cloud.microsoft` (TCP 443): Agent 365 observability export, when Agent 365 data collection is enabled for your Foundry resource. For more information, see [Configure Agent 365 data collection for Microsoft Foundry](configure-agent-365-data-collection.md).
+- The Application Insights endpoints listed in [Firewall allowlisting](../../how-to/configure-private-link.md#firewall-allowlisting), when your project has an Application Insights connection.
 
 For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).
 
