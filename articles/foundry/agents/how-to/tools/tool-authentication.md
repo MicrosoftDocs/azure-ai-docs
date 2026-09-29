@@ -20,7 +20,7 @@ Toolbox authentication in Microsoft Foundry determines how tools authenticate to
 
 This article explains how toolbox authentication works and shows how to configure OAuth identity passthrough for a private MCP server and Work IQ while preserving each user's permissions and access boundaries.
 
-For user delegation with MCP and other tools, the recommended approach is to connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
+For user delegation with MCP and other tools, connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
 
 A [toolbox](../../concepts/toolbox-overview.md) centralizes authentication on the connection. Authentication is a property of the connection, not code in your agent. When you connect a tool, you select an authentication type and Foundry handles token acquisition, exchange, refresh, and injection on the service side. Your agent code remains focused on business logic rather than authentication flows.
 
