@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/16/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -146,7 +146,7 @@ agent = Agent(
 )
 ```
 
-That is the whole opt-in. After reading the malicious issue from the previous section, the agent is free to call `read_file(".env")` — but the result is labeled `private`, so the follow-up `post_comment(...)` is refused (it caps at `public`). And any attempt to call `write_file(...)` driven by the untrusted issue body is refused outright by `accepts_untrusted=False`. With `approval_on_violation=True`, both refusals surface as human-approval prompts.
+That is the whole opt-in. After reading the malicious issue from the previous section, the agent is free to call `read_file(".env")` — but the result is labeled `private`, so the follow-up `post_comment(...)` is refused (it caps at `public`). And any attempt to call `write_file(...)` driven by the untrusted issue body is refused outright by `accepts_untrusted=False`. With `approval_on_violation=True`, both refusals surface as human-approval prompts when the framework can safely bind the approval to the exact invocation. If it can't create that binding, it blocks the call.
 
 The rest of this page explains every option that appears above, plus the ones you might want to reach for next.
 
@@ -358,7 +358,7 @@ If the current context's confidentiality is higher than the cap (e.g. context is
 | `default_confidentiality` | `ConfidentialityLabel.PUBLIC` | The confidentiality assumed for an unlabeled tool result. |
 | `allow_untrusted_tools` | `None` | Set of tool names allowed to run even when the context is `untrusted`. Used for data-fetchers (e.g. `read_issue`) that *introduce* untrusted content — they must be callable in any context. Security tools (`quarantined_llm`, `inspect_variable`) are automatically allowed. |
 | `block_on_violation` | `True` | When a policy violation is detected, return an error result and stop the tool. Ignored when `approval_on_violation=True`. |
-| `approval_on_violation` | `False` | When set, a violation triggers a function-approval request (same pipeline as [Tool Approval](./tools/tool-approval.md)) instead of an outright block — the user sees the offending tool name and the label that caused the block and can override. |
+| `approval_on_violation` | `False` | When set, a violation triggers a function-approval request (same pipeline as [Tool Approval](./tools/tool-approval.md)) when the framework can safely bind the approval to the exact invocation. If it can't create that binding, it blocks the call instead of executing it. |
 | `enable_audit_log` | `True` | Record every blocked or approval-gated call for compliance/forensics. |
 | `enable_policy_enforcement` | `True` | If false, labels are still propagated but no sink is ever blocked. Useful for dry-running a configuration to see what *would* be blocked before you turn enforcement on. |
 | `quarantine_chat_client` | `None` | Chat client used by `quarantined_llm`. Without it, `quarantined_llm` returns placeholder responses; with it, the framework actually dispatches isolated, tool-free LLM calls. Use a cheaper model here (e.g. `gpt-4o-mini`). |
@@ -420,7 +420,7 @@ Walking the attack from the top of the page through the agent configured above (
 1. The agent calls `read_issue("our/repo", 42)`. It returns one `Content` item labeled `integrity=untrusted, confidentiality=public` — the issue body and the embedded `[SYSTEM]` block both get the same label, because they arrived in the same tool result. `read_issue` is in `allow_untrusted_tools`, so the call itself is permitted even though the result will taint context.
 2. The main model reads the result. The issue body — the `[SYSTEM]` block included — sits in the main context as raw text, but still labeled untrusted. The model can summarize and classify it directly; the labels travel with the bytes.
 3. The model is potentially fooled by the embedded instruction and decides to follow it. It calls `read_file(".env")`. That call is *allowed* — but the returned content is labeled `integrity=trusted, confidentiality=private`, so the moment it lands in context the run is tainted as private (and remains untrusted from earlier).
-4. The agent then tries `post_comment(...)` with the secret in the body. The `max_allowed_confidentiality="public"` policy on `post_comment` blocks the call — context is `private`, the sink is `public`. With `approval_on_violation=True`, the user sees an approval prompt naming the tool and the label that caused the block.
+4. The agent then tries `post_comment(...)` with the secret in the body. The `max_allowed_confidentiality="public"` policy on `post_comment` blocks the call — context is `private`, the sink is `public`. With `approval_on_violation=True`, the user sees an approval prompt naming the tool and the label that caused the block when the approval can be bound safely. Otherwise, the call remains blocked.
 5. If the embedded instruction had asked the agent to `write_file(...)` instead — say, to overwrite a CI config based on the issue body — that call would be refused outright by the `accepts_untrusted=False` policy on `write_file`, for the same reason: untrusted content is in scope and the sink declined to accept it.
 
 In other words: the same policy fence handles both prompt injection (wrong *integrity*) and data exfiltration (wrong *confidentiality*), and neither requires the model to "notice" the attack.

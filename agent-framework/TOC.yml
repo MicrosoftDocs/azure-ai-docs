@@ -149,6 +149,8 @@ items:
       href: agents/tools/tool-approval.md
     - name: Code Interpreter
       href: agents/tools/code-interpreter.md
+    - name: Native computer use
+      href: agents/tools/computer-use.md
     - name: File Search
       href: agents/tools/file-search.md
     - name: Web Search
@@ -213,6 +215,8 @@ items:
       href: integrations/by-provider/ollama.md
     - name: Mistral
       href: integrations/by-provider/mistral.md
+    - name: TypeSafe AI
+      href: integrations/by-provider/type-safe-ai.md
   - name: By Component
     items:
     - name: Overview

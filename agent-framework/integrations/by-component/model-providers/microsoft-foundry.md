@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/23/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -247,7 +247,8 @@ The table below lists every tool the Python `FoundryChatClient` exposes today.
 | [SharePoint](#sharepoint) | `get_sharepoint_tool` | Preview | Ground answers in SharePoint content. |
 | [Microsoft Fabric](#microsoft-fabric) | `get_fabric_tool` | Preview | Query a Fabric data agent. |
 | [Memory Search](#memory-search) | `get_memory_search_tool` | Preview | Search a Foundry-managed memory store. |
-| [Computer Use](#computer-use) | `get_computer_use_tool` | Preview | Let the agent drive a desktop or browser environment. |
+| [Native computer use](../../../agents/tools/computer-use.md) | `get_computer_tool` | Available | Return ordered computer actions through the Responses API. Requires `azure-ai-projects` 2.3.0 or later. |
+| [Computer Use preview](#computer-use) | `get_computer_use_tool` | Preview | Use the separate preview computer API. |
 | [Browser Automation](#browser-automation) | `get_browser_automation_tool` | Preview | Drive a browser via an Azure Playwright connection. |
 | [Agent-to-Agent (A2A)](#agent-to-agent-a2a) | `get_a2a_tool` | Preview | Call another A2A agent as a tool. |
 
@@ -358,10 +359,26 @@ memory = FoundryChatClient.get_memory_search_tool(
 
 ### Computer use
 
-`get_computer_use_tool` configures the Computer Use preview tool — the model can drive a desktop or browser environment by issuing pointer and keyboard actions.
+`get_computer_tool` configures native computer use through the Responses API.
+The Foundry SDK tool is non-preview, but the shared Agent Framework
+`ComputerSafetyCheck` and computer `Content` constructors are experimental.
+Your application executes the ordered actions, reviews safety checks, and
+returns a screenshot. For the complete request and result flow, see
+[Native computer use](../../../agents/tools/computer-use.md).
 
 ```python
-computer = FoundryChatClient.get_computer_use_tool(
+computer = FoundryChatClient.get_computer_tool()
+```
+
+This factory requires `azure-ai-projects` 2.3.0 or later. Older supported SDK
+versions can still import `FoundryChatClient`, but calling
+`get_computer_tool()` raises an `ImportError` with upgrade guidance.
+
+`get_computer_use_tool` remains available for the separate Computer Use preview
+API:
+
+```python
+preview_computer = FoundryChatClient.get_computer_use_tool(
     environment="browser",
     display_width=1280,
     display_height=800,
