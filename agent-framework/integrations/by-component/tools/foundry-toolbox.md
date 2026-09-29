@@ -16,9 +16,9 @@ ai-usage: ai-assisted
   | Section                  | C# | Python | Go | Notes                         |
   |--------------------------|:--:|:------:|:--:|:------------------------------|
   | Toolbox overview         | ✅ |   ✅   | ✅ | Shared                        |
-  | MCP consumption          | ❌ |   ✅   | ❌ | Python sample available       |
+  | MCP consumption          | ✅ |   ✅   | ❌ | Hosted C# and Python samples  |
   | Managed-agent attachment | ✅ |   ✅   | ❌ | Configured in Foundry         |
-  | Language availability    | ✅ |   ✅   | ✅ | C# and Go are status guidance |
+  | Language availability    | ✅ |   ✅   | ✅ | Go is status guidance        |
 -->
 
 # Microsoft Foundry Toolbox
@@ -32,7 +32,13 @@ Agent Framework covers Toolbox consumption. Create and update Toolbox versions t
 
 :::zone pivot="programming-language-csharp"
 
-For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry. Client-side .NET Toolbox consumption guidance isn't currently documented.
+For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry.
+
+For a hosted agent built with Microsoft Agent Framework, use the `Microsoft.Agents.AI.Foundry.Hosting` integration. Register the agent with `builder.Services.AddFoundryResponses(agent)`, then register the toolbox with `builder.Services.AddFoundryToolboxes(credential, toolboxName)`. After `builder.Build()`, call `app.MapFoundryResponses()` before `app.Run()`. These extension methods use the `Microsoft.Agents.AI.Foundry.Hosting` namespace.
+
+Start from the maintained [Hosted-Toolbox sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox) for the complete agent, credential setup, configuration, and deployment steps. The sample targets .NET 10 and references matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`.
+
+For tools that require per-user OAuth consent, see the [Hosted-Toolbox-AuthPaths sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths).
 
 :::zone-end
 
