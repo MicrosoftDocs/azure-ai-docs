@@ -233,7 +233,7 @@ Microsoft Foundry offers Claude models in [two versions](../../foundry-models/co
 | claude-sonnet-5 | 2 | GA | 2027-06-30 | — |
 | claude-sonnet-5 | 1 | GA | 2027-06-30 | — |
 | claude-sonnet-4-6 | 1 | GA | 2027-02-10 | — |
-| claude-sonnet-4-5 | 1 | GA | 2026-11-15 | — |
+| claude-sonnet-4-5 | 1 | GA | 2026-11-30 | claude-sonnet-5-5 |
 | claude-opus-5 | 2 | GA | 2027-07-08 | — |
 | claude-opus-5 | 1 | GA | 2027-07-08 | — |
 | claude-opus-4-8 | 2 | GA | 2027-09-01 | — |
