@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 08/17/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -37,6 +38,8 @@ Use this option when you need to integrate an agent endpoint with your existing 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Hosting --prerelease
 ```
+
+Protocol integration packages, such as `Microsoft.Agents.AI.Hosting.OpenAI` and `Microsoft.Agents.AI.Hosting.A2A.AspNetCore`, already reference `Microsoft.Agents.AI.Hosting`. Install it directly only when your host doesn't use a protocol integration package.
 
 ## What the hosting helpers provide
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 09/06/2026
+ms.date: 09/24/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -14,6 +14,34 @@ ai-usage: ai-assisted
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.52: 2026-September release
+
+#### New features
+  * Added commit support for `PushAudioInputStream` (preview).
+  * Added support for selecting a streaming model for speech transcription.
+  * **Android:** Updated OpenSSL to 3.5.8.
+
+#### Bug fixes
+  * Fixed a false embedded TTS timeout when the system clock is adjusted during synthesis.
+  * Fixed a TTS crash with compressed audio when GStreamer isn't found ([issue 3061](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/3061)).
+  * **Android:** Fixed a TTS crash with compressed audio when the codec returns a null buffer.
+
+#### Samples:
+  * Removed deprecated Virtual Assistant samples.
+  * **Python:** Updated `cryptography` dependencies.
+
+### Speech SDK for JavaScript (1.52)
+
+#### New features
+  * Added support for selecting a streaming model for speech transcription.
+
+#### Bug fixes
+  * Fixed audio offset calculation for reliable reconnect.
+  * Fixed missing audio channel information in `ConversationTranscriber` and hypothesis results.
+
+#### Samples:
+  * Improved connection error logging and responses in Avatar samples.
 
 ### Speech SDK 1.51.2: 2026-August release
 

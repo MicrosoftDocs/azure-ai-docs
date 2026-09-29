@@ -41,9 +41,9 @@ The following table summarizes the key differences between Azure-hosted and Anth
 
 The following table summarizes operational differences that affect how you build and run applications on each hosting option.
 
-| Dimension | Hosted on Azure | Hosted on Anthropic|
+| Dimension | Hosted on Azure | Hosted on Anthropic |
 |---|---|---|
-| **Model availability** | Opus 5.5, Opus 5, Opus 4.8, Sonnet 5, and Haiku 4.5 | Opus 5.5, Opus 5, Opus 4.8, Sonnet 5, Haiku 4.5, preview models (Fable and Mythos), and older versions of Opus, Sonnet, and Haiku |
+| **Model availability** | Opus 5.5, Opus 5, Opus 4.8, Sonnet 5, Sonnet 5.5, and Haiku 4.5 | Opus 5.5, Opus 5, Opus 4.8, Sonnet 5, Sonnet 5.5, Haiku 4.5, preview models (Fable and Mythos), and older versions of Opus, Sonnet, and Haiku |
 | **Deployment types** | Global Standard and Data Zone Standard (US) | Global Standard only |
 | **Supported APIs** | Messages, Token counting | Messages, Token counting, plus /files and /skills |
 | **Additional capabilities** | Core capability set | Core set plus [additional capabilities](https://docs.claude.com/en/docs/build-with-claude/overview) |

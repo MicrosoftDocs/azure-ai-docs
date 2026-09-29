@@ -91,13 +91,12 @@ Managed compute (Preview) supports:
 - **Model-instance sizing** — Deployments are sized in model-centric terms. You don't need to pick virtual machine SKUs, because Foundry chooses GPUs per instance based on model size, architecture, context length, and whether the workload is optimized for latency or throughput.
 - **Optimized inference runtimes** — Microsoft-curated vLLM, SGLang, and NVIDIA NIM containers with continuous batching and tensor parallelism.
 - **Accelerator families** — A100 (80 GB), H100 (80 GB), and MI300X (192 GB).
-- **Auto-scaling and scale-to-zero** — Auto-scale from live traffic or scale manually. Configure an idle timeout so the deployment scales to zero when no traffic arrives, making billing stop immediately.
 - **Microsoft-managed runtimes** — Microsoft owns serving runtimes, base container images, and security patches. Updates are applied to live deployments automatically.
 - **Observability metrics** — Each deployment emits API call count by status code and response-time percentiles. Chat-completion models also emit input and output token counts, time-to-first-token (TTFT) percentiles, and total response-time percentiles, grouped by time.
 
 ### Billing and quota
 
-Managed compute billing is hourly per accelerator SKU, with throughput per GPU as the underlying billing unit. Auto-scale and scale-to-zero align cost with actual traffic so that billing stops immediately when instances scale down.
+Managed compute billing is hourly per accelerator SKU, with throughput per GPU as the underlying billing unit.
 
 Quota is granted per accelerator SKU per region through the **Foundry quota process** and is **separate from Azure VM quota**. Azure virtual machines are an infrastructure-as-a-service (IaaS) offering with regional SKUs; managed compute is a PaaS offering that leads with Global and Data Zone processing. Existing Azure VM quota can't be applied to a managed compute deployment.
 

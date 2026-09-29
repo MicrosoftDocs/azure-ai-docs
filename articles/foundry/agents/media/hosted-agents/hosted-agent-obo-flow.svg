@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="830" viewBox="0 0 1000 830" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="obo-title obo-description">
+  <title id="obo-title">Application-managed OBO for a hosted agent</title>
+  <desc id="obo-description">The client sends a user token to its trusted backend. The backend exchanges it with Microsoft Entra ID for a delegated downstream token and separately acquires a Foundry workload token. It invokes Foundry with Authorization, x-client-graph-access-token, and x-ms-user-identity. Foundry authenticates the workload, resolves the user, and forwards the custom token header and trusted user context to the hosted agent. The agent uses the delegated token to call the downstream API.</desc>
+  <defs>
+    <marker id="obo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="830" fill="#FFFFFF"/>
+  <text x="500" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#111827">Application-managed OBO for a hosted agent</text>
+
+  <g fill="#E8F0FE" stroke="#4285F4" stroke-width="2">
+    <rect x="8" y="58" width="144" height="52" rx="8"/>
+    <rect x="176" y="58" width="144" height="52" rx="8"/>
+    <rect x="344" y="58" width="144" height="52" rx="8"/>
+  </g>
+  <rect x="512" y="58" width="144" height="52" rx="8" fill="#D6E4FF" stroke="#1A56DB" stroke-width="2"/>
+  <rect x="680" y="58" width="144" height="52" rx="8" fill="#DEF7EC" stroke="#057A55" stroke-width="2"/>
+  <rect x="848" y="58" width="144" height="52" rx="8" fill="#FDF6B2" stroke="#C27803" stroke-width="2"/>
+
+  <g text-anchor="middle" font-size="15" font-weight="700" fill="#111827">
+    <text x="80" y="80">Client</text>
+    <text x="80" y="99" font-size="13" font-weight="400">Signed-in user</text>
+    <text x="248" y="80">Trusted</text>
+    <text x="248" y="99">middle tier</text>
+    <text x="416" y="80">Microsoft</text>
+    <text x="416" y="99">Entra ID</text>
+    <text x="584" y="80">Foundry</text>
+    <text x="584" y="99">Service</text>
+    <text x="752" y="80">Hosted agent</text>
+    <text x="752" y="99" font-size="13" font-weight="400">Your code</text>
+    <text x="920" y="80">Downstream API</text>
+    <text x="920" y="99" font-size="13" font-weight="400">Microsoft Graph</text>
+  </g>
+
+  <g stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5,5">
+    <line x1="80" y1="110" x2="80" y2="770"/>
+    <line x1="248" y1="110" x2="248" y2="770"/>
+    <line x1="416" y1="110" x2="416" y2="390"/>
+    <line x1="584" y1="110" x2="584" y2="770"/>
+    <line x1="752" y1="110" x2="752" y2="770"/>
+    <line x1="920" y1="110" x2="920" y2="770"/>
+  </g>
+
+  <g text-anchor="middle" font-size="14" fill="#111827">
+    <text x="164" y="139">1. User token</text>
+    <text x="164" y="156">aud: middle tier</text>
+    <text x="332" y="197">2. OBO exchange</text>
+    <text x="332" y="214">User assertion</text>
+    <text x="332" y="253">Delegated token</text>
+    <text x="332" y="270">aud: downstream</text>
+    <text x="332" y="311">3. Workload auth</text>
+    <text x="332" y="366">Foundry token</text>
+    <text x="332" y="383">aud: Foundry</text>
+  </g>
+  <g stroke="#4B5563" stroke-width="2" marker-end="url(#obo-arrow)">
+    <line x1="80" y1="165" x2="248" y2="165"/>
+    <line x1="248" y1="223" x2="416" y2="223"/>
+    <line x1="416" y1="279" x2="248" y2="279" stroke-dasharray="5,4"/>
+    <line x1="248" y1="326" x2="416" y2="326"/>
+    <line x1="416" y1="392" x2="248" y2="392" stroke-dasharray="5,4"/>
+  </g>
+
+  <rect x="198" y="413" width="436" height="91" rx="8" fill="#FFFFFF" stroke="#1A56DB" stroke-width="1.5"/>
+  <g text-anchor="middle" font-size="14" fill="#111827">
+    <text x="416" y="435" font-weight="700">4. Invoke the agent with three headers</text>
+    <text x="416" y="456">Authorization: Foundry workload token</text>
+    <text x="416" y="475">x-client-graph-access-token: delegated token</text>
+    <text x="416" y="494">x-ms-user-identity: user object ID</text>
+  </g>
+  <line x1="248" y1="519" x2="584" y2="519" stroke="#4B5563" stroke-width="2" marker-end="url(#obo-arrow)"/>
+
+  <rect x="479" y="537" width="210" height="48" rx="8" fill="#D6E4FF" stroke="#1A56DB" stroke-width="1.5"/>
+  <text x="584" y="557" text-anchor="middle" font-size="14" fill="#111827">Authenticate workload;</text>
+  <text x="584" y="576" text-anchor="middle" font-size="14" fill="#111827">resolve end user</text>
+
+  <g text-anchor="middle" font-size="14" fill="#111827">
+    <text x="668" y="612">5. Token + trusted</text>
+    <text x="668" y="630">user context</text>
+    <text x="836" y="674">6. Delegated API call</text>
+    <text x="836" y="692">Authorization: token</text>
+    <text x="836" y="742">User-authorized data</text>
+  </g>
+  <g stroke="#4B5563" stroke-width="2" marker-end="url(#obo-arrow)">
+    <line x1="584" y1="640" x2="752" y2="640"/>
+    <line x1="752" y1="702" x2="920" y2="702"/>
+    <line x1="920" y1="752" x2="752" y2="752" stroke-dasharray="5,4"/>
+  </g>
+
+  <rect x="24" y="785" width="952" height="30" rx="6" fill="#F3F4F6"/>
+  <text x="500" y="805" text-anchor="middle" font-size="14" fill="#374151">OBO happens in the middle tier. Foundry forwards the downstream token; it doesn't exchange or refresh it.</text>
+</svg>

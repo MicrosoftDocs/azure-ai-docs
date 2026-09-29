@@ -1,13 +1,13 @@
 ---
-title: "Hugging Face models in Microsoft Foundry (preview)"
-description: "Learn how to discover and deploy Hugging Face models in Microsoft Foundry (preview), including project availability filtering, managed compute behavior, and classic fallback for unavailable models."
+title: "Hugging Face models in Microsoft Foundry"
+description: "Learn how to discover and deploy Hugging Face models in Microsoft Foundry with Foundry Managed Compute (preview), including project availability filtering and classic fallback for unavailable models."
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
 ms.date: 06/16/2026
-author: msakande
+author: ositanachi
 reviewer: ositanachi
-ms.author: mopeakande
+ms.author: osiotugo
 ms.reviewer: osiotugo
 ms.custom:
   - classic-and-new
@@ -16,16 +16,16 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to understand how Hugging Face models are discovered and deployed in Microsoft Foundry so I can choose the right deployment path for my project.
 ---
 
-# Hugging Face models in Microsoft Foundry (preview)
+# Hugging Face models in Microsoft Foundry
 
-Hugging Face-published models are available in the Foundry model catalog for deployment in Microsoft Foundry. In the current Foundry experience, these models use managed compute.
+Hugging Face-published models are available in the Foundry model catalog for deployment in Microsoft Foundry. In the current Foundry experience, these models use Foundry Managed Compute (preview).
 
 In this article, you discover deployable Hugging Face models, deploy one with managed compute, and call the endpoint from your application.
 
 In model discovery, use the **Available in my Project** filter to find the Hugging Face models that you can deploy in your current project. To see all Hugging Face-published models, set the availability filter to **All models**. If a model isn't currently available in Foundry, a **Continue in Foundry (classic)** button appears on the model card so you can deploy in Foundry (classic).
 
 > [!IMPORTANT]
-> Foundry managed compute is currently in preview. Preview features might not be available in all regions and are subject to supplemental terms. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This preview feature might not be available in all regions and is subject to supplemental terms. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > Hugging Face models in Foundry are globally available. For general service availability information by region, see [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/).
 
@@ -43,7 +43,7 @@ Models sourced from Hugging Face are Non-Microsoft Products that aren't tested o
    - **Cognitive Services Contributor** (or **Foundry Owner** / **Foundry Account Owner**) to create, update, and delete managed compute deployments.
    - **Foundry User** to call the deployment with Microsoft Entra ID from the playground, SDK, or REST.
    For role definitions, see [Role-based access control in Foundry](../../concepts/rbac-foundry.md#managed-compute-control-plane-operations).
-- Available GPU managed compute quota in your Azure subscription for the selected accelerator family. Foundry managed compute quota is separate from Azure VM quota and uses a different request path. In the [Foundry portal](https://ai.azure.com/nextgen), go to **Manage** > **Quota** > **Managed compute** > **Request quota** to check your current allocation or request an increase. For detailed guidance, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
+- Available GPU quota for Foundry Managed Compute (preview) in your Azure subscription for the selected accelerator family. This quota is separate from Azure VM quota and uses a different request path. In the [Foundry portal](https://ai.azure.com/nextgen), go to **Manage** > **Quota** > **Managed compute** > **Request quota** to check your current allocation or request an increase. For detailed guidance, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
 
 ## Deploy a Hugging Face model
 
@@ -131,7 +131,7 @@ After the deployment finishes, validate the endpoint before you integrate it int
 
 1. Run a test inference from the deployment details page to confirm that the model returns a successful response for your task type.
 
-1. If deployment fails, review the deployment logs. Then, verify GPU quota and regional availability for the selected model and accelerator type. Foundry managed compute quota is separate from Azure VM quota. For quota checks and increase requests, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
+1. If deployment fails, verify GPU quota. Quota for Foundry Managed Compute (preview) is separate from Azure VM quota. For quota checks and increase requests, see [Request more quota](../../how-to/deploy-models-managed.md#request-more-quota).
 
 ## Invoke the endpoint from your application
 
@@ -225,7 +225,7 @@ At a high level:
 - You discover Hugging Face models in the model catalog.
 - You filter to models that are deployable in your current project.
 - You deploy a supported model; Foundry provisions dedicated GPU compute instances and exposes an endpoint.
-- You invoke the deployment through the endpoint by using Foundry managed compute pricing.
+- You invoke the deployment through the endpoint.
 
 Managed compute provides dedicated GPU compute instances, endpoint-based inference access, and billing through the Foundry Models Managed Compute pricing model. For current rates and billing details, see [Foundry Models pricing - Managed Compute](https://azure.microsoft.com/pricing/details/ai-foundry-models/microsoft/#pricing).
 

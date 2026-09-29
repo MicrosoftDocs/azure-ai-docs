@@ -6,6 +6,7 @@ ms.topic: tutorial
 ms.author: semenshi
 ms.date: 04/23/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # A2A Hosting
@@ -19,13 +20,10 @@ The Agent Framework provides hosting packages that expose your AI agents via the
 
 ## Getting started
 
-Install the ASP.NET Core hosting package (it pulls in the core package automatically):
+Install the ASP.NET Core hosting package (it automatically installs the core hosting package and the A2A SDK packages):
 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Hosting.A2A.AspNetCore --prerelease
-dotnet add package A2A.AspNetCore --prerelease
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 
@@ -83,7 +81,7 @@ app.MapWellKnownAgentCard(new AgentCard
 app.Run();
 ```
 
-The agent is now reachable at `/a2a/weather-agent` over the A2A HTTP+JSON protocol binding, and its agent card is discoverable at `/.well-known/agent.json`. Any A2A-compliant client can discover and communicate with this agent.
+The agent is now reachable at `/a2a/weather-agent` over the A2A HTTP+JSON protocol binding, and its agent card is discoverable at `/.well-known/agent-card.json`. Any A2A-compliant client can discover and communicate with this agent.
 
 ## Protocol bindings
 
