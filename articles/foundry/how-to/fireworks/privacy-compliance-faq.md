@@ -35,7 +35,7 @@ No, customers don't require a separate BAA with Fireworks when using the Firewor
 
 ## Does customer data travel outside of Azure when using the Fireworks on Foundry service? Why? What data processing terms apply?
 
-Yes, customer data travels outside Microsoft facilities because Fireworks runs inferencing for this service on Fireworks’ GPUs. However, since Fireworks is a Microsoft subprocessor, any processing of customer data continues to be governed by Microsoft’s Product Terms and DPA, and any documented exceptions (see response to #1 above).
+Yes, customer data travels outside Microsoft facilities because Fireworks runs inferencing for this service on Fireworks’ GPUs. However, since Fireworks is a Microsoft subprocessor, any processing of customer data continues to be governed by Microsoft’s Product Terms and DPA, and any documented exceptions.
 
 ## Where is the customer data stored? Do Foundry’s DataZone commitments apply?
 
