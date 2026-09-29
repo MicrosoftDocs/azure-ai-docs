@@ -4,7 +4,7 @@ description: Browse Agent Framework integrations grouped by external provider ec
 author: eavanvalkenburg
 ms.topic: overview
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -23,6 +23,7 @@ Provider pages collect related Agent Framework guidance across model inference, 
 | [Google](google.md) | Google Gemini and Anthropic Claude on Vertex AI |
 | [Ollama](ollama.md) | Local model inference through native and OpenAI-compatible clients |
 | [Mistral](mistral.md) | Mistral chat and text embeddings |
+| [TypeSafe AI](type-safe-ai.md) | Typed decisions and constrained tool selection with System One models |
 
 Additional provider pages can be added as integration coverage grows.
 

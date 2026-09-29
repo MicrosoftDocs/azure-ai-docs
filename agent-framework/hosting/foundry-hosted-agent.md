@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/28/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -154,6 +154,11 @@ Use `ResponsesHostServer(agent, history_source="agent")` when the agent's histor
 
 The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
 
+The Responses host preserves native computer calls, screenshots, and safety
+checks. Your application must execute the requested actions and explicitly
+acknowledge any safety checks. For the complete flow, see
+[Native computer use](../agents/tools/computer-use.md).
+
 ### Choose an agent instance or factory
 
 Both `ResponsesHostServer` and `InvocationsHostServer` accept either an agent instance or a zero-argument synchronous or asynchronous callable through the `agent` parameter. The host reuses an instance for its lifetime. A callable runs once per request, and the returned agent belongs to that request.
@@ -183,6 +188,22 @@ For Responses workflow agents, `CheckpointStoreProvider` supplies a
 `FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a
 `FoundryFunctionApprovalStore` for pending approvals.
 
+When running in Foundry, the default Python stores namespace state by the
+platform user ID and the Foundry sandbox session ID. They also require a
+platform call ID for each state operation. The call ID authorizes and correlates
+the operation; it isn't a conversation ID and isn't part of the storage key.
+
+For Responses, the platform-configured `FOUNDRY_AGENT_SESSION_ID` identifies the
+sandbox, and a different caller-supplied `agent_session_id` is rejected. For
+Invocations, the host verifies the routed `agent_session_id` query parameter
+against the request context. If `FOUNDRY_AGENT_SESSION_ID` isn't configured, the
+query parameter must be present, nonempty, and match the request context.
+Missing, duplicate, or conflicting values are rejected instead of using an SDK
+fallback ID.
+
+These guarantees apply to the default hosted stores. Custom store providers
+must implement equivalent user and sandbox isolation.
+
 With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
 Both hosts accept a `StoreProvider[SessionStore]` through
@@ -191,6 +212,18 @@ serialization. Register codecs for custom state types with
 `register_state_type()`; restored state doesn't preserve Python object
 identity. New default stores expire sessions 30 days after their last write.
 Custom providers control their own retention.
+
+The scoped default stores don't read legacy unscoped `agent_sessions`,
+`invocation_sessions`, checkpoint, or function-approval data. Start a fresh
+Responses conversation instead of reusing an old `previous_response_id` or
+conversation ID. Invocations starts with an empty Agent Framework session in
+the scoped store.
+
+Loaded `AgentSession` records use ETag conditions. If another request advances
+the same session first, the stale write fails instead of overwriting newer
+state. This check doesn't provide transactions or exactly-once execution for
+agent or tool side effects, so applications must still coordinate overlapping
+requests.
 
 For Responses-specific storage, pass a `StoreProvider` to
 `function_approval_store_provider` or a `ContextScopedStoreProvider` to
@@ -274,12 +307,11 @@ the configured store, so completed conversations can continue after the host
 restarts. For storage behavior, retention, and customization, see
 [Persist state and handle long-running conversations](#persist-state-and-handle-long-running-conversations).
 
-When hosted, the platform session ID and user ID together identify the saved
-session. Treat `AgentSession.session_id` as one opaque value; don't parse or
-depend on its internal representation. Local runs use the platform session ID
-unchanged. Applications must coordinate overlapping requests for the same
-session because the store doesn't provide transactions or exactly-once
-execution.
+When hosted, Invocations uses the verified request scope described in
+[Persist state and handle long-running conversations](#persist-state-and-handle-long-running-conversations).
+Treat `AgentSession.session_id` as one opaque value; don't parse or depend on
+its internal representation. Local runs keep their existing single-user
+storage behavior.
 
 The Invocations protocol doesn't resume workflow runs that are pending or
 interrupted. Use the custom handler pattern in the following section when you
@@ -363,7 +395,7 @@ For a complete Invocations deployment, see the [Foundry-hosted Telegram sample](
 :::zone-end
 
 > [!TIP]
-> Refer the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) or the [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework) for examples of a hosted agent project. Or use the `azd ai agent init` command to scaffold a new hosted agent project from scratch. Refer to this [quickstart guide](/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd) for step-by-step instructions.
+> Refer to the [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) or the [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents/agent-framework) for examples of a hosted agent project. Or use the `azd ai agent init` command to scaffold a new hosted agent project from scratch. Refer to this [quickstart guide](/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd) for step-by-step instructions.
 
 ## Running locally
 

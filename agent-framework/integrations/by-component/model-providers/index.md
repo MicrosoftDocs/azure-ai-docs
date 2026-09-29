@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -43,6 +43,13 @@ For remote or managed runtimes that own an agent definition, permissions, or ser
 | [ONNX](./onnx.md) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | [Dapr](./dapr.md) | Varies | Varies | Varies | Varies | Varies | Varies |
 | [Mistral](./mistral.md) | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| [TypeSafe AI](../../by-provider/type-safe-ai.md) (Python) | Constrained | TypeSafe questions | ❌ | ❌ | Constrained | ❌ |
+
+> [!NOTE]
+> TypeSafe AI is an alpha Python integration for typed decisions rather than
+> free-form generation. It supports closed-set local and MCP tool schemas, and
+> its structured result is a TypeSafe `Questions` mapping with a
+> `SystemOneResponse`, not ordinary JSON-schema output.
 
 > [!IMPORTANT]
 > If you use Microsoft Agent Framework to build applications that operate with any third-party servers, agents, code, or non-Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms. You are responsible for any usage and associated costs.
@@ -117,6 +124,7 @@ Agent Framework Python exposes provider-specific chat clients behind the common 
 - **[Amazon Bedrock](./amazon-bedrock.md)** — AWS-managed foundation model inference.
 - **[Google Gemini](./google-gemini.md)** — Gemini Developer API or Vertex AI inference.
 - **[Mistral](./mistral.md)** — Mistral AI chat and embedding generation.
+- **[TypeSafe AI](../../by-provider/type-safe-ai.md)** — Typed classification, scoring, routing, and constrained tool selection with TypeSafe System One models.
 
 :::zone-end
 

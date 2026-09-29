@@ -5,14 +5,14 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/03/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
 
 # OpenAI
 
-Microsoft Agent Framework supports OpenAI agents in C#, Python, and Go. C# and Python support two OpenAI client types — Responses and Chat Completion — while Go currently uses the Chat Completions provider. **Responses is the recommended primary client when available**: it targets the newer OpenAI Responses API and supports the full set of hosted tools (code interpreter, file search, web search, hosted MCP, image generation). Use Chat Completion when you need broad model compatibility, Go support, or have an existing Chat Completions integration to keep.
+Microsoft Agent Framework supports OpenAI agents in C#, Python, and Go. C# and Python support two OpenAI client types — Responses and Chat Completion — while Go currently uses the Chat Completions provider. **Responses is the recommended primary client when available**: it targets the newer OpenAI Responses API and supports the full set of hosted tools (code interpreter, file search, web search, hosted MCP, and image generation). Use Chat Completion when you need broad model compatibility, Go support, or have an existing Chat Completions integration to keep.
 
 | Client Type | API | Best For |
 |---|---|---|
@@ -236,7 +236,7 @@ async def main():
 asyncio.run(main())
 ```
 
-**Supported tools:** Function tools, tool approval, code interpreter, file search, web search, hosted MCP, local MCP tools.
+**Supported tools:** Function tools, tool approval, code interpreter, file search, web search, hosted MCP, native computer use, and local MCP tools.
 
 ### Hosted Tools with Responses Client
 
@@ -267,6 +267,11 @@ async def hosted_tools_example():
     result = await agent.run("Search the web for Python best practices, then write a summary.")
     print(result)
 ```
+
+`OpenAIChatClient.get_computer_tool()` configures native computer use. The
+application must execute the returned ordered actions, review any safety checks,
+and send a screenshot result. For the complete request and result flow, see
+[Native computer use](../../../agents/tools/computer-use.md).
 
 # [Chat Completion](#tab/oai-create-chat-completion)
 
