@@ -208,6 +208,7 @@ Review common issues before you rerun the pipeline. For CI provisioning, you mig
 
 ## Related content
 
+- [Promote hosted agents to production](deploy-hosted-agent-production.md) for environment promotion, canary deployments, and rollback.
 - [Deploy a hosted agent](deploy-hosted-agent.md) to understand what happens during deployment.
 - [Azure YAML reference](../concepts/azure-yaml-reference.md) to review deployment configuration details.
 - [Configure a DevOps pipeline with azd](/azure/developer/azure-developer-cli/configure-devops-pipeline) for the full azd pipeline reference.
