@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 07/30/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -83,6 +84,9 @@ Attach the Toolbox to the Prompt or Hosted Agent definition in Foundry. `Foundry
 ## Connect through raw MCP
 
 Use `MCPStreamableHTTPTool` directly when the application doesn't use the `FoundryToolbox` hosting wrapper. Supply the Toolbox endpoint and an Entra ID bearer token through `header_provider`.
+
+> [!IMPORTANT]
+> The following raw MCP sample authenticates with a bearer token but doesn't forward the hosted request's `x-agent-foundry-call-id`. Don't use it unchanged for per-user identity passthrough in a hosted agent. For that scenario, use [`FoundryToolbox` with the Foundry hosting integration](#use-foundrytoolbox-with-a-hosted-agent) to forward the current request's caller context. Don't hard-code the call ID or reuse it across user requests. The raw sample remains useful for scenarios that don't require user delegation.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/foundry/foundry_chat_client_with_toolbox.py" range="3-12,80-94,98-118":::
 

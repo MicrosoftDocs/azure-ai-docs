@@ -292,6 +292,8 @@ For JavaScript, see the maintained [toolbox project-connection sample](https://g
 
 The agent connects to the toolbox's single consumer endpoint, which always serves the default version. The agent authenticates to the platform with its own identity. For each tool, Foundry supplies credentials that represent the user who completed OAuth authorization. The agent carries no per-tool authentication code.
 
+The agent's credential alone isn't enough for per-user resolution. Use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET with the Foundry hosting integration. It forwards the current hosted request's `x-agent-foundry-call-id` so the toolbox proxy can resolve the caller context. Don't hard-code the call ID or reuse it across user requests. The tool's connection must also use the appropriate per-user authentication type, and the user needs downstream permissions and any required consent. For hosting setup, see [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
+
 ```python
 from azure.identity import DefaultAzureCredential
 from agent_framework import FoundryToolbox
