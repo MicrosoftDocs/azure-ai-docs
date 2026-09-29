@@ -266,8 +266,12 @@ items:
     href: ../../agents/how-to/publish-copilot.md
   - name: Publish with a virtual network
     href: ../../agents/how-to/publish-copilot-virtual-network.md
-  - name: Troubleshoot publishing to Microsoft Copilot and Teams
-    href: ../../agents/how-to/troubleshoot-publish-copilot.md
+  - name: Troubleshooting
+    items:
+    - name: General troubleshooting
+      href: ../../agents/how-to/troubleshoot-publish-copilot.md
+    - name: Authorization errors
+      href: ../../agents/how-to/troubleshoot-publish-copilot-authorization.md
 
 - name: Reference
   items:
