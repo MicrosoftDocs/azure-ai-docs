@@ -7,7 +7,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 08/04/2026
+ms.date: 09/25/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -31,6 +31,7 @@ Foundry resolves the connection endpoint and authentication, including API key, 
 
 - A [Foundry project](../../how-to/create-projects.md).
 - **Foundry User** role on the Foundry project.
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - An administrator has created an Azure API Management or non-Azure AI model gateway connection on your Foundry resource and added the model on the **Manage** > **Resource details** > **Admin-connected models** tab. For setup instructions, see [Bring your own model to Foundry Agent Service](../../agents/how-to/ai-gateway.md).
 - The connection name and deployment name for a model that supports the OpenAI Chat Completions API.
 

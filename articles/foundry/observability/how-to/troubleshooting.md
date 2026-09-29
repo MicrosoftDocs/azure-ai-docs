@@ -6,7 +6,7 @@ ms.author: lagayhar
 ms.reviewer: naposani
 ms.service: microsoft-foundry
 ms.topic: troubleshooting
-ms.date: 06/16/2026
+ms.date: 09/28/2026
 ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to troubleshoot common evaluation and observability issues in Microsoft Foundry so that I can resolve problems quickly.
 ---
@@ -34,7 +34,7 @@ For more details on bringing your own storage for evaluations, see [Rate limits,
 
 ## Missing RBAC role assignment for Microsoft Entra ID authentication
 
-If you connect your storage account by using Microsoft Entra ID authentication, the Foundry project's managed identity must have the **Storage Blob Data Contributor** role on the storage account. Without this role, the service can't read or write blob data and evaluations fail.
+If you connect your storage account by using Microsoft Entra ID authentication, the Foundry project's managed identity must have the **Storage Blob Data Contributor** role on the storage account. Without this role, the service can't read or write blob data and evaluations fail. For the complete storage requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#add-permissions-for-your-own-storage-account).
 
 **Symptoms:**
 
@@ -198,7 +198,7 @@ If an evaluation fails with a `401 Unauthorized` or `403 Forbidden` error that i
 **Resolution:**
 
 - Verify that `DefaultAzureCredential` is configured correctly. If you use the Azure CLI, run `az login`. If you use the Azure Developer CLI, run `azd auth login`.
-- Confirm your account has the **Foundry User** role on the Foundry project.
+- Confirm your account has the **Foundry User** role on the Foundry project. For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#find-the-roles-for-your-workflow).
 - Verify the project endpoint URL is correct and includes both the account and project names.
 
 [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
@@ -260,19 +260,19 @@ The Foundry project's managed identity reads traces from Application Insights. W
 
 **Resolution:**
 
-Assign the **Log Analytics Reader** role to the project's managed identity on *both* the Application Insights resource and its linked Log Analytics workspace. To find the managed identity principal ID, see [Verify the managed identity role assignment](#verify-the-managed-identity-role-assignment).
+Assign the [**Reader** role](/azure/role-based-access-control/built-in-roles/general#reader) to the project's managed identity on the Application Insights resource. To find the managed identity principal ID, see [Verify the managed identity role assignment](#verify-the-managed-identity-role-assignment). For all trace-evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#add-permissions-for-trace-based-workflows).
 
 ```azurecli
 az role assignment create \
   --assignee <principal-id> \
-  --role "Log Analytics Reader" \
-  --scope "<application-insights-or-log-analytics-resource-id>"
+  --role "Reader" \
+  --scope "<application-insights-resource-id>"
 ```
 
-Run the command twice: once for the Application Insights resource and once for the Log Analytics workspace it's linked to. Role assignments can take up to 10 minutes to propagate. For setup details, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
+If the linked Log Analytics workspace is configured to [**Require workspace permissions**](/azure/azure-monitor/logs/manage-access#access-control-mode), also assign **Log Analytics Reader** to the managed identity on the workspace. Role assignments can take up to 10 minutes to propagate. For setup details, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
 
 > [!NOTE]
-> If the Log Analytics tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure) (their protection level is set to **Protected**), the Log Analytics Reader role can't read them. In that case, also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to the managed identity at the same scopes so trace evaluation can read the protected trace tables.
+> If the Log Analytics tables that store your traces are [protected](/azure/azure-monitor/logs/protected-tables-configure) (their protection level is set to **Protected**), the Reader role can't read them. In that case, also assign the [Privileged Monitoring Data Reader](/azure/azure-monitor/logs/manage-access?tabs=portal#privileged-monitoring-data-reader) role to the managed identity on the Application Insights resource. If the workspace [requires workspace permissions](/azure/azure-monitor/logs/manage-access#access-control-mode), assign the role on the workspace too.
 
 ### Fetched traces have no input or output messages
 
@@ -316,7 +316,7 @@ This section covers common issues with the human evaluation feature for Foundry 
 
 **Cause:** The reviewer doesn't have the required role on the Foundry project.
 
-**Resolution:** Assign the **Foundry User** role to the reviewer on the Foundry project. For instructions, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
+**Resolution:** Assign the **Foundry User** role to the reviewer on the Foundry project. For instructions, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md). For the complete reviewer requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#find-the-roles-for-your-workflow).
 
 ## Related content
 

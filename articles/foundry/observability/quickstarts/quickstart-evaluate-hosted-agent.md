@@ -3,7 +3,7 @@ title: "Quickstart: Evaluate your hosted agent"
 description: "Evaluate a deployed hosted agent in Foundry Agent Service by using the Azure Developer CLI, the Microsoft Foundry portal, or the Microsoft Foundry SDK for Python, C#, or JavaScript/TypeScript."
 author: lgayhardt
 ms.author: lagayhar
-ms.date: 09/03/2026
+ms.date: 09/25/2026
 ms.manager: mcleans
 ms.topic: quickstart
 ms.service: microsoft-foundry
@@ -30,6 +30,8 @@ Before you begin, you need:
 * A chat-completion model deployment in the same Foundry project to use as the judge model that scores responses. You can reuse the model deployment your agent already uses, including the one from the previous quickstart, so you don't need a separate deployment.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+
+For all evaluation role requirements, see [Set up permissions for evaluation workflows](../how-to/evaluation-permissions.md).
 
 Each step offers five paths. Use whichever you prefer:
 
@@ -773,7 +775,7 @@ To remove the hosted agent and the Azure resources you created, follow the clean
 | `azd ai agent eval run` fails to find the agent | Confirm the agent is deployed and invokable with `azd ai agent show`. Redeploy with `azd deploy` if needed. |
 | `ModuleNotFoundError` for `azure.ai.projects` or `azure.identity` | Install the SDK: `pip install "azure-ai-projects>=2.0.0" azure-identity`. |
 | C#: `The type or namespace name 'Evals' (or 'AIProjectClient') could not be found` | Add the packages: `dotnet add package Azure.AI.Projects --prerelease`, `dotnet add package OpenAI`, and `dotnet add package Azure.Identity`. |
-| `AuthenticationError`, `DefaultAzureCredential`, or `Forbidden` failure | Sign in with `az login` (or `azd auth login` for the CLI path), and confirm you have the **Foundry User** role on the project. Dataset uploads also require write access to the project's storage. |
+| `AuthenticationError`, `DefaultAzureCredential`, or `Forbidden` failure | Sign in with `az login` (or `azd auth login` for the CLI path), and confirm you have the **Foundry User** role on the project. Dataset uploads also require write access to the project's storage. For all role requirements, see [Set up permissions for evaluation workflows](../how-to/evaluation-permissions.md). |
 | Agent target not found | Verify the agent name and version with `project_client.agents.get("<your-agent-name>")` or `project_client.agents.list()`. |
 | Many errored rows or unexpectedly low scores | Open the report URL and check whether rows failed with agent response or evaluator errors. Fix the underlying errors, then rerun the evaluation. |
 | Eval model deployment not found | Verify that the judge model deployment (`FOUNDRY_MODEL_NAME` for the SDK, or `eval_model` in `eval.yaml`) exists in your project under **Build** > **Deployments**. |
