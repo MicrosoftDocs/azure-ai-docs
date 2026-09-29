@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 09/09/2026
+ms.date: 09/29/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -223,7 +223,7 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Voice Live](#tab/voice-live)
 
-| Region | azure-realtime | gpt-realtime-2.1 (preview) | gpt-realtime-2.1-datazone (preview) | gpt-realtime-2.1-mini (preview) | gpt-realtime-1.5 | gpt-realtime-1.5-datazone | gpt-realtime | gpt-realtime-datazone | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-4.1-nano | gpt-5.6-terra | gpt-5.6-luna | gpt-5.4 | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | phi4-mm-realtime (preview) | Agent support |
+| Region | azure-realtime | gpt-realtime-2.1 | gpt-realtime-2.1-datazone | gpt-realtime-2.1-mini | gpt-realtime-1.5 | gpt-realtime-1.5-datazone | gpt-realtime | gpt-realtime-datazone | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-4.1-nano | gpt-5.6-terra | gpt-5.6-luna | gpt-5.4 | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | phi4-mm-realtime (preview) | Agent support |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | `australiaeast` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
 | `brazilsouth` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
@@ -255,7 +255,7 @@ The regions in the following tables support most of the core features of Azure S
 | `westus3` | - | - | Data zone standard | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
 
 > [!NOTE]
-> The `gpt-realtime-datazone`, `gpt-realtime-1.5-datazone`, and `gpt-realtime-2.1-datazone` (preview) models use Data Zone Standard deployments. Prompts and responses are processed only within the data zone associated with your resource's region.
+> The `gpt-realtime-datazone`, `gpt-realtime-1.5-datazone`, and `gpt-realtime-2.1-datazone` models use Data Zone Standard deployments. Prompts and responses are processed only within the data zone associated with your resource's region.
 
 > [!NOTE]
 > Models `gpt-5.5`, `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).
