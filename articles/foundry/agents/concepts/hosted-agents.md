@@ -133,6 +133,9 @@ When integrated via Microsoft 365 channels (for example, Teams), hosted agents c
 - **Autonomous or background scenarios**: If no user token is available, the agent authenticates using its own Microsoft Entra ID (agent identity), typically via managed identity, to access downstream services.
 
 In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
+
+For user delegation with MCP and other tools, connect those tools through a [Foundry toolbox](../how-to/tools/toolbox.md). When you add the toolbox to a hosted agent built with Microsoft Agent Framework, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Toolbox in Foundry](#toolbox-in-foundry).
+
 For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
 ### Sessions, conversations, and the state store
@@ -214,7 +217,7 @@ For configuration and analysis guidance, see [Enable tracing in your project](..
 
 ### Toolbox in Foundry
 
-Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. If you use Microsoft Agent Framework, connect through `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET instead of a generic MCP client. Other runtimes connect by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
+Hosted agents have full access to Foundry-managed tools, including Code Interpreter, Web Search (with Grounding with Bing Custom Search), Azure AI Search, OpenAPI, MCP, A2A, Skills, and more. You connect these tools through a **Toolbox MCP endpoint** provisioned in your Foundry project rather than by adding them directly to the agent definition. The toolbox gives you consolidated authentication across OAuth identity passthrough, agent identity, key-based auth, and more. When adding a toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET instead of a generic MCP client. Other runtimes connect by using standard MCP client libraries. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
