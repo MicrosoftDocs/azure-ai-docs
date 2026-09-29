@@ -7,7 +7,7 @@ ms.reviewer: aahill
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: troubleshooting
-ms.date: 09/28/2026
+ms.date: 09/29/2026
 ms.custom: pilot-ai-workflow-jan-2026, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to troubleshoot publishing and runtime issues so that customers can use my agent in Microsoft Copilot and Microsoft Teams.
@@ -67,7 +67,7 @@ Microsoft Teams but fails when a user chats with it.
 | Symptom | Cause | Resolution |
 |---|---|---|
 | The conversation is stuck, the agent stops responding, or the agent returns `no tool output found`. | The conversation entered a locked state after a tool error, so later messages keep failing. | [Reset the conversation](#reset-a-conversation). |
-| The user receives an insufficient permissions or authorization error. | The user doesn't have access to the Foundry project, or the agent is published to `Shared` scope, which uses Azure role-based access control. | Verify that the user has access to the Foundry project and an appropriate role. Alternatively, publish to `Tenant` scope so users get access through admin approval. |
+| The user receives an insufficient permissions or authorization error. | The agent uses `BotServiceRbac`, and the user doesn't have permission to invoke the agent endpoint. | [Troubleshoot authorization errors for published agents](./troubleshoot-publish-copilot-authorization.md). |
 | The agent works in the Foundry playground but fails after publishing. | The agent's identity doesn't have permissions for one or more Azure resources that the agent uses. | Assign the required roles to the agent's identity for each Azure resource it accesses. |
 | Authentication or agent identity errors occur during execution. | The agent identity application is disabled. | Verify that the agent identity is enabled, and reenable it if necessary. |
 | A request fails because an MCP approval request wasn't approved. | A required MCP tool approval was missed or dismissed. | Approve the pending MCP request in the conversation. If the approval card is no longer available, start a new conversation and retry. |
@@ -109,4 +109,5 @@ the required publishing configuration and network flow, see
 
 - [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md)
 - [Publish agents from a virtual network by using the REST API](./publish-copilot-virtual-network.md)
+- [Troubleshoot authorization errors for published agents](./troubleshoot-publish-copilot-authorization.md)
 - [Configure your agent endpoint and settings](./configure-agent.md)

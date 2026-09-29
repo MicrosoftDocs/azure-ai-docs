@@ -9,7 +9,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 08/14/2026
+ms.date: 09/29/2026
 ms.reviewer: meerakurup
 ms.author: scottpolly 
 author: s-polly 
@@ -318,7 +318,7 @@ If you deploy Foundry with virtual network injection, you might create a firewal
 | Agents | `*.identity.azure.net`, `login.microsoftonline.com`, `*.login.microsoftonline.com`, `*.login.microsoft.com` or AAD service tag | Required for the Azure Container App delegation for Agent service. |
 | Evaluations & Traces with an Application Insights resource | `settings.sdk.monitor.azure.com`, `*.livediagnostics.monitor.azure.com`, `*.in.applicationinsights.azure.com`, AzureMachineLearning service tag | Used for sending results to the linked Application Insights resource and Evaluators Catalog. |
 | Finetuning | `raw.githubusercontent.com` | Used for finetuning, when a user picks a curated sample dataset in the Foundry portal. |
-| Hosted Agents to A365 | `AzureFrontDoor.Frontend` | Hosted agent to Agent365 (A365) observability/tracing endpoint ServiceTag, port TCP 443 |
+| Hosted Agents to A365 | `agent365.svc.cloud.microsoft` or `AzureFrontDoor.Frontend` service tag | Hosted agent to Agent365 (A365) observability and tracing endpoint, port TCP 443. If your firewall filters by FQDN and doesn't support Azure service tags, allow the FQDN. |
 
 > [!NOTE]
 > As an alternative to the `AMLMachineLearning` service tag for evaluations, add `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` to your firewall allow list. Use the region where the evaluation runs. For example, if an evaluation runs in East US, add `eastus.api.azureml.ms`.
