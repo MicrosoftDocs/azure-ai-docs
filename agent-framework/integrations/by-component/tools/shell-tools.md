@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/23/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -67,7 +67,7 @@ The package installs `psutil` to terminate child process trees when an execution
 
 ## Use `LocalShellTool`
 
-`LocalShellTool` runs commands directly on the host. It defaults to a persistent shell, a 30-second timeout, 64-KiB output truncation, working-directory confinement, and approval for every command.
+`LocalShellTool` runs commands directly on the host. It defaults to a persistent shell, a 30-second timeout, 64-KiB output truncation, and working-directory re-anchoring. Agent calls through `as_function()` require approval by default. Direct calls to `run()` don't request approval.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/openai/client_with_local_shell.py" range="3-12,33-97":::
 
@@ -80,16 +80,16 @@ doesn't cause provider-hosted shell calls to execute on the host.
 Use `mode="stateless"` when each call should run in a fresh process. Use the `AGENT_FRAMEWORK_SHELL` environment variable or the `shell` constructor argument to override the resolved shell.
 
 > [!IMPORTANT]
-> `LocalShellTool` isn't a sandbox. Approval is the primary security boundary. Disabling approval requires `acknowledge_unsafe=True`.
+> `LocalShellTool` isn't a sandbox. Human approval adds a review gate, but it doesn't isolate the shell. Disabling approval for agent calls requires `acknowledge_unsafe=True`.
 
 ## Restrict commands with `ShellPolicy`
 
-`ShellPolicy` applies regular-expression allow and deny lists before execution. Deny rules take precedence.
+`ShellPolicy` applies regular-expression allow and deny lists to command text before execution. Deny rules take precedence. It doesn't inspect what the shell ultimately executes or restrict file access.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/tools/local_shell_with_allowlist.py" range="3-8,19,22-53":::
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/tools/local_shell_with_allowlist.py" range="3-8,26,29-53":::
 
 > [!WARNING]
-> A command policy is a usability pre-filter, not a security boundary. Shell syntax, aliases, variables, interpreters, and encoded payloads can bypass simple pattern matching.
+> The sample disables human approval and is only suitable for an isolated, disposable environment without secrets or valuable data. Command substitutions, such as `$(...)` and backticks, can pass simple allow-list patterns. Patterns that only match the start of a command can also allow extra operations. Use separately enforced isolation and restricted permissions for production. Human review can add a check, but it doesn't isolate the shell.
 
 Prefer string patterns. Python compiles strings with the `regex` engine and applies a one-second budget to each match. A deny-list timeout denies the command, and an allow-list timeout doesn't grant permission. A precompiled `regex.Pattern` uses the same bound. A precompiled standard-library `re.Pattern` preserves its flags but can't be interrupted, so avoid expensive or ambiguous expressions in that form.
 
@@ -122,7 +122,7 @@ Use `extra_run_args` only for Docker options that don't weaken the configured is
 
 | Scenario | Tool | Isolation boundary |
 |---|---|---|
-| Trusted development commands | `LocalShellTool` | Approval in the host process |
+| Trusted development commands | `LocalShellTool` | None; human approval is enabled by default |
 | Untrusted shell commands | `DockerShellTool` | OCI container with default isolation flags |
 | Untrusted generated code without a shell | [Hyperlight CodeAct](../context-providers/hyperlight.md) | Hyperlight microVM |
 
