@@ -56,7 +56,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
     For full details, see [Underlying data source permissions](/fabric/data-science/data-agent-sharing#underlying-data-source-permissions).
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Keep the data agent and its data sources on capacities in the same region. The data agent can't execute a query when a data source's workspace capacity is in a different region.
-- Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
+- Use user identity authentication or service principal. 
 - Get these values before you run the samples:
   - Your Foundry project endpoint: `FOUNDRY_PROJECT_ENDPOINT`.
   - Your model deployment name: `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
