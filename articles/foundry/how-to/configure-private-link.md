@@ -323,6 +323,16 @@ If you deploy Foundry with virtual network injection, you might create a firewal
 > [!NOTE]
 > As an alternative to the `AMLMachineLearning` service tag for evaluations, add `*.dataproxy.{region}.api.azureml.ms` and `{region}.api.azureml.ms` to your firewall allow list. Use the region where the evaluation runs. For example, if an evaluation runs in East US, add `eastus.api.azureml.ms`.
 
+Service tags represent the IP address ranges of an entire Azure service. You can't scope a service tag to a specific tenant, subscription, or resource. For example, `AzureFrontDoor.Frontend` covers all traffic to Azure Front Door. When you need a narrower rule, allow the FQDN instead.
+
+#### Impact of blocking optional endpoints
+
+Some endpoints in the preceding table are needed only for a specific feature. If your security policy doesn't allow them, you can block them and lose only that feature.
+
+| FQDN | If you block it | How to avoid the traffic |
+|---------|---------|---------|
+| `agent365.svc.cloud.microsoft` | Hosted agents keep running and responding, but their traces aren't exported to Agent 365. Your firewall logs repeated denied connection attempts while hosted agent sessions run. | Set `a365LoggingEnabled` to `false` on the Foundry resource. Hosted agent sessions that start after the change don't connect to this endpoint. Sessions that started earlier keep trying until they end. For more information, see [Configure Agent 365 data collection for Microsoft Foundry](../agents/how-to/configure-agent-365-data-collection.md). |
+| `raw.githubusercontent.com` | You can't use the curated sample datasets for fine-tuning in the Foundry portal. Fine-tuning with your own training data doesn't use this endpoint. | Don't select curated sample datasets. |
 ### Private endpoint limitations
 
 - **Region and subscription**: You must deploy the private endpoint in the same region and subscription as the virtual network.

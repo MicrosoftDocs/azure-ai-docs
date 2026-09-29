@@ -139,7 +139,7 @@ All source-code deployments require outbound access to:
 
 Agent code that uses the Foundry hosting libraries (such as `azure-ai-agentserver-core` or `agent-framework-foundry-hosting`) also sends telemetry from the agent. Allow these endpoints so that traces aren't dropped:
 
-- `agent365.svc.cloud.microsoft` (TCP 443): Agent 365 observability export, when Agent 365 data collection is enabled for your Foundry resource. For more information, see [Configure Agent 365 data collection for Microsoft Foundry](configure-agent-365-data-collection.md).
+- `agent365.svc.cloud.microsoft` (TCP 443): Agent 365 observability export, when Agent 365 data collection is enabled for your Foundry resource. If you block it, the agent keeps running but its traces aren't exported to Agent 365. To stop this traffic, disable Agent 365 data collection. For more information, see [Configure Agent 365 data collection for Microsoft Foundry](configure-agent-365-data-collection.md).
 - The Application Insights endpoints listed in [Firewall allowlisting](../../how-to/configure-private-link.md#firewall-allowlisting), when your project has an Application Insights connection.
 
 For network configuration, see [Deploy a hosted agent in a virtual network](virtual-networks.md).

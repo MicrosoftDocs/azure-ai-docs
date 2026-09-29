@@ -4,7 +4,7 @@ description: "Learn how to enable or disable Microsoft Agent 365 data collection
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: deeikele
-ms.date: 08/21/2026
+ms.date: 09/29/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -57,7 +57,9 @@ Every Foundry project and every prompt agent contained within that resource
 inherits the same data-collection setting. There's no per-project or
 per-agent override.
 
-[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in Hosted agents override logging disablement settings on the Foundry resource level.
+[Hosted Agents](./deploy-hosted-agent.md) built with the Foundry hosting libraries (such as `azure-ai-agentserver-core` or `agent-framework-foundry-hosting`) export traces to Agent 365 automatically when `a365LoggingEnabled` is `true`, and stop when it's `false`. The setting applies to hosted agent sessions that start after you change it. Hosted agents that don't use these libraries send data only if you package and configure the Agent 365 SDK with your agent code. Explicit Agent 365 SDK configurations in Hosted agents override logging disablement settings on the Foundry resource level.
+
+If your hosted agents run in a virtual network that routes outbound traffic through a firewall, allow `agent365.svc.cloud.microsoft` on TCP port 443, or set `a365LoggingEnabled` to `false`. For more information, see [Firewall allowlisting](../../how-to/configure-private-link.md#firewall-allowlisting).
 
 ## Disable data collection on a Foundry resource
 
