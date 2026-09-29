@@ -10,14 +10,15 @@ ms.topic: troubleshooting
 ms.date: 09/29/2026
 ms.custom: pilot-ai-workflow-jan-2026, dev-focus
 ai-usage: ai-assisted
-#CustomerIntent: As a developer, I want to resolve authorization errors so that intended users can interact with my published agent.
+#CustomerIntent: As an IT admin or agent developer, I want to resolve authorization errors so that intended users can interact with a published agent.
 ---
 
 # Troubleshoot authorization errors for agents published to Microsoft Copilot and Teams
 
-Use this guide when a user can find or open a published Microsoft Foundry
-agent in Microsoft Copilot or Microsoft Teams but receives an authorization or
-insufficient permissions error when they send a message.
+This guide is for IT admins and agent developers who manage access to
+published agents. Use it when a user can find or open a published Microsoft
+Foundry agent in Microsoft Copilot or Microsoft Teams but receives an
+authorization or insufficient permissions error when they send a message.
 
 ## What the error means
 
@@ -45,8 +46,25 @@ Choose a solution based on the intended audience:
 `BotServiceTenant` allows users in the Foundry project's tenant to invoke the
 agent. An endpoint can use either `BotServiceRbac` or `BotServiceTenant`, but
 not both. Replacing the scheme changes endpoint authorization. It doesn't
-change where the agent appears in the Microsoft Copilot or Teams agent store
-or bypass Microsoft 365 admin approval.
+change where the agent appears in the Microsoft Copilot or Teams agent store.
+
+Complete the following steps in order. Publishing at tenant scope and
+Microsoft 365 admin approval are required before you patch the authorization
+scheme.
+
+1. Publish the agent at tenant scope:
+
+   - In the Foundry portal, select **People in your organization** under
+     **Choose who can use this agent**.
+   - In the REST API, set `publishScope` to `Tenant`.
+
+   For publishing instructions, see
+   [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
+
+1. Engage your Microsoft 365 IT admin to review and approve the agent in the
+   [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested).
+   After approval, the agent appears under **Built by your org** in the agent
+   store.
 
 1. Get a bearer token for the Foundry API:
 
@@ -70,9 +88,9 @@ or bypass Microsoft 365 admin approval.
    https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
    ```
 
-1. Patch the agent endpoint. Retain `Entra` and any other non-Bot Service
-   schemes that the endpoint needs. Replace `BotServiceRbac` with
-   `BotServiceTenant`.
+1. After the tenant-scope publish request is approved, patch the agent
+   endpoint. Retain `Entra` and any other non-Bot Service schemes that the
+   endpoint needs. Replace `BotServiceRbac` with `BotServiceTenant`.
 
    The following example retains `Entra` and replaces `BotServiceRbac` with
    `BotServiceTenant`:
