@@ -134,7 +134,7 @@ When integrated via Microsoft 365 channels (for example, Teams), hosted agents c
 
 In both cases, the agent retains its dedicated Microsoft Entra ID for authentication, authorization, and auditability.
 
-For user delegation with MCP and other tools, the recommended approach is to connect those tools through a [Foundry toolbox](../how-to/tools/toolbox.md). When you add the toolbox to a hosted agent built with Microsoft Agent Framework, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Toolbox in Foundry](#toolbox-in-foundry).
+For user delegation with MCP and other tools, connect those tools through a [Foundry toolbox](../how-to/tools/toolbox.md). When you add the toolbox to a hosted agent built with Microsoft Agent Framework, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Toolbox in Foundry](#toolbox-in-foundry).
 
 For more information, see [Agent applications](../how-to/agent-applications.md) and [Agent identity concepts](./agent-identity.md).
 
