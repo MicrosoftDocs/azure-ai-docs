@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 06/02/2026
+ms.date: 09/25/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -40,8 +40,10 @@ Examples:
 
 | Evaluator | What it measures | Required inputs | Required parameters |
 |-----------|------------------|-----------------|---------------------|
-| `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
-| `builtin.fluency` | Grammatical accuracy and readability | `response` | `deployment_name` |
+| `builtin.coherence` | Logical flow and organization of ideas | (`query`, `response`) or `messages` | `deployment_name` |
+| `builtin.fluency` | Grammatical accuracy and readability | `response` or `messages` | `deployment_name` |
+
+For either evaluator, you can map a `messages` array instead of separate text fields. The array uses the standard message structure described in [Messages with tool calls](../../observability/how-to/evaluation-dataset-schema.md#messages-with-tool-calls).
 
 ### Example input
 
@@ -50,6 +52,7 @@ Your test dataset should contain the fields referenced in your data mappings:
 ```jsonl
 {"query": "What are the benefits of renewable energy?", "response": "Renewable energy reduces carbon emissions, lowers long-term costs, and provides energy independence."}
 {"query": "How does photosynthesis work?", "response": "Plants convert sunlight, water, and carbon dioxide into glucose and oxygen through chlorophyll in their leaves."}
+{"messages": [{"role": "user", "content": "What are the benefits of renewable energy?"}, {"role": "assistant", "content": "Renewable energy reduces carbon emissions, lowers long-term costs, and provides energy independence."}]}
 ```
 
 ### Configuration example
