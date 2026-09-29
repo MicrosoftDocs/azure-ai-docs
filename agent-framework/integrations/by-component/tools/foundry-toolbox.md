@@ -34,11 +34,15 @@ Agent Framework covers Toolbox consumption. Create and update Toolbox versions t
 
 For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry.
 
-For a hosted agent built with Microsoft Agent Framework, use the `Microsoft.Agents.AI.Foundry.Hosting` integration. Register the agent with `builder.Services.AddFoundryResponses(agent)`, then register the toolbox with `builder.Services.AddFoundryToolboxes(credential, toolboxName)`. After `builder.Build()`, call `app.MapFoundryResponses()` before `app.Run()`. These extension methods use the `Microsoft.Agents.AI.Foundry.Hosting` namespace.
+For a hosted agent built with Microsoft Agent Framework, use `AddFoundryToolboxes` from `Microsoft.Agents.AI.Foundry.Hosting`, as shown in the following example.
 
-Start from the maintained [Hosted-Toolbox sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox) for the complete agent, credential setup, configuration, and deployment steps. The sample targets .NET 10 and references matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`.
+Use a .NET 10 web project with implicit usings enabled, matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`, and `DotNetEnv`. Set `TOOLBOX_NAME` to an existing toolbox and `AZURE_AI_MODEL_DEPLOYMENT_NAME` to your model deployment. Foundry supplies `FOUNDRY_PROJECT_ENDPOINT` to the deployed host. For local model access, set `AZURE_AI_PROJECT_ENDPOINT` and sign in with Azure CLI. The hosting integration loads toolbox tools when `FOUNDRY_PROJECT_ENDPOINT` is available.
 
-For tools that require per-user OAuth consent, see the [Hosted-Toolbox-AuthPaths sample](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths).
+:::code language="csharp" source="~/../agent-framework-code/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox/Program.cs" range="27-48,54-55,58-68,71-75,80-89":::
+
+The same hosting registration supports tools configured for per-user OAuth consent on their toolbox connections. Users still need the required permissions and consent; no separate host-registration block is needed.
+
+For the project files and deployment instructions, see [Hosted-Toolbox](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox). For per-user consent setup, see [Hosted-Toolbox-AuthPaths](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths).
 
 :::zone-end
 
