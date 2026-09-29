@@ -222,17 +222,9 @@ For agent publishing limitations, including requirements when your project disab
 
 ## Troubleshoot publishing
 
-Use the following table to resolve errors that occur while you publish from the portal. For more extensive troubleshooting, including how to find a published agent in the store, resolve errors when you chat with it, or troubleshoot a sign-in card redirect, see [Runtime issues](./publish-copilot-virtual-network.md#runtime-issues).
-
-| Symptom | Cause | Resolution |
-|-------|-------|------------|
-| Error publishing the agent | Invalid metadata or version | Ensure the agent has a unique identity (`agent.identity` isn't null). Confirm the developer name is 32 characters or fewer. |
-| **Download ZIP** doesn't return a package | The request or generated manifest failed validation | Correct the field identified in the error and retry. Foundry doesn't return a package that fails manifest validation. |
-| Teams rejects a package that previously downloaded successfully | A required file, generated identifier, or manifest section changed after download | Download the package again, and limit customizations to supported user-facing metadata and assets. |
-| Azure Bot Service creation fails | Missing permissions or unregistered provider | Confirm you have permission to create resources. Register `Microsoft.BotService` if needed. |
-| The **Azure bot services** field shows a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service, then refresh your credentials and reopen the publish flow. |
-
-If the portal shows **This agent uses an older format that can no longer be published to Teams and Microsoft Copilot. Upgrade to new format to publish.**, the agent uses the older agent application format, which the generally available publish flow doesn't support for new publishing. Upgrade the agent to the new format, and then publish. Existing agents in the older format keep working and can still be updated. See [Migrate from agent applications to the new agent model](./migrate-agent-applications.md).
+For publishing errors, package-download problems, agent store discovery issues,
+runtime failures, and private-network issues, see
+[Troubleshoot publishing agents to Microsoft Copilot and Microsoft Teams](./troubleshoot-publish-copilot.md).
 
 ## FAQs
 
@@ -242,7 +234,7 @@ Approve the agent in the Microsoft 365 admin center. After approval, the agent a
 
 **If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
 
-The agent appears under **Your agents** in the agent store for Microsoft Copilot. Share it by sending the agent link to selected users in your organization. 
+The agent appears under **Your agents** in the agent store for Microsoft Copilot. Share it by sending the agent link to selected users in your organization.
 
 :::image type="content" source="../media/share-published-agent.png" alt-text="Screenshot of how to share an Individual scoped published agent with others in your org." lightbox="../media/agent-store.png":::
 
@@ -254,5 +246,6 @@ If the version selector is set to **Always use latest** (the default), the new v
 
 - [Configure your agent endpoint and settings](./configure-agent.md)
 - [Publish agents to Microsoft Copilot and Microsoft Teams by using the REST API](./publish-copilot-virtual-network.md)
+- [Troubleshoot publishing agents to Microsoft Copilot and Microsoft Teams](./troubleshoot-publish-copilot.md)
 - [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)

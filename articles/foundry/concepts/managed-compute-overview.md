@@ -9,8 +9,8 @@ ms.topic: concept-article
 ms.date: 06/01/2026
 ms.author: mabables
 author: ManojBableshwar
-ms.reviewer: mopeakande
-reviewer: msakande
+ms.reviewer: osiotugo
+reviewer: ositanachi
 ai-usage: ai-assisted
 #CustomerIntent: As a Microsoft Foundry developer or platform owner, I want to understand what managed compute is, how it fits alongside pay-per-token and provisioned throughput, and what models, runtimes, accelerators, billing, and access control it provides, so that I can decide when to use it and plan a deployment.
 ---
@@ -73,7 +73,7 @@ Managed compute deployments target an **accelerator family**, not a specific vir
 
 - NVIDIA A100 80 GB (`A100_80GB`)
 - NVIDIA H100 80 GB (`H100_80GB`)
-- AMD MI300X 192 GB (`MI_300_192GB`)
+- AMD MI300X 192 GB (`MI300_192GB`)
 
 Quota is granted per accelerator family per region.
 

@@ -20,10 +20,9 @@ For service-managed Prompt and Hosted Agents, see [Microsoft Foundry Agent Servi
 
 ## Getting Started
 
-Add the required NuGet packages to your project.
+Add the required NuGet package to your project.
 
 ```dotnetcli
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 

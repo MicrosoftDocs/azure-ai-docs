@@ -42,7 +42,7 @@ For information about pricing for priority processing, see the [Azure OpenAI Ser
 ## Enable priority processing at the request level
 
 > [!IMPORTANT]
-> Starting September 25, 2026, Foundry is retiring the automatic fallback from `flex` to standard processing for models that don't support Flex processing. Currently, such requests fall back to standard processing, but after the retirement date, they return HTTP 400 with an `invalid_request_error` instead. Before this change takes effect, verify that your model supports Flex processing. If standard processing is acceptable, set `service_tier` to `default` instead.
+> Beginning September 25, 2026, requests to models that don't support Flex processing return HTTP 400 with an `invalid_request_error`. Foundry doesn't automatically fall back from `flex` to Standard processing. Verify that your model supports Flex processing before you send a request. If Standard processing is acceptable, set `service_tier` to `default` instead. For supported models and fallback guidance, see [Use Flex processing with Azure OpenAI](../how-to/flex-processing.md).
 
 Enabling priority processing at the request level is **optional**. Both the chat completions API and responses API have an optional attribute `service_tier` that specifies the processing type to use when serving a request. The following example shows how to set `service_tier` to `priority` in a responses request.
 
@@ -57,7 +57,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-Use the `service_tier` attribute to override the deployment-level setting. `service_tier` can take the values `auto`, `default`, and `priority`. 
+Use the `service_tier` attribute to override the deployment-level setting. For Standard and Priority processing, `service_tier` can take the values `auto`, `default`, and `priority`.
 
 - If you don't set the attribute, it defaults to `auto`. 
 
@@ -67,7 +67,7 @@ Use the `service_tier` attribute to override the deployment-level setting. `serv
 
 - `service_tier = priority` means the request uses the priority processing service tier. 
 
-The following table summarizes which service tier processes your requests based on the deployment-level and request-level settings for `service_tier`.
+The following table summarizes Standard and Priority routing based on the deployment-level and request-level settings for `service_tier`.
 
 | Deployment-level setting | Request-level setting | Request processed by service tier |
 |----------------------------|------------------------|----------------------------|

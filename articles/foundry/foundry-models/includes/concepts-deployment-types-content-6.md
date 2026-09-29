@@ -49,7 +49,7 @@ Global Standard deployments use Azure's global infrastructure to dynamically rou
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, consider provisioned throughput.
 
-Global Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models](../../openai/concepts/priority-processing.md).
+Global Standard supports request-level processing tiers. Use [Flex processing](../../openai/how-to/flex-processing.md) for lower-cost, delay-tolerant workloads, or use [Priority processing](../../openai/concepts/priority-processing.md) for faster response times on a pay-as-you-go basis.
 
 ## Global Provisioned
 

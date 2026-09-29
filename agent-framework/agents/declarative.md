@@ -7,6 +7,7 @@ ms.topic: reference
 ms.author: edvan
 ms.date: 05/22/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Declarative Agents
@@ -17,11 +18,12 @@ Declarative agents allow you to define agent configuration using YAML or JSON fi
 
 ## Prerequisites
 
-To use declarative agents in C#, add the `Microsoft.Agents.AI.Declarative` NuGet package to your project, alongside the chat client package for your provider (for example, `Azure.AI.OpenAI`):
+To use declarative agents in C#, add the `Microsoft.Agents.AI.Declarative` NuGet package to your project, alongside the chat client packages for your provider. The examples in this article use Azure OpenAI through `Microsoft.Agents.AI.OpenAI` and `Azure.AI.OpenAI`:
 
 ```dotnetcli
 dotnet add package Microsoft.Agents.AI.Declarative --prerelease
-dotnet add package Azure.AI.OpenAI
+dotnet add package Microsoft.Agents.AI.OpenAI
+dotnet add package Azure.AI.OpenAI --prerelease
 dotnet add package Azure.Identity
 ```
 

@@ -1170,6 +1170,6 @@ azd down
 - [Agent development with the Azure Developer CLI](../concepts/cli-agent-development.md)
 - [Configure a voice agent](../how-to/configure-voice-agent.md)
 - [Build a voice agent with hosted agents](../how-to/build-voice-agent.md)
-- [Deploy a hosted voice agent with azd](../how-to/deploy-hosted-voice-agent.md)
+- [Use a hosted agent as the conversation engine in a voice-based agent](../../how-to/voice-first-with-hosted-agent.md)
 
 ::: zone-end

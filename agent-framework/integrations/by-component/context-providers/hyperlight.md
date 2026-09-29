@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/19/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -215,6 +215,17 @@ using var codeAct = new HyperlightCodeActProvider(options);
 
 The same `FileMounts` and `AllowedDomains` collections, plus tools, can also be modified at runtime through `AddFileMounts(...)`, `RemoveFileMounts(...)`, `AddAllowedDomains(...)`, and `RemoveAllowedDomains(...)` on `HyperlightCodeActProvider`.
 
+`AllowedDomains` controls outbound requests from the guest. It doesn't install
+packages or make dependencies from the host process available inside the
+guest. `CreateForWasm(modulePath)` selects an existing guest module. The Agent
+Framework integration doesn't provide a custom guest build or package
+installation workflow.
+
+For operations that require host-installed libraries or external APIs,
+register a narrow host tool. Keep credentials, authorization, and destination
+policy in that tool because host callbacks run outside the guest and aren't
+restricted by the sandbox's `AllowedDomains` configuration.
+
 ## Output guidance
 
 To surface text from `execute_code`, end the guest code with `print(...)`; Hyperlight does not return the value of the last expression automatically.
@@ -373,6 +384,17 @@ codeact = HyperlightCodeActProvider(
     ],
 )
 ```
+
+`allowed_domains` controls outbound requests from the guest. It doesn't install
+Python packages or make packages from the host environment importable in
+sandboxed code. `module_path` selects an existing guest module. The Agent
+Framework integration doesn't provide a custom guest build or package
+installation workflow.
+
+For operations that require host-installed libraries or external APIs,
+register a narrow host tool. Keep credentials, authorization, and destination
+allow list checks in that function because host callbacks run outside the
+guest and aren't restricted by `allowed_domains`.
 
 ## Output guidance
 
