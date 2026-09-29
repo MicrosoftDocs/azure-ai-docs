@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 09/21/2026
+ms.date: 09/28/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -233,17 +233,17 @@ Microsoft Foundry offers Claude models in [two versions](../../foundry-models/co
 | claude-sonnet-5 | 2 | GA | 2027-06-30 | — |
 | claude-sonnet-5 | 1 | GA | 2027-06-30 | — |
 | claude-sonnet-4-6 | 1 | GA | 2027-02-10 | — |
-| claude-sonnet-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-sonnet-4-5 | 1 | GA | 2026-11-15 | — |
 | claude-opus-5 | 2 | GA | 2027-07-08 | — |
 | claude-opus-5 | 1 | GA | 2027-07-08 | — |
 | claude-opus-4-8 | 2 | GA | 2027-09-01 | — |
 | claude-opus-4-8 | 1 | GA | 2027-09-01 | — |
 | claude-opus-4-7 | 1 | GA | 2027-04-06 | — |
 | claude-opus-4-6 | 1 | GA | 2027-02-02 | — |
-| claude-opus-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-opus-4-5 | 1 | GA | 2026-11-24 | — |
 | claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
-| claude-haiku-4-5 | 1 | GA | 2026-10-19 | — |
-| claude-haiku-4-5 | 2 | GA | 2026-10-19 | — |
+| claude-haiku-4-5 | 1 | GA | 2026-11-15 | — |
+| claude-haiku-4-5 | 2 | GA | 2026-11-15 | — |
 | claude-fable-5-1 | 1 | Preview | 2027-12-05 | — |
 | claude-fable-5 | 1 | Preview | 2027-12-05 | — |
 | claude-mythos-5-1 | 1 | Preview | — | — |
