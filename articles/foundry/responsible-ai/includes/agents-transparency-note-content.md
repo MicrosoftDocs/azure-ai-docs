@@ -76,6 +76,7 @@ Key features of Agent Service include:
 1. **Integrate with extensive memory and knowledge connectors:** Agents need to manage conversation state and connect with internal and external knowledge sources to have the right context to complete a process.
 1. **Flexible model choice:** Agents built with the appropriate model for their tasks can enable better integration of information from multiple data types, yield better results for task-specific scenarios, and improve cost efficiencies in scaled deployments.
 1. **Built-in enterprise readiness:** Agents need to be able to support an organization's unique data privacy and compliance needs, scale with an organization's needs, and complete tasks reliably and with high quality.
+1. **Voice-enabled agents:** Developers can add speech input and output capabilities to Foundry agents using Voice Live. For intended uses, capabilities, limitations, risks and considerations specific to Voice Live, see the [Voice Live Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/voice-live/transparency-note).
 
 ### Extensibility capabilities 
 
@@ -134,6 +135,7 @@ Agent Service is **flexible and use-case agnostic.** This presents multiple poss
 * **Deep Research Tool**: Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model with deep research technology in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text).
 * **Computer Use**:  The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=image). 
 * **Image Generation Tool**: The Image Generation tool is empowered by the gpt-image-1 model. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?branch=main&tabs=image).
+* **Voice Live/Voice Agent**: Agents using Voice Live can support real-time speech-to-speech experiences. Learn more about intended uses, capabilities, limitations, risks and considerations when choosing a use case in the [Voice Live Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/voice-live/transparency-note).
 
 #### Considerations when choosing a use case
 
@@ -156,6 +158,7 @@ We encourage customers to use Agent Service in their innovative solutions or app
 * **Unequal representation and support:** When serving diverse user groups, AI Agents can show uneven performance if language varieties, regional data, or specialized knowledge domains are underrepresented. A retail agent, for example, might offer less reliable product recommendations to customers who speak under-represented languages.
 * **Opaque decision-making processes:** As agents combine large language models with external systems, tracing the “why” behind their decisions can become challenging. A user using such an agent may find it difficult to understand why certain tools or combination of tools were chosen to answer a query, complicating trust and verification of the agent’s outputs or actions.
 * **Evolving best practices and standards:** Agents are an emerging technology, and guidance on safe integration, transparent tool usage, and responsible deployment continues to evolve. Keeping up with the latest best practices and auditing procedures is crucial, as even well-intentioned uses can become risky without ongoing review and refinement.
+* **Voice Live/Voice Agent limitations:** Agents using Voice Live are also subject to limitations associated with natural language and speech models. See the [Voice Live Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/voice-live/transparency-note) for additional limitations and responsible AI considerations.
 
 ## System performance
 
