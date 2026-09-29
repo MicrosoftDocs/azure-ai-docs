@@ -48,7 +48,7 @@ https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbo
 
 ## Authenticate the agent to the toolbox
 
-For user delegation with MCP and other tools, the recommended approach is to connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET.
+For user delegation with MCP and other tools, connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET.
 
 The agent authenticates to the toolbox endpoint with its Microsoft Entra identity and the `https://ai.azure.com/.default` scope. The connection for each toolbox tool determines which identity or credential reaches the downstream service.
 
