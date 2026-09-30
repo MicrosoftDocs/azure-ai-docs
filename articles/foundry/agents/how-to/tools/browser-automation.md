@@ -57,7 +57,7 @@ For example, a finance operations team can use an agent with **Browser Automatio
 
 - **Employee and business operations:** Support supervised workflows such as employee-lifecycle tasks, invoice processing, and other browser-based operational processes.
 
-# How it works
+## How it works
 
 The Browser Automation tool enables a Foundry agent to interact with websites through a managed browser provided by Playwright Workspaces. Playwright Workspaces provides the cloud-hosted browser infrastructure, while the Browser Automation tool exposes browser capabilities that the agent can use to complete a user's task.
 
