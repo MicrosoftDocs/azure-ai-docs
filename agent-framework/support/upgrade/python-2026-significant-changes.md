@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/28/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,53 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Foundry Responses hosting separates history, storage, and background execution
+
+**PR:** [#8794](https://github.com/microsoft/agent-framework/pull/8794)
+
+`ResponsesHostServer` now treats the caller's `store` field, the outer response
+store, model history, and provider-native background execution as separate
+choices. Rename the constructor's `store=` argument to `response_store=`. The
+old name remains a deprecated alias and doesn't set the caller's per-request
+storage behavior.
+
+Review your `history_source` configuration. The default `"agent_server"` mode
+reconstructs the outer Responses transcript and disables downstream storage.
+Use `"service"` to continue a private storing-provider session, or `"agent"` to
+preserve an agent-owned history provider or downstream storage default.
+Requests with `store=false` no longer write host-managed state or downstream
+service history.
+
+Provider-native background polling now requires
+`history_source="service"` and `background_source="provider"`. Steering is
+temporarily unavailable, and enabling `steerable_conversations` raises
+`RuntimeError` during host construction. For migration and configuration
+details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Gemini uses `GOOGLE_*` settings and adds Embedding 2
+
+**PR:** [#8798](https://github.com/microsoft/agent-framework/pull/8798)
+
+`GeminiChatClient` no longer reads `GEMINI_API_KEY` or `GEMINI_MODEL`, and the
+`GeminiSettings` export is removed. Rename configuration to `GOOGLE_API_KEY`
+and `GOOGLE_MODEL`, or pass the values explicitly. Configure embeddings with
+`GOOGLE_EMBEDDING_MODEL`.
+
+The new `GeminiEmbeddingClient` defaults to `gemini-embedding-2`. Text
+embedding calls require an explicit task type, such as
+`RETRIEVAL_DOCUMENT` for indexing and `RETRIEVAL_QUERY` for search. Vector
+upserts, searches, and generated search tools now accept per-operation
+embedding options, while vector field dimensions remain authoritative.
+
+For setup and examples, see
+[Google Gemini](../../integrations/by-component/model-providers/google-gemini.md?pivots=programming-language-python)
+and [Vector store integrations](../../integrations/by-component/vector-stores/index.md?pivots=programming-language-python).
+
+---
 
 ### 🔴 Foundry invocation sessions now use persistent storage
 

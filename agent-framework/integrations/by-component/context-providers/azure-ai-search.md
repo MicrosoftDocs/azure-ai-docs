@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 08/31/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -60,6 +60,12 @@ Agentic mode uses an Azure AI Search Knowledge Base for query planning and multi
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/azure_ai_search/search_context_agentic.py" range="64-146":::
 
 Some agentic output and reasoning options require the preview `azure-search-documents` package.
+
+### Configure per-source retrieval
+
+Pass `knowledge_source_params` to `AzureAISearchContextProvider` in agentic mode when a knowledge source needs options such as `filter_add_on`. Each entry replaces the provider-generated parameters for the matching `knowledge_source_name`; entries for other source names are appended.
+
+When you don't set `include_reference_source_data`, the provider sets it to `True` on a copy so references retain their source data. An explicit `False` is preserved. Duplicate `knowledge_source_name` values raise `ValueError`, and `knowledge_source_params` isn't accepted in semantic mode.
 
 ### Forward caller identity for permission-aware retrieval
 
