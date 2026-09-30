@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 09/29/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -19,6 +19,7 @@ ai-usage: ai-assisted
   | Overview and workflow      | Yes | Yes   | Yes | Shared                  |
   | Abstractions and implementations | Yes | Yes | No | Language-specific APIs |
   | Get started                | Yes | Yes   | No  | Language-specific setup |
+  | Per-operation embedding options | No | Yes | No | Python native contract |
   | Availability status        | No  | No    | Yes | Go status only          |
 -->
 
@@ -168,6 +169,14 @@ through `tolist()` without adding a NumPy dependency.
 Agent Framework includes an in-memory implementation for development and tests.
 It stores records in the current process and uses a linear scan, so use a
 database connector for production workloads.
+
+### Pass embedding options for each operation
+
+Pass `embeddings_options` to `upsert()` to apply provider options to every generated vector field. Use `embeddings_options_by_field` when different logical vector fields need different options; the two arguments are mutually exclusive.
+
+For query embedding, pass `embeddings_options` to `search()` or `create_vector_search_tool()`. Agent Framework supplies the selected vector field's declared dimensions and rejects a conflicting `dimensions` value before calling the embedding provider.
+
+Upsert embedding options require generated vectors and can't be combined with `generate_vectors=False`. Search embedding options require a local embedding generator and are ignored when you supply a precomputed query vector.
 
 The following sample stores precomputed vectors and searches them with a
 portable filter tree:

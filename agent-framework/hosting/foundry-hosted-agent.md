@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/29/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -146,11 +146,17 @@ server = ResponsesHostServer(agent)
 server.run()
 ```
 
-The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. For a non-workflow agent, the default `history_source="agent_server"` uses the configured Agent Server response provider as the model's history source. The host prevents the downstream model service from retaining a second copy when the client stores history by default.
+The `ResponsesHostServer` wraps your agent and exposes it through the Foundry Responses protocol. The caller's `store` field controls whether the outer response and host-managed session and approval state are saved. The `history_source` setting independently selects who supplies model history:
 
-Don't combine the default history source with a `HistoryProvider` that has `load_messages=True`. Also don't set the `conversation_id`, `previous_response_id`, or `conversation` downstream service continuation options. The host rejects these configurations to prevent duplicate history.
+| `history_source` | Model history behavior |
+| --- | --- |
+| `"agent_server"` (default) | The host reconstructs the stored outer Responses transcript and disables downstream service storage to prevent duplicate history. |
+| `"service"` | The host sends only the current input and privately saves the storing model service's continuation ID. A stored provider conversation can't branch from an earlier response. |
+| `"agent"` | The host sends only the current input. The agent's `HistoryProvider` or downstream service storage defaults manage history. |
 
-Use `ResponsesHostServer(agent, history_source="agent")` when the agent's history provider or downstream model service must manage conversation history. This mode passes only the current request input from Agent Server and preserves the agent's history and service storage behavior. Custom `SupportsAgentRun` implementations must use this mode. The `store` parameter remains separate: it selects the response provider that persists Responses API inputs and outputs in both modes.
+Don't combine `"agent_server"` or `"service"` with a load-enabled `HistoryProvider`. The default mode also rejects fixed downstream continuation options such as `conversation_id`, `previous_response_id`, and `conversation`. Use `history_source="agent"` for a custom `SupportsAgentRun` implementation.
+
+The `response_store` constructor parameter selects the backend for outer Responses persistence. The older constructor parameter `store` is a deprecated alias for `response_store`; neither parameter sets the caller's per-request `store` field. A request with `store=false` is one-shot: it doesn't save host-managed state, disables supported downstream storage, and can't use `background=true`.
 
 The host owns the supplied agent and might add hosting-specific context providers. Don't reuse the agent with another host or invoke it directly after host construction.
 
@@ -229,18 +235,41 @@ For Responses-specific storage, pass a `StoreProvider` to
 `function_approval_store_provider` or a `ContextScopedStoreProvider` to
 `checkpoint_store_provider`.
 
+Outer background work uses the caller-visible `response.id` for polling. The default `background_source="agent_server"` keeps background execution in the host. Set `background_source="provider"` only with `history_source="service"` and a storing, resumable Responses client. If `ResponsesServerOptions(resilient_background=True)` is also set, the host can recover provider polling only after it saves the private continuation token. Make local tool side effects idempotent because a crash before the next token is saved can replay them.
+
 Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass it to `ResponsesHostServer` through the `options` parameter. The available long-running conversation options depend on the agent type:
 
 | Capability | Agent type | Requirements and behavior |
-|------------|------------|---------------------------|
-| Resilient background responses | Workflow only | Set `ResponsesServerOptions(resilient_background=True)`. Send the Responses request with `store=true` and `background=true`. After a restart, the host resumes the latest durable workflow checkpoint or replays the original input if no checkpoint exists. Don't configure checkpoint storage on the workflow because the host manages it. Make external side effects idempotent because work after the last durable checkpoint might repeat. |
-| Steerable conversations | Non-workflow only | Set `ResponsesServerOptions(steerable_conversations=True)` and send Responses requests with `store=true`. Keep turns on one linear chain by reusing the same `conversation` value. Alternatively, send the immediately preceding `previous_response_id` and preserve the resolved `agent_session_id`. The host rejects stale predecessors that would create a fork. |
+| --- | --- | --- |
+| Workflow checkpoint background recovery | Workflow only | Set `ResponsesServerOptions(resilient_background=True)`. Send the Responses request with `store=true` and `background=true`. After a restart, the host resumes the latest durable workflow checkpoint or replays the original input if no checkpoint exists. Don't configure checkpoint storage on the workflow because the host manages it. Make external side effects idempotent because work after the last durable checkpoint might repeat. |
+| Provider-native background responses | Non-workflow `Agent` with a storing Responses client | Set `history_source="service"` and `background_source="provider"`. Set `resilient_background=True` when saved provider continuation tokens must survive a host restart. |
+| Steerable conversations | Temporarily unavailable | Don't set `steerable_conversations=True`. The host raises `RuntimeError` during construction until the Agent Server SDK safely handles rejected steering turns. |
 
-`ResponsesHostServer` raises `RuntimeError` if you enable resilient background responses for a non-workflow agent or steerable conversations for a workflow agent. For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow), and [steerable long-running agent](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/steerable_long_running_agent) samples.
+For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [basic Responses history and background](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic), and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
+
+### Control request options
+
+The host maps native Responses generation fields to Agent Framework run options. For example, `max_output_tokens` becomes `max_tokens`, and `parallel_tool_calls` becomes `allow_multiple_tool_calls`. Flattened values from `extra_body` override translated native values.
+
+Use the synchronous or asynchronous `prepare_options(request, options)` hook to remove or replace caller model options before a regular agent runs. The hook can't set host-controlled identity, storage, continuation, or transport fields. For a custom `SupportsAgentRun` implementation that can't accept runtime model options, set `unsupported_options` to `"warn"` (the default), `"ignore"`, or `"error"`.
 
 ### Handle OAuth consent requests
 
 When a Foundry-hosted MCP tool requires user consent, `ResponsesHostServer` returns an incomplete response with an `oauth_consent_request` output item. Present its `consent_link` to the user, then continue with the incomplete response's ID as `previous_response_id` after the user completes consent. The host preserves the agent session for this retry and exposes only absolute HTTPS consent links.
+
+If your host knows the expected authorization origins, restrict consent links with `allowed_oauth_consent_origins`:
+
+```python
+server = ResponsesHostServer(
+    agent,
+    allowed_oauth_consent_origins=[
+        "https://logic-region.consent.azure-apihub.net",
+        "https://auth.partner.example",
+    ],
+)
+```
+
+Omitting the allowlist keeps the absolute-HTTPS validation without restricting the destination origin. Providing an empty list rejects every consent link. Configure exact HTTPS origins only; entries with a path, query, or fragment are rejected.
 
 :::zone-end
 

@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/25/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -87,7 +87,9 @@ AWS_PROFILE="<profile>"
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/amazon/bedrock_chat_client.py" range="39-54":::
 
-Use `BedrockChatOptions` for Bedrock-specific request options and `BedrockGuardrailConfig` when your deployment uses Bedrock guardrails.
+Use `BedrockChatOptions` for Bedrock-specific request options and `BedrockGuardrailConfig` when your deployment uses Bedrock guardrails. The Python client forwards `additionalModelRequestFields`, `guardrailConfig`, `performanceConfig`, `requestMetadata`, and `promptVariables` to the Bedrock Converse API when you set them.
+
+For non-streaming requests, the client omits `guardrailConfig.streamProcessingMode` because that field is valid only for `ConverseStream`. When the model ID is a Prompt Management ARN, define inference, system, tool, and additional model request fields on the managed prompt. Bedrock rejects those fields in the runtime request, so the client omits them; `promptVariables` remains available.
 
 ## Send image input
 

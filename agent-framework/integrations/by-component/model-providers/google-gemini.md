@@ -1,11 +1,11 @@
 ---
 title: Google Gemini
-description: Use Google Gemini Developer API or Vertex AI models with Agent Framework agents.
+description: Use Google Gemini Developer API or Gemini Enterprise Agent Platform models with Agent Framework agents.
 zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/04/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -18,13 +18,14 @@ ai-usage: ai-assisted
   | Gemini client setup  | ✅ |   ✅   | ✅ |                             |
   | Function tools       | ✅ |   ✅   | ✅ |                             |
   | Streaming            | ✅ |   ✅   | ✅ |                             |
+  | Embeddings           | ❌ |   ✅   | ❌ | Gemini Embedding 2          |
   | Request failures     | ❌ |   ✅   | ❌ | Python SDK exception mapping |
   | Gemini hosted tools  | ❌ |   ✅   | ❌ | Python factories documented |
 -->
 
 # Google Gemini
 
-Google Gemini can back an Agent Framework agent through the Gemini Developer API or Vertex AI. The provider-specific client handles authentication and Gemini request options while Agent Framework owns the agent definition and orchestration.
+Google Gemini can back an Agent Framework agent through the Gemini Developer API or Gemini Enterprise Agent Platform (formerly Vertex AI). The provider-specific client handles authentication and Gemini request options while Agent Framework owns the agent definition and orchestration.
 
 > [!IMPORTANT]
 > Google Gemini and Vertex AI are third-party systems. Review service terms, data handling, regional boundaries, model access, and usage costs before sending application data.
@@ -67,19 +68,20 @@ pip install agent-framework-gemini --pre
 Use either the Gemini Developer API:
 
 ```bash
-GEMINI_API_KEY="<api-key>"
-GEMINI_MODEL="gemini-2.5-flash"
-# GOOGLE_API_KEY and GOOGLE_MODEL are also supported.
-```
-
-Or configure Vertex AI:
-
-```bash
-GOOGLE_GENAI_USE_VERTEXAI="true"
-GOOGLE_CLOUD_PROJECT="<project-id>"
-GOOGLE_CLOUD_LOCATION="us-central1"
+GOOGLE_API_KEY="<api-key>"
 GOOGLE_MODEL="gemini-2.5-flash"
 ```
+
+Or configure Gemini Enterprise Agent Platform:
+
+```bash
+GOOGLE_GENAI_USE_ENTERPRISE="true"
+GOOGLE_CLOUD_PROJECT="<project-id>"
+GOOGLE_CLOUD_LOCATION="global"
+GOOGLE_MODEL="gemini-2.5-flash"
+```
+
+The older `GOOGLE_GENAI_USE_VERTEXAI=true` setting remains supported. The connector no longer reads `GEMINI_API_KEY`, `GEMINI_MODEL`, or `GEMINI_EMBEDDING_MODEL`; use the corresponding `GOOGLE_*` variables or pass values explicitly.
 
 `GeminiChatClient` supports streaming, function tools, structured output, extended thinking, and provider-hosted tools.
 
@@ -104,6 +106,16 @@ options: GeminiChatOptions = {
 When Gemini returns a thought summary, `GeminiChatClient` adds it to the response as `Content` with `type == "text_reasoning"`. Read the summary from `content.text`.
 
 For a run without streaming, filter the `contents` of each item in `result.messages`. For a streaming run, filter each `chunk.contents`. Text accessors such as `result.text` and `chunk.text` include only `text` content, so inspect the content collections when your app needs reasoning summaries.
+
+### Generate embeddings
+
+`GeminiEmbeddingClient` uses `gemini-embedding-2` by default. Override it with `GOOGLE_EMBEDDING_MODEL` or the `model` constructor parameter. Text inputs require a task type on each call; use `RETRIEVAL_DOCUMENT` when indexing and `RETRIEVAL_QUERY` when searching the same vector space.
+
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/gemini/gemini_embeddings.py" range="14-38":::
+
+Use the same model and dimensions for document and query embeddings. The client also accepts Google SDK media `Part` and `Content` values for image, audio, video, PDF, or combined text-and-media embeddings. Media inputs don't use a text task prefix.
+
+When a vector collection generates embeddings, pass the document task through `upsert(..., embeddings_options=...)` and the query task through `search(..., embeddings_options=...)` or `create_vector_search_tool(..., embeddings_options=...)`. For multiple vector fields, use `embeddings_options_by_field`. Agent Framework supplies the selected field's dimensions and rejects conflicting values.
 
 The package includes factories for Google Search grounding, Google Maps grounding, code execution, file search, and MCP.
 

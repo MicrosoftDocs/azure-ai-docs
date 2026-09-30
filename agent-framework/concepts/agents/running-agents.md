@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/03/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -89,6 +89,12 @@ final = await response_stream.get_final_response()
 print(f"\n\nFull response: {final.text}")
 print(f"Messages: {len(final.messages)}")
 ```
+
+Before consumption starts, you can register ordered update and final-result gates with `with_update_gate()` and `with_result_gate()`. A gate returns `None` to allow a value or raises an exception to block it. Use `with_update_transform()` and `with_result_transform()` when content must be replaced.
+
+Call `buffer_updates()` when no update should be released until the stream finalizes and every gate succeeds. If a result transform replaces the final response, pass `result_to_updates` so the stream can rebuild the buffered updates from that authoritative result. The older `buffered_and_gated()` helper is deprecated.
+
+For a complete example of gate ordering, transformations, buffering, finalization, and cleanup, see the [ResponseStream sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/response_stream.py).
 
 ::: zone-end
 

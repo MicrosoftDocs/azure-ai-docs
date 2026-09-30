@@ -4,8 +4,9 @@ description: Connect an Agent Framework Python backend to an OpenAI ChatKit user
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # ChatKit
@@ -42,6 +43,8 @@ Subclass `ChatKitServer`, create the Agent Framework agent, and configure a conv
 Load the thread history, convert it to Agent Framework messages, run the agent in streaming mode, and yield ChatKit events.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/05-end-to-end/chatkit-integration/app.py" range="341-416":::
+
+`ThreadItemConverter` preserves `StructuredInputItem` status and represents each question as answered, skipped, or unanswered in a user message. Override the asynchronous `structured_input_to_input()` method to customize formatting or redact answers. Return one `Message`, a list of messages, or `None` to omit the item.
 
 The complete sample also demonstrates SQLite-backed threads, file uploads, attachment storage, actions, and interactive widgets.
 
