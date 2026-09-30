@@ -25,9 +25,7 @@ This article explains how to configure and use the Browser Automation tool with 
 [!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
 
 > [!WARNING]
-> The Browser Automation Tool comes with significant security risks. When you use the Browser Automation Tool, an AI spins up remote browsers sessions to perform actions and can use credentials you explicitly share with the agent, such as to email, financial accounts, social networks, and enterprise systems. The AI agent may make mistakes and may be fooled by malicious data it may encounter on the Internet.
->
-> You're responsible for reviewing and testing your applications and implementing your own responsible AI mitigations. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and all outcomes. Use judgment in deciding which credentials you provide to your browser sessions. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
+> Browser Automation Tool controls web browsers on your behalf and can take unintended actions. Testing and monitoring are recommended. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note) to learn more.
 
 Browser Automation Tool (BAT) enables scalable, reliable browser-based automation within Foundry agents. BAT is available as an MCP tool powered by Playwright workspaces as its headless browser infrastructure layer. It integrates seamlessly with modern agentic workflows while providing enterprise-grade security, observability, and extensibility.
 
@@ -36,14 +34,30 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 - [Playwright Workspaces](https://aka.ms/pww/docs) (a Generally Available service) as the infrastructure layer
 - Real-time debugging with Live View
 - Take control for human-in-the-loop scenarios
-- Support for private website browsing (Private preview)
+- Support for private website browsing (Public preview)
 - Built-in observability for reliability and optimization
 - Flexible orchestration layers
 
-> [!NOTE]
-> The private website feature in Playwright Workspaces is currently available in private preview.
-> Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
+## Use cases
 
+Use **Browser Automation Tool** for browser-based workflows that require navigation, information extraction, form interaction, or validation across websites and business applications.
+
+For example, a finance operations team can use an agent with **Browser Automation Tool** to retrieve invoice details from a vendor portal, validate the information against its internal system, and enter the required data into a legacy finance application. The agent can use the browser when these systems don't provide APIs or when the workflow spans multiple browser-based applications.
+
+### Common scenarios
+
+- **Form filling and third-party integration:** Complete forms and move information between browser-based applications when an API isn't available.
+
+- **Web research and data extraction:** Navigate websites, filter results, and collect or compare information across sources.
+
+- **Quality assurance and regression testing:** Validate end-to-end user flows, reproduce reported issues, and investigate failures in a real browser session.
+
+- **Customer support and issue replication:** Re-create a customer journey, gather context from a website, and help support teams investigate browser-based issues.
+
+- **Legacy-system automation:** Automate repetitive interactions with internal or vendor portals that don't provide modern APIs.
+
+- **Employee and business operations:** Support supervised workflows such as employee-lifecycle tasks, invoice processing, and other browser-based operational processes.
+  
 ## Choose your setup path
 
 Choose the agent type and development approach before you configure **Browser Automation Tool**. All options use a Playwright workspace and a Browser Automation toolbox. The difference is where your agent logic runs and how much code you manage.
@@ -84,7 +98,7 @@ Grant the project managed identity the minimum permissions required to use the P
 Browser Automation Tool provides observability features to help you validate, troubleshoot, and review browser-based agent runs.
 
 - **Live View:** Provides a real-time view of an active browser session. Use it during development and testing to verify navigation, page state, and browser interactions as the agent runs.
-- **Session recording:** Lets you review a completed browser session, including video, actions, logs, and metadata. Use recordings together with run details and logs to investigate failures, compare outcomes, and share evidence with collaborators.
+- **Screenshot recording:** Captures screenshots during an active browser session, helping you verify page state and browser interactions as the agent runs.
 - **Take control:** Supports human-in-the-loop workflows. Use it when a person needs to intervene in a browser session before the agent continues.
 - For production workflows, review run summaries, traces, and diagnostic logs to investigate outcomes without continuously monitoring active sessions.
 
@@ -141,27 +155,7 @@ An example flow is:
 1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-  The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
-
-## Use cases
-
-Use **Browser Automation Tool** for browser-based workflows that require navigation, information extraction, form interaction, or validation across websites and business applications.
-
-For example, a finance operations team can use an agent with **Browser Automation Tool** to retrieve invoice details from a vendor portal, validate the information against its internal system, and enter the required data into a legacy finance application. The agent can use the browser when these systems don't provide APIs or when the workflow spans multiple browser-based applications.
-
-### Common scenarios
-
-- **Form filling and third-party integration:** Complete forms and move information between browser-based applications when an API isn't available.
-
-- **Web research and data extraction:** Navigate websites, filter results, and collect or compare information across sources.
-
-- **Quality assurance and regression testing:** Validate end-to-end user flows, reproduce reported issues, and investigate failures in a real browser session.
-
-- **Customer support and issue replication:** Re-create a customer journey, gather context from a website, and help support teams investigate browser-based issues.
-
-- **Legacy-system automation:** Automate repetitive interactions with internal or vendor portals that don't provide modern APIs.
-
-- **Employee and business operations:** Support supervised workflows such as employee-lifecycle tasks, invoice processing, and other browser-based operational processes.
+The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
 
 
 ## Set up Browser Automation
@@ -934,12 +928,6 @@ Browser automation can take longer than typical requests.
 - Delete the agent version you created for testing.
 - Revoke or rotate the Playwright access token if you no longer need it.
 - Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md).
-
-## Example scenarios
-
-- Form filling: Handles diverse form types with validation, DOM, authentication, compliance, and supporting multi-turn reasoning.
-
-- Web scraping: Navigates authenticated sites to scrape, compare, and structure data across sources.
 
 ## Transparency note
 
