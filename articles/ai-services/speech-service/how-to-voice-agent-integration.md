@@ -5,7 +5,7 @@ description: Learn how to use Voice Live with Foundry Agent Service to build rea
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 09/30/2026
 author: PatrickFarley
 reviewer: PatrickFarley
 ms.author: pafarley
@@ -16,6 +16,12 @@ ai-usage: ai-assisted
 ---
 
 # How to build a voice agent
+
+This article covers Voice Live connected to a Foundry text agent.
+
+For new voice experiences, consider starting with [Microsoft Foundry voice agents (preview)](../../foundry/agents/quickstarts/prompt-voice-agent.md). They support speech-to-speech and text models, with built-in telephony and voice-pipeline tracing. To compare the approaches or plan a migration, see [Compare and migrate to Microsoft Foundry voice agents](../../foundry/agents/how-to/migrate-from-voice-live.md).
+
+That migration is different from the classic-to-new Agent Service migration described later in this article.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-agents/python.md)]
@@ -59,7 +65,7 @@ The Voice Live SDK introduces typed configuration classes that replace the raw q
 
 ### Before and after: Python connection setup
 
-**Classic (v1)—raw query parameters in `connect()`:
+**Classic (v1)** — raw query parameters in `connect()`:
 
 ```python
 async with connect(

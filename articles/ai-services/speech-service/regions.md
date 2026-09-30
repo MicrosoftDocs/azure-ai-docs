@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 09/29/2026
+ms.date: 09/30/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -236,7 +236,7 @@ The regions in the following tables support most of the core features of Azure S
 | `francecentral` | Global standard | Global standard | - | Global standard | Global standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
 | `germanywestcentral` | - | - | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
 | `italynorth` | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `japaneast` | - | - | - | - | - | - | - | - | - | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Regional | ✅ |
+| `japaneast` | Global standard | Global standard | - | Global standard | - | - | - | - | - | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Regional | ✅ |
 | `japanwest` | - | - | - | - | - | - | - | - | - | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
 | `koreacentral` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
 | `northcentralus` | - | Global standard | Data zone standard | Global standard | - | Data zone standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - |

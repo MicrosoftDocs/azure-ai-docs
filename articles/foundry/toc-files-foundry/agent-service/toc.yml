@@ -88,6 +88,8 @@ items:
         href: ../../agents/concepts/voice-agent-pricing.md
     - name: Deploy and share
       href: ../../agents/how-to/voice-agent-channels-publish.md
+    - name: Migrate from Voice Live with Foundry Agent Service
+      href: ../../agents/how-to/migrate-from-voice-live.md
 
 # Voice-first agent scope: insert the new Voice-first agent node here or under the agreed parent after product naming and ownership are finalized.
 - name: Hosted agents
