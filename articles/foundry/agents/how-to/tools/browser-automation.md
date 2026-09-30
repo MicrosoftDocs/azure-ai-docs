@@ -75,7 +75,7 @@ A typical browser automation flow works as follows:
 
 5. The agent can perform browser interactions such as navigating to another page, finding and selecting page elements, entering text, or interacting with controls. The resulting page state becomes available to subsequent browser operations.
 
-6. For multi-step workflows, the agent repeats this observe-and-act process, using the same browser session as it moves through the website. This allows the agent to adapt its next action to the current state of the page instead of relying on a predefined sequence of browser steps.
+6. For multi-step workflows, the agent repeats this observe-and-act process, using the same browser session as it moves through the website. This approach allows the agent to adapt its next action to the current state of the page instead of relying on a predefined sequence of browser steps.
 
 7. After the workflow finishes, the browser session is closed and its associated browser resources are released.
 
