@@ -3,7 +3,7 @@ title: "Set up CI/CD for a hosted agent"
 description: "Learn how to set up a GitHub Actions CI/CD pipeline that deploys and validates a hosted agent."
 author: aahill
 ms.author: aahi
-ms.date: 06/26/2026
+ms.date: 09/16/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -22,6 +22,8 @@ The pipeline performs two tasks:
 1. Deploy the updated hosted agent code.
 
 1. Invoke the agent and verify that it returns a response.
+
+This template deploys to existing infrastructure. To provision infrastructure with Terraform by using `azd ai agent init --infra=terraform`, start with [Set up CI/CD with the Azure Developer CLI](../how-to/set-up-ci-cd-cli.md#choose-the-infrastructure-provider). That guide covers remote state and pipeline setup before agent deployment.
 
 > [!NOTE]
 > This quickstart focuses on GitHub Actions. The pipeline template includes comments for values that vary by project, such as the hosted agent code root folder, Foundry project endpoint, model deployment, and test prompt. Update those values to match your repository and environment layout.

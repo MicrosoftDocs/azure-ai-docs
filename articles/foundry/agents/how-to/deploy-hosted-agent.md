@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Python, .NET, or JavaScript/TypeScript SDK, or the REST API."
 author: aahill
 ms.author: aahi
-ms.date: 08/17/2026
+ms.date: 09/16/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -16,6 +16,8 @@ zone_pivot_groups: hosted-agent-deploy-clients
 # Deploy a hosted agent
 
 This article shows you how to deploy a containerized agent to Foundry Agent Service by using the Azure Developer CLI (`azd`), the Python, .NET, or JavaScript/TypeScript SDK, or the REST API. Choose a deployment method by using the selector at the top of the article. Use the SDK or REST approaches when you want to manage agent deployments directly from your own applications or services.
+
+To manage the hosted-agent data-plane resource with infrastructure as code, see [Deploy a hosted agent with Terraform](deploy-hosted-agent-terraform.md). For Terraform infrastructure with azd-managed agent deployment, see [Set up CI/CD with azd](set-up-ci-cd-cli.md#choose-the-infrastructure-provider).
 
 If you're deploying for the first time or want a guided walkthrough, see the [Quickstart: Create and deploy a Hosted agent](../quickstarts/quickstart-hosted-agent.md). The **Azure Developer CLI (azd)** and **VS Code extension** handle building, pushing, versioning, and RBAC configuration automatically.
 
@@ -265,7 +267,9 @@ During `azd deploy`, the CLI:
 
 ### Manage versions
 
-Each `azd deploy` creates a new version of the agent. The CLI preserves previous versions, and the latest version is active by default.
+Each `azd deploy` creates a new version of the agent. The CLI preserves previous versions. By default, the endpoint follows the latest version; a pinned endpoint continues to serve its selected version unless you update its routing configuration.
+
+To validate a candidate before it receives production traffic, [pin production before deployment and promote explicitly](manage-hosted-agent.md#release-a-version-without-changing-production). Review endpoint settings in your azd configuration so deployment doesn't overwrite that pin.
 
 ### Verify the deployment
 

@@ -232,6 +232,8 @@ items:
     items:
     - name: Set up CI/CD
       href: ../../agents/how-to/set-up-ci-cd-cli.md
+    - name: Deploy with Terraform
+      href: ../../agents/how-to/deploy-hosted-agent-terraform.md
     - name: Promote releases and roll out versions
       href: ../../agents/how-to/deploy-hosted-agent-production.md
     - name: Deploy with a private container registry (ACR)
@@ -250,7 +252,7 @@ items:
       href: ../../agents/concepts/azure-yaml-reference.md
     - name: agent.yaml schema (legacy)
       href: ../../agents/concepts/agent-yaml-reference.md
-    - name: Infrastructure (Bicep)
+    - name: Infrastructure (Bicep and Terraform)
       href: ../../agents/concepts/cli-infrastructure.md
 
 - name: Autopilots

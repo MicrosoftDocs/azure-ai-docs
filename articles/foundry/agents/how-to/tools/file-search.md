@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 09/30/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -948,7 +948,7 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-  "agent": {
+  "agent_reference": {
     "type": "agent_reference",
     "name": "<AGENT_NAME>-file-search"
   },
