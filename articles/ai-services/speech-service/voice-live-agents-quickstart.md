@@ -5,7 +5,7 @@ description: Learn how to create a real-time voice agent with Foundry Agent Serv
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: quickstart
-ms.date: 02/24/2026
+ms.date: 09/30/2026
 author: PatrickFarley
 reviewer: PatrickFarley
 ms.author: pafarley
@@ -16,6 +16,10 @@ ai-usage: ai-assisted
 ---
 
 # Quickstart: Voice Agent with Foundry Agent Service (new)
+
+This quickstart connects Voice Live to a Foundry text agent.
+
+For new voice experiences, consider starting with [Microsoft Foundry voice agents (preview)](../../foundry/agents/quickstarts/prompt-voice-agent.md). They support speech-to-speech and text models, with built-in telephony and voice-pipeline tracing. To compare the approaches or plan a migration, see [Compare and migrate to Microsoft Foundry voice agents](../../foundry/agents/how-to/migrate-from-voice-live.md).
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]

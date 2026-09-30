@@ -3,7 +3,7 @@ title: "Quickstart: Create a voice-based prompt agent"
 description: "Create a managed voice-based prompt agent in Foundry Agent Service by using the Microsoft Foundry portal, the Microsoft Foundry SDK, or the Azure Developer CLI."
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/22/2026
+ms.date: 09/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
@@ -20,6 +20,8 @@ In this quickstart, you create a voice-based prompt agent, open a live session, 
 Choose your development tool. The **Foundry portal** path creates and tests the agent in the browser with no code. The **Python SDK** and **JavaScript/TypeScript SDK** paths install the Microsoft Foundry SDK, create the agent in code, and connect to a live session over a WebSocket. The **Azure Developer CLI** path uses `azd` to scaffold, provision, deploy, and test the agent without writing runtime code. All paths create the same kind of managed prompt-based voice agent, which uses a managed real-time model.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+If you already use Voice Live with a Foundry text agent, see [Compare and migrate to Microsoft Foundry voice agents](../how-to/migrate-from-voice-live.md).
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
