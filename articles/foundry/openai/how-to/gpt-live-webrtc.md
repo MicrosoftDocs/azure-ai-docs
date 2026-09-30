@@ -94,6 +94,7 @@ Save `session.id` if your backend attaches a [sideband WebSocket](gpt-live.md#ob
 - Don't send `session.input_audio.append` on the WebRTC data channel, and don't expect `session.output_audio.delta` there. Audio flows over the negotiated media track instead.
 - Input and output media are synchronized through RTP and don't carry JSON timing fields.
 - All other session events—`session.update`, the `session.instructions.append` / `session.thinking.append` / `session.commentary.append` context events, delegation events, transcripts, usage, and errors—use the same schema as WebSocket. See the [GPT-Live event API reference](../gpt-live-reference.md).
+- Each WebRTC session has a minimum billable audio duration of 15 seconds. This minimum doesn't apply to WebSocket sessions.
 
 ## Related content
 

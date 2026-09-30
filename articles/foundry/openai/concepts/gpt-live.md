@@ -98,6 +98,8 @@ GPT-Live bills the voice conversation separately from the backend that reasons a
 
 Session usage is reported as a cumulative running total, so read the latest usage value rather than adding snapshots together. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
+Each WebRTC session has a minimum billable audio duration of 15 seconds. This minimum doesn't apply to WebSocket sessions.
+
 ## Limits
 
 The GPT-Live API limits the number of concurrent sessions per subscription based on your tier. For the per-tier values, see [GPT-Live concurrent session limits](../quotas-limits.md#gpt-live-concurrent-session-limits).
