@@ -20,14 +20,7 @@ zone_pivot_groups: selection-browser-tool
 # Automate browser tasks with the Browser Automation tool (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-This article explains how to configure and use the Browser Automation tool with Foundry agents to automate web browsing workflows.
-
 [!INCLUDE [toolbox-recommended](../../includes/toolbox-recommended.md)]
-
-> [!WARNING]
-> The Browser Automation Tool comes with significant security risks. When you use the Browser Automation Tool, an AI spins up remote browsers sessions to perform actions and can use credentials you explicitly share with the agent, such as to email, financial accounts, social networks, and enterprise systems. The AI agent may make mistakes and may be fooled by malicious data it may encounter on the Internet.
->
-> You're responsible for reviewing and testing your applications and implementing your own responsible AI mitigations. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and all outcomes. Use judgment in deciding which credentials you provide to your browser sessions. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note).
 
 Browser Automation Tool (BAT) enables scalable, reliable browser-based automation within Foundry agents. BAT is available as an MCP tool powered by Playwright workspaces as its headless browser infrastructure layer. It integrates seamlessly with modern agentic workflows while providing enterprise-grade security, observability, and extensibility.
 
@@ -36,13 +29,70 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 - [Playwright Workspaces](https://aka.ms/pww/docs) (a Generally Available service) as the infrastructure layer
 - Real-time debugging with Live View
 - Take control for human-in-the-loop scenarios
-- Support for private website browsing (Private preview)
+- Support for private website browsing (Public preview)
 - Built-in observability for reliability and optimization
 - Flexible orchestration layers
 
-> [!NOTE]
-> The private website feature in Playwright Workspaces is currently available in private preview.
-> Interested users can fill out this [form](https://aka.ms/pww/private-website-enrolment-form) to enroll for the private preview.
+
+> [!WARNING]
+> Browser Automation Tool controls web browsers on your behalf and can take unintended actions. Testing and monitoring are recommended. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note) to learn more.
+
+## Use cases
+
+Use **Browser Automation Tool** for browser-based workflows that require navigation, information extraction, form interaction, or validation across websites and business applications.
+
+For example, a finance operations team can use an agent with **Browser Automation Tool** to retrieve invoice details from a vendor portal, validate the information against its internal system, and enter the required data into a legacy finance application. The agent can use the browser when these systems don't provide APIs or when the workflow spans multiple browser-based applications.
+
+### Common scenarios
+
+- **Form filling and third-party integration:** Complete forms and move information between browser-based applications when an API isn't available.
+
+- **Web research and data extraction:** Navigate websites, filter results, and collect or compare information across sources.
+
+- **Quality assurance and regression testing:** Validate end-to-end user flows, reproduce reported issues, and investigate failures in a real browser session.
+
+- **Customer support and issue replication:** Re-create a customer journey, gather context from a website, and help support teams investigate browser-based issues.
+
+- **Legacy-system automation:** Automate repetitive interactions with internal or vendor portals that don't provide modern APIs.
+
+- **Employee and business operations:** Support supervised workflows such as employee-lifecycle tasks, invoice processing, and other browser-based operational processes.
+
+## How it works
+
+The Browser Automation tool enables a Foundry agent to interact with websites through a managed browser provided by Playwright Workspaces. Playwright Workspaces provides the cloud-hosted browser infrastructure, while the Browser Automation tool exposes browser capabilities that the agent can use to complete a user's task.
+
+When a user gives the agent a browser-based task, the agent determines which browser operations are needed to make progress toward the requested goal. The agent can use the available browser automation tools to create and interact with a browser session, navigate to webpages, inspect page content, find and interact with elements, enter information, and complete multi-step browser workflows.
+
+A typical browser automation flow works as follows:
+
+1. The user provides a natural-language request, such as asking the agent to visit a website, find information, complete a form, or perform a sequence of browser interactions.
+
+2. When browser interaction is required, the agent uses the Browser Automation tool connected to a Playwright Workspace. The workspace provides the managed, remote browser environment in which the task runs.
+
+3. The browser automation service creates a browser session. The session is identified by a browser session ID that is used across subsequent browser operations so the agent can continue working in the same browser context.
+
+4. Browser automation tools allow the agent to navigate pages and inspect the current page state. Based on the user's goal and the information available from the page, the agent determines the next browser operation to perform.
+
+5. The agent can perform browser interactions such as navigating to another page, finding and selecting page elements, entering text, or interacting with controls. The resulting page state becomes available to subsequent browser operations.
+
+6. For multi-step workflows, the agent repeats this observe-and-act process, using the same browser session as it moves through the website. This approach allows the agent to adapt its next action to the current state of the page instead of relying on a predefined sequence of browser steps.
+
+7. After the workflow finishes, the browser session is closed and its associated browser resources are released.
+
+Because the browser runs remotely in Playwright Workspaces, the agent doesn't need a locally installed browser or Playwright runtime to perform these interactions. Playwright Workspaces also provides capabilities for observing and troubleshooting browser sessions, including browser session data and Live View.
+
+This architecture enables agents to perform workflows such as navigating websites, retrieving and validating information, completing forms, interacting with authenticated applications, and carrying out multi-step browser processes.
+
+
+## Choose your setup path
+
+Choose the agent type and development approach before you configure **Browser Automation Tool**. All options use a Playwright workspace and a Browser Automation toolbox. The difference is where your agent logic runs and how much code you manage.
+
+| Choose | Use this option when | Next step |
+| --- | --- | --- |
+| **Prompt agent** | You want the fastest path to a browser-enabled agent. Define instructions, a model, and tools in Foundry, and let Foundry run the agent. | Follow the Prompt agent sample. |
+| **Hosted agent with Microsoft Agent Framework** | You need custom agent code but want a recommended starting framework and Foundry-managed hosting, scaling, identity, and observability. | Follow the Hosted agent quickstart. Select **Agent Framework** when you create the sample. |
+| **Hosted agent with your own framework** | You already use a framework such as LangGraph, OpenAI Agents SDK, Semantic Kernel, or custom code, and need to retain your existing orchestration logic. | Create a Hosted agent, then connect to the Browser Automation toolbox by using your framework's MCP client. |
 
 ## Prerequisites
 
@@ -83,21 +133,31 @@ The following table shows SDK and setup support.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-## How it works
+## Choose an authentication type
 
-The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL \<url\>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
+When you create the Browser Automation connection, select the authentication method that meets your organization's security requirements.
 
-The browser performs Playwright-driven actions, such as navigating to relevant pages and applying filters or parameters based on user preferences (such as time, location, and instructor). By combining the model with Playwright, the model can parse HTML or XML into DOM documents, make decisions, and perform actions like selecting UI elements, typing, and navigating websites. Exercise caution when using this tool.
+| Authentication type | Use when | Considerations |
+| --- | --- | --- |
+| **API key** | You are prototyping or your organization permits service access tokens. | The key is stored in the Foundry project connection. Don't place it in source code, prompts, or logs. Rotate and revoke it according to your organization's policy. |
+| **Project managed identity** | Multiple agents in the same Foundry project need to access the same Playwright workspace. | Use the Foundry project's Microsoft Entra identity and grant it only the required permissions on the workspace. This identity is the recommended default for enterprise workloads when supported by the connection. |
+| **Agent identity** | A deployed Hosted agent needs its own access boundary for browser automation or downstream resources. | A Hosted agent receives a dedicated Microsoft Entra identity when it is deployed. Assign permissions to that identity when the agent requires access that shouldn't be shared with other agents in the project. |
 
-An example flow is:
+## Grant Playwright workspace access
 
-1. A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
-1. The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
-1. The Browser Automation tool executes the action in a sandboxed environment.
-1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
-1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
+Browser Automation Tool uses the **Foundry project managed identity** to access the Playwright workspace. This identity is different from a hosted agent's dedicated agent identity:
 
-  The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete form filling and web scraping scenarios.
+- **Project managed identity:** Project-wide identity used by Foundry platform services and Browser Automation connections.
+- **Agent identity:** Per-agent identity created when you deploy a hosted agent. Use it for the agent's runtime access to downstream resources.
+
+Grant the project managed identity the minimum permissions required to use the Playwright workspace:
+
+1. In the Azure portal, open the Playwright workspace.
+2. Select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
+3. Select a custom role that contains only the Playwright permissions required by the Foundry project identity. If a custom role isn't available, assign **Playwright Workspace Contributor** at the **Playwright workspace resource scope**.
+4. On the **Members** tab, select the Foundry project managed identity.
+5. Select **Review + assign**.
+
 
 ## Set up Browser Automation
 
@@ -823,15 +883,14 @@ Add the dependency to your `pom.xml`:
 
 :::zone-end
 
-## Limitations
+## Monitor browser automation sessions
 
-- **Trusted sites only**: Use this tool only with sites you trust. Avoid pages that prompt for credentials, payments, or other sensitive actions.
-- **Page volatility**: Web pages can change at any time. Your agent might fail if the page layout, labels, or navigation flows change. Build error handling into your workflows.
-- **Complex single-page applications**: JavaScript-heavy SPAs with dynamic content might not render correctly.
+Browser Automation Tool provides observability features to help you validate, troubleshoot, and review browser-based agent runs.
 
-## Cost considerations
-
-This tool uses a Playwright workspace resource to run browser sessions. Review the Playwright workspace documentation for pricing and usage details. For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+- **Live View:** Provides a real-time view of an active browser session. Use it during development and testing to verify navigation, page state, and browser interactions as the agent runs.
+- **Screenshot recording:** Captures screenshots during an active browser session, helping you verify page state and browser interactions as the agent runs.
+- **Take control:** Supports human-in-the-loop workflows. Use it when a person needs to intervene in a browser session before the agent continues.
+- For production workflows, review run summaries, traces, and diagnostic logs to investigate outcomes without continuously monitoring active sessions.
 
 ## Troubleshooting
 
@@ -864,17 +923,21 @@ Browser automation can take longer than typical requests.
 - Increase the client timeout (the C# sample sets a 5-minute timeout).
 - Reduce the scope of your prompt (for example, fewer pages and fewer interactions).
 
+## Limitations
+
+- **Sign-in and sensitive actions**: Use this tool only with sites you trust. Avoid pages that prompt for credentials, payments, or other sensitive actions.
+- **Page volatility**: Web pages can change at any time. Your agent might fail if the page layout, labels, or navigation flows change. Build error handling into your workflows.
+- **Complex single-page applications**: JavaScript-heavy SPAs with dynamic content might not render correctly.
+
+## Cost considerations
+
+This tool uses a Playwright workspace resource to run browser sessions. Review the Playwright workspace documentation for pricing and usage details. For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+
 ## Clean up
 
 - Delete the agent version you created for testing.
 - Revoke or rotate the Playwright access token if you no longer need it.
 - Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md).
-
-## Example scenarios
-
-- Form filling: Handles diverse form types with validation, DOM, authentication, compliance, and supporting multi-turn reasoning.
-
-- Web scraping: Navigates authenticated sites to scrape, compare, and structure data across sources.
 
 ## Transparency note
 

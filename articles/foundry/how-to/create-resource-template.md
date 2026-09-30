@@ -35,7 +35,27 @@ When you customize your template, consider adding the following security configu
 | **Private endpoints (network isolation)** | Your organization bans public endpoints, or you need to keep traffic on your virtual network for compliance (HIPAA, PCI, FedRAMP). | [Configure network isolation with private endpoints](configure-private-link.md) |
 | **Customer-managed keys (CMK) for encryption** | You must control the encryption-key lifecycle, rotation cadence, or revocation, or your data classification requires bring-your-own-key. | [Set up customer-managed keys for encryption](../concepts/encryption-keys-portal.md) |
 | **Role-based access control (RBAC)** | You need least-privilege access for builders versus administrators, or you grant access to multiple teams that share a Foundry resource. | [Configure role-based access control for Foundry](../concepts/rbac-foundry.md) |
+| **Agent capability settings** | Your agents must store state, vector data, and files in Azure resources you own rather than platform-managed resources. | [Configure agent capability settings](configure-capability-settings.md) |
 | **Custom Azure Policy definitions** | Your platform team enforces a security baseline (allowed regions, required tags, allowed SKUs, mandatory CMK or private link) across every Foundry resource the organization creates. | [Create custom Azure Policy definitions](custom-policy-definition.md) |
+
+### Check deployment permissions before you deploy
+
+If your template sets agent capability settings, the identity that runs the deployment needs more than permission to create the Foundry resource. Confirm each of the following before you deploy, because a missing assignment fails the deployment partway through:
+
+- The deployment principal holds **Storage Blob Data Contributor** on every Azure Storage account the template references.
+- The deployment principal holds **Cosmos DB Operator** on every Azure Cosmos DB account the template references.
+
+Azure AI Search doesn't require a caller role for capability settings provisioning. Your deployment principal still needs the permissions required to create or update every resource declared in the template.
+
+Run the following command to list the deployment principal's current assignments:
+
+```azurecli
+az role assignment list --assignee <principal-id> --all --output table
+```
+
+### Grant runtime access after provisioning
+
+Provisioning permissions and runtime permissions are separate. After the deployment succeeds, grant the project managed identity the data-plane roles it needs on each referenced resource, then confirm an agent can read and write. The caller roles in the previous section don't satisfy this requirement. For the per-resource role list, see [Standard agent setup](../agents/concepts/standard-agent-setup.md).
 
 [!INCLUDE [create-resource-template 1](../includes/how-to-create-resource-template-1.md)]
 

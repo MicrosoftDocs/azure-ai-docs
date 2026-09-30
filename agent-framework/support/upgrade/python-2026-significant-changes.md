@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/24/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,92 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Foundry Responses hosting separates history, storage, and background execution
+
+**PR:** [#8794](https://github.com/microsoft/agent-framework/pull/8794)
+
+`ResponsesHostServer` now treats the caller's `store` field, the outer response
+store, model history, and provider-native background execution as separate
+choices. Rename the constructor's `store=` argument to `response_store=`. The
+old name remains a deprecated alias and doesn't set the caller's per-request
+storage behavior.
+
+Review your `history_source` configuration. The default `"agent_server"` mode
+reconstructs the outer Responses transcript and disables downstream storage.
+Use `"service"` to continue a private storing-provider session, or `"agent"` to
+preserve an agent-owned history provider or downstream storage default.
+Requests with `store=false` no longer write host-managed state or downstream
+service history.
+
+Provider-native background polling now requires
+`history_source="service"` and `background_source="provider"`. Steering is
+temporarily unavailable, and enabling `steerable_conversations` raises
+`RuntimeError` during host construction. For migration and configuration
+details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Gemini uses `GOOGLE_*` settings and adds Embedding 2
+
+**PR:** [#8798](https://github.com/microsoft/agent-framework/pull/8798)
+
+`GeminiChatClient` no longer reads `GEMINI_API_KEY` or `GEMINI_MODEL`, and the
+`GeminiSettings` export is removed. Rename configuration to `GOOGLE_API_KEY`
+and `GOOGLE_MODEL`, or pass the values explicitly. Configure embeddings with
+`GOOGLE_EMBEDDING_MODEL`.
+
+The new `GeminiEmbeddingClient` defaults to `gemini-embedding-2`. Text
+embedding calls require an explicit task type, such as
+`RETRIEVAL_DOCUMENT` for indexing and `RETRIEVAL_QUERY` for search. Vector
+upserts, searches, and generated search tools now accept per-operation
+embedding options, while vector field dimensions remain authoritative.
+
+For setup and examples, see
+[Google Gemini](../../integrations/by-component/model-providers/google-gemini.md?pivots=programming-language-python)
+and [Vector store integrations](../../integrations/by-component/vector-stores/index.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Foundry invocation sessions now use persistent storage
+
+**PR:** [#8593](https://github.com/microsoft/agent-framework/pull/8593)
+
+`InvocationsHostServer` now saves serialized `AgentSession` state through an
+`AgentSessionStoreProvider` instead of retaining arbitrary live session objects
+for the process lifetime. The default provider uses Foundry storage when hosted
+and file-backed storage locally, with a separate `invocation_sessions` logical
+store.
+
+Make custom session state serializable, and register codecs for custom types
+with `register_state_type()`. Restored state doesn't preserve Python object
+identity. New default stores expire sessions 30 days after their last write;
+custom providers control retention. Coordinate overlapping requests for the
+same session, and use separate local storage roots or providers for independent
+applications. For details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
+### 🔴 Local tool approvals require the issuing session
+
+**PR:** [#8750](https://github.com/microsoft/agent-framework/pull/8750)
+
+A local `function_approval_response` now authorizes a tool call only when it
+matches a pending approval request recorded in the same authoritative
+`AgentSession`. Pass the same session to the run that produces the approval
+request and the run that resumes it. Without that session, the framework drops
+the unbound response and logs a warning.
+
+Hosted approvals and replayed conversations whose tool calls already have
+terminal results are unchanged. Set
+`disable_approval_response_binding=True` only when your application enforces
+equivalent binding before messages reach the agent. For the recommended
+session-backed flow, see
+[Tool approval](../../agents/tools/tool-approval.md?pivots=programming-language-python).
+
+---
 
 ### 🔴 Persisted approval transcripts must use typed approval controls
 

@@ -72,18 +72,12 @@ items:
       items:
       - name: Configure a voice agent
         href: ../../agents/how-to/configure-voice-agent.md
-      - name: Deploy a hosted voice agent with azd
-        href: ../../agents/how-to/deploy-hosted-voice-agent.md
       - name: Use a hosted agent as the conversation engine
         href: ../../how-to/voice-first-with-hosted-agent.md
       - name: Use a subagent
         href: ../../agents/how-to/use-subagent-voice-first-agent.md
       - name: Integrate a telephony channel
         href: ../../agents/how-to/voice-agent-telephony-channels.md
-      - name: Connect to a Teams phone number
-        href: ../../agents/how-to/voice-agent-teams-phone.md
-      - name: Connect to a Twilio phone number
-        href: ../../agents/how-to/voice-agent-twilio-phone.md
       - name: Best practices
         href: ../../agents/concepts/voice-agent-best-practice.md
       - name: Optimize a voice agent
@@ -94,6 +88,8 @@ items:
         href: ../../agents/concepts/voice-agent-pricing.md
     - name: Deploy and share
       href: ../../agents/how-to/voice-agent-channels-publish.md
+    - name: Migrate from Voice Live with Foundry Agent Service
+      href: ../../agents/how-to/migrate-from-voice-live.md
 
 # Voice-first agent scope: insert the new Voice-first agent node here or under the agreed parent after product naming and ownership are finalized.
 - name: Hosted agents
@@ -148,6 +144,8 @@ items:
       href: ../../agents/how-to/update-hosted-agent-model.md
     - name: Add a protocol adapter
       href: ../../agents/how-to/add-protocol-adapter.md
+    - name: Use on-behalf-of flow
+      href: ../../agents/how-to/use-on-behalf-of-flow.md
     - name: Host Microsoft Agent Framework agents
       href: ../../how-to/develop/framework-hosted-agents.md
     - name: Host LangGraph agents
@@ -216,8 +214,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Deploy a voice agent (preview)
       href: ../../agents/how-to/build-voice-agent.md
-    - name: Deploy a hosted voice agent with azd (preview)
-      href: ../../agents/how-to/deploy-hosted-voice-agent.md
+    - name: Use a hosted agent as a voice agent's conversation engine (preview)
+      href: ../../how-to/voice-first-with-hosted-agent.md
     - name: Add hosted agent guardrails
       href: ../../agents/how-to/add-hosted-agent-guardrails.md
     - name: Manage lifecycle
@@ -234,6 +232,8 @@ items:
     items:
     - name: Set up CI/CD
       href: ../../agents/how-to/set-up-ci-cd-cli.md
+    - name: Promote releases and roll out versions
+      href: ../../agents/how-to/deploy-hosted-agent-production.md
     - name: Deploy with a private container registry (ACR)
       href: ../../agents/how-to/deploy-hosted-agent-private-azure-container-registry.md
     - name: Bring your own registry
@@ -268,6 +268,12 @@ items:
     href: ../../agents/how-to/publish-copilot.md
   - name: Publish with a virtual network
     href: ../../agents/how-to/publish-copilot-virtual-network.md
+  - name: Troubleshooting
+    items:
+    - name: General troubleshooting
+      href: ../../agents/how-to/troubleshoot-publish-copilot.md
+    - name: Authorization errors
+      href: ../../agents/how-to/troubleshoot-publish-copilot-authorization.md
 
 - name: Reference
   items:
@@ -278,5 +284,6 @@ items:
     displayName: sovereign cloud, USGov, Azure Government, parity, Agent Service
   - name: Capability hosts
     href: ../../agents/concepts/capability-hosts.md
+    displayName: capabilityHost, threadStorageConnections, vectorStoreConnections, storageConnections
   - name: FAQ
     href: ../../agents/faq.yml

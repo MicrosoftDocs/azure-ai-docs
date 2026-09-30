@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Configure bring-your-own-storage (BYOS) for Speech and Language capabilities in a Foundry resource by setting the `userOwnedStorage` binding at creation time. This binding routes Speech and Language data to your Azure Storage account while maintaining backward compatibility with earlier standalone resource patterns.
 
 > [!TIP]
-> Use this article when you specifically need Speech and Language data to land in storage you own. For the broader approaches (connections, capability hosts), see [Connect to your own storage](../how-to/bring-your-own-azure-storage-foundry.md).
+> Use this article when you specifically need Speech and Language data to land in storage you own. For the broader approaches (connections, capability settings), see [Connect to your own storage](../how-to/bring-your-own-azure-storage-foundry.md).
 
 ## Prerequisites
 
@@ -230,7 +230,7 @@ If the storage binding isn't visible or operations fail, see the troubleshooting
 ## Related content
 
 - [Connect to your own storage (overview)](../how-to/bring-your-own-azure-storage-foundry.md)
-- [Capability hosts for Agents](../agents/concepts/capability-hosts.md)
+- [Configure agent capability settings](../how-to/configure-capability-settings.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
 - [Samples: infrastructure setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)

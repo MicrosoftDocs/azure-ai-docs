@@ -4,7 +4,7 @@ description: "Comprehensive reference for all built-in evaluators in Microsoft F
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 06/02/2026
+ms.date: 09/09/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -88,6 +88,8 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
 | Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. |
 | Quality Grader (preview) | Enables quality evaluation across multiple dimensions—relevance, abstention, answer completeness, groundedness, and context coverage—in a single evaluator instead of running individual evaluators separately. |
+| Output Quality (preview) | Batches Fluency, Coherence, Intent Resolution, Task Adherence, Groundedness, and Task Completion into one LLM judge call. |
+| Tool Use Quality (preview) | Batches Tool Call Accuracy, Tool Call Success, Tool Input Accuracy, Tool Output Utilization, and Tool Selection into one LLM judge call. |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
@@ -137,7 +139,7 @@ When creating an evaluation run, set `evaluation_level` to match your evaluators
 For comprehensive quality assessment, combine multiple evaluators:
 
 - **RAG applications**: Retrieval + Groundedness + Relevance + Content Safety
-- **Agent applications**: Tool Call Accuracy + Task Adherence + Intent Resolution + Rubric + Content Safety
+- **Agent applications**: Output Quality + Tool Use Quality + Rubric + Content Safety
 - **Translation applications**: BLEU + METEOR + Fluency + Coherence
 - **All applications**: Add risk and safety evaluators (Hate and Unfairness, Sexual, Violence, Self-Harm) for responsible AI practices
 

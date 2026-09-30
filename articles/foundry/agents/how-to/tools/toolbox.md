@@ -610,6 +610,8 @@ Tool-specific `tools/call` argument examples:
 
 ## Integrate the toolbox into your agent
 
+For user delegation with MCP and other tools, connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
+
 :::zone pivot="python"
 
 ### LangGraph

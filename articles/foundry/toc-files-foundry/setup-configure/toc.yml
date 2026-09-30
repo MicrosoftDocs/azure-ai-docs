@@ -30,6 +30,9 @@ items:
   items:
   - name: Set up your agent resources
     href: ../../agents/environment-setup.md
+  - name: Agent capability settings
+    displayName: capabilitySettings, documentStore, vectorStore, blobStore, agent storage, Cosmos DB, AI Search, Storage
+    href: ../../how-to/configure-capability-settings.md
   - name: Standard agent setup
     href: ../../agents/concepts/standard-agent-setup.md
   - name: Use your own Azure resources

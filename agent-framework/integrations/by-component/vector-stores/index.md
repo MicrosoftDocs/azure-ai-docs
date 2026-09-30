@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 09/19/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -19,6 +19,7 @@ ai-usage: ai-assisted
   | Overview and workflow      | Yes | Yes   | Yes | Shared                  |
   | Abstractions and implementations | Yes | Yes | No | Language-specific APIs |
   | Get started                | Yes | Yes   | No  | Language-specific setup |
+  | Per-operation embedding options | No | Yes | No | Python native contract |
   | Availability status        | No  | No    | Yes | Go status only          |
 -->
 
@@ -169,6 +170,14 @@ Agent Framework includes an in-memory implementation for development and tests.
 It stores records in the current process and uses a linear scan, so use a
 database connector for production workloads.
 
+### Pass embedding options for each operation
+
+Pass `embeddings_options` to `upsert()` to apply provider options to every generated vector field. Use `embeddings_options_by_field` when different logical vector fields need different options. These two arguments are mutually exclusive.
+
+For query embedding, pass `embeddings_options` to `search()` or `create_vector_search_tool()`. Agent Framework supplies the selected vector field's declared dimensions and rejects a conflicting `dimensions` value before calling the embedding provider.
+
+Upsert embedding options require generated vectors and can't be combined with `generate_vectors=False`. Search embedding options require a local embedding generator and are ignored when you supply a precomputed query vector.
+
 The following sample stores precomputed vectors and searches them with a
 portable filter tree:
 
@@ -218,10 +227,12 @@ connector families aren't interchangeable.
 | Azure AI Search | `agent-framework-azure-ai-search`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-ai-search-connector) | Dense vector and keyword-hybrid | One top-level dense vector field per query. Some thresholds, hybrid text-recall controls, strict post-filtering, and permissions require a supporting preview SDK/API and `allow_preview=True`. |
 | Azure Cosmos DB for NoSQL | `agent-framework-azure-cosmos`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector) | Dense vector with portable filters | Keys must be strings stored as `id`, and containers use the `/id` partition key. Keyword and hybrid search aren't supported, and Euclidean search doesn't support score thresholds. |
 | Azure DocumentDB | `agent-framework-azure-documentdb`; alpha package | Not available | Dense vector with portable metadata filters | Keys must be strings or integers. Generated ObjectIds, hybrid and full-text search, and nested filter paths aren't supported. |
-| MongoDB | `agent-framework-mongodb`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/mongodb-connector) | Approximate or exact dense vector with portable filters | Requires PyMongo 4.13.2+ and a deployment with MongoDB Vector Search. Keyword and hybrid search, nested filter paths, provider-side embedding generation, and automatic schema migration aren't supported. |
+| DuckDB | `agent-framework-duckdb`; alpha package | Not available | Exact dense vector with portable filters | Requires Python 3.10+ and DuckDB 1.4.1–1.5.x. Approximate indexes, keyword and hybrid search, full-text search, and server-side vectorization aren't supported. Local files allow only one writing process at a time. |
+| MongoDB | `agent-framework-mongodb`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/mongodb-connector) | Approximate or exact dense vector with portable filters | Requires PyMongo 4.13.2+ and a deployment with MongoDB Vector Search. Keyword and hybrid search, nested filter paths, provider-side embedding generation, and automatic schema migration aren't supported. Models that declare `is_full_text_indexed` are rejected, and newly written records become searchable asynchronously. |
 | PostgreSQL with pgvector | `agent-framework-postgres`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Exact dense vector, HNSW, and IVFFlat | Requires PostgreSQL 13+, pgvector 0.8.0+, an existing schema, and the enabled extension. Keyword and hybrid search aren't supported. |
 | Qdrant | `agent-framework-qdrant`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/qdrant-connector) | Dense vector with server-side portable filters | Server mode requires Qdrant 1.16.2+. Keys must be unsigned 64-bit integers or UUIDs. Keyword and hybrid search aren't supported, and filters aren't available in local SDK mode. |
 | Redis | `agent-framework-redis`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/redis-connector) | Dense vector over HASH or JSON records | Requires Redis 8.0.3+ with Search; JSON records also require RedisJSON. Redis Cluster, keyword search, and hybrid search aren't supported. |
+| SQL Server | `agent-framework-sql-server`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/sql-connector) | Exact dense vector with portable filters | Requires Python 3.10–3.14 and SQL Server 2025 or a vector-enabled Azure SQL database. Approximate indexes, keyword and hybrid search, server-side vectorization, and schema migration aren't supported. |
 
 Install a prerelease connector package for the database you use:
 
@@ -229,10 +240,12 @@ Install a prerelease connector package for the database you use:
 pip install agent-framework-azure-ai-search --pre
 pip install agent-framework-azure-cosmos --pre
 pip install agent-framework-azure-documentdb --pre
+pip install agent-framework-duckdb --pre
 pip install agent-framework-mongodb --pre
 pip install agent-framework-postgres --pre
 pip install agent-framework-qdrant --pre
 pip install agent-framework-redis --pre
+pip install agent-framework-sql-server --pre
 ```
 
 On Python 3.10 through 3.14, `agent-framework-postgres` installs Psycopg's binary distribution. On Python 3.15 or later, it uses pure-Python Psycopg because compatible binary wheels aren't published, so the host must provide a system `libpq` installation.
@@ -241,11 +254,13 @@ Each connector implements the common model, collection, CRUD, filter, and
 search contracts. Database-specific capabilities and restrictions still apply.
 For complete examples, see the
 [Azure AI Search](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/azure_ai_search.py),
-[MongoDB](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_vectors.py),
+[DuckDB](https://github.com/microsoft/agent-framework/blob/main/python/packages/duckdb/samples/duckdb_vectors.py),
+[MongoDB vector operations](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_vectors.py),
+[MongoDB agent RAG](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_agent_rag.py),
 [Postgres](https://github.com/microsoft/agent-framework/blob/main/python/packages/postgres/samples/postgres_vectors.py),
 [Qdrant](https://github.com/microsoft/agent-framework/blob/main/python/packages/qdrant/samples/qdrant_vectors.py),
-and
-[Redis](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/redis_store.py)
+[Redis](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/redis_store.py),
+and [SQL Server](https://github.com/microsoft/agent-framework/blob/main/python/packages/sql-server/samples/sql_server_vectors.py)
 samples.
 
 ### Semantic Kernel-only implementations
@@ -264,7 +279,6 @@ implementations don't currently have a native Agent Framework connector:
 | [Neon Serverless Postgres](https://neon.com/) | Use the [Postgres implementation](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Yes | Microsoft Semantic Kernel project |
 | [Oracle](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/oracle-connector) | Available | Yes | Oracle |
 | [Pinecone](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/pinecone-connector) | Available | Yes | Microsoft Semantic Kernel project |
-| [SQL Server](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/sql-connector) | Available | `pyodbc` | Microsoft Semantic Kernel project |
 | SQLite | Planned | Not applicable | Microsoft Semantic Kernel project |
 | [Weaviate](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/weaviate-connector) | Available | Yes | Microsoft Semantic Kernel project |
 

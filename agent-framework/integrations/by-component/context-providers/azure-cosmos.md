@@ -34,11 +34,10 @@ Azure Cosmos DB supports two distinct context-provider patterns in Agent Framewo
 
 :::zone pivot="programming-language-csharp"
 
-### Install the packages
+### Install the package
 
 ```bash
 dotnet add package Microsoft.Agents.AI.CosmosNoSql --prerelease
-dotnet add package Azure.Identity
 ```
 
 ### Configure Cosmos DB chat history

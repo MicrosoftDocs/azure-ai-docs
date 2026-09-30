@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/16/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
 ---
 
@@ -607,6 +607,27 @@ add_agent_framework_fastapi_endpoint(
 ```
 
 `keepalive_seconds` must be a positive number or `None`.
+
+### Continue finite runs after disconnect
+
+By default, disconnecting the SSE client can cancel the response generator and stop the run. Set `detached_runs=True` when a finite agent or workflow run must continue long enough to finalize snapshots, checkpoints, or approval state:
+
+```python
+add_agent_framework_fastapi_endpoint(
+    app,
+    agent,
+    "/agent",
+    detached_runs=True,
+    max_detached_runs=32,
+    detached_run_timeout_seconds=3600,
+)
+```
+
+When you configure snapshot persistence, also provide a trusted `snapshot_scope_resolver`. A reconnecting client recovers the latest committed Thread Snapshot; detached execution doesn't replay SSE events emitted while no client is attached.
+
+Each endpoint registration retains at most `max_detached_runs` producers and returns HTTP 503 when that capacity is full. It returns HTTP 409 for another mutating request on the same `(Snapshot Scope, threadId)` while a detached run is active. This coordination is process-local, so applications with multiple workers must provide distributed serialization.
+
+FastAPI dependencies and other request-scoped resources might be released after the disconnected response ends. Resolve authorization, Snapshot Scope, and other durable values before the run starts, and don't retain request-owned clients or sessions in detached tools and providers.
 
 ### Multiple Agents
 

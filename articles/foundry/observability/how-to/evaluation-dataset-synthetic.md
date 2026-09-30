@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/25/2026
 ai-usage: ai-assisted
 ---
 
@@ -62,6 +62,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 - Python SDK version `2.5.0` or later: `pip install "azure-ai-projects>=2.5.0" azure-identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - An Azure OpenAI model deployment that supports the Responses API. Both the `simple_qna` and `simulation_seed` recipes use this model to synthesize output rows. For the supported-model list, see [Azure OpenAI Responses API model support](/azure/foundry/openai/how-to/responses?tabs=python-key#model-support).
 - A supported region. For the list, see [Supported regions for data generation](../../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 

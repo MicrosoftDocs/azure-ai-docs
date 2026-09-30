@@ -33,7 +33,7 @@ The latest version updates the existing platform with a session-based sandbox mo
 - **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
 - **New protocols** — Invocations, Activity, and A2A protocols join the existing Responses protocol. A single agent can expose multiple protocols simultaneously.
 - **REST API for full lifecycle** — Complete REST coverage for agent, version, session, and file operations. See [SDK method changes](#sdk-method-changes).
-- **Capability host creation removed** — The platform handles infrastructure provisioning automatically. You no longer need to create an account-level capability host. See [Removed APIs](#removed-apis).
+- **Capability host creation removed** — The platform handles infrastructure provisioning automatically. You no longer need to create an account-level capability host. Declare your agent storage resources in [capability settings](../../how-to/configure-capability-settings.md) instead. See [Removed APIs](#removed-apis).
 
 ## Prerequisites
 

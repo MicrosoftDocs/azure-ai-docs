@@ -370,90 +370,16 @@ Continue to allow the destinations your agent needs, such as model endpoints, to
 | Private Link | Microsoft 365 and Teams channel traffic doesn't use Private Link. It uses the source-IP-filtered public Activity Protocol route enabled by `enable_m365_public_endpoint`. |
 | Streaming and citations | Published agents don't support streaming responses or citations. |
 
-## Troubleshooting
+## Troubleshoot publishing
 
-After you publish, problems generally fall into three types: an error while publishing, not finding the agent in the agent store, or an error when you chat with the agent.
-
-### Publishing issues
-
-These errors occur when you publish through the Microsoft 365 publish API.
-
-| Symptom | Cause | Resolution |
-|-------|-------|------------|
-| The publish API rejects the request with a validation error | Invalid metadata or version. Example messages include `AppVersion can only contain digits and periods`, `AppVersion cannot start with 0`, `Developer name cannot exceed length of 32`, `Description cannot exceed length of 4000`, and `Developer Website URL must begin with 'https://'`. | Fix the flagged field and retry. The version must contain only digits and periods and can't start with `0`, the developer name must be 32 characters or fewer, and the full description must be 4,000 characters or fewer. |
-| The publish API rejects the request because the app version already exists | You republished an existing `appVersion`. The service returns `Microsoft 365 app with {version} version already exists, please increment the version number while publishing.` | Increment `appVersion`. To roll out new agent behavior, update the agent version that receives traffic instead. |
-| The publish API rejects the request for a missing field | The request is missing a required field, for example `BotServiceArmId is required.` or `App scope is required. Must be one of 'Personal', 'Shared', or 'Tenant'`. | Pass a valid `botServiceArmId`, and set `publishScope` to `Personal`, `Shared`, or `Tenant`. |
-| The publish API rejects the request for an invalid icon | The color or outline icon isn't valid, for example `ColorIconBase64 is not valid base64.`, `ColorIconBase64 must be a PNG image.`, or `ColorIconBase64 must be a 192x192 PNG image.` | Provide a 192×192 color PNG and a 32×32 outline PNG, base64-encoded and within the size limit. |
-| The publish API returns a `403 AuthorizationFailed` error for `Microsoft.BotService/botServices/write` | Your identity doesn't have permission to create or update the Azure Bot Service resource in the target resource group | Assign the **Azure Bot Service Contributor Role** (or the broader **Contributor** or **Owner** role) on the resource group that contains the bot service. |
-| The publish API returns an identity error | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
-| The publish API returns a permission error | The acting user doesn't have the required permission on the workspace: `The acting user does not have the required permission on the workspace.` | Assign a role that grants agent write access on the Foundry project. |
-| The package download API returns `400` and no ZIP file | The request fields or generated manifest failed validation. The download endpoint doesn't return an unvalidated package. | Correct the validation error, and call the download endpoint again. The request body follows the same validation rules as the publish request. |
-| The package download API returns `401` or `403` | The token is missing or invalid, the caller lacks agent write permission, or the request wasn't sent through the Foundry project endpoint. | Get a token for the `https://ai.azure.com` audience, confirm the caller has the **Foundry User** role or equivalent agent write permission, and use the project endpoint. |
-| The package download API returns `429` | The service is throttling the request. | Wait for the duration in the `Retry-After` response header, and then retry. |
-
-The following issues are specific to publishing behind a virtual network:
-
-| Symptom | Cause | Resolution |
-|---|---|---|
-| Publishing from the portal returns `403` | Public network access is disabled, so the portal can't complete publishing | Use the API-based flow in this article from a client that can reach the project's private endpoint. You can also download the manifest `.zip` and create the agent from it in the [Microsoft 365 admin center](https://admin.cloud.microsoft). |
-| The channel adapter receives `403 NetworkAccessDenied` | `enable_m365_public_endpoint` is omitted or set to `false`, or the request source IP doesn't match an Azure Bot Service or Microsoft 365 range | Set `agent_endpoint.protocol_configuration.activity.enable_m365_public_endpoint` to `true`, and confirm that the request is sent through Azure Bot Service, Microsoft Copilot, or Teams. Direct requests from other public networks are blocked. |
-| A direct Activity Protocol request over the public internet receives `403 NetworkAccessDenied` | The caller's source IP isn't in an allowed service range | Test the published agent through Microsoft Copilot or Teams. Direct public requests from arbitrary networks aren't allowed. |
-| Requests reach the Activity Protocol endpoint but are rejected | No Bot Service authorization scheme is configured, or the caller isn't in the project's tenant | Configure `BotServiceRbac` or `BotServiceTenant`, and verify that the user signs in from the same tenant as the project. Guest users can't call these agents. |
-
-### Find your published agent
-
-If you can't find your agent in the Microsoft Copilot or Microsoft Teams agent store, use the following table.
-
-| Symptom | Cause | Resolution |
-|-------|-------|------------|
-| The agent doesn't appear right after publishing | The store cache refreshes only when you open the store, on about a one-hour cycle. For organization scope, admin approval might still be pending. | For **Just you** (portal) or `Shared` (API) agents, clear the store cache or sign out and sign back in. For **People in your organization** (portal) or `Tenant` (API) agents, confirm a Microsoft 365 admin approved the request in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). |
-| The agent isn't where you expect it | You're looking in the wrong section for the publish scope | **Just you** (portal) or `Shared` (API) agents appear under **Your agents**. **People in your organization** (portal) or `Tenant` (API) agents appear under **Built by your org**. |
-
-### Runtime issues
-
-Use the following table for errors when you chat with a published agent in Microsoft Copilot or Microsoft Teams.
-
-> [!NOTE]
-> End users don't need a Microsoft 365 Copilot license to use a published agent in Microsoft Copilot Chat. Without a Copilot license, usage that accesses shared tenant data, such as SharePoint or Copilot connectors, might incur usage-based charges. For more information, see [Licensing and cost considerations for Copilot extensibility](/microsoft-365/copilot/extensibility/cost-considerations).
-
-| Symptom | Cause | Resolution |
-|---------|-------|------------|
-| **Conversation stuck.** The agent stops responding, or returns `no tool output found`. | The conversation entered a locked state after a tool error, so later messages keep failing. | Reset the conversation. See [Reset a conversation](#reset-a-conversation). |
-| **Insufficient permissions.** Authorization errors when you chat with the agent. | The user doesn't have access to the Foundry project, or the agent is published to `Shared` scope, which uses Azure role-based access control. | Verify the user has access to the Foundry project and an appropriate role, or publish to `Tenant` scope so users get access through admin approval. |
-| **Agent identity missing resource permissions.** The agent works in the Foundry playground but fails after publishing. | The agent's identity is missing permissions for the resources it uses. | Assign the required roles to the agent's identity for any Azure resources it accesses. |
-| **Agent identity disabled.** Authentication or agent identity errors occur during execution. | The agent identity application is disabled. | Verify the agent identity is enabled, and re-enable it if necessary. |
-| **MCP approval required.** Requests fail with an error that an MCP approval request wasn't approved. | A required MCP tool approval was missed or dismissed. | Approve the pending MCP request in the conversation. If the approval card is no longer available, start a new conversation and retry. |
-| **Missing required license.** Tool calls fail because required services are unavailable. | The required licenses or service plans aren't assigned to the user. | Verify that all required licenses and service plans are assigned and enabled. |
-| **Authentication timeout.** Sign-in or authentication fails or times out. | The authentication process wasn't completed before the timeout period expired. | Retry the sign-in process, and complete authentication before you submit the request again. |
-| **Login card redirect fails.** The sign-in card opens, but the redirect URL doesn't load or authentication doesn't complete. | A firewall or proxy on the user's network blocks the Foundry redirect domain. | Allow outbound HTTPS access on TCP port 443 to `*.azureml.ms`, and then retry signing in from the Teams card. |
-| **Rate limit exceeded.** Requests fail with a rate-limit error. | Request volume exceeded the available capacity for the model deployment. | Wait and retry later. Reduce request frequency, or increase deployment capacity if the issue occurs frequently. |
-| **Context length exceeded.** Requests fail because the prompt or conversation is too large. | The combined prompt, conversation history, or attachments exceed the model's context window. | Start a new conversation, or reduce the amount of content in the request. |
-| **Unsupported file type.** A file upload fails. | The uploaded file type isn't supported. | Upload a supported file type, or convert the file to a supported format. |
-| **Another response already in progress.** Requests fail because a previous request is still running. | The service can't start a new response while an existing response is active. | Wait for the current request to complete, then retry. If the session appears stuck, start a new conversation. |
-
-### Reset a conversation
-
-If a published agent stops responding, or returns an error such as `no tool output found`, the conversation can enter a state where later messages keep failing. To recover, start a fresh conversation with the agent:
-
-- **Microsoft Copilot**: Start a new chat with the agent.
-- **Microsoft Teams**: Teams doesn't yet provide a way to start a new session, so send the agent the message `/foundry_new_preview` to reset the conversation.
-
-You can't restore the previous conversation after you reset it. The agent responds normally in the new conversation.
-
-<!--
-Editorial note: The following categories are intentionally excluded from this public article and are covered in internal troubleshooting guides instead:
-- Internal service errors
-- Generic server errors
-- Request ID collection guidance
-- Incident references and escalation paths
-- Monitoring and dashboard guidance
-- Infrastructure implementation details
-- Internal service dependencies and investigations
--->
+For REST API validation errors, package-download problems, private-network
+failures, agent store discovery issues, and runtime failures, see
+[Troubleshoot publishing agents to Microsoft Copilot and Microsoft Teams](./troubleshoot-publish-copilot.md).
 
 ## Related content
 
 - [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md)
+- [Troubleshoot publishing agents to Microsoft Copilot and Microsoft Teams](./troubleshoot-publish-copilot.md)
 - [Set up private networking for Foundry Agent Service](./virtual-networks.md)
 - [Configure your agent endpoint and settings](./configure-agent.md)
 - [Foundry agents and custom engine agents through the corporate firewall](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-agents-and-custom-engine-agents-through-the-corporate-firewall/4502218)

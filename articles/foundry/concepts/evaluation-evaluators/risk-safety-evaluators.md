@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 04/02/2026
+ms.date: 09/25/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -53,16 +53,18 @@ Examples:
 
 | Evaluator | What it measures | Required inputs |
 |-----------|------------------|-----------------|
-| `builtin.violence` | Violent or threatening language | `query`, `response` |
-| `builtin.sexual` | Sexual or explicit content | `query`, `response` |
-| `builtin.self_harm` | Self-harm related content | `query`, `response` |
-| `builtin.hate_unfairness` | Hateful or unfair language | `query`, `response` |
-| `builtin.protected_material` | Copyrighted content | `query`, `response` |
-| `builtin.indirect_attack` | Indirect jailbreak attempts | `query`, `response` |
-| `builtin.code_vulnerability` | Security vulnerabilities in code | `query`, `response` |
-| `builtin.ungrounded_attributes` | Ungrounded personal inferences | `query`, `response`, `context` |
-| `builtin.prohibited_actions` | Disallowed agent behaviors | `query`, `response`, `tool_calls` |
-| `builtin.sensitive_data_leakage` | Sensitive data exposure | `query`, `response`, `tool_calls` |
+| `builtin.violence` | Violent or threatening language | (`query`, `response`) or `messages` |
+| `builtin.sexual` | Sexual or explicit content | (`query`, `response`) or `messages` |
+| `builtin.self_harm` | Self-harm related content | (`query`, `response`) or `messages` |
+| `builtin.hate_unfairness` | Hateful or unfair language | (`query`, `response`) or `messages` |
+| `builtin.protected_material` | Copyrighted content | (`query`, `response`) or `messages` |
+| `builtin.indirect_attack` | Indirect jailbreak attempts | (`query`, `response`) or `messages` |
+| `builtin.code_vulnerability` | Security vulnerabilities in code | (`query`, `response`) or `messages` |
+| `builtin.ungrounded_attributes` | Ungrounded personal inferences | (`query`, `response`, `context`) or (`messages`, `context`) |
+| `builtin.prohibited_actions` | Disallowed agent behaviors | (`query`, `response`, `tool_calls`) or `messages` |
+| `builtin.sensitive_data_leakage` | Sensitive data exposure | (`query`, `response`, `tool_calls`) or `messages` |
+
+For each evaluator in the table, map either the listed separate fields or a `messages` array. Ungrounded Attributes also requires `context` with either input format. Prohibited Actions and Sensitive Data Leakage accept `messages` instead of separate `query`, `response`, and `tool_calls` fields. Both accept the optional `evaluation_level` parameter and currently support turn-level evaluation. For the message structure, see [Messages with tool calls](../../observability/how-to/evaluation-dataset-schema.md#messages-with-tool-calls).
 
 ### Example input
 
@@ -71,6 +73,8 @@ Your test dataset should contain the fields referenced in your data mappings:
 ```jsonl
 {"query": "How do I handle a difficult coworker?", "response": "Try having an open conversation to understand their perspective and find common ground."}
 {"query": "What should I do if I feel stressed?", "response": "Consider taking breaks, practicing deep breathing, and talking to a trusted friend or professional."}
+{"messages": [{"role": "user", "content": "How do I handle a difficult coworker?"}, {"role": "assistant", "content": "Try having an open conversation to understand their perspective and find common ground."}]}
+{"messages": [{"role": "user", "content": "Find this customer's account."}, {"role": "assistant", "content": [{"type": "tool_call", "tool_call_id": "call_123", "name": "search_accounts", "arguments": {"customer_id": "12345"}}]}, {"role": "tool", "tool_call_id": "call_123", "content": [{"type": "tool_result", "tool_result": {"account_status": "active"}}]}, {"role": "assistant", "content": "The account is active."}]}
 ```
 
 ### Configuration example for evaluating model responses
@@ -112,7 +116,7 @@ testing_criteria = [
 > [!IMPORTANT]
 > `builtin.prohibited_actions` and `builtin.sensitive_data_leakage` are in preview. They're supported for agent targets only and aren't available for dataset or model evaluations.
 
-Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool calls:
+For agent-specific safety evaluators, provide tool-call information either in the `tool_calls` field with `query` and `response`, or in a full `messages` array that includes the tool interaction:
 
 ```python
 testing_criteria = [

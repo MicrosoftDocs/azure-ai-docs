@@ -181,8 +181,13 @@ Before you begin, ensure you have:
 - The following NuGet packages installed:
 
 ```bash
-dotnet add package Microsoft.Agents.AI.Workflows.Declarative --prerelease
-dotnet add package Microsoft.Agents.AI.Workflows.Declarative.AzureAI --prerelease
+dotnet add package Microsoft.Agents.AI.Workflows.Declarative.Foundry --prerelease
+```
+- The examples in this article load configuration from user secrets and environment variables, which requires the following NuGet packages:
+
+```bash
+dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
 ```
 - If you intend to add MCP tool invocation action to your workflow, also install the following NuGet package:
 

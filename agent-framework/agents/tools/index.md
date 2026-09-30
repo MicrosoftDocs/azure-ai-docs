@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Tools Overview
@@ -43,6 +44,7 @@ Agent Framework supports many different types of tools that extend agent capabil
 | [Microsoft Foundry Toolbox](../../integrations/by-component/tools/foundry-toolbox.md) | Named, versioned bundles of hosted tool configurations managed in a Foundry project |
 | [Shell tools](../../integrations/by-component/tools/shell-tools.md) | Local and containerized shell execution with environment probing and policy controls |
 | [Image Generation](../../integrations/by-component/model-providers/microsoft-foundry.md#image-generation) | Hosted image generation on the Foundry / OpenAI Responses runtime |
+| [Native computer use](./computer-use.md) | Execute provider-requested desktop or browser actions and return screenshots |
 | [Shell](../../integrations/by-component/model-providers/openai.md#tools) | Hosted shell execution on the OpenAI Responses runtime — distinct from the GitHub Copilot CLI's built-in shell/file/URL runtime tools |
 | [Bing Grounding](../../integrations/by-component/model-providers/microsoft-foundry.md#bing-grounding) | Web grounding via your own Grounding with Bing Search resource — experimental |
 | [Bing Custom Search](../../integrations/by-component/model-providers/microsoft-foundry.md#bing-custom-search) | Bing grounding restricted to a curated domain list — preview |
@@ -50,7 +52,7 @@ Agent Framework supports many different types of tools that extend agent capabil
 | [SharePoint](../../integrations/by-component/model-providers/microsoft-foundry.md#sharepoint) | Ground answers in SharePoint content — preview |
 | [Microsoft Fabric](../../integrations/by-component/model-providers/microsoft-foundry.md#microsoft-fabric) | Query a Fabric data agent — preview |
 | [Memory Search](../../integrations/by-component/model-providers/microsoft-foundry.md#memory-search) | Search a Foundry-managed memory store — preview |
-| [Computer Use](../../integrations/by-component/model-providers/microsoft-foundry.md#computer-use) | Drive a desktop or browser environment — preview |
+| [Computer Use preview](../../integrations/by-component/model-providers/microsoft-foundry.md#computer-use) | Drive a desktop or browser environment through the separate Foundry preview API |
 | [Browser Automation](../../integrations/by-component/model-providers/microsoft-foundry.md#browser-automation) | Drive a browser via Azure Playwright — preview |
 | [Agent-to-Agent (A2A) tool](../../integrations/by-component/model-providers/microsoft-foundry.md#agent-to-agent-a2a) | Call a remote A2A agent as a tool from a Foundry agent — preview |
 
@@ -158,6 +160,7 @@ The OpenAI and Azure OpenAI providers each offer multiple client types with diff
 | [File Search](./file-search.md) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [Web Search](./web-search.md) | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
 | [Image Generation](../../integrations/by-component/model-providers/microsoft-foundry.md#image-generation) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| [Native computer use](./computer-use.md) | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | Hosted Shell (`get_shell_tool`) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Built-in shell / file system / URL fetch | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅² |
 | [Hosted MCP Tools](./hosted-mcp-tools.md) | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ |
@@ -169,7 +172,7 @@ The OpenAI and Azure OpenAI providers each offer multiple client types with diff
 | [SharePoint](../../integrations/by-component/model-providers/microsoft-foundry.md#sharepoint) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [Microsoft Fabric](../../integrations/by-component/model-providers/microsoft-foundry.md#microsoft-fabric) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [Memory Search](../../integrations/by-component/model-providers/microsoft-foundry.md#memory-search) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| [Computer Use](../../integrations/by-component/model-providers/microsoft-foundry.md#computer-use) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| [Computer Use preview](../../integrations/by-component/model-providers/microsoft-foundry.md#computer-use) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [Browser Automation](../../integrations/by-component/model-providers/microsoft-foundry.md#browser-automation) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [Agent-to-Agent (A2A) tool](../../integrations/by-component/model-providers/microsoft-foundry.md#agent-to-agent-a2a) (preview) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 

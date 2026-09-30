@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: dlozier
-ms.date: 04/01/2026
+ms.date: 09/25/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -63,12 +63,14 @@ Examples:
 
 | Evaluator | What it measures | Required inputs | Required parameters | Output | Default threshold |
 |---|---|---|---|---|---|
-| `builtin.similarity` | Semantic similarity to ground truth | `query`, `response`, `ground_truth` | `deployment_name` | 1-5 integer | 3 |
-| `builtin.f1_score` | Token overlap using precision and recall | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
-| `builtin.bleu_score` | N-gram overlap (machine translation metric) | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
-| `builtin.gleu_score` | Per-sentence reward variant of BLEU | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
-| `builtin.rouge_score` | Recall-oriented n-gram overlap | `ground_truth`, `response` | `rouge_type` | 3 floats: precision, recall, F1 | 0.5 per score |
-| `builtin.meteor_score` | Weighted alignment with synonyms | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
+| `builtin.similarity` | Semantic similarity to ground truth | (`query`, `response`, `ground_truth`) or (`messages`, `ground_truth`) | `deployment_name` | 1-5 integer | 3 |
+| `builtin.f1_score` | Token overlap using precision and recall | (`ground_truth`, `response`) or (`ground_truth`, `messages`) | *(none)* | 0-1 float | 0.5 |
+| `builtin.bleu_score` | N-gram overlap (machine translation metric) | (`ground_truth`, `response`) or (`ground_truth`, `messages`) | *(none)* | 0-1 float | 0.5 |
+| `builtin.gleu_score` | Per-sentence reward variant of BLEU | (`ground_truth`, `response`) or (`ground_truth`, `messages`) | *(none)* | 0-1 float | 0.5 |
+| `builtin.rouge_score` | Recall-oriented n-gram overlap | (`ground_truth`, `response`) or (`ground_truth`, `messages`) | Required: `rouge_type`; optional: `precision_threshold`, `recall_threshold`, `f1_score_threshold` | F1 score; precision, recall, and per-metric results in properties | 0.5 per metric |
+| `builtin.meteor_score` | Weighted alignment with synonyms | (`ground_truth`, `response`) or (`ground_truth`, `messages`) | *(none)* | 0-1 float | 0.5 |
+
+For the evaluators that accept `messages`, map the interaction as an array of message objects and keep `ground_truth` as a separate string field. See [Messages with tool calls](../../observability/how-to/evaluation-dataset-schema.md#messages-with-tool-calls) for the message structure.
 
 ### Example input
 
@@ -77,6 +79,7 @@ Your test dataset should contain the fields referenced in your data mappings:
 ```jsonl
 {"query": "What is the largest city in France?", "response": "Paris is the largest city in France.", "ground_truth": "The largest city in France is Paris."}
 {"query": "Explain machine learning.", "response": "Machine learning is a subset of AI that enables systems to learn from data.", "ground_truth": "Machine learning is an AI technique where computers learn patterns from data."}
+{"messages": [{"role": "user", "content": "What is the largest city in France?"}, {"role": "assistant", "content": "Paris is the largest city in France."}], "ground_truth": "The largest city in France is Paris."}
 ```
 
 ### Configuration example
@@ -127,7 +130,7 @@ See [Run evaluations from the SDK](../../observability/how-to/cloud-evaluation.m
 
 ### Example output
 
-LLM-based evaluators like `builtin.similarity` use a 1-5 Likert scale. Most algorithmic evaluators output a single 0-1 float score. `builtin.rouge_score` is an exception — it returns three separate scores. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
+LLM-based evaluators like `builtin.similarity` use a 1-5 Likert scale. Algorithmic evaluators output a 0-1 score. ROUGE returns its F1 score as the primary score and includes precision, recall, and their individual pass/fail results in the result properties. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
 
 ```json
 {
@@ -143,7 +146,7 @@ LLM-based evaluators like `builtin.similarity` use a 1-5 Likert scale. Most algo
 ```
 
 > [!NOTE]
-> `builtin.rouge_score` returns three separate scores rather than one: `rouge_precision`, `rouge_recall`, and `rouge_f1_score`, each with its own pass/fail result. The threshold of 0.5 applies independently to each score.
+> `builtin.rouge_score` uses `rouge_type` to select the n-gram metric. You can also set `precision_threshold`, `recall_threshold`, and `f1_score_threshold`; each defaults to 0.5 and applies to its corresponding metric in the result properties. The primary `rouge` score and pass/fail result use the F1 score and its threshold.
 
 ## Related content
 

@@ -52,7 +52,7 @@ a custom speech-to-speech or cascaded audio pipeline in your own container,
 build a [voice agent with a hosted agent](../how-to/build-voice-agent.md) and
 use the `invocations_ws` protocol.
 
-To keep conversation logic in a hosted text agent while Voice Live handles audio, use the [hosted voice wrapper workflow](../how-to/deploy-hosted-voice-agent.md). The wrapper and target are separate services in the same `azure.yaml` project. This flow doesn't replace the existing custom `invocations_ws` audio-pipeline flow.
+To keep conversation logic in a hosted text agent while Voice Live handles audio, use the [hosted voice wrapper workflow](../../how-to/voice-first-with-hosted-agent.md#deploy-both-agents-with-the-azure-developer-cli). The wrapper and target are separate services in the same `azure.yaml` project. This flow doesn't replace the existing custom `invocations_ws` audio-pipeline flow.
 
 Before using the public-preview voice CLI options, check your installed extension as described in the [voice agent quickstart prerequisites](../quickstarts/prompt-voice-agent.md#prerequisites).
 

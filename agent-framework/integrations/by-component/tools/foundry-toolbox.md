@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 07/30/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -15,9 +16,9 @@ ms.service: agent-framework
   | Section                  | C# | Python | Go | Notes                         |
   |--------------------------|:--:|:------:|:--:|:------------------------------|
   | Toolbox overview         | ✅ |   ✅   | ✅ | Shared                        |
-  | MCP consumption          | ❌ |   ✅   | ❌ | Python sample available       |
+  | MCP consumption          | ✅ |   ✅   | ❌ | Hosted C# and Python samples  |
   | Managed-agent attachment | ✅ |   ✅   | ❌ | Configured in Foundry         |
-  | Language availability    | ✅ |   ✅   | ✅ | C# and Go are status guidance |
+  | Language availability    | ✅ |   ✅   | ✅ | Go is status guidance        |
 -->
 
 # Microsoft Foundry Toolbox
@@ -31,7 +32,17 @@ Agent Framework covers Toolbox consumption. Create and update Toolbox versions t
 
 :::zone pivot="programming-language-csharp"
 
-For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry. Client-side .NET Toolbox consumption guidance isn't currently documented.
+For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry.
+
+For a hosted agent built with Microsoft Agent Framework, use `AddFoundryToolboxes` from `Microsoft.Agents.AI.Foundry.Hosting`, as shown in the following example.
+
+Use a .NET 10 web project with implicit usings enabled, matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`, and `DotNetEnv`. Set `TOOLBOX_NAME` to an existing toolbox and `AZURE_AI_MODEL_DEPLOYMENT_NAME` to your model deployment. Foundry supplies `FOUNDRY_PROJECT_ENDPOINT` to the deployed host. For local model access, set `AZURE_AI_PROJECT_ENDPOINT` and sign in with Azure CLI. The hosting integration loads toolbox tools when `FOUNDRY_PROJECT_ENDPOINT` is available.
+
+:::code language="csharp" source="~/../agent-framework-code/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox/Program.cs" range="27-48,54-55,58-68,71-75,80-89":::
+
+The same hosting registration supports tools configured for per-user OAuth consent on their toolbox connections. Users still need the required permissions and consent; no separate host-registration block is needed.
+
+For the project files and deployment instructions, see [Hosted-Toolbox](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox). For per-user consent setup, see [Hosted-Toolbox-AuthPaths](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths).
 
 :::zone-end
 
@@ -80,13 +91,15 @@ Approval remains enabled by default for skill operations. Disable individual app
 
 Attach the Toolbox to the Prompt or Hosted Agent definition in Foundry. `FoundryAgent` uses that stored tool configuration; passing a Toolbox client-side doesn't add it to the managed agent.
 
-## Connect through raw MCP
+<a id="connect-through-raw-mcp"></a>
 
-Use `MCPStreamableHTTPTool` directly when the application doesn't use the `FoundryToolbox` hosting wrapper. Supply the Toolbox endpoint and an Entra ID bearer token through `header_provider`.
+## Connect through MCP with `FoundryToolbox`
 
-:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/foundry/foundry_chat_client_with_toolbox.py" range="3-12,80-94,98-118":::
+Use `FoundryToolbox` with `ResponsesHostServer` to connect a hosted agent to the Toolbox MCP endpoint. The wrapper authenticates MCP requests and forwards the current hosted request's caller context for per-user identity passthrough.
 
-The lower-level sample uses `FOUNDRY_TOOLBOX_ENDPOINT`. The Toolbox skills sample uses `FOUNDRY_TOOLBOX_MCP_SERVER_URL`; these names belong to those samples and are separate from the `FoundryToolbox` class's `TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` settings.
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="3-47":::
+
+Set `TOOLBOX_ENDPOINT`, or set both `FOUNDRY_PROJECT_ENDPOINT` and `TOOLBOX_NAME`, as described in [Configure the Toolbox](#configure-the-toolbox). The sample uses `AZURE_AI_MODEL_DEPLOYMENT_NAME` for the model deployment.
 
 ## Limitations
 

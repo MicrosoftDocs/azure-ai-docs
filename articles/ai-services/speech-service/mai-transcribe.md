@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 09/05/2026
+ms.date: 09/22/2026
 ms.custom: references_regions
 zone_pivot_groups: llm-speech-quickstart
 ai-usage: ai-assisted
@@ -51,9 +51,6 @@ Use MAI‑Transcribe‑2 to generate transcripts from audio input. Configure the
 | **Language selection** | `locales` | [`"language_code"`] | *Unspecified (Automatic Detection)* | Allows forcing transcription in a specific language. This is a very strong hint to the model, and don't specify it unless you're absolutely certain that the recording is in the given language, and the default auto-detection doesn't work. Only one language can be provided here. MAI-Transcribe-2 supports 60 languages.|
 | **Code switching** | *Automatic* | — | — |  For commonly blended language pairs such as Hinglish and Spanglish, handles conversations that move between languages mid-utterance. |
 | **Noise robustness** | *Inherent* | — | — | Maintains transcription quality on audio recorded outside controlled environments, including background noise, overlapping speech, and variable microphone quality. |
-
-> [!NOTE]
-> Speaker diarization in enhanced mode currently supports shorter recordings than transcription does. In preview, requests with `diarization.enabled` set to `true` fail for recordings of about 15 minutes and longer, returning HTTP 408 with a `Timeout` error, HTTP 500, or HTTP 503 with a `diarization_unavailable` error, while the same recordings transcribed successfully with diarization disabled. For long recordings, transcribe with diarization disabled and use the returned word-level timestamps with a separate speaker diarization step.
 
 ::: zone pivot="ai-foundry"
 

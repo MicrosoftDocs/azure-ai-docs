@@ -4,7 +4,7 @@ description: Agent Framework Integrations
 author: westey-m
 ms.topic: article
 ms.author: westey
-ms.date: 08/31/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -25,6 +25,7 @@ Microsoft Agent Framework has integrations with many different services, tools a
 | [Google](./by-provider/google.md) | Google Gemini and Anthropic Claude on Vertex AI |
 | [Ollama](./by-provider/ollama.md) | Local model inference through native and OpenAI-compatible clients |
 | [Mistral](./by-provider/mistral.md) | Mistral chat and text embeddings |
+| [TypeSafe AI](./by-provider/type-safe-ai.md) | Typed decisions and constrained tool selection with System One models |
 
 See [all provider ecosystems](./by-provider/index.md).
 

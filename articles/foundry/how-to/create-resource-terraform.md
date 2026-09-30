@@ -46,7 +46,6 @@ The following table shows which actions each provider supports:
 |Configure deployments|✅|✅|
 |Configure projects|✅|✅|
 |Configure a connection to knowledge and tools|✅|✅|
-|Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md))|✅|-|
 
 [!INCLUDE [create-resource-terraform 1](../includes/how-to-create-resource-terraform-1.md)]
 
