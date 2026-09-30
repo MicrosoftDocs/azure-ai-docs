@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: hanch
-ms.date: 06/02/2026
+ms.date: 09/25/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ---
@@ -24,6 +24,7 @@ This article covers how to create a benchmark evaluation in the Foundry portal, 
 - Access to the **Build** experience in the Foundry portal.
 - The **Foundry User** role, or equivalent permissions, on the project.
      [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - At least one target to evaluate, such as a deployed model or an agent.
 - Access to built-in benchmark datasets in your project.
 - A model deployment that you can select as the **Judge model** when the benchmark flow asks for one.

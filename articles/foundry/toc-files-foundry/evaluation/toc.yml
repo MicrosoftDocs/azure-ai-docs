@@ -1,5 +1,7 @@
 items:
 # Fundamentals
+- name: Permissions for evaluation workflows
+  href: ../../observability/how-to/evaluation-permissions.md
 - name: Rate limits and regions
   href: ../../concepts/evaluation-regions-limits-virtual-network.md
 - name: Virtual network support 

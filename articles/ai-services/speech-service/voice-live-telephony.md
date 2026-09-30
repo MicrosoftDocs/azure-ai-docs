@@ -31,6 +31,7 @@ Alternatively, telephony integration is supported through third-party providers'
 - [**Genesys AudioHook**](https://developer.genesys.cloud/devapps/audiohook/)
 - [**Sinch Voice**](https://developers.sinch.com/docs/voice)
 - [**Bandwidth Voice**](https://dev.bandwidth.com/docs/voice/)
+- [**Vonage Voice**](https://developer.vonage.com/voice)
 
 
 :::image type="content" source="media/voice-live/telephony.png" alt-text="Diagram of the call center telephony setup." lightbox="media/voice-live/telephony.png":::

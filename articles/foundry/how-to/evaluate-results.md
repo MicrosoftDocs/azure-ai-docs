@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/11/2026
+ms.date: 09/25/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -31,6 +31,7 @@ In this article, you learn how to:
 - **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](../observability/how-to/evaluation-permissions.md).
 - A completed evaluation run.
     - To run evaluations in the portal, see [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
     - To run evaluations from the SDK, see [Run evaluations from the SDK](../observability/how-to/cloud-evaluation.md) or [Evaluate your AI agents](../observability/how-to/evaluate-agent.md).
