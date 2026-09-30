@@ -623,7 +623,7 @@ add_agent_framework_fastapi_endpoint(
 )
 ```
 
-When snapshot persistence is configured, also provide a trusted `snapshot_scope_resolver`. A reconnecting client recovers the latest committed Thread Snapshot; detached execution doesn't replay SSE events emitted while no client is attached.
+When you configure snapshot persistence, also provide a trusted `snapshot_scope_resolver`. A reconnecting client recovers the latest committed Thread Snapshot; detached execution doesn't replay SSE events emitted while no client is attached.
 
 Each endpoint registration retains at most `max_detached_runs` producers and returns HTTP 503 when that capacity is full. It returns HTTP 409 for another mutating request on the same `(Snapshot Scope, threadId)` while a detached run is active. This coordination is process-local, so applications with multiple workers must provide distributed serialization.
 

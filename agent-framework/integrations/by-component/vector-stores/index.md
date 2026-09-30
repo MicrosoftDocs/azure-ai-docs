@@ -172,7 +172,7 @@ database connector for production workloads.
 
 ### Pass embedding options for each operation
 
-Pass `embeddings_options` to `upsert()` to apply provider options to every generated vector field. Use `embeddings_options_by_field` when different logical vector fields need different options; the two arguments are mutually exclusive.
+Pass `embeddings_options` to `upsert()` to apply provider options to every generated vector field. Use `embeddings_options_by_field` when different logical vector fields need different options. These two arguments are mutually exclusive.
 
 For query embedding, pass `embeddings_options` to `search()` or `create_vector_search_tool()`. Agent Framework supplies the selected vector field's declared dimensions and rejects a conflicting `dimensions` value before calling the embedding provider.
 

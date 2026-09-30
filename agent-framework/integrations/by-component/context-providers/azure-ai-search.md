@@ -65,7 +65,7 @@ Some agentic output and reasoning options require the preview `azure-search-docu
 
 Pass `knowledge_source_params` to `AzureAISearchContextProvider` in agentic mode when a knowledge source needs options such as `filter_add_on`. Each entry replaces the provider-generated parameters for the matching `knowledge_source_name`; entries for other source names are appended.
 
-When `include_reference_source_data` is unset, the provider sets it to `True` on a copy so references retain their source data. An explicit `False` is preserved. Duplicate `knowledge_source_name` values raise `ValueError`, and `knowledge_source_params` isn't accepted in semantic mode.
+When you don't set `include_reference_source_data`, the provider sets it to `True` on a copy so references retain their source data. An explicit `False` is preserved. Duplicate `knowledge_source_name` values raise `ValueError`, and `knowledge_source_params` isn't accepted in semantic mode.
 
 ### Forward caller identity for permission-aware retrieval
 

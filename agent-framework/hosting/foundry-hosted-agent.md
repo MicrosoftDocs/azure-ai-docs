@@ -269,7 +269,7 @@ server = ResponsesHostServer(
 )
 ```
 
-Omitting the allowlist keeps the absolute-HTTPS validation without restricting the destination origin. Providing an empty list rejects every consent link. Configure exact HTTPS origins only; entries with a path, query, or fragment are rejected.
+Omitting the allow list keeps the absolute-HTTPS validation without restricting the destination origin. Providing an empty list rejects every consent link. Configure exact HTTPS origins only; entries with a path, query, or fragment are rejected.
 
 :::zone-end
 
