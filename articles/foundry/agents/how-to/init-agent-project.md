@@ -7,7 +7,7 @@ ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 09/23/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -34,7 +34,7 @@ There are three ways to begin a project. Pick the path that matches your situati
 | --- | --- | --- | --- |
 | Best for | New agents, learning the tooling. | Existing agent code you want to host on Foundry. | Agents already running in a Foundry project. |
 | Command | `azd ai agent init` in an empty directory. | `azd ai agent init` in a directory with existing code. | `azd ai agent init`, then select an existing project. |
-| What you get | A full scaffolded project: a single `azure.yaml`, agent source under `src/<agent-name>/`, and a Dockerfile for container deployment. Infrastructure is bicep-less by default and can be ejected later. | A generated `azure.yaml` service entry and, for container deployment, a Dockerfile wrapping your code. Infrastructure is bicep-less by default and can be ejected later. | An `azure.yaml` wired to your existing Foundry project. Infrastructure is bicep-less by default and can be ejected later. |
+| What you get | A fully scaffolded project: a single `azure.yaml`, agent source under `src/<agent-name>/`, and a Dockerfile for container deployment. Infrastructure is Bicep-less by default and can be ejected later. | A generated `azure.yaml` service entry and, for container deployment, a Dockerfile wrapping your code. Infrastructure is Bicep-less by default and can be ejected later. | An `azure.yaml` wired to your existing Foundry project. Infrastructure is Bicep-less by default and can be ejected later. |
 | Code changes | None. Ready to run. | Might need a protocol adapter. | None. |
 
 ## Initialize from a template
@@ -126,7 +126,7 @@ cd my-agent/
 azd ai agent init
 ```
 
-The CLI detects the existing files and generates an `azure.yaml` service entry around them without overwriting your code. For container deployment, it also adds a Dockerfile. Infrastructure remains bicep-less by default unless you eject infrastructure as code later.
+The CLI detects the existing files and generates an `azure.yaml` service entry around them without overwriting your code. For container deployment, it also adds a Dockerfile. Infrastructure remains Bicep-less by default unless you eject infrastructure as code later.
 
 Your agent code must meet the [hosted agent runtime contract](../concepts/hosted-agent-contract.md):
 
@@ -157,7 +157,7 @@ To find the project ID, open the [Foundry portal](https://ai.azure.com), go to *
 
 ## Review what gets created
 
-After `init` completes, your project directory contains the following structure:
+By default, `init` creates the following project structure. You need a Dockerfile only for container deployment:
 
 ```
 .
@@ -167,10 +167,32 @@ After `init` completes, your project directory contains the following structure:
 |       |-- Dockerfile          # Container build definition
 |       \-- ...                 # Agent source code
 |-- .azure/                     # Environment configuration
-\-- infra/                      # Optional IaC, created only after you eject infrastructure
+\-- infra/                      # Optional IaC, created when you pass --infra
 ```
 
-Templates and samples publish a unified `azure.yaml` at the project root. During init, `azd` adopts or generates that file. You work with `azure.yaml` going forward. Infrastructure is bicep-less by default. Eject infrastructure only when you need to manage the generated IaC files directly.
+Templates and samples publish a unified `azure.yaml` at the project root. During init, `azd` adopts or generates that file. By default, you don't need to maintain Bicep or Terraform files unless you choose to eject the infrastructure.
+
+## Choose Terraform or Bicep infrastructure
+
+To manage infrastructure with Terraform, select it when you initialize your project:
+
+```bash
+azd ai agent init --infra=terraform
+```
+
+Infrastructure and deployment mode are independent choices. For a container-based agent with Terraform infrastructure, use:
+
+```bash
+azd ai agent init --infra=terraform --deploy-mode container
+```
+
+For a new project, the command writes Terraform files under `infra/` and configures the Terraform infrastructure provider in `azure.yaml`. In a project with existing infrastructure, Foundry infrastructure can be generated as a separate layer under `infra/foundry/`. Review the generated configuration before provisioning.
+
+To choose Bicep instead, use `--infra=bicep` or the shorthand `--infra`. Omitting `--infra` preserves the default infrastructure-less workflow.
+
+`azd provision` applies the selected infrastructure. `azd deploy` still creates the hosted-agent version; choosing Terraform doesn't move agent-version management into Terraform state.
+
+For file structure and customization, see [Hosted agent infrastructure](../concepts/cli-infrastructure.md). Before using Terraform in a pipeline, configure [Terraform CI/CD and remote state](set-up-ci-cd-cli.md#choose-the-infrastructure-provider).
 
 ## Related content
 

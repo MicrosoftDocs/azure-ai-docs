@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 08/17/2026
+ms.date: 09/16/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -1033,9 +1033,35 @@ Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone pivot="azd"
 
-During `azd deploy`, the tool automatically configures endpoint routing. To select a specific version, use the REST API or SDK.
+During `azd deploy`, the tool applies endpoint settings configured for the agent. If you pin production to a version, ensure those settings don't overwrite the pin. To select a specific version, use the REST API or SDK.
 
 :::zone-end
+
+## Release a version without changing production
+
+Pin your production endpoint before deploying a candidate version. The default routing policy follows the latest version, so creating a version without first pinning production can change what consumers receive.
+
+This workflow separates deployment from promotion. Use it with [azd CI/CD](set-up-ci-cd-cli.md#validate-a-candidate-before-production-promotion) or [standalone Terraform deployment](deploy-hosted-agent-terraform.md).
+
+<!-- [TO VERIFY] Exercise the complete deploy, candidate-session test, promotion, and rollback sequence for each documented deployment tool before publication. -->
+
+1. **Record and pin production.** Read the agent's current endpoint configuration and record the version that production serves. [Select that concrete version](configure-agent.md#select-the-active-agent-version) with one `FixedRatio` rule at 100%. Keep its identifier and container image available for rollback.
+
+1. **Create the candidate.** Deploy the new image or configuration without changing the production selector. Capture the candidate's concrete version identifier from your deployment tool. Don't resolve `latest` again after testing or while waiting for approval.
+
+   For azd, review configured endpoint settings and deployment hooks before `azd deploy`. For Terraform, coordinate all writers to the named agent: Terraform's state lock doesn't prevent a separate API client from creating a version.
+
+1. **Verify readiness and identity.** [Get the candidate version](#get-a-specific-version) and wait for its status to become `active`. Confirm that its image and configuration match the artifact you intend to release. A failed deployment, timeout, or unexpected candidate must stop the release without changing production.
+
+1. **Test a candidate-specific session.** [Create a fresh session pinned to the candidate](manage-hosted-sessions.md#create-a-session-explicitly-advanced) by using a `version_indicator` with `type` set to `version_ref`. Pass the captured version as `agent_version`.
+
+   Invoke using the returned session ID. For Responses, put `agent_session_id` in the request body. For Invocations, use the `agent_session_id` query parameter. Check successful protocol completion and expected response content; nonempty logs or an HTTP connection alone aren't a passing test.
+
+1. **Approve and promote.** Before promotion, confirm that the candidate is still active and production still points to the recorded version. If another release changed the selector, stop and reconcile the change. After approval, update the endpoint selector to the tested candidate at 100%, preserving unrelated protocol and authorization settings.
+
+1. **Verify production and retain rollback.** Create a new session without a version override and verify that it uses the selected version. If the release fails its production checks, restore the previous concrete selector and verify new-session behavior again.
+
+An existing session is bound to its version when it's created. Changing the endpoint selector doesn't migrate those sessions. Retain previous versions and images while sessions or rollback requirements still depend on them. Deleting the agent or a version isn't a rollback operation.
 
 ## Retrieve the agent identity for role assignments
 
