@@ -925,7 +925,7 @@ Browser automation can take longer than typical requests.
 
 ## Limitations
 
-- **Sign-in and sensitive actions**: Sign-in and sensitive actions: Use this tool only with sites you trust. Avoid pages that prompt for credentials, payments, or other sensitive actions.
+- **Sign-in and sensitive actions**: Use this tool only with sites you trust. Avoid pages that prompt for credentials, payments, or other sensitive actions.
 - **Page volatility**: Web pages can change at any time. Your agent might fail if the page layout, labels, or navigation flows change. Build error handling into your workflows.
 - **Complex single-page applications**: JavaScript-heavy SPAs with dynamic content might not render correctly.
 
