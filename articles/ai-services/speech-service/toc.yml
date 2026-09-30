@@ -103,6 +103,14 @@ items:
         href: get-started-stt-diarization.md
     - name: MAI-Transcribe API
       href: mai-transcribe.md
+    - name: MAI-Transcribe Streaming API
+      items:
+      - name: Overview
+        href: mai-transcribe-2-streaming.md
+      - name: MAI-Transcribe-2-Streaming using Realtime API
+        href: mai-transcribe-2-streaming-realtime.md
+      - name: MAI-Transcribe-2-Streaming using Azure Speech SDK
+        href: mai-transcribe-2-streaming-speech-sdk.md
     - name: Fast transcription API
       href: fast-transcription-create.md
     - name: Batch transcription API
