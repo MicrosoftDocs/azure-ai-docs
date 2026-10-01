@@ -2028,12 +2028,13 @@ def convert_units(
     return json.dumps({"value": value, "factor": factor, "result": result})
 ```
 
-The parameter name is flexible. Annotate it directly as
-`FunctionInvocationContext` or `FunctionInvocationContext | None`; metadata
-wrappers such as `Annotated[...]` aren't recognized for context injection.
-Custom `SkillScript.run()` implementations opt in with the same annotation on
-their `run()` method. Unannotated implementations retain the existing behavior
-of receiving host runtime values as individual keyword arguments.
+You can choose the parameter name. Annotate it directly as
+`FunctionInvocationContext` or `FunctionInvocationContext | None`. The
+framework doesn't recognize metadata wrappers such as `Annotated[...]` for
+context injection. Custom `SkillScript.run()` implementations opt in by using
+the same annotation on their `run()` method. Unannotated implementations retain
+the existing behavior of receiving host runtime values as individual keyword
+arguments.
 
 ### Code-defined skills with kwargs
 
