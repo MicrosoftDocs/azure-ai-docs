@@ -7,6 +7,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [non-english-translation](non-english-translation.md)]
@@ -23,6 +24,46 @@ All customers have the ability to configure severity thresholds on Guardrails (p
 
 - [Modified Guardrails (previously content filters)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)  
 - [Modified abuse monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu)
+
+## Biosecurity and cybersecurity exception requests
+
+When you use Azure OpenAI models, cybersecurity safeguards might block an API request and return a `cyber_policy` error.
+
+This section explains what this error means and how to request an exception when your legitimate biosecurity or cybersecurity use case requires changes to these safeguards.
+
+### When this error occurs
+
+An API request sent to the model might be blocked when it's flagged for potential cybersecurity risk. In this case, the response includes the `cyber_policy` error code and a message such as:
+
+```text
+This request has been flagged for potentially high-risk cyber activity.
+```
+
+Or:
+
+```text
+This content was flagged for possible cybersecurity risk.
+```
+
+In these messages, "request" refers to the API request sent to the model.
+
+### What an exception request covers
+
+An exception request asks for a review of your use case and the changes to biosecurity or cybersecurity safeguards needed to support legitimate research or security-related activities.
+
+Approval for modified Guardrails (previously modified content filters) or modified abuse monitoring does not, by itself, authorize changes to biosecurity or cybersecurity safeguards.
+
+### How to request an exception
+
+To request an exception, contact [responsibleainotifications@microsoft.com](mailto:responsibleainotifications@microsoft.com) directly.
+
+Include the following information in your email:
+
+- Your business purpose.
+- Your specific use case.
+- The safeguards you want to modify and why the changes are necessary.
+
+Follow the guidance provided by the team regarding any required application forms or additional information.
 
 ## Important links
 
