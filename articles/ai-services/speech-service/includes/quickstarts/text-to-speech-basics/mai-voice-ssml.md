@@ -32,12 +32,12 @@ The following SSML synthesizes a greeting in Spanish (Mexico) by using `es-MX-Va
 
 ### Expressive control with SSML `mstts:express-as`
 
-Use the `style` and `styledegree` attributes to control expression:
+Use the `style` attribute to control expression:
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
   <voice name="en-US-Harper:MAI-Voice-2.1">
-    <mstts:express-as style="happiness" styledegree="1.2">
+    <mstts:express-as style="happiness">
       Welcome to Microsoft Build. MAI Voice 2.1 supports multilingual expressive synthesis.
     </mstts:express-as>
   </voice>
