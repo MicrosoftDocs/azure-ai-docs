@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,52 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Foundry Invocations defaults to JSON and framed SSE
+
+**PR:** [#8894](https://github.com/microsoft/agent-framework/pull/8894)
+
+`InvocationsHostServer` now returns non-streaming success as
+`{"response": "..."}` instead of plain text. Streaming now uses framed
+server-sent events: `delta` for text updates, `done` after the final response
+is finalized and the `AgentSession` is saved, and `error` for failures. A
+stream can emit deltas before an error, so treat `done`, not a delta, as
+successful completion.
+
+Update clients to parse JSON and SSE. The `session_id` in a `done` event is the
+platform sandbox route ID, not the serialized `AgentSession.session_id`.
+Same-session requests are serialized only within one host process, and a
+cross-process state conflict can still occur after external tool effects.
+
+Existing callers can temporarily set `legacy_wire_format=True` to preserve the
+old successful plain-text response and raw text-chunk stream. The compatibility
+mode is deprecated and doesn't return failures as successful text. Applications
+can also accept custom payloads with `parse_request` returning `InvocationRun`
+and filter caller options with `prepare_options`; the host validates reserved
+controls after the hook. For details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#customize-invocations-requests-and-responses).
+
+---
+
+### 🔴 Declarative workflow object attributes require safe names
+
+**PR:** [#8893](https://github.com/microsoft/agent-framework/pull/8893)
+
+Python standalone `WorkflowState` and factory-created declarative workflow
+state now use the same object-attribute policy. When a dot-notated path
+traverses a Python object, each attribute segment must match
+`[A-Za-z][A-Za-z0-9_]*`. An unsafe segment, such as `_private`,
+`display-name`, or a value with trailing whitespace, returns the lookup default
+without accessing the attribute.
+
+Dictionary keys are unchanged. For example, `Local.obj._private` no longer
+reads an object attribute, while `Local.bag._private` still reads the
+`"_private"` key when `Local.bag` is a dictionary. Expose public object
+attributes that match the supported pattern, or store irregular names,
+including UUIDs and hyphenated values, as dictionary keys. For details, see
+[Object attribute paths](../../workflows/declarative.md?pivots=programming-language-python#object-attribute-paths).
+
+---
 
 ### 🔴 Foundry Responses hosting separates history, storage, and background execution
 

@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -181,6 +181,18 @@ server = ResponsesHostServer(agent=create_workflow_agent)
 
 Keep the workflow name and executor IDs stable so later Responses requests can locate saved checkpoints. `ResponsesHostServer` continues supported state through its session, checkpoint, and function-approval stores; it doesn't persist arbitrary fields on a request-scoped agent. See the [workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows) and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
 
+Also use a factory when an integration carries request identity or owns
+request-specific resources. For example, create MCP connections, Toolboxes,
+skill providers, Search clients, Memory providers, and their credentials inside
+the factory when they use the current platform call or user context. Reusing a
+process-wide MCP connection can retain the identity of the request that opened
+it.
+
+The host enters and exits factory-created agents for each request. `Agent`
+manages context-managed clients and MCP tools, but your factory must close any
+other provider, transport, or credential it creates. Don't close shared objects
+that the application supplied from outside the factory.
+
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` and `InvocationsHostServer` configure persistent session
@@ -208,7 +220,12 @@ Missing, duplicate, or conflicting values are rejected instead of using an SDK
 fallback ID.
 
 These guarantees apply to the default hosted stores. Custom store providers
-must implement equivalent user and sandbox isolation.
+must implement equivalent user and sandbox isolation, preserve the inner
+`AgentSession.session_id` separately from host lookup keys, and use conditional
+writes so stale requests can't overwrite newer snapshots. New keys should use
+create-only writes rather than unconditional upserts. See the
+[custom storage sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage)
+for a Cosmos DB implementation with ETag-protected writes and deletes.
 
 With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
@@ -246,6 +263,22 @@ Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass 
 | Steerable conversations | Temporarily unavailable | Don't set `steerable_conversations=True`. The host raises `RuntimeError` during construction until the Agent Server SDK safely handles rejected steering turns. |
 
 For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [basic Responses history and background](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic), and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
+
+### Read files from the hosted sandbox
+
+Treat a hosted sandbox's persistent `$HOME` as a request-routed resource, not as
+a general file-system boundary. Accept only files that your application
+explicitly uploads to a dedicated directory, validate the current sandbox
+identity, and reject absolute paths, traversal, links, nonregular files, and
+oversized or invalid content.
+
+For the Responses protocol, route a request to a hosted session with the
+`agent_session_id` body field. The query-string selector is for Invocations.
+Session uploads and Toolbox code-interpreter files are separate resources; an
+uploaded sandbox file isn't automatically mounted into a Toolbox container.
+See the
+[session files sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/files)
+for bounded UTF-8 reads and local and hosted upload guidance.
 
 ### Control request options
 
@@ -341,6 +374,36 @@ When hosted, Invocations uses the verified request scope described in
 Treat `AgentSession.session_id` as one opaque value; don't parse or depend on
 its internal representation. Local runs keep their existing single-user
 storage behavior.
+
+### Customize Invocations requests and responses
+
+By default, `POST /invocations` accepts a JSON object with a string `message`,
+an optional `options` object, and an optional Boolean `stream` value. To accept
+an application-specific payload, pass a synchronous or asynchronous
+`parse_request` callback that returns
+`InvocationRun(messages, options, stream)`. Use `prepare_options` to filter or
+replace a copy of caller generation options before the agent runs.
+
+The host validates the hook output and rejects platform identity, storage,
+continuation, and agent-execution controls. For agents that don't accept
+runtime options, set `unsupported_options` to `"warn"` (the default),
+`"ignore"`, or `"error"`. See the
+[Invocations parser sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/invocations/basic)
+for a complete implementation.
+
+Non-streaming success returns JSON in the form `{"response": "..."}`.
+Streaming uses server-sent events: one or more `event: delta` frames, followed
+by `event: done` on success or `event: error` on failure. A stream can emit
+deltas before an error, so clients must treat `done`, not a delta, as successful
+completion. The host emits `done` only after it finalizes the response stream
+and persists the `AgentSession`. Its `session_id` is the platform sandbox route
+ID, not the serialized `AgentSession.session_id`.
+
+Set `legacy_wire_format=True` only while migrating existing clients that require
+the previous plain-text response and raw text-chunk stream. This compatibility
+mode is deprecated and doesn't convert failures into successful text. The host
+serializes same-session requests only within one process; a cross-process
+compare-and-swap conflict can still occur after external tool effects.
 
 The Invocations protocol doesn't resume workflow runs that are pending or
 interrupted. Use the custom handler pattern in the following section when you

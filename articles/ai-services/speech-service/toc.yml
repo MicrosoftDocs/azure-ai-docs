@@ -389,7 +389,7 @@ items:
         href: how-to-voice-live-hosted-agent-integration.md
       - name: Add an MCP server
         href: how-to-voice-live-mcp-server.md
-      - name: Voice Live via WebRTC (preview)
+      - name: Voice Live via WebRTC
         href: voice-live-webrtc.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md

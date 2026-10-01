@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -75,17 +75,24 @@ The hosted-agent samples also use `AZURE_AI_MODEL_DEPLOYMENT_NAME` for `FoundryC
 
 ## Use `FoundryToolbox` with a hosted agent
 
-`FoundryToolbox` resolves its endpoint, authenticates every MCP request with the supplied Azure credential, forwards the Foundry per-request call ID, and participates in the agent's connection lifecycle.
+`FoundryToolbox` resolves its endpoint, authenticates every MCP request with the
+supplied Azure credential, forwards the Foundry per-request call ID, and
+participates in the agent's connection lifecycle. In a hosted Responses agent,
+create the Toolbox, its client, and its credential inside the request-scoped
+agent factory. The MCP writer captures the request context when it connects, so
+don't share one connected Toolbox across callers.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="3-43":::
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="19-71":::
 
 ## Expose Toolbox skills
 
 A Toolbox can expose Agent Skills over MCP. Set `load_tools=False` when only skills should be model-visible, then add the Toolbox as a tool so its MCP session connects and use `as_skills_provider()` as a context provider.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox_mcp_skills/main.py" range="3-53":::
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox_mcp_skills/main.py" range="19-75":::
 
 Approval remains enabled by default for skill operations. Disable individual approvals only for trusted, unattended scenarios.
+Keep the Toolbox and the skills provider in the same request factory so both
+use the same MCP session and are disposed together.
 
 ## Use a Toolbox with `FoundryAgent`
 
@@ -95,9 +102,13 @@ Attach the Toolbox to the Prompt or Hosted Agent definition in Foundry. `Foundry
 
 ## Connect through MCP with `FoundryToolbox`
 
-Use `FoundryToolbox` with `ResponsesHostServer` to connect a hosted agent to the Toolbox MCP endpoint. The wrapper authenticates MCP requests and forwards the current hosted request's caller context for per-user identity passthrough.
+Use `FoundryToolbox` with `ResponsesHostServer` to connect a hosted agent to the
+Toolbox MCP endpoint. The wrapper authenticates MCP requests and forwards the
+current hosted request's caller context for per-user identity passthrough.
+Create the connection inside the `agent` factory so each request receives its
+own caller context.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="3-47":::
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="19-71":::
 
 Set `TOOLBOX_ENDPOINT`, or set both `FOUNDRY_PROJECT_ENDPOINT` and `TOOLBOX_NAME`, as described in [Configure the Toolbox](#configure-the-toolbox). The sample uses `AZURE_AI_MODEL_DEPLOYMENT_NAME` for the model deployment.
 

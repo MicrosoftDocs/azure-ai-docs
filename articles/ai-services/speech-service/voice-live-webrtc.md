@@ -9,15 +9,14 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 09/29/2026
 ms.custom: references_voice_live, references_regions
 
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents through WebRTC connection
 ---
 
-# Voice Live API with WebRTC (Preview)
+# Voice Live API with WebRTC
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Voice Live API supports a WebRTC (Web Real-Time Communication) connection, enabling low‑latency, real‑time voice interactions directly from web and mobile clients. 
 
