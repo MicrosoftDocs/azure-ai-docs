@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: dmytrostruk
 ms.topic: tutorial
 ms.author: dmytrostruk
-ms.date: 09/09/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -407,6 +407,39 @@ async def tools_example():
         result = await agent.run("What's the weather like in Seattle?")
         print(result)
 ```
+
+To pass host-only values to a tool, declare a parameter annotated as
+`FunctionInvocationContext` and supply `function_invocation_kwargs` on the run.
+The context parameter is hidden from the schema sent to the model. It includes
+the current run values in `ctx.kwargs` and the current `AgentSession` in
+`ctx.session`.
+
+```python
+from agent_framework import FunctionInvocationContext
+
+
+def get_customer_status(
+    customer_id: str,
+    ctx: FunctionInvocationContext,
+) -> str:
+    tenant_id = ctx.kwargs["tenant_id"]
+    session_id = ctx.session.session_id if ctx.session else "none"
+    return f"{tenant_id}:{customer_id} in session {session_id}"
+
+
+agent = GitHubCopilotAgent(tools=[get_customer_status])
+session = agent.create_session()
+
+async with agent:
+    result = await agent.run(
+        "Check customer 123.",
+        session=session,
+        function_invocation_kwargs={"tenant_id": "contoso"},
+    )
+```
+
+The same context forwarding applies to streaming runs and restored Copilot
+sessions. Tools without a context parameter keep their existing behavior.
 
 ### Streaming Responses
 
