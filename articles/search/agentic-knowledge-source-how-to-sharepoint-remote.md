@@ -20,7 +20,7 @@ A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API
 
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
 
-Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. No search index or connection string is needed. Retrieval API usage is included with a Microsoft 365 Copilot add-on license or billed through an Azure subscription with [Retrieval API pay-as-you-go consumption (preview)](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. No search index or connection string is needed. Retrieval API usage is included with a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) or billed through an Azure subscription with [Retrieval API pay-as-you-go consumption (preview)](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 
 ### Usage support
 
@@ -34,7 +34,7 @@ Unlike indexed knowledge sources, remote SharePoint knowledge sources query live
 
 + SharePoint in a Microsoft 365 tenant that's under the same Microsoft Entra ID tenant as Azure.
 
-+ For each user querying SharePoint content, either a Microsoft 365 Copilot add-on license or Retrieval API pay-as-you-go consumption (preview) enabled for that user.
++ For each user querying SharePoint content, either a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) or Retrieval API pay-as-you-go consumption (preview) enabled for that user.
 
   Pay-as-you-go setup requires Microsoft 365 admin access, an Azure subscription in good standing, and an Azure resource group. You need **Owner** or **Contributor** access on that subscription. Your Microsoft 365 tenant must have at least one Microsoft 365 Copilot license before enablement and throughout pay-as-you-go use.
 
