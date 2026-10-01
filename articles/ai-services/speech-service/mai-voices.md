@@ -1,473 +1,337 @@
 ---
-title: What is MAI-Voice?
+title: MAI-Voice-2.1 and MAI-Voice-2.1-Flash - Speech Service
 titleSuffix: Foundry Tools
-description: Learn about neural text to speech MAI voices that you can use with speech synthesis.
-author: PatrickFarley
-ms.author: pafarley
-manager: mcleans
+description: Learn how to use the MAI-Voice-2.1 and MAI-Voice-2.1-Flash text to speech models via Azure Speech API.
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 03/27/2026
-ms.custom: references_regions, dev-focus
+ms.date: 09/30/2026
+ms.custom: references_regions
 zone_pivot_groups: llm-speech-quickstart
 ai-usage: ai-assisted
-#customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech MAI voices in Azure Speech in Foundry Tools.
+
+# Customer intent: As a developer who implements text to speech, I want to synthesize natural, expressive speech with MAI's latest MAI-Voice-2.1 and MAI-Voice-2.1-Flash models.
 ---
 
-# What is MAI-Voice (preview)?
+# MAI-Voice in Azure Speech
 
-> [!NOTE]
-> 
-> This feature is currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-MAI-Voice is a family of text-to-speech models available through Azure Speech in Foundry Tools in public preview. Built on Microsoft's in-house speech foundation models, MAI-Voice models produce expressive, natural speech output with consistent voice persona quality. 
+MAI-Voice-2.1 produces natural, expressive speech from text or a short reference clip, with built-in guardrails ensuring only authorized, consented voices can be used. It delivers stable, high-fidelity output that preserves speaker consistency across audiobooks, podcasts, and lectures in 23 different languages.
 
-Speech offers the following MAI-Voice models:
+The following models are supported:
+
+- `MAI-Voice-2.1`
+- `MAI-Voice-2.1-Flash`
 
 | Model | Voice Count | Key Characteristics | Best For |
-|---|---|---|---|
-| MAI-Voice-2-Flash | Prebuilt voices across 15+ languages | Ultra-fast low-latency, emotionally rich, highly expressive, multilingual, supports 15 languages and 18 locales, instant voice cloning (gated), fine-grained emotion control via SSML | Real-time voice agents and assistants, low-latency call center/IVR flows, multilingual interactive experiences |
-| MAI-Voice-2 | Prebuilt voices across 15+ languages | Emotionally rich, highly expressive, high-fidelity, multilingual, supports 15 languages and 18 locales, instant voice cloning (gated), long-form generation with speaker consistency, fine-grained emotion control via SSML | Expressive long-form content, educational content, Audiobooks/Podcasts, Voice Overs |
-
+| --- | --- | --- | --- |
+| MAI-Voice-2.1-Flash | Prebuilt voices across 23 languages | Ultra-fast low-latency, emotionally rich, highly expressive, multilingual, supports 23 languages, instant voice cloning (gated), fine-grained emotion control via SSML | Real-time voice agents and assistants, low-latency call center/IVR flows, multilingual interactive experiences |
+| MAI-Voice-2.1 | Prebuilt voices across 23 languages | Emotionally rich, highly expressive, high-fidelity, multilingual, supports 23 languages, instant voice cloning (gated), long-form generation with speaker consistency, fine-grained emotion control via SSML | Expressive long-form content, educational content, audiobooks/podcasts, voice overs |
 
 ## Model details
 
-#### [MAI-Voice-2-Flash](#tab/mai-voice-2-flash)
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
 
-MAI‑Voice‑2‑Flash is a text‑to‑speech model built for fast, low‑latency generation. It produces high‑fidelity, natural, and expressive speech across 15 languages and supports gated instant voice cloning, all while being optimized for real‑time responsiveness. Its human‑like intonation, rhythm, and emotional nuance make it ideal for voice agents, assistants, and other interactive scenarios where latency and cost are critical.
+MAI‑Voice‑2.1‑Flash is a text‑to‑speech model built for fast, low‑latency generation. It produces high‑fidelity, natural, and expressive speech across 23 languages and supports gated instant voice cloning, all while being optimized for real‑time responsiveness. Its human‑like intonation, rhythm, and emotional nuance make it ideal for voice agents, assistants, and other interactive scenarios where latency and cost are critical.
 
-You can integrate with MAI-Voice-2-Flash using the Azure Speech SDK via SSML, and also via [Voice Live](/azure/ai-services/speech-service/voice-live-how-to#audio-output-through-azure-text-to-speech).
+You can integrate with MAI-Voice-2.1-Flash using the Azure Speech SDK via SSML, and also via [Voice Live](/azure/ai-services/speech-service/voice-live-how-to#audio-output-through-azure-text-to-speech).
 
-#### [MAI-Voice-2](#tab/mai-voice-2)
-
-MAI‑Voice‑2 is our highest‑fidelity, most expressive text‑to‑speech model, delivering rich, natural speech across more than 15 languages. It extends the MAI‑Voice family with broad multilingual coverage, gated instant voice cloning, and strong long‑form generation capabilities. With its detailed prosody, nuanced expressiveness, and studio‑grade audio quality, MAI‑Voice‑2 is ideal for experiences where maximum voice quality and fidelity are required - long‑form narration, brand‑defining audio etc.
-
----
-
-## Key features
-
-#### [MAI-Voice-2-Flash](#tab/mai-voice-2-flash)
+### Key features
 
 | Key features | Description |
-|---|---|
+| --- | --- |
 | Ultra-fast low-latency synthesis | Built for real-time text-to-speech with very low latency, suitable for interactive voice scenarios. |
 | High-fidelity natural synthesis | Produces natural, expressive, emotionally rich, and high-clarity voice output with human-like rhythm and intonation. |
-| Multilingual support | Supports synthesis across 15 languages and 18 locales. |
+| Multilingual support | Supports synthesis across 23 languages. |
 | Emotion and style control | Developers can influence speaking style by using SSML with `mstts:express-as` and `style`, enabling control over emotions such as `joy`, `excitement`, `empathy`, and more. |
 | Voice prompting with instant cloning (gated) | Matches a consented reference voice from a short audio clip (5-60 seconds) without additional training. |
-| Voice library | Includes licensed curated voices for 15+ languages that work out of the box for rapid deployment. |
+| Voice library | Includes licensed curated voices across the supported languages that work out of the box for rapid deployment. |
 | Real-time agent optimization | Optimized for voice agents, assistants, IVR, and call-center interactions where responsiveness is critical. |
 
-#### [MAI-Voice-2](#tab/mai-voice-2)
+### SSML example
+
+[!INCLUDE [MAI Voice 2.1 Flash SSML](./includes/quickstarts/text-to-speech-basics/mai-voice-ssml-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+MAI‑Voice‑2.1 is the highest‑fidelity, most expressive text‑to‑speech model in the MAI-Voice family, delivering rich, natural speech across 23 languages. It extends the MAI‑Voice family with broad multilingual coverage, gated instant voice cloning, and strong long‑form generation capabilities. With its detailed prosody, nuanced expressiveness, and studio‑grade audio quality, MAI‑Voice‑2.1 is ideal for experiences where maximum voice quality and fidelity are required, such as long‑form narration and brand‑defining audio.
+
+### Key features
 
 | Key features | Description |
-|---|---|
+| --- | --- |
 | High-fidelity natural synthesis | Produces natural, expressive, emotionally rich, and high-clarity voice output with human-like rhythm and intonation. |
-| Multilingual support | Supports synthesis across 15 languages and 18 locales. |
+| Multilingual support | Supports synthesis across 23 languages. |
 | Emotion and style control | Developers can influence speaking style by using SSML with `mstts:express-as` and `style`, enabling control over emotions such as `joy`, `excitement`, `empathy`, and more. |
 | Voice prompting with instant cloning (gated) | Matches a consented reference voice from a short audio clip (5-60 seconds) without additional training. |
-| Voice library | Includes licensed curated voices for 15+ languages that work out of the box for rapid deployment. |
+| Voice library | Includes licensed curated voices across the supported languages that work out of the box for rapid deployment. |
 | High fidelity audio | The model produces high-quality speech with natural prosody and clarity suitable for production-grade applications. |
 | Long-form generation | Optimized for long-form narration with stable persona quality and speaker consistency across extended content. |
 | Out-of-scope note | The model prioritizes naturalness and expressivity over latency-critical scenarios. |
 
+### SSML example
+
+[!INCLUDE [MAI Voice 2.1 SSML](./includes/quickstarts/text-to-speech-basics/mai-voice-ssml.md)]
 
 ---
 
 ## Prerequisites
 
-To use MAI related models, complete the following steps:
+> [!div class="checklist"]
+> - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+> - [A Microsoft Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+> - The Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
 
-- An Azure account. [Create one for free](https://azure.microsoft.com/free/).
-- A Speech resource in a region that supports MAI models ([region support](/azure/cognitive-services/speech-service/regions)).
-- For voice prompting, apply for [limited access](https://aka.ms/customneural) approval and complete consent safeguards.
+## Availability and regions
 
----
+You can access MAI-Voice-2.1 and MAI-Voice-2.1-Flash globally. Azure serves the models from the following regions, and routes requests to them:
 
-## SSML examples
+| Region | Region identifier | Availability |
+| --- | --- | --- |
+| France Central | `francecentral` | Available |
+| East Asia | `eastasia` | Available |
+| Southeast Asia | `southeastasia` | Available |
+| East US | `eastus` | Available |
+| Canada Central | `canadacentral` | Available |
+| East US 2 | `eastus2` | Available |
+| West US | `westus` | Available |
+| West Europe | `westeurope` | Available |
+| North Europe | `northeurope` | Available |
+| West US 2 | `westus2` | Available |
+| West US 3 | `westus3` | Available |
+| Central India | `centralindia` | Available |
+| Sweden Central | `swedencentral` | Available |
+| Japan East | `japaneast` | Available |
 
-#### [MAI-Voice-2-Flash](#tab/mai-voice-2-flash)
+## Pricing
 
-The examples use the following voices.
-
-| **Voice ID** | **Gender** |
-|---|---|
-| **en-us-Harper:MAI-Voice-2-Flash** | Female |
-| **en-us-Ethan:MAI-Voice-2-Flash** | Male |
-
-**Basic SSML Example (Harper):**
-
-```xml
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice xml:lang='en-US' name='en-US-Harper:MAI-Voice-2-Flash'>
-    hello world, it's very great
-  </voice>
-</speak>
-```
-
-
-**Basic SSML Example (Ethan):**
-
-```xml
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice xml:lang='en-US' name='en-US-Ethan:MAI-Voice-2-Flash'>
-    hello world, it's very great, hello world, it's very great?
-  </voice>
-</speak>
-```
-
-**Expressive Control with SSML `mstts:express-as`**
-
-```xml
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice xml:lang='en-US' name='en-US-Ethan:MAI-Voice-2-Flash'>
-    <mstts:express-as style="excited">
-       hello world, it's very great, hello world, it's very great?
-    </mstts:express-as>
-  </voice>
-</speak>
-```
-
-#### [MAI-Voice-2](#tab/mai-voice-2)
-
-**Basic multilingual SSML**
-
-The following SSML synthesizes a greeting in Spanish (Mexico) by using `es-MX-Valeria:MAI-Voice-2`.
-
-```xml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="es-MX">
-  <voice name="es-MX-Valeria:MAI-Voice-2">
-    Hola, esta es una muestra de MAI Voice 2.
-  </voice>
-</speak>
-```
-
-**Expressive Control with SSML `mstts:express-as`**
-
-MAI-Voice-2 supports expressive styles by using `style` and `styledegree` attributes for fine-grained control:
-
-```xml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-US-Harper:MAI-Voice-2">
-    <mstts:express-as style="happiness" styledegree="1.2">
-      Welcome to Microsoft Build. MAI Voice 2 supports multilingual expressive synthesis.
-    </mstts:express-as>
-  </voice>
-</speak>
-```
-
-
-## **Sample code**
-
-The following Python example demonstrates how to synthesize SSML to an MP3 audio file by using the Azure Speech SDK:
-
-```python
-# call Azure speech SDK to synthesize a SSML into mp3 audio file
-
-import os
-import time
-import azure.cognitiveservices.speech as speechsdk
-
-speech_key = os.environ.get('SUBSCRIPTION_SPEECH_KEY')
-service_region = os.environ.get('SUBSCRIPTION_SPEECH_REGION')
-
-# [generate]() audio with Azure TTS HD voices
-def GenerateAudio(ssml, outaudio, development=False):
-    # start time
-    st = time.time()
-
-    if development:
-        print("Using development subscription key and endpoint.")
-        # use development subscription key and endpoint
-        # speech_config = speechsdk.SpeechConfig(subscription=os.getenv("SUBSCRIPTION_KEY_DEV"), region=os.getenv("SERVICE_REGION_DEV"))
-        speech_config = speechsdk.SpeechConfig(
-            subscription=os.getenv("SUBSCRIPTION_KEY_DEV"),
-            endpoint="https://dev.tts-frontend.speech-test.microsoft.com/cognitiveservices/v1"
-        )
-    else:
-        print("Using production subscription key and region.")
-        speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
-
-    # speech_config = speechsdk.SpeechConfig(subscription=os.getenv("SUBSCRIPTION_KEY_DEV"), endpoint="https://dev.tts-frontend.speech-test.microsoft.com/cognitiveservices/v1")
-
-    # Creates an audio configuration that points to an audio file.
-    audio_output = speechsdk.audio.AudioOutputConfig(filename=outaudio)
-
-    # set output format
-    speech_config.set_speech_synthesis_output_format(
-        speechsdk.SpeechSynthesisOutputFormat.Audio24Khz160KBitRateMonoMp3
-    )
-
-    # Creates a speech synthesizer using the Azure Speech Service.
-    speech_synthesizer = speechsdk.SpeechSynthesizer(
-        speech_config=speech_config,
-        audio_config=audio_output
-    )
-
-    # Synthesizes the received text to speech.
-    result = speech_synthesizer.speak_ssml_async(ssml).get()
-
-    if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        print("Speech synthesis was successful. Audio was written to '{}'".format(outaudio))
-    elif result.reason == speechsdk.ResultReason.Canceled:
-        cancellation_details = result.cancellation_details
-        print("Speech synthesis canceled: {}".format(cancellation_details.reason))
-        if cancellation_details.reason == speechsdk.CancellationReason.Error:
-            if cancellation_details.error_details:
-                print("Error details: {}".format(cancellation_details.error_details))
-        print("Did you update the subscription info?")
-
-    et = time.time()
-    print("Time taken for synthesis: {:.2f} seconds".format(et - st))
-
-
-if __name__ == "__main__":
-    ssml = """
-<speak
-version='1.0' xmlns='http://www.w3.org/2001/10/synthesis'
-xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'><voice
-xml:lang='en-US' name='en-US-Ethan:MAI-Voice-2-Flash'>hello world, it's very
-great, hello world, it's very great?</voice></speak>
-    """
-
-    outaudio = "Ethan-mai.mp3"
-    GenerateAudio(ssml, outaudio, development=False)
-
-    ssml = """
-<speak
-version='1.0' xmlns='http://www.w3.org/2001/10/synthesis'
-xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'><voice
-xml:lang='en-US' name='en-US-Harper:MAI-Voice-2-Flash'>hello world, it's
-very great, hello world, it's very great?</voice></speak>
-"""
-
-    outaudio = "Harper-mai.mp3"
-    GenerateAudio(ssml, outaudio, development=False)
-```
-
-## Custom voice - Personal Voice/Instant Voice Cloning (gated access)
-
-Developers can create a custom voice in Microsoft Foundry across all supported languages by using just a short reference clip - no retraining or fine-tuning required. With only a few seconds of audio (recommended: 5-60 seconds), MAI-Voice-2 generates high-quality speech that matches the speaker's identity, making it easy for companies to bring their own brand voice into products without maintaining a separate voice model.
-
-All MAI-Voice models support Instant Voice Cloning. Only authorized, licensed voices can be synthesized in production. No unlicensed voice cloning is possible. To gain access to this feature
-
-1. Apply for gated access through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
-1. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
-1. Upload audio consent and prompt to create a personal voice.
-1. Synthesize given text by using the created voice and MAI related models with the following SSML (example below with 'MAI-voice-2') :
-
-```xml
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice name='MAI-voice-2'>
-    <mstts:ttsembedding speakerProfileId='your speaker profile ID here'>
-      I'm happy to hear that you find me amazing and that I have made your trip planning easier and more fun.
-    </mstts:ttsembedding>
-  </voice>
-</speak>
-```
-
----
-
-## Prebuilt voices
-
-#### [MAI-Voice-2](#tab/mai-voice-2)
-
-MAI-Voice-2 provides locale-specific prebuilt voices across multiple languages.
-
-| Voice Name (ShortName) | Locale | Language | Gender | Supported Styles |
-|---|---|---|---|---|
-| de-DE-Klaus:MAI-Voice-2 | de-DE | German (Germany) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| de-DE-Mia:MAI-Voice-2 | de-DE | German (Germany) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-AU-Lisa:MAI-Voice-2 | en-AU | English (Australia) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-US-Ethan:MAI-Voice-2 | en-US | English (United States) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-US-Grant:MAI-Voice-2 | en-US | English (United States) | Male | — |
-| en-US-Harper:MAI-Voice-2 | en-US | English (United States) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, shouting, softvoice, whispering |
-| en-US-Iris:MAI-Voice-2 | en-US | English (United States) | Female | — |
-| en-US-Jasper:MAI-Voice-2 | en-US | English (United States) | Male | — |
-| en-US-Olivia:MAI-Voice-2 | en-US | English (United States) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| es-ES-Marta:MAI-Voice-2 | es-ES | Spanish (Spain) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| es-MX-Alejo:MAI-Voice-2 | es-MX | Spanish (Mexico) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| es-MX-Valeria:MAI-Voice-2 | es-MX | Spanish (Mexico) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| fr-FR-Marc:MAI-Voice-2 | fr-FR | French (France) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| fr-FR-Soleil:MAI-Voice-2 | fr-FR | French (France) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Arjun:MAI-Voice-2 | hi-IN | Hindi (India) | Male | angry, confused, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, sad, surprised |
-| hi-IN-Dhruv:MAI-Voice-2 | hi-IN | Hindi (India) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Kavya:MAI-Voice-2 | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Priya:MAI-Voice-2 | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hu-HU-Bence:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Male | — |
-| hu-HU-Levente:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Male | — |
-| hu-HU-Lilla:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Female | — |
-| hu-HU-Réka:MAI-Voice-2 | hu-HU | Hungarian (Hungary) | Female | — |
-| it-IT-Luca:MAI-Voice-2 | it-IT | Italian (Italy) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| it-IT-Rosa:MAI-Voice-2 | it-IT | Italian (Italy) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| ko-KR-Hana:MAI-Voice-2 | ko-KR | Korean (Korea) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| ko-KR-Junho:MAI-Voice-2 | ko-KR | Korean (Korea) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, relieved, sad, softvoice |
-| nl-NL-Fleur:MAI-Voice-2 | nl-NL | Dutch (Netherlands) | Female | — |
-| nl-NL-Sander:MAI-Voice-2 | nl-NL | Dutch (Netherlands) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| pt-BR-Caio:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| pt-BR-Luana:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| pt-BR-Pedro:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| pt-BR-Rafael:MAI-Voice-2 | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| pt-PT-Rui:MAI-Voice-2 | pt-PT | Portuguese (Portugal) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| ro-RO-Andrei:MAI-Voice-2 | ro-RO | Romanian (Romania) | Male | — |
-| ro-RO-Elena:MAI-Voice-2 | ro-RO | Romanian (Romania) | Female | — |
-| ro-RO-Ioana:MAI-Voice-2 | ro-RO | Romanian (Romania) | Female | — |
-| ro-RO-Radu:MAI-Voice-2 | ro-RO | Romanian (Romania) | Male | — |
-| ru-RU-Lev:MAI-Voice-2 | ru-RU | Russian (Russia) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| ru-RU-Masha:MAI-Voice-2 | ru-RU | Russian (Russia) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| th-TH-Krit:MAI-Voice-2 | th-TH | Thai (Thailand) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| th-TH-Nattapong:MAI-Voice-2 | th-TH | Thai (Thailand) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| tr-TR-Aydin:MAI-Voice-2 | tr-TR | Turkish (Turkey) | Male | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| tr-TR-Elif:MAI-Voice-2 | tr-TR | Turkish (Turkey) | Female | adventurous, caring, empathy, curious, encouraging, excited, friendly, cheerful, nostalgic, reflective, sad, disappointed, serious |
-| zh-CN-Bo:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| zh-CN-Lan:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, disgusted, embarrassed, excited, fearful, happy, joyful, sad, surprised |
-| zh-CN-Mei:MAI-Voice-2 | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-
-> [!NOTE]
-> The voices listed in the preceding table are the currently published MAI-Voice-2 prebuilt voices. The model card indicates support across 10+ languages. Microsoft adds more locales and voices as they become generally available.
-
-#### [MAI-Voice-2-Flash](#tab/mai-voice-2-flash)
-
-| Voice Name (ShortName) | Locale | Language | Gender | Supported Styles |
-|---|---|---|---|---|
-| de-DE-Klaus:MAI-Voice-2-Flash | de-DE | German (Germany) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| de-DE-Mia:MAI-Voice-2-Flash | de-DE | German (Germany) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-AU-Isla:MAI-Voice-2-Flash | en-AU | English (Australia) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-US-Ethan:MAI-Voice-2-Flash | en-US | English (United States) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| en-US-Harper:MAI-Voice-2-Flash | en-US | English (United States) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, shouting, softvoice, whispering |
-| en-US-Olivia:MAI-Voice-2-Flash | en-US | English (United States) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| es-ES-Marta:MAI-Voice-2-Flash | es-ES | Spanish (Spain) | Female | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| es-MX-Alejo:MAI-Voice-2-Flash | es-MX | Spanish (Mexico) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| es-MX-Valeria:MAI-Voice-2-Flash | es-MX | Spanish (Mexico) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| fr-FR-Marc:MAI-Voice-2-Flash | fr-FR | French (France) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| fr-FR-Soleil:MAI-Voice-2-Flash | fr-FR | French (France) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Arjun:MAI-Voice-2-Flash | hi-IN | Hindi (India) | Male | angry, confused, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, sad, surprised |
-| hi-IN-Dhruv:MAI-Voice-2-Flash | hi-IN | Hindi (India) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Kavya:MAI-Voice-2-Flash | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hi-IN-Priya:MAI-Voice-2-Flash | hi-IN | Hindi (India) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| hu-HU-Bence:MAI-Voice-2-Flash | hu-HU | Hungarian (Hungary) | Male | — |
-| hu-HU-Levente:MAI-Voice-2-Flash | hu-HU | Hungarian (Hungary) | Male | — |
-| hu-HU-Lilla:MAI-Voice-2-Flash | hu-HU | Hungarian (Hungary) | Female | — |
-| hu-HU-Réka:MAI-Voice-2-Flash | hu-HU | Hungarian (Hungary) | Female | — |
-| it-IT-Luca:MAI-Voice-2-Flash | it-IT | Italian (Italy) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| it-IT-Rosa:MAI-Voice-2-Flash | it-IT | Italian (Italy) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| ko-KR-Haena:MAI-Voice-2-Flash | ko-KR | Korean (Korea) | Female | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| ko-KR-Junho:MAI-Voice-2-Flash | ko-KR | Korean (Korea) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, relieved, sad, softvoice |
-| nl-NL-Sander:MAI-Voice-2-Flash | nl-NL | Dutch (Netherlands) | Male | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| pt-BR-Caio:MAI-Voice-2-Flash | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| pt-BR-Luana:MAI-Voice-2-Flash | pt-BR | Portuguese (Brazil) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| pt-BR-Pedro:MAI-Voice-2-Flash | pt-BR | Portuguese (Brazil) | Male | confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| pt-BR-Rafael:MAI-Voice-2-Flash | pt-BR | Portuguese (Brazil) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| pt-PT-Rui:MAI-Voice-2-Flash | pt-PT | Portuguese (Portugal) | Male | angry, confused, determined, embarrassed, excited, happy, hopeful, joyful, regretful, relieved, sad, softvoice, surprised |
-| ro-RO-Andrei:MAI-Voice-2-Flash | ro-RO | Romanian (Romania) | Male | — |
-| ro-RO-Elena:MAI-Voice-2-Flash | ro-RO | Romanian (Romania) | Female | — |
-| ro-RO-Ioana:MAI-Voice-2-Flash | ro-RO | Romanian (Romania) | Female | — |
-| ro-RO-Radu:MAI-Voice-2-Flash | ro-RO | Romanian (Romania) | Male | — |
-| ru-RU-Lev:MAI-Voice-2-Flash | ru-RU | Russian (Russia) | Male | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| ru-RU-Masha:MAI-Voice-2-Flash | ru-RU | Russian (Russia) | Female | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| th-TH-Krit:MAI-Voice-2-Flash | th-TH | Thai (Thailand) | Male | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| th-TH-Nattapong:MAI-Voice-2-Flash | th-TH | Thai (Thailand) | Male | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| tr-TR-Aydın:MAI-Voice-2-Flash | tr-TR | Turkish (Türkiye) | Male | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| tr-TR-Elif:MAI-Voice-2-Flash | tr-TR | Turkish (Türkiye) | Female | adventurous, caringempathy, curious, encouraging, excited, friendlycheerful, nostalgic, reflective, saddisappointed, serious |
-| zh-CN-Bo:MAI-Voice-2-Flash | zh-CN | Chinese (Mandarin, Simplified) | Male | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| zh-CN-Lan:MAI-Voice-2-Flash | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, disgusted, embarrassed, excited, fearful, happy, joyful, sad, surprised |
-| zh-CN-Mei:MAI-Voice-2-Flash | zh-CN | Chinese (Mandarin, Simplified) | Female | angry, confused, determined, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, relieved, sad, shouting, softvoice, surprised, whispering |
-| zh-CN-Wei:MAI-Voice-2-Flash | zh-CN | Chinese (Mandarin, Simplified) | Male | angry, confused, disgusted, embarrassed, excited, fearful, happy, hopeful, jealous, joyful, regretful, sad, surprised |
-
----
+Find pricing information at [https://azure.microsoft.com/pricing/details/speech/](https://azure.microsoft.com/pricing/details/speech/).
 
 Usage: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
 
-## Use MAI-Voice models
+## Choose your preferred usage method
 
-MAI-Voice models use the same Azure Speech APIs and SDKs as other Azure neural and HD voices. Use the voice name in the `name` attribute of the SSML `<voice>` element. See the prebuilt voice tables in the preceding sections for available names.
+MAI-Voice models use the same Azure Speech API and SDK as other Azure neural and HD voices. Choose a portal, API, or SDK tab, and use a MAI-Voice name in the SSML `voice` element. For available names, see [Managed voices and styles](#managed-voices-and-styles).
 
 ::: zone pivot="ai-foundry"
 
-Try a MAI-Voice voice in the Foundry portal:
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
 
-1. Go to the [Text to speech feature page](https://aka.ms/foundry-text-to-speech) and select **Open in playground**.
-1. Select a MAI-Voice voice from the voice dropdown.
-1. Enter sample text in the text box.
-1. Select **Play** to hear the synthesized speech.
+[!INCLUDE [MAI Voice Foundry portal Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-ai-foundry-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice Foundry portal](./includes/quickstarts/text-to-speech-basics/mai-voice-ai-foundry.md)]
+
+---
 
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-Send an SSML POST request to the `cognitiveservices/v1` endpoint of your Speech resource. Replace `YourRegion` with your Speech resource region and `<YourSpeechResourceKey>` with your resource key.
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
 
-```azurecli-interactive
-curl -X POST \
-  "https://YourRegion.tts.speech.microsoft.com/cognitiveservices/v1" \
-  --header "Content-Type: application/ssml+xml" \
-  --header "X-Microsoft-OutputFormat: audio-24khz-160kbitrate-mono-mp3" \
-  --header "Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>" \
-  --data '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-US-Harper:MAI-Voice-2">
-    Hello, this is a sample from MAI Voice.
-  </voice>
-</speak>' \
-  --output output.mp3
-```
+[!INCLUDE [MAI Voice REST API Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-rest-flash.md)]
 
-Replace the voice name with any MAI-Voice voice from the prebuilt voice tables above.
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice REST API](./includes/quickstarts/text-to-speech-basics/mai-voice-rest.md)]
+
+---
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-The following code synthesizes speech by using the Azure Speech SDK and saves the audio to `output.mp3`. Replace `<key>` with your Speech resource key.
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
 
-```python
-import azure.cognitiveservices.speech as speechsdk
+[!INCLUDE [MAI Voice Python SDK Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-python-flash.md)]
 
-speech_config = speechsdk.SpeechConfig(
-    subscription="<key>", region="eastus"
-)
-audio_config = speechsdk.audio.AudioOutputConfig(filename="output.mp3")
-speech_config.set_speech_synthesis_output_format(
-    speechsdk.SpeechSynthesisOutputFormat.Audio24Khz160KBitRateMonoMp3
-)
-synthesizer = speechsdk.SpeechSynthesizer(
-    speech_config=speech_config, audio_config=audio_config
-)
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
 
-ssml = """
-<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
-  <voice name='en-US-Harper:MAI-Voice-2-Flash'>
-    <mstts:express-as style="excitement">Hello world.</mstts:express-as>
-  </voice>
-</speak>
-"""
+[!INCLUDE [MAI Voice Python SDK](./includes/quickstarts/text-to-speech-basics/mai-voice-python.md)]
 
-synthesizer.speak_ssml_async(ssml).get()
-```
-
-On success, an `output.mp3` file is saved to the current directory. Replace the voice name with any MAI-Voice voice from the prebuilt voice tables above.
+---
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-Follow the [text to speech quickstart](get-started-text-to-speech.md?pivots=programming-language-csharp). In the SSML, use a MAI-Voice voice name in the `name` attribute of the `<voice>` element. See the prebuilt voice tables above for available names.
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
+
+[!INCLUDE [MAI Voice C# SDK Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-csharp-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice C# SDK](./includes/quickstarts/text-to-speech-basics/mai-voice-csharp.md)]
+
+---
 
 ::: zone-end
 
+<!-- markdownlint-disable-next-line MD044 -->
 ::: zone pivot="programming-language-javascript"
 
-Follow the [text to speech quickstart](get-started-text-to-speech.md?pivots=programming-language-javascript). In the SSML, use a MAI-Voice voice name in the `name` attribute of the `<voice>` element. See the prebuilt voice tables above for available names.
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
+
+[!INCLUDE [MAI Voice JavaScript SDK Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-javascript-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice JavaScript SDK](./includes/quickstarts/text-to-speech-basics/mai-voice-javascript.md)]
+
+---
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-Follow the [text to speech quickstart](get-started-text-to-speech.md?pivots=programming-language-java). In the SSML, use a MAI-Voice voice name in the `name` attribute of the `<voice>` element. See the prebuilt voice tables above for available names.
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
+
+[!INCLUDE [MAI Voice Java SDK Flash](./includes/quickstarts/text-to-speech-basics/mai-voice-java-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice Java SDK](./includes/quickstarts/text-to-speech-basics/mai-voice-java.md)]
+
+---
 
 ::: zone-end
 
+## Custom voice - Personal Voice/Instant Voice Cloning (gated access)
 
-## Next steps
-- [Speech Synthesis Markup Language (SSML) overview](speech-synthesis-markup.md)
-- [Get started with text to speech](get-started-text-to-speech.md)
-- [High definition (HD) voices](high-definition-voices.md)
+Developers can create a custom voice in Microsoft Foundry across all supported languages by using just a short reference clip, with no retraining or fine-tuning required. By using only a few seconds of audio (recommended: 5-60 seconds), MAI-Voice models generate high-quality speech that matches the speaker's identity, making it easy for companies to bring their own brand voice into products without maintaining a separate voice model.
+
+All MAI-Voice models support Instant Voice Cloning. Only authorized, licensed voices can be synthesized in production. No unlicensed voice cloning is possible. To gain access to this feature:
+
+1. Apply for gated access through Azure AI Custom Neural Voice and Custom Avatar [Limited Access Review](https://aka.ms/customneural).
+2. Once approved, access personal voice APIs at cognitive-services-speech-sdk/samples/custom-voice.
+3. Upload audio consent and prompt to create a personal voice.
+4. Synthesize text by using the created voice and a MAI-Voice model. Select a model tab for the corresponding SSML.
+
+# [MAI-Voice-2.1-Flash](#tab/mai-voice-2-1-flash)
+
+[!INCLUDE [MAI Voice 2.1 Flash personal voice](./includes/quickstarts/text-to-speech-basics/mai-voice-personal-voice-flash.md)]
+
+# [MAI-Voice-2.1](#tab/mai-voice-2-1)
+
+[!INCLUDE [MAI Voice 2.1 personal voice](./includes/quickstarts/text-to-speech-basics/mai-voice-personal-voice.md)]
+
+---
+
+## Prebuilt voices
+
+### Managed voices and styles
+
+All managed voices in the following table support both `MAI-Voice-2.1` and `MAI-Voice-2.1-Flash`. Use the complete voice ID with the selected model suffix in SSML. For example, use `en-US-Harper:MAI-Voice-2.1` or `en-US-Harper:MAI-Voice-2.1-Flash`.
+
+| Voice ID | Locale | Language | Gender | Supported models | Supported styles |
+| --- | --- | --- | --- | --- | --- |
+| `cs-CZ-Grant` | `cs-CZ` | Czech | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `cs-CZ-Harper` | `cs-CZ` | Czech | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `da-DK-Grant` | `da-DK` | Danish | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `da-DK-Harper` | `da-DK` | Danish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `de-DE-Grant` | `de-DE` | German | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `de-DE-Harper` | `de-DE` | German | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `de-DE-Klaus` | `de-DE` | German (Germany) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `de-DE-Mia` | `de-DE` | German (Germany) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `en-AU-Isla` | `en-AU` | English (Australia) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `en-GB-Emily` | `en-GB` | English (United Kingdom) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `angry`, `audiobook`, `confused`, `customer_call_center`, `disgusted`, `educational`, `embarrassed`, `excited`, `fearful`, `happy`, `jealous`, `joyful`, `narrator`, `neutral`, `sad`, `surprised` |
+| `en-GB-Harry` | `en-GB` | English (United Kingdom) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `angry`, `audiobook`, `customer_call_center`, `disgusted`, `educational`, `fearful`, `joyful`, `narrator`, `neutral`, `sad`, `surprised` |
+| `en-IN-Dhruv` | `en-IN` | English (India) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `en-IN-Priya` | `en-IN` | English (India) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `en-US-Ethan` | `en-US` | English (United States) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `en-US-Grant` | `en-US` | English (United States) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `en-US-Harper` | `en-US` | English (United States) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `angry`, `audiobook`, `confused`, `customer_call_center`, `determined`, `educational`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `narrator`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `whispering` |
+| `en-US-Iris` | `en-US` | English (United States) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `en-US-Jasper` | `en-US` | English (United States) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `en-US-Olivia` | `en-US` | English (United States) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `en-US-Sage` | `en-US` | English (United States) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `es-ES-Marta` | `es-ES` | Spanish (Spain) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `es-MX-Alejo` | `es-MX` | Spanish (Mexico) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `es-MX-Grant` | `es-MX` | Spanish (Mexico) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `es-MX-Harper` | `es-MX` | Spanish (Mexico) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `es-MX-Valeria` | `es-MX` | Spanish (Mexico) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `fi-FI-Grant` | `fi-FI` | Finnish | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `fi-FI-Harper` | `fi-FI` | Finnish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `fr-FR-Grant` | `fr-FR` | French | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `fr-FR-Harper` | `fr-FR` | French | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `fr-FR-Marc` | `fr-FR` | French (France) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `fr-FR-Soleil` | `fr-FR` | French (France) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `hi-IN-Arjun` | `hi-IN` | Hindi (India) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `sad`, `surprised` |
+| `hi-IN-Dhruv` | `hi-IN` | Hindi (India) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `hi-IN-Grant` | `hi-IN` | Hindi | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `neutral` |
+| `hi-IN-Harper` | `hi-IN` | Hindi | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `hi-IN-Kavya` | `hi-IN` | Hindi (India) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `hi-IN-Priya` | `hi-IN` | Hindi (India) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `hu-HU-Bence` | `hu-HU` | Hungarian (Hungary) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `hu-HU-Grant` | `hu-HU` | Hungarian | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `hu-HU-Harper` | `hu-HU` | Hungarian | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `hu-HU-Levente` | `hu-HU` | Hungarian (Hungary) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `hu-HU-Lilla` | `hu-HU` | Hungarian (Hungary) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `hu-HU-Reka` | `hu-HU` | Hungarian (Hungary) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `id-ID-Grant` | `id-ID` | Indonesian | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `id-ID-Harper` | `id-ID` | Indonesian | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `it-IT-Grant` | `it-IT` | Italian | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `educational`, `neutral` |
+| `it-IT-Harper` | `it-IT` | Italian | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `narrator`, `neutral` |
+| `it-IT-Luca` | `it-IT` | Italian (Italy) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `it-IT-Rosa` | `it-IT` | Italian (Italy) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `ko-KR-Grant` | `ko-KR` | Korean | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `ko-KR-Haena` | `ko-KR` | Korean (Korea) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised` |
+| `ko-KR-Harper` | `ko-KR` | Korean | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `ko-KR-Junho` | `ko-KR` | Korean (Korea) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `neutral`, `relieved`, `sad`, `softvoice` |
+| `nb-NO-Grant` | `nb-NO` | Norwegian (Bokmål) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `educational`, `neutral` |
+| `nb-NO-Harper` | `nb-NO` | Norwegian (Bokmål) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `narrator`, `neutral` |
+| `nl-NL-Grant` | `nl-NL` | Dutch | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `nl-NL-Harper` | `nl-NL` | Dutch | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `nl-NL-Sander` | `nl-NL` | Dutch (Netherlands) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `pl-PL-Grant` | `pl-PL` | Polish | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `pl-PL-Harper` | `pl-PL` | Polish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `pt-BR-Caio` | `pt-BR` | Portuguese (Brazil) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `pt-BR-Grant` | `pt-BR` | Portuguese (Brazil) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `neutral` |
+| `pt-BR-Harper` | `pt-BR` | Portuguese (Brazil) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `narrator`, `neutral` |
+| `pt-BR-Luana` | `pt-BR` | Portuguese (Brazil) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `pt-BR-Pedro` | `pt-BR` | Portuguese (Brazil) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised` |
+| `pt-BR-Rafael` | `pt-BR` | Portuguese (Brazil) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised` |
+| `pt-PT-Grant` | `pt-PT` | Portuguese (Portugal) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `pt-PT-Harper` | `pt-PT` | Portuguese (Portugal) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `pt-PT-Rui` | `pt-PT` | Portuguese (Portugal) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `embarrassed`, `excited`, `happy`, `hopeful`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `softvoice`, `surprised` |
+| `ro-RO-Andrei` | `ro-RO` | Romanian (Romania) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `ro-RO-Elena` | `ro-RO` | Romanian (Romania) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `ro-RO-Grant` | `ro-RO` | Romanian | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `ro-RO-Harper` | `ro-RO` | Romanian | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `neutral` |
+| `ro-RO-Ioana` | `ro-RO` | Romanian (Romania) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `ro-RO-Radu` | `ro-RO` | Romanian (Romania) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `ru-RU-Grant` | `ru-RU` | Russian | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `neutral` |
+| `ru-RU-Harper` | `ru-RU` | Russian | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `educational`, `narrator`, `neutral` |
+| `ru-RU-Lev` | `ru-RU` | Russian (Russia) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `ru-RU-Masha` | `ru-RU` | Russian (Russia) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `sv-SE-Grant` | `sv-SE` | Swedish | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `neutral` |
+| `sv-SE-Harper` | `sv-SE` | Swedish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `th-TH-Grant` | `th-TH` | Thai | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `th-TH-Harper` | `th-TH` | Thai | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `th-TH-Krit` | `th-TH` | Thai (Thailand) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `th-TH-Nattapong` | `th-TH` | Thai (Thailand) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `tr-TR-Aydin` | `tr-TR` | Turkish (Türkiye) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `tr-TR-Elif` | `tr-TR` | Turkish (Türkiye) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `adventurous`, `caringempathy`, `curious`, `encouraging`, `excited`, `friendlycheerful`, `neutral`, `nostalgic`, `reflective`, `saddisappointed`, `serious` |
+| `tr-TR-Grant` | `tr-TR` | Turkish | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `educational`, `narrator`, `neutral` |
+| `tr-TR-Harper` | `tr-TR` | Turkish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `neutral` |
+| `vi-VN-Grant` | `vi-VN` | Vietnamese | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `vi-VN-Harper` | `vi-VN` | Vietnamese | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `neutral` |
+| `zh-CN-Bo` | `zh-CN` | Chinese (Mandarin, Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `zh-CN-Grant` | `zh-CN` | Chinese (Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `zh-CN-Harper` | `zh-CN` | Chinese (Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
+| `zh-CN-Lan` | `zh-CN` | Chinese (Mandarin, Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `joyful`, `neutral`, `sad`, `surprised` |
+| `zh-CN-Mei` | `zh-CN` | Chinese (Mandarin, Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `zh-CN-Wei` | `zh-CN` | Chinese (Mandarin, Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `sad`, `surprised` |
+
+> [!NOTE]
+> Microsoft adds more locales and managed voices as they become available.
+
+---
+
+## Related content
+
+- For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md).
+- [MAI-Transcribe in Azure Speech](mai-transcribe.md).
+- [How to customize Voice Live input and output](./voice-live-how-to-customize.md).

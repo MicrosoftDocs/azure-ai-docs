@@ -224,6 +224,8 @@ items:
       href: /azure/ai-services/speech-service/mai-voices?context=/azure/foundry/context/context
     - name: MAI-Transcribe models
       href: /azure/ai-services/speech-service/mai-transcribe?context=/azure/foundry/context/context
+    - name: MAI-Transcribe Streaming model
+      href: ../../../ai-services/speech-service/mai-transcribe-2-streaming.md?context=/azure/foundry/context/context
   - name: Anthropic
     items:
     - name: Overview of Claude models in Foundry
