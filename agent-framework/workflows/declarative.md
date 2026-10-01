@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/23/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -1731,6 +1731,21 @@ Declarative workflows use namespaced variables to organize state:
 | `Workflow.Inputs.*` | Input parameters | `Workflow.Inputs.name` |
 | `Workflow.Outputs.*` | Output values | `Workflow.Outputs.result` |
 | `System.*` | System-provided values | `System.ConversationId` |
+
+#### Object attribute paths
+
+Python distinguishes dictionary keys from object attributes when a state path
+traverses nested values. Dictionary keys keep their exact string value, but an
+object attribute segment must match `[A-Za-z][A-Za-z0-9_]*`.
+
+For example, `Local.profile.display_name` can read a public object attribute.
+`Local.profile._private` and `Local.profile.display-name` don't access object
+attributes and return the lookup default. If `Local.bag` is a dictionary,
+`Local.bag._private` still reads its `_private` key. UUIDs, hyphenated names,
+and other irregular strings also remain valid dictionary keys.
+
+When migrating object-backed state, expose public attributes that match the
+supported pattern, or store irregular names as dictionary keys.
 
 ### Expression Language
 

@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/12/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -87,6 +87,36 @@ Use this pattern when a session must recover its complete transcript after an ap
 Attach `RedisHistoryProvider` through `context_providers`. The provider stores messages for the session and can limit the retained message count.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/conversations/redis_history_provider.py" range="28-60":::
+
+### Use a caller-managed Redis client
+
+Supply `redis_client` when your application needs to share a connection pool or
+configure connection behavior such as bounded timeouts and health checks. The
+client must be a standalone asynchronous Redis client configured with
+`decode_responses=True`.
+
+```python
+from agent_framework.redis import RedisHistoryProvider
+from redis.asyncio import Redis
+
+redis_client = Redis.from_url(
+    "redis://localhost:6379",
+    decode_responses=True,
+    socket_connect_timeout=3,
+    socket_timeout=5,
+)
+
+history_provider = RedisHistoryProvider(
+    redis_client=redis_client,
+    application_id="support-app",
+)
+```
+
+Don't combine `redis_client` with `redis_url` or `credential_provider`.
+`RedisHistoryProvider` borrows the client and doesn't close it, so the
+application remains responsible for its lifetime. Retry behavior also remains
+caller-controlled. Transcript appends aren't idempotent if a retry replays a
+write after an ambiguous connection loss.
 
 Scoped keys are the default. Set a stable, nonempty `application_id`, and use `tenant_id` and `agent_id` when your application has those isolation boundaries. The provider also scopes each key by its `source_id` and a nonempty session ID.
 

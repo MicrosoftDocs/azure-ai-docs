@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 09/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -341,6 +341,36 @@ When hosted, Invocations uses the verified request scope described in
 Treat `AgentSession.session_id` as one opaque value; don't parse or depend on
 its internal representation. Local runs keep their existing single-user
 storage behavior.
+
+### Customize Invocations requests and responses
+
+By default, `POST /invocations` accepts a JSON object with a string `message`,
+an optional `options` object, and an optional Boolean `stream` value. To accept
+an application-specific payload, pass a synchronous or asynchronous
+`parse_request` callback that returns
+`InvocationRun(messages, options, stream)`. Use `prepare_options` to filter or
+replace a copy of caller generation options before the agent runs.
+
+The host validates the hook output and rejects platform identity, storage,
+continuation, and agent-execution controls. For agents that don't accept
+runtime options, set `unsupported_options` to `"warn"` (the default),
+`"ignore"`, or `"error"`. See the
+[Invocations parser sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/invocations/basic)
+for a complete implementation.
+
+Non-streaming success returns JSON in the form `{"response": "..."}`.
+Streaming uses server-sent events: one or more `event: delta` frames, followed
+by `event: done` on success or `event: error` on failure. A stream can emit
+deltas before an error, so clients must treat `done`, not a delta, as successful
+completion. The host emits `done` only after it finalizes the response stream
+and persists the `AgentSession`. Its `session_id` is the platform sandbox route
+ID, not the serialized `AgentSession.session_id`.
+
+Set `legacy_wire_format=True` only while migrating existing clients that require
+the previous plain-text response and raw text-chunk stream. This compatibility
+mode is deprecated and doesn't convert failures into successful text. The host
+serializes same-session requests only within one process; a cross-process
+compare-and-swap conflict can still occur after external tool effects.
 
 The Invocations protocol doesn't resume workflow runs that are pending or
 interrupted. Use the custom handler pattern in the following section when you
