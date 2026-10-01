@@ -207,6 +207,11 @@ If you would like to create a custom role instead, see [Azure AI Enterprise Netw
 
 To create private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, a custom scoped-down role is recommended. The role should be defined with the actions necessary to approve private endpoint connections on the target resource types. Examples of such resource types are Azure Data Factory, Azure Databricks, and Azure Function Apps.
 
+> [!NOTE]
+> For an Azure SQL outbound rule, keep the **Azure AI Enterprise Network Connection Approver** role assigned to the Foundry account's managed identity on the target Azure SQL server. Also assign the **Reader** role to the same identity at the scope of the target SQL resource group. Wait briefly for role assignment changes to propagate, and then retry creating the outbound rule.
+> 
+> For an Azure Container Registry outbound rule, assign the **Reader** role to the Foundry account's managed identity as well.
+
 To create Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no other action is needed.
 
 ## Configure a managed virtual network to allow internet outbound
