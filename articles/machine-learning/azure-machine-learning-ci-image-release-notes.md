@@ -8,8 +8,9 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.author: deeikele
 ms.reviewer: fsolomon
-ms.date: 07/03/2024
+ms.date: 10/01/2026
 ms.topic: release-notes
+ai-usage: ai-assisted
 ---
 
 # Azure Machine Learning compute instance image release notes
@@ -29,6 +30,20 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 
 Main updates provided with each image version are described in the below sections.
+
+##  September 24, 2026
+
+Image Version: `26.09.09`
+
+Release Notes:
+
+SDK Version: `1.61.0`
+
+Jupyter-core: '5.9.1'
+
+Nvidia-Driver: '580.178.04'
+
+CUDA: '13.0'
 
 ##  June 26, 2026
 
