@@ -408,11 +408,7 @@ async def tools_example():
         print(result)
 ```
 
-To pass host-only values to a tool, declare a parameter annotated as
-`FunctionInvocationContext` and supply `function_invocation_kwargs` on the run.
-The context parameter is hidden from the schema sent to the model. It includes
-the current run values in `ctx.kwargs` and the current `AgentSession` in
-`ctx.session`.
+To pass host-only values to a tool, declare a parameter annotated as `FunctionInvocationContext` and supply `function_invocation_kwargs` on the run. The context parameter is hidden from the schema sent to the model. It includes the current run values in `ctx.kwargs` and the current `AgentSession` in `ctx.session`.
 
 ```python
 from agent_framework import FunctionInvocationContext
@@ -438,12 +434,11 @@ async with agent:
     )
 ```
 
-The same context forwarding applies to streaming runs and restored Copilot
-sessions. Tools without a context parameter keep their existing behavior.
+The same context forwarding applies to streaming runs and restored Copilot sessions. Tools without a context parameter keep their existing behavior.
 
-### Streaming Responses
+### Streaming responses
 
-Get responses as they are generated for better user experience:
+Get responses as they're generated for a better user experience:
 
 ```python
 async def streaming_example():
