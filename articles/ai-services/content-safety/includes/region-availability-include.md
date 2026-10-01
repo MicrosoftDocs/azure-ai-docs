@@ -85,7 +85,6 @@ When you use Azure AI Content Safety directly, create the resource in the region
 | Task Adherence* | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Content provenance detection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Blocklists | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| PII | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Europe](#tab/acs-europe)
 
@@ -98,7 +97,6 @@ When you use Azure AI Content Safety directly, create the resource in the region
 | Task Adherence* | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Content provenance detection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Blocklists | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| PII | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Asia Pacific](#tab/acs-apac)
 
@@ -111,7 +109,6 @@ When you use Azure AI Content Safety directly, create the resource in the region
 | Task Adherence* | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Content provenance detection | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Blocklists | ✅ | ✅ | ✅ | ✅ | ✅ |
-| PII | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Middle East & Africa](#tab/acs-mea)
 
@@ -124,7 +121,8 @@ When you use Azure AI Content Safety directly, create the resource in the region
 | Task Adherence* | ✅ | ✅ |
 | Content provenance detection | ✅ | ✅ |
 | Block lists | ✅ | ✅ |
-| PII | ✅ | ✅ |
+
+--- 
 
 *Not available for in-region, global routing is used
 
