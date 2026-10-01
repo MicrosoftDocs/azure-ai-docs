@@ -13,7 +13,7 @@ ms.author: ssalgado
 
 # What's new in Azure AI Content Safety
 
-Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
+Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
 ## November 2025
 

@@ -27,7 +27,7 @@ The following table summarizes the harm categories supported:
 | **Self-Harm** | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.<br><br>This category includes, but isn't limited to:<br>• Eating disorders<br>• Bullying and intimidation |
 | **Task Adherence** | Helps ensure AI Agents consistently behave in alignment with user instructions and task objectives. It identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input.  |
 
-## Severity levels for guardrails
+## Severity levels for Guardrails
 
 Guardrails classifies harmful content into four severity levels:
 
