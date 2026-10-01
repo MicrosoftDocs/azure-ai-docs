@@ -6,7 +6,7 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.custom: ignite-2025, doc-kit-assisted
 ms.topic: how-to
-ms.date: 09/08/2026
+ms.date: 10/01/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang
@@ -43,7 +43,7 @@ This article covers:
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
-- Use one of the **supported regions** for synthetic data generation: `eastus2`, `eastus`, `westus`, `northcentralus`, `southcentralus`, `swedencentral`, `germanywestcentral`, `francecentral`, `uksouth`, `uaenorth`, `japaneast`, `australiaeast`
+- Use a [supported region for synthetic data generation](../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
 ## Generate synthetic data for fine-tuning
 
