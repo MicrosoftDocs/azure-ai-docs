@@ -202,4 +202,6 @@ Some of the limitations of semantic segmentation are as follows:
 - Semantic segmentation isn't available for all languages and locales. 
 - Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.
 
+[!INCLUDE [Commit an Explicit Audio Boundary (Preview)](stream-commit.md)]
+
 [!INCLUDE [Post-stream refinement](post-stream-refinement.md)]
