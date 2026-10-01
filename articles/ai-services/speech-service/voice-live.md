@@ -182,7 +182,7 @@ You're charged at the Voice Live lite rate for:
 - Text
 - Native audio with `phi4-mm-realtime`
 
-You're charged at the Voice Live pro rate for:
+You're charged at the Voice Live lite rate for:
 - Audio with Azure Speech - Custom
 
 You're charged separately for the training and model hosting of:
