@@ -39,6 +39,8 @@ Release Notes:
 
 SDK Version: `1.61.0`
 
+Python: '3.10.21'
+
 Jupyter-core: '5.9.1'
 
 Nvidia-Driver: '580.178.04'
