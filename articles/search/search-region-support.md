@@ -54,7 +54,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | South Central US​ <sup>1 </sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ <sup>1, 2</sup> | ✅ | ✅ | ✅ | ✅ |  | ✅ |
 | West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| West US 3​ <sup>2</sup>| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ | ✅ | ✅ | ✅ |  |  |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
@@ -74,12 +74,12 @@ You can create an Azure AI Search service in any of the following Azure public r
 | North Europe​ <sup>2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Poland Central​​ <sup>1</sup> |  | ✅ | ✅ |  |  | ✅ |
 | Spain Central <sup>3</sup> |  |  | ✅ |  | ✅ | ✅ |
-| Sweden Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Sweden Central​​ <sup>1,2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  | ✅ |  |
 | UK South​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  | ✅ | ✅ |  |  |  |
-| West Europe​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West Europe​​ <sup>1,2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
