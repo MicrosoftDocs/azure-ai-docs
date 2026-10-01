@@ -318,12 +318,12 @@ All managed voices in the following table support both `MAI-Voice-2.1` and `MAI-
 | `tr-TR-Harper` | `tr-TR` | Turkish | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `neutral` |
 | `vi-VN-Grant` | `vi-VN` | Vietnamese | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `customer_call_center`, `educational`, `narrator`, `neutral` |
 | `vi-VN-Harper` | `vi-VN` | Vietnamese | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `audiobook`, `neutral` |
-| `zh-CN-Bo` | `zh-CN` | Chinese (Mandarin, Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `zh-CN-Bo` | `zh-CN` | Chinese (Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
 | `zh-CN-Grant` | `zh-CN` | Chinese (Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
 | `zh-CN-Harper` | `zh-CN` | Chinese (Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `agent`, `audiobook`, `customer_call_center`, `educational`, `narrator`, `neutral` |
-| `zh-CN-Lan` | `zh-CN` | Chinese (Mandarin, Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `joyful`, `neutral`, `sad`, `surprised` |
-| `zh-CN-Mei` | `zh-CN` | Chinese (Mandarin, Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
-| `zh-CN-Wei` | `zh-CN` | Chinese (Mandarin, Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `sad`, `surprised` |
+| `zh-CN-Lan` | `zh-CN` | Chinese (Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `joyful`, `neutral`, `sad`, `surprised` |
+| `zh-CN-Mei` | `zh-CN` | Chinese (Simplified) | Female | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `determined`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `relieved`, `sad`, `shouting`, `softvoice`, `surprised`, `whispering` |
+| `zh-CN-Wei` | `zh-CN` | Chinese (Simplified) | Male | `MAI-Voice-2.1`, `MAI-Voice-2.1-Flash` | `angry`, `confused`, `disgusted`, `embarrassed`, `excited`, `fearful`, `happy`, `hopeful`, `jealous`, `joyful`, `neutral`, `regretful`, `sad`, `surprised` |
 
 > [!NOTE]
 > Microsoft adds more locales and managed voices as they become available.
