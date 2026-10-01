@@ -116,7 +116,7 @@ Fireworks directly enforces adaptive rate limits within your quota. Your effecti
 
 Ramp up traffic gradually, and use exponential backoff when retrying HTTP 429 (Too Many Requests) responses. For more information, see [Fireworks adaptive rate limits](https://docs.fireworks.ai/serverless/rate-limits).
 
-All customers can submit a [quota increase request](https://aka.ms/fireworks-quota) for additional quota.
+All customers can submit a [quota increase request](https://aka.ms/fireworks-quota) for more quota.
 
 ## Improve prompt cache hit rate
 
