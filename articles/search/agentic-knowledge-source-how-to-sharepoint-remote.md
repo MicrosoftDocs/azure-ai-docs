@@ -20,7 +20,7 @@ A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API
 
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
 
-Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. No search index or connection string is needed. Retrieval API usage is included with a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) or billed through an Azure subscription with [Retrieval API pay-as-you-go consumption (preview)](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. You don't need a search index or connection string. You get Retrieval API usage with a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) or pay through an Azure subscription with [Retrieval API pay-as-you-go consumption (preview)](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 
 ### Usage support
 
@@ -36,7 +36,7 @@ Unlike indexed knowledge sources, remote SharePoint knowledge sources query live
 
 + For each user querying SharePoint content, either a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) or Retrieval API pay-as-you-go consumption (preview) enabled for that user.
 
-  Pay-as-you-go setup requires Microsoft 365 admin access, an Azure subscription in good standing, and an Azure resource group. You need **Owner** or **Contributor** access on that subscription. Your Microsoft 365 tenant must have at least one Microsoft 365 Copilot license before enablement and throughout pay-as-you-go use.
+  To set up pay-as-you-go consumption, you need Microsoft 365 admin access, an Azure subscription in good standing, and an Azure resource group. You need **Owner** or **Contributor** access on that subscription. Your Microsoft 365 tenant must have at least one Microsoft 365 Copilot license before enablement and throughout pay-as-you-go use.
 
   For users without a Copilot add-on license, [enable Retrieval API pay-as-you-go consumption](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval#enable-and-disable-pay-as-you-go) in the Microsoft 365 admin center and configure Azure subscription billing. Pay-as-you-go changes how you pay for Retrieval API access, not how you configure the remote SharePoint knowledge source.
 
