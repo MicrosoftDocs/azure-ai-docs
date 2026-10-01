@@ -181,6 +181,18 @@ server = ResponsesHostServer(agent=create_workflow_agent)
 
 Keep the workflow name and executor IDs stable so later Responses requests can locate saved checkpoints. `ResponsesHostServer` continues supported state through its session, checkpoint, and function-approval stores; it doesn't persist arbitrary fields on a request-scoped agent. See the [workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows) and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
 
+Also use a factory when an integration carries request identity or owns
+request-specific resources. For example, create MCP connections, Toolboxes,
+skill providers, Search clients, Memory providers, and their credentials inside
+the factory when they use the current platform call or user context. Reusing a
+process-wide MCP connection can retain the identity of the request that opened
+it.
+
+The host enters and exits factory-created agents for each request. `Agent`
+manages context-managed clients and MCP tools, but your factory must close any
+other provider, transport, or credential it creates. Don't close shared objects
+that the application supplied from outside the factory.
+
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` and `InvocationsHostServer` configure persistent session
@@ -208,7 +220,12 @@ Missing, duplicate, or conflicting values are rejected instead of using an SDK
 fallback ID.
 
 These guarantees apply to the default hosted stores. Custom store providers
-must implement equivalent user and sandbox isolation.
+must implement equivalent user and sandbox isolation, preserve the inner
+`AgentSession.session_id` separately from host lookup keys, and use conditional
+writes so stale requests can't overwrite newer snapshots. New keys should use
+create-only writes rather than unconditional upserts. See the
+[custom storage sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage)
+for a Cosmos DB implementation with ETag-protected writes and deletes.
 
 With `history_source="agent"`, the configured session store persists provider state carried by `AgentSession`, including messages from `InMemoryHistoryProvider`.
 
@@ -246,6 +263,22 @@ Import `ResponsesServerOptions` from `azure.ai.agentserver.responses`, and pass 
 | Steerable conversations | Temporarily unavailable | Don't set `steerable_conversations=True`. The host raises `RuntimeError` during construction until the Agent Server SDK safely handles rejected steering turns. |
 
 For complete implementations, see the [custom storage](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/custom_storage), [basic Responses history and background](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic), and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
+
+### Read files from the hosted sandbox
+
+Treat a hosted sandbox's persistent `$HOME` as a request-routed resource, not as
+a general file-system boundary. Accept only files that your application
+explicitly uploads to a dedicated directory, validate the current sandbox
+identity, and reject absolute paths, traversal, links, nonregular files, and
+oversized or invalid content.
+
+For the Responses protocol, route a request to a hosted session with the
+`agent_session_id` body field. The query-string selector is for Invocations.
+Session uploads and Toolbox code-interpreter files are separate resources; an
+uploaded sandbox file isn't automatically mounted into a Toolbox container.
+See the
+[session files sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/files)
+for bounded UTF-8 reads and local and hosted upload guidance.
 
 ### Control request options
 

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -99,6 +100,18 @@ Create the memory store through `AIProjectClient`, then attach `FoundryMemoryPro
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/azure_ai_foundry_memory.py" range="42-137":::
 
 The sample disables service-side and local transcript loading so the later response demonstrates semantic memory rather than chat-history replay.
+
+For a hosted agent, derive the memory scope from trusted platform identity
+rather than caller input or model options. Decide the intended sharing boundary
+explicitly. A user-only scope shares that user's long-term memories across
+sandboxes and across agents that use the same project Memory Store. Include an
+application boundary in the scope or use separate Memory Stores when those
+agents must not share memory.
+
+Create the Memory provider and project client inside the request-scoped agent
+factory when they use the current platform call ID. Conversation storage and
+long-term memory are independent: a Responses request with `store=false`
+doesn't undo a Memory provider's deliberate read or write side effects.
 
 :::zone-end
 
