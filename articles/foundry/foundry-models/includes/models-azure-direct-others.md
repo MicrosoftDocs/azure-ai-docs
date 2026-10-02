@@ -4,11 +4,11 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 09/21/2026
+ms.date: 10/02/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
-ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+ms.custom: pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
 
 ---
 
@@ -143,6 +143,7 @@ For model availability across all regions, grouped by deployment category, see [
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `grok-4.7` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text (128,000 tokens max) <br /> - **Context window:** 200,000 tokens<br> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text, JSON |
 | `grok-4.6` <br> **Preview** | chat-completion | - **Input:** text, image <br /> - **Output:** text (128,000 tokens max) <br /> - **Context window:** 200,000 tokens<br> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text, JSON |
 | `grok-4.3` <br> **Preview** | chat-completion | - **Input:** text (200,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 | `grok-4-20-reasoning` <br> **Preview** | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
