@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/29/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -71,6 +71,13 @@ The package installs `psutil` to terminate child process trees when an execution
 `LocalShellTool` runs commands directly on the host. It defaults to a persistent shell, a 30-second timeout, 64-KiB output truncation, and working-directory re-anchoring. Agent calls through `as_function()` require approval by default. Direct calls to `run()` don't request approval.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/openai/client_with_local_shell.py" range="3-12,33-97":::
+
+Direct calls to `run()` return a `ShellResult` with separate `stdout`,
+`stderr`, `exit_code`, `duration_ms`, `truncated`, and `timed_out` fields. When
+the shell runs through OpenAI Responses or Foundry hosting, Agent Framework
+preserves standard output, standard error, exit outcomes, and timeout outcomes
+across provider continuation. Nonzero exits remain failures, standard error
+remains separate, and a timeout doesn't appear as a successful exit.
 
 OpenAI provider-hosted shell transcript items remain informational, even when a
 local shell executor is configured. Only a well-formed explicit

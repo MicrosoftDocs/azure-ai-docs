@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/29/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -119,6 +119,36 @@ pip install agent-framework-openai
 ```
 
 `agent-framework-openai` is the optional Python provider package for both direct OpenAI and Azure OpenAI usage.
+
+## Send MP3 or WAV audio
+
+Both Python OpenAI chat clients accept audio input for models that support it.
+Use the registered `audio/mpeg` media type for MP3 content and `audio/wav` for
+WAV content:
+
+```python
+from agent_framework import Content, Message
+
+with open("question.mp3", "rb") as audio_file:
+    message = Message(
+        role="user",
+        contents=[
+            Content.from_text("Transcribe this audio."),
+            Content.from_data(
+                data=audio_file.read(),
+                media_type="audio/mpeg",
+            ),
+        ],
+    )
+
+response = await agent.run(message)
+print(response.text)
+```
+
+`OpenAIChatClient` and `OpenAIChatCompletionClient` also accept common legacy
+MP3 media type aliases, including `audio/mp3`. Use `audio/mpeg` for new code.
+Other audio formats require provider support and aren't converted to OpenAI
+MP3 or WAV input.
 
 ## Reuse the Responses client concurrently
 
