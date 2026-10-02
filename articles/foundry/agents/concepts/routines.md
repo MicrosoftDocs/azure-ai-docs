@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/27/2026
+ms.date: 09/24/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
@@ -118,7 +118,7 @@ Routines have the following limitations:
 - Routines support projects secured by a virtual network. They don't support customer-managed key (CMK) encryption.
 - Routines aren't available in UK West, Switzerland West, Japan West, UAE North, or Norway East.
 - Recurring schedules have a minimum interval of five minutes.
-- A downstream agent request has a 30-second timeout per attempt and three total delivery attempts by default.
+- Routine delivery makes up to five attempts for transient failures. Each downstream agent request has a 30-second timeout. For Responses API actions, the timeout covers acceptance of the background request, not completion of the agent's work.
 
 ## Related content
 

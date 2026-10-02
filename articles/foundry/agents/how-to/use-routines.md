@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/27/2026
+ms.date: 09/24/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -1977,8 +1977,9 @@ A successful run means the downstream API accepted the dispatch request. It does
 
 ### Retry and timeout defaults
 
-- The default delivery policy is three total attempts with exponential backoff starting at 1 second and capped at 5 seconds.
+- The default delivery policy is five total attempts with exponential backoff starting at 5 seconds and capped at 60 seconds.
 - The downstream HTTP request has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, and worker concurrency limits aren't included in that per-request timeout.
+- Responses API actions run in background mode. The 30-second timeout covers acceptance of the background request and creation of the response, not completion of the agent's work.
 
 ## Troubleshooting
 
@@ -2017,7 +2018,7 @@ Routines have the following known issues and limitations:
 - **Regional availability.** Routines aren't available in UK West, Switzerland West, Japan West, UAE North, or Norway East. If you don't see **Routines** in the Foundry portal navigation, the feature isn't enabled for your region or subscription.
 - **Use `:dispatch_async` for manual dispatch.** Only the `POST .../routines/{routineName}:dispatch_async?api-version=v1` route is part of the public contract. The legacy `:dispatch` route isn't supported for customer use.
 - **Acknowledgment isn't completion.** A `:dispatch_async` response acknowledges that the run was enqueued, not that the downstream agent call finished. Use the run state, telemetry, or the returned `dispatch_id` to observe final delivery.
-- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults). The routine run is marked failed if all attempts time out.
+- **Per-attempt timeout.** The downstream HTTP request to the agent has a per-attempt timeout of 30 seconds. Queueing time, retry backoff, message-bus delivery time, and worker concurrency limits aren't included in that timeout. For Responses API actions, the timeout covers acceptance of the background request, not completion of the agent's work. Requests that exceed the per-attempt timeout are retried per the [retry and timeout defaults](#retry-and-timeout-defaults). The routine run is marked failed if all attempts time out.
 - **Successful delivery doesn't guarantee end-to-end completion.** A completed routine run means the downstream API returned success for the dispatch request. It doesn't guarantee that asynchronous work started by the agent has finished.
 
 ## Related content
