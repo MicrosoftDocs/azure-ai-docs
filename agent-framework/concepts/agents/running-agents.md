@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 09/30/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -89,6 +89,25 @@ final = await response_stream.get_final_response()
 print(f"\n\nFull response: {final.text}")
 print(f"Messages: {len(final.messages)}")
 ```
+
+If your application might stop before consuming the full stream, use
+`ResponseStream` as an async context manager so an early `break` closes the
+underlying provider stream:
+
+```python
+response_stream = agent.run("Tell me a story", stream=True)
+
+async with response_stream:
+    async for update in response_stream:
+        if update.text:
+            print(update.text, end="", flush=True)
+        if should_stop(update):
+            break
+```
+
+Full consumption, stream errors, `await response_stream.close()`, and exiting
+the `async with` block release the underlying stream. A bare `break` without
+`async with` doesn't provide deterministic cleanup.
 
 Before consumption starts, you can register ordered update and final-result gates with `with_update_gate()` and `with_result_gate()`. A gate returns `None` to allow a value or raises an exception to block it. Use `with_update_transform()` and `with_result_transform()` when content must be replaced.
 
