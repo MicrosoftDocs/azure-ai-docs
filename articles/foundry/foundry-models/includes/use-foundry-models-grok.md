@@ -489,7 +489,7 @@ To use an API key instead of Microsoft Entra ID, replace the `Authorization: Bea
 
 ## When to use Grok 4.7
 
-Use Grok 4.7 (preview) for complex enterprise workloads that require reasoning, tool use, and multi-step execution. Grok 4.7 supports coding, agentic workflows, technical problem solving, and knowledge-work applications that benefit from sustained reasoning across extended tasks.
+Use Grok 4.7 (preview) for complex enterprise workloads that require reasoning, tool use, and multistep execution. Grok 4.7 supports coding, agentic workflows, technical problem solving, and knowledge-work applications that benefit from sustained reasoning across extended tasks.
 
 Common use cases include:
 
