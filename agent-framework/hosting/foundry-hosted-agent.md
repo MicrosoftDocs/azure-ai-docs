@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 10/01/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -27,7 +27,7 @@ ai-usage: ai-assisted
 
 [Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy containerized agent applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available and supports agents built with your own code or a preferred agent framework. This article covers the Agent Framework hosting integration specifically.
 
-With the Agent Framework hosting integration, you can expose an `Agent`, including a workflow wrapped with `Workflow.as_agent()`, through the Foundry Responses or Invocations protocol with minimal code.
+By using the Agent Framework hosting integration, you can expose an `Agent` through the Foundry Responses or Invocations protocol with minimal code. Python also supports hosting a native `Workflow` directly, without converting it to an agent.
 
 > [!NOTE]
 > You can also deploy agent code built with other frameworks to Foundry hosted agents by using [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) workflows. For framework-agnostic concepts and deployment guidance, see [What are hosted agents?](/azure/foundry/agents/concepts/hosted-agents) The rest of this article focuses on the Agent Framework integration.
@@ -193,6 +193,68 @@ manages context-managed clients and MCP tools, but your factory must close any
 other provider, transport, or credential it creates. Don't close shared objects
 that the application supplied from outside the factory.
 
+### Host a native workflow with Responses
+
+Python can host a built workflow directly through `workflow=`. A native
+workflow requires a `parse_response` callback that maps the current Responses
+request to either a typed start input or the complete batch of pending replies:
+
+```python
+from pydantic import BaseModel
+
+from agent_framework_foundry_hosting import (
+    CheckpointStoreProvider,
+    HostedResponseRequest,
+    ResponsesHostServer,
+    WorkflowTurn,
+)
+
+
+class Ticket(BaseModel):
+    text: str
+
+
+def build_workflow(request: HostedResponseRequest):
+    return build_fresh_workflow()
+
+
+async def parse_response(request: HostedResponseRequest) -> WorkflowTurn[Ticket]:
+    items = await request.get_input_items()
+    if any(item.get("type") in ("function_call_output", "mcp_approval_response") for item in items):
+        return WorkflowTurn(responses=await request.get_workflow_responses())
+
+    text = await request.get_input_text()
+    return WorkflowTurn(input=Ticket.model_validate_json(text or ""))
+
+
+server = ResponsesHostServer(
+    workflow=build_workflow,
+    parse_response=parse_response,
+    checkpoint_store_provider=CheckpointStoreProvider(
+        allowed_checkpoint_types=[f"{Ticket.__module__}:{Ticket.__qualname__}"],
+    ),
+)
+```
+
+Use a request-aware synchronous or asynchronous factory for workflows that can
+pause, continue, or recover background work. The factory must return a freshly
+built graph with fresh mutable executors, agents, clients, providers, and
+tools. Keep the workflow name and executor IDs stable so the host can restore
+the exact checkpoint associated with the outer response.
+
+The trusted platform user and Foundry
+sandbox isolate native workflow state. The host validates a complete pending reply batch before it consumes
+any reply authority. Stale, partial, duplicate, replayed, cross-user, and
+cross-sandbox replies fail before workflow execution. A request with
+`store=false` doesn't save workflow state and can't return a resumable pause.
+
+For a legacy workflow that accepts `list[Message]`, use
+`response_input_messages(request)` to convert only the current Responses turn.
+It doesn't load prior outer history or decode pending workflow replies. Hosting
+`agent=workflow.as_agent()` remains available during the current beta, but
+emits a deprecation warning. For complete examples, see the
+[native Responses workflow samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows).
+
 ### Persist state and handle long-running conversations
 
 `ResponsesHostServer` and `InvocationsHostServer` configure persistent session
@@ -203,8 +265,11 @@ store. These stores use Foundry State Store when hosted and the SDK's
 file-backed storage when you run locally.
 
 For Responses workflow agents, `CheckpointStoreProvider` supplies a
-`FoundryCheckpointStore`. `FunctionApprovalStoreProvider` supplies a
-`FoundryFunctionApprovalStore` for pending approvals.
+`FoundryCheckpointStore`. Native Responses and Invocations workflows use the
+same provider for their exact continuation checkpoints.
+`FunctionApprovalStoreProvider` supplies a `FoundryFunctionApprovalStore` for
+pending agent tool approvals. Native workflow request and approval replies are
+bound to workflow checkpoints instead.
 
 When running in Foundry, the default Python stores namespace state by the
 platform user ID and the Foundry sandbox session ID. They also require a
@@ -374,6 +439,82 @@ When hosted, Invocations uses the verified request scope described in
 Treat `AgentSession.session_id` as one opaque value; don't parse or depend on
 its internal representation. Local runs keep their existing single-user
 storage behavior.
+
+### Host a native workflow with Invocations
+
+Pass `workflow=` and an explicit `parse_request` callback to host a native
+workflow. The callback owns the application JSON schema and returns a
+`WorkflowTurn` with either typed input or the complete pending reply batch:
+
+```python
+from pydantic import BaseModel
+from starlette.requests import Request
+
+from agent_framework_foundry_hosting import (
+    CheckpointStoreProvider,
+    InvocationsHostServer,
+    WorkflowTurn,
+)
+
+
+class Ticket(BaseModel):
+    ticket_id: str
+    question: str
+
+
+class TicketDecision(BaseModel):
+    approved: bool
+
+
+def build_workflow(_request: Request):
+    return build_fresh_workflow()
+
+
+async def parse_request(request: Request) -> WorkflowTurn[Ticket]:
+    payload = await request.json()
+    stream = payload.get("stream", False)
+
+    if "responses" in payload:
+        decisions = {
+            request_id: TicketDecision.model_validate(value)
+            for request_id, value in payload["responses"].items()
+        }
+        return WorkflowTurn(responses=decisions, stream=stream)
+
+    ticket = Ticket.model_validate(payload)
+    return WorkflowTurn(input=ticket, stream=stream)
+
+
+server = InvocationsHostServer(
+    workflow=build_workflow,
+    parse_request=parse_request,
+    checkpoint_store_provider=CheckpointStoreProvider(
+        allowed_checkpoint_types=[
+            f"{Ticket.__module__}:{Ticket.__qualname__}",
+            f"{TicketDecision.__module__}:{TicketDecision.__qualname__}",
+        ],
+    ),
+)
+```
+
+Include every custom application type that the workflow saves in the
+checkpoint provider's `allowed_checkpoint_types` list.
+
+Hosted workflows require a request-aware factory that returns a fresh built
+graph with stable workflow and executor IDs. A direct built workflow is
+available only for a local, one-shot run that doesn't pause.
+
+Non-streaming workflow responses use application JSON with an `output` event
+list. Streaming emits framed `output` and `request_info` events, followed by
+`done` only after the exact workflow cursor is saved. Treat streamed output as
+provisional until `done`. Native workflows don't support
+`legacy_wire_format=True`.
+
+The host validates replies against the exact pending checkpoint in the trusted
+user and sandbox scope. If a workflow has multiple pending requests, reply to
+the complete batch in one turn. For a runnable parser, typed ticket workflow,
+checkpoint type allow list, and JSON/SSE examples, see the
+[native Invocations workflow sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/invocations/basic/README.md#native-workflow-with-typed-tickets).
 
 ### Customize Invocations requests and responses
 
