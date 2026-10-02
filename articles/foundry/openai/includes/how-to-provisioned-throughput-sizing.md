@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/23/2026
+ms.date: 10/02/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -243,12 +243,12 @@ This section lists other Foundry models sold by Azure, not including the Azure O
 
 The following Fireworks on Microsoft Foundry models support both Global and US Data Zone provisioned throughput.
 
-|Topic|**DeepSeek v3.1**|**DeepSeek v3.2**|**DeepSeek V4 Flash 0731**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM 5**|**GLM-5.1**|**GLM 5.2**|**gpt-oss-20b**|**gpt-oss-120b**|**Inkling**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**Kimi K2.7 Code**|**MiniMax M2.5**|**MiniMax M3**|**Ministral 3 3B Instruct 2512**|**Nemotron 3.5 Lightning**|**Nemotron Super 120B**|**Nemotron 3 Ultra NVFP4**|**PaddleOCR VL 1.6**|**Qwen 3 14B**|**Qwen 3 32B**|**Qwen 3.5 4B**|**Qwen 3.5 9B**|**Qwen 3.5 27B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|**Qwen 3.6 27B**|**Qwen 3.6 35B A3B**|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Minimum deployment|200|300|100|400|200|200|200|300|400|400|80|40|400|200|200|200|200|200|400|400|40|50|100|200|40|80|80|80|40|550|40|100|100|40|40|
-|Scale increment|100|150|50|200|100|100|100|150|200|200|40|20|200|100|100|100|100|100|200|200|20|25|50|100|20|40|40|40|20|275|20|50|50|20|20|
-|Input TPM per PTU|2,100|3,000|2,800|200|5,400|2,200|6,000|600|900|300|25,000|13,500|3,850|2,500|1,400|1,060|4,000|2,000|5,300|5,300|25,400|60,350|4,850|1,100|341,500|4,800|5,000|35,500|10,700|2,730|17,800|5,600|4,250|7,700|31,000|
-|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
+|Topic|**DeepSeek v3.1**|**DeepSeek v3.2**|**DeepSeek V4 Flash 0731**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM 5**|**GLM-5.1**|**GLM 5.2**|**GLM 5.3**|**gpt-oss-20b**|**gpt-oss-120b**|**Inkling**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**Kimi K2.7 Code**|**Llama 3.1 8B Instruct**|**MiniMax M3**|**Ministral 3 3B Instruct 2512**|**Muse Glimmer 30B**|**Nemotron 3.5 Lightning**|**Nemotron Super 120B**|**Nemotron 3 Ultra NVFP4**|**PaddleOCR VL 1.6**|**Qwen 3 32B**|**Qwen 3.5 4B**|**Qwen 3.5 9B**|**Qwen 3.5 27B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|**Qwen 3.6 27B**|**Qwen 3.6 35B A3B**|**Qwen 3.8 27B**|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Minimum deployment|400|1,080|200|800|200|200|720|1,080|720|800|320|50|50|720|400|720|720|400|400|50|800|90|90|90|180|400|180|50|50|50|180|50|200|200|50|90|50|
+|Scale increment|200|540|100|400|100|100|360|540|360|400|160|25|25|360|200|360|360|200|200|25|400|45|45|45|90|200|90|25|25|25|90|25|100|100|25|45|25|
+|Input TPM per PTU|1,050|833|1,400|100|5,400|2,200|1,667|167|500|325|1,050|40,000|10,800|2,139|1,250|389|294|2,000|1,000|46,240|2,650|11,289|4,500|33,528|2,694|550|75,889|8,000|56,800|8,560|8,342|14,240|2,800|2,125|6,160|13,778|6,300|
+|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
