@@ -222,9 +222,9 @@ This setting suppresses only the terminal message snapshot. Other streamed event
 ## Render citations and annotations
 
 Text content with `Content.annotations` emits a message-linked AG-UI `CUSTOM`
-event named `annotations`. This includes annotation-only updates that arrive
+event named `annotations`. This event includes annotation-only updates that arrive
 after the response text, such as grounding citations from the Responses API.
-The event arrives before `RUN_FINISHED` and doesn't repeat the response text:
+The event arrives before `RUN_FINISHED` and doesn't repeat the response text.
 
 ```json
 {
@@ -252,8 +252,8 @@ The event arrives before `RUN_FINISHED` and doesn't repeat the response text:
 
 Each event contains newly emitted annotations for the identified text message.
 Append them to that message and use the title, URL, or file ID to render
-sources. Framework annotation fields and additional properties are retained,
-but provider `raw_representation` objects aren't included.
+sources. The event retains framework annotation fields and additional properties,
+but it doesn't include provider `raw_representation` objects.
 
 `AGUIChatClient` restores these event batches as `Content.annotations` in
 streaming updates and aggregated responses. It also retains the custom event in

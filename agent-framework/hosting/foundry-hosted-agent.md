@@ -27,7 +27,7 @@ ai-usage: ai-assisted
 
 [Hosted agents](/azure/foundry/agents/concepts/hosted-agents) in Microsoft Foundry Agent Service let you deploy containerized agent applications to Microsoft-managed infrastructure. The platform handles scaling, session state persistence, security, and lifecycle management so you can focus on your agent's logic. Microsoft Foundry Hosted Agents is generally available and supports agents built with your own code or a preferred agent framework. This article covers the Agent Framework hosting integration specifically.
 
-With the Agent Framework hosting integration, you can expose an `Agent` through the Foundry Responses or Invocations protocol with minimal code. Python also supports hosting a native `Workflow` directly, without converting it to an agent.
+By using the Agent Framework hosting integration, you can expose an `Agent` through the Foundry Responses or Invocations protocol with minimal code. Python also supports hosting a native `Workflow` directly, without converting it to an agent.
 
 > [!NOTE]
 > You can also deploy agent code built with other frameworks to Foundry hosted agents by using [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) workflows. For framework-agnostic concepts and deployment guidance, see [What are hosted agents?](/azure/foundry/agents/concepts/hosted-agents) The rest of this article focuses on the Agent Framework integration.
@@ -242,8 +242,8 @@ built graph with fresh mutable executors, agents, clients, providers, and
 tools. Keep the workflow name and executor IDs stable so the host can restore
 the exact checkpoint associated with the outer response.
 
-Native workflow state is isolated by the trusted platform user and Foundry
-sandbox. The host validates a complete pending reply batch before it consumes
+The trusted platform user and Foundry
+sandbox isolate native workflow state. The host validates a complete pending reply batch before it consumes
 any reply authority. Stale, partial, duplicate, replayed, cross-user, and
 cross-sandbox replies fail before workflow execution. A request with
 `store=false` doesn't save workflow state and can't return a resumable pause.
@@ -513,7 +513,7 @@ provisional until `done`. Native workflows don't support
 The host validates replies against the exact pending checkpoint in the trusted
 user and sandbox scope. If a workflow has multiple pending requests, reply to
 the complete batch in one turn. For a runnable parser, typed ticket workflow,
-checkpoint type allowlist, and JSON/SSE examples, see the
+checkpoint type allow list, and JSON/SSE examples, see the
 [native Invocations workflow sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/invocations/basic/README.md#native-workflow-with-typed-tickets).
 
 ### Customize Invocations requests and responses

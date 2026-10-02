@@ -976,9 +976,7 @@ var skillsProvider = new AgentSkillsProviderBuilder()
 - `ArchiveMaxSizeBytes` - Maximum download size per archive. Defaults to `1 MB`.
 - `ArchiveMaxUncompressedSizeBytes` - Maximum total uncompressed size per archive. Defaults to `1 MB`.
 
-If multiple archive members resolve to the same extracted file, Agent Framework
-keeps the first member's content, skips later colliding members with a warning,
-and continues skill discovery.
+If multiple archive members resolve to the same extracted file, the Agent Framework keeps the first member's content, skips later colliding members with a warning, and continues skill discovery.
 
 > [!IMPORTANT]
 > Scripts bundled in archive-type skills are **never executed**. This is a deliberate security measure - executable content from remote MCP servers requires explicit trust.
@@ -1041,10 +1039,7 @@ consistency with the index, not that the MCP server is trustworthy.
 
 `MCPSkillsSource` extracts ZIP content in memory. Use its `archive_*` constructor options to restrict resource extensions, search depth, file count, download size, and total uncompressed size. Scripts in MCP archives are available only as read-only resources and are never exposed as runnable scripts.
 
-Archive member paths are normalized and compared case-insensitively, matching
-resource lookup. If multiple members resolve to the same path, Agent Framework
-keeps the first member's spelling and content, logs a warning, and continues
-loading the remaining archive content.
+Archive member paths are normalized and compared case-insensitively, matching resource lookup. If multiple members resolve to the same path, Agent Framework keeps the first member's spelling and content, logs a warning, and continues loading the remaining archive content.
 
 > [!NOTE]
 > If `skill://index.json` is absent, unreadable, empty, or fails to parse, the source returns an empty list. Agent Framework skips index entry types other than `skill-md` and `archive`.
