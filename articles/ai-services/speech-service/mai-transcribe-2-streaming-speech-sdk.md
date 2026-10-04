@@ -63,7 +63,7 @@ import azure.cognitiveservices.speech as speechsdk
 region = os.environ["SPEECH_REGION"]
 endpoint = f"wss://{region}.stt.speech.microsoft.com/speech/universal/v2"
 speech_config = speechsdk.SpeechConfig(subscription=os.environ["SPEECH_KEY"], endpoint=endpoint)
-speech_config.model = "MAI-Transcribe-2-Streaming"
+speech_config.model = "mai-transcribe-2-streaming"
 speech_config.speech_recognition_language = "en-US"
 
 audio_format = speechsdk.audio.AudioStreamFormat(samples_per_second=16000, bits_per_sample=16, channels=1)
@@ -157,7 +157,7 @@ public final class MaiStreamingRecognition {
         try (SpeechConfig speechConfig = SpeechConfig.fromEndpoint(endpoint, key);
              PushAudioInputStream audioStream = AudioInputStream.createPushStream(audioFormat);
              AudioConfig audioConfig = AudioConfig.fromStreamInput(audioStream)) {
-            speechConfig.setModel("MAI-Transcribe-2-Streaming");
+            speechConfig.setModel("mai-transcribe-2-streaming");
             speechConfig.setSpeechRecognitionLanguage("en-US");
 
             try (SpeechRecognizer recognizer = new SpeechRecognizer(speechConfig, audioConfig)) {
@@ -241,7 +241,7 @@ var key = RequiredEnvironment("SPEECH_KEY");
 var region = RequiredEnvironment("SPEECH_REGION");
 var endpoint = new Uri($"wss://{region}.stt.speech.microsoft.com" + "/speech/universal/v2");
 var speechConfig = SpeechConfig.FromEndpoint(endpoint, key);
-speechConfig.Model = "MAI-Transcribe-2-Streaming";
+speechConfig.Model = "mai-transcribe-2-streaming";
 speechConfig.SpeechRecognitionLanguage = "en-US";
 
 using var audioFormat = AudioStreamFormat.GetWaveFormatPCM(16000, 16, 1);
