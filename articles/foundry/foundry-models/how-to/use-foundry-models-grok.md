@@ -4,7 +4,7 @@ description: "Deploy Grok 4.7 in Microsoft Foundry for reasoning, coding, and ag
 ms.service: microsoft-foundry
 ms.subservice: foundry-models
 ms.topic: how-to
-ms.date: 10/02/2026
+ms.date: 10/05/2026
 ms.custom:
   - doc-kit-assisted
   - classic-and-new
