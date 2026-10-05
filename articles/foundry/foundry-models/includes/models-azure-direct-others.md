@@ -138,7 +138,7 @@ SpaceXAI's Grok models in Foundry Models include a diverse set of reasoning and 
 To work with Grok models, see [Deploy and use Grok models in Foundry](../how-to/use-foundry-models-grok.md).
 
 > [!NOTE]
-> Generally available SpaceXAI Grok models starting with Grok 4.7 have a minimum six-month lifecycle instead of the standard 18-month lifecycle. Earlier Grok models retain their existing lifecycle commitments. For model-specific retirement dates, see the [Model retirement schedule](../../openai/concepts/model-retirement-schedule.md).
+> Generally available SpaceXAI Grok models starting with Grok 4.7 are available for a minimum of six months. Earlier Grok models retain their existing lifecycle commitments. For model-specific retirement dates, see the [Model retirement schedule](../../openai/concepts/model-retirement-schedule.md).
 
 [Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` and `grok-4`.
 

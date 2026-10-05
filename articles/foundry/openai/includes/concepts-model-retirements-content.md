@@ -35,7 +35,7 @@ Every model in the Foundry catalog belongs to exactly one of these five stages:
 > [!NOTE]
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
 > - Generally available models from Anthropic, DeepSeek, Fireworks, and Mistral AI follow a 12-month lifecycle instead of the standard 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
-> - Generally available SpaceXAI Grok models starting with Grok 4.7 have a minimum six-month lifecycle instead of the previous 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
+> - Generally available SpaceXAI Grok models starting with Grok 4.7 are available for a minimum of six months. For model-specific retirement dates, see the [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## Model launch and availability
 

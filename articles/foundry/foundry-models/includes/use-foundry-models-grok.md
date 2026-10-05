@@ -72,7 +72,7 @@ Foundry Models sold by Azure include the following SpaceXAI Grok models.
 This article focuses on `grok-4.7`. For full capability details on all Grok models, see [SpaceXAI models sold by Azure](../concepts/models-sold-directly-by-azure.md#spacexai-models-sold-by-azure).
 
 > [!NOTE]
-> Generally available SpaceXAI Grok models starting with Grok 4.7 have a minimum six-month lifecycle instead of the previous 18-month lifecycle. For model-specific retirement dates, see the [Model retirement schedule](../../openai/concepts/model-retirement-schedule.md).
+> Generally available SpaceXAI Grok models starting with Grok 4.7 are available for a minimum of six months. For model-specific retirement dates, see the [Model retirement schedule](../../openai/concepts/model-retirement-schedule.md).
 
 <a id="deploy-grok-46"></a>
 
