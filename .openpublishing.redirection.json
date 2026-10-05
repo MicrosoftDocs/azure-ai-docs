@@ -1,6 +1,126 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/anomaly-detector/anomaly-detector-container-configuration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/anomaly-detector-container-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/anomaly-detector-container-howto.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/anomaly-detector-container-howto",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/faq.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/overview.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/regions.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/regions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/service-limits.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/service-limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/concepts/anomaly-detection-best-practices.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/concepts/anomaly-detection-best-practices",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/concepts/best-practices-multivariate.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/concepts/best-practices-multivariate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/concepts/multivariate-architecture.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/concepts/multivariate-architecture",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/concepts/troubleshoot.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/concepts/troubleshoot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/batch-inference.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/batch-inference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/create-resource.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/create-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/deploy-anomaly-detection-on-container-instances.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/deploy-anomaly-detection-on-container-instances",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/deploy-anomaly-detection-on-iot-edge.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/deploy-anomaly-detection-on-iot-edge",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/identify-anomalies.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/identify-anomalies",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/prepare-data.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/prepare-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/streaming-inference.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/streaming-inference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/how-to/train-model.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/how-to/train-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/quickstarts/client-libraries-multivariate.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/quickstarts/client-libraries-multivariate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/quickstarts/client-libraries.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/quickstarts/client-libraries",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/tutorials/azure-data-explorer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/tutorials/azure-data-explorer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/anomaly-detector/tutorials/batch-anomaly-detection-powerbi.md",
+      "redirect_url": "/previous-versions/azure/ai-services/anomaly-detector/tutorials/batch-anomaly-detection-powerbi",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/foundry/agents/how-to/deploy-hosted-voice-agent.md",
       "redirect_url": "/azure/foundry/how-to/voice-first-with-hosted-agent",
       "redirect_document_id": false
