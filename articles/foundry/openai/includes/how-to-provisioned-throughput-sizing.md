@@ -6,7 +6,7 @@ ms.reviewer: seramasu
 ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/23/2026
+ms.date: 10/02/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -137,7 +137,7 @@ The tables in this section list the throughput and deployment parameters for eac
 | Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 100 | 50 | 25 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Input TPM per PTU | 3,000 | 3,000 | 600 | 30,000 | 3,000 | 1,200 | 1,200 | 1,200 | 2,400 | 7,900 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
 | Output-to-input ratio | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | See [GPT-6 sizing guidance](#normalized-token-pricing-for-gpt-6-astra) | 6 | 6 | 6 | 6 | See [GPT-image-2 sizing guidance](#estimate-ptus-for-image-model) | 6 | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value<sup>1</sup> | 99% > 80 TPS | 99% > 80 TPS | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 80 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
+| Latency target value<sup>1</sup> | 99% > 50 TPS | 99% > 80 TPS | 99% > 40 TPS | 99% > 100 TPS | 99% > 70 TPS | 99% > 80 TPS | 99% > 50 TPS | N/A<sup>2</sup> | 99% > 50 TPS | 99% > 100 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
@@ -153,18 +153,18 @@ GPT-6 Astra, GPT-6 Sol, GPT-6.1 Sol, and newer Azure OpenAI models use normalize
 GPT-6 Astra and GPT-6 Sol support [prompt cache breakpoints](../how-to/prompt-caching.md#configure-prompt-cache-breakpoints) for explicit control over prompt caching. Cache reads and writes are included in normalized-token accounting.
 
 > [!NOTE]
-> One short-context input token is one normalized token. Typically, calculate other token weights by dividing their prices by the same model's short-context input price. For GPT-6.1 Sol, the current short-context cached-input weight differs from this price ratio, as noted in the table below.
+> One short-context input token is one normalized token. Calculate other token weights by dividing their prices by the same model's short-context input price.
 >
 > Cached input and cache writes consume PTU capacity at their respective weights. The older sizing rule that deducts cached input entirely doesn't apply to models using this accounting method.
 
 ##### Pay-as-you-go prices and token weights
 
-The following prices are in USD per 1 million tokens. GPT-6 Astra, GPT-6 Sol, and GPT-6.1 Sol have the same normalized weights except for GPT-6.1 Sol's long-context cached input. Its short-context cached input also has a temporary PTU weight that differs from its price ratio.
+The following prices are in USD per 1 million tokens. GPT-6 Astra, GPT-6 Sol, and GPT-6.1 Sol have the same normalized weights except for GPT-6.1 Sol's long-context cached input.
 
 | Token type | GPT-6 Astra Global Standard price | GPT-6 Sol Global Standard price | GPT-6.1 Sol Global Standard price | GPT-6 Astra / GPT-6 Sol normalized token cost | GPT-6.1 Sol normalized token cost |
 |---|---:|---:|---:|---:|---:|
 | Short-context input | $10.00 | $2.00 | $2.00 | 1.0 | 1.0 |
-| Short-context cached input | $1.00 | $0.20 | $0.10 | 0.1 | 0.1<sup>1</sup> |
+| Short-context cached input | $1.00 | $0.20 | $0.10 | 0.1 | 0.05 |
 | Short-context cache write | $12.50 | $2.50 | $2.50 | 1.25 | 1.25 |
 | Short-context output | $50.00 | $10.00 | $10.00 | 5.0 | 5.0 |
 | Long-context input | $20.00 | $4.00 | $4.00 | 2.0 | 2.0 |
@@ -172,11 +172,9 @@ The following prices are in USD per 1 million tokens. GPT-6 Astra, GPT-6 Sol, an
 | Long-context cache write | $25.00 | $5.00 | $5.00 | 2.5 | 2.5 |
 | Long-context output | $75.00 | $15.00 | $15.00 | 7.5 | 7.5 |
 
-<sup>1</sup> The GPT-6.1 Sol short-context cached-input price corresponds to a weight of 0.05. Due to a current system limitation, PTU capacity uses a weight of 0.1 instead. Use 0.1 when sizing a deployment.
-
 `Normalized token cost = token-type price ÷ the model's short-context input price`
 
-For GPT-6 Astra, divide by $10.00. For GPT-6 Sol and GPT-6.1 Sol, divide by $2.00. Use the same pricing unit in the numerator and denominator. For example, GPT-6 Sol long-context output has a weight of `$15.00 ÷ $2.00 = 7.5`. The GPT-6.1 Sol short-context cached-input weight is the exception described above.
+For GPT-6 Astra, divide by $10.00. For GPT-6 Sol and GPT-6.1 Sol, divide by $2.00. Use the same pricing unit in the numerator and denominator. For example, GPT-6 Sol long-context output has a weight of `$15.00 ÷ $2.00 = 7.5`.
 
 ##### Convert normalized tokens to PTUs
 
@@ -195,7 +193,7 @@ Assign each token to its applicable category once; don't count a cached or cache
 
 ##### PTU and pay-as-you-go comparison
 
-This illustration uses **one PTU at $260.00 per month**, retaining the existing article's example cost and applying it to GPT-6 Astra and GPT-6 Sol. It assumes 100% sustained utilization for 30 days, no discounts, and the token prices above. It's a capacity comparison, not a quote for a deployable configuration; deployment minimums still apply. GPT-6.1 Sol isn't included because its current short-context cached-input PTU weight differs from its price ratio.
+This illustration uses **one PTU at $260.00 per month**, retaining the existing article's example cost and applying it to GPT-6 Astra and GPT-6 Sol. It assumes 100% sustained utilization for 30 days, no discounts, and the token prices above. It's a capacity comparison, not a quote for a deployable configuration; deployment minimums still apply.
 
 | Metric | GPT-6 Astra PTU | GPT-6 Astra pay-as-you-go | GPT-6 Sol PTU | GPT-6 Sol pay-as-you-go |
 |---|---:|---:|---:|---:|
@@ -243,12 +241,12 @@ This section lists other Foundry models sold by Azure, not including the Azure O
 
 The following Fireworks on Microsoft Foundry models support both Global and US Data Zone provisioned throughput.
 
-|Topic|**DeepSeek v3.1**|**DeepSeek v3.2**|**DeepSeek V4 Flash 0731**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM 5**|**GLM-5.1**|**GLM 5.2**|**gpt-oss-20b**|**gpt-oss-120b**|**Inkling**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**Kimi K2.7 Code**|**MiniMax M2.5**|**MiniMax M3**|**Ministral 3 3B Instruct 2512**|**Nemotron 3.5 Lightning**|**Nemotron Super 120B**|**Nemotron 3 Ultra NVFP4**|**PaddleOCR VL 1.6**|**Qwen 3 14B**|**Qwen 3 32B**|**Qwen 3.5 4B**|**Qwen 3.5 9B**|**Qwen 3.5 27B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|**Qwen 3.6 27B**|**Qwen 3.6 35B A3B**|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Minimum deployment|200|300|100|400|200|200|200|300|400|400|80|40|400|200|200|200|200|200|400|400|40|50|100|200|40|80|80|80|40|550|40|100|100|40|40|
-|Scale increment|100|150|50|200|100|100|100|150|200|200|40|20|200|100|100|100|100|100|200|200|20|25|50|100|20|40|40|40|20|275|20|50|50|20|20|
-|Input TPM per PTU|2,100|3,000|2,800|200|5,400|2,200|6,000|600|900|300|25,000|13,500|3,850|2,500|1,400|1,060|4,000|2,000|5,300|5,300|25,400|60,350|4,850|1,100|341,500|4,800|5,000|35,500|10,700|2,730|17,800|5,600|4,250|7,700|31,000|
-|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
+|Topic|**DeepSeek v3.1**|**DeepSeek v3.2**|**DeepSeek V4 Flash 0731**|**DeepSeek V4 Pro**|**Gemma 4 26B A4B IT**|**Gemma 4 31B IT**|**GLM-4.7**|**GLM 5**|**GLM-5.1**|**GLM 5.2**|**GLM 5.3**|**gpt-oss-20b**|**gpt-oss-120b**|**Inkling**|**Kimi K2 Instruct 0905**|**Kimi K2 Thinking**|**Kimi K2.5**|**Kimi K2.6**|**Kimi K2.7 Code**|**Llama 3.1 8B Instruct**|**MiniMax M3**|**Ministral 3 3B Instruct 2512**|**Muse Glimmer 30B**|**Nemotron 3.5 Lightning**|**Nemotron Super 120B**|**Nemotron 3 Ultra NVFP4**|**PaddleOCR VL 1.6**|**Qwen 3 32B**|**Qwen 3.5 4B**|**Qwen 3.5 9B**|**Qwen 3.5 27B**|**Qwen 3.5 35B A3B**|**Qwen 3.5 112B A10B**|**Qwen 3.5 397B**|**Qwen 3.6 27B**|**Qwen 3.6 35B A3B**|**Qwen 3.8 27B**|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Minimum deployment|400|1,080|200|800|200|200|720|1,080|720|800|320|50|50|720|400|720|720|400|400|50|800|90|90|90|180|400|180|50|50|50|180|50|200|200|50|90|50|
+|Scale increment|200|540|100|400|100|100|360|540|360|400|160|25|25|360|200|360|360|200|200|25|400|45|45|45|90|200|90|25|25|25|90|25|100|100|25|45|25|
+|Input TPM per PTU|1,050|833|1,400|100|5,400|2,200|1,667|167|500|325|1,050|40,000|10,800|2,139|1,250|389|294|2,000|1,000|46,240|2,650|11,289|4,500|33,528|2,694|550|75,889|8,000|56,800|8,560|8,342|14,240|2,800|2,125|6,160|13,778|6,300|
+|Latency Target Value<sup>1</sup>|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|99% > 50 TPS|
 
 <sup>1</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 

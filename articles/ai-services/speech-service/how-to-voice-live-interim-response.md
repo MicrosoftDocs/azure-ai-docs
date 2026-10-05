@@ -39,7 +39,7 @@ Triggers use OR logic—any matching trigger activates an interim response.
 
 Before you start, complete the following:
 
-- Complete the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-agents-quickstart.md) or the [Quickstart: Get started with Voice Live](./voice-live-quickstart.md).
+- Complete the [Quickstart: Voice Live with Foundry Agent Service](./voice-live-agents-quickstart.md) or the [Quickstart: Get started with Voice Live](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 

@@ -362,10 +362,8 @@ items:
       items:
       - name: Voice Live with Foundry models
         href: voice-live-quickstart.md
-      - name: Voice Live with Foundry agents (new)
+      - name: Voice Live with Foundry Agent Service
         href: voice-live-agents-quickstart.md
-      - name: Voice Live with Foundry agents (classic)
-        href: voice-live-agents-quickstart-classic.md
       - name: Function calling in Voice Live
         href: how-to-voice-live-function-calling.md
       - name: Bring your own model with Voice Live
@@ -428,6 +426,10 @@ items:
           - name: JavaScript
             displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
             href: /javascript/api/overview/azure/ai-voicelive-readme
+    - name: Deprecated
+      items:
+      - name: Voice Live with Agent Service (classic)
+        href: voice-live-agents-quickstart-classic.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview

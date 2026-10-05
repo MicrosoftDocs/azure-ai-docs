@@ -79,7 +79,7 @@ conceptualContent:
           text: Get started with Voice Live models
           url: /azure/ai-services/speech-service/voice-live-quickstart
         - itemType: quickstart
-          text: Get started with Voice Live in Foundry agents
+          text: Get started with Voice Live and Foundry Agent Service
           url: /azure/ai-services/speech-service/voice-live-agents-quickstart
         - itemType: how-to-guide
           text: Customize Voice Live
