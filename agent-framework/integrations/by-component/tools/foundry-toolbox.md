@@ -37,7 +37,7 @@ For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition
 
 For a hosted agent built with Microsoft Agent Framework, use `AddFoundryToolboxes` from `Microsoft.Agents.AI.Foundry.Hosting`, as shown in the following example.
 
-Use a .NET 10 web project with implicit usings enabled, matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`, and `DotNetEnv`. Set `TOOLBOX_NAME` to an existing toolbox and `AZURE_AI_MODEL_DEPLOYMENT_NAME` to your model deployment. Foundry supplies `FOUNDRY_PROJECT_ENDPOINT` to the deployed host. For local model access, set `FOUNDRY_PROJECT_ENDPOINT` and sign in with Azure CLI. The hosting integration loads toolbox tools when `FOUNDRY_PROJECT_ENDPOINT` is available.
+Use a .NET 10 web project with implicit usings enabled, matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`, and `DotNetEnv`. Set `TOOLBOX_NAME` to an existing toolbox and `FOUNDRY_MODEL` to your model deployment. Foundry supplies `FOUNDRY_PROJECT_ENDPOINT` to the deployed host. For local model access, set `FOUNDRY_PROJECT_ENDPOINT` and sign in with Azure CLI. Hosted deployments fall back to the azd-managed `AZURE_AI_MODEL_DEPLOYMENT_NAME`. The hosting integration loads toolbox tools when `FOUNDRY_PROJECT_ENDPOINT` is available.
 
 :::code language="csharp" source="~/../agent-framework-code/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox/Program.cs" range="27-48,54-55,58-68,71-75,80-89":::
 

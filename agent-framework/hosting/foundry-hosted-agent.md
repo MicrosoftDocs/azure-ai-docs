@@ -101,7 +101,9 @@ using Microsoft.Agents.AI.Foundry.Hosting;
 
 var projectEndpoint = new Uri(Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set."));
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var deployment = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+    ?? "gpt-4o";
 
 AIAgent agent = new AIProjectClient(projectEndpoint, new DefaultAzureCredential())
     .AsAIAgent(
