@@ -119,7 +119,7 @@ The same `agent-framework-foundry` package also includes `FoundryEmbeddingClient
 ### `FoundryChatClient`
 
 ```bash
-FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
+FOUNDRY_PROJECT_ENDPOINT="https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
 FOUNDRY_MODEL="gpt-4o-mini"
 ```
 
@@ -167,7 +167,7 @@ from azure.identity import AzureCliCredential
 
 agent = Agent(
     client=FoundryChatClient(
-        project_endpoint="https://your-project.services.ai.azure.com",
+        project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
         model="gpt-4o-mini",
         credential=AzureCliCredential(),
     ),
@@ -197,7 +197,7 @@ from azure.identity import AzureCliCredential
 
 agent = Agent(
     client=FoundryChatClient(
-        project_endpoint="https://your-project.services.ai.azure.com",
+        project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
         model="<reasoning-model-deployment>",
         credential=AzureCliCredential(),
     ),
