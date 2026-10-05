@@ -5,7 +5,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 08/13/2026
+ms.date: 10/01/2026
 ms.custom: include, references_regions
 ai-usage: ai-assisted
 ---
@@ -16,14 +16,17 @@ The following regions support synthetic data generation and trace-to-dataset gen
 
 | Americas | Europe | Asia Pacific | Middle East & Africa |
 |--|--|--|--|
-| East US | France Central | Australia East | South Africa North |
-| East US 2 | Germany West Central | Japan East | UAE North |
-| North Central US | Italy North | South India |  |
-| South Central US | Norway East |  |  |
-| West US | Poland Central |  |  |
-| West US 3 | Sweden Central |  |  |
-|  | Switzerland North |  |  |
-|  | UK South |  |  |
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Japan East | UAE North |
+| Canada East | Italy North | Japan West |  |
+| Central US | Norway East | Korea Central |  |
+| East US | Poland Central | South India |  |
+| East US 2 | Spain Central | Southeast Asia |  |
+| North Central US | Sweden Central |  |  |
+| South Central US | Switzerland North |  |  |
+| West Central US | Switzerland West |  |  |
+| West US | UK South |  |  |
+| West US 3 | UK West |  |  |
 |  | West Europe |  |  |
 
 ### Azure OpenAI graders regional availability
