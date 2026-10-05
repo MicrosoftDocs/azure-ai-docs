@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Java. This article builds on the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with advanced features and integration options.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) by using the VoiceLive SDK for Java. This article builds on the [Quickstart: Voice Live with Foundry Agent Service](../../../voice-live-agents-quickstart.md) with advanced features and integration options.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)] 
 
@@ -34,7 +34,7 @@ Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-fou
 
 ## Prepare the environment and create the agent
 
-Complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to set up your environment, configure the agent with Voice Live settings, and test your first conversation.
+Complete the [Quickstart: Voice Live with Foundry Agent Service](../../../voice-live-agents-quickstart.md) to set up your environment, configure the agent with Voice Live settings, and test your first conversation.
 
 ## Agent integration concepts
 

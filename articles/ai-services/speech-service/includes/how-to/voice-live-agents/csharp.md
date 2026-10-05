@@ -10,7 +10,7 @@ ms.date: 3/6/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you'll learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#. This article extends the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with more details on features and integration options.
+In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) by using the VoiceLive SDK for C#. This article extends the [Quickstart: Voice Live with Foundry Agent Service](../../../voice-live-agents-quickstart.md) with more details on features and integration options.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)] 
 
@@ -32,7 +32,7 @@ In this article, you'll learn how to use Voice Live with [Microsoft Foundry Agen
 
 ## Prepare the environment and create the agent
 
-Complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to prepare your environment, set up the agent with Voice Live settings, and run your first test.
+Complete the [Quickstart: Voice Live with Foundry Agent Service](../../../voice-live-agents-quickstart.md) to prepare your environment, set up the agent with Voice Live settings, and run your first test.
 
 ## Agent integration concepts
 

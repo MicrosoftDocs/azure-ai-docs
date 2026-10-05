@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/29/2026
+ms.date: 10/05/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -303,6 +303,39 @@ they can't establish trust or principal authority. A
 to the summary.
 
 When tool arguments contain hidden variable references, FIDES resolves them recursively and evaluates the destination policy against their stored integrity and confidentiality labels. This process prevents blind forwarding from bypassing `accepts_untrusted` or `max_allowed_confidentiality` without exposing the hidden content to the main model. Argument labels don't replace labels declared on the tool result.
+
+#### Detect expanded arguments inside a tool
+
+A tool that accepts untrusted input can call `rewritten_arguments()` to identify arguments that FIDES rewrote during
+variable expansion. The function returns a mapping of argument names to rewritten positions. List arguments use their
+zero-based indexes, while scalar and dictionary arguments use `-1`. It returns an empty mapping when no arguments were
+rewritten.
+
+Use the argument names and indexes to report an error without repeating hidden content:
+
+```python
+from agent_framework import tool
+from agent_framework.security import rewritten_arguments
+
+
+@tool(additional_properties={"accepts_untrusted": True})
+def process_files(files: list[str], destination: str) -> str:
+    rewritten = rewritten_arguments()
+
+    if indexes := rewritten.get("files"):
+        positions = ", ".join(f"files[{index}]" for index in sorted(indexes))
+        raise ValueError(f"Hidden content isn't allowed at {positions}.")
+
+    if -1 in rewritten.get("destination", set()):
+        raise ValueError("Hidden content isn't allowed in destination.")
+
+    return f"Accepted {len(files)} file(s) for {destination}."
+```
+
+Pass a `FunctionInvocationContext` to `rewritten_arguments(context)` when you need to inspect an explicit invocation
+context. Without an argument, it uses the current tool invocation, including code run through `asyncio.to_thread()`.
+If argument validation reorders or filters an expanded list, FIDES marks every final list position as rewritten rather
+than risk exposing a value whose original index is no longer reliable.
 
 Variable expansion fails closed if it detects a reference cycle, nesting would
 exceed 16 variable-reference levels, or one invocation would expand more than
