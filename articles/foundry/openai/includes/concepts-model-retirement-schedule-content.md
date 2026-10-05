@@ -215,7 +215,6 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | grok-4-20-reasoning | 1 | Preview | 2027-04-06 | — |
 | grok-4-fast-non-reasoning | 1 | Retired | 2026-05-01 | grok-4-1-fast-non-reasoning |
 | grok-4-fast-reasoning | 1 | Retired | 2026-05-01 | grok-4-1-fast-reasoning |
-| grok-4.7 | 1 | GA | 2027-04-06 | — |
 | grok-code-fast-1 | 1 | GA | — | — |
 
 ## Foundry Models from partners and community

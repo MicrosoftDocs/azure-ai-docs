@@ -653,12 +653,12 @@ When the model requests a tool, the `output` array contains a `function_call` it
 
 ### Token limits and context window
 
-Grok 4.7 has a context window of 500,000 tokens. The maximum output-token limit is 500,000 tokens minus the model's maximum input-token limit.
+Grok 4.7 has a context window of 500,000 tokens.
 
 Input and generated output both count against the context window:
 
-- **Input tokens**: The messages (Chat Completions) or input (Responses) in your request must fit within the model's maximum input-token limit.
-- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, including reasoning tokens. Generated output can't exceed the model's maximum output-token limit or the context budget remaining after input.
+- **Input tokens**: The messages (Chat Completions) or input (Responses) in your request can contain up to 500,000 tokens.
+- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, including reasoning tokens. Output uses the context budget remaining after input.
 - **Total**: Input and output tokens must fit within the 500,000-token context window. If a request exceeds the context window, it fails.
 
 For current rates and billing details, see [Grok model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/grok/).
