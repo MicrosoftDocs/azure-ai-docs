@@ -40,9 +40,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string endpoint = builder.Configuration["AZURE_AI_PROJECT_ENDPOINT"]
-    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
-string model = builder.Configuration["AZURE_AI_MODEL"] ?? "gpt-4o-mini";
+string endpoint = builder.Configuration["FOUNDRY_PROJECT_ENDPOINT"]
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string model = builder.Configuration["FOUNDRY_MODEL"] ?? "gpt-4o-mini";
 
 // 1. Create and register the "weather-agent" agent in the DI container.
 builder.Services.AddKeyedSingleton<AIAgent>("weather-agent", (sp, _) =>

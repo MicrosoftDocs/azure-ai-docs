@@ -108,7 +108,7 @@ pip install agent-framework-foundry
 ## Configuration
 
 ```bash
-FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
+FOUNDRY_PROJECT_ENDPOINT="https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
 FOUNDRY_AGENT_NAME="my-agent"
 FOUNDRY_AGENT_VERSION="1.0"
 ```
@@ -192,7 +192,7 @@ from agent_framework.foundry import FoundryAgent
 from azure.identity import AzureCliCredential
 
 agent = FoundryAgent(
-    project_endpoint="https://your-project.services.ai.azure.com",
+    project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
     agent_name="my-prompt-agent",
     credential=AzureCliCredential(),
     timeout=120.0,

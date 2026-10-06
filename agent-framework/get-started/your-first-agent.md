@@ -85,7 +85,7 @@ from azure.identity import AzureCliCredential
 async def main() -> None:
     agent = Agent(
         client=FoundryChatClient(
-            project_endpoint="https://your-project.services.ai.azure.com",
+            project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
             model="gpt-6-luna",
             credential=AzureCliCredential(),
         ),
