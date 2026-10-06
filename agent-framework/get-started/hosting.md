@@ -18,7 +18,7 @@ Once you've built your agent, you need to host it so users and other agents can 
 ## Hosting Options
 
 | Option | Description | Best For |
-|--------|-------------|----------|
+| -------- | ------------- | ---------- |
 | [A2A Protocol](../hosting/self-hosting/a2a/server.md) | Expose agents via the Agent-to-Agent protocol | Multi-agent systems |
 | [OpenAI-Compatible Endpoints](../hosting/self-hosting/openai-endpoints.md) | Expose agents via Chat Completions or Responses APIs | OpenAI-compatible clients |
 | [Durable Extension](../hosting/azure-functions.md) | Make C# and Python agents and workflows durable on Azure Functions or self-hosted compute | Long-running, reliable workloads |
@@ -168,7 +168,7 @@ curl -X POST http://localhost:7071/api/agents/Joker/run \
 ```
 
 > [!TIP]
-> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/azure_functions/01_single_agent/function_app.py) for the complete runnable file, and the [Azure Functions hosting samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/azure_functions) for more patterns.
+> See the [full sample](https://github.com/microsoft/agent-framework-durable-extension/blob/main/python/samples/azure_functions/01_single_agent/function_app.py) for the complete runnable file, and the [Azure Functions hosting samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples/azure_functions) for more patterns.
 
 :::zone-end
 
