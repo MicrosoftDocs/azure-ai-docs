@@ -8,6 +8,7 @@ ms.author: edvan
 ms.date: 09/03/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 # Self-host OpenAI Responses endpoints
