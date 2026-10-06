@@ -24,8 +24,6 @@ When an account uses agent network injection, Agent Service provisions the requi
 
 > [!IMPORTANT]
 > Capability settings use API version `2026-07-15-preview`.
->
-> Regional availability follows a phased rollout. Capability settings are currently available in UK South and Canada Central.
 
 ## Prerequisites
 
