@@ -68,15 +68,17 @@ await foreach (var update in agent.RunStreamingAsync("Tell me a one-sentence fun
 pip install agent-framework azure-identity
 ```
 
-Create and run an agent:
+Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az login`. In the following example, replace `project_endpoint` with your Microsoft Foundry project endpoint and `model` with your model deployment name.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="create_agent" highlight="8-11":::
+Save the complete example as `hello_agent.py`. It includes the imports, an async entry point, and both non-streaming and streaming responses:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent" highlight="2":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py":::
 
-Or stream the response:
+Run the example:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent_streaming" highlight="3-5":::
+```bash
+python hello_agent.py
+```
 
 > [!NOTE]
 > Agent Framework does **not** automatically load `.env` files. To use a `.env` file for configuration, call `load_dotenv()` at the start of your script:
