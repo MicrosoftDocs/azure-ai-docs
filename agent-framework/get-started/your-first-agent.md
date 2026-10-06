@@ -68,15 +68,50 @@ await foreach (var update in agent.RunStreamingAsync("Tell me a one-sentence fun
 pip install agent-framework azure-identity
 ```
 
-Create and run an agent:
+Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az login`. In the following example, replace `project_endpoint` with your Microsoft Foundry project endpoint and `model` with your model deployment name.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="create_agent" highlight="8-11":::
+Save the complete example as `hello_agent.py`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent" highlight="2":::
+```python
+import asyncio
 
-Or stream the response:
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent_streaming" highlight="3-5":::
+
+async def main() -> None:
+    client = FoundryChatClient(
+        project_endpoint="https://your-project.services.ai.azure.com",
+        model="gpt-4o",
+        credential=AzureCliCredential(),
+    )
+
+    agent = Agent(
+        client=client,
+        name="HelloAgent",
+        instructions="You are a friendly assistant. Keep your answers brief.",
+    )
+
+    result = await agent.run("What is the capital of France?")
+    print(f"Agent: {result}")
+
+    print("Agent (streaming): ", end="", flush=True)
+    async for chunk in agent.run("Tell me a one-sentence fun fact.", stream=True):
+        if chunk.text:
+            print(chunk.text, end="", flush=True)
+    print()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Run the example:
+
+```bash
+python hello_agent.py
+```
 
 > [!NOTE]
 > Agent Framework does **not** automatically load `.env` files. To use a `.env` file for configuration, call `load_dotenv()` at the start of your script:

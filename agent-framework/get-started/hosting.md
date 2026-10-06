@@ -128,7 +128,7 @@ app.Run();
 ```
 
 > [!TIP]
-> See the [Durable Agents samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableAgents) for Azure Functions and self-hosted examples.
+> See the [Durable Agents samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableAgents) for Azure Functions and self-hosted examples.
 
 :::zone-end
 
@@ -168,7 +168,7 @@ curl -X POST http://localhost:7071/api/agents/Joker/run \
 ```
 
 > [!TIP]
-> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/azure_functions/01_single_agent/function_app.py) for the complete runnable file, and the [Azure Functions hosting samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/azure_functions) for more patterns.
+> See the [full sample](https://github.com/microsoft/agent-framework-durable-extension/blob/main/python/samples/azure_functions/01_single_agent/function_app.py) for the complete runnable file, and the [Azure Functions hosting samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/python/samples/azure_functions) for more patterns.
 
 :::zone-end
 
