@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 Enabling customer‑managed keys (CMK) adds additional security on top of the default encryption at rest when using [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). When you enable CMK, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule
@@ -69,8 +71,6 @@ Adding a customer-managed key to an object must happen when the object is newly 
 - CMK enforcement by using Azure Policy and service-level CMK configuration (which is still in preview) are independent settings. You can use either or both, depending on your needs. Service-level CMK configuration applies a default key to new objects, while Azure Policy enforcement ensures that all objects comply with your encryption requirements. If you enable a CMK enforcement policy without a service‑level key, all CMK‑enabled objects must specify their own encryption key at creation time. Object creation requests that omit CMK configuration fail.
 
 ## Enable service-level CMK on new objects by default (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Starting in the 2026-03-01-preview release, you can configure a customer-managed key at the service level on the Azure AI Search service itself. This feature lets you configure the key once and apply it to all newly created objects by default. That protection keeps sensitive data in your search service secure with a key you control, without requiring you to specify key information each time you create an object. In data plane API version `2026-05-01-preview` and later, the `isServiceLevelKey` property on `encryptionKey` helps you determine whether an object inherits the service-level key or uses an explicit object-level key.
 

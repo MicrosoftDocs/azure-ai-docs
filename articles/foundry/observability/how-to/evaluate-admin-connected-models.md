@@ -7,7 +7,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 08/04/2026
+ms.date: 09/25/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -19,10 +19,10 @@ ai-usage: ai-assisted
 
 Admin-connected models are models hosted behind an enterprise AI gateway, such as [Azure API Management](../../agents/how-to/ai-gateway.md) or a non-Azure AI model gateway, that an administrator connects to your Foundry project. You can use an admin-connected model for cloud evaluation scenarios that accept a model deployment.
 
-Foundry resolves the connection endpoint and authentication, including API key, managed identity, or OAuth 2.0 authentication. Your evaluation request references the connection and deployment, not the gateway endpoint or its credentials.
+Foundry resolves the connection endpoint and authentication, including API key, managed identity, or OAuth 2.0 authentication. Your evaluation request simply references the connection and deployment and the service manages resolving the gateway endpoint resolution and authentication.
 
 > [!IMPORTANT]
-> Cloud evaluation supports admin-connected models only when the connected deployment exposes the OpenAI **Chat Completions API**. 
+> Admin-connected models require the connected deployment to expose the OpenAI **Chat Completions API**.
 
 > [!NOTE]
 > Admin-connected model support in cloud evaluation is in preview and might not be available in all regions.
@@ -31,6 +31,7 @@ Foundry resolves the connection endpoint and authentication, including API key, 
 
 - A [Foundry project](../../how-to/create-projects.md).
 - **Foundry User** role on the Foundry project.
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - An administrator has created an Azure API Management or non-Azure AI model gateway connection on your Foundry resource and added the model on the **Manage** > **Resource details** > **Admin-connected models** tab. For setup instructions, see [Bring your own model to Foundry Agent Service](../../agents/how-to/ai-gateway.md).
 - The connection name and deployment name for a model that supports the OpenAI Chat Completions API.
 
@@ -59,7 +60,7 @@ Set `initialization_parameters.model` when you configure an AI-assisted evaluato
 ```python
 from azure.ai.projects.models import TestingCriterionAzureAIEvaluator
 
-admin_connected_model = "my-apim-connection/gpt-4o"
+admin_connected_model = "my-apim-connection/my-model-name"
 
 testing_criteria = [
     TestingCriterionAzureAIEvaluator(
@@ -128,7 +129,7 @@ Set `target.model` to send each evaluation input to the admin-connected model:
 # [Python](#tab/python)
 
 ```python
-admin_connected_model = "my-apim-connection/gpt-4o"
+admin_connected_model = "my-apim-connection/my-model-name"
 
 target = {
     "type": "azure_ai_model",

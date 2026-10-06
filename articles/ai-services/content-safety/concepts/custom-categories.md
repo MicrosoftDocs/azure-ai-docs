@@ -9,6 +9,7 @@ ms.custom: build-2024
 ms.topic: concept-article
 ms.date: 09/02/2025
 ms.author: ssalgado
+ai-usage: ai-assisted
 ---
 
 # Custom categories (preview)
@@ -85,7 +86,7 @@ You can include your defined incident in a regular text analysis or image analys
 
 ### Language availability
 
-The Custom categories APIs support all languages that Content Safety text moderation supports. See [Language support](/azure/ai-services/content-safety/language-support).
+The Custom categories APIs support all languages that Content Safety text moderation supports. See [region availability](/azure/ai-services/content-safety/region-availability).
 
 ### Input limitations
 

@@ -24,7 +24,7 @@ ms.custom: doc-kit-assisted
 > This document refers to the classic version of the agents API. 
 
 > [!NOTE]
-> For the new Foundry Toolkit workflows—including agent creation from templates, GitHub Copilot-assisted creation, local testing and debugging, and tracing—see [Create hosted agent workflows in Visual Studio Code](../../../foundry/agents/how-to/vs-code-agents-workflow-pro-code.md).
+> For the new Foundry Toolkit workflows—including agent creation from templates, GitHub Copilot-assisted creation, local testing and debugging, and tracing—see [Create hosted agents in Visual Studio Code](../../../foundry/how-to/develop/vs-code-agents-workflow-pro-code.md).
 
 [Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 

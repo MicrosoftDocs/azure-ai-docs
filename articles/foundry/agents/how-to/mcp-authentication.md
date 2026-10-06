@@ -204,6 +204,9 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - After the user closes the dialog, submit another response with the previous
   response ID. Choose your programming language.
 
+  > [!NOTE]
+  > For .NET, invoke agents with the [Responses API quickstart](../quickstarts/responses-api.md?pivots=csharp).
+
 :::zone pivot="python"
 
 Install the Python packages:
@@ -383,7 +386,7 @@ The following steps use the Agent 365 MCP server as an example:
    - Microsoft SharePoint and OneDrive MCP Server (Frontier): `McpServers.OneDriveSharepoint.All`
    - Microsoft SharePoint Lists MCP Server (Frontier): `McpServers.SharepointLists.All`
    - Microsoft Word MCP Server (Frontier): `McpServers.Word.All`
-   - Microsoft 365 Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
+   - Microsoft Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
    - Microsoft 365 Admin Center MCP Server (Frontier): `McpServers.M365Admin.All`
    - Microsoft Dataverse MCP Server (Frontier): `McpServers.Dataverse.All`
 

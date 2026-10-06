@@ -43,13 +43,13 @@ Before you create resources for a key-based connection, confirm regional support
 
 ## Choose a pricing model and tier
 
-Azure AI Search offers two pricing models: Dedicated and Serverless (Preview).
+Azure AI Search offers two pricing models: Dedicated and Serverless (preview).
 
 - **Dedicated pricing model** - **Free tier** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
 
 - **Dedicated pricing model** - **Basic tier** (recommended) consumes about one-third of your USD200 credits over 30 days, and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
-- **Serverless pricing model** - **Serverless Developer tier** (Preview) uses consumption-based pricing. To evaluate usage costs in this tier, visit the [Azure portal](https://portal.azure.com) where you can view charges accrued once the billing period begins in the **Scale + Cost** tab.
+- **Serverless pricing model** - **Serverless Developer tier** (preview) uses consumption-based pricing. To evaluate usage costs in this tier, visit the [Azure portal](https://portal.azure.com) where you can view charges accrued once the billing period begins in the **Scale + Cost** tab.
 
 [!INCLUDE [Serverless preview](./includes/previews/preview-serverless.md)]
 
@@ -87,7 +87,7 @@ You can access Azure AI Search through two portals, each optimized for different
 
 ## Track your credit usage
 
-During the trial period, stay under the USD200 credit allocation. Dedicated services are billed for provisioned capacity while they exist, even when idle. If you create a Dedicated Basic search service, expect Azure AI Search to consume about one-third of your available credits during the trial period. Serverless Developer (Preview) billing behavior is covered in the preview notice above, and you should still monitor estimated usage.
+During the trial period, stay under the USD200 credit allocation. Dedicated services are billed for provisioned capacity while they exist, even when idle. If you create a Dedicated Basic search service, expect Azure AI Search to consume about one-third of your available credits during the trial period. Serverless Developer (preview) billing behavior is covered in the preview notice above, and you should still monitor estimated usage.
 
 In the Azure portal, a notification in the upper-right corner shows how many credits have been used and how many remain. You can also monitor billing by searching for **Subscriptions** in the topmost search bar. The **Overview** page shows spending rates, forecasts, and cost management. For more information, see [Check usage of free services included with your Azure free account](/azure/cost-management-billing/manage/check-free-service-usage).
 

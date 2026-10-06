@@ -42,7 +42,7 @@ Publishing gives you capabilities that project-level development doesn't provide
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
-- **Integration with Microsoft 365 Copilot and Teams** — Distribute your Agent Application to channels like Microsoft 365 Copilot and Teams.
+- **Integration with Microsoft Copilot and Teams** — Distribute your Agent Application to channels like Microsoft Copilot and Teams.
 ### What changes when you publish?
 
 The most important change is identity. An unpublished agent uses the project's shared agent identity. Once published, the agent receives its own dedicated agent identity. Any tools that use agent identity authentication will switch from the project's shared identity to the agent application's unique agent identity.
@@ -96,7 +96,7 @@ For applications, this endpoint is exposed at:
 
 `https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/openai`
 
-The OpenAI-compatible API exposed through applications has been modified to ensure users' conversations remain private. This restriction is temporary and will be removed once we support end-user isolation. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
+The OpenAI-compatible API that applications expose is modified to keep your conversations private. This restriction is temporary and is removed when end-user isolation is supported. As a result, the API is more limited than the OpenAI API served by the project endpoint. Specifically:
 
 - Only the stateless Responses API (`POST /responses`) is supported.
 - Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible.
@@ -153,13 +153,20 @@ To publish an agent version, you must create an application and deployment that 
       - `project_name`: The Foundry project name.
       - `application_name` and `deployment_name`: Choose names for the Agent Application and deployment you want to create.
 
-3. Choose an `api-version`.
+3. Choose an `api-version`. To list the versions your subscription supports, run:
 
-#### 1. Create agent application. 
+  ```azurecli
+  az provider show --namespace Microsoft.CognitiveServices --query "resourceTypes[?resourceType=='accounts/projects/applications'].apiVersions[]" -o tsv
+  ```
+
+#### 1. Create agent application
 
 For a full property reference and an infrastructure-as-code (Bicep) example for Agent Applications, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications](/azure/templates/microsoft.cognitiveservices/accounts/projects/applications?pivots=deployment-language-bicep).
 
-**Required field**: Set the `agentName` field to the name of the agent you want to publish. 
+**Required fields**:
+
+- `agentName`: The name of the agent you want to publish.
+- `displayName`: A friendly name for the application. Omitting it fails with an opaque `400 SystemError`.
 
 The following example shows only the minimum required fields. By default `authorizationPolicy` is set to **Default (Azure RBAC)** and `trafficRoutingPolicy` routes all traffic to the first deployment.
 
@@ -170,6 +177,7 @@ Content-Type: application/json
 
 {
   "properties":{
+    "displayName": "Publishing Agent",
     "agents": [{"agentName": "Publishing Agent"}]
   }
 }
@@ -357,7 +365,7 @@ For more information about Azure RBAC, see [Role-based access control for Micros
 
 After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the activity protocol. The activity protocol is used when your agent is published to Microsoft 365 and Teams.
 
-To use your Agent Application in Microsoft 365 Copilot and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
+To use your Agent Application in Microsoft Copilot and Teams, see [Publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
 
 To publish your agent as an autopilot, see [Publish an agent as an autopilot in Agent 365](./agent-365.md)
 
@@ -378,14 +386,14 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 BASE_URL = "https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai"
 
 # Create OpenAI client authenticated with Azure credentials
-openai = OpenAI(
+client = OpenAI(
     api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
     base_url=BASE_URL,
     default_query={"api-version": "2025-11-15-preview"}
 )
 
 # Send a request to the published agent
-response = openai.responses.create( 
+response = client.responses.create( 
   input="Write a haiku", 
 ) 
 print(f"Response output: {response.output_text}")
@@ -483,7 +491,7 @@ Published agents use a publisher-pays model: the publisher (the Foundry project 
 - [Elevated-role tasks in Microsoft Foundry](../../concepts/administrator-guide.md#publish-agents) — role requirements for publishing agents.
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Learn about [Hosted agents](../concepts/hosted-agents.md)
-- Learn how to [publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
+- Learn how to [publish agents to Microsoft Copilot and Microsoft Teams](./publish-copilot.md).
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
 
 ## Next steps

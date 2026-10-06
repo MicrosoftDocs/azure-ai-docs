@@ -16,6 +16,8 @@ ms.custom: sfi-image-nochange
 
 # Troubleshoot problems during creation of a data labeling project 
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 If you have errors that occur while creating a data labeling project try the following troubleshooting steps.
 
 ## <a name="add-blob-access"></a> Add Storage Blob Data Contributor access 

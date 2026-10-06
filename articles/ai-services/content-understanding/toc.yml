@@ -46,7 +46,7 @@ items:
       displayName: quickstart, synchronous, sync, Read, Layout, REST, preview
       href: quickstart/use-synchronous-rest-api.md
     - name: Analyze a document with agentic mode (preview)
-      displayName: quickstart, agentic, reasoning, calculations, validation, REST
+      displayName: quickstart, agentic, reasoning, calculations, validation, REST, Content Understanding Studio, Agentic Extraction
       href: quickstart/agentic-mode.md
   - name: Concepts
     items:
@@ -65,6 +65,9 @@ items:
     - name: Foundry model deployments
       displayName: foundry, model, deployments
       href: concepts/models-deployments.md
+    - name: Guardrails
+      displayName: harmful content, warnings, errors, filtering, field suppression, annotate
+      href: concepts/guardrails.md
     - name: Agentic mode (preview)
       displayName: agentic, reasoning, calculations, validation, complex documents
       href: concepts/agentic-mode.md

@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: taochen
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -64,8 +65,6 @@ You'll create a workflow that:
 First, install the required packages for your .NET project:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 dotnet add package Microsoft.Agents.AI.Workflows --prerelease
 ```
@@ -88,9 +87,9 @@ public static class Program
     private static async Task Main()
     {
         // Set up the Azure AI Project client
-        var endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
-            ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
-        var deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o-mini";
+        var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+            ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+        var deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL") ?? "gpt-4o-mini";
         var aiProjectClient = new AIProjectClient(new Uri(endpoint), new AzureCliCredential());
 ```
 
@@ -105,13 +104,13 @@ Implement a helper method to create Azure Foundry agents with specific instructi
     /// <param name="targetLanguage">The target language for translation</param>
     /// <param name="aiProjectClient">The AIProjectClient to create the agent</param>
     /// <param name="model">The model to use for the agent</param>
-    /// <returns>A ChatClientAgent configured for the specified language</returns>
-    private static async Task<ChatClientAgent> GetTranslationAgentAsync(
+    /// <returns>A FoundryAgent configured for the specified language</returns>
+    private static async Task<FoundryAgent> GetTranslationAgentAsync(
         string targetLanguage,
         AIProjectClient aiProjectClient,
         string model)
     {
-        string agentName = $"{targetLanguage} Translator";
+        string agentName = $"{targetLanguage}Translator";
         var version = await aiProjectClient.AgentAdministrationClient.CreateAgentVersionAsync(
             agentName,
             new ProjectsAgentVersionCreationOptions(
@@ -175,9 +174,9 @@ Properly clean up the Azure Foundry agents after use:
 
 ```csharp
         // Cleanup the agents created for the sample.
-        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(frenchAgent.Id);
-        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(spanishAgent.Id);
-        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(englishAgent.Id);
+        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(frenchAgent.Name);
+        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(spanishAgent.Name);
+        await aiProjectClient.AgentAdministrationClient.DeleteAgentAsync(englishAgent.Name);
     }
 ```
 

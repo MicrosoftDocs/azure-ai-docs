@@ -34,7 +34,7 @@ Capability hosts are sub-resources that you configure at both the Microsoft Foun
 
 Capability hosts let you **bring your own Azure resources** instead of using the default Microsoft-managed platform resources. This gives you:
 
-- **Data sovereignty** - Keep all agent data within your Azure subscription.
+- **Data sovereignty** - Store supported agent data in your Azure subscription.
 - **Security control** - Use your own storage accounts, databases, and search services.
 - **Compliance** - Meet specific regulatory or organizational requirements.
 
@@ -48,8 +48,16 @@ If you don't create capability hosts, Agent Service automatically uses Microsoft
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
 
+Voice-based agents in Foundry can store transcripts, event timelines, and audio when you [enable conversation storage](../how-to/configure-voice-agent.md#persist-conversations). Stored conversations and Microsoft-managed audio are retained for 60 days.
+
+Voice tracing is separate. Trace retention follows the settings of the Application Insights resource connected to your project. For more information, see [Trace data and storage](../../observability/concepts/trace-data.md#where-data-is-stored).
+
 ### Bring-your-own resources
 When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For securing your agent service, see [Set up private networking for Foundry Agent Service](../how-to/virtual-networks.md).
+
+Voice-based agents support standard agent setup for conversation data. When you configure your own storage, the service also saves an additional audio copy there. The Microsoft-managed copy remains subject to the 60-day retention period.
+
+Automatic expiry of managed audio doesn't delete the customer-owned copy. Manage retention for that copy in your storage account.
 
 To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](../concepts/standard-agent-setup.md).
 

@@ -5,8 +5,10 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 <!--
@@ -61,7 +63,9 @@ Use this pattern when an agent should recall selected relevant information rathe
 
 ### Configure searchable memory
 
-Use `application_id`, `agent_id`, and `user_id` to partition memories. Add a Redis vectorizer and vector-field settings when you want hybrid retrieval.
+Searchable memory retrieval works across sessions. Every supplied `application_id`, `agent_id`, and `user_id` acts as an AND filter, while omitted dimensions remain unfiltered. You need to provide at least one identifier. Supply every stable, trusted identifier that represents an intended isolation boundary.
+
+Add a Redis vectorizer and vector-field settings when you want hybrid retrieval.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/redis/redis_basics.py" range="121-148":::
 
@@ -84,7 +88,41 @@ Attach `RedisHistoryProvider` through `context_providers`. The provider stores m
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/conversations/redis_history_provider.py" range="28-60":::
 
+### Use a caller-managed Redis client
+
+Supply `redis_client` when your application needs to share a connection pool or
+configure connection behavior such as bounded timeouts and health checks. The
+client must be a standalone asynchronous Redis client configured with
+`decode_responses=True`.
+
+```python
+from agent_framework.redis import RedisHistoryProvider
+from redis.asyncio import Redis
+
+redis_client = Redis.from_url(
+    "redis://localhost:6379",
+    decode_responses=True,
+    socket_connect_timeout=3,
+    socket_timeout=5,
+)
+
+history_provider = RedisHistoryProvider(
+    redis_client=redis_client,
+    application_id="support-app",
+)
+```
+
+Don't combine `redis_client` with `redis_url` or `credential_provider`.
+`RedisHistoryProvider` borrows the client and doesn't close it, so the
+application remains responsible for its lifetime. Retry behavior also remains
+caller-controlled. Transcript appends aren't idempotent if a retry replays a
+write after an ambiguous connection loss.
+
+Scoped keys are the default. Set a stable, nonempty `application_id`, and use `tenant_id` and `agent_id` when your application has those isolation boundaries. The provider also scopes each key by its `source_id` and a nonempty session ID.
+
 Use a stable session ID and persist the serialized `AgentSession` in trusted application storage when clients must resume the same logical conversation after a process restart.
+
+Earlier releases stored history under `{key_prefix}:{session_id or "default"}`. Existing deployments can temporarily set `key_format="legacy"` while migrating. Legacy mode is deprecated, doesn't accept scoped identifiers, and scoped mode never reads, rewrites, or deletes legacy keys. Copy only verified records into the corresponding scoped keys, validate the migrated history, and then remove legacy keys according to your retention policy.
 
 :::zone-end
 
@@ -99,7 +137,7 @@ Use a stable session ID and persist the serialized `AgentSession` in trusted app
 
 - Derive tenant, search, memory, and session scopes from authenticated application identity, not model output.
 - Use TLS, Redis authentication, and network isolation.
-- Use separate key prefixes or deployments where tenant isolation requires it.
+- For Python conversation history, set tenant, application, agent, provider source, and session scopes where those boundaries exist.
 - Configure persistence, backups, retention, and eviction for the required durability.
 - Treat retrieved memory as untrusted input and mitigate indirect prompt injection.
 - Redact sensitive content before persisting messages or indexing searchable content.

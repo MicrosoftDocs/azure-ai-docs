@@ -6,6 +6,7 @@ ms.topic: article
 ms.author: taochen
 ms.date: 05/27/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agents as Tools
@@ -36,6 +37,7 @@ Use agents as tools when:
 | **Routing is model-driven** | The outer agent's LLM decides when to call the inner agent, just like it decides when to call any tool. This means routing can be unpredictable — if the tool description is vague, the model may call the wrong agent or skip it entirely. Clear, specific descriptions are critical. |
 | **Limited visibility** | The outer agent sees the inner agent's final text response — it doesn't see the inner agent's intermediate reasoning, tool calls, or context. If you need observability into inner agent behavior, use [tracing](../agents/observability.md). |
 | **Context isolation** | The inner agent runs with its own instructions and tools. It doesn't automatically inherit the outer agent's conversation history or context. You communicate with it through the tool call arguments, just like any other function tool. |
+| **Child tool approvals** | In Python, child tool approvals can't be interactively resumed through the parent agent-as-tool call. The child's `ToolApprovalMiddleware` can use `auto_approval_rules` to make immediate decisions; unresolved child approvals fail closed. Use a workflow when approval must be interactive, delayed, external, or durable. |
 
 ## How it works
 

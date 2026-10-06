@@ -26,7 +26,7 @@ ms.custom:
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, you learn how to configure an [indexer](search-indexer-overview.md) that imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
+The *blob indexer* imports content from Azure Blob Storage and makes it searchable in Azure AI Search. The indexer receives blobs in a single container as input. The output is a search index that stores searchable content and metadata in individual fields.
 
 This article uses the [Search Service REST APIs](/rest/api/searchservice) to demonstrate how to configure and run the indexer. However, you can also use:
 
@@ -34,7 +34,7 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 + [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal
 
 > [!NOTE]
-> Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md).
+> Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata (preview)](search-blob-indexer-role-based-access.md).
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ You can use this indexer for the following tasks:
 
 + **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
 
-+ **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
++ **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments (preview)](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
 

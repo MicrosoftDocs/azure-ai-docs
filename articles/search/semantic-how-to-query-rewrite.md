@@ -8,15 +8,16 @@ ms.custom:
   - references_regions
 ms.topic: how-to
 ms.date: 04/24/2026
+ai-usage: ai-assisted
 ---
 
-# Rewrite queries with semantic ranker in Azure AI Search (Preview)
+# Rewrite queries with semantic ranker in Azure AI Search (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-Query rewriting is the process of transforming a user's query into a more effective one, adding more terms and refining search results. The search service sends the search query (or a variation of it) to a generative model that generates alternative queries. 
+Query rewriting (preview) is the process of transforming a user's query into a more effective one, adding more terms and refining search results. The search service sends the search query (or a variation of it) to a generative model that generates alternative queries. 
 
 Query rewriting improves results from [semantic ranking](search-get-started-semantic.md) by correcting typos or spelling errors in user queries, and expanding queries with synonyms.
 

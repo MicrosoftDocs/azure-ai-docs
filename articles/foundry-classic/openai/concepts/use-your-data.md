@@ -7,7 +7,7 @@ ms.subservice: foundry-openai
 ms.topic: concept-article
 author: aahill
 ms.author: aahi
-ms.date: 02/06/2026
+ms.date: 09/10/2026
 recommendations: false
 ai-usage: ai-assisted
 ms.custom: references_regions, ignite-2024
@@ -261,7 +261,7 @@ You can connect to your [Elasticsearch vector database](https://www.elastic.co/g
 * An embedding model. You can:
     * Use an existing Azure OpenAI `text-embedding-ada-002` embedding model, or  
     * Bring your own embedding model hosted on Elasticsearch.
-* Prepare your data using the python notebook available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/notebooks/AzureOpenAI_OnYourData_Elasticsearch.ipynb). 
+* Prepare your data by using the Python notebook available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/notebooks/AzureOpenAI_OnYourData_Elasticsearch.ipynb). 
 
 ### Request access
 
@@ -271,13 +271,13 @@ Using the Elasticsearch data source is a preview feature which is subject to the
 
 1. Set up [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html) and get your connection information. 
 
-    You need to enter your [Elasticsearch endpoint](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-request-elasticsearch-endpoint.html) and encoded API key to connect with your Elasticsearch database. Then, click **verify connection**. 
+    Enter your [Elasticsearch endpoint](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-request-elasticsearch-endpoint.html) and encoded API key to connect to your Elasticsearch database. Then, select **verify connection**. 
 
     :::image type="content" source="../media/use-your-data/connect-elasticsearch.png" alt-text="A screenshot showing the connection screen for Elasticsearch." lightbox="../media/use-your-data/connect-elasticsearch.png":::
 
 1. Select the index you want to connect with. 
 
-1. (optional) use a custom field mapping.  
+1. (Optional) Use a custom field mapping.  
 
     You can [customize the field mapping](#index-field-mapping-2) when you add your data source to define the fields that will get mapped when answering questions, or use the default values.  
 
@@ -443,7 +443,7 @@ Use the following sections to learn how to improve the quality of responses give
 
 ### Ingestion parameter
 
-When your data is ingested into to Azure AI Search, You can modify the following additional settings in either the studio or [ingestion API](/rest/api/azureopenai/ingestion-jobs/create#request-body).
+When your data is ingested into to Azure AI Search, you can modify the following additional settings in either the studio or [ingestion API](/rest/api/azureopenai/ingestion-jobs/create#request-body).
 
 ### Chunk size (preview)
 
@@ -540,7 +540,7 @@ Avoid asking long questions and break them down into multiple questions if possi
 
 * We recommend using a system message to inform the model that your data is in another language. For example:
 
-*   *"**You are an AI assistant designed to help users extract information from retrieved Japanese documents. Please scrutinize the Japanese documents carefully before formulating a response. The user's query will be in Japanese, and you must response also in Japanese."*
+*   *"**You are an AI assistant designed to help users extract information from retrieved Japanese documents. Please scrutinize the Japanese documents carefully before formulating a response. The user's query will be in Japanese, and you must respond also in Japanese."*
 
 * If you have documents in multiple languages, we recommend building a new index for each language and connecting them separately to Azure OpenAI.  
 
@@ -580,7 +580,7 @@ Some Azure OpenAI models allow you to define [tools and tool_choice parameters](
 1. If `tool_choice` is `none`, the tools are ignored, and only the data sources are used to generate the answer.
 1. Otherwise, if `tool_choice` is not specified, or specified as `auto` or an object, the data sources are ignored, and the response will contain the selected functions name and the arguments, if any. Even if the model decides no function is selected, the data sources are still ignored.
 
-If the policy above doesn't meet your need, please consider other options, for example: [prompt flow](/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow) or [Assistants API](../how-to/assistant.md).
+If the preceding policy doesn't meet your needs, consider [prompt flow](/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow).
 
 ## Token usage estimation for Azure OpenAI On Your Data
 

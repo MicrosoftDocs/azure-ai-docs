@@ -131,7 +131,7 @@ Voice Live session parameters control how the harness processes audio and how th
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `model` | string | `gpt-realtime` | The Voice Live model to use. Options include `gpt-realtime`, `gpt-5.6-terra`, `gpt-5`, `gpt-5-mini`, and `phi4-mm-realtime`. |
+| `model` | string | `gpt-realtime` | The Voice Live model to use. For the complete list, including preview models, see [Supported models and regions](./voice-live.md#supported-models-and-regions). |
 | `voice` | string | `en-US-Ava:DragonHDLatestNeural` | The Azure text to speech voice. HD voices use the `:DragonHDLatestNeural` suffix. |
 | `vad_type` | string | `azure_semantic_vad_multilingual` | The turn detection type. Options include `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
 | `use_eou_detection` | bool | `true` | When set to `true`, enables semantic end-of-utterance detection. |

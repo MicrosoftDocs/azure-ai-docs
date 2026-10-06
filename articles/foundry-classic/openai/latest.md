@@ -6502,7 +6502,7 @@ This component uses the property `type` to discriminate between different types:
 |------|------|-------------|----------|---------|
 | file_search | [OpenAI.AssistantToolsFileSearchFileSearch](#openaiassistanttoolsfilesearchfilesearch) |  | No |  |
 | └─ max_num_results | integer | **Constraints:** min: 1, max: 50 | No |  |
-| └─ ranking_options | [OpenAI.FileSearchRankingOptions](#openaifilesearchrankingoptions) | The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0.<br>See the [file search tool documentation](https://platform.openai.com/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | No |  |
+| └─ ranking_options | [OpenAI.FileSearchRankingOptions](#openaifilesearchrankingoptions) | The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0. | No |  |
 | type | enum | The type of tool being defined: `file_search`<br>Possible values: `file_search` | Yes |  |
 
 ### OpenAI.AssistantToolsFileSearchFileSearch
@@ -6510,7 +6510,7 @@ This component uses the property `type` to discriminate between different types:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | max_num_results | integer | **Constraints:** min: 1, max: 50 | No |  |
-| ranking_options | [OpenAI.FileSearchRankingOptions](#openaifilesearchrankingoptions) | The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0.<br>See the [file search tool documentation](https://platform.openai.com/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | No |  |
+| ranking_options | [OpenAI.FileSearchRankingOptions](#openaifilesearchrankingoptions) | The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0. | No |  |
 
 ### OpenAI.AssistantToolsFileSearchTypeOnly
 
@@ -9096,7 +9096,6 @@ The ranker to use for the file search. If not specified will use the `auto` rank
 ### OpenAI.FileSearchRankingOptions
 
 The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0.
-See the [file search tool documentation](https://platform.openai.com/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

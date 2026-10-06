@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 07/28/2026
 ms.update-cycle: 180-days
+ai-usage: ai-assisted
 ---
 
 # Define an index projection for parent-child indexing
@@ -162,7 +163,7 @@ Index projections are generally available. We recommend the most recent stable A
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
 
-If the parent document carries permission metadata for document-level access, such as `metadata_user_ids`, `metadata_group_ids`, or `metadata_spo_site_url`, include those fields in `mappings`. Every chunk must inherit them for query-time permission filters to apply. For more information, see [Choose where to populate ACL fields](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
+If the parent document carries permission metadata for document-level access, such as `metadata_user_ids`, `metadata_group_ids`, or `metadata_spo_site_url`, include those fields in `mappings`. Every chunk must inherit them for query-time permission filters to apply. For more information, see [Choose where to populate ACL fields (preview)](search-indexer-sharepoint-access-control-lists.md#choose-where-to-populate-acl-fields).
 
 ```json
 "indexProjections": {

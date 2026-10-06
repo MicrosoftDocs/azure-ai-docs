@@ -4,18 +4,19 @@ description: "Learn how to inspect preview model router metadata for routing att
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/09/2026
+ms.date: 09/15/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 # Monitor model router in Microsoft Foundry
 
-Observability helps you understand how model router handles requests, verify routing behavior, and investigate latency, errors, and fallback. Request-level signals complement aggregate metrics and logs, giving developers and operators context to evaluate application performance.
+Model router observability helps you verify routing behavior and investigate latency, errors, fallback, and session affinity for individual requests. The preview metadata includes a `routing_trace` that describes model attempts and a `session_affinity` object that describes whether model router initialized, retained, or switched a model association.
 
-This article covers the per-request routing metadata preview for the Chat Completions API. The metadata identifies the serving model and describes routing attempts for an individual request. For aggregate metrics and logs, see [Monitor model deployments](../../foundry-models/how-to/monitor-models.md).
+Both signals appear in the optional `model_selection_details` response object for the Chat Completions API. These request-level signals complement aggregate metrics and logs. For aggregate monitoring, see [Monitor model deployments](../../foundry-models/how-to/monitor-models.md).
 
 ## Prerequisites
 
@@ -25,7 +26,7 @@ This article covers the per-request routing metadata preview for the Chat Comple
 - The endpoint and API key for your Azure OpenAI resource. The complete sample reads them from the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables.
 - Azure OpenAI API version `2024-10-21`.
 
-## Enable per-request routing metadata
+## Enable request-level metadata
 
 After your application reads the endpoint and API key into `endpoint` and `api_key`, create the client with the preview feature header:
 
@@ -33,26 +34,32 @@ After your application reads the endpoint and API key into `endpoint` and `api_k
 
 The `Foundry-Features: ModelRouterControls=V1Preview` header requests per-request routing metadata. Because this feature is in preview, the metadata presence and response schema can vary by request and service version.
 
-## Send a Chat Completions request
+- Reference: [`AzureOpenAI` class](https://github.com/openai/openai-python/blob/main/src/openai/lib/azure.py)
 
-Use the model router deployment name to send a request. The response includes the completion and, when available, the per-request routing metadata:
+## Understand the response envelope
 
-```python
-response = client.chat.completions.create(
-   model=deployment,
-   messages=[
-      {"role": "system", "content": "You are a helpful assistant."},
-      {
-         "role": "user",
-         "content": "In one sentence, name the most popular tourist destination in Seattle.",
-      },
-   ],
-)
-```
+Use the top-level `model` field and the optional `model_selection_details` object together to understand how the model router handled a request:
 
-## Understand routing metadata
+| Field | What it describes |
+| --- | --- |
+| `model` | The underlying model that served the response. |
+| `model_selection_details.model_router_details.mode` | The routing mode used for the request. |
+| `model_selection_details.model_router_details.routing_trace` | Ordered model attempts, routing latency, status, and optional errors. |
+| `model_selection_details.model_router_details.session_affinity` | The affinity mode, session ID source, and final association decision. |
 
-The following `model_selection_details` fragment illustrates a request with two ordered model attempts:
+The `model_selection_details` envelope and each child field are optional during preview. Parse fields defensively, and tolerate additional fields in future service versions. Don't infer routing or affinity details when the corresponding field is absent.
+
+## Inspect routing attempts and fallback
+
+Send a Chat Completions request through the model router deployment. The response includes the completion and, when available, routing metadata:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-observability.py" id="response_observability_request":::
+
+- Reference: [Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+
+### Review the routing trace
+
+The following illustrative `model_selection_details` fragment contains two ordered model attempts:
 
 ```json
 {
@@ -94,19 +101,51 @@ The following `model_selection_details` fragment illustrates a request with two 
 - Each attempt contains a model and an HTTP status in `result.status`.
 - A failed attempt can include an optional `error` with a code and message.
 
-## Extract routing and fallback information
+### Parse routing and fallback information
 
 After the Chat Completions request returns `response`, inspect the serving model and model selection details:
 
 :::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-observability.py" id="response_observability_extract":::
 
-Ordered attempts can reveal automatic fallback for an individual request. In the example response, the failed attempt followed by a successful attempt is evidence of fallback for that request. Requests don't always include multiple attempts, so don't expect fallback on every request.
+The parsing code produces output similar to the following example for the illustrative routing trace:
 
-For complete application setup and runnable examples, see the [Foundry Model Router samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/foundry-models/model-router).
+```output
+--- Chat Completions Response ---
+Response:Pike Place Market is Seattle's most popular tourist destination.
+Usage: 29 prompt + 278 completion = 307 total tokens
+
+Routed to model: example-model-b
+--- Model Selection Details ---
+Routing mode: balanced
+Routing decision 1 (latency: 19 ms)
+   Attempt 1: example-model-a - HTTP 404 (failed)
+      Error: NotFound - The request failed.
+   Attempt 2: example-model-b - HTTP 200 (selected)
+```
+
+Ordered attempts can reveal automatic fallback for an individual request. In this example, the failed attempt followed by a successful attempt is evidence of fallback. Requests don't always include multiple attempts, and an attempt can omit `error`. Model names, HTTP statuses, attempt counts, and latency can vary by request and service version.
 
 ## Interpret session affinity metadata
 
-When you enable the Chat Completions session affinity preview, `model_router_details` can include a `session_affinity` object. The following response fragment shows a request that retained its associated model:
+Session affinity asks the model router to try the same eligible model for related Chat Completions requests. Configure an opaque, application-owned session ID and use the same value across conversation turns:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_enable":::
+
+For session ID validation, expiration, and disable behavior, see [Keep Chat Completions requests on the same model](model-router.md#keep-chat-completions-requests-on-the-same-model-preview).
+
+- Reference: [`AzureOpenAI` class](https://github.com/openai/openai-python/blob/main/src/openai/lib/azure.py)
+
+### Send related conversation turns
+
+Send the first request, append its response and a new user message to the conversation history, and send the next request with the same session affinity configuration:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_turns":::
+
+- Reference: [Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+
+### Review session affinity metadata
+
+The first successful request for a new session ID typically returns an `initialize` decision. The following illustrative response shows that result:
 
 ```json
 {
@@ -117,14 +156,14 @@ When you enable the Chat Completions session affinity preview, `model_router_det
          "session_affinity": {
             "mode": "sticky",
             "source": "session_id_payload",
-            "decision": "retain"
+            "decision": "initialize"
          }
       }
    }
 }
 ```
 
-Interpret the fields as follows:
+Interpret the feature-specific fields as follows:
 
 | Field | Value | Meaning |
 | --- | --- | --- |
@@ -134,7 +173,39 @@ Interpret the fields as follows:
 | `decision` | `retain` | The associated model served the response. |
 | `decision` | `switch` | A different model served because of eligibility or fallback. |
 
-When `decision` is `switch`, inspect `routing_trace` and the top-level `model` field together. The following fragment shows an associated model that returned a retryable response before fallback selected another model:
+### Parse the affinity decision
+
+Inspect the optional `session_affinity` object for each response:
+
+:::code language="python" source="~/foundry-samples-main/samples/python/foundry-models/model-router/model-router-chat-completions-session-affinity.py" id="session_affinity_extract":::
+
+A typical two-turn run produces output similar to the following example:
+
+```output
+--- First turn ---
+Serving model: example-model-a
+Routing mode: balanced
+Affinity mode: sticky
+Affinity source: session_id_payload
+Affinity decision: initialize
+Response:
+<first-response>
+
+--- Second turn ---
+Serving model: example-model-a
+Routing mode: balanced
+Affinity mode: sticky
+Affinity source: session_id_payload
+Affinity decision: retain
+Response:
+<second-response>
+```
+
+If affinity lookup or persistence isn't available, inference continues through normal routing and the response omits the complete `session_affinity` object. Don't infer an affinity decision when the object or `decision` field is absent.
+
+### Diagnose an affinity switch
+
+The `session_affinity` and `routing_trace` signals complement each other and can appear in the same response. When `decision` is `switch`, check the top-level `model` field to identify the serving model and `routing_trace` to understand the attempts or fallback that caused the change:
 
 ```json
 {
@@ -167,31 +238,9 @@ When `decision` is `switch`, inspect `routing_trace` and the top-level `model` f
 }
 ```
 
-If affinity lookup or persistence isn't available, inference continues through normal routing and the response omits the complete `session_affinity` object. Don't infer an affinity decision when the object or `decision` field is absent.
+In this example, the associated model returns a retryable response before fallback selects another model. Session affinity works on a best-effort basis: it doesn't prevent normal fallback or guarantee that related requests use the same model.
 
-## Interpret the results
-
-The following output shows the response and routing metadata for an example request:
-
-```text
---- Chat Completions Response ---
-Response:Pike Place Market is Seattle's most popular tourist destination.
-Usage: 29 prompt + 278 completion = 307 total tokens
-
-Routed to model: gpt-5-mini-2025-08-07
---- Model Selection Details ---
-Routing mode: balanced
-Routing decision 1 (latency: 19 ms)
-   Attempt 1: grok-4-1-fast-reasoning - HTTP 404 (failed)
-      Error: NotFound - The request failed with HTTP status code 404 (NotFound).
-   Attempt 2: gpt-5-mini - HTTP 200 (selected)
-```
-
-- If `model_selection_details` is absent, the sample reports that no model selection details were returned. Don't infer routing details that aren't present.
-- If `routing_trace` is empty, the sample reports that no routing trace was returned.
-- An attempt can omit `error`. The extraction code prints an error only when the response includes one.
-- Model names, HTTP statuses, attempt counts, and reported latency can vary by request and service version.
-- `response.model` identifies the serving model for the demonstrated request.
+For complete application setup and runnable examples, see the [Foundry Model Router samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/foundry-models/model-router).
 
 ## Related content
 

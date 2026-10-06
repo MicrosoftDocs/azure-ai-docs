@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: reference
 ms.date: 06/25/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)
@@ -44,7 +45,7 @@ These skills are billed at the Standard rate.
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
-| [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Azure Vision multimodal embeddings (preview)](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Looks for text from a custom, user-defined list of words and phrases.| Azure AI Search ([pricing](https://azure.microsoft.com/pricing/details/search/)) |
 | [Entity Linking](cognitive-search-skill-entity-linking-v3.md) | This skill uses a pretrained model to generate links for recognized entities to articles in Wikipedia. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | This skill uses a pretrained model to establish entities for a fixed set of categories: `"Person"`, `"Location"`, `"Organization"`, `"Quantity"`, `"DateTime"`, `"URL"`, `"Email"`, `"PersonType"`, `"Event"`, `"Product"`, `"Skill"`, `"Address"`, `"Phone Number"` and `"IP Address"` fields. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |

@@ -170,7 +170,7 @@ items:
         href: vector-search-how-to-generate-embeddings.md
       - name: Use integrated vectorization
         href: search-how-to-integrated-vectorization.md
-      - name: Use embedding models from Microsoft Foundry
+      - name: Use embedding models from Microsoft Foundry (preview)
         href: vector-search-integrated-vectorization-ai-studio.md
       - name: Use Azure API Management with Azure OpenAI skills and vectorizers
         href: search-how-to-configure-azure-openai-api-management.md
@@ -198,7 +198,7 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
-      - name: Indexer execution on Serverless and S3 HD
+      - name: Indexer execution on Serverless and S3 HD (preview)
         href: search-indexer-high-density-serverless-overview.md
       - name: Create and manage
         items:
@@ -330,9 +330,9 @@ items:
         href: cognitive-search-tutorial-debug-sessions.md
     - name: Enrichment caches
       items:
-      - name: Configure an enrichment cache
+      - name: Configure an enrichment cache (preview)
         href: enrichment-cache-how-to-configure.md
-      - name: Manage an enrichment cache
+      - name: Manage an enrichment cache (preview)
         href: enrichment-cache-how-to-manage.md
     - name: Knowledge stores
       items:
@@ -380,7 +380,7 @@ items:
         href: search-query-create.md
       - name: Add autocomplete and suggestions
         href: search-add-autocomplete-suggestions.md
-      - name: Add spell check
+      - name: Add spell check (preview)
         href: speller-how-to-add.md
       - name: Sample queries (simple syntax)
         href: search-query-simple-examples.md
@@ -422,7 +422,7 @@ items:
         href: vector-search-filters.md
       - name: Add a vectorizer
         href: vector-search-how-to-configure-vectorizer.md
-      - name: Use a multi-vector field
+      - name: Use a multi-vector field (preview)
         href: vector-search-multi-vector-fields.md
     - name: Hybrid search
       items:
@@ -466,7 +466,7 @@ items:
         href: semantic-how-to-configure.md
       - name: Add semantic ranking to queries
         href: semantic-how-to-query-request.md
-      - name: Rewrite queries with semantic ranker
+      - name: Rewrite queries with semantic ranker (preview)
         href: semantic-how-to-query-rewrite.md
       - name: Enable scoring profiles in semantic ranker
         href: semantic-how-to-enable-scoring-profiles.md
@@ -608,7 +608,7 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
-      - name: Troubleshoot SharePoint permission filtering
+      - name: Troubleshoot SharePoint permission filtering (preview)
         href: troubleshoot-sharepoint-query-permission-filtering.md
     - name: Microsoft Purview sensitivity labels (preview)
       items:
@@ -758,7 +758,7 @@ items:
       href: query-simple-syntax.md
     - name: Full Lucene query syntax
       href: query-lucene-syntax.md
-    - name: moreLikeThis
+    - name: moreLikeThis (preview)
       href: search-more-like-this.md
     - name: OData language
       items:
@@ -796,7 +796,7 @@ items:
       items:
       - name: Microsoft Foundry resource
         items:
-        - name: Azure Vision multimodal embeddings
+        - name: Azure Vision multimodal embeddings (preview)
           href: cognitive-search-skill-vision-vectorize.md
         - name: Document Layout
           href: cognitive-search-skill-document-intelligence-layout.md
@@ -857,11 +857,11 @@ items:
         href: cognitive-search-skill-sentiment.md
   - name: Vectorizers
     items:
-    - name: Microsoft Foundry model catalog
+    - name: Microsoft Foundry model catalog (preview)
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Azure OpenAI
       href: vector-search-vectorizer-azure-open-ai.md
-    - name: Azure Vision
+    - name: Azure Vision (preview)
       href: vector-search-vectorizer-ai-services-vision.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md

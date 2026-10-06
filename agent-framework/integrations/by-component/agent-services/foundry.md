@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: edvan
 ms.date: 07/28/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -36,11 +37,9 @@ For direct model inference where your application owns the agent definition, see
 
 :::zone pivot="programming-language-csharp"
 
-## Install the packages
+## Install the package
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 
@@ -49,6 +48,7 @@ dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 Create an `AIProjectClient` for the Foundry project and wrap an `AgentReference` as a `FoundryAgent`. Pin the version when the application must use a specific Prompt Agent definition.
 
 ```csharp
+using Azure.AI.Extensions.OpenAI;
 using Azure.AI.Projects;
 using Azure.AI.Projects.Agents;
 using Azure.Identity;
@@ -108,7 +108,7 @@ pip install agent-framework-foundry
 ## Configuration
 
 ```bash
-FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
+FOUNDRY_PROJECT_ENDPOINT="https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
 FOUNDRY_AGENT_NAME="my-agent"
 FOUNDRY_AGENT_VERSION="1.0"
 ```
@@ -192,7 +192,7 @@ from agent_framework.foundry import FoundryAgent
 from azure.identity import AzureCliCredential
 
 agent = FoundryAgent(
-    project_endpoint="https://your-project.services.ai.azure.com",
+    project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
     agent_name="my-prompt-agent",
     credential=AzureCliCredential(),
     timeout=120.0,

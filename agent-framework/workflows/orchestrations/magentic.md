@@ -66,9 +66,9 @@ using Microsoft.Agents.AI.Workflows;
 using Microsoft.Agents.AI.Workflows.Specialized.Magentic;
 using Microsoft.Extensions.AI;
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
-    ?? throw new InvalidOperationException("AZURE_AI_PROJECT_ENDPOINT is not set.");
-string deploymentName = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5.4-mini";
+string endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
+    ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set.");
+string deploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL") ?? "gpt-5.4-mini";
 
 AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
 
@@ -178,6 +178,15 @@ workflow = MagenticBuilder(
 > When you customize the initial fact sheet or plan prompts, also customize the corresponding update prompts so replanning preserves your format. A custom `progress_ledger_prompt` must preserve the built-in JSON response schema.
 >
 > For the prompt parameters and their available placeholders, see the [custom manager prompts sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/magentic_custom_prompts.py). To further customize the manager, subclass `MagenticManagerBase`.
+
+The Python builder's manager options have different ownership behavior:
+
+- `manager_agent` creates a new `StandardMagenticManager` for each workflow while sharing the supplied agent.
+- `manager_agent_factory` and `manager_factory` run once for each call to `build()`.
+- `manager` shares the supplied manager instance across workflows.
+
+> [!WARNING]
+> Don't share a stateful explicit `manager` across concurrent or interleaved workflows. Use `manager_factory` to give each workflow isolated manager state.
 
 ::: zone-end
 

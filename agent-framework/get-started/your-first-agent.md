@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 1: Your First Agent
@@ -16,8 +17,6 @@ Create an agent and get a response — in just a few lines of code.
 :::zone pivot="programming-language-csharp"
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 
@@ -66,18 +65,44 @@ await foreach (var update in agent.RunStreamingAsync("Tell me a one-sentence fun
 :::zone pivot="programming-language-python"
 
 ```bash
-pip install agent-framework azure-identity
+pip install agent-framework-foundry azure-identity
 ```
 
-Create and run an agent:
+The `agent-framework-foundry` package installs `agent-framework-core` with the Microsoft Foundry integration. The `agent-framework` metapackage also installs `agent-framework-core`, together with many other optional integrations.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="create_agent" highlight="8-11":::
+Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az login`. In the following example, replace `project_endpoint` with your Microsoft Foundry project endpoint and `model` with your model deployment name.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent" highlight="2":::
+Save the complete example as `hello_agent.py`:
 
-Or stream the response:
+```python
+import asyncio
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent_streaming" highlight="3-5":::
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(
+            project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
+            model="gpt-6-luna",
+            credential=AzureCliCredential(),
+        ),
+        instructions="You are a friendly assistant. Keep your answers brief.",
+    )
+    print(await agent.run("What is the largest city of France?"))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Run the example:
+
+```bash
+python hello_agent.py
+```
 
 > [!NOTE]
 > Agent Framework does **not** automatically load `.env` files. To use a `.env` file for configuration, call `load_dotenv()` at the start of your script:

@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: zhanxia
-ms.date: 09/18/2025
+ms.date: 09/17/2026
 ms.topic: how-to
 ms.custom: devplatv2, pipeline, devx-track-azurecli, update-code6
 ---
@@ -262,24 +262,29 @@ az ml job create -f ./pipeline.yml --set outputs.pipeline_job_trained_model.path
 The following code demonstrates how to customize output paths and is from the [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb) notebook:
 
 ```python
-from azure.ai.ml import dsl, Output
+from azure.ai.ml import Input, Output, load_component
+from azure.ai.ml.dsl import pipeline
 
 # Load component functions
 components_dir = "./components/"
 helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
 
+# Define the custom output path using a datastore URI
+# add the relative path in your blob container after "azureml://datastores/<datastore_name>/paths"
+custom_path = "azureml://datastores/workspaceblobstore/paths/custom_path/${{name}}/"
+
 @pipeline()
-def register_node_output():
+def customize_output_path():
   # Call component obj as function: apply given inputs & parameters to create a node in pipeline
   node = helloworld_component(component_in_path=Input(
     type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))
 
-  # Define name and version to register node output
-  node.outputs.component_out_path.name = 'node_output'
-  node.outputs.component_out_path.version = '1'
+  # Set a custom path for the node output
+  node.outputs.component_out_path = Output(
+    type="uri_folder", mode="rw_mount", path=custom_path)
 
-pipeline = register_node_output()
-pipeline.settings.default_compute = "azureml:cpu-cluster"
+pipeline_job = customize_output_path()
+pipeline_job.settings.default_compute = "azureml:cpu-cluster"
 ```
 
 # [Studio UI](#tab/ui)
@@ -313,6 +318,9 @@ az ml job download --output-name <OUTPUT_PORT_NAME> -n <JOB_NAME> -g <RESOURCE_G
 First, create and initialize `ml_client` as a handle to reference your workspace. For more information, see [Create a handle to the workspace](tutorial-explore-data.md#create-a-handle-to-the-workspace).
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+
 # Set your subscription, resource group and workspace name:
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
@@ -327,11 +335,16 @@ ml_client = MLClient(
 Download all the outputs of a job or download a specific output.
 
 ```python
-# Download all the outputs of the job
-output = client.jobs.download(name=job.name, download_path=tmp_path, all=True)
+# Specify the pipeline job name, a local download path, and the output port name
+job_name = "<JOB_NAME>"
+download_path = "./pipeline_output"
+output_port_name = "<OUTPUT_PORT_NAME>"
 
-# Download specific output
-output = client.jobs.download(name=job.name, download_path=tmp_path, output_name=output_port_name)
+# Download all the outputs of the job
+output = ml_client.jobs.download(name=job_name, download_path=download_path, all=True)
+
+# Download a specific output
+output = ml_client.jobs.download(name=job_name, download_path=download_path, output_name=output_port_name)
 ```
 
 # [Studio UI](#tab/ui)
@@ -364,6 +377,9 @@ az ml job download --all -n <JOB_NAME> -g <RESOURCE_GROUP_NAME> -w <WORKSPACE_NA
 First, create and initialize `ml_client` as a handle to reference your workspace. For more information, see [Create a handle to the workspace](tutorial-explore-data.md#create-a-handle-to-the-workspace).
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+
 # Set your subscription, resource group and workspace name:
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
@@ -378,12 +394,15 @@ ml_client = MLClient(
 To download the outputs of a child component, first list all child jobs of a pipeline job and then use similar code to download the outputs.
 
 ```python
+# Specify the parent pipeline job name
+job_name = "<JOB_NAME>"
+
 # List all child jobs in the job
-child_jobs = client.jobs.list(parent_job_name=job.name)
+child_jobs = ml_client.jobs.list(parent_job_name=job_name)
 
 # Traverse and download all the outputs of child job
 for child_job in child_jobs:
-    client.jobs.download(name=child_job.name, all=True)
+    ml_client.jobs.download(name=child_job.name, all=True)
 ```
 
 # [Studio UI](#tab/ui)
@@ -427,7 +446,8 @@ settings:
 # [Python SDK](#tab/python)
 
 ```python
-from azure.ai.ml import dsl, Output
+from azure.ai.ml import Input, load_component
+from azure.ai.ml.dsl import pipeline
 
 # Load component functions
 components_dir = "./components/"
@@ -443,66 +463,67 @@ def register_pipeline_output():
       'component_out_path': node.outputs.component_out_path
   }
 
-yamle = register_pipeline_output()
-display_name: register_node_outputter pipeline output
-type: pipelinengs.default_compute = "azureml:cpu-cluster"
-jobs:ine.outputs.component_out_path.name = 'pipeline_output'
-  node:e.outputs.component_out_path.version = '1'
+pipeline_job = register_pipeline_output()
+# Define name and version to register pipeline output
+pipeline_job.settings.default_compute = "azureml:cpu-cluster"
+pipeline_job.outputs.component_out_path.name = 'pipeline_output'
+pipeline_job.outputs.component_out_path.version = '1'
+```
+
+# [Studio UI](#tab/ui)
+
+On the **Overview** tab for a pipeline job, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
+
+:::image type="content" source="./media/how-to-manage-pipeline-input-output/register-output.png" alt-text="Screenshot showing how to register output from a pipeline job.":::
+
+---
+
+### Register component output
+
+# [Azure CLI](#tab/cli)
+
+```yaml
+display_name: register_node_output
+type: pipeline
+jobs:
+  node:
     type: command
     component: ../components/helloworld_component.yml
-    inputs:I](#tab/ui)
+    inputs:
       component_in_path:
-        type: uri_fileb for a pipeline job, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
+        type: uri_file
         path: 'https://dprepdata.blob.core.windows.net/demo/Titanic.csv'
-    outputs:e="content" source="./media/how-to-manage-pipeline-input-output/register-output.png" alt-text="Screenshot showing how to register output from a pipeline job.":::
+    outputs:
       component_out_path:
         type: uri_folder
         name: 'node_output'  # Define name and version to register a child job's output
-        version: '1'nt output
+        version: '1'
 settings:
   default_compute: azureml:cpu-cluster
 ```
-```yaml
-# [Python SDK](#tab/python)_output
-type: pipeline
+
+# [Python SDK](#tab/python)
+
 ```python
-from azure.ai.ml import dsl, Output
-    type: command
-# Load component functionsts/helloworld_component.yml
+from azure.ai.ml import Input, load_component
+from azure.ai.ml.dsl import pipeline
+
+# Load component functions
 components_dir = "./components/"
 helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
-        type: uri_file
-@pipeline()h: 'https://dprepdata.blob.core.windows.net/demo/Titanic.csv'
+
+@pipeline()
 def register_node_output():
   # Call component obj as function: apply given inputs & parameters to create a node in pipeline
   node = helloworld_component(component_in_path=Input(
-    type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))t
-        version: '1'
+    type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))
+
   # Define name and version to register node output
   node.outputs.component_out_path.name = 'node_output'
   node.outputs.component_out_path.version = '1'
 
-pipeline = register_node_output()
-pipeline.settings.default_compute = "azureml:cpu-cluster"
-```python
-from azure.ai.ml import dsl, Output
-# [Studio UI](#tab/ui)
-# Load component functions
-On the **Overview** tab for a component, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
-helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
----
-@pipeline()
-## Related contentoutput():
-  # Call component obj as function: apply given inputs & parameters to create a node in pipeline
-- [YAML reference for pipeline job](./reference-yaml-job-pipeline.md)
-- [How to debug pipeline failure](./how-to-debug-pipeline-failure.md)mo/Titanic.csv'))
-- [Schedule a pipeline job](./how-to-schedule-pipeline-job.md)
-- [Deploy a pipeline with batch endpoints (preview)](./how-to-use-batch-pipeline-deployments.md)
-  node.outputs.component_out_path.name = 'node_output'
-  node.outputs.component_out_path.version = '1'
-
-pipeline = register_node_output()
-pipeline.settings.default_compute = "azureml:cpu-cluster"
+pipeline_job = register_node_output()
+pipeline_job.settings.default_compute = "azureml:cpu-cluster"
 ```
 
 # [Studio UI](#tab/ui)

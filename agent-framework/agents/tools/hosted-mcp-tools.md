@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: reference
 ms.author: evmattso
-ms.date: 07/01/2026
+ms.date: 09/23/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Using hosted MCP tools with agents
@@ -244,6 +245,8 @@ async def multi_tool_mcp_example():
 if __name__ == "__main__":
     asyncio.run(multi_tool_mcp_example())
 ```
+
+Use `allowed_tools` to control whether the hosted service receives an MCP tool filter. Omit the argument, or pass `None`, to omit the filter. Pass `[]` to send an explicit empty allowlist, or pass tool names to allow only those tools. This distinction applies to hosted MCP tools created by both `FoundryChatClient` and `OpenAIChatClient`.
 
 The Python Agent Framework provides seamless integration with Foundry's hosted MCP capabilities, enabling secure and scalable access to external tools while maintaining the flexibility and control needed for production applications.
 

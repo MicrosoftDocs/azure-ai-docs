@@ -6,10 +6,11 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 02/25/2026
+ms.date: 09/09/2026
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn how to integrate personal voice in my application.
+ai-usage: ai-assisted
 ---
 
 # Use personal voice in your application
@@ -95,7 +96,7 @@ For detailed information on the supported and unsupported SSML elements for Phoe
 
 ## Supported and unsupported SDK features for personal voice
 
-The following table outlines which SDK features are supported for Phoenix and Dragon models. For details on how to utilize these SDK features in your applications, refer to [Subscribe to synthesizer events](how-to-speech-synthesis.md#subscribe-to-synthesizer-events).
+The following table outlines which SDK features are supported for Phoenix and Dragon models. For a Python example, see [Subscribe to synthesizer events](how-to-speech-synthesis.md?pivots=programming-language-python#subscribe-to-synthesizer-events).
 
 | **SDK features**  | **Description**                                                | **Supported in Phoenix** | **Supported in Dragon** |
 | ----------------- | -------------------------------------------------------------- | ------------------------ | ----------------------- |
@@ -110,4 +111,4 @@ The following table outlines which SDK features are supported for Phoenix and Dr
 ## Next steps
 
 - Learn more about custom voice in the [overview](custom-neural-voice.md).
-- Explore the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) to create and manage your personal voice project, or use [Speech Studio](https://aka.ms/speechstudio/) for the demo experience.
+- Explore [Foundry (new)](https://ai.azure.com/nextgen?cid=learnDocs) to create and manage a personal voice customization, or use [Speech Studio](https://aka.ms/speechstudio/) for the demo experience.

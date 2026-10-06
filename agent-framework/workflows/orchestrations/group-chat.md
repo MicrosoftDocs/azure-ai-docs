@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 07/01/2026
+ms.date: 10/06/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -681,9 +682,25 @@ Calling `WithOutputFrom` or `WithIntermediateOutputFrom` on the group chat build
 ::: zone-end
 ## Context Synchronization
 
-As mentioned at the beginning of this guide, all agents in a group chat see the full conversation history.
+As mentioned at the beginning of this guide, all agents in a group chat see the synchronized conversation history.
 
-Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concepts/agents/conversations/session.md)) to manage context. In a group chat orchestration, agents **do not** share the same session instance, but the orchestrator ensures that each agent's session is synchronized with the complete conversation history before each turn. To achieve this, after each agent's turn, the orchestrator broadcasts the response to all other agents, making sure all participants have the latest context for their next turn.
+Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concepts/agents/conversations/session.md)) to manage context. In a group chat orchestration, agents **don't** share the same session instance, but the orchestrator synchronizes each agent's session with the conversation history before each turn. The orchestrator broadcasts the response to all other agents after each agent's turn, ensuring all participants have the latest context for their next turn.
+
+::: zone pivot="programming-language-python"
+
+Python preserves user text, inline data, URIs, hosted files, and hosted vector stores in synchronized group chat history. Non-user messages retain text only, and function calls, function results, approval payloads, and other tool-control content are filtered before broadcast.
+
+> [!TIP]
+> To redact or withhold participant text before it enters shared history or
+> reaches other participants, filter it in a custom `GroupChatOrchestrator`
+> participant-response handler. Filtering events returned by `workflow.run()`
+> is too late because the original response is already stored and broadcast.
+> See the [group chat response filtering sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/group_chat_message_filtering.py).
+> The sample protects the shared-history and broadcast boundary; it doesn't
+> remove the original content from the sending agent's session, tools, model
+> provider, telemetry, or earlier workflow lifecycle events.
+
+::: zone-end
 
 <p align="center">
     <img src="../resources/images/orchestration-groupchat.png" alt="Group Chat Context Synchronization">
@@ -692,7 +709,7 @@ Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concept
 > [!TIP]
 > Agents do not share the same session instance because different [agent types](../../integrations/by-component/model-providers/index.md) may have different implementations of the `AgentSession` abstraction. Sharing the same session instance could lead to inconsistencies in how each agent processes and maintains context.
 
-After broadcasting the response, the orchestrator decides the next speaker and sends a request to the selected agent, which now has the full conversation history to generate its response.
+After broadcasting the response, the orchestrator decides the next speaker and sends a request to the selected agent, which now has the updated conversation history to generate its response.
 
 ## When to Use Group Chat
 

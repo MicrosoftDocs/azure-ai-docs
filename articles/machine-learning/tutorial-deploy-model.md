@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 09/10/2025
+ms.date: 09/10/2026
 ai-usage: ai-assisted
 ms.custom:
   - mlops
@@ -109,7 +109,7 @@ The following code specifies the `path` (where to upload files from) inline. If 
 
 The SDK automatically uploads the files and registers the model. 
 
-For more information on registering your model as an asset, see [Register your model as an asset in Machine Learning by using the SDK](how-to-manage-models.md#register-your-model-as-an-asset-in-machine-learning-by-using-the-sdk).
+For more information on registering your model as an asset, see [Register your model as an asset in Machine Learning by using the SDK](how-to-manage-models.md#register-a-model-by-using-the-azure-cli-or-python-sdk).
 
 
 ```python
@@ -267,7 +267,7 @@ model = ml_client.models.get(name=registered_model_name, version=latest_model_ve
 
 # define an online deployment
 # if you run into an out of quota error, change the instance_type to a comparable VM that is available.
-# Learn more on https://azure.microsoft.com/en-us/pricing/details/machine-learning/.
+# Learn more on https://azure.microsoft.com/pricing/details/machine-learning/.
 blue_deployment = ManagedOnlineDeployment(
     name="blue",
     endpoint_name=online_endpoint_name,
@@ -377,7 +377,8 @@ logs = ml_client.online_deployments.get_logs(
 print(logs)
 ```
 
-## Create a second deployment 
+## Create a second deployment
+
 Deploy the model as a second deployment called `green`. In practice, you can create several deployments and compare their performance. These deployments could use a different version of the same model, a different model, or a more powerful compute instance. 
 
 In this example, you deploy the same model version, using a more powerful compute instance that could potentially improve performance.
@@ -389,7 +390,7 @@ model = ml_client.models.get(name=registered_model_name, version=latest_model_ve
 
 # define an online deployment using a more powerful instance type
 # if you run into an out of quota error, change the instance_type to a comparable VM that is available.
-# Learn more on https://azure.microsoft.com/en-us/pricing/details/machine-learning/.
+# Learn more on https://azure.microsoft.com/pricing/details/machine-learning/.
 green_deployment = ManagedOnlineDeployment(
     name="green",
     endpoint_name=online_endpoint_name,
@@ -454,6 +455,7 @@ print(logs)
 ```
 
 ## View metrics using Azure Monitor
+
 You can view various metrics (request numbers, request latency, network bytes, CPU/GPU/Disk/Memory utilization, and more) for an online endpoint and its deployments by following links from the endpoint's **Details** page in the studio. Following any of these links takes you to the exact metrics page in the Azure portal for the endpoint or deployment.
 
 :::image type="content" source="media/tutorial-deploy-model/deployment-metrics-from-endpoint-details-page.png" alt-text="Screenshot showing links on the endpoint details page to view online endpoint and deployment metrics." lightbox="media/tutorial-deploy-model/deployment-metrics-from-endpoint-details-page.png":::
@@ -471,7 +473,7 @@ Once you're fully satisfied with your `green` deployment, switch all traffic to 
 
 ```python
 endpoint.traffic = {"blue": 0, "green": 100}
-ml_client.begin_create_or_update(endpoint).result()
+ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 ```
 
 ## Delete the old deployment

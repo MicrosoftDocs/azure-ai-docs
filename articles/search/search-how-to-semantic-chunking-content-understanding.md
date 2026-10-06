@@ -1,6 +1,6 @@
 ---
-title: Chunk and Vectorize Content with Azure Content Understanding Skill
-description: Use the Azure Content Understanding skill to semantically chunk documents, generate AI-based image descriptions, and vectorize the results in an Azure AI Search index.
+title: Chunk and Vectorize with Content Understanding
+description: Use preview semantic chunking and AI-based image descriptions with the Azure Content Understanding skill to build an Azure AI Search index.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/02/2026
@@ -14,10 +14,10 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 > [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
+> These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
 >
 > It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
 >
@@ -27,8 +27,8 @@ In this article, you learn how to use the [Azure Content Understanding skill](co
 
 > [!div class="checklist"]
 > + Extract text and images from a document
-> + Produce semantically coherent chunks that respect paragraph and section boundaries
-> + Generate AI descriptions of charts, diagrams, and other inline images
+> + Produce semantically coherent chunks that respect paragraph and section boundaries (preview)
+> + Generate AI descriptions of charts, diagrams, and other inline images (preview) 
 > + Embed each chunk for vector search and project it into an Azure AI Search index
 
 The Azure Content Understanding skill returns one or more chunks per document. Each chunk contains Markdown-formatted content, location metadata (page numbers and bounding polygons), and optional references to extracted images. When you set `chunkingProperties.method` to `semantic`, chunks follow paragraph and heading boundaries instead of fixed-character spans. When you set `modelName` and `modelDeployment`, the skill calls an Azure OpenAI chat-completion deployment to generate descriptions of embedded images. The skill then merges those descriptions into the chunk content.
@@ -55,7 +55,7 @@ The article builds a one-to-many indexing pipeline. Each source document produce
 
 1. The indexer reads each file from Azure Blob Storage and passes the binary content to the skillset through `/document/file_data`.
 
-1. The **Azure Content Understanding skill** chunks the document into `text_sections`. When `modelName` and `modelDeployment` are set, it also produces AI-generated descriptions of embedded images and inlines them into each chunk's Markdown.
+1. The **Azure Content Understanding skill** uses semantic chunking (preview) to produce `text_sections`. When `modelName` and `modelDeployment` are set, it also produces AI-generated descriptions (preview) of embedded images and inlines them into each chunk's Markdown.
 
 1. The **Azure OpenAI Embedding skill** runs once per chunk and produces a vector for the chunk content.
 
@@ -201,13 +201,13 @@ The following index definition matches the skillset that you create in the next 
 }
 ```
 
-## Define a skillset for semantic chunking and vectorization
+## Define a skillset for semantic chunking (preview) and vectorization
 
 With the target index in place, define the skillset that produces the chunks, vectors, and projection mappings that feed it.
 
 The skillset has two skills:
 
-+ The [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) chunks each document. Setting `chunkingProperties.method` to `semantic` makes the skill respect paragraph and heading boundaries. Setting `modelName` and `modelDeployment` enables AI-generated image descriptions, which the skill inlines into the chunk content before vectorization. For the list of supported chat completion models and other parameter details, see [Skill parameters](cognitive-search-skill-content-understanding.md#skill-parameters).
++ The [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) chunks each document. Setting `chunkingProperties.method` to `semantic` makes the skill respect paragraph and heading boundaries. Setting `modelName` and `modelDeployment` enables AI-generated image descriptions (preview), which the skill inlines into the chunk content before vectorization. For the list of supported chat completion models and other parameter details, see [Skill parameters](cognitive-search-skill-content-understanding.md#skill-parameters).
 
 + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) generates a vector for each chunk's content.
 
@@ -358,7 +358,7 @@ POST {endpoint}/indexers?api-version=2026-08-01-preview
 }
 ```
 
-When the indexer runs, the Content Understanding skill chunks each document, optionally generates image descriptions, and writes one search document per chunk to the index.
+When the indexer runs, the Content Understanding skill uses semantic chunking (preview), optionally generates AI-based image descriptions (preview), and writes one search document per chunk to the index.
 
 ### Check indexer status
 
@@ -421,7 +421,7 @@ A successful response looks similar to the following (trimmed for brevity):
 
 The response includes:
 
-+ `chunk`: The Markdown content of each chunk. When you configure `modelName` and `modelDeployment`, AI-generated image descriptions appear inline within the Markdown.
++ `chunk`: The Markdown content of each chunk. When you configure `modelName` and `modelDeployment`, AI-generated image descriptions (preview) appear inline within the Markdown.
 + `page_number_from` and `page_number_to`: The page range that produced the chunk.
 + `image_path`: The path to the image extracted with the chunk or, when a chunk spans multiple images, a semicolon-separated list of paths. The exact shape depends on whether a knowledge store file projection is configured. Without a file projection, the path is the short form shown in the example (`figures/3`). With a file projection, the path is the relative path of the image in the knowledge store. To make these images available to client apps, see [(Optional) Project images for retrieval](#optional-project-images-for-retrieval).
 
@@ -468,7 +468,7 @@ If the indexer fails or returns unexpected results, check the following common c
 The skill returns a `400 Skill validation failed` error when parameter combinations conflict. Common causes:
 
 + `modelName` is set without `modelDeployment`, or vice versa. Both must be set together.
-+ `method` is `semantic` and `overlapLength` is greater than `0`. Set `overlapLength` to `0` or omit it.
++ `method` is `semantic` (preview) and `overlapLength` is greater than `0`. Set `overlapLength` to `0` or omit it.
 + `method` and `unit` aren't a supported pair. Use `fixedSize` with `characters` or `semantic` with `tokens`.
 
 ### Authorization fails against the Foundry resource
@@ -486,7 +486,7 @@ If indexed documents have no chunks, verify that:
 + The Foundry resource is in a supported region.
 + Password-protected PDFs are unlocked before indexing.
 
-### Image descriptions are missing
+### Image descriptions (preview) are missing
 
 If chunks don't include inline image descriptions, verify that:
 

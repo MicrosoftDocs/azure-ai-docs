@@ -6,13 +6,14 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 09/10/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
 ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-agent-sharepoint
+ai-usage: ai-assisted
 ---
 
 # How to use the SharePoint tool (classic)
@@ -227,5 +228,4 @@ curl --request GET \
 ## Related content
 
 - [Use the Microsoft SharePoint tool](sharepoint.md)
-- [Call Azure Logic apps as functions using Azure OpenAI Assistants](/azure/ai-foundry/openai/how-to/assistants-logic-apps)
 - [Workflows with AI agents and models in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)

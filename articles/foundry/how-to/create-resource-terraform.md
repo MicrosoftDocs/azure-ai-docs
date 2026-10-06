@@ -2,7 +2,7 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 08/27/2026
+ms.date: 09/21/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
 ms.reviewer: deeikele
@@ -23,6 +23,8 @@ ai-usage: ai-assisted
 # Use Terraform to manage Microsoft Foundry resources
 
 Use Terraform to automate the creation of [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources, projects, deployments, and connections.
+
+This article covers control-plane infrastructure, such as accounts, projects, and model deployments. To register a hosted agent's container image and configuration through the Foundry data plane, see [Deploy a hosted agent with Terraform](../agents/how-to/deploy-hosted-agent-terraform.md). That procedure uses the AzAPI provider and doesn't require Azure Developer CLI (`azd`).
 
 If you already configured a Foundry resource in the Azure portal, you can [export that configuration as Terraform code](#export-an-existing-resource-to-terraform) instead of authoring a configuration from scratch.
 
@@ -46,7 +48,6 @@ The following table shows which actions each provider supports:
 |Configure deployments|✅|✅|
 |Configure projects|✅|✅|
 |Configure a connection to knowledge and tools|✅|✅|
-|Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md))|✅|-|
 
 [!INCLUDE [create-resource-terraform 1](../includes/how-to-create-resource-terraform-1.md)]
 
@@ -60,6 +61,8 @@ terraform validate
 ```
 
 The state list includes the resource group, Foundry resource, model deployment, project, and generated random string. Terraform reports `Success! The configuration is valid.`
+
+After creating the Foundry project, [deploy a hosted agent with Terraform](../agents/how-to/deploy-hosted-agent-terraform.md) to manage the agent's data-plane definition and check version readiness.
 
 ## Export an existing resource to Terraform
 

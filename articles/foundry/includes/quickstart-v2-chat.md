@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/05/2025
-ms.custom: include, update-code4
+ms.custom: include, update-code5
 ---
 
 Interacting with a model is the basic building block of AI applications.  Send an input and receive a response from the model:
@@ -26,7 +26,7 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/agents/CreateResponse.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/responses/src/main/java/com/azure/ai/foundry/samples/CreateResponse.java":::
 
 # [REST API](#tab/rest)
 

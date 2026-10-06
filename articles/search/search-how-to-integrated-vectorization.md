@@ -238,7 +238,7 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 ### [Azure Vision](#tab/prepare-model-vision)
 
-Azure AI Search supports Azure Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure Vision.
+Azure AI Search supports Azure Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md) to connect to Azure Vision.
 
 1. Go to your Microsoft Foundry resource in the [Azure portal](https://portal.azure.com).
 

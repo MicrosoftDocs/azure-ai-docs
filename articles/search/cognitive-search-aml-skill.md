@@ -16,10 +16,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT]
-> Support for indexer connections to the model catalog is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Microsoft Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Microsoft Foundry model catalog (preview)](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 You specify the AML skill in a skillset, which then integrates your deployed model into an AI enrichment pipeline. The AML skill is useful for performing processing or inference not supported by built-in skills. Examples include generating embeddings with your own model and applying custom machine learning logic to enriched content.
 
@@ -34,9 +33,9 @@ The indexer retries two times for the following HTTP status codes:
 - `503 Service Unavailable`
 - `429 Too Many Requests`
 
-## AML skill for models in Microsoft Foundry
+## AML skill for models in Microsoft Foundry (preview)
 
-Azure AI Search provides the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
+Azure AI Search provides the [Microsoft Foundry model catalog vectorizer (preview)](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
 
 During indexing, the AML skill can connect to the model catalog to generate vectors for the index. At query time, queries can use a vectorizer to connect to the same model to vectorize text strings. You should use the AML skill and the Microsoft Foundry model catalog vectorizer together so that the same embedding model is used for indexing and queries. For more information, see [Use embedding models from the Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md).
 
@@ -182,5 +181,5 @@ If the model provider is unavailable or returns an HTTP error, a friendly error 
 ## Related content
 
 - [Create a skillset in Azure AI Search](cognitive-search-defining-skillset.md)
-- [Use embedding models from the Microsoft Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md)
+- [Use embedding models from the Microsoft Foundry model catalog for integrated vectorization (preview)](vector-search-integrated-vectorization-ai-studio.md)
 - [Troubleshoot online endpoint deployment and scoring](../machine-learning/how-to-troubleshoot-online-endpoints.md)

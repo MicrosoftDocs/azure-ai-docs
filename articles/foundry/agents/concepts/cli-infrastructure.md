@@ -1,13 +1,13 @@
 ---
 title: "Hosted agent infrastructure with the Azure Developer CLI"
-description: "Understand the optional Bicep infrastructure that azd can scaffold for a hosted agent project: provisioned resources, project structure, parameters, and customization."
+description: "Understand the optional Bicep or Terraform infrastructure that azd can scaffold for a hosted agent project, including provisioning, parameters, and outputs."
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 06/15/2026
+ms.date: 09/16/2026
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-When you run `azd ai agent init --infra` or `azd ai agent init --infra=bicep`, the Azure Developer CLI (`azd`) scaffolds an `infra/` directory into your project that contains Bicep templates. These templates define the Azure resources your hosted agent needs from the services declared in `azure.yaml`. Running `azd provision` deploys the templates to create the infrastructure. This article explains what those templates provision and how to customize them.
+The Azure Developer CLI (`azd`) can generate Bicep or Terraform infrastructure from the services declared in `azure.yaml`. Choose Terraform with `azd ai agent init --infra=terraform`, or Bicep with `--infra=bicep`. Running `azd provision` applies the selected infrastructure.
+
+Infrastructure provisioning and agent deployment are separate. Terraform or Bicep manages supporting Azure resources; `azd deploy` creates the hosted-agent data-plane version. To manage the agent itself with Terraform instead of azd, see [Deploy a hosted agent with Terraform](../how-to/deploy-hosted-agent-terraform.md).
 
 ## What gets provisioned
 
@@ -37,12 +39,14 @@ When you add Bicep infrastructure, the templates are based on the [azd-ai-starte
 
 The templates create more resources conditionally, based on the services and dependencies declared in `azure.yaml`:
 
-* Capability host -- supports hosted agent deployment on the Foundry project. Created when you need custom storage of conversations.
+* Agent capability settings -- declare the Azure resources that hold agent state, vector data, and files. Set them when you need agents to use storage you own.
 * Grounding with Bing or Grounding with Bing Custom Search -- for the web search tool.
 * Azure AI Search -- for search grounding.
 * Azure Storage -- for file operations.
 
 ## Project structure
+
+For Bicep, a generated project has the following structure:
 
 ```
 infra/
@@ -59,7 +63,7 @@ infra/
 
 ## How parameters flow
 
-The `main.parameters.json` file maps `azd` environment variables to Bicep parameters:
+For Bicep, the `main.parameters.json` file maps `azd` environment variables to parameters:
 
 ```json
 {
@@ -71,6 +75,38 @@ The `main.parameters.json` file maps `azd` environment variables to Bicep parame
 ```
 
 During `azd provision`, `azd` resolves these `${VAR}` references from the environment (`.azure/<env>/.env`) and passes them to the Bicep deployment. Outputs from the deployment, such as the Foundry project endpoint, model deployment name, and container registry endpoint, are written back to the environment for use by `azd deploy`, `azd ai agent run`, and the `azd ai` resource commands.
+
+## Terraform infrastructure
+
+For a new project, `azd ai agent init --infra=terraform` generates files such as the following:
+
+```text
+infra/
+|-- main.tf
+|-- provider.tf
+|-- variables.tf
+|-- outputs.tf
+|-- main.tfvars.json
+\-- .azd-foundry
+```
+
+Container-based services can also generate `container-registry.tf`. Existing projects can retain their infrastructure and receive a separate Foundry layer under `infra/foundry/`. Use the actual generated layout rather than moving files between layers.
+
+The Terraform configuration provisions the Foundry account, project, model deployments, and related resources required by the selected services. Container registry creation depends on the deployment mode and image configuration.
+
+`main.tfvars.json` binds infrastructure inputs to azd environment values. `outputs.tf` exposes values such as the Foundry project endpoint to azd after provisioning. These bindings are part of the azd workflow; don't assume a generated parameter file works unchanged with a standalone `terraform apply`.
+
+To customize Terraform infrastructure, edit the generated `.tf` files, preserve the outputs needed by your agent services, and run `azd provision`. Review the Terraform plan before applying infrastructure changes.
+
+### Terraform state and CI/CD
+
+The generated files don't bootstrap a remote-state backend. For team deployments, configure Azure Storage-backed state, separate state keys for each environment, and the required backend permissions before configuring CI/CD.
+
+See [Set up CI/CD with Terraform](../how-to/set-up-ci-cd-cli.md#configure-terraform-state) for the deployment flow and [Use Terraform with azd](/azure/developer/azure-developer-cli/use-terraform-for-azd#enable-remote-state) for backend configuration.
+
+### Terraform ejection limitations
+
+The Terraform ejection path doesn't support service `network:` configuration in the current Foundry agents extension. Review existing-resource constraints before ejecting a project that already has infrastructure. Ejection isn't a general Bicep-to-Terraform state migration, and deleting production resources isn't a prerequisite for adopting Terraform.
 
 ## Existing resources
 
@@ -86,7 +122,7 @@ Set these variables with `azd env set` before you run `azd provision`.
 
 ## Customize the infrastructure
 
-The `infra/` directory is standard `azd` infrastructure, so you have full control over it. To add or change resources:
+The `infra/` directory is standard `azd` infrastructure. To add or change Bicep resources:
 
 1. Edit `infra/main.bicep` or add new modules under `infra/core/`.
 1. Add new parameters to `main.parameters.json` with `${VAR}` bindings.
@@ -102,5 +138,5 @@ The `main.bicep` template restricts `location` to regions where hosted agents ar
 ## Related content
 
 * [azure.yaml reference for hosted agents](azure-yaml-reference.md)
-* [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
+* [Set up CI/CD for hosted agents](../how-to/set-up-ci-cd-cli.md)
 * [azd-ai-starter-basic repository](https://github.com/Azure-Samples/azd-ai-starter-basic)

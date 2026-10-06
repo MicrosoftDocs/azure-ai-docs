@@ -3,7 +3,7 @@ title: "Enable incoming A2A on a Foundry agent"
 description: "Expose your Foundry Agent Service agent as an A2A endpoint so other agents can discover and call it using the Agent2Agent protocol."
 author: aahill
 ms.author: aahi
-ms.date: 08/26/2026
+ms.date: 09/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -11,13 +11,16 @@ ms.custom: doc-kit-assisted, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Enable incoming A2A on a Foundry agent (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Enable incoming A2A on a Foundry agent
 
 You can expose your Foundry Agent Service agent as an Agent2Agent (A2A) endpoint so that other agents can discover and call it through the [A2A protocol](https://a2a-protocol.org/latest/). When incoming A2A is enabled, Foundry publishes an agent card for your agent and accepts inbound A2A requests from external callers.
 
-Foundry Agent Service supports A2A protocol **version 1.0** and **version 0.3**. New integrations should target version 1.0. For details about how clients select a version, see [A2A protocol versions](#a2a-protocol-versions).
+Foundry Agent Service supports generally available A2A protocol **version 1.0**
+and preview **version 0.3**. New integrations should target version 1.0. For
+details about how clients select a version, see
+[A2A protocol versions](#a2a-protocol-versions).
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Supported agent types
 
@@ -131,7 +134,7 @@ Update the `agent_card` fields to describe your agent's actual capabilities. The
 Install the required package:
 
 ```bash
-pip install "azure-ai-projects>=2.3.0"
+pip install "azure-ai-projects>=2.5.0"
 ```
 
 Use the `update_details` method to add the agent card and A2A protocol to your agent's endpoint:
@@ -167,6 +170,44 @@ patched_agent = project.agents.update_details(
     ),
 )
 print(f"Enabled incoming A2A for agent: {patched_agent.name}")
+```
+
+#### [C# SDK](#tab/csharp)
+
+Install the prerelease package with `dotnet add package Azure.AI.Projects.Agents --prerelease` and `dotnet add package Azure.Identity`. Use `PatchAgent` to add the agent card and enable the responses and A2A protocols in one call:
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri("your_project_endpoint"),
+    tokenProvider: new DefaultAzureCredential());
+
+var patchOptions = new PatchAgentOptions
+{
+    AgentEndpoint = new AgentEndpointConfiguration
+    {
+        ProtocolConfiguration = new ProtocolConfiguration
+        {
+            Responses = new ResponsesProtocolConfiguration(),
+            A2a = new A2AProtocolConfiguration(),
+        },
+    },
+    AgentCard = new AgentCard(version: "1.0", skills: new[]
+    {
+        new AgentCardSkill(id: "general-qa", name: "General Q&A")
+        {
+            Description = "Answers general questions.",
+        }
+    })
+    {
+        Description = "A helpful assistant that answers questions.",
+    },
+};
+var patched = agentsClient.PatchAgent("your_agent_name", patchOptions);
+Console.WriteLine($"Enabled incoming A2A for agent: {patched.Value.Name}");
 ```
 
 #### [JavaScript/TypeScript SDK](#tab/javascript)
@@ -231,14 +272,19 @@ JSON-RPC `VERSION_AMBIGUOUS` reason. Remove one version selector or make the
 values identical.
 
 > [!IMPORTANT]
-> If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves A2A v0.3 by default, in accordance with the A2A specification. To use v1.0, set the header, set the query string, or have your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
+> If a request doesn't specify a version through the `A2A-Version` header or `a2a-version` query string, Foundry serves preview A2A v0.3 by default, in accordance with the A2A specification. For production integrations, explicitly select generally available v1.0 by setting the header, setting the query string, or having your client fetch the v1.0 agent card so the SDK negotiates v1.0 automatically.
 
 The following table summarizes the supported versions:
 
 | Version | Status | Recommended for |
 |---|---|---|
-| 1.0 | Supported | New integrations |
-| 0.3 | Supported | Existing integrations that already target v0.3 |
+| 1.0 | Generally available (GA) | New integrations |
+| 0.3 | Preview | Existing integrations that already target v0.3 |
+
+## Understand A2A task and context retention
+
+Foundry retains A2A tasks and contexts for 60 days from their most recent
+write. Each new write to a task or context resets its 60-day retention period.
 
 ## Verify the agent card
 
@@ -540,14 +586,15 @@ For other authentication options (key-based, OAuth, managed identity), see [Crea
 
 ### Step 2: Create the calling agent with the A2A tool
 
-After the connection exists, create an agent that uses the `A2APreviewTool` to call the target agent:
+After the connection exists, create an agent that uses the `A2ATool` to call the target agent:
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
+    A2AProtocolVersion,
+    A2ATool,
     PromptAgentDefinition,
-    A2APreviewTool,
 )
 
 PROJECT_ENDPOINT = "your_project_endpoint"
@@ -562,7 +609,8 @@ openai = project.get_openai_client()
 
 a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
 
-tool = A2APreviewTool(
+tool = A2ATool(
+    a2a_version=A2AProtocolVersion.V1_0,
     project_connection_id=a2a_connection.id,
 )
 
@@ -606,12 +654,12 @@ For more language examples (C#, JavaScript, Java, REST), see [Connect to an A2A 
 
 ## Limitations
 
-- A2A protocol versions 1.0 and 0.3 are supported. Other versions aren't supported.
+- Generally available A2A protocol version 1.0 and preview version 0.3 are supported. Other versions aren't supported.
 - For A2A v1.0, only the JSONRPC transport is supported. HTTP+JSON and gRPC aren't supported for v1.0. See [Supported A2A transports](#supported-a2a-transports).
 - Only **text** modality is supported. File data and other nontext modalities aren't supported.
 - Streaming responses (server-sent events) aren't supported.
 - Incoming A2A requires the responses protocol. Agents that don't use the responses protocol can't be exposed as A2A endpoints.
-- This feature is in preview and isn't recommended for production workloads.
+- A2A v0.3 is in preview and isn't recommended for production workloads. Use v1.0 for production integrations.
 
 ## Related content
 

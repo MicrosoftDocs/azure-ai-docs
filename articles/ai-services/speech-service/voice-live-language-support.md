@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 09/06/2026
+ms.date: 09/24/2026
 ms.custom: languages, references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
@@ -23,7 +23,7 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on the model you use, the Voice Live API processes speech input by using one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), `azure speech to text` models, or `mai-transcribe`.
+Depending on the model you use, the Voice Live API processes speech input by using one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`), `azure speech to text` models, or MAI Transcribe (`mai-transcribe` or `mai-transcribe-2`).
 
 ### Azure speech to text supported languages
 
@@ -81,19 +81,25 @@ To configure a single or multiple languages not supported by the multimodal mode
 
 ### MAI Transcribe supported languages (preview)
 
-MAI Transcribe (`mai-transcribe`) is an alternative transcription model that you can pair with any text-based chat model.
-If you configure `mai-transcribe` in voice live, the default used model is `mai-transcribe-1.5`.
+MAI Transcribe (`mai-transcribe` or `mai-transcribe-2`) is an alternative transcription model that you can pair with any text-based chat model.
+
+The `mai-transcribe` alias points to the latest MAI Transcribe model, currently `mai-transcribe-2`. Use `mai-transcribe-2` to select that model explicitly.
+
+Check the [Microsoft model retirement schedule](../../foundry/openai/concepts/model-retirement-schedule.md#microsoft) for retirement dates and replacement models.
 
 [!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]
 
-To configure MAI Transcribe, set `model` to `mai-transcribe` in the `session.update` message. You can optionally specify a language code in `language` to force recognition in a single language.
+To configure MAI Transcribe, set `input_audio_transcription.model` to `mai-transcribe` or `mai-transcribe-2` in the `session.update` message. You can optionally specify a language code in `language` to force recognition in a single language.
+
+`mai-transcribe` supports `phrase_list`, an optional array of words or phrases that biases recognition toward those terms. The following example includes phrase hints for product names:
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
             "model": "mai-transcribe",
-            "language": "en"
+            "language": "en",
+            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
         }
     }
 }

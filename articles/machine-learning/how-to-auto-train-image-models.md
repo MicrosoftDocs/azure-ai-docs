@@ -288,8 +288,8 @@ An AutoML training job uses a primary metric for model optimization and hyperpar
 
 * [Accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html) for image classification
 * [Intersection over union](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.jaccard_score.html) for image classification multilabel
-* [Mean average precision](how-to-understand-automated-ml.md#object-detection-and-instance-segmentation-metrics) for image object detection
-* [Mean average precision](how-to-understand-automated-ml.md#object-detection-and-instance-segmentation-metrics) for image instance segmentation
+* [Mean average precision](how-to-understand-automated-ml.md#object-detection-and-instance-segmentation) for image object detection
+* [Mean average precision](how-to-understand-automated-ml.md#object-detection-and-instance-segmentation) for image instance segmentation
     
 ### Job limits
 
@@ -744,7 +744,7 @@ The automated ML training job generates output model files, evaluation metrics, 
 > [!TIP]
 > Check how to navigate to the job results from the  [View job results](how-to-understand-automated-ml.md#view-job-results) section.
 
-For definitions and examples of the performance charts and metrics provided for each job, see [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md#metrics-for-image-models-preview).
+For definitions and examples of the performance charts and metrics provided for each job, see [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md#evaluate-image-model-results).
 
 ## Register and deploy model
 

@@ -4,7 +4,7 @@ description: "Learn how to evaluate AI agents using built-in evaluators for qual
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
-ms.date: 07/21/2026
+ms.date: 09/25/2026
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: dlozier
@@ -35,6 +35,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 - **Foundry User** role on the Foundry project.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 
 > [!NOTE]
 > Some evaluation features - including rubric generation, synthetic and trace-based dataset creation, and risk and safety evaluators - have regional restrictions. See [Rate limits, region support, and enterprise features for evaluation](../../concepts/evaluation-regions-limits-virtual-network.md) for the full list.

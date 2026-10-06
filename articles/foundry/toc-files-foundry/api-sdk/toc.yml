@@ -1,3 +1,4 @@
+# Voice-first agent public preview scope: identify the SDK/API reference and language-specific quickstart entries that need voice-agent coverage.
 items:
 # Foundry API Reference
 - name: Foundry API Reference
@@ -76,6 +77,8 @@ items:
     href: ../../openai/monitor-openai-reference.md
   - name: Realtime API reference
     href: ../../openai/realtime-audio-reference.md
+  - name: GPT-Live event API reference
+    href: ../../openai/gpt-live-reference.md
 
 # Foundry Tools APIs and SDKs
 - name: Foundry Tools SDKs

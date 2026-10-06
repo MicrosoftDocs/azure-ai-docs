@@ -989,7 +989,7 @@ The following table lists some of the differences between the computer use tool 
 | Feature | Browser Automation | Computer use tool |
 | --- | --- | --- |
 | Model support | All GPT models | `computer-use-preview` model only |
-| Can I visualize what's happening? | No | Yes |
+| Can I visualize what's happening? | Yes | Yes |
 | How it understands the screen | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
 | How it acts | A list of actions provided by the model | Virtual keyboard and mouse |
 | Is it multistep? | Yes | Yes |

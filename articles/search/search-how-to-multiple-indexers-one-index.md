@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
+
 In this tutorial, you configure independent blob indexers for DOCX, JSON, and CSV content that write to one Azure AI Search index. A nullable union schema lets each pipeline populate the fields it owns while your application queries all formats together. You can extend this pattern to other compatible indexer types when the indexers have compatible field mappings and target the same index. This tutorial demonstrates and verifies only folder-scoped blob indexers.
 
 In this tutorial, you:
@@ -24,16 +26,7 @@ In this tutorial, you:
 > + Run the indexers and verify the combined keyword, vector, and hybrid results
 > + Review content ownership, troubleshooting, and cleanup practices
 
-> [!IMPORTANT]
-> Semantic chunking in the Azure Content Understanding skill is part of the 2026-08-01-preview REST API. The multi-indexer pattern, index projections, and the Content Understanding skill without semantic chunking are generally available. However, for consistency, this tutorial uses the 2026-08-01-preview across all requests.
->
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications. Ensure that appropriate permissions, boundaries, and approvals are in place.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+Semantic chunking (preview) in the Azure Content Understanding skill requires the `2026-08-01-preview` REST API. The multi-indexer pattern, index projections, and the Content Understanding skill without semantic chunking are generally available. However, for consistency, this tutorial uses `2026-08-01-preview` across all requests.
 
 ## Prerequisites
 

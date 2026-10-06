@@ -3,7 +3,7 @@ title: "Manage hosted agents"
 description: "View, monitor, and manage hosted agents in Foundry Agent Service by using the REST API, Python SDK, JavaScript/TypeScript SDK, or Azure Developer CLI."
 author: aahill
 ms.author: aahi
-ms.date: 08/12/2026
+ms.date: 09/16/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -34,6 +34,12 @@ If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../
 :::zone pivot="python"
 
 - Python SDK: `azure-ai-projects>=2.3.0` and `azure-identity`.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+- .NET SDK: `Azure.AI.Projects.Agents` (prerelease) and `Azure.Identity`. Install with `dotnet add package Azure.AI.Projects.Agents --prerelease`.
 
 :::zone-end
 
@@ -107,6 +113,26 @@ for agent in project_client.agents.list():
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+using System;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+var projectEndpoint = "https://{account}.services.ai.azure.com/api/projects/{project}";
+AgentAdministrationClient agentsClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+foreach (ProjectsAgentRecord agent in agentsClient.GetAgents())
+{
+    Console.WriteLine(agent.Name);
+}
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -162,6 +188,16 @@ print(f"Status: {agent.versions['latest']['status']}")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+ProjectsAgentRecord agent = agentsClient.GetAgent("my-agent");
+Console.WriteLine($"Name: {agent.Name}");
+Console.WriteLine($"State: {agent.State}");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -200,6 +236,17 @@ agent_version = project_client.agents.get_version(
 )
 print(f"Version: {agent_version.version}")
 print(f"Status: {agent_version['status']}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+ProjectsAgentVersion agentVersion = agentsClient.GetAgentVersion(
+    agentName: "my-agent", agentVersion: "1");
+Console.WriteLine($"Version: {agentVersion.Version}");
+Console.WriteLine($"Status: {agentVersion.Status}");
 ```
 
 :::zone-end
@@ -249,6 +296,17 @@ for version in project_client.agents.list_versions(agent_name="my-agent"):
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+foreach (ProjectsAgentVersion version in agentsClient.GetAgentVersions("my-agent"))
+{
+    Console.WriteLine($"Version: {version.Version}, Status: {version.Status}");
+}
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -284,7 +342,7 @@ az rest --method POST \
             "cpu": "1",
             "memory": "2Gi",
             "protocol_versions": [
-                {"protocol": "responses", "version": "1.0.0"}
+                {"protocol": "responses", "version": "2.0.0"}
             ]
         }
     }'
@@ -308,7 +366,7 @@ agent = project_client.agents.create_version(
             image="myregistry.azurecr.io/my-agent:v2"
         ),
         protocol_versions=[
-            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+            ProtocolVersionRecord(protocol="responses", version="2.0.0"),
         ],
     ),
 )
@@ -316,6 +374,26 @@ print(f"Created version: {agent.version}")
 ```
 
 Replace `responses` with `invocations` if your agent uses the Invocations protocol, or pass both to expose both protocols.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("myregistry.azurecr.io/my-agent:v2"),
+};
+ProjectsAgentVersion created = agentsClient.CreateAgentVersion(
+    agentName: "my-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition));
+Console.WriteLine($"Created version: {created.Version}");
+```
+
+Replace `ProjectsAgentProtocol.Responses` with `ProjectsAgentProtocol.Invocations` if your agent uses the Invocations protocol, or pass both to expose both protocols.
 
 :::zone-end
 
@@ -329,7 +407,7 @@ const agent = await project.agents.createVersion("my-agent", {
   container_configuration: {
     image: "myregistry.azurecr.io/my-agent:v2",
   },
-  protocol_versions: [{ protocol: "responses", version: "1.0.0" }],
+  protocol_versions: [{ protocol: "responses", version: "2.0.0" }],
 });
 console.log(`Created version: ${agent.version}`);
 ```
@@ -378,7 +456,7 @@ az rest --method POST \
             "cpu": "1",
             "memory": "2Gi",
             "protocol_versions": [
-                {"protocol": "responses", "version": "1.0.0"}
+                {"protocol": "responses", "version": "2.0.0"}
             ]
         }
     }'
@@ -406,12 +484,30 @@ draft = project_client.agents.create_version(
             image="myregistry.azurecr.io/my-agent:experimental"
         ),
         protocol_versions=[
-            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+            ProtocolVersionRecord(protocol="responses", version="2.0.0"),
         ],
     ),
     draft=True,
 )
 print(f"Created draft version: {draft.version}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+var definition = new HostedAgentDefinition(
+    versions: new[] { new ProtocolVersionRecord(ProjectsAgentProtocol.Responses, "2.0.0") },
+    cpu: "1",
+    memory: "2Gi")
+{
+    ContainerConfiguration = new ContainerConfiguration("myregistry.azurecr.io/my-agent:experimental"),
+};
+ProjectsAgentVersion draft = agentsClient.CreateAgentVersion(
+    agentName: "my-agent",
+    options: new ProjectsAgentVersionCreationOptions(definition) { Draft = true });
+Console.WriteLine($"Created draft version: {draft.Version}");
 ```
 
 :::zone-end
@@ -460,6 +556,32 @@ def wait_for_version_active(project_client, agent_name, agent_version, max_attem
         if status == "failed":
             raise RuntimeError(f"Version provisioning failed: {dict(version)}")
     raise RuntimeError("Timed out waiting for version to become active")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Poll the version status after creation:
+
+```csharp
+using System.Threading;
+
+static void WaitForVersionActive(
+    AgentAdministrationClient agentsClient, string agentName, string agentVersion, int maxAttempts = 60)
+{
+    for (int attempt = 0; attempt < maxAttempts; attempt++)
+    {
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        ProjectsAgentVersion version = agentsClient.GetAgentVersion(agentName, agentVersion);
+        Console.WriteLine($"Version status: {version.Status} (attempt {attempt + 1})");
+        if (version.Status == AgentVersionStatus.Active)
+            return;
+        if (version.Status == AgentVersionStatus.Failed)
+            throw new InvalidOperationException($"Version provisioning failed: {version.Status}");
+    }
+    throw new InvalidOperationException("Timed out waiting for version to become active");
+}
 ```
 
 :::zone-end
@@ -526,6 +648,15 @@ print("Disabled agent: my-agent")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+agentsClient.DisableAgent("my-agent");
+Console.WriteLine("Disabled agent: my-agent");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
@@ -555,6 +686,15 @@ az rest --method POST \
 ```python
 project_client.agents.enable(agent_name="my-agent")
 print("Enabled agent: my-agent")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+agentsClient.EnableAgent("my-agent");
+Console.WriteLine("Enabled agent: my-agent");
 ```
 
 :::zone-end
@@ -595,6 +735,14 @@ project_client.agents.delete_version(agent_name="my-agent", agent_version="1")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+agentsClient.DeleteAgentVersion(agentName: "my-agent", agentVersion: "1");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -628,6 +776,14 @@ az rest --method DELETE \
 
 ```python
 project_client.agents.delete(agent_name="my-agent")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+agentsClient.DeleteAgent(agentName: "my-agent");
 ```
 
 :::zone-end
@@ -705,6 +861,12 @@ raw_stream = project_client.agents.get_session_log_stream(
 for event_name, data in iter_sse_frames(raw_stream):
     print(f"SSE event: {event_name}\nSSE data: {data}\n")
 ```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Streaming session logs as Server-Sent Events is available through the REST API. Switch to the **REST** tab for an example.
 
 :::zone-end
 
@@ -842,6 +1004,12 @@ project_client.agents.update_details(
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Configure endpoint routing with the REST API. Switch to the **REST API** tab for an example.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -865,9 +1033,35 @@ Reference: [AIProjectClient](/javascript/api/overview/azure/ai-projects-readme)
 
 :::zone pivot="azd"
 
-During `azd deploy`, the tool automatically configures endpoint routing. To select a specific version, use the REST API or SDK.
+During `azd deploy`, the tool applies endpoint settings configured for the agent. If you pin production to a version, ensure those settings don't overwrite the pin. To select a specific version, use the REST API or SDK.
 
 :::zone-end
+
+## Release a version without changing production
+
+Pin your production endpoint before deploying a candidate version. The default routing policy follows the latest version, so creating a version without first pinning production can change what consumers receive.
+
+This workflow separates deployment from promotion. Use it with [azd CI/CD](set-up-ci-cd-cli.md#validate-a-candidate-before-production-promotion) or [standalone Terraform deployment](deploy-hosted-agent-terraform.md).
+
+<!-- [TO VERIFY] Exercise the complete deploy, candidate-session test, promotion, and rollback sequence for each documented deployment tool before publication. -->
+
+1. **Record and pin production.** Read the agent's current endpoint configuration and record the version that production serves. [Select that concrete version](configure-agent.md#select-the-active-agent-version) with one `FixedRatio` rule at 100%. Keep its identifier and container image available for rollback.
+
+1. **Create the candidate.** Deploy the new image or configuration without changing the production selector. Capture the candidate's concrete version identifier from your deployment tool. Don't resolve `latest` again after testing or while waiting for approval.
+
+   For azd, review configured endpoint settings and deployment hooks before `azd deploy`. For Terraform, coordinate all writers to the named agent: Terraform's state lock doesn't prevent a separate API client from creating a version.
+
+1. **Verify readiness and identity.** [Get the candidate version](#get-a-specific-version) and wait for its status to become `active`. Confirm that its image and configuration match the artifact you intend to release. A failed deployment, timeout, or unexpected candidate must stop the release without changing production.
+
+1. **Test a candidate-specific session.** [Create a fresh session pinned to the candidate](manage-hosted-sessions.md#create-a-session-explicitly-advanced) by using a `version_indicator` with `type` set to `version_ref`. Pass the captured version as `agent_version`.
+
+   Invoke using the returned session ID. For Responses, put `agent_session_id` in the request body. For Invocations, use the `agent_session_id` query parameter. Check successful protocol completion and expected response content; nonempty logs or an HTTP connection alone aren't a passing test.
+
+1. **Approve and promote.** Before promotion, confirm that the candidate is still active and production still points to the recorded version. If another release changed the selector, stop and reconcile the change. After approval, update the endpoint selector to the tested candidate at 100%, preserving unrelated protocol and authorization settings.
+
+1. **Verify production and retain rollback.** Create a new session without a version override and verify that it uses the selected version. If the release fails its production checks, restore the previous concrete selector and verify new-session behavior again.
+
+An existing session is bound to its version when it's created. Changing the endpoint selector doesn't migrate those sessions. Retain previous versions and images while sessions or rollback requirements still depend on them. Deleting the agent or a version isn't a rollback operation.
 
 ## Retrieve the agent identity for role assignments
 
@@ -900,6 +1094,12 @@ agent = project_client.agents.get(agent_name="my-agent")
 agent_identity = agent.instance_identity["principal_id"]
 print(f"Agent identity principal ID: {agent_identity}")
 ```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Retrieve the agent identity principal ID with the REST API. Switch to the **REST API** tab for an example.
 
 :::zone-end
 
@@ -960,6 +1160,12 @@ Role assignments are an Azure Resource Manager operation. Use the Azure CLI comm
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Role assignments are an Azure Resource Manager operation. Use the Azure CLI commands shown in the REST tab with the agent identity value from the previous step, or use the [Azure Authorization management library for .NET](/dotnet/api/overview/azure/resourcemanager.authorization-readme) to create role assignments programmatically.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 Role assignments are an Azure Resource Manager operation. Use the Azure CLI commands shown in the REST tab with the agent identity value from the previous step, or use the [Azure SDK for JavaScript management libraries](/javascript/api/overview/azure/) to create role assignments programmatically.
@@ -997,6 +1203,12 @@ az role assignment list \
 :::zone-end
 
 :::zone pivot="python"
+
+Use the Azure CLI commands shown in the REST tab to verify role assignments.
+
+:::zone-end
+
+:::zone pivot="csharp"
 
 Use the Azure CLI commands shown in the REST tab to verify role assignments.
 

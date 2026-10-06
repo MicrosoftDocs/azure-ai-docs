@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: article
 ms.author: evmattso
-ms.date: 09/03/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -197,10 +197,20 @@ Transforms are applied to Agent Framework `Content` values, preserving supported
 
 ### Tool approval and argument transforms
 
-Agent Framework tool approval and the Agent Hooks approval seam are separate mechanisms. For a function tool with `approval_mode="always_require"`, Agent Framework creates the human approval request before function middleware runs. A `pre_tool_call` transform can therefore change arguments after the user approved the original values.
+Agent Framework tool approval and the Agent Hooks approval seam are separate
+mechanisms. For a function tool with `approval_mode="always_require"`, Agent
+Framework creates the human approval request before function middleware runs.
+If a `pre_tool_call` transform changes approval-bound arguments, the original
+grant executes nothing. The framework returns a replacement request containing
+the changed arguments, and execution requires a second approval.
 
 > [!WARNING]
-> Don't transform arguments at `pre_tool_call` for tools that use `approval_mode="always_require"`. Transform the tool call at `post_model_call` so the framework approval request contains the transformed values, or return `Verdict.escalate(...)` at `pre_tool_call` and resolve approval through the Agent Hooks `resolver`.
+> For tools that use `approval_mode="always_require"`, transform the tool call at
+> `post_model_call` so the first framework approval request contains the
+> effective values. Alternatively, return `Verdict.escalate(...)` at
+> `pre_tool_call` and resolve approval through the Agent Hooks `resolver`.
+> Argument transforms must run before security or policy processing. Mutation
+> afterward fails closed with `MiddlewareFailure`.
 
 ## Streaming and persistence
 

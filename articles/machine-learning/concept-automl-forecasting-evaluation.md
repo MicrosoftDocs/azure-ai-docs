@@ -11,6 +11,7 @@ ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv2
 ms.date: 11/14/2025
+ai-usage: ai-assisted
 show_latex: true
 #customer intent: As a data scientist, I want to understand model inference and evaluation in forecasting tasks.
 ---
@@ -100,7 +101,7 @@ The specific business scenario usually drives the choice of evaluation summary o
 - Root mean squared error (RMSE), possibly with a normalization, between actual and forecasted values
 - Mean absolute error (MAE), possibly with a normalization, between actual and forecasted values
 
-Depending on the business scenario, you might need to create your own post-processing utilities for computing evaluation metrics from inference results or rolling forecasts. For more information on metrics, see [Regression/forecasting metrics](how-to-understand-automated-ml.md#regressionforecasting-metrics).
+Depending on the business scenario, you might need to create your own post-processing utilities for computing evaluation metrics from inference results or rolling forecasts. For more information on metrics, see [Regression/forecasting metrics](how-to-understand-automated-ml.md#regression-and-forecasting-metric-reference).
 
 ## Related content
 

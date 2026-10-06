@@ -5,7 +5,7 @@ description: Quick reference, detailed description, and best practices for worki
 author: PatrickFarley 
 ms.author: pafarley
 manager: mcleans
-ms.date: 07/27/2026
+ms.date: 09/11/2026
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: limits-and-quotas
 ms.custom:
@@ -68,9 +68,6 @@ The currently supported models are:
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
-
-[!INCLUDE [gpt-4x-deprecation-notice](includes/gpt-4x-deprecation-notice.md)]
-
 
 > [!NOTE]
 > Model availability changes over time. For the model retirement schedule, see [OpenAI model retirement schedule](/azure/foundry/openai/concepts/model-retirement-schedule).
@@ -166,8 +163,4 @@ Content Understanding supports both basic field value types and nested structure
 | Category name and description | Maximum 120 characters for combined name and description in each category. |
 | Number of categories | 200 per analyzer for documents, 1 for videos. |
 | Hierarchical classification | Five layers for documents, two layers for videos |
-
-
-
-
 

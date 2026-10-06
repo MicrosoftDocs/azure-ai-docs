@@ -3,7 +3,7 @@ title: "Quickstart: Optimize a hosted agent (preview)"
 description: "Deploy and optimize a hosted agent by using the Azure Developer CLI, Python SDK, VS Code, or the Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
-ms.date: 08/25/2026
+ms.date: 09/03/2026
 ms.topic: quickstart
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -51,7 +51,23 @@ Before you begin, you need:
 * The Python packages used in this path:
 
   ```bash
-  pip install "azure-ai-projects>=2.4.0" azure-ai-agentserver-optimization azure-identity python-dotenv
+  pip install "azure-ai-projects>=2.5.0" azure-ai-agentserver-optimization azure-identity python-dotenv
+  ```
+
+* An existing Foundry project that already contains the hosted agent,
+  registered dataset, and evaluator you want to use for optimization.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+* [Azure CLI](/cli/azure/install-azure-cli) for authentication.
+* [.NET 10 SDK or later](https://dotnet.microsoft.com/download/dotnet/10.0).
+* The .NET packages used in this path.
+
+  ```dotnetcli
+  dotnet add package Azure.AI.Projects --prerelease
+  dotnet add package Azure.Identity
   ```
 
 * An existing Foundry project that already contains the hosted agent,
@@ -284,18 +300,57 @@ exact deployment name in `.env`.
 Create a file named `optimize_hosted_agent.py` in the same folder as `.env`:
 
 ```python
+
+"""
+DESCRIPTION:
+    Create an optimization job for a hosted agent using the latest agent
+    optimization API, poll the job to completion, and list its candidates.
+
+USAGE:
+    python optimize_hosted_agent_v3.py
+
+    Before running the sample:
+
+    pip install azure-ai-projects azure-ai-agentserver-optimization azure-identity python-dotenv
+
+    Set these environment variables with your own values:
+    1) FOUNDRY_PROJECT_ENDPOINT - Required. The Microsoft Foundry project endpoint.
+    2) FOUNDRY_AGENT_NAME       - Required. The hosted agent name.
+    3) DATASET_NAME             - Required. The registered training dataset name.
+    4) EVALUATOR_NAME           - Required. The registered evaluator name.
+    5) DATASET_VERSION          - Optional. The dataset version. Defaults to "1".
+    6) EVAL_MODEL               - Optional. The evaluation model. Defaults to "gpt-4o".
+    7) OPTIMIZATION_MODEL       - Optional. The optimization model. Defaults to "gpt-5".
+    8) POLL_INTERVAL_SECONDS    - Optional. Seconds between status polls. Defaults to 10.
+    9) OPTIMIZATION_JOB_ID      - Optional. An existing job ID to resume instead of creating a job.
+   10) OPTIMIZATION_LOCAL_DIR   - Optional. Path to the local .agent_configs directory.
+   11) CREDENTIAL_PROCESS_TIMEOUT_SECONDS
+                                - Optional. Credential subprocess timeout. Defaults to 60.
+"""
+
 import os
 import time
+from pathlib import Path
 
-from azure.ai.agentserver.optimization import load_config
+from azure.ai.agentserver.optimization import load_config, load_skills_from_dir
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-  OptimizationAgentIdentifier,
-  OptimizationEvaluatorRef,
-  OptimizationJob,
-  OptimizationJobInputs,
-  OptimizationOptions,
-  OptimizationReferenceDatasetInput,
+    AgentOptimizationBaselineAgentConfiguration,
+    AgentOptimizationCandidateExpand,
+    AgentOptimizationCandidateSearchConfiguration,
+    AgentOptimizationConfiguration,
+    AgentOptimizationEvaluationConfiguration,
+    AgentOptimizationEvaluator,
+    AgentOptimizationFoundryAgentTargetConfiguration,
+    AgentOptimizationJob,
+    AgentOptimizationModelConfiguration,
+    AgentOptimizationSkill,
+    AgentOptimizationSpace,
+    AgentOptimizationTargetCompletionDatasetReferenceDataSource,
+    AgentOptimizationTargetCompletionEvaluationSet,
+    EvaluationModelConfiguration,
+    JobStatus,
+    TargetAttribute,
 )
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
@@ -310,52 +365,143 @@ dataset_version = os.environ.get("DATASET_VERSION", "1")
 eval_model = os.environ.get("EVAL_MODEL", "gpt-4o")
 optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
 poll_interval_seconds = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
+existing_job_id = os.environ.get("OPTIMIZATION_JOB_ID")
+credential_process_timeout_seconds = int(
+    os.environ.get("CREDENTIAL_PROCESS_TIMEOUT_SECONDS", "60")
+)
 
-optimization_config = load_config() # Reads agent optimization config from .agent_configs/baseline/metadata.yaml
+# Reads the hosted agent's baseline config from .agent_configs/baseline/metadata.yaml.
+optimization_config = load_config()
+
+target_attributes = [TargetAttribute.INSTRUCTIONS]
+baseline_configuration = None
+if optimization_config:
+    loaded_skills = optimization_config.skills
+    if not loaded_skills and optimization_config.skills_dir:
+        loaded_skills = load_skills_from_dir(Path(optimization_config.skills_dir))
+
+    skills = [
+        AgentOptimizationSkill(
+            name=skill.name,
+            description=skill.description,
+            body=skill.body or None,
+        )
+        for skill in loaded_skills
+    ]
+
+    if skills:
+        target_attributes.append(TargetAttribute.SKILLS)
+    if optimization_config.tool_definitions:
+        target_attributes.append(TargetAttribute.TOOLS)
+
+    baseline_configuration = AgentOptimizationBaselineAgentConfiguration(
+        system_prompt=optimization_config.instructions,
+        current_model=optimization_config.model,
+        skills=skills or None,
+        tools=optimization_config.tool_definitions or None,
+    )
 
 with (
-  DefaultAzureCredential() as credential,
-  AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    DefaultAzureCredential(
+        process_timeout=credential_process_timeout_seconds
+    ) as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
-  job = OptimizationJob(
-    inputs=OptimizationJobInputs(
-      agent=OptimizationAgentIdentifier(agent_name=agent_name),
-      train_dataset=OptimizationReferenceDatasetInput(
-        name=dataset_name,
-        version=dataset_version,
-      ),
-      evaluators=[OptimizationEvaluatorRef(name=evaluator_name)],
-      options=OptimizationOptions(
-        max_candidates=2,
-        eval_model=eval_model,
-        optimization_model=optimization_model,
-        optimization_config={
-          "system_prompt": optimization_config.instructions,
-          **({"tools": optimization_config.tool_definitions} if optimization_config.tool_definitions else {}),
-          **({"skills": optimization_config.skills} if optimization_config.has_skills else {}),
-        }
-      ),
+    job_request = AgentOptimizationJob(
+        target_configuration=AgentOptimizationFoundryAgentTargetConfiguration(
+            name=agent_name
+        ),
+        optimization_model_configuration=AgentOptimizationModelConfiguration(
+            model=optimization_model
+        ),
+        optimization_configuration=AgentOptimizationConfiguration(
+            evaluation_configuration=AgentOptimizationEvaluationConfiguration(
+                training_set=AgentOptimizationTargetCompletionEvaluationSet(
+                    source=AgentOptimizationTargetCompletionDatasetReferenceDataSource(
+                        name=dataset_name,
+                        version=dataset_version,
+                    )
+                ),
+                evaluators=[AgentOptimizationEvaluator(name=evaluator_name)],
+                evaluation_model=EvaluationModelConfiguration(model=eval_model),
+            ),
+            candidate_search_configuration=AgentOptimizationCandidateSearchConfiguration(
+                max_candidates=2
+            ),
+            baseline_agent_configuration=baseline_configuration,
+            agent_optimization_space=AgentOptimizationSpace(
+                target_attributes=target_attributes
+            ),
+        ),
     )
-  )
-  poller = project_client.beta.agents.begin_create_optimization_job(job=job)
 
-  print(f"Optimization job started, waiting for completion...")
-  while not poller.done():
-    print(f"\tstatus=`{poller.status()}`")
-    time.sleep(poll_interval_seconds)
+    if existing_job_id:
+        job_id = existing_job_id
+    else:
+        poller = project_client.agents.begin_create_optimization_job(
+            job=job_request,
+            polling=False,
+        )
+        job_id = poller.details.get("job_id")
+        if not isinstance(job_id, str):
+            raise RuntimeError(
+                "The create operation did not return an optimization job ID."
+            )
 
-  result = poller.result()
+    print(f"Optimization job ID: {job_id}")
 
-  if result:
-    print(f"Baseline candidate: {result.baseline}")
-    print(f"Best candidate: {result.best}")
+    terminal_statuses = {
+        JobStatus.SUCCEEDED,
+        JobStatus.FAILED,
+        JobStatus.CANCELLED,
+    }
+    job = project_client.agents.get_optimization_job(job_id=job_id)
+    print("Optimization job started, waiting for completion...")
+    while job.status not in terminal_statuses:
+        print(f"\tstatus=`{job.status}`")
+        time.sleep(poll_interval_seconds)
+        job = project_client.agents.get_optimization_job(job_id=job_id)
+    print(f"\tstatus=`{job.status}`")
 
-    for candidate in result.candidates or []:
-      print(
-        f"{candidate.name}: candidate_id={candidate.candidate_id}, "
-        f"avg_score={candidate.avg_score:.4f}, "
-        f"avg_tokens={candidate.avg_tokens:.0f}"
-      )
+    for warning in job.warnings or []:
+        print(f"[WARNING] {warning}")
+
+    if job.status == JobStatus.FAILED:
+        message = job.error.message if job.error else "<no error message>"
+        raise RuntimeError(f"Optimization job `{job.id}` failed: {message}")
+    if job.status == JobStatus.CANCELLED:
+        raise RuntimeError(f"Optimization job `{job.id}` was cancelled.")
+    if job.result is None:
+        raise RuntimeError(f"Optimization job `{job.id}` completed without a result.")
+
+    result = job.result
+    summary = result.candidate_summary
+    if summary:
+        print(f"Baseline candidate: {summary.baseline_id}")
+        print(f"Best candidate: {summary.best_id}")
+        print(f"Completed optimized candidates: {summary.completed_candidate_count}")
+        if summary.baseline_score is not None:
+            print(f"Baseline score: {summary.baseline_score:.4f}")
+        if summary.best_score is not None:
+            print(f"Best score: {summary.best_score:.4f}")
+    if result.termination_reason:
+        print(f"Termination reason: {result.termination_reason}")
+
+    for candidate in project_client.agents.list_optimization_candidates(
+        job_id=job_id,
+        expand=[AgentOptimizationCandidateExpand.MUTATIONS],
+    ):
+        details = [
+            f"{candidate.name}: candidate_id={candidate.candidate_id}",
+            f"status={candidate.status}",
+        ]
+        if candidate.evaluation:
+            if candidate.evaluation.score is not None:
+                details.append(f"score={candidate.evaluation.score:.4f}")
+            if candidate.evaluation.avg_tokens is not None:
+                details.append(f"avg_tokens={candidate.evaluation.avg_tokens:.0f}")
+        print(", ".join(details))
+
 ```
 
 Run the script:
@@ -363,6 +509,8 @@ Run the script:
 ```bash
 python optimize_hosted_agent.py
 ```
+
+The optimization job ID prints immediately after submission; use it to monitor progress in the Foundry portal.
 
 When the job succeeds, the script prints the winning candidate and its
 `candidate_id`.
@@ -385,6 +533,191 @@ azd deploy
 
 If you only need to inspect the result, use the candidate scores and evaluation
 identifiers printed by the script to review the winning configuration in
+Foundry before promoting it.
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+## C# SDK path
+
+Use the following steps if you want to run the optimizer from .NET instead of using the Azure Developer CLI workflow described earlier.
+
+This path assumes you already have the following resources in an existing
+Foundry project:
+
+* A hosted agent to optimize.
+* A registered training dataset.
+* A registered evaluator, such as the built-in `builtin.task_adherence` evaluator.
+
+Unlike the Azure Developer CLI flow described earlier, the .NET SDK path doesn't scaffold
+a project or generate `eval.yaml`, a dataset, or evaluators for you. If you
+want the sample to create those assets automatically, use
+`azd ai agent eval generate` first.
+
+### 1. Set your environment variables
+
+Create a console app, and then set these values in your shell before you run it:
+
+```text
+FOUNDRY_PROJECT_ENDPOINT=<your-project-endpoint>
+FOUNDRY_AGENT_NAME=<your-hosted-agent-name>
+DATASET_NAME=<your-registered-dataset-name>
+DATASET_VERSION=1
+EVALUATOR_NAME=builtin.task_adherence
+EVAL_MODEL=<your-eval-model-deployment-name>
+OPTIMIZATION_MODEL=<your-optimization-model-deployment-name>
+```
+
+Use the exact project endpoint from your Foundry project's **Overview** page.
+
+Set `EVAL_MODEL` and `OPTIMIZATION_MODEL` to deployment names that already
+exist in your Foundry project, not just model family names. The optimization
+model must be a reasoning model that the optimizer supports. If you pick an
+unsupported deployment, the service returns an error that lists the allowed
+models.
+
+### 2. Run the optimization job
+
+Replace `Program.cs` with the following code.
+
+Agent optimization is a preview capability, so the request needs the
+`AgentsOptimization=V2Preview` feature header. The `FoundryFeaturesPolicy` class
+in this example adds that header to every request the client sends:
+
+```csharp
+using System.ClientModel.Primitives;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+// Adds the preview feature header that agent optimization requires.
+public sealed class FoundryFeaturesPolicy(string features) : PipelinePolicy
+{
+    public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("Foundry-Features", features);
+        ProcessNext(message, pipeline, index);
+    }
+
+    public override ValueTask ProcessAsync(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
+    {
+        message.Request.Headers.Set("Foundry-Features", features);
+        return ProcessNextAsync(message, pipeline, index);
+    }
+}
+
+public static class Program
+{
+    public static void Main()
+    {
+        var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")!;
+        var agentName = Environment.GetEnvironmentVariable("FOUNDRY_AGENT_NAME")!;
+        var datasetName = Environment.GetEnvironmentVariable("DATASET_NAME")!;
+        var datasetVersion = Environment.GetEnvironmentVariable("DATASET_VERSION") ?? "1";
+        var evaluatorName = Environment.GetEnvironmentVariable("EVALUATOR_NAME") ?? "builtin.task_adherence";
+        var evalModel = Environment.GetEnvironmentVariable("EVAL_MODEL")!;
+        var optimizationModel = Environment.GetEnvironmentVariable("OPTIMIZATION_MODEL")!;
+
+        var options = new AIProjectClientOptions();
+        options.AddPolicy(new FoundryFeaturesPolicy("AgentsOptimization=V2Preview"), PipelinePosition.PerCall);
+
+        AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential(), options);
+        AgentOptimizationJobs optimizationJobs = projectClient.AgentAdministrationClient.GetAgentOptimizationJobs();
+
+        OptimizationJob job = new()
+        {
+            Inputs = new OptimizationJobInputs(
+                new OptimizationAgentIdentifier(agentName),
+                new OptimizationReferenceDatasetInput(datasetName) { Version = datasetVersion },
+                new[] { new OptimizationEvaluatorRef(evaluatorName) })
+            {
+                Options = new OptimizationOptions
+                {
+                    MaxCandidates = 2,
+                    EvalModel = evalModel,
+                    OptimizationModel = optimizationModel,
+                    // The optimizer needs at least one optimizable target, such as the
+                    // baseline system prompt, the tool definitions, or skills.
+                    OptimizationConfig =
+                    {
+                        ["system_prompt"] = BinaryData.FromObjectAsJson(
+                            "You are a helpful assistant that answers user requests accurately and concisely."),
+                    },
+                },
+            },
+        };
+
+        OptimizationJob created = optimizationJobs.Create(job);
+        Console.WriteLine($"Optimization job started: {created.Id}");
+
+        OptimizationJob current = created;
+        while (current.Status != AgentsJobStatus.Succeeded
+            && current.Status != AgentsJobStatus.Failed
+            && current.Status != AgentsJobStatus.Cancelled)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(20));
+            current = optimizationJobs.Get(created.Id);
+            Console.WriteLine($"\tstatus=`{current.Status}`");
+        }
+
+        Console.WriteLine($"Final status: {current.Status}");
+
+        if (current.Result is not null)
+        {
+            Console.WriteLine($"Baseline candidate: {current.Result.Baseline}");
+            Console.WriteLine($"Best candidate: {current.Result.Best}");
+
+            foreach (OptimizationCandidate candidate in current.Result.Candidates)
+            {
+                Console.WriteLine(
+                    $"{candidate.Name}: candidate_id={candidate.CandidateId}, " +
+                    $"avg_score={candidate.AvgScore:F4}, " +
+                    $"avg_tokens={candidate.AvgTokens:F0}");
+            }
+        }
+    }
+}
+```
+
+Run the app:
+
+```dotnetcli
+dotnet run
+```
+
+When the job succeeds, the app prints the winning candidate and its
+`candidate_id`:
+
+```output
+Optimization job started: opt_<job-id>
+        status=`in_progress`
+        status=`succeeded`
+Final status: succeeded
+Baseline candidate: cand_opt_<job-id>_0000
+Best candidate: cand_opt_<job-id>_0000
+baseline: candidate_id=cand_opt_<job-id>_0000, avg_score=1.0000, avg_tokens=0
+```
+
+Unlike `azd ai agent optimize`, the .NET SDK flow doesn't create a local
+`.agent_configs/baseline/metadata.yaml` file. The optimization job metadata
+stays in the returned job object and in the Foundry service response,
+including the baseline candidate, best candidate, and scored candidate list.
+
+### 3. Apply the winning candidate
+
+If you're also working from the local `azd` project used in the CLI flow,
+apply the winning candidate by using the `candidate_id` returned by the app:
+
+```bash
+azd ai agent optimize apply --candidate <candidate-id>
+azd deploy
+```
+
+If you only need to inspect the result, use the candidate scores and evaluation
+identifiers printed by the app to review the winning configuration in
 Foundry before promoting it.
 
 :::zone-end
@@ -555,6 +888,9 @@ azd down --force --purge
 | Python script fails with `KeyError: 'DATASET_NAME'` or another missing variable | The script didn't load your `.env` file, or the variable is missing | Run the script from the same folder as `.env`, or export the required values in your shell before running `python optimize_hosted_agent.py`. |
 | Python script fails with `ResourceNotFound: The project does not exist` | `FOUNDRY_PROJECT_ENDPOINT` doesn't point to an existing Foundry project | Copy the project endpoint from the Foundry project's **Overview** page and update `FOUNDRY_PROJECT_ENDPOINT` in `.env`. |
 | Python script fails with `Optimization model deployment '<name>' not found` | `OPTIMIZATION_MODEL` is not the name of a deployed model in your Foundry project | Use the exact deployment name from **Build** > **Deployments**, such as an existing `gpt-5` family or DeepSeek deployment in your project. |
+| The job request fails with `evaluators is required and cannot be empty` | The `Foundry-Features` preview header is missing from the request | Add the `AgentsOptimization=V2Preview` header, as the `FoundryFeaturesPolicy` class in the C# path shows. |
+| The job fails with `No optimizable element found for the hosted agent` | The request doesn't include an optimizable target | Supply at least one target in `optimization_config`, such as the baseline `system_prompt`, the tool definitions, or skills. |
+| The job fails with `AllEvaluatorsFailedError` | The evaluator is misconfigured, so every row fails to score | Open the evaluation run link in the error, and confirm the evaluator scores your agent's responses. Start with a built-in evaluator such as `builtin.task_adherence`. |
 | The **Optimize** section doesn't appear for a hosted agent | Foundry Toolkit is older than version 1.6.4, or the selected agent isn't a deployed hosted agent | Update [Foundry Toolkit](https://aka.ms/foundrytk), reload Visual Studio Code, and reopen the deployed agent from the **Agents** tab. |
 | GitHub Copilot Chat doesn't open after you select the workspace | GitHub Copilot isn't installed, isn't available for your account, or agent mode is disabled | Set up [GitHub Copilot in Visual Studio Code](https://code.visualstudio.com/docs/copilot/setup), enable agent mode, and then select **New Optimization** again. |
 | Foundry Toolkit can't apply the best candidate to the current workspace | The workspace doesn't contain an `azure.yaml` service whose name matches the deployed hosted agent | Open the workspace that contains the selected agent's code and matching `azure.ai.agent` service, then try again. |
@@ -568,8 +904,8 @@ azd down --force --purge
 In this quickstart, you:
 
 * Deployed the optimization sample agent by using the customer-support template.
-* Ran the agent optimizer by using the Azure Developer CLI, Python SDK, Visual
-  Studio Code, or the Microsoft Foundry Skill.
+* Ran the agent optimizer by using the Azure Developer CLI, Python SDK, .NET SDK,
+  Visual Studio Code, or the Microsoft Foundry Skill.
 * Deployed the winning candidate and verified the improvement.
 
 ## Next steps

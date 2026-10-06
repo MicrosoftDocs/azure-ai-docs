@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 08/26/2026
+ms.date: 09/24/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -194,7 +194,8 @@ The Voice Live API supports multiple transcription models for input audio. Set t
 | Transcription model | Compatible chat models | Description |
 |---|---|---|
 | `azure-speech` | All non-multimodal models and agents | Azure speech to text. Automatically active with non-multimodal models. Supports [phrase list and custom speech](./voice-live-how-to-customize.md). |
-| `mai-transcribe` | All non-multimodal models and agents | MAI Transcribe speech recognition model (preview). |
+| `mai-transcribe` | `gpt-realtime`, `gpt-realtime-mini`, all non-multimodal models, and agents | Alias for the latest MAI Transcribe speech recognition model (preview), currently `mai-transcribe-2`. |
+| `mai-transcribe-2` | `gpt-realtime`, `gpt-realtime-mini`, all non-multimodal models, and agents | Explicitly selects MAI Transcribe 2 (preview). |
 | `whisper-1` | `gpt-realtime`, `gpt-realtime-mini` | OpenAI Whisper transcription model. |
 | `gpt-4o-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o based transcription model. |
 | `gpt-4o-mini-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o mini based transcription model. |
@@ -221,7 +222,15 @@ For speech input customization options such as phrase list and custom speech, se
 
 ### MAI Transcribe (preview)
 
-MAI Transcribe is a transcription model that you can use as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`). Enable it by setting `input_audio_transcription.model` to `mai-transcribe` in a `session.update` message:
+MAI Transcribe is a transcription model that you can use as an alternative to `azure-speech` with any text-based chat model or agent (for example, `gpt-4.1`).
+
+The `mai-transcribe` alias points to the latest MAI Transcribe model, currently `mai-transcribe-2`. Use `mai-transcribe-2` to select that model explicitly.
+
+Both models support `input_audio_transcription.phrase_list`, an optional array of words or phrases that biases recognition toward those terms. For an example, see [MAI Transcribe configuration](./voice-live-language-support.md?tabs=speechinput#mai-transcribe-supported-languages-preview).
+
+Check the [Microsoft model retirement schedule](../../foundry/openai/concepts/model-retirement-schedule.md#microsoft) for retirement dates and replacement models.
+
+Enable MAI Transcribe by setting `input_audio_transcription.model` to `mai-transcribe` or `mai-transcribe-2` in a `session.update` message:
 
 ```json
 {

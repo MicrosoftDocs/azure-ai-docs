@@ -5,7 +5,7 @@ description: "Discover how the Foundry consolidated view in the Azure portal sim
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: aashishb
-ms.date: 06/30/2026
+ms.date: 09/18/2026
 ms.topic: concept-article
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform

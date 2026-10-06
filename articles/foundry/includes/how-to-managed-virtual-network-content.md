@@ -75,12 +75,12 @@ Consider the following limitations before enabling managed network isolation for
 1. The Azure portal UI doesn't currently support creating the managed network. Use the Azure CLI, `az rest`, or the Bicep or Terraform templates instead. 
 1. After you create your Foundry resource, assign the Foundry resource's managed identity the built-in role of `Azure AI Enterprise Network Connection Approver` (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) to ensure the required private endpoint to the Foundry resource is created and approved. 
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
-1. Support for managed virtual network is only in the following regions: **East US, East US 2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, Australia East, Sweden Central, Canada East, South Africa North, West US, West US 3, South India, and UK South.** Additional region support to follow soon.
+1. Managed virtual network is supported in all regions that the Foundry Agent service with custom virtual network is supported in. Refer to Foundry Agent service documentation.
 1. If you require private access to on-premises resources for your Foundry resource, use [Application Gateway](/azure/application-gateway/overview) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. If you create FQDN outbound rules when the managed virtual network is in **Allow Only Approved Outbound** mode, a managed Azure Firewall is created which comes with associated Firewall costs. For more on pricing, see [Pricing](#pricing). The FQDN outbound rules only support ports 80 and 443. 
 1. You can't bring your own Azure Firewall to the managed virtual network. A managed firewall is automatically created for your Foundry account when you use **Allow Only Approved Outbound** mode.
 1. You can't reuse the same managed firewall for multiple Foundry accounts. Each Foundry account creates its own managed firewall when you use **Allow Only Approved Outbound** mode.
-1. If you create new projects within your Foundry resource that has managed virtual network enabled, you need to recreate the project capability host as well to ensure the project is using the BYO resources and the managed network. More instructions are in the README for managed network set-up in [foundry-samples repository](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup/README.md).
+1. If you create new projects within your Foundry resource that has managed virtual network enabled, confirm the new project resolves the capability settings you expect. A project inherits the account values unless you override an individual store. More instructions are in the README for managed network set-up in [foundry-samples repository](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup/README.md).
 
 ## Deploy managed virtual network isolation mode
 
@@ -419,6 +419,12 @@ When you create a managed private endpoint from the Foundry managed virtual netw
 
 To simplify this requirement, assign the `Azure AI Enterprise Network Connection Approver` role (role ID: `b556d68e-0be0-4f35-a333-ad7ee1ce17ea`) to the Foundry account's managed identity. This role includes the necessary permissions for most commonly used Azure services and typically provides sufficient access for Foundry to create and approve private endpoints on your behalf. Once you approve the connection, Foundry fully manages the private endpoint and requires no additional customer configuration. 
 
+> [!NOTE]
+> For an Azure SQL outbound rule, keep the **Azure AI Enterprise Network Connection Approver** role assigned to the Foundry account's managed identity on the target Azure SQL server. Also assign the **Reader** role to the same identity at the scope of the target SQL resource group. Wait briefly for role assignment changes to propagate, and then retry creating the outbound rule.
+> 
+> For an Azure Container Registry outbound rule, assign the **Reader** role to the Foundry account's managed identity as well.
+
+
 ## Required outbound rules 
 
 In **Allow Only Approved Outbound** mode of the managed virtual network, the system creates a few required outbound rules for features like the Agent service. These rules include the following destinations: 
@@ -455,7 +461,7 @@ Select the right outbound network isolation mode for you depending on your netwo
 | Aspect | Managed network | Custom (BYO) network |
 | --- | --- | --- |
 | Benefits | Microsoft handles subnet range, IP selection, delegation. | Full control: bring custom firewall, set user-defined routes, network peering, delegate subnet. |
-| Limitations | Can't bring your own firewall for allow only approved outbound. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support yet. | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation. Requires private Class A, B, and C, not public or CGNAT IP address ranges allowed. Requires minimum /27 subnet for Agent delegation. |
+| Limitations | Can't bring your own firewall to allow only approved outbound traffic. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support yet. | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation. Requires certain IP class range for injection. Requires minimum /27 subnet for Agent delegation. |
 
 For more on virtual network injection set-up for Agents and the limitations , see [Configure a custom virtual network for Agents](../agents/how-to/virtual-networks.md).
 

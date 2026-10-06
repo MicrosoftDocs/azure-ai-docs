@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 # Set up an image labeling project
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 Learn how to create and run data labeling projects to label images in Azure Machine Learning. Use machine learning (ML)-assisted data labeling or human-in-the-loop labeling to help with the task.
 
 Set up labels for classification, object detection (bounding box), instance segmentation (polygon), or semantic segmentation (preview).

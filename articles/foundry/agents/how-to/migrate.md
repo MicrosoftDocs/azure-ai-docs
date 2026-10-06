@@ -4,7 +4,7 @@ description: "Learn how to migrate Assistants API and classic agent workloads to
 author: aahill
 ms.author: aahi
 manager: mcleans
-ms.date: 08/05/2026
+ms.date: 09/11/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -194,7 +194,7 @@ The following table compares agent tools available in classic agents and the new
 
 | Tool | Foundry (classic) | Foundry (new) |
 | --- | --- | --- |
-| Agent to Agent (A2A) | No | Yes (Public Preview) |
+| Agent to Agent (A2A) | No | Yes (GA; `a2a_preview` remains in Public Preview) |
 | Azure AI Search | Yes (GA) | Yes (GA) |
 | Azure Functions | Yes (GA) | No |
 | Browser Automation | Yes (Public Preview) | Yes (Public Preview) |

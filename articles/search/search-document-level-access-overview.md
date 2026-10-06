@@ -15,16 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> The 2026-08-01-preview can't modify access permissions that were set outside of the 2026-08-01-preview. If you use the 2026-08-01-preview with access- or permission-restricted content, a timing lag occurs before the 2026-08-01-preview recognizes changes to those access or permission restrictions.
->
-> It's your responsibility to manage whether your data flows outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This responsibility includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, retrieval-augmented generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.
 
@@ -152,7 +143,7 @@ If the knowledge source points to a chunked index, such as one populated through
 
 For more information, see [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
-## Enforce document-level permissions at query time
+## Enforce document-level permissions at query time (preview)
 
 Token-based query enforcement is a cross-cutting capability that applies to the POSIX-like ACL and RBAC scopes, Microsoft Purview sensitivity labels, and SharePoint in Microsoft 365 ACLs patterns. By using [native token-based querying](search-query-access-control-rbac-enforcement.md), Azure AI Search validates the caller's [Microsoft Entra token](/entra/identity-platform/access-tokens) on each request and trims result sets to only the documents the caller is authorized to read according to the document ACLs, as long as the document ACL metadata is synchronized to the index.
 
@@ -180,7 +171,7 @@ Native document-level access control in Azure AI Search delivers concrete advant
 
 Explore document-level access control in Azure AI Search with more articles and samples.
 
-- [Tutorial: Index ADLS Gen2 permissions metadata using an indexer](tutorial-adls-gen2-indexer-acls.md)
+- [Tutorial: Index ADLS Gen2 permissions metadata using an indexer (preview)](tutorial-adls-gen2-indexer-acls.md)
 - [azure-search-rest-samples/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Pull-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Pull-API)
@@ -188,9 +179,9 @@ Explore document-level access control in Azure AI Search with more articles and 
 
 ## Related content
 
-- [How to index document-level permissions using push API](search-index-access-control-lists-and-rbac-push-api.md)
-- [How to index document-level permissions using the ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md)
-- [How to index document-level permissions using the SharePoint in Microsoft 365 indexer](search-indexer-sharepoint-access-control-lists.md)
-- [How to index sensitivity labels using indexers](search-indexer-sensitivity-labels.md)
-- [How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
-- [How to query using Microsoft Entra token-based permissions](search-query-access-control-rbac-enforcement.md)
+- [How to index document-level permissions using push API (preview)](search-index-access-control-lists-and-rbac-push-api.md)
+- [How to index document-level permissions using the ADLS Gen2 indexer (preview)](search-indexer-access-control-lists-and-role-based-access.md)
+- [How to index document-level permissions using the SharePoint in Microsoft 365 indexer (preview)](search-indexer-sharepoint-access-control-lists.md)
+- [How to index sensitivity labels using indexers (preview)](search-indexer-sensitivity-labels.md)
+- [How to query a sensitivity labels-enabled index (preview)](search-query-sensitivity-labels.md)
+- [How to query using Microsoft Entra token-based permissions (preview)](search-query-access-control-rbac-enforcement.md)

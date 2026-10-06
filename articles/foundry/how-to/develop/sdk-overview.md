@@ -46,7 +46,7 @@ This approach simplifies application configuration. Instead of managing multiple
 
 Run this command to install the packages for Foundry projects.
 ```bash
-pip install "azure-ai-projects>=2.0.0"
+pip install "azure-ai-projects>=2.3.0" "openai>=3.0.0"
 ```
 ::: zone-end
 
@@ -54,7 +54,7 @@ pip install "azure-ai-projects>=2.0.0"
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
+| 2.3.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
 
 ::: zone-end
 
@@ -85,18 +85,21 @@ Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
 
 The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
+For Maven, use the `com.azure:azure-ai-projects:2.3.0` and
+`com.azure:azure-ai-agents:2.3.0` dependencies.
+
 Add these dependencies to your Maven `pom.xml` for Foundry projects.
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-projects</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -238,6 +241,8 @@ Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectc
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string projectEndpoint =
     "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
@@ -252,6 +257,7 @@ ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient
 ResponseResult response = responseClient.CreateResponse(
     "What is the size of France in square miles?");
 Console.WriteLine($"Response output: {response.GetOutputText()}");
+#pragma warning restore OPENAI001
 ```
 
 ```output
@@ -260,6 +266,9 @@ Response output: <model response>
 
 Reference: [AIProjectClient class](/dotnet/api/azure.ai.projects.aiprojectclient)
 ::: zone-end
+
+> [!NOTE]
+> In newer SDK versions, operations such as evaluation and data-generation job creation are long-running operations that return a poller instead of a result. See the feature-specific how-to and reference pages, such as [Run batch evaluations](../../observability/how-to/cloud-evaluation.md), for the polling patterns used with each SDK.
 
 ### Explore Foundry SDK capabilities
 
@@ -332,12 +341,12 @@ OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
             new DefaultAzureCredentialBuilder().build(),
             "https://ai.azure.com/.default")))
     .build();
-Response response = openAIClient.responses().create(
+Response openAIResponse = openAIClient.responses().create(
     ResponseCreateParams.builder()
         .model("gpt-5-mini")
         .input("What is the size of France in square miles?")
         .build());
-response.output().forEach(item -> item.message().ifPresent(message ->
+openAIResponse.output().forEach(item -> item.message().ifPresent(message ->
     message.content().forEach(content -> content.outputText().ifPresent(text ->
         System.out.println("Response output: " + text.text())))));
 ```
@@ -417,8 +426,8 @@ CreateResponseOptions options = new()
             "What is the size of France in square miles?")
     },
 };
-var response = responsesClient.CreateResponse(options);
-Console.WriteLine($"Response output: {response.Value.GetOutputText()}");
+var azureOpenAIResponse = responsesClient.CreateResponse(options);
+Console.WriteLine($"Response output: {azureOpenAIResponse.Value.GetOutputText()}");
 #pragma warning restore OPENAI001
 ```
 ```output
@@ -503,13 +512,13 @@ var requestBody = new
     },
     max_tokens = 1048
 };
-var response = await httpClient.PostAsync(
+var anthropicResponse = await httpClient.PostAsync(
     endpoint,
     new StringContent(
         JsonSerializer.Serialize(requestBody), Encoding.UTF8,
         "application/json"));
 
-string result = await response.Content.ReadAsStringAsync();
+string result = await anthropicResponse.Content.ReadAsStringAsync();
 Console.WriteLine(result);
 ```
 
@@ -588,9 +597,9 @@ HttpRequest request = HttpRequest.newBuilder()
     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
     .build();
 
-HttpResponse<String> response = httpClient.send(
+HttpResponse<String> anthropicResponse = httpClient.send(
     request, HttpResponse.BodyHandlers.ofString());
-System.out.println(response.body());
+System.out.println(anthropicResponse.body());
 ```
 
 ```output

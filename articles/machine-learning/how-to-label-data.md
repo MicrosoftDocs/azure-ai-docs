@@ -13,6 +13,8 @@ ms.date: 01/27/2026
 
 # Labeling images and text documents
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 After your project administrator creates an Azure Machine Learning [image data labeling project](./how-to-create-image-labeling-projects.md) or an Azure Machine Learning [text data labeling project](./how-to-create-text-labeling-projects.md), you can use the labeling tool to rapidly prepare data for a Machine Learning project. This article describes:
 
 > [!div class="checklist"]

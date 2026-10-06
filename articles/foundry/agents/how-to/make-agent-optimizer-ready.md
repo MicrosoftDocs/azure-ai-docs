@@ -171,6 +171,9 @@ Learn more about the Agent Skills format at [agentskills.io](https://agentskills
 
 Add the config loader at the top of your agent's entry point:
 
+> [!NOTE]
+> For .NET agents, use the [Azure.AI.AgentServer.Core](https://www.nuget.org/packages/Azure.AI.AgentServer.Core) package.
+
 ```python
 from azure.ai.agentserver.optimization import load_config
 

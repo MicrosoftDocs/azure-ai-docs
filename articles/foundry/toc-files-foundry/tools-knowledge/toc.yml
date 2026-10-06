@@ -30,7 +30,7 @@ items:
     href: ../../agents/how-to/private-skill-catalog.md
   - name: OpenAPI
     href: ../../agents/how-to/tools/openapi.md
-  - name: A2A (preview)
+  - name: A2A
     items:
     - name: Overview
       href: ../../agents/how-to/tools/agent-to-agent.md
@@ -126,7 +126,7 @@ items:
           href: /azure/ai-services/translator/document-translation/overview?context=/azure/foundry/context/context
     - name: Voice
       items:
-      - name: Quickstart
+      - name: Voice Live with Foundry Agent Service quickstart
         href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
       - name: Enable voice for prompt agents
         href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md

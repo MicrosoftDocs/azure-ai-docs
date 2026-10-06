@@ -8,16 +8,16 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
-# Manage an enrichment cache
+# Manage an enrichment cache (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-> [!IMPORTANT] 
-> This feature is in preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) supports this feature.
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
-An *enrichment cache* is an optional feature that stores enriched content created during [skillset execution](cognitive-search-working-with-skillsets.md). It preserves content between runs so that only changed skills and documents require reprocessing. It isn't a backup of skillset outputs, indexer state, or indexed documents. 
+An *enrichment cache* (preview) is an optional feature that stores enriched content created during [skillset execution](cognitive-search-working-with-skillsets.md). It preserves content between runs so that only changed skills and documents require reprocessing. It isn't a backup of skillset outputs, indexer state, or indexed documents.
 
 You create the enrichment cache in Azure Storage. The cache contains the output from [document cracking](search-indexer-overview.md#document-cracking), plus the outputs of each skill for every document. Although caching is billable (it uses Azure Storage), the overall cost of enrichment is reduced because the costs of storage are less than image extraction and AI processing.
 
@@ -32,7 +32,7 @@ If you configure an enrichment cache, this article explains how to manage skill 
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint indexer (Preview)](search-how-to-index-sharepoint-online.md), avoid incremental enrichment. Under certain circumstances, the cache becomes invalid. To reload it, perform an [indexer reset and full rebuild](search-howto-run-reset-indexers.md).
+> If you're using the [SharePoint indexer (preview)](search-how-to-index-sharepoint-online.md), avoid incremental enrichment. Under certain circumstances, the cache becomes invalid. To reload it, perform an [indexer reset and full rebuild](search-howto-run-reset-indexers.md).
 
 Large data sources have an additional cache limitation.
 

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: sergeymenshykh
 ms.topic: reference
 ms.author: semenshi
-ms.date: 07/01/2026
+ms.date: 09/16/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # A2A agent service
@@ -250,6 +251,13 @@ async with A2AAgent(name="remote", url="https://a2a-agent.example.com") as agent
 
 When only a URL is provided, `A2AAgent` creates a minimal agent card internally and connects using JSON-RPC.
 
+The HTTP client that `A2AAgent` creates doesn't persist response cookies. If
+the remote service requires cookies for authentication, sessions, or load
+balancer affinity, pass an `httpx.AsyncClient` through `http_client=`. Scope the
+client to one authenticated principal and close it in your application.
+Supplied HTTP clients remain caller-owned, including when you also pass
+`client=`.
+
 ### Agent Card
 
 If you have an `AgentCard` from a registry or catalog, pass it directly:
@@ -386,14 +394,14 @@ async with A2AAgent(
 
 ## Timeout Configuration
 
-`A2AAgent` accepts a `timeout` parameter for controlling request timeouts:
+`A2AAgent` accepts an `int` or `float` number of seconds. The value applies to the connect, read, write, and pool timeout components. Pass an `httpx.Timeout` object to configure those values separately:
 
 ```python
 import httpx
 from agent_framework.a2a import A2AAgent
 
 # Simple timeout (applies to all components)
-async with A2AAgent(name="remote", url="https://example.com", timeout=120.0) as agent:
+async with A2AAgent(name="remote", url="https://example.com", timeout=120) as agent:
     ...
 
 # Fine-grained timeout

@@ -105,7 +105,7 @@ After reset, follow with a Run command to reprocess new and existing documents. 
 
 ## How to reset and run indexers
 
-Reset clears the high-water mark. All documents in the search index are flagged for full overwrite, without inline updates or merging into existing content. For indexers with a skillset and [enrichment caching](enrichment-cache-how-to-configure.md), resetting the index also implicitly resets the skillset. 
+Reset clears the high-water mark. All documents in the search index are flagged for full overwrite, without inline updates or merging into existing content. For indexers with a skillset and [enrichment caching (preview)](enrichment-cache-how-to-configure.md), resetting the index also implicitly resets the skillset. 
 
 The actual work occurs when you follow a reset with a Run command:
 
@@ -336,7 +336,7 @@ To check the reset status and see which document keys are queued for processing,
 
 ## Check indexer runtime quota for S3 HD and Serverless search services
 
-This section applies to Standard 3 High Density (S3 HD) and Serverless search services. For aggregate quota behavior and planning guidance, see [Indexer execution on Serverless and S3 HD](search-indexer-high-density-serverless-overview.md).
+This section applies to Standard 3 High Density (S3 HD) and Serverless search services. For aggregate quota behavior and planning guidance, see [Indexer execution on Serverless and S3 HD (preview)](search-indexer-high-density-serverless-overview.md).
 
 Each indexer run has a two-hour maximum. Separately, all indexers share 24 hours of cumulative runtime per service in each 24-hour UTC window.
 

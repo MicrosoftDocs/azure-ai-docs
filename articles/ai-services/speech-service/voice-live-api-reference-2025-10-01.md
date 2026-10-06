@@ -5,7 +5,7 @@ description: Complete reference for the Voice Live API events, models, and confi
 manager: mcleans
 ms.service: foundry-tools
 ms.topic: reference
-ms.date: 08/26/2026
+ms.date: 09/24/2026
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted
@@ -2085,12 +2085,16 @@ Audio format used for output audio with specific sampling rates.
 
 Configuration for input audio transcription.
 
+The `mai-transcribe` alias points to the latest MAI Transcribe model, currently `mai-transcribe-2`. Use `mai-transcribe-2` to select that model explicitly.
+
+Check the [Microsoft model retirement schedule](../../foundry/openai/concepts/model-retirement-schedule.md#microsoft) for retirement dates and replacement models.
+
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech`, `mai-transcribe` (preview) |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech`, `mai-transcribe` (preview), `mai-transcribe-2` (preview) |
 | language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
-| phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
+| phrase_list | string[] | Optional list of phrase hints to bias recognition. Supported with `azure-speech`, `mai-transcribe`, and `mai-transcribe-2`. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
 
 #### RealtimeInputAudioNoiseReductionSettings

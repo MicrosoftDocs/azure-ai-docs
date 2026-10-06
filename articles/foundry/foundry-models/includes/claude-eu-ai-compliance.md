@@ -3,7 +3,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 09/01/2026
+ms.date: 09/21/2026
 ms.author: mopeakande
 author: msakande
 ---

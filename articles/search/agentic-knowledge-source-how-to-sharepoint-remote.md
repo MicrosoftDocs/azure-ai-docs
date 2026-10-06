@@ -3,31 +3,24 @@ title: Create a SharePoint (Remote) Knowledge Source
 description: Learn how to create a remote SharePoint knowledge source, which tells an agentic retrieval engine in Azure AI Search to query SharePoint sites directly.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/03/2026
+ms.date: 10/01/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
+#customer intent: As an application developer, I want to create a remote SharePoint knowledge source, scope its live content, and handle query-time user authorization and SharePoint response data so that agentic retrieval can use content each user is permitted to access.
 ---
 
 # Create a remote SharePoint knowledge source (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
-
-> [!IMPORTANT]
-> These features and functionality are part of the 2026-08-01-preview REST API. The 2026-08-01-preview is licensed to you as part of your Azure subscription and is subject to the terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA"), and the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
->
-> The 2026-08-01-preview supports connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
->
-> It's your responsibility to manage whether your data will flow outside of your organization's compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
->
-> You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 A *remote SharePoint knowledge source* (preview) uses the [Copilot Retrieval API (preview)](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint in Microsoft 365. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when the knowledge base is [queried at runtime](agentic-retrieval-how-to-retrieve.md).
 
 To limit sites or constrain search, set a [filter expression](#filter-expression-examples) to scope by URLs, date ranges, file types, and other metadata. The caller's identity must be recognized by both the Azure tenant and the Microsoft 365 tenant because the retrieval engine queries SharePoint on behalf of the user.
 
-Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. No search index or connection string is needed, and usage is billed through Microsoft 365 and a Copilot license.
+Unlike indexed knowledge sources, remote SharePoint knowledge sources query live data directly at retrieval time. You don't need a search index or connection string.
 
 ### Usage support
 
@@ -41,7 +34,11 @@ Unlike indexed knowledge sources, remote SharePoint knowledge sources query live
 
 + SharePoint in a Microsoft 365 tenant that's under the same Microsoft Entra ID tenant as Azure.
 
-+ A Microsoft 365 Copilot license for query-time access to SharePoint content.
++ For each user querying SharePoint content, either a [Microsoft 365 Copilot add-on license](/microsoft-365/copilot/microsoft-365-copilot-licensing) that includes Retrieval API usage or [Retrieval API pay-as-you-go consumption (preview)](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval) enabled for that user.
+
+  To enable pay-as-you-go, you need Microsoft 365 admin access and **Owner** or **Contributor** access on an Azure subscription in good standing. You also need an Azure resource group. Your tenant must have at least one Microsoft 365 Copilot license before enablement and throughout pay-as-you-go use.
+
+  For users without a Copilot add-on license, [enable pay-as-you-go and configure billing](/microsoft-365/copilot/extensibility/api/ai-services/retrieval/paygo-retrieval#enable-and-disable-pay-as-you-go) in the Microsoft 365 admin center using that Azure subscription. Both payment options use the same remote SharePoint knowledge source configuration.
 
 + Permission to create knowledge sources. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [admin API key](search-security-api-keys.md).
 

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: overview
 ms.author: evmattso
-ms.date: 08/11/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,8 @@ ms.service: agent-framework
   | Supported integration behavior | ✅ |   ✅   | ✅ | SDK capabilities differ |
   | Architecture                   | ✅ |   ✅   | ❌ | Not documented for Go |
   | Installation                   | ✅ |   ✅   | ❌ | Go zone links to runnable samples |
+  | Terminal message snapshots     | ❌ |   ✅   | ❌ | Python wrapper configuration |
+  | Citations and annotations      | ❌ |   ✅   | ❌ | Python custom-event contract |
 -->
 
 # AG-UI Integration with Agent Framework
@@ -200,6 +203,63 @@ pip install agent-framework-ag-ui --pre
 ```
 
 This installs both the core agent framework and AG-UI integration components.
+
+## Control terminal message snapshots
+
+By default, `AgentFrameworkAgent` emits a terminal `MESSAGES_SNAPSHOT` event containing the full transcript. If a `HistoryProvider` or your application already manages conversation state, set `emit_messages_snapshot=False` to avoid rewriting the client transcript at the end of each run:
+
+```python
+from agent_framework_ag_ui import AgentFrameworkAgent
+
+wrapped_agent = AgentFrameworkAgent(
+    agent=agent,
+    emit_messages_snapshot=False,
+)
+```
+
+This setting suppresses only the terminal message snapshot. Other streamed events, including `RUN_FINISHED`, are unchanged.
+
+## Render citations and annotations
+
+Text content with `Content.annotations` emits a message-linked AG-UI `CUSTOM`
+event named `annotations`. This event includes annotation-only updates that arrive
+after the response text, such as grounding citations from the Responses API.
+The event arrives before `RUN_FINISHED` and doesn't repeat the response text.
+
+```json
+{
+  "type": "CUSTOM",
+  "name": "annotations",
+  "value": {
+    "messageId": "assistant-message-id",
+    "annotations": [
+      {
+        "type": "citation",
+        "title": "Document",
+        "url": "https://contoso.example/document.pdf",
+        "annotated_regions": [
+          {
+            "type": "text_span",
+            "start_index": 0,
+            "end_index": 6
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Each event contains newly emitted annotations for the identified text message.
+Append them to that message and use the title, URL, or file ID to render
+sources. The event retains framework annotation fields and additional properties,
+but it doesn't include provider `raw_representation` objects.
+
+`AGUIChatClient` restores these event batches as `Content.annotations` in
+streaming updates and aggregated responses. It also retains the custom event in
+`update.additional_properties["ag_ui_custom_event"]`. Citation rendering and
+persistence remain application responsibilities because
+`MESSAGES_SNAPSHOT` doesn't replay these live custom events.
 
 ## Next Steps
 

@@ -5,7 +5,7 @@ ms.manager: mcleans
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: lindazqli
-ms.date: 08/21/2026
+ms.date: 09/11/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.topic: concept-article
 ms.service: microsoft-foundry
@@ -36,6 +36,17 @@ When you build agents in Microsoft Foundry Agent Service, tools extend what your
 - Review traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For setup guidance, see [Set up tracing for Foundry agents](../../observability/how-to/trace-agent-setup.md).
 
 ## Improve tool-calling reliability
+
+### Design tools for voice-based prompt agents
+
+Voice-based prompt agents use tools during a live audio conversation, so tool latency and response length affect the caller's experience. Keep tool descriptions concise, return only the information the agent needs to answer the current request, and provide a short spoken progress response when a tool call takes time.
+
+- Use native function tools when the connected client must perform the action.
+- Use MCP or toolbox tools when the agent service or Voice Live integration performs the tool call.
+- Set `tool_choice` deliberately for opening or other time-sensitive turns. Use `none` when the agent should speak without calling a tool, `auto` when the model decides, or `required` when a tool call is necessary.
+- Test interruptions and tool failures in a live voice session. The agent should remain usable when a caller speaks while a tool is running or when a tool returns no result.
+
+For setup, see [Quickstart: Create a voice-based prompt agent](../quickstarts/prompt-voice-agent.md).
 
 ### Control tool calling with `tool_choice`
 
@@ -124,4 +135,4 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 - [Browser automation (preview)](../how-to/tools/browser-automation.md)
 - [Computer Use (preview)](../how-to/tools/computer-use.md)
 - [Image generation (preview)](../how-to/tools/image-generation.md)
-- [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)
+- [Agent-to-Agent (A2A)](../how-to/tools/agent-to-agent.md)

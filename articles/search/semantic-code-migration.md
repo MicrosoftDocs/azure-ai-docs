@@ -62,7 +62,7 @@ To determine which semantic features are available in a specific Azure SDK packa
 
 ## 2024-11-01-preview
 
-+ Adds [query rewrite](semantic-how-to-query-rewrite.md) to Search Documents.
++ Adds [query rewrite (preview)](semantic-how-to-query-rewrite.md) to Search Documents.
 + Requires `queryLanguage` for query rewrite workloads. For a list of valid values, see the [REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-11-01-preview#querylanguage&preserve-view=true).
 
 ## 2024-09-01-preview

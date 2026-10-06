@@ -127,78 +127,17 @@ Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pr
 
 ### Input requirements
 
-See the following list for the input requirements for each feature.
-
-<!--
-|  | Analyze text API | Analyze image API |  Prompt Shields<br> | Groundedness<br>detection (preview) | Protected material<br>detection |
-|--|---|--|--|--|--|
-| Input requirements:   | Default maximum length: 10K characters (split longer texts as needed). | Maximum image file size: 4 MB<br>Dimensions between 50x50 and 2048x2048 pixels.<br>Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats. | Maximum prompt length: 10K characters.<br>Up to five documents with a total of 10D characters. | Maximum 55,000 characters for grounding sources per API call.<br>Maximum text and query length: 7,500 characters. | Default maximum: 1K characters.<br>Minimum: 111 characters (for scanning LLM completions, not user prompts). | -->
-
-- **Analyze text API**: 
-  - Default maximum length: 10K characters (split longer texts as needed).
-- **Analyze image API**: 
-  - Maximum image file size: 4 MB
-  - Dimensions between 50 x 50 and 7200 x 7,200 pixels.
-  - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
-- **Analyze multimodal API (preview)**:
-  - Default maximum text length: 1K characters.
-  - Maximum image file size: 4 MB
-  - Dimensions between 50 x 50 and 7200 x 7,200 pixels.
-  - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
-- **Prompt Shields API**: 
-  - Maximum prompt length: 10K characters.
-  - Up to five documents with a total of 10K characters.
-- **Groundedness detection API (preview)**: 
-  - Maximum length for grounding sources: 55,000 characters (per API call).
-  - Maximum text and query length: 7,500 characters.
-  - Minimum query length: 3 words.
-- **Protected material detection APIs**: 
-  - Default maximum length: 10K characters.
-  - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
-- **Custom categories (standard) API (preview)**:
-  - Maximum inference input length: 1K characters.
-- **Task adherence (preview)**:
-  - Maximum input length: 100K characters.
+For more information, see [Input requirements](/azure/ai-services/content-safety/region-availability).
 
 ### Language support
 
 [!INCLUDE [language-notice](includes/language-notice.md)]
 
-For more information, see [Language support](/azure/ai-services/content-safety/language-support).
+For more information, see [Language support](/azure/ai-services/content-safety/region-availability).
 
 ### Region availability
 
-To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions with different API versions: 
-
-| Region              | Custom Category (standard)   | Groundedness       | Image | Multimodal(Image with Tex) | Custom Category (rapid) | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | 
-|--------------------|--------------------|--------------------|-------|-----------------------------|-------------------|---------------|---------------------------|---------------------------|------|
-| Australia East     | ✅                  |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Canada East          |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Central US             |                    |                  | ✅    |                            | ✅               | ✅               | ✅                     | ✅                        | ✅    | 
-| East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
-| East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Korea Central         |                    |                    | ✅    |                            |            | ✅             |                ✅        |                           |  ✅   |
-| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |
-| Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
-| South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
-| Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
-| Switzerland West      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |             
-| UAE North            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |              
-| UK South             |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West Europe          |                    |                    | ✅    | ✅                         | ✅               | ✅             | ✅                     | ✅                        | ✅    |
-| West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |  ✅                      | ✅    |
-| FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
-
-
+To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Follow this link to view [region availability](region-availability.md)
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 

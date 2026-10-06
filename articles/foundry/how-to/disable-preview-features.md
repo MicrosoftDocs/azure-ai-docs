@@ -4,7 +4,7 @@ description: "Learn how to disable preview features in Microsoft Foundry by usin
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne, meerakurup
-ms.date: 06/19/2026
+ms.date: 09/04/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-platform
@@ -60,6 +60,36 @@ This section walks through creating a custom role definition and assigning it to
 
 Create a JSON file named `custom-role.json` with the following content. Replace `<subscription-id>` with your Azure subscription ID and add the data actions you want to block to `notDataActions`.
 
+The Azure CLI and the Azure portal expect different shapes for the same role definition, so use the JSON that matches the tool you use in the next step.
+
+# [Azure CLI](#tab/cli)
+
+```json
+{
+  "Name": "Foundry custom role (preview features blocked)",
+  "IsCustom": true,
+  "Description": "Custom role that excludes specific Foundry preview features.",
+  "Actions": [
+    "Microsoft.CognitiveServices/*/read",
+    "Microsoft.Authorization/*/read"
+  ],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/accounts/AIServices/*"
+  ],
+  "NotDataActions": [
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/write",
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/read",
+    "Microsoft.CognitiveServices/accounts/AIServices/agents/delete"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/<subscription-id>"
+  ]
+}
+```
+
+# [Azure portal](#tab/portal)
+
 ```json
 {
   "properties": {
@@ -89,6 +119,8 @@ Create a JSON file named `custom-role.json` with the following content. Replace 
 }
 ```
 
+---
+
 > [!TIP]
 > If you clone an existing role or use wildcard permissions in `dataActions`, add the preview feature data actions to `notDataActions` so the role excludes them. For Tracing, use `notActions` instead because Tracing uses control plane actions.
 
@@ -111,6 +143,9 @@ az role definition create --role-definition custom-role.json
 ---
 
 #### Step 3: Assign the role
+
+> [!NOTE]
+> A new custom role takes a few minutes to replicate. If `az role assignment create` reports that the role doesn't exist, wait and retry, or pass the role definition ID instead of the role name.
 
 # [Azure CLI](#tab/cli)
 

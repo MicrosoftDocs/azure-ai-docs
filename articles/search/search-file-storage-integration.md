@@ -14,7 +14,7 @@ ms.custom: [ignite-2023, ignite-2024, sfi-ropc-nochange, doc-kit-assisted]
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [preview-terms](./includes/previews/preview-terms.md)]
 
 > [!IMPORTANT]
 > These features and functionality support connections to other Microsoft services and third-party services. Use of these services is subject to their respective terms and might result in data processing or storage outside of the Azure compliance boundary, as well as data flowing into the Azure compliance boundary.
@@ -23,7 +23,7 @@ ms.custom: [ignite-2023, ignite-2024, sfi-ropc-nochange, doc-kit-assisted]
 >
 > You're responsible for carefully reviewing and testing applications you build in the context of your specific use cases and making all appropriate decisions and customizations. This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards. For more information, see the [Azure AI Search Transparency Note](/azure/foundry/responsible-ai/search/transparency-note).
 
-In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Files and makes it searchable in Azure AI Search. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
+The *Azure Files indexer* (preview) imports content from a file share into an Azure AI Search index. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
 
 To configure and run the indexer, you can use:
 

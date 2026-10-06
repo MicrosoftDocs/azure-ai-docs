@@ -66,14 +66,14 @@ For a full description of agent lifecycle operations, see [Manage agents in Foun
 The actions available in Foundry are **infrastructure operations** on Azure resources. They're different from the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center.
 
 **Block actions** in Microsoft 365 Admin Center and Teams Admin Center affect agent visibility to users:
-- **Scope**: Only affects agent projection in Teams and Microsoft 365 Copilot
+- **Scope**: Only affects agent projection in Teams and Microsoft Copilot
 - **Impact**: Users can't access the agent through these specific channels
 - **Foundry Access**: The agent remains fully functional in Foundry portal and other integration points
 - **Infrastructure**: No impact on underlying Azure resources or compute
 
 **Infrastructure actions** in Foundry affect the agent's underlying resources:
-- **Disable** and **Enable** take a Foundry agent's endpoint offline or bring it back online. The agent and its versions remain intact, but while disabled the agent rejects requests across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
-- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) deallocate or provision the compute behind an agent application's deployments. The application and its deployments remain intact, but while stopped the agent rejects requests across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
+- **Disable** and **Enable** take a Foundry agent's endpoint offline or bring it back online. The agent and its versions remain intact, but while disabled the agent rejects requests across all channels (Teams, Microsoft Copilot, Foundry, APIs).
+- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) deallocate or provision the compute behind an agent application's deployments. The application and its deployments remain intact, but while stopped the agent rejects requests across all channels (Teams, Microsoft Copilot, Foundry, APIs).
 - **Delete** permanently removes Azure resources. For agent applications, deletion includes the application and its deployments. This action can't be undone.
 
 If an agent application serves a multitenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.

@@ -6,6 +6,7 @@ ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 06/16/2026
 ai-usage: ai-assisted
+#customer intent: As an Azure administrator, I want to understand agentic retrieval billing plans and control paid usage independently from semantic ranker billing so that I can manage service availability after the monthly free allowance is consumed.
 ---
 
 # Enable or disable agentic retrieval billing

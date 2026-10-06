@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 # Manage labeling projects
 
+[!INCLUDE [machine-learning-data-labeling-deprecation](includes/machine-learning-data-labeling-deprecation.md)]
+
 Learn how to manage a labeling project in Azure Machine Learning. This article is for project managers who are responsible for managing text or image labeling projects. For information about how to create the project, see [Set up a text labeling project](how-to-create-text-labeling-projects.md) or [Set up an image labeling project](how-to-create-image-labeling-projects.md).
 
 [!INCLUDE [machine-learning-preview-items-disclaimer](includes/machine-learning-preview-items-disclaimer.md)]

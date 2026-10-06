@@ -102,7 +102,7 @@ Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analy
 For detailed steps, see [Diagnostic logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs).
 
 > [!IMPORTANT]
-> To help ensure full NSP compliance for diagnostic logging, use Microsoft Entra ID authentication for requests to customer-owned log destinations (Log Analytics workspace, Storage account, or Event Hub). **TO VERIFY:** The exact NSP filtering behavior for API key-authenticated log traffic in **Enforced** mode needs confirmation with the feature team before it's stated here.
+> To help ensure full NSP compliance for diagnostic logging, use Microsoft Entra ID authentication for requests to customer-owned log destinations (Log Analytics workspace, Storage account, or Event Hub).
 
 ## Interpret logs
 

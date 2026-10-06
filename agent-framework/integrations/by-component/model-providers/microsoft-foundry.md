@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 09/03/2026
+ms.date: 09/29/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,10 +20,9 @@ For service-managed Prompt and Hosted Agents, see [Microsoft Foundry Agent Servi
 
 ## Getting Started
 
-Add the required NuGet packages to your project.
+Add the required NuGet package to your project.
 
 ```dotnetcli
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
 
@@ -113,18 +112,27 @@ In Python, all Foundry-specific clients now live under `agent_framework.foundry`
 pip install agent-framework-foundry
 ```
 
-The same `agent-framework-foundry` package also includes `FoundryEmbeddingClient` for Foundry models-endpoint embeddings.
+The same `agent-framework-foundry` package also includes `FoundryEmbeddingClient` for text embeddings through a Foundry project or text and image embeddings through a Foundry Models endpoint.
 
 ## Configuration
 
 ### `FoundryChatClient`
 
 ```bash
-FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
+FOUNDRY_PROJECT_ENDPOINT="https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
 FOUNDRY_MODEL="gpt-4o-mini"
 ```
 
-### `FoundryEmbeddingClient`
+### `FoundryEmbeddingClient` with a project endpoint
+
+```bash
+FOUNDRY_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
+FOUNDRY_EMBEDDING_MODEL="text-embedding-3-small"
+```
+
+Project-backed embeddings use an OpenAI embedding deployment in the Foundry project. Authenticate with an async token credential, such as `AzureCliCredential`.
+
+### `FoundryEmbeddingClient` with a models endpoint
 
 ```bash
 FOUNDRY_MODELS_ENDPOINT="https://<apim-instance>.azure-api.net/<foundry-instance>/models"
@@ -133,7 +141,9 @@ FOUNDRY_EMBEDDING_MODEL="text-embedding-3-small"
 FOUNDRY_IMAGE_EMBEDDING_MODEL="Cohere-embed-v3-english"  # optional
 ```
 
-`FoundryChatClient` uses the project endpoint. `FoundryEmbeddingClient` uses the separate models endpoint.
+Use the Foundry Models endpoint for image embeddings or for text models deployed to that endpoint. If both endpoint environment variables are set and you don't pass an explicit endpoint or project client, `FOUNDRY_MODELS_ENDPOINT` takes precedence.
+
+`FoundryChatClient` uses the project endpoint. `FoundryEmbeddingClient` supports project-backed text embeddings and models-endpoint text or image embeddings.
 
 ### Choose the right Python client
 
@@ -142,7 +152,8 @@ FOUNDRY_IMAGE_EMBEDDING_MODEL="Cohere-embed-v3-english"  # optional
 | Azure OpenAI resource | `OpenAIChatCompletionClient` / `OpenAIChatClient` | Use the [OpenAI provider page](./openai.md). |
 | Microsoft Foundry project inference | `Agent(client=FoundryChatClient(...))` | Uses the Foundry Responses endpoint. |
 | Microsoft Foundry service-managed agent | `FoundryAgent` | Recommended for Prompt Agents and HostedAgents. |
-| Microsoft Foundry models-endpoint embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_MODELS_ENDPOINT` plus `FOUNDRY_EMBEDDING_MODEL` / `FOUNDRY_IMAGE_EMBEDDING_MODEL`. |
+| Microsoft Foundry project text embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_EMBEDDING_MODEL`, and a token credential. |
+| Microsoft Foundry models-endpoint text or image embeddings | `FoundryEmbeddingClient` | Uses `FOUNDRY_MODELS_ENDPOINT` plus `FOUNDRY_EMBEDDING_MODEL` / `FOUNDRY_IMAGE_EMBEDDING_MODEL`. |
 | Foundry Local runtime | `Agent(client=FoundryLocalClient(...))` | See [Foundry Local](./foundry-local.md). |
 
 ## Create an agent with `FoundryChatClient`
@@ -156,7 +167,7 @@ from azure.identity import AzureCliCredential
 
 agent = Agent(
     client=FoundryChatClient(
-        project_endpoint="https://your-project.services.ai.azure.com",
+        project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
         model="gpt-4o-mini",
         credential=AzureCliCredential(),
     ),
@@ -186,7 +197,7 @@ from azure.identity import AzureCliCredential
 
 agent = Agent(
     client=FoundryChatClient(
-        project_endpoint="https://your-project.services.ai.azure.com",
+        project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
         model="<reasoning-model-deployment>",
         credential=AzureCliCredential(),
     ),
@@ -236,7 +247,8 @@ The table below lists every tool the Python `FoundryChatClient` exposes today.
 | [SharePoint](#sharepoint) | `get_sharepoint_tool` | Preview | Ground answers in SharePoint content. |
 | [Microsoft Fabric](#microsoft-fabric) | `get_fabric_tool` | Preview | Query a Fabric data agent. |
 | [Memory Search](#memory-search) | `get_memory_search_tool` | Preview | Search a Foundry-managed memory store. |
-| [Computer Use](#computer-use) | `get_computer_use_tool` | Preview | Let the agent drive a desktop or browser environment. |
+| [Native computer use](../../../agents/tools/computer-use.md) | `get_computer_tool` | Available | Return ordered computer actions through the Responses API. Requires `azure-ai-projects` 2.3.0 or later. |
+| [Computer Use preview](#computer-use) | `get_computer_use_tool` | Preview | Use the separate preview computer API. |
 | [Browser Automation](#browser-automation) | `get_browser_automation_tool` | Preview | Drive a browser via an Azure Playwright connection. |
 | [Agent-to-Agent (A2A)](#agent-to-agent-a2a) | `get_a2a_tool` | Preview | Call another A2A agent as a tool. |
 
@@ -347,10 +359,26 @@ memory = FoundryChatClient.get_memory_search_tool(
 
 ### Computer use
 
-`get_computer_use_tool` configures the Computer Use preview tool — the model can drive a desktop or browser environment by issuing pointer and keyboard actions.
+`get_computer_tool` configures native computer use through the Responses API.
+The Foundry SDK tool is non-preview, but the shared Agent Framework
+`ComputerSafetyCheck` and computer `Content` constructors are experimental.
+Your application executes the ordered actions, reviews safety checks, and
+returns a screenshot. For the complete request and result flow, see
+[Native computer use](../../../agents/tools/computer-use.md).
 
 ```python
-computer = FoundryChatClient.get_computer_use_tool(
+computer = FoundryChatClient.get_computer_tool()
+```
+
+This factory requires `azure-ai-projects` 2.3.0 or later. Older supported SDK
+versions can still import `FoundryChatClient`, but calling
+`get_computer_tool()` raises an `ImportError` with upgrade guidance.
+
+`get_computer_use_tool` remains available for the separate Computer Use preview
+API:
+
+```python
+preview_computer = FoundryChatClient.get_computer_use_tool(
     environment="browser",
     display_width=1280,
     display_height=800,
@@ -382,15 +410,25 @@ For general A2A discovery, sessions, and streaming guidance, see the [A2A agent 
 
 ## Create embeddings with `FoundryEmbeddingClient`
 
-Use `FoundryEmbeddingClient` when you want text or image embeddings from a Foundry models endpoint.
+Use `FoundryEmbeddingClient` with a project endpoint when you want text embeddings from an OpenAI deployment in your Foundry project.
 
 ```python
-from agent_framework.foundry import FoundryEmbeddingClient
+import os
 
-async with FoundryEmbeddingClient() as client:
-    result = await client.get_embeddings(["hello from Agent Framework"])
-    print(result[0].dimensions)
+from agent_framework.foundry import FoundryEmbeddingClient
+from azure.identity.aio import AzureCliCredential
+
+async with AzureCliCredential() as credential:
+    async with FoundryEmbeddingClient(
+        project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        model=os.environ["FOUNDRY_EMBEDDING_MODEL"],
+        credential=credential,
+    ) as client:
+        result = await client.get_embeddings(["hello from Agent Framework"])
+        print(result[0].dimensions)
 ```
+
+For image embeddings, configure `FOUNDRY_MODELS_ENDPOINT`, `FOUNDRY_MODELS_API_KEY`, and `FOUNDRY_IMAGE_EMBEDDING_MODEL` instead. Don't combine project-endpoint configuration with models-endpoint arguments or clients in the same `FoundryEmbeddingClient`.
 
 ## Using the agent
 

@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-clients
 
 # Manage hosted agent sessions
 
-This article shows you how to manage sessions for hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days. The agent version's idle timeout can be 2 through 60 minutes and defaults to 15 minutes. When the timeout is reached, the platform deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#sessions-and-conversations).
+This article shows you how to manage sessions for hosted agents in Foundry Agent Service. A session is a stateful, isolated sandbox tied to a single logical workload (for example, one user's chat). The platform persists the session's filesystem (`$HOME` and uploaded files) across turns and across idle periods, so the agent can resume where it left off. Sessions persist for up to 30 days. The agent version's idle timeout can be 2 through 60 minutes and defaults to 15 minutes. When the timeout is reached, the platform deprovisions compute and saves state until the session is referenced again. For background, see [Hosted agents in Foundry Agent Service](../concepts/hosted-agents.md#how-sessions-and-conversations-work-with-each-protocol).
 
 If you use a coding agent like GitHub Copilot, the [Microsoft Foundry Skill](../../how-to/develop/use-microsoft-foundry-skill.md) can help reason about session state, files, and conversation IDs as you test or troubleshoot hosted agents.
 
@@ -69,6 +69,19 @@ For Invocations, the platform reads the query parameter only. Fields named `agen
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+- [.NET 10 SDK or later](https://dotnet.microsoft.com/download/dotnet/10.0).
+- The .NET packages used in this article:
+
+    ```dotnetcli
+    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Extensions.OpenAI
+    dotnet add package Azure.Identity
+    ```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 - JavaScript/TypeScript SDK: `@azure/ai-projects` and `@azure/identity` (`npm install @azure/ai-projects @azure/identity`).
@@ -119,6 +132,29 @@ project = AIProjectClient(
     endpoint="<your-project-endpoint>",
     credential=DefaultAzureCredential(),
 )
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+## Set up the client
+
+All C# examples in this article use the following client configuration. Session management uses `AgentAdministrationClient`; invoking an agent uses `ProjectResponsesClient`:
+
+```csharp
+using Azure.AI.Extensions.OpenAI;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Agents;
+using Azure.Identity;
+
+#pragma warning disable AAIP001, OPENAI001
+
+var projectEndpoint = "<your-project-endpoint>";
+var agentName = "my-agent";
+
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+AgentAdministrationClient agentsClient = projectClient.AgentAdministrationClient;
 ```
 
 :::zone-end
@@ -193,7 +229,7 @@ agent = project.agents.create_version(
         protocol_versions=[
             ProtocolVersionRecord(
                 protocol=AgentEndpointProtocol.RESPONSES,
-                version="1.0.0",
+                version="2.0.0",
             )
         ],
         cpu="1",
@@ -214,6 +250,18 @@ print(f"Created version {agent.version} with a 2-minute idle timeout.")
 ```
 
 Reference: [HostedAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.hostedagentdefinition)
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+The .NET SDK's `HostedAgentDefinition` doesn't expose a session configuration property yet, so set the idle timeout with the REST API or the Python SDK. Select the **REST API** tab for the request body.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Set the idle timeout with the REST API or the Python SDK. Select the **REST API** tab for the request body.
 
 :::zone-end
 
@@ -238,7 +286,7 @@ az rest --method POST \
             "protocol_versions": [
                 {
                     "protocol": "responses",
-                    "version": "1.0.0"
+                    "version": "2.0.0"
                 }
             ],
             "environment_variables": {
@@ -332,6 +380,34 @@ follow_up = openai_client.responses.create(
     input="Recommend one of those hotels",
     extra_body={"conversation": conversation.id},
 )
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Invoke the agent, and then read `agent_session_id` from the raw response payload:
+
+```csharp
+ProjectResponsesClient responsesClient = projectClient.ProjectOpenAIClient
+    .GetProjectResponsesClientForAgentEndpoint(agentName);
+
+ClientResult<ResponseResult> first = responsesClient.CreateResponse(
+    "Find me hotels in Seattle under $200 per night");
+
+using JsonDocument payload = JsonDocument.Parse(first.GetRawResponse().Content.ToString());
+string sessionId = payload.RootElement.GetProperty("agent_session_id").GetString()!;
+Console.WriteLine($"Session: {sessionId}");
+```
+
+When you thread the next turn with `PreviousResponseId`, the platform routes the call to the same session:
+
+```csharp
+CreateResponseOptions options = new() { PreviousResponseId = first.Value.Id };
+options.InputItems.Add(ResponseItem.CreateUserMessageItem("Recommend one of those hotels"));
+
+ClientResult<ResponseResult> followUp = responsesClient.CreateResponse(options);
+Console.WriteLine(followUp.Value.GetOutputText());
 ```
 
 :::zone-end
@@ -457,6 +533,39 @@ requests.post(
     data=json.dumps({"input": "Continue our previous discussion"}),
 )
 ```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+The .NET SDK doesn't ship a typed Invocations client. Call the endpoint with `HttpClient` and authenticate with a bearer token from `Azure.Identity`:
+
+```csharp
+using System.Net.Http.Json;
+using Azure.Core;
+
+var token = new DefaultAzureCredential()
+    .GetToken(new TokenRequestContext(["https://ai.azure.com/.default"]))
+    .Token;
+
+using HttpClient http = new();
+http.DefaultRequestHeaders.Authorization = new("Bearer", token);
+
+var baseUrl = $"{projectEndpoint}/agents/{agentName}/endpoint/protocols/invocations?api-version=v1";
+
+// First call - the platform creates a new session.
+HttpResponseMessage first = await http.PostAsJsonAsync(baseUrl, new { input = "Hello" });
+Console.WriteLine(await first.Content.ReadAsStringAsync());
+
+// Reuse the session on a later call by passing it as a query parameter.
+var sessionId = "<session_id-from-first-response>";
+HttpResponseMessage next = await http.PostAsJsonAsync(
+    $"{baseUrl}&agent_session_id={sessionId}",
+    new { input = "Continue our previous discussion" });
+Console.WriteLine(await next.Content.ReadAsStringAsync());
+```
+
+Containers built with the AgentServer SDK return a Server-Sent Events stream, so read the response as a string and parse the terminal `done` event for `session_id`.
 
 :::zone-end
 
@@ -595,6 +704,29 @@ print(f"Created session {session.agent_session_id} for agent version 2")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Pass a `VersionRefIndicator` to pin the session to a specific agent version. Supply your own session ID, and then poll until the session reaches `Active`:
+
+```csharp
+var sessionId = Guid.NewGuid().ToString();
+
+ProjectAgentSession session = agentsClient.CreateSession(
+    agentName: agentName,
+    versionIndicator: new VersionRefIndicator("2"),
+    agentSessionId: sessionId);
+Console.WriteLine($"Session created (ID: {session.AgentSessionId}, status: {session.Status})");
+
+while (session.Status != AgentSessionStatus.Active && session.Status != AgentSessionStatus.Failed)
+{
+    Thread.Sleep(TimeSpan.FromSeconds(1));
+    session = agentsClient.GetSession(agentName, sessionId);
+}
+Console.WriteLine($"Session status: {session.Status}");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -649,6 +781,17 @@ for item in sessions:
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+foreach (ProjectAgentSession item in agentsClient.GetSessions(agentName))
+{
+    Console.WriteLine($"Session: {item.AgentSessionId} (status: {item.Status})");
+}
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -689,6 +832,16 @@ session = project.agents.get_session(
     session_id="<session-id>",
 )
 print(f"Session ID: {session.agent_session_id}, Status: {session.status}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+ProjectAgentSession session = agentsClient.GetSession(agentName, "<session-id>");
+Console.WriteLine($"Session ID: {session.AgentSessionId}, Status: {session.Status}");
+Console.WriteLine($"Created: {session.CreatedAt}, Last accessed: {session.LastAccessedAt}, Expires: {session.ExpiresAt}");
 ```
 
 :::zone-end
@@ -746,6 +899,12 @@ project.agents.stop_session(
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Stop a session with the REST API. Select the **REST API** tab for the request. The `StopSession` method in `Azure.AI.Projects.Agents` 2.1.0-beta.4 fails at runtime, so avoid it until a later release fixes it.
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
@@ -757,6 +916,17 @@ Not yet available through the JavaScript/TypeScript SDK. Use the REST API.
 Session management isn't currently available as a standalone command. Use the REST API or SDK.
 
 :::zone-end
+
+## How stopping a session affects an in-flight turn
+
+Stopping a session is a session-management API (`:stop` on the session, not on any specific response or invocation). It isn't part of the [cancel API](cancel-hosted-agent-turn.md) contract, which is a route on the agent scoped to one turn. Stopping a session doesn't target a turn at all. It ends the container the session runs in. But because that container is what any in-flight long-running turn runs on, stopping the session still affects that turn. This section documents that side effect.
+
+The resilient task subsystem underneath resolves an in-flight turn by using the same shutdown sequence it uses for any container teardown (a redeploy, a scale-in, and so on). There's no dedicated "session stopped" code path:
+
+- If your handler checks for shutdown at a safe point and defers (see [Handle graceful shutdown](recover-long-running-work.md#handle-graceful-shutdown)) before the shutdown grace period elapses, the response or task stays in progress for a later lifetime to recover. It isn't marked canceled, failed, or suspended.
+- If your handler doesn't reach a checkpoint in time, the framework forcibly ends the turn. From that point, the outcome matches an explicit cancel: for a multi-turn conversation, the chain moves to `suspended` and stays resumable; for a one-shot task, the record is deleted.
+
+Resuming a stopped session's work depends on your hosting environment's session-resume behavior. A session you stop yourself isn't guaranteed to restart on its own even when its work was left in progress for recovery. Check your hosting platform's documentation for how to explicitly resume a stopped session before assuming recovery happens automatically.
 
 ## Delete a session
 
@@ -783,6 +953,14 @@ project.agents.delete_session(
     agent_name="my-agent",
     session_id="<session-id>",
 )
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+agentsClient.DeleteSession(agentName, "<session-id>");
 ```
 
 :::zone-end
@@ -840,6 +1018,21 @@ print(f"Uploaded {result.path} ({result.bytes_written} bytes)")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+Get an `AgentSessionFiles` client for the session, and then upload a local file to a path in the sandbox:
+
+```csharp
+AgentSessionFiles files = agentsClient.GetAgentSessionFiles(agentName, "<session-id>");
+
+SessionFileWriteResponse result = files.Upload(
+    sessionStoragePath: "/mnt/agent/session/data.csv",
+    localPath: "./data.csv");
+Console.WriteLine("Uploaded data.csv");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -890,6 +1083,17 @@ files = project.agents.list_session_files(
 )
 for entry in files:
     print(f"{entry.name} (size: {entry.size}, directory: {entry.is_directory})")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+foreach (SessionDirectoryEntry entry in files.GetAll(sessionStoragePath: "/mnt/agent/session"))
+{
+    Console.WriteLine($"{entry.Name} (size: {entry.SizeInBytes}, directory: {entry.IsDirectory})");
+}
 ```
 
 :::zone-end
@@ -952,6 +1156,19 @@ with open("./output.csv", "wb") as f:
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+The `Download` method writes the file to `localPath` and returns its contents:
+
+```csharp
+BinaryData content = files.Download(
+    sessionStoragePath: "/mnt/agent/session/data.csv",
+    localPath: "./output.csv");
+Console.WriteLine($"Downloaded {content.ToArray().Length} bytes");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -1008,6 +1225,14 @@ project.agents.delete_session_file(
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+files.Delete(localPath: "/mnt/agent/session/data.csv");
+```
+
+:::zone-end
+
 :::zone pivot="javascript"
 
 ```typescript
@@ -1041,4 +1266,5 @@ azd ai agent files remove --file data.csv
 - [Deploy a Hosted agent](deploy-hosted-agent.md)
 - [Manage Hosted agents](manage-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
+- [Cancel a hosted agent turn](cancel-hosted-agent-turn.md)
 - [Note-taking agent sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/bring-your-own/responses/notetaking-agent) for a container that writes per-session files visible through the Session Files API.

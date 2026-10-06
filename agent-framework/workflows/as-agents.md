@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: taochen
 ms.date: 07/29/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -256,6 +257,10 @@ session = await workflow_agent.create_session()
 > Sessions are optional. If you don't pass a `session` to `run()`, the agent handles state internally.
 > If `workflow.as_agent()` is created without `context_providers`, the framework adds an `InMemoryHistoryProvider()` by default so multi-turn history works out of the box.
 > If you pass `context_providers` explicitly, that list is used as-is.
+
+### Context providers and middleware
+
+`WorkflowAgent` runs context-provider lifecycle hooks. Messages contributed by those providers become workflow input. Contributed instructions, tools, chat middleware, and function middleware don't flow into workflow executors. Middleware configured on the wrapper `BaseAgent` also doesn't execute. Configure required policy on the agents or clients inside the workflow.
 
 ### Non-Streaming Execution
 

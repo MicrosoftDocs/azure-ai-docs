@@ -54,15 +54,11 @@ configuration:
                 - isActivitySender:
                     user: mcleans
                 - isActivitySender:
-                    user: aahill
+                    user: nitinme
                 - isActivitySender:
-                    user: laujan
+                    user: sdgilley
                 - isActivitySender:
-                    user: PatrickFarley
-                - isActivitySender:
-                    user: mattwojo
-                - isActivitySender:
-                    user: haileytap
+                    user: alvinashcraft
         then:
           - addReply:
               reply: >-
@@ -70,11 +66,9 @@ configuration:
           - mentionUsers:
               mentionees:
                 - mcleans
-                - aahill
-                - laujan
-                - patrickfarley
-                - mattwojo
-                - haileytap
+                - nitinme
+                - sdgilley
+                - alvinashcraft
               replyTemplate: ${mentionees} - Please review this PR and sign off when you're ready to merge it.
               assignMentionees: True # This part probably won't work since the bot doesn't have write perms.
           - addLabel:

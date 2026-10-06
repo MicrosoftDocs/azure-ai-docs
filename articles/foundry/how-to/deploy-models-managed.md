@@ -9,8 +9,8 @@ ms.topic: how-to
 ms.date: 06/01/2026
 ms.author: mabables
 author: ManojBableshwar
-ms.reviewer: mopeakande
-reviewer: msakande
+ms.reviewer: osiotugo
+reviewer: ositanachi
 ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-managed-compute-deployment
 #CustomerIntent: As a Microsoft Foundry developer, I want to deploy an open-source model onto managed compute, call it from my application code, use it in an agent, scale and monitor it, and request additional quota, so that I can run open-source models in production behind the same Foundry endpoint I already use.
@@ -63,6 +63,8 @@ For an overview of managed compute deployment in Foundry, including model instan
 
 Managed compute deploys models from the **Hugging Face Collection** in the Foundry model catalog, served from the `azure-huggingface` registry.
 
+For Hugging Face model availability in your project and Hugging Face-specific deployment guidance, see [Hugging Face models in Microsoft Foundry](../foundry-models/how-to/hugging-face-models.md).
+
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 1. Select your subscription and Foundry resource.
 1. Select **Build** in the upper-right navigation, then select **Models** in the left pane.
@@ -88,7 +90,7 @@ The model card shows the upstream license, the modality, supported tasks, and th
     
     To learn more about deployment templates, see [Deployment template](../concepts/managed-compute-overview.md#deployment-template) in the Managed compute overview article.
 
-- **Accelerator type**: for example `H100_80GB`, `A100_80GB`, or `MI_300_192GB`. Shown next to each template in the deployment wizard.
+- **Accelerator type**: for example, `H100_80GB`, `A100_80GB`, or `MI300_192GB`. Shown next to each template in the deployment wizard.
 
 ## Deploy the model
 

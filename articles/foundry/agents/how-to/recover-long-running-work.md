@@ -42,7 +42,7 @@ Recovery applies only to responses that are **stored and run in the background**
 
 ### Invocations / task primitives
 
-When you build directly on the task primitives, declaring a `@task` or `@multi_turn_task` handler **automatically** enables the startup recovery scan. If you register tasks lazily after host startup, force-enable the scan before startup:
+When you build directly on the task primitives, you opt in to the resilient task subsystem. Call `set_resilient_tasks_enabled(True)` before host startup so the framework constructs the `TaskManager` and runs the startup recovery scan. Without it, `get_task_manager()` raises `TaskManagerNotInitialized` and `.run()` and `.start()` can't run a task. Declaring a `@task` doesn't enable the subsystem on its own:
 
 ```python
 from azure.ai.agentserver.core.tasks import set_resilient_tasks_enabled
@@ -139,3 +139,4 @@ Crash recovery reenters the same attempt state; it doesn't consume retry budget,
 - [Deploy a crash-resilient long-running agent](deploy-resilient-agent.md)
 - [Manage state for long-running agents](manage-task-state.md)
 - [Stream with reconnect](stream-with-reconnect.md)
+- [Cancel a hosted agent turn](cancel-hosted-agent-turn.md)

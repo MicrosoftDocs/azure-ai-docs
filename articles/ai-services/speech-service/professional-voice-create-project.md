@@ -1,18 +1,19 @@
 ---
-title: Create a project for professional voice - Speech service
+title: Set up a professional voice - Speech service
 titleSuffix: Foundry Tools
-description: Learn about how to create a project for professional voice. 
+description: Learn how to set up a professional voice by using Microsoft Foundry, Speech Studio, or the custom voice REST API.
 author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 09/04/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-rest
-#Customer intent: As a developer, I want to learn how to create a project for professional voice.
+#Customer intent: As a developer, I want to learn how to set up a professional voice.
+ai-usage: ai-assisted
 ---
 
-# Create a project for professional voice
+# Set up a professional voice
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/how-to/professional-voice/create-project/ai-foundry.md)]
@@ -25,4 +26,3 @@ zone_pivot_groups: foundry-speech-studio-rest
 ::: zone pivot="rest-api"
 [!INCLUDE [REST API include](./includes/how-to/professional-voice/create-project/rest.md)]
 ::: zone-end
-

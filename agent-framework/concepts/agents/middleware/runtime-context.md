@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 05/27/2026
+ms.date: 09/15/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 
@@ -360,6 +361,21 @@ agent = OpenAIChatClient().as_agent(
 ```
 
 The middleware contract uses `call_next()` with no arguments. Mutate `context.kwargs` before calling it, and the selected tool sees those values through its injected `FunctionInvocationContext`.
+
+For automatic function invocation, schema-compatible arguments arrive
+normalized. If provisional validation fails, middleware instead receives the
+raw JSON-parsed mapping in `context.arguments`. Middleware can repair that
+mapping before it calls `call_next()`. The innermost handler then performs final
+validation, writes the normalized mapping back to `context.arguments`, and
+executes the tool. Middleware that doesn't call `call_next()` skips final
+validation and tool execution.
+
+> [!IMPORTANT]
+> If middleware changes arguments covered by an existing approval, that grant
+> executes nothing. The framework returns a replacement approval request with
+> the changed arguments, which must be approved before execution. Run
+> argument-repair middleware before security or policy middleware. Argument
+> mutation after security processing fails closed with `MiddlewareFailure`.
 
 ### Use `session=` for shared runtime state
 

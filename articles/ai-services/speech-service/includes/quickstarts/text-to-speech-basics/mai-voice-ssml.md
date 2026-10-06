@@ -1,0 +1,45 @@
+Use this voice name for MAI-Voice-2.1:
+
+```xml
+<voice name="en-US-Harper:MAI-Voice-2.1">
+```
+
+The same suffix applies to any supported prebuilt voice.
+
+### Basic SSML
+
+The following example uses Harper with MAI-Voice-2.1:
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-Harper:MAI-Voice-2.1">
+    Hello world. This is a sample from MAI Voice.
+  </voice>
+</speak>
+```
+
+### Multilingual SSML
+
+The following SSML synthesizes a greeting in Spanish (Mexico) by using `es-MX-Valeria:MAI-Voice-2.1`.
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="es-MX">
+  <voice name="es-MX-Valeria:MAI-Voice-2.1">
+    Hola, esta es una muestra de MAI Voice 2.1.
+  </voice>
+</speak>
+```
+
+### Expressive control with SSML `mstts:express-as`
+
+Use the `style` attribute to control expression:
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-Harper:MAI-Voice-2.1">
+    <mstts:express-as style="happiness">
+      Welcome to Microsoft Build. MAI Voice 2.1 supports multilingual expressive synthesis.
+    </mstts:express-as>
+  </voice>
+</speak>
+```

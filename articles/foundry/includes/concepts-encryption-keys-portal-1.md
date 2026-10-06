@@ -8,6 +8,7 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 08/11/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 ## Benefits of customer-managed keys (CMKs)
@@ -36,7 +37,7 @@ To configure a CMK for Foundry, you need:
 - Key store permissions:
 
   - For Key Vault with Azure RBAC, assign the Key Vault Crypto User role to the managed identity.
-  - For Key Vault with vault access policies, grant key-specific permissions to the managed identity, such as `unwrapKey` and `wrapKey`.
+  - For Key Vault with vault access policies, grant the **Encrypt**, **Decrypt**, **Wrap Key**, **Unwrap Key**, **Sign**, and **Verify** key permissions to the managed identity of the Foundry account parent resource and project child resource.
   - For Managed HSM, assign the Managed HSM Crypto User role to the managed identity at the appropriate scope. For more information, see [Managed HSM local RBAC built-in roles](/azure/key-vault/managed-hsm/built-in-roles).
 
 - Sufficient Azure permissions:
@@ -106,6 +107,10 @@ Configure appropriate permissions for the system-assigned or user-assigned manag
 
 #### Key Vault
 
+Key Vault supports two permission models. Use the steps that match your vault's configuration.
+
+**Azure role-based access control (RBAC)**
+
 1. In the Azure portal, go to your key vault.
 
 1. Select **Access Control (IAM)**.
@@ -115,6 +120,22 @@ Configure appropriate permissions for the system-assigned or user-assigned manag
 1. Assign the Key Vault Crypto User role to the system-assigned managed identity of the Foundry resource or to the user-assigned managed identity.
 
    The managed identity appears in the role assignments list for the key vault.
+
+**Vault access policy**
+
+1. In the Azure portal, go to your key vault.
+
+1. Under **Settings**, select **Access policies**.
+
+1. Select **+ Create**.
+
+1. On the **Permissions** tab, under **Key permissions**, select **Encrypt**, **Decrypt**, **Wrap Key**, **Unwrap Key**, **Sign**, and **Verify**.
+
+1. On the **Principal** tab, select the Foundry resource's managed identity and the project sub-resource's managed identity.
+
+1. Select **Create** to save the access policy.
+
+   The managed identities appear in the access policies list for the key vault.
 
 #### Managed HSM
 

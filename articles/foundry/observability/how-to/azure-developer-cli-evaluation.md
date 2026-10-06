@@ -4,7 +4,7 @@ description: Learn how to initialize evaluation assets, run an evaluation, and i
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 09/25/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -28,6 +28,7 @@ This article covers how to run the first agent evaluation with `azd ai agent eva
 - The `azd ai agent` extension, version 0.1.40-preview or later, installed (`azd ext install azure.ai.agents`). If you don't have the extension installed, when you initialize the starter template or run `azd ai agent` the extension is installed automatically. Run `azd ext list` to verify the installed version, and run `azd ext upgrade azure.ai.agents` if you need to upgrade. To learn more about the `azd` AI agent extension, see [Microsoft Foundry agent extension](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
 - An authenticated `azd` session. To check your authentication status, run `azd auth status`. If you're not signed in, run `azd auth login`.
 - The `Foundry User` role on the Foundry resource (previously named `Azure AI User`). For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - **For hosted agents:** No preexisting Foundry project is required. `azd ai agent init` and `azd provision` create the necessary resources.
 - **For prompt-based agents:** An existing Foundry project with the agent already deployed and available as an evaluation target.
 - A model deployment that supports chat completions in the same Foundry project.

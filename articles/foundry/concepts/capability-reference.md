@@ -71,7 +71,7 @@ Foundry Agent Service and the agent development lifecycle.
 | [Routines](../agents/concepts/routines.md) | Package repeatable agent procedures for reuse. |
 | [Agent-to-agent (A2A)](../agents/how-to/tools/agent-to-agent.md) | Let agents call other agents across services and vendors. |
 | [Responses API](../agents/quickstarts/responses-api.md) | Stateful API for model and agent interactions. |
-| [Voice agents](../agents/how-to/build-voice-agent.md) | Add speech input and output to agents. |
+| [Voice agents](/azure/foundry/agents/quickstarts/prompt-voice-agent) | Add speech input and output to agents. |
 | [Microsoft Agent 365 integration](../agents/concepts/agent-365-integration.md) | Manage and observe Foundry agents alongside Microsoft 365 agents. |
 | [Continuous integration and deployment](../agents/quickstarts/set-up-cicd-hosted-agent.md) | Ship agents through automated pipelines. |
 | [Agent debugging tools](../agents/how-to/agent-inspector.md) | Inspect and diagnose agent behavior locally and in the cloud. |

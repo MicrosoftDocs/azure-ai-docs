@@ -5,8 +5,10 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/30/2026
+ms.date: 10/06/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 <!--
@@ -15,9 +17,9 @@ ms.service: agent-framework
   | Section                  | C# | Python | Go | Notes                         |
   |--------------------------|:--:|:------:|:--:|:------------------------------|
   | Toolbox overview         | ✅ |   ✅   | ✅ | Shared                        |
-  | MCP consumption          | ❌ |   ✅   | ❌ | Python sample available       |
+  | MCP consumption          | ✅ |   ✅   | ❌ | Hosted C# and Python samples  |
   | Managed-agent attachment | ✅ |   ✅   | ❌ | Configured in Foundry         |
-  | Language availability    | ✅ |   ✅   | ✅ | C# and Go are status guidance |
+  | Language availability    | ✅ |   ✅   | ✅ | Go is status guidance        |
 -->
 
 # Microsoft Foundry Toolbox
@@ -31,7 +33,17 @@ Agent Framework covers Toolbox consumption. Create and update Toolbox versions t
 
 :::zone pivot="programming-language-csharp"
 
-For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry. Client-side .NET Toolbox consumption guidance isn't currently documented.
+For a service-managed `FoundryAgent`, attach the Toolbox to the agent definition in Foundry.
+
+For a hosted agent built with Microsoft Agent Framework, use `AddFoundryToolboxes` from `Microsoft.Agents.AI.Foundry.Hosting`, as shown in the following example.
+
+Use a .NET 10 web project with implicit usings enabled, matching versions of `Microsoft.Agents.AI.Foundry` and `Microsoft.Agents.AI.Foundry.Hosting`, and `DotNetEnv`. Set `TOOLBOX_NAME` to an existing toolbox and `FOUNDRY_MODEL` to your model deployment. Foundry supplies `FOUNDRY_PROJECT_ENDPOINT` to the deployed host. For local model access, set `FOUNDRY_PROJECT_ENDPOINT` and sign in with Azure CLI. Hosted deployments fall back to the azd-managed `AZURE_AI_MODEL_DEPLOYMENT_NAME`. The hosting integration loads toolbox tools when `FOUNDRY_PROJECT_ENDPOINT` is available.
+
+:::code language="csharp" source="~/../agent-framework-code/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox/Program.cs" range="27-48,54-55,58-68,71-75,80-89":::
+
+The same hosting registration supports tools configured for per-user OAuth consent on their toolbox connections. Users still need the required permissions and consent; no separate host-registration block is needed.
+
+For the project files and deployment instructions, see [Hosted-Toolbox](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox). For per-user consent setup, see [Hosted-Toolbox-AuthPaths](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/FoundryHostedAgents/responses/Hosted-Toolbox-AuthPaths).
 
 :::zone-end
 
@@ -60,33 +72,62 @@ FOUNDRY_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<
 TOOLBOX_NAME="<toolbox-name>"
 ```
 
-The hosted-agent samples also use `AZURE_AI_MODEL_DEPLOYMENT_NAME` for `FoundryChatClient`.
+The hosted-agent samples prefer `FOUNDRY_MODEL` locally and fall back to the azd-managed `AZURE_AI_MODEL_DEPLOYMENT_NAME` when hosted.
 
 ## Use `FoundryToolbox` with a hosted agent
 
-`FoundryToolbox` resolves its endpoint, authenticates every MCP request with the supplied Azure credential, forwards the Foundry per-request call ID, and participates in the agent's connection lifecycle.
+`FoundryToolbox` resolves its endpoint, authenticates every MCP request with the
+supplied Azure credential, forwards the Foundry per-request call ID, and
+participates in the agent's connection lifecycle. It resolves platform headers
+at each operation boundary and reconnects its MCP session when the effective
+request identity changes. A long-lived Toolbox therefore doesn't retain an
+earlier caller's call ID.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="3-43":::
+The sample creates the Toolbox, client, and credential inside the
+request-scoped agent factory for deterministic ownership and cleanup. Use this
+factory pattern when related resources are request-owned, but it isn't required
+solely to keep Toolbox call IDs current.
+
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="19-71":::
+
+When Toolbox Code Interpreter produces a file and the assistant response names
+that file, the hosted Responses adapter emits a native
+`container_file_citation` annotation with the container and file IDs. Responses
+clients can use those IDs to discover and download the generated file through
+the container files API.
 
 ## Expose Toolbox skills
 
 A Toolbox can expose Agent Skills over MCP. Set `load_tools=False` when only skills should be model-visible, then add the Toolbox as a tool so its MCP session connects and use `as_skills_provider()` as a context provider.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox_mcp_skills/main.py" range="3-53":::
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox_mcp_skills/main.py" range="19-75":::
 
 Approval remains enabled by default for skill operations. Disable individual approvals only for trusted, unattended scenarios.
+Keep the Toolbox and its skills provider together so both use the same MCP
+session. For a long-lived Toolbox, the skill discovery cache is replaced when
+the effective platform-header identity changes. A custom `header_provider` used
+with skills must resolve from ambient state, such as a closure or `ContextVar`,
+because skill and resource reads don't receive function runtime arguments.
 
 ## Use a Toolbox with `FoundryAgent`
 
 Attach the Toolbox to the Prompt or Hosted Agent definition in Foundry. `FoundryAgent` uses that stored tool configuration; passing a Toolbox client-side doesn't add it to the managed agent.
 
-## Connect through raw MCP
+<a id="connect-through-raw-mcp"></a>
 
-Use `MCPStreamableHTTPTool` directly when the application doesn't use the `FoundryToolbox` hosting wrapper. Supply the Toolbox endpoint and an Entra ID bearer token through `header_provider`.
+## Connect through MCP with `FoundryToolbox`
 
-:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/foundry/foundry_chat_client_with_toolbox.py" range="3-12,80-94,98-118":::
+Use `FoundryToolbox` with `ResponsesHostServer` to connect a hosted agent to the
+Toolbox MCP endpoint. The wrapper authenticates MCP requests and forwards the
+current hosted request's caller context for per-user identity passthrough.
+The request-scoped `agent` factory remains the simplest option when the client,
+credential, and Toolbox need one cleanup boundary. A long-lived Toolbox is also
+supported and reconnects before an operation when the platform-header identity
+changes.
 
-The lower-level sample uses `FOUNDRY_TOOLBOX_ENDPOINT`. The Toolbox skills sample uses `FOUNDRY_TOOLBOX_MCP_SERVER_URL`; these names belong to those samples and are separate from the `FoundryToolbox` class's `TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` settings.
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/foundry_toolbox/main.py" range="19-71":::
+
+Set `TOOLBOX_ENDPOINT`, or set both `FOUNDRY_PROJECT_ENDPOINT` and `TOOLBOX_NAME`, as described in [Configure the Toolbox](#configure-the-toolbox). Set `FOUNDRY_MODEL` for local runs; hosted deployments fall back to the azd-managed `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
 
 ## Limitations
 

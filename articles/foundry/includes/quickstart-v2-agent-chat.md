@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/05/2025
-ms.custom: include, update-code6
+ms.custom: include, update-code7
 ---
 
 Use the previously created agent named "MyAgent" to interact by asking a question and a related follow-up. The conversation maintains history across these interactions. 
@@ -26,7 +26,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [Java](#tab/java) 
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/foundry/samples/ChatWithAgent.java" :::
 
 # [REST API](#tab/rest)
 

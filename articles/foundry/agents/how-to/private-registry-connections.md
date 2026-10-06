@@ -3,7 +3,7 @@ title: "Bring your own registry for hosted agents"
 description: "Deploy a Microsoft Foundry hosted agent from an authenticated container registry outside Azure by using a project connection."
 author: aahill
 ms.author: aahi
-ms.date: 09/01/2026
+ms.date: 09/03/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -31,7 +31,7 @@ This approach works with non-Azure registries that support OIDC token exchange. 
 - A Bash-compatible shell.
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd), version 1.32.0 or later, installed and authenticated.
 - The Azure Developer CLI Foundry extensions, including `azure.ai.agents` 1.0.0-beta.13 or later. See [Install the Azure Developer CLI Foundry extensions](install-cli-foundry-extensions.md).
-- For the Python SDK workflow, Python 3.9 or later and the Azure AI Projects and Azure Identity packages.
+- For the Python SDK workflow, Python 3.10 or later and the Azure AI Projects and Azure Identity packages.
 
   ```bash
   pip install azure-ai-projects azure-identity

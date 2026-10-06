@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: SergeyMenshykh
 ms.topic: article
 ms.author: semenshi
-ms.date: 07/08/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Agent Skills
@@ -59,6 +60,14 @@ metadata:
 | `compatibility` | No | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
 | `metadata` | No | Arbitrary key-value mapping for additional metadata. |
 | `allowed-tools` | No | Space-delimited list of pre-approved tools the skill may use. Experimental - support may vary between agent implementations. |
+
+Recognized top-level field names must use the lowercase spelling shown in the table and can appear only once. Invalid
+YAML, duplicate recognized fields, incorrect field casing, or a collection where a scalar field is expected prevent
+the skill from loading. Unknown top-level fields are ignored for forward compatibility.
+
+Python file-based and MCP archive loaders treat `metadata` keys as case-sensitive strings. An exact duplicate keeps the
+first valid value and logs a warning. Invalid metadata entries, including nested collections, are skipped with a
+warning instead of preventing the skill from loading.
 
 The markdown body after the frontmatter contains the skill instructions - step-by-step guidance, examples of inputs and outputs, common edge cases, or any content that helps the agent perform the task. Keep `SKILL.md` under 500 lines and move detailed reference material to separate files.
 
@@ -431,6 +440,13 @@ skills_provider = SkillsProvider.from_paths(
 ```
 
 The runner receives the resolved `FileSkill`, `FileSkillScript`, and an optional `args` argument. File-based scripts expect arguments as a JSON array of strings - each array element becomes a positional command-line argument. Scripts are automatically discovered from `.py` files in the `scripts/` subdirectory of each skill directory.
+
+To access host runtime values, add one keyword-bindable runner parameter
+annotated directly as `FunctionInvocationContext` or
+`FunctionInvocationContext | None`. The parameter must have a default value
+and must not replace the existing `skill`, `script`, or `args` parameters.
+Making it keyword-only is the recommended shape. The provider injects the
+context, but doesn't add its values to the subprocess arguments or environment.
 
 > [!WARNING]
 > The runner above is provided for **demonstration purposes only**. For production use, consider adding:
@@ -897,7 +913,7 @@ Skills can be discovered from MCP (Model Context Protocol) servers that expose s
 MCP-based skills support two index entry types:
 
 - **`skill-md`** - The skill's `SKILL.md` and sibling resources are fetched on demand from the MCP server.
-- **`archive`** - The skill is distributed as a single packaged archive (ZIP, TAR, or gzip-compressed TAR) that is downloaded and unpacked locally.
+- **`archive`** - The skill is distributed as a ZIP archive that the framework downloads and unpacks locally.
 
 ### Basic usage
 
@@ -960,6 +976,8 @@ var skillsProvider = new AgentSkillsProviderBuilder()
 - `ArchiveMaxSizeBytes` - Maximum download size per archive. Defaults to `1 MB`.
 - `ArchiveMaxUncompressedSizeBytes` - Maximum total uncompressed size per archive. Defaults to `1 MB`.
 
+If multiple archive members resolve to the same extracted file, the Agent Framework keeps the first member's content, skips later colliding members with a warning, and continues skill discovery.
+
 > [!IMPORTANT]
 > Scripts bundled in archive-type skills are **never executed**. This is a deliberate security measure - executable content from remote MCP servers requires explicit trust.
 
@@ -972,7 +990,7 @@ var skillsProvider = new AgentSkillsProviderBuilder()
 > [!NOTE]
 > MCP-based skills are experimental and may change in future releases. Using `MCPSkillsSource` emits a `FutureWarning` under the `MCP_SKILLS` feature flag.
 
-Skills can be discovered from MCP (Model Context Protocol) servers that expose skill resources under the `skill://` URI scheme. The MCP server advertises skills via a `skill://index.json` discovery document, and the framework fetches each skill's `SKILL.md` body on demand via `resources/read`.
+You can discover skills from MCP (Model Context Protocol) servers that expose skill resources under the `skill://` URI scheme. The MCP server advertises skills through a `skill://index.json` discovery document. Python supports `skill-md` entries fetched on demand through `resources/read` and `archive` entries supplied as ZIP files.
 
 Wrap an MCP `ClientSession` in `MCPSkillsSource` and pass it to `SkillsProvider`:
 
@@ -991,7 +1009,7 @@ async with streamable_http_client(url=mcp_url) as (read, write, _), ClientSessio
     await session.initialize()
 
     # MCPSkillsSource reads skill://index.json and creates one skill per
-    # skill-md entry; SKILL.md bodies are fetched on demand.
+    # supported entry; skill-md bodies are fetched on demand.
     skills_provider = SkillsProvider(MCPSkillsSource(client=session))
 
     client = FoundryChatClient(
@@ -1009,8 +1027,22 @@ async with streamable_http_client(url=mcp_url) as (read, write, _), ClientSessio
         response = await agent.run("...")
 ```
 
+For archive entries, use an `application/zip` media type or a `.zip` URL suffix. Agent Framework skips TAR, `.tar.gz`, `.tgz`, and other archive formats as unsupported so the remaining index entries can still load. Repackage existing non-ZIP skills as ZIP; no caller-side code change is required.
+
+When an archive entry supplies a `digest`, it must use `sha256:` followed by 64
+lowercase hexadecimal characters. Agent Framework verifies the digest against
+the decoded archive bytes before extraction. An invalid or mismatched digest
+skips that archive without blocking other entries. An omitted or null digest is
+allowed. Digest verification applies only to `archive` entries, not
+`skill-md` entries or their supporting resources. A matching digest proves
+consistency with the index, not that the MCP server is trustworthy.
+
+`MCPSkillsSource` extracts ZIP content in memory. Use its `archive_*` constructor options to restrict resource extensions, search depth, file count, download size, and total uncompressed size. Scripts in MCP archives are available only as read-only resources and are never exposed as runnable scripts.
+
+Archive member paths are normalized and compared case-insensitively, matching resource lookup. If multiple members resolve to the same path, Agent Framework keeps the first member's spelling and content, logs a warning, and continues loading the remaining archive content.
+
 > [!NOTE]
-> The Python `MCPSkillsSource` supports only `skill-md` index entries (index entries of any other type are silently skipped). Unlike the .NET implementation, it does **not** support archive-type skills. If `skill://index.json` is absent, unreadable, empty, or fails to parse, the source returns an empty list.
+> If `skill://index.json` is absent, unreadable, empty, or fails to parse, the source returns an empty list. Agent Framework skips index entry types other than `skill-md` and `archive`.
 
 > [!IMPORTANT]
 > An external MCP server controls what skill content - including instructions and scripts the agent may run - reaches the agent. Only connect `MCPSkillsSource` to servers you have vetted and trust, and treat their responses as untrusted input.
@@ -1945,7 +1977,13 @@ internal sealed class WeightConverterSkill : AgentClassSkill<WeightConverterSkil
 
 :::zone pivot="programming-language-python"
 
-Resource and script functions that accept `**kwargs` automatically receive runtime keyword arguments passed to `agent.run()`. This lets skill functions access application context - such as configuration, user identity, or service clients - without hard-coding them into the skill definition.
+Resource functions that accept `**kwargs` receive host-supplied runtime keyword
+arguments passed to `agent.run()`. For scripts, prefer an injected
+`FunctionInvocationContext` when host values must remain separate from
+model-supplied arguments. Existing script functions that accept `**kwargs`
+continue to merge runtime values with entries from the model-supplied `args`
+mapping, so don't treat a value in a script's `**kwargs` as proof that the host
+supplied it.
 
 ### Passing runtime arguments
 
@@ -1957,6 +1995,50 @@ response = await agent.run(
     function_invocation_kwargs={"precision": 2, "user_id": "alice"},
 )
 ```
+
+### Use invocation context for host-only values
+
+Declare one keyword-bindable script parameter as
+`FunctionInvocationContext` to receive the current invocation. The parameter is
+hidden from the script schema, so the model can't supply it.
+
+```python
+import json
+
+from agent_framework import (
+    FunctionInvocationContext,
+    InlineSkill,
+    SkillFrontmatter,
+)
+
+converter_skill = InlineSkill(
+    frontmatter=SkillFrontmatter(
+        name="unit-converter",
+        description="Convert units with a supplied conversion factor.",
+    ),
+    instructions="Use the convert script to perform unit conversions.",
+)
+
+
+@converter_skill.script(name="convert")
+def convert_units(
+    value: float,
+    factor: float,
+    *,
+    ctx: FunctionInvocationContext,
+) -> str:
+    precision = ctx.kwargs["precision"]
+    result = round(value * factor, precision)
+    return json.dumps({"value": value, "factor": factor, "result": result})
+```
+
+You can choose the parameter name. Annotate it directly as
+`FunctionInvocationContext` or `FunctionInvocationContext | None`. The
+framework doesn't recognize metadata wrappers such as `Annotated[...]` for
+context injection. Custom `SkillScript.run()` implementations opt in by using
+the same annotation on their `run()` method. Unannotated implementations retain
+the existing behavior of receiving host runtime values as individual keyword
+arguments.
 
 ### Code-defined skills with kwargs
 
@@ -2007,18 +2089,23 @@ def convert_units(value: float, factor: float, **kwargs: Any) -> str:
     Args:
         value: The numeric value to convert (provided by the agent).
         factor: Conversion factor (provided by the agent).
-        **kwargs: Runtime keyword arguments from agent.run().
+        **kwargs: Additional values from tool-call args or agent.run().
     """
     precision = kwargs.get("precision", 4)
     result = round(value * factor, precision)
     return json.dumps({"value": value, "factor": factor, "result": result})
 ```
 
-The agent provides `value` and `factor` through the tool call `args`; the application provides `precision` through `function_invocation_kwargs`. Script functions without `**kwargs` receive only the agent-provided arguments.
+The agent provides `value` and `factor` through the tool call `args`; the
+application provides `precision` through `function_invocation_kwargs`.
+Undeclared entries in the model-supplied `args` mapping can also bind to
+`**kwargs`. Script functions without `**kwargs` receive only their declared
+agent-provided arguments.
 
 ### Class-based skills with kwargs
 
-Class-based skill methods can also accept `**kwargs` to receive runtime arguments. The pattern works the same way - declare `**kwargs` on resource methods or script methods:
+Class-based skill methods can also accept `**kwargs`. The same resource and
+script argument rules apply.
 
 ```python
 from typing import Any

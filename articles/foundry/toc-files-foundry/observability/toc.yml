@@ -1,3 +1,4 @@
+# Voice-first agent public preview scope: add or update the voice-agent monitoring, tracing, replay, evaluation, data-handling, and troubleshooting entries linked from the Voice-first agent node.
 items:
 # Fundamentals
 - name: Overview
@@ -10,6 +11,8 @@ items:
      href: ../../concepts/concept-notification-center.md
    - name: Monitor agents in the dashboard
      href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+   - name: Use Insights in Foundry
+     href: ../../observability/how-to/agent-insights.md
    - name: Log end user feedback
      href: ../../observability/how-to/log-end-user-feedback.md
    - name: Monitor model deployments

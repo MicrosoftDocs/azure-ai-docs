@@ -125,9 +125,9 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 >
 > Use the [Models API](/rest/api/aiservices/accountmanagement/models) to programmatically check `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model at any time.
 
-### Example: gpt-4o → gpt-5.1 upgrade
+### Example: gpt-4o → gpt-5.6-sol upgrade
 
-When gpt-4o version `2024-05-13` retires on **2026-10-01**, the service automatically upgrades it to gpt-5.1 on the Standard SKU in each region where that version is currently available. If gpt-5.1 doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
+When gpt-4o version `2024-05-13` retires on **2026-12-09**, the service automatically upgrades it to gpt-5.6-sol on the Standard SKU in each region where that version is currently available. If gpt-5.6-sol doesn't yet have a Standard presence in one of those regions, the upgrade process adds it there. Check the [Model Retirement Schedule](../concepts/model-retirement-schedule.md) for the current retirement date and replacement model before this upgrade occurs, since these details are subject to change.
 
 ## Migration to a replacement model
 

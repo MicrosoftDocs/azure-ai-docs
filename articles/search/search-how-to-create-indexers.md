@@ -8,6 +8,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Create an indexer in Azure AI Search
@@ -104,7 +105,7 @@ Skills-based indexing uses [AI enrichment](cognitive-search-concept-intro.md) to
 }
 ```
 
-AI enrichment is its own subject area and is out of scope for this article. For more information, start with [AI enrichment](cognitive-search-concept-intro.md), [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md), [Create a skillset](cognitive-search-defining-skillset.md), [Map enriched output fields](cognitive-search-output-field-mapping.md), and [Enable caching for AI enrichment](enrichment-cache-how-to-configure.md).
+AI enrichment is its own subject area and is out of scope for this article. For more information, start with [AI enrichment](cognitive-search-concept-intro.md), [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md), [Create a skillset](cognitive-search-defining-skillset.md), [Map enriched output fields](cognitive-search-output-field-mapping.md), and [Enable caching for AI enrichment (preview)](enrichment-cache-how-to-configure.md).
 
 ## Prepare external data
 
@@ -245,10 +246,10 @@ Change detection logic is built into the data platforms. How an indexer supports
 + Cloud database services provide optional change detection features. For these data sources, change detection isn't automatic. You need to specify in the data source definition which policy is used:
 
   + [Azure SQL (change detection)](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows)
-  + [Azure Database for MySQL (change detection)](search-how-to-index-mysql.md#indexing-new-and-changed-rows)
+  + [Azure Database for MySQL (change detection) (preview)](search-how-to-index-mysql.md#indexing-new-and-changed-rows)
   + [Azure Cosmos DB for NoSQL (change detection)](search-how-to-index-cosmosdb-sql.md#indexing-new-and-changed-documents)
-  + [Azure Cosmos DB for MongoDB (change detection)](search-how-to-index-cosmosdb-mongodb.md#indexing-new-and-changed-documents)
-  + [Azure Cosmos DB for Apache Gremlin (change detection)](search-how-to-index-cosmosdb-gremlin.md#indexing-new-and-changed-documents)
+  + [Azure Cosmos DB for MongoDB (change detection) (preview)](search-how-to-index-cosmosdb-mongodb.md#indexing-new-and-changed-documents)
+  + [Azure Cosmos DB for Apache Gremlin (change detection) (preview)](search-how-to-index-cosmosdb-gremlin.md#indexing-new-and-changed-documents)
 
 Indexers keep track of the last document they processed from the data source through an internal *high water mark*. The marker is never exposed in the API, but internally the indexer tracks where it stopped. When indexing resumes, either through a scheduled run or an on-demand invocation, the indexer references the high water mark so that it can pick up where it left off.
 

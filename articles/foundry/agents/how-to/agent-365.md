@@ -151,7 +151,7 @@ Content-Type: application/json
 az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
 ```
 
-Four fields distinguish an autopilot from an agent published to the Microsoft 365 Copilot and Teams agent stores. Set all four:
+Four fields distinguish an autopilot from an agent published to the Microsoft Copilot and Teams agent stores. Set all four:
 
 | Field | Value for an autopilot | Why |
 | --- | --- | --- |
@@ -241,7 +241,7 @@ Approving runs a four-part wizard: choose who gets the agent, apply a policy tem
 
 **Who does this:** you, if your administrator included you in the hiring scope.
 
-After the autopilot is in the registry, you can hire it from either the Microsoft Teams app store or the Microsoft 365 Copilot agent store.
+After the autopilot is in the registry, you can hire it from either the Microsoft Teams app store or the Microsoft Copilot agent store.
 
 1. Find the autopilot under **Agents for your team**.
 
@@ -249,9 +249,9 @@ After the autopilot is in the registry, you can hire it from either the Microsof
 
    :::image type="content" source="../media/autopilot/hire-teams-store.png" alt-text="Screenshot of the Agents for your team section of the Microsoft Teams app store, with an autopilot highlighted." lightbox="../media/autopilot/hire-teams-store.png":::
 
-   In Microsoft 365 Copilot, go to **Agents** > **Agents for your team**.
+   In Microsoft Copilot, go to **Agents** > **Agents for your team**.
 
-   :::image type="content" source="../media/autopilot/hire-copilot-store.png" alt-text="Screenshot of the Agents for your team section of the Microsoft 365 Copilot agent store, with an autopilot highlighted." lightbox="../media/autopilot/hire-copilot-store.png":::
+   :::image type="content" source="../media/autopilot/hire-copilot-store.png" alt-text="Screenshot of the Agents for your team section of the Microsoft Copilot agent store, with an autopilot highlighted." lightbox="../media/autopilot/hire-copilot-store.png":::
 
 1. Select the autopilot, and then select **Create instance**.
 1. Name the instance, set its alias and domain, and confirm who manages it. The name can be up to 32 characters.

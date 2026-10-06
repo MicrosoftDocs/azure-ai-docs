@@ -8,7 +8,7 @@ reviewer: RSavage2
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 09/04/2026
+ms.date: 09/21/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -72,10 +72,10 @@ az cognitiveservices account deployment create \
 To list all available deployments on your resource:
 
 ```bash
-az cognitiveservices account deployment list \ 
-  --resource-group <RESOURCE_GROUP> \ 
-  --name <ACCOUNT_NAME> \ 
-  -o table 
+az cognitiveservices account deployment list \
+  --resource-group <RESOURCE_GROUP> \
+  --name <ACCOUNT_NAME> \
+  -o table
 ```
 
 **Reference:** [az cognitiveservices account deployment list](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-list)
@@ -234,7 +234,7 @@ For the list of models that support image-to-image edits, see [MAI image models 
 The following example shows how to perform an image-to-image edit by using an MAI image model with the [MAI image edits API](#api-endpoints).
 
 > [!NOTE]
-> Requests for image-to-image edits use **multipart form data**.
+> Requests for image-to-image edits use **multipart form data** and accept up to five reference images. Repeat the `image` field for each file.
 
 # [Python](#tab/python)
 
@@ -270,17 +270,14 @@ The following example shows how to perform an image-to-image edit by using an MA
     
     url = f"{endpoint}/mai/v1/images/edits"
 
-    # Replace the file name and type.
-    reference_image = <path_to_your_image.png>
-    image_type = "image/png" # or "image/jpeg" based on format of your image. 
-    
     files = [
-        ("image", (reference_image, open(reference_image, "rb"), image_type))
+        ("image", ("first.png", open("first.png", "rb"), "image/png")),
+        ("image", ("second.png", open("second.png", "rb"), "image/png")),
     ]
     
     payload={
         "model": deployment_name,
-        "prompt": "Turn this image into a clean futuristic product shot with studio lighting",
+        "prompt": "Combine both source images into a clean futuristic product shot",
     }
     
     response = requests.post(
@@ -331,13 +328,12 @@ export DEPLOYMENT_NAME="<your-deployment-name>"
 ```
 
 ```sh
-curl -X POST "https://.services.ai.azure.com/mai/v1/images/edits" \
-  -H "api-key: $AZURE_API_KEY"\
-  -F "prompt=Turn this image into a clean futuristic product shot with studio lighting"\
-  -F "model=$DEPLOYMENT_NAME"\
-  -F "image=@/path/to/your/image.png"\
-
-# Decode and save the output image
+curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/edits" \
+  -H "api-key: $AZURE_API_KEY" \
+  -F "model=$DEPLOYMENT_NAME" \
+    -F "prompt=Combine both source images into a clean futuristic product shot" \
+    -F "image=@first.png;type=image/png" \
+    -F "image=@second.png;type=image/png" \
 | jq -r '.data[0].b64_json' \
 | base64 --decode > output.png
 ```
@@ -387,7 +383,7 @@ After you deploy an MAI image model, use the **MAI image generations API** to ge
     https://<resource-name>.services.ai.azure.com/mai/v1/images/generations
     ```
 
-- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts a JPEG or PNG image and returns a PNG image. The API endpoint has the following form:
+- **Image edits API endpoint**: A Microsoft-managed endpoint that accepts up to five JPEG or PNG reference images and returns a PNG image. The API endpoint has the following form:
 
     ```
     https://<resource-name>.services.ai.azure.com/mai/v1/images/edits
@@ -399,22 +395,22 @@ To authenticate, you need your **resource endpoint** and either a **Microsoft En
 
 The following table lists the request parameters for the image APIs:
 
-| Parameter | API | Type | Description |
-| --------- | ---- | ---- | ----------- |
-| `model` | Both | string | The deployment name you assigned when you deployed the model. |
-| `prompt` | Both | string | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
-| `image` | Image edits | string | The path to the image you want to edit. The **image is passed as multipart form data**. Must be in JPEG or PNG format. |
-| `width` | Image generations | integer | Width of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `height` | Image generations | integer | Height of the output image in pixels. <br>Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `auto_aspect_ratio` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
-| `web_grounding` | Both | boolean | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables web-grounded image generation. When enabled, the model can retrieve current, relevant information from Bing Search and use the results as additional context when interpreting the prompt and generating the image. This can improve accuracy for requests involving real-world entities, places, events, or other information that might change over time. When disabled, no web search is performed. |
+| Parameter | API | Type | Required | Description |
+| --------- | --- | ---- | -------- | ----------- |
+| `model` | Both | string | Yes | The deployment name you assigned when you deployed the model. |
+| `prompt` | Both | string | Yes | The text prompt that describes the image to generate or edits to make. <br>Maximum context length: 32,000 tokens. |
+| `image` | Image edits | file | Yes | A JPEG or PNG reference image passed as multipart form data. Provide up to five images by repeating the `image` field for each file. |
+| `width` | Image generations | integer | No | Width of the output image in pixels. <br>Minimum: 768. For MAI-Image-2.6 models, the product of `width` × `height` must not exceed 2,359,296. For MAI-Image-2.5 models, it must not exceed 1,048,576. |
+| `height` | Image generations | integer | No | Height of the output image in pixels. <br>Minimum: 768. For MAI-Image-2.6 models, the product of `width` × `height` must not exceed 2,359,296. For MAI-Image-2.5 models, it must not exceed 1,048,576. |
+| `auto_aspect_ratio` | Both | boolean | No | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables model-directed aspect ratio selection. When enabled, the model evaluates the prompt and any provided image inputs to select the output aspect ratio it determines is best suited to the requested content, composition, and framing. When disabled, the configured or default aspect ratio is used instead. |
+| `web_grounding` | Both | boolean | No | Applies only to `MAI-Image-2.6` (Preview) and `MAI-Image-2.6-Flash` (Preview). Enables web-grounded image generation. When enabled, the model can retrieve current, relevant information from Bing Search and use the results as additional context when interpreting the prompt and generating the image. This can improve accuracy for requests involving real-world entities, places, events, or other information that might change over time. When disabled, no web search is performed. |
 
 #### Response format
 
 Both the MAI image generations and image edits APIs return a JSON object that contains the generated PNG image as base64-encoded data. Decode the `b64_json` value to save the image as a PNG file.
 
 > [!NOTE]
-> The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
+> The output format is always PNG. The maximum total pixel count is 2,359,296 (equivalent to 1536×1536) for `MAI-Image-2.6` and `MAI-Image-2.6-Flash`, and 1,048,576 (equivalent to 1024×1024) for MAI-Image-2.5 models. Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed the equivalent square dimensions as long as the total pixel count stays within the applicable limit.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -440,12 +436,12 @@ MAI image models have the following rate limits measured in Requests Per Minute 
 | Deployment Type | Tier | MAI-Image-2.6-Flash <br> (RPM) | MAI-Image-2.6 <br> (RPM) | MAI-Image-2.5-Pro <br> (RPM) | MAI-Image-2.5-Flash <br> (RPM) | MAI-Image-2.5 <br> (RPM) |
 | --- | --- | --- | --- | --- | --- | --- |
 | Global Standard | 0 <br> (Free) | 0 | 0 | 0 | 0 | 0 |
-| Global Standard | 1 | 2 | 2 | 2 | 2 | 2 |
-| Global Standard | 2 | 4 | 4 | 4 | 4 | 4 |
-| Global Standard | 3 | 6 | 6 | 6 | 6 | 6 |
-| Global Standard | 4 | 8 | 8 | 8 | 8 | 8 |
-| Global Standard | 5 | 10 | 10 | 10 | 10 | 10 |
-| Global Standard | 6 | 12 | 12 | 12 | 12 | 12 |
+| Global Standard | 1 | 6 | 6 | 2 | 2 | 2 |
+| Global Standard | 2 | 12 | 12 | 4 | 4 | 4 |
+| Global Standard | 3 | 18 | 18 | 6 | 6 | 6 |
+| Global Standard | 4 | 24 | 24 | 8 | 8 | 8 |
+| Global Standard | 5 | 30 | 30 | 10 | 10 | 10 |
+| Global Standard | 6 | 36 | 36 | 12 | 12 | 12 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
@@ -457,7 +453,7 @@ Use the following table to resolve common errors when working with MAI image mod
 |-------|-------|-----|
 | `401 Unauthorized` | Invalid API key or expired token | Regenerate the key in the Azure portal. For Entra ID authentication, ensure the token scope is `https://cognitiveservices.azure.com/.default`. |
 | `404 Not Found` | Incorrect deployment name or endpoint URL | Verify the deployment name and endpoint in the Foundry portal under **Deployments**. |
-| `400 Bad Request` | `width` or `height` below minimum, or total pixel count exceeds maximum | Ensure `width` and `height` are each at least 768, and that `width` × `height` ≤ 1,048,576. |
+| `400 Bad Request` | A required field is missing, a reference image uses an unsupported format, image dimensions are invalid, or a parameter isn't supported by the deployed model | Include the required `model` and `prompt` fields and, for edits, at least one `image` field containing a JPEG or PNG file. Use `auto_aspect_ratio` and `web_grounding` only with MAI-Image-2.6 models. Ensure `width` and `height` are each at least 768. Keep `width` × `height` at or below 2,359,296 for MAI-Image-2.6 models or 1,048,576 for MAI-Image-2.5 models. |
 | `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
 
 ## Responsible AI considerations
@@ -469,6 +465,10 @@ When using MAI image models in Foundry, consider these responsible AI practices:
 - **Comply with applicable terms**: Ensure your use of generated images complies with [Microsoft's terms of service](https://www.microsoft.com/en-us/legal/terms-of-use) and applicable copyright and intellectual property laws.
 - **Be transparent**: Disclose that content is AI-generated when sharing or publishing images.
 - **Avoid harmful content**: Don't generate content that could be harmful, misleading, or in violation of privacy.
+
+### Special considerations for editing images of minors
+
+Photorealistic image edits involving minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
 ## Related content
 

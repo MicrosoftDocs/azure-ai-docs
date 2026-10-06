@@ -3,7 +3,7 @@ title: "Human Evaluation for Microsoft Foundry Agents"
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: how-to
-ms.date: 07/31/2026
+ms.date: 09/25/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance."
 author: lgayhardt
 ms.author: lagayhar
@@ -22,7 +22,8 @@ This article explains how to set up human evaluation for your Foundry agent. As 
 - **Foundry Project Manager** role (or higher) on the Foundry project, to create and manage evaluation templates. For more information, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-- For human reviewers: **Foundry User** role (minimum) on the Foundry project and **Reader** on the account, to access the preview web app and submit feedback. 
+- For human reviewers: **Foundry User** role (minimum) on the Foundry project and **Reader** on the account, to access the preview web app and submit feedback.
+- For all human-evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#find-the-roles-for-your-workflow).
 ## Create a human evaluation template
 
 To begin human evaluation for your Foundry agent, define a template that contains the set of questions you want human reviewers to complete based on agent responses.
@@ -58,7 +59,7 @@ You can create multiple evaluation templates based on your assessment needs. The
 After you configure the evaluation template and set it as active for the target agent, human reviewers can start their evaluation through the preview web app. This web app is a browser-based chat interface that launches directly from the agent builder.
 
 > [!NOTE]
-> Human reviewers need the **Foundry User** role on the Foundry project to access the preview web app and submit feedback.
+> Human reviewers need the **Foundry User** role on the Foundry project to access the preview web app and submit feedback. For the complete reviewer requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md#find-the-roles-for-your-workflow).
 
 1. Select **Preview** in the upper-right corner of the agent builder to open the agent in a browser-based chat interface.  
 2. Enter input and select **Send** to trigger an agent run.  

@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 09/02/2026
+ms.date: 09/28/2026
 ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
@@ -26,10 +26,10 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | Deprecated | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4.1-mini | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4.1-nano | 2025-04-14 | Legacy | 2027-04-14 | — |
-| gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
+| gpt-4.1-nano | 2025-04-14 | Deprecated | 2026-10-14 | — |
+| gpt-4o | 2024-05-13 | Deprecated | 2026-12-09 | gpt-5.6-sol |
 | gpt-4o | 2024-08-06 | Deprecated | 2027-04-14 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | Legacy | 2027-04-14 | gpt-5.1 |
 | gpt-4o-mini | 2024-07-18 | Deprecated | 2027-04-14 | — |
@@ -75,26 +75,26 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure.
 | gpt-chat-latest | 2026-08-06 | Preview | 2026-12-02 | — |
 | gpt-image-1 | 2025-04-15 | Preview | 2026-10-23 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
-| gpt-image-1.5 | 2025-12-16 | GA | 2027-06-16 | — |
+| gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
 | gpt-image-2 | 2026-04-21 | GA | 2027-10-21 | — |
 | gpt-image-2.5-flare | 2026-09-09 | GA | 2027-09-09 | — |
 | gpt-image-2.5-sunburst | 2026-09-09 | GA | 2027-09-09 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-03-02 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-08-24 | — |
-| gpt-realtime-2 | 2026-05-06 | Preview | 2026-08-31 | — |
-| gpt-realtime-2.1 | 2026-07-07 | Preview | 2027-06-25 | — |
-| gpt-realtime-2.1-mini | 2026-07-07 | Preview | 2027-06-25 | — |
+| gpt-realtime-2 | 2026-05-06 | Preview | — | gpt-realtime-2.1 |
+| gpt-realtime-2.1 | 2026-07-07 | GA | 2027-06-25 | — |
+| gpt-realtime-2.1-mini | 2026-07-07 | GA | 2027-06-25 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-06 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2027-06-15 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2026-09-21 | — |
 | gpt-realtime-mini | 2025-12-15 | GA | 2026-12-15 | — |
-| o1 | 2024-12-17 | Deprecated | 2026-10-21 | gpt-5.6-sol |
-| o1-pro | 2025-03-19 | GA | 2026-10-21 | gpt-5.6-sol |
-| o3 | 2025-04-16 | GA | 2026-10-21 | gpt-5.6-sol |
-| o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
-| o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | o4-mini |
-| o3-pro | 2025-06-10 | GA | 2026-12-17 | — |
-| o4-mini | 2025-04-16 | Deprecated | 2026-10-16 | — |
+| o1 | 2024-12-17 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o1-pro | 2025-03-19 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3 | 2025-04-16 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3-deep-research | 2025-06-26 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o3-mini | 2025-01-31 | Deprecated | 2026-11-19 | gpt-5.6-terra |
+| o3-pro | 2025-06-10 | Deprecated | 2026-11-19 | gpt-5.6-sol |
+| o4-mini | 2025-04-16 | Deprecated | 2026-11-19 | gpt-5.6-terra |
 | sora-2 | 2025-10-06 | Preview | 2026-07-15 | sora-2 (2025-12-08) |
 | sora-2 | 2025-12-08 | Preview | 2026-10-15 | — |
 | text-embedding-3-large | 1 | GA | 2028-02-09 | — |
@@ -118,7 +118,7 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | gpt-4o | 2024-08-06 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
 | gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
-| o4-mini | 2025-04-16 | No earlier than 2027-04-16<sup>1</sup> | 2027-10-16 |
+| o4-mini | 2025-04-16 | No earlier than 2027-05-19<sup>1</sup> | 2027-11-19 |
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
@@ -139,8 +139,10 @@ Unless explicitly stated, training retires no earlier than the base model retire
 | Cohere-rerank-v4.0-fast | 1 | GA | — | — |
 | Cohere-rerank-v4.0-pro | 1 | GA | — | — |
 | cohere-command-a | 1 | GA | — | — |
-| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-13 | — |
+| Cohere-command-a-plus-05-2026 | 1 | Preview | 2026-10-16 | coherelabs-command-a-plus-05-2026-fp8<sup>1</sup>, coherelabs-command-a-plus-05-2026-bf16<sup>1</sup>, coherelabs-command-a-plus-05-2026-w4a4<sup>1</sup> |
 | embed-v-4-0 | 1 | GA | — | — |
+
+<sup>1</sup> Available through the Hugging Face collection, for managed compute deployment.
 
 ### DeepSeek
 
@@ -231,17 +233,17 @@ Microsoft Foundry offers Claude models in [two versions](../../foundry-models/co
 | claude-sonnet-5 | 2 | GA | 2027-06-30 | — |
 | claude-sonnet-5 | 1 | GA | 2027-06-30 | — |
 | claude-sonnet-4-6 | 1 | GA | 2027-02-10 | — |
-| claude-sonnet-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-sonnet-4-5 | 1 | GA | 2026-11-30 | claude-sonnet-5-5 |
 | claude-opus-5 | 2 | GA | 2027-07-08 | — |
 | claude-opus-5 | 1 | GA | 2027-07-08 | — |
 | claude-opus-4-8 | 2 | GA | 2027-09-01 | — |
 | claude-opus-4-8 | 1 | GA | 2027-09-01 | — |
 | claude-opus-4-7 | 1 | GA | 2027-04-06 | — |
 | claude-opus-4-6 | 1 | GA | 2027-02-02 | — |
-| claude-opus-4-5 | 1 | GA | 2026-10-19 | — |
+| claude-opus-4-5 | 1 | GA | 2026-11-24 | — |
 | claude-opus-4-1 | — | Retired | 2026-08-05 | claude-opus-5 |
-| claude-haiku-4-5 | 1 | GA | 2026-10-19 | — |
-| claude-haiku-4-5 | 2 | GA | 2026-10-19 | — |
+| claude-haiku-4-5 | 1 | GA | 2026-11-15 | — |
+| claude-haiku-4-5 | 2 | GA | 2026-11-15 | — |
 | claude-fable-5-1 | 1 | Preview | 2027-12-05 | — |
 | claude-fable-5 | 1 | Preview | 2027-12-05 | — |
 | claude-mythos-5-1 | 1 | Preview | — | — |

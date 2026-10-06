@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 05/27/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Result Overrides
@@ -73,6 +74,10 @@ Console.WriteLine(await agentWithOverride.RunAsync("What's the weather in Seattl
 :::zone-end
 
 :::zone pivot="programming-language-python"
+
+To configure streaming gates or buffering, register output controls on the context before calling `call_next()`. Add gates to `stream_update_gates_before`, `stream_update_gates_after`, `stream_result_gates_before`, or `stream_result_gates_after`. Add content replacements to `stream_update_transforms` or `stream_result_transforms`. Existing post-call transformations on `context.result` remain supported through the `ResponseStream` compatibility methods shown in the following examples.
+
+Set `stream_buffer_updates=True` when no update should leave the middleware pipeline before finalization and all gates succeed. If a result transform replaces the final response, also set `stream_result_to_updates` so Agent Framework can rebuild the released updates. Gates return `None` to allow a value or raise an exception to block it.
 
 ### Weather override middleware
 

@@ -3,9 +3,11 @@ title: Indexer Troubleshooting
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
+ms.custom: doc-kit-assisted
 ms.topic: troubleshooting-general
-ms.date: 07/07/2026
+ms.date: 09/17/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
@@ -47,6 +49,16 @@ If you get error code 403 with the following message, you might have a problem w
 This error occurs if you [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
 
 If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
+
+### Error using a shared private link
+
+If you get error code 403 with the following message, the indexer might be connecting through the public endpoint instead of an approved shared private link:
+
+```output
+Unexpected error validating provided resource. {"error":{"code":"403","message":"Public access is disabled. Please configure private endpoint."}}
+```
+
+This error can occur when the indexer isn't configured to use the private execution environment. Confirm that the shared private link is approved, set the indexer's `executionEnvironment` to `private`, and verify that the connection uses the correct resource endpoint and [group ID](search-indexer-howto-access-private.md#supported-resource-types).
 
 ### Firewall rules
 
@@ -255,7 +267,7 @@ An indexer might show a different document count than either the data source, th
 Indexers use a conservative buffering strategy to ensure that every new and changed document in the data source is picked up during indexing. In certain situations, these buffers can overlap, causing an indexer to index a document two or more times. As a result, the processed documents count is more than the actual number of documents in the data source. This behavior doesn't affect the data stored in the index, such as duplicating documents, only that it can take longer to reach eventual consistency. This condition is especially prevalent if any of the following criteria are true:
 
 - On-demand indexer requests are issued in quick succession.
-- The data source's topology includes multiple replicas and partitions (one such example is discussed [here](/azure/cosmos-db/consistency-levels)).
+- The data source's topology includes multiple replicas and partitions, such as the topology described in [Consistency levels in Azure Cosmos DB](/azure/cosmos-db/consistency-levels).
 - The data source is an Azure SQL database and the column chosen as "high water mark" is of type `datetime2`.
 
 Indexers aren't intended to be invoked multiple times in quick succession. If you need updates quickly, the supported approach is to push updates to the index while simultaneously updating the data source. For on-demand processing, pace your requests in five-minute intervals or more, and run the indexer on a schedule.

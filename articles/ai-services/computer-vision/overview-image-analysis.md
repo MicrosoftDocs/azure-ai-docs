@@ -10,6 +10,7 @@ ms.topic: overview
 ms.date: 09/26/2025
 ms.author: pafarley
 keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools applications, Azure Vision in Foundry Tools
+ai-usage: ai-assisted
 ---
 
 # What is Image Analysis?
@@ -119,7 +120,9 @@ Image Analysis works on images that meet the following requirements:
 
 ### Language support
 
-Different Image Analysis features are available in different languages. See the [Language support](/azure/ai-services/content-safety/language-support) page.
+Different Image Analysis features are available in different languages. See the [language support](/azure/ai-services/computer-vision/language-support) page.
+
+
 
 ### Region availability
 

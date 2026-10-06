@@ -25,8 +25,8 @@ The agent runs three simulated streamed stages: analyze, generate, and refine. E
 
 - An Azure subscription with Microsoft Foundry access.
 - [Python 3.13](https://www.python.org/downloads/).
-- The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension: `azd extension install azure.ai.agents`.
-- The [Azure CLI (`az`)](/cli/azure/install-azure-cli) and [`curl`](https://curl.se/) to call the deployed agent.
+- The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) with the Foundry agents extension (`azd extension install azure.ai.agents`), version `azd-ext-azure-ai-agents_1.0.0-beta.16` or later for the `--long-running` invoke flag and the `invocations` lifecycle commands.
+- [`curl`](https://curl.se/) for the local crash-recovery step. The deployed agent is called with `azd`, which handles authentication for you.
 
 ## Get the sample
 
@@ -52,7 +52,7 @@ app = ResponsesAgentServerHost(options=options)
 
 ## Run it locally
 
-The resilient state store uses files when you run it locally, so your machine uses the same recovery code path. This walkthrough drives the agent with `curl`, so every run uses `azd ai agent run --no-client`, which installs the Python dependencies, injects the active azd environment, and starts the agent on `http://localhost:8088` without launching Agent Inspector.
+The resilient state store uses files when you run it locally, so your machine uses the same recovery code path. The local crash-recovery walkthrough drives the agent with `curl`, so every local run uses `azd ai agent run --no-client`, which installs the Python dependencies, injects the active azd environment, and starts the agent on `http://localhost:8088` without launching Agent Inspector.
 
 ## Test crash recovery locally
 
@@ -92,31 +92,22 @@ azd up
 
 ## Invoke the deployed agent
 
-`azd up` prints the Responses endpoint. Save it, remove its query string, and get an access token:
+Create a stored background response with `--long-running`, and return as soon as the platform assigns its ID with `--no-wait`:
 
 ```bash
-ENDPOINT="<responses-endpoint-from-azd-up>"
-RESPONSES_ENDPOINT="${ENDPOINT%%\?*}"
-TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
+azd ai agent invoke --long-running --no-wait "renewable energy supply chains"
 ```
 
-Create a stored background response, and note the returned `id`:
+`--long-running` sends `store=true` and `background=true`, so the platform keeps the response running with no client traffic. `azd ai agent invoke` resolves the deployed endpoint, authenticates for you, and saves the returned response ID as the current invocation.
+
+Check the response, or replay its output from the beginning, with the saved ID:
 
 ```bash
-curl -sS -X POST "$RESPONSES_ENDPOINT?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"input": "renewable energy supply chains", "store": true, "background": true}'
+azd ai agent invocations show
+azd ai agent invocations follow
 ```
 
-The platform keeps the background response running with no client traffic. Poll or stream it with the `id` from the previous response:
-
-```bash
-curl -sS "$RESPONSES_ENDPOINT/<response-id>?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer $TOKEN"
-```
-
-For the reconnect protocol and the `starting_after` cursor, see [Stream with reconnect](stream-with-reconnect.md).
+Pass `--id <response-id>` to target a specific response. For the reconnect protocol and the `starting_after` cursor, see [Stream with reconnect](stream-with-reconnect.md).
 
 ## Clean up
 

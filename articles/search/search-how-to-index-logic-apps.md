@@ -185,7 +185,7 @@ You can make the following modifications to a search index without breaking inde
 
 - [Add scoring profiles](index-add-scoring-profiles.md)
 - [Add semantic ranking](semantic-how-to-configure.md)
-- [Add spell check](speller-how-to-add.md)
+- [Add spell check (preview)](speller-how-to-add.md)
 - [Add synonym maps](search-synonyms.md)
 - [Add suggesters](index-add-suggesters.md)
 

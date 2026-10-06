@@ -4,7 +4,7 @@ description: Guide to significant changes in Python releases for Microsoft Agent
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 09/10/2026
+ms.date: 10/01/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -20,6 +20,214 @@ This document tracks significant Python changes across all 2026 releases, so ple
 ---
 
 ## Unreleased
+
+### 🔴 Foundry Invocations defaults to JSON and framed SSE
+
+**PR:** [#8894](https://github.com/microsoft/agent-framework/pull/8894)
+
+`InvocationsHostServer` now returns non-streaming success as
+`{"response": "..."}` instead of plain text. Streaming now uses framed
+server-sent events: `delta` for text updates, `done` after the final response
+is finalized and the `AgentSession` is saved, and `error` for failures. A
+stream can emit deltas before an error, so treat `done`, not a delta, as
+successful completion.
+
+Update clients to parse JSON and SSE. The `session_id` in a `done` event is the
+platform sandbox route ID, not the serialized `AgentSession.session_id`.
+Same-session requests are serialized only within one host process, and a
+cross-process state conflict can still occur after external tool effects.
+
+Existing callers can temporarily set `legacy_wire_format=True` to preserve the
+old successful plain-text response and raw text-chunk stream. The compatibility
+mode is deprecated and doesn't return failures as successful text. Applications
+can also accept custom payloads with `parse_request` returning `InvocationRun`
+and filter caller options with `prepare_options`; the host validates reserved
+controls after the hook. For details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#customize-invocations-requests-and-responses).
+
+---
+
+### 🔴 Declarative workflow object attributes require safe names
+
+**PR:** [#8893](https://github.com/microsoft/agent-framework/pull/8893)
+
+Python standalone `WorkflowState` and factory-created declarative workflow
+state now use the same object-attribute policy. When a dot-notated path
+traverses a Python object, each attribute segment must match
+`[A-Za-z][A-Za-z0-9_]*`. An unsafe segment, such as `_private`,
+`display-name`, or a value with trailing whitespace, returns the lookup default
+without accessing the attribute.
+
+Dictionary keys are unchanged. For example, `Local.obj._private` no longer
+reads an object attribute, while `Local.bag._private` still reads the
+`"_private"` key when `Local.bag` is a dictionary. Expose public object
+attributes that match the supported pattern, or store irregular names,
+including UUIDs and hyphenated values, as dictionary keys. For details, see
+[Object attribute paths](../../workflows/declarative.md?pivots=programming-language-python#object-attribute-paths).
+
+---
+
+### 🔴 Foundry Responses hosting separates history, storage, and background execution
+
+**PR:** [#8794](https://github.com/microsoft/agent-framework/pull/8794)
+
+`ResponsesHostServer` now treats the caller's `store` field, the outer response
+store, model history, and provider-native background execution as separate
+choices. Rename the constructor's `store=` argument to `response_store=`. The
+old name remains a deprecated alias and doesn't set the caller's per-request
+storage behavior.
+
+Review your `history_source` configuration. The default `"agent_server"` mode
+reconstructs the outer Responses transcript and disables downstream storage.
+Use `"service"` to continue a private storing-provider session, or `"agent"` to
+preserve an agent-owned history provider or downstream storage default.
+Requests with `store=false` no longer write host-managed state or downstream
+service history.
+
+Provider-native background polling now requires
+`history_source="service"` and `background_source="provider"`. Steering is
+temporarily unavailable, and enabling `steerable_conversations` raises
+`RuntimeError` during host construction. For migration and configuration
+details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Gemini uses `GOOGLE_*` settings and adds Embedding 2
+
+**PR:** [#8798](https://github.com/microsoft/agent-framework/pull/8798)
+
+`GeminiChatClient` no longer reads `GEMINI_API_KEY` or `GEMINI_MODEL`, and the
+`GeminiSettings` export is removed. Rename configuration to `GOOGLE_API_KEY`
+and `GOOGLE_MODEL`, or pass the values explicitly. Configure embeddings with
+`GOOGLE_EMBEDDING_MODEL`.
+
+The new `GeminiEmbeddingClient` defaults to `gemini-embedding-2`. Text
+embedding calls require an explicit task type, such as
+`RETRIEVAL_DOCUMENT` for indexing and `RETRIEVAL_QUERY` for search. Vector
+upserts, searches, and generated search tools now accept per-operation
+embedding options, while vector field dimensions remain authoritative.
+
+For setup and examples, see
+[Google Gemini](../../integrations/by-component/model-providers/google-gemini.md?pivots=programming-language-python)
+and [Vector store integrations](../../integrations/by-component/vector-stores/index.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Foundry invocation sessions now use persistent storage
+
+**PR:** [#8593](https://github.com/microsoft/agent-framework/pull/8593)
+
+`InvocationsHostServer` now saves serialized `AgentSession` state through an
+`AgentSessionStoreProvider` instead of retaining arbitrary live session objects
+for the process lifetime. The default provider uses Foundry storage when hosted
+and file-backed storage locally, with a separate `invocation_sessions` logical
+store.
+
+Make custom session state serializable, and register codecs for custom types
+with `register_state_type()`. Restored state doesn't preserve Python object
+identity. New default stores expire sessions 30 days after their last write;
+custom providers control retention. Coordinate overlapping requests for the
+same session, and use separate local storage roots or providers for independent
+applications. For details, see
+[Foundry Hosted Agents](../../hosting/foundry-hosted-agent.md?pivots=programming-language-python#persist-state-and-handle-long-running-conversations).
+
+---
+
+### 🔴 Local tool approvals require the issuing session
+
+**PR:** [#8750](https://github.com/microsoft/agent-framework/pull/8750)
+
+A local `function_approval_response` now authorizes a tool call only when it
+matches a pending approval request recorded in the same authoritative
+`AgentSession`. Pass the same session to the run that produces the approval
+request and the run that resumes it. Without that session, the framework drops
+the unbound response and logs a warning.
+
+Hosted approvals and replayed conversations whose tool calls already have
+terminal results are unchanged. Set
+`disable_approval_response_binding=True` only when your application enforces
+equivalent binding before messages reach the agent. For the recommended
+session-backed flow, see
+[Tool approval](../../agents/tools/tool-approval.md?pivots=programming-language-python).
+
+---
+
+### 🔴 Persisted approval transcripts must use typed approval controls
+
+**PR:** [#8579](https://github.com/microsoft/agent-framework/pull/8579)
+
+Python now treats every matched `function_result` as terminal, regardless of
+its text. A result that contains `[APPROVAL_PENDING]` no longer represents a
+pending approval and can't keep approval authority replayable.
+
+If your application persists or manually replays stateless transcripts, remove
+synthetic pending `function_result` content. Represent pending work with
+authoritative pending state and typed `function_approval_request` controls.
+Keep actual completed function results in history, even when their text happens
+to contain `[APPROVAL_PENDING]`.
+
+---
+
+### 🔴 MCP runtime context and approval headers are now separated
+
+**PR:** [#8589](https://github.com/microsoft/agent-framework/pull/8589)
+
+Generated Python MCP tool calls now give `header_provider` only trusted host
+runtime keyword arguments. Model-supplied tool arguments no longer flow into
+the provider, even when names collide. Move header inputs to
+`function_invocation_kwargs`, a provider closure, or a `ContextVar`. If the
+tool connects before a run supplies runtime values, use a closure or another
+construction-time source.
+
+Declarative `InvokeAzureAgent` execution no longer copies the outer workflow
+and client keyword bag into `additional_function_arguments`. Pass tool
+arguments explicitly in agent options when the tool needs them.
+
+For declarative `InvokeMcpTool` actions that require approval, the runtime now
+binds the evaluated headers to the approval. Changed credentials, changed
+headers, legacy unbound approvals, or missing verification state produce a
+replacement approval request with a new request ID before dispatch. Handle the
+replacement request and protect workflow checkpoint storage. For details, see
+[local MCP authentication](../../agents/tools/local-mcp-tools.md) and
+[declarative MCP tools](../../workflows/declarative.md#invokemcptool-1).
+
+---
+
+### 🔴 Declarative PowerFx state rejects cycles and enforces traversal limits
+
+**PR:** [#8511](https://github.com/microsoft/agent-framework/pull/8511)
+
+Python declarative workflows now reject cyclic state and enforce fixed limits
+for each state traversal: depth 64 with the root at depth 0, 10,000 visited
+values, and 1,048,576 aggregate string characters and binary bytes. Repeated
+references and aliases count each time. Violations raise `ValueError` during
+state writes, snapshots, or PowerFx conversion.
+
+Remove cycles and reduce or split oversized values before writing them to
+workflow state. Apply separate limits to PowerFx expression execution and
+application-defined copy or conversion hooks because the traversal limits don't
+bound them. For details, see
+[PowerFx state traversal limits](../../workflows/declarative.md#powerfx-state-traversal-limits).
+
+---
+
+### 🔴 Workflow HTTP requests require absolute HTTP(S) URLs
+
+**PR:** [#8588](https://github.com/microsoft/agent-framework/pull/8588)
+
+Python's `DefaultHttpRequestHandler` now rejects relative and non-HTTP(S) URLs.
+It normalizes the URL and composes its query before calling `client_provider`.
+The provider receives the composed URL in `info.url` and an empty
+`info.query_parameters`. Existing URL query order and bytes are preserved,
+selected-client defaults still apply, and redirects remain client-controlled.
+
+Use absolute HTTP or HTTPS workflow URLs. Update providers to inspect
+`info.url` instead of reading `info.query_parameters`, and configure defaults
+and redirect behavior on the returned `httpx.AsyncClient`. For details, see
+[HttpRequestAction](../../workflows/declarative.md#httprequestaction).
+
+---
 
 ### 🔴 Lab installs separately, and Foundry supports Projects 2.6
 
@@ -1092,7 +1300,7 @@ from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 
 client = FoundryChatClient(
-    project_endpoint="https://your-project.services.ai.azure.com",
+    project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
     model="gpt-4.1",
     credential=AzureCliCredential(),
 )
@@ -1587,7 +1795,7 @@ placeholder: FunctionTool = FunctionTool(...)
 
 ### 🔴 Pydantic Settings replaced with `TypedDict` + `load_settings()`
 
-**PRs:** [#3843](https://github.com/microsoft/agent-framework/pull/3843), [#4032](https://github.com/microsoft/agent-framework/pull/4032)
+**PRs:** [#3843](https://github.com/microsoft/agent-framework/pull/3843), [#4032](https://github.com/microsoft/agent-framework/pull/4032), [#8709](https://github.com/microsoft/agent-framework/pull/8709)
 
 The `pydantic-settings`-based `AFBaseSettings` class has been replaced with a lightweight, function-based settings system using `TypedDict` and `load_settings()`. The `pydantic-settings` dependency was removed entirely.
 
@@ -1620,6 +1828,8 @@ model = settings["model"]
 > - Setting environment variables directly in your shell or IDE
 >
 > The `load_settings` resolution order is: explicit overrides → `.env` file values (when `env_file_path` is provided) → environment variables → defaults. If you specify `env_file_path`, the file must exist or a `FileNotFoundError` is raised.
+>
+> Invalid numeric or Boolean values from an environment variable or `.env` file raise a `ValueError` that identifies the setting and source. They no longer silently fall back to an incompatible value.
 
 ---
 
@@ -1780,7 +1990,7 @@ from azure.identity import DefaultAzureCredential
 from agent_framework.foundry import FoundryChatClient
 
 client = FoundryChatClient(
-    project_endpoint="https://<your-project>.services.ai.azure.com",
+    project_endpoint="https://<your-account>.services.ai.azure.com/api/projects/<your-project>",
     model="gpt-4o-mini",
     credential=DefaultAzureCredential(),
 )
@@ -3019,6 +3229,8 @@ No significant changes in this release.
 
 | Release | Release Notes | Type | Change | PR |
 |---------|---------------|------|--------|-----|
+| Unreleased | — | 🔴 Breaking | Declarative PowerFx state rejects cycles and enforces fixed per-traversal limits | [#8511](https://github.com/microsoft/agent-framework/pull/8511) |
+| Unreleased | — | 🔴 Breaking | Workflow HTTP requests require absolute HTTP(S) URLs and providers receive the normalized, composed URL | [#8588](https://github.com/microsoft/agent-framework/pull/8588) |
 | Unreleased | — | 🔴 Breaking | Middleware inputs require a sequence; install `agent-hooks-sdk` directly instead of using the removed core extra | [#7918](https://github.com/microsoft/agent-framework/pull/7918) |
 | 1.15.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.15.0) | 🟡 Enhancement | `MiddlewareFailure` adds fatal, fail-closed behavior for function middleware | [#7562](https://github.com/microsoft/agent-framework/pull/7562) |
 | 1.14.0 | [Notes](https://github.com/microsoft/agent-framework/releases/tag/python-1.14.0) | 🟡 Enhancement | Encrypted reasoning is opt-in for Foundry chat | [#7536](https://github.com/microsoft/agent-framework/pull/7536) |

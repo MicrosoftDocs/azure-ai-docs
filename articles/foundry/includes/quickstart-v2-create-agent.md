@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/05/2025
-ms.custom: include, update-code2
+ms.custom: include, update-code4
 ---
 
 Create an agent using your deployed model.
@@ -28,7 +28,7 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/agents/CreateAgent.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/foundry/samples/CreateAgent.java":::
 
 # [REST API](#tab/rest)
 

@@ -27,7 +27,7 @@ Starting with Realtime Translate and Realtime Whisper, and soon all models, Foun
 
 This change consolidates quota into shared pools:
 
-* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* **Global Standard**: Deployments of the same model and version share one quota pool across all regions in a subscription. Standard and [Flex processing](../how-to/flex-processing.md) requests use this pool.
 * **Data Zone Standard**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
 To learn more about quota allocation at the subscription level, see [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
@@ -176,7 +176,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Limit name | Limit value |
 |--|--|
-| Azure OpenAI resources per Azure subscription | 30. |
+| Azure OpenAI resources per region, per Azure subscription | 30. |
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
@@ -226,6 +226,19 @@ The following section provides you with a quick guide to the default quotas and 
 | Model          | Tokens per minute (TPM) | Requests per minute (RPM) |
 |----------------|-------------------|---------------------------------|
 | `gpt-oss-120b` | 5 M               | 5 K                             |
+
+## GPT-Live concurrent session limits
+
+Rate limits for the GPT-Live API are the maximum number of concurrent sessions per subscription, based on your tier.
+
+| Tier | Maximum concurrent sessions |
+|--|--|
+| Default (non-tiered) | 10 |
+| Tier 1 | 25 |
+| Tier 2 | 50 |
+| Tier 3 | 200 |
+| Tier 4 | 300 |
+| Tier 5 | 500 |
 
 ## Usage tiers
 

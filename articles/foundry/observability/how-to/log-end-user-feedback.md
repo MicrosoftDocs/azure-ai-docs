@@ -4,7 +4,7 @@ description: Learn how to log end user feedback such as thumbs up/down or rating
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 06/02/2026
+ms.date: 09/03/2026
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -32,7 +32,7 @@ Key capabilities:
 
 - A Foundry project with an [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected. See [Set up tracing](trace-agent-setup.md).
 - OpenTelemetry instrumentation configured in your application. See [Set up tracing in Microsoft Foundry](trace-agent-setup.md) for setup instructions.
-- Python 3.9 or later, or a supported language with OTel SDK support.
+- Python 3.10 or later, or a supported language with OTel SDK support.
 - The `azure-ai-projects` and `azure-monitor-opentelemetry` packages installed:
 
   ```bash

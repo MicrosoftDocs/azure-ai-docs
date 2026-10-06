@@ -7,7 +7,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 08/31/2026
+ms.date: 09/25/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -26,6 +26,7 @@ Use cloud evaluations to test generative AI applications at scale without managi
 - The **Foundry User** role on the Foundry project.
 
   [!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
 - Optionally, [your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage)
   for evaluation data.
 

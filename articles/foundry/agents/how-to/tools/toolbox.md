@@ -603,12 +603,14 @@ Tool-specific `tools/call` argument examples:
 | File Search | `{"queries": ["search text"]}` — or `{"queries": ["search text"], "vector_store_ids": ["<VECTOR_STORE_ID>"]}` when vector store is passed dynamically |
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
 | Web Search | `{"search_query": "weather in seattle"}` |
-| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| A2A | `{"message": {"parts": [{"kind": "text", "text": "Hello"}]}}` |
 | Fabric IQ | Varies by exposed tool — typically `{"query": "..."}` for query tools |
 | Work IQ | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
 | MCP | `{"query": "what is agent service"}` |
 
 ## Integrate the toolbox into your agent
+
+For user delegation with MCP and other tools, connect those tools through a Foundry toolbox. When adding that toolbox to a Microsoft Agent Framework hosted agent, use `FoundryToolbox` in Python or `AddFoundryToolboxes` in .NET. See [Use a toolbox with a hosted agent](use-toolbox-hosted-agent.md).
 
 :::zone pivot="python"
 

@@ -35,7 +35,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and Microsoft 
 
   For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
 
-  Azure Storage for [blob indexers](search-how-to-index-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot and cool access tiers.
+  Azure Storage for [blob indexers](search-how-to-index-azure-blob-storage.md#prerequisites) and [file indexers (preview)](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot and cool access tiers.
 
 ## Markdown parsing mode parameters
 

@@ -126,6 +126,7 @@ Design each handler so that process loss at any point leads to one of two outcom
 ## Related content
 
 - [Hosted agents in Foundry Agent Service](hosted-agents.md)
+- [Durable state store for hosted agents](agent-state-store.md)
 - [Hosted agent runtime contract](hosted-agent-contract.md)
 - [Add a protocol adapter to your hosted agent](../how-to/add-protocol-adapter.md)
 - [Bring-your-own hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)

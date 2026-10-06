@@ -774,4 +774,4 @@ Here are a few tips to help you use functions safely and securely:
 To learn more about responsible AI practices for Foundry Models, see the [Overview of responsible AI practices](../../responsible-use-of-ai-overview.md).
 
 > [!IMPORTANT]
-> In the Chat Completions API, the `functions` and `function_call` parameters are deprecated. Use the [`tools`](https://learn.microsoft.com/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `functions`, and use the [`tool_choice`](https://learn.microsoft.com/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `function_call`.
+> In the Chat Completions API, the `functions` and `function_call` parameters are deprecated. Use the [`tools`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `functions`, and use the [`tool_choice`](/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-v1-preview&preserve-view=true) parameter instead of `function_call`.

@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
 ms.topic: how-to
-ms.date: 06/02/2026
+ms.date: 09/25/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -34,6 +34,7 @@ This article shows you how to create and run evaluations in the Foundry portal.
 - **Foundry User** role on the Foundry project. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
   [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
+- For all evaluation role requirements, see [Set up permissions for evaluation workflows](../observability/how-to/evaluation-permissions.md).
 
 ## Choose an evaluation approach
 

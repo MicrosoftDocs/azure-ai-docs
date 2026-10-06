@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---
 
-# Troubleshoot SharePoint permission filtering in Azure AI Search
+# Troubleshoot SharePoint permission filtering in Azure AI Search (preview)
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
@@ -70,7 +70,7 @@ If the user token is omitted, permission-protected content isn't returned. The `
 
 ### 5. Check Microsoft Entra permissions
 
-1. Confirm the indexed `UserIds` or `GroupIds` contain the expected Microsoft Entra object ID. Use an [elevated-read query](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) only for this diagnostic comparison.
+1. Confirm the indexed `UserIds` or `GroupIds` contain the expected Microsoft Entra object ID. Use an [elevated-read query](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results-preview) only for this diagnostic comparison.
 1. Confirm the test user has a direct assignment or reaches the assigned Microsoft Entra group through transitive Microsoft Entra group membership.
 1. If the Microsoft Entra group is nested within a SharePoint group, change the assignment. This mixed relationship isn't expanded and can cause missing results. Add the user directly to the SharePoint group, or grant permission through a supported Microsoft Entra group assignment.
 

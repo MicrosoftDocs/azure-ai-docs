@@ -5,8 +5,10 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/22/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
+ms.custom: update-code2
+ai-usage: ai-assisted
 ---
 
 # Self-host Telegram bots
@@ -40,6 +42,8 @@ Use any Telegram client library that can supply an update payload and execute th
 The `aiogram` webhook sample verifies Telegram's secret header, dispatches the update, and uses a bot-scoped session ID to preserve an agent session for each private chat or shared group chat.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/af-hosting/local_telegram/app.py" range="176-243":::
+
+Before dispatching a command, pass the current bot username to `telegram_command(update, bot_username=...)`. The helper returns `None` for commands addressed to another bot, including commands in message text, callback data, and media captions. Omitting `bot_username` preserves target-agnostic parsing for compatibility.
 
 For polling and webhook setup, command handling, inbound media policy, streaming edits, and production deployment guidance, see the [local Telegram sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/af-hosting/local_telegram).
 

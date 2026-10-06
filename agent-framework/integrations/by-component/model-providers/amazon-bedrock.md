@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/30/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -17,6 +18,7 @@ ms.service: agent-framework
   | Configuration        | ✅ |   ✅   | ❌ |                        |
   | Bedrock client setup | ✅ |   ✅   | ❌ |                        |
   | Tools                | ✅ |   ✅   | ❌ |                        |
+  | Image input          | ❌ |   ✅   | ❌ | Data-backed images only |
   | Embeddings           | ❌ |   ✅   | ❌ | No published sample    |
   | Go availability      | ✅ |   ✅   | ✅ | Go zone is status only |
 -->
@@ -85,7 +87,21 @@ AWS_PROFILE="<profile>"
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/providers/amazon/bedrock_chat_client.py" range="39-54":::
 
-Use `BedrockChatOptions` for Bedrock-specific request options and `BedrockGuardrailConfig` when your deployment uses Bedrock guardrails.
+Use `BedrockChatOptions` for Bedrock-specific request options and `BedrockGuardrailConfig` when your deployment uses Bedrock guardrails. The Python client forwards `additionalModelRequestFields`, `guardrailConfig`, `performanceConfig`, `requestMetadata`, and `promptVariables` to the Bedrock Converse API when you set them.
+
+For non-streaming requests, the client omits `guardrailConfig.streamProcessingMode` because that field is valid only for `ConverseStream`. When the model ID is a Prompt Management ARN, define inference, system, tool, and additional model request fields on the managed prompt. Bedrock rejects those fields in the runtime request, so the client omits them; `promptVariables` remains available.
+
+## Send image input
+
+`BedrockChatClient` sends data-backed images from user messages through the
+Bedrock Converse API when the selected model supports image input. Create the
+[image content](../../../agents/multimodal.md) with `Content.from_data()` or a
+base64 data URI.
+
+Bedrock accepts GIF, JPEG, PNG, and WebP images. The client doesn't send
+external image URLs, images from assistant-message history, or rich image
+content in tool results. Download an external image and pass its bytes when
+you need to send it to the model.
 
 ## Generate embeddings
 

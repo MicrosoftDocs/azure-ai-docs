@@ -1,13 +1,13 @@
 ---
 title: "Set up CI/CD for hosted agents with the Azure Developer CLI"
-description: "Configure GitHub Actions or Azure DevOps pipelines to provision and deploy Microsoft Foundry hosted agents with azd."
+description: "Configure hosted-agent CI/CD with azd, choose Terraform or Bicep infrastructure, and manage remote state, deployment checks, and production version selection."
 author: aahill
 ms.author: aahi
 ms.manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 06/15/2026
+ms.date: 09/23/2026
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 Automate your hosted agent deployment with `azd pipeline config`. In this article, you set up continuous integration and delivery in GitHub Actions or Azure DevOps, then apply pipeline-friendly `azd ai` flags for unattended jobs.
 
+Choose Terraform or Bicep for infrastructure provisioning. If you want Terraform to manage the hosted-agent data-plane resource without azd, use [Deploy a hosted agent with Terraform](deploy-hosted-agent-terraform.md) instead.
+
 ## Prerequisites
 
 - An initialized hosted agent project that works locally with `azd ai agent run` and `azd ai agent invoke --local`. For setup, see [Initialize an agent project](init-agent-project.md).
@@ -25,6 +27,72 @@ Automate your hosted agent deployment with `azd pipeline config`. In this articl
 - The [azd Foundry extensions installed](install-cli-foundry-extensions.md) locally and in your pipeline runner.
 - An authenticated `azd` session.
 - Your code in a Git repository hosted in GitHub or Azure DevOps.
+
+## Choose the infrastructure provider
+
+To use Terraform instead of Bicep, initialize your project with:
+
+```bash
+azd ai agent init --infra=terraform
+```
+
+For a container-based agent, specify the deployment mode independently:
+
+```bash
+azd ai agent init --infra=terraform --deploy-mode container
+```
+
+The infrastructure option doesn't change the default code-deployment mode for Python and .NET projects. For Bicep, use `--infra=bicep` or `--infra`. Without `--infra`, azd synthesizes infrastructure from `azure.yaml` instead of writing IaC files.
+
+For a new project, review the generated `infra/` directory and Terraform provider configuration in `azure.yaml`. Existing projects can use a separate Foundry infrastructure layer. See [Hosted agent infrastructure](../concepts/cli-infrastructure.md#terraform-infrastructure) for file structure and ejection limitations.
+
+Commit the infrastructure configuration and provider lockfile with your application code. Don't commit Terraform state, `.terraform/`, saved plans, or `.azure/` environment state. Initialization is a project-authoring step, not a command to rerun on every CI deployment.
+
+## Configure Terraform state
+
+Skip this section if you aren't using Terraform.
+
+Before configuring the pipeline:
+
+1. Install [Terraform](/azure/developer/terraform/quickstart-configure) locally and on the runner. Use the same reviewed version in development and CI.
+1. Create an Azure Storage account and blob container for remote state outside the workload deployment. Use a different state key for each environment.
+1. Add an `azurerm` backend declaration to the existing `terraform` block in your Terraform provider file. Keep the generated provider and Terraform version constraints:
+
+   ```terraform
+   terraform {
+     backend "azurerm" {}
+   }
+   ```
+
+1. Create `provider.conf.json` in the Terraform infrastructure directory. For a new project using the default layout, the path is `infra/provider.conf.json`:
+
+   ```json
+   {
+     "storage_account_name": "${RS_STORAGE_ACCOUNT}",
+     "container_name": "${RS_CONTAINER_NAME}",
+     "key": "hosted-agent-ci/${AZURE_ENV_NAME}.tfstate",
+     "resource_group_name": "${RS_RESOURCE_GROUP}",
+     "use_azuread_auth": true
+   }
+   ```
+
+   Choose a key prefix unique to your application if multiple applications share the container. azd resolves these environment substitutions and passes the configuration to `terraform init`; they aren't Terraform input variables.
+
+   This example deliberately enables Microsoft Entra authentication for Blob access with `use_azuread_auth`. OIDC authentication alone doesn't select that backend mode. Without it, a backend can require permission to retrieve a storage account key. For more information, see [Enable remote state](/azure/developer/azure-developer-cli/use-terraform-for-azd#enable-remote-state).
+1. Set the backend values in your azd environment:
+
+   ```bash
+   azd env set RS_RESOURCE_GROUP "<state-resource-group>"
+   azd env set RS_STORAGE_ACCOUNT "<state-storage-account>"
+   azd env set RS_CONTAINER_NAME "<state-container>"
+   ```
+
+1. Grant the pipeline identity Blob data-plane access to the backend, separately from its infrastructure and Foundry permissions. Review the backend's role and network requirements in [Store Terraform state in Azure Storage](/azure/developer/terraform/store-state-in-azure-storage).
+1. Confirm that `azd provision` uses the remote backend before configuring the pipeline.
+
+State and saved plans can contain sensitive values. Restrict access to both, and don't upload them as unrestricted workflow artifacts.
+
+Backend locking protects Terraform state operations. It doesn't coordinate other tools updating the same hosted agent. Serialize production releases across azd, Terraform, and any other deployment writers.
 
 ## Configure the pipeline
 
@@ -41,18 +109,30 @@ This interactive command:
 1. Configures repository secrets and variables with your azd environment values.
 1. Generates a workflow file, such as `.github/workflows/azure-dev.yml` for GitHub Actions, or an Azure Pipelines YAML file.
 
+For Terraform projects on GitHub, the command checks that the three `RS_*` values are present and copies them to repository variables. That check doesn't verify storage existence, permissions, or connectivity.
+
 ## Review the pipeline flow
 
 The generated pipeline runs on push to `main` by default and executes:
 
-1. **`azd provision`** -- creates or updates Azure infrastructure from `infra/` Bicep templates.
+1. **`azd provision`** -- creates or updates Azure infrastructure using the provider configured in `azure.yaml`, including ejected Terraform or Bicep files.
 1. **`azd deploy`** -- builds the container, pushes to ACR, and creates a new hosted agent version.
 
-This is the same flow as running `azd up` locally, but automated in CI.
+For code deployment, `azd deploy` uploads the source package instead of building your container. In either mode, azd owns agent-version deployment; choosing Terraform infrastructure doesn't put those versions under Terraform management.
+
+This is the same flow as running `azd up` locally, but automated in CI. Deployment doesn't replace an application-level smoke test.
+
+For an application-only release against existing infrastructure, run `azd deploy` without repeating provisioning when the infrastructure configuration is unchanged. Keep shared-resource provisioning in the platform team's workflow if that team owns its lifecycle.
+
+If your application team needs Terraform to manage the logical agent too, use the [standalone Terraform deployment stages](deploy-hosted-agent-terraform.md#plan-the-deployment-stages). That path separates base infrastructure, image build and push, and agent definition updates without requiring `azd`.
 
 ## Configure GitHub Actions
 
-After `azd pipeline config`, you'll have a `.github/workflows/azure-dev.yml` file. A typical workflow looks like:
+After running `azd pipeline config`, review `.github/workflows/azure-dev.yml`. Keep the generated Terraform setup and authentication steps if you chose Terraform.
+
+The following example shows the provision and deploy flow. For Terraform, configure the three `RS_*` repository variables from your backend and set `TERRAFORM_VERSION` to your reviewed Terraform version. You don't need those values for Bicep.
+
+<!-- [TO VERIFY] Validate the Terraform remote-state/OIDC variant on a fresh GitHub runner before publication. -->
 
 ```yaml
 name: Azure Developer CLI
@@ -67,6 +147,10 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: hosted-agent-deployment
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -76,6 +160,13 @@ jobs:
       AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      ARM_USE_OIDC: "true"
+      RS_RESOURCE_GROUP: ${{ vars.RS_RESOURCE_GROUP }}
+      RS_STORAGE_ACCOUNT: ${{ vars.RS_STORAGE_ACCOUNT }}
+      RS_CONTAINER_NAME: ${{ vars.RS_CONTAINER_NAME }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,15 +174,29 @@ jobs:
       - name: Install azd
         uses: Azure/setup-azd@v2
 
+      - name: Install Terraform
+        if: ${{ hashFiles('infra/**/*.tf') != '' }}
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ vars.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
       - name: Install Foundry extensions
         run: azd ext install microsoft.foundry
 
       - name: Sign in to Azure (federated credentials)
         run: azd auth login --client-id $AZURE_CLIENT_ID --federated-credential-provider github --tenant-id $AZURE_TENANT_ID
 
-      - name: Provision and Deploy
-        run: azd up --no-prompt
+      - name: Provision infrastructure
+        run: azd provision --no-prompt
+
+      - name: Deploy agent
+        run: azd deploy --no-prompt
 ```
+
+The concurrency group serializes this workflow's deployments. Coordinate any other repositories or tools that deploy the same agent; a GitHub concurrency group isn't a service-wide lock.
+
+Terraform's Azure provider authentication and `azd` authentication are separate. Keep the `ARM_*` OIDC settings as well as the `azd` sign-in step. Don't add a long-lived client secret solely because your infrastructure uses Terraform.
 
 > [!NOTE]
 > The `azd ext install microsoft.foundry` step is required in CI because the runner image doesn't include the extension. The meta-package installs every individual Foundry extension (`azure.ai.agents`, `azure.ai.connections`, `azure.ai.inspector`, `azure.ai.projects`, `azure.ai.routines`, `azure.ai.skills`, and `azure.ai.toolboxes`). To install just the agent surface, replace it with `azd ext install azure.ai.agents`, which also pulls in `azure.ai.inspector` as a dependency.
@@ -103,6 +208,8 @@ jobs:
 1. Select "Azure DevOps" when prompted.
 1. Review the generated `azure-pipelines.yml` file.
 1. Confirm that the generated file contains equivalent install, sign-in, provision, and deploy steps.
+
+For Terraform, also configure the remote backend, Terraform installation, and authentication for the backend and providers. Don't copy GitHub-specific OIDC environment assumptions into Azure Pipelines. See [Configure Azure Pipelines](/azure/developer/azure-developer-cli/pipeline-azure-pipelines).
 
 ## Set pipeline-friendly flags
 
@@ -181,6 +288,16 @@ For multiple environments, such as development, staging, and production:
 
 1. Use each pipeline run's own azd environment variables so resources are isolated.
 
+## Validate a candidate before production promotion
+
+By default, a Foundry endpoint follows the latest version. A pipeline that deploys and then tests can therefore change production traffic before the test runs.
+
+For gated releases, [pin production to its existing version before deployment](manage-hosted-agent.md#release-a-version-without-changing-production). Capture the version created by the deployment, validate that exact candidate, and promote it only after approval.
+
+`azd deploy` waits for version activation, but readiness alone doesn't establish that your agent behaves correctly. Use a fresh version-pinned session and check expected response content. Don't treat any nonempty CLI output as a successful smoke test.
+
+During deployment, azd also applies endpoint settings configured for the agent. Review those settings and deployment hooks so they don't overwrite the production pin. Keep promotion separate from ordinary `azd deploy` and from infrastructure provisioning.
+
 ## Manage secrets
 
 `azd pipeline config` stores the following values as repository secrets or variables:
@@ -208,6 +325,7 @@ Review common issues before you rerun the pipeline. For CI provisioning, you mig
 
 ## Related content
 
+- [Promote hosted agents to production](deploy-hosted-agent-production.md) for environment promotion, canary deployments, and rollback.
 - [Deploy a hosted agent](deploy-hosted-agent.md) to understand what happens during deployment.
 - [Azure YAML reference](../concepts/azure-yaml-reference.md) to review deployment configuration details.
 - [Configure a DevOps pipeline with azd](/azure/developer/azure-developer-cli/configure-devops-pipeline) for the full azd pipeline reference.

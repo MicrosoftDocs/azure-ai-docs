@@ -7,6 +7,7 @@ ms.topic: article
 ms.author: taochen
 ms.date: 05/27/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 <!--
@@ -139,11 +140,12 @@ You'll create an email processing workflow that demonstrates conditional routing
 First, install the required packages for your .NET project:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.Identity
 dotnet add package Microsoft.Agents.AI.Workflows --prerelease
+dotnet add package Microsoft.Agents.AI.Workflows.Generators --prerelease
 dotnet add package Microsoft.Agents.AI.Foundry --prerelease
 ```
+
+The `Microsoft.Agents.AI.Workflows.Generators` package provides the source generator that registers `[MessageHandler]` methods in `partial` executor classes. Source generator packages don't flow transitively, so reference it directly in the project that defines the executors.
 
 ### Define Data Models
 
@@ -1345,7 +1347,7 @@ Replace multiple conditional edges with a single switch-case group:
                 # Explicit cases for specific decisions
                 Case(condition=get_case("NotSpam"), target=submit_to_email_assistant),
                 Case(condition=get_case("Spam"), target=handle_spam),
-                # Default case catches anything that doesn't match above
+                # Default case handles messages when every predicate returns False
                 Default(target=handle_uncertain),
             ],
         )
@@ -1354,6 +1356,10 @@ Replace multiple conditional edges with a single switch-case group:
         .build()
     )
 ```
+
+The default target is selected only when every case predicate returns `False`.
+If a predicate raises an exception, the workflow fails; the message isn't
+routed to the default target.
 
 ### Execute and Test
 
@@ -1378,7 +1384,7 @@ Run the workflow with ambiguous email content that demonstrates the three-way ro
 
 1. **Cleaner Syntax**: One edge group instead of multiple conditional edges
 2. **Ordered Evaluation**: Cases are evaluated sequentially, stopping at the first match
-3. **Guaranteed Routing**: The default case ensures messages never get stuck
+3. **Fallback routing**: The default handles messages when every case predicate returns `False`.
 4. **Better Maintainability**: Adding new cases requires minimal changes
 5. **Type Safety**: Each executor validates its input to catch routing errors
 
@@ -1400,12 +1406,12 @@ Run the workflow with ambiguous email content that demonstrates the three-way ro
     [
         Case(condition=lambda x: x.result == "A", target=handler_a),
         Case(condition=lambda x: x.result == "B", target=handler_b),
-        Default(target=handler_c),  # Catches everything else
+        Default(target=handler_c),  # Handles values when every predicate returns False
     ],
 )
 ```
 
-The switch-case pattern scales much better as the number of routing decisions grows, and the default case provides a safety net for unexpected values.
+The switch-case pattern scales much better as the number of routing decisions grows, and the default case provides a fallback for values that don't match any case.
 
 ### Switch-Case Sample Code
 

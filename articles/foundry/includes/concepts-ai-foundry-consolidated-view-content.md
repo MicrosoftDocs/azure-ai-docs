@@ -6,7 +6,7 @@ ms.author: scottpolly
 ms.reviewer: aashishb
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 06/30/2026
+ms.date: 09/18/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
@@ -15,7 +15,7 @@ The consolidated view for Foundry Tools in the Azure portal shows key insights a
 
 ## Prerequisites
 
-- An Azure account that can sign in to the [Azure portal](https://portal.azure.com/).
+- An Azure account that you can use to sign in to the [Azure portal](https://portal.azure.com/).
 - At least **Reader** access to the subscription or resource group that contains the resources you want to monitor.
 - To view costs in the consolidated view: the [Foundry User role](../concepts/rbac-foundry.md#built-in-roles) on your Foundry resource and the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group or subscription level.
 

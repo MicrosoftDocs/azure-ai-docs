@@ -4,8 +4,9 @@ description: Add cross-platform CodeAct execution to Agent Framework Python agen
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 09/28/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Monty
@@ -31,6 +32,22 @@ Register host tools on the provider rather than directly on the agent. The model
 
 :::code language="python" source="~/../agent-framework-code/python/samples/02-agents/context_providers/code_act/monty_code_act.py" range="137-171":::
 
+### Control host tool parameter descriptions
+
+`MontyCodeActProvider` and `MontyExecuteCodeTool` accept `tool_description_format`. The default, `"compact"`, includes scalar parameter types, required or optional status, descriptions, enum values, and defaults in the `execute_code` description and CodeAct instructions. Use `"json"` for complete JSON Schema, or select a format by exact, case-sensitive tool name:
+
+```python
+codeact = MontyCodeActProvider(
+    tools=[compute, fetch_data],
+    tool_description_format={
+        "compute": "json",
+        "fetch_data": "compact",
+    },
+)
+```
+
+Tools omitted from a mapping use compact format. Compact rendering automatically falls back to complete JSON Schema when it can't represent a schema without losing constraints, such as nested objects, arrays, references, or unions. Parameter schemas are visible to the model, so don't include credentials or other secrets in descriptions, enum values, defaults, or custom schema fields.
+
 ## Configure capabilities
 
 `MontyCodeActProvider` and `MontyExecuteCodeTool` support:
@@ -41,7 +58,18 @@ Register host tools on the provider rather than directly on the agent. The model
 - Monty resource limits
 - files returned from read-write mounts as Agent Framework content
 
-Monty doesn't provide an outbound URL allow list. Provide network access through a narrow host tool that validates destinations and inputs.
+## Network access and Python packages
+
+Monty runs its own Python interpreter, not the host's Python environment. This
+integration doesn't provide `pip` or another package-installation option.
+Installing a dependency on the host doesn't make it importable in Monty code.
+Use the interpreter's supported modules for code that runs inside Monty.
+
+Monty doesn't provide an `allowed_domains` option. For external API calls or
+operations that require host-installed packages, register a narrow host tool
+and invoke it from Monty code. Keep credentials, authorization, and
+destination allow-list checks in that function because it executes on the
+host, outside the Monty interpreter.
 
 ## Choose Monty or Hyperlight
 

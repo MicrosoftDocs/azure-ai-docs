@@ -24,7 +24,7 @@ zone_pivot_groups: selection-work-iq
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft 365 Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
+[Work IQ](/microsoft-365/copilot/extensibility/work-iq-api-overview) is the intelligence layer that grounds Microsoft Copilot and your agents in real-time, shared context across your organization. It captures signals from emails, meetings, files, chats, and business systems, and applies semantic understanding so agents can reason over work data and take action. All requests run in the context of the signed-in user and honor Microsoft 365 permissions.
 
 You connect your Foundry agent to Work IQ through the Agent-to-Agent (A2A) protocol. Your agent delegates natural-language tasks to Work IQ as a peer agent — for example, "Summarize my recent emails about Project Contoso" — and Work IQ handles retrieval, reasoning, and response synthesis against the user's Microsoft 365 data.
 
@@ -96,7 +96,7 @@ Use Foundry Toolkit for Visual Studio Code to add Work IQ as a built-in tool whe
 1. Select the **+ Add Toolbox** icon.
 1. On the **Build a Custom Toolbox** tab, enter the toolbox name and description.
 1. Select **Add tools**, and then select **Work IQ**.
-1. In **Add the Work IQ Tool**, select the Microsoft 365 Copilot data you want to use. **Work IQ Chat** connects through an A2A endpoint. Other options connect through MCP endpoints, including Copilot Chat, Teams, Word, Outlook Calendar, Outlook Mail, Microsoft 365 user profile, SharePoint, and OneDrive.
+1. In **Add the Work IQ Tool**, select the Microsoft Copilot data you want to use. **Work IQ Chat** connects through an A2A endpoint. Other options connect through MCP endpoints, including Copilot Chat, Teams, Word, Outlook Calendar, Outlook Mail, Microsoft 365 user profile, SharePoint, and OneDrive.
 1. For each selected option, choose an existing connection or select **Create new connection**.
 1. Select **Add**.
 1. Select **Publish**.
@@ -653,15 +653,23 @@ A successful response returns HTTP 200 or 201. The response body includes a `pro
 
 ## Data governance and compliance
 
-Work IQ permission-trims retrieval against Microsoft 365. A Foundry workflow can also send prompts and retrieved results to downstream Copilot and Foundry processing, so review the boundaries and regional configuration of every service in the request path.
+Work IQ and Foundry are Microsoft services with distinct service and data-processing boundaries. When a Foundry agent calls Work IQ, request data goes beyond the Foundry service boundary and might be processed outside the Azure compliance boundary. Work IQ authenticates requests on behalf of the signed-in user and enforces that user's existing Microsoft 365 permissions and applicable policies. The Microsoft Entra tenant establishes the authorization context; it doesn't, by itself, guarantee where data is processed or stored.
+
+For this Agent-to-Agent (A2A) integration, Work IQ returns a synthesized response that can contain information grounded in the user's Microsoft 365 content. Foundry can further process or store that response according to the agent and project configuration. The complete workflow can involve Work IQ, Copilot, and Foundry processing. Review the applicable service terms, data-handling policies, regional configuration, and certification coverage for every service in the request path. End-to-end processing also depends on the Copilot billing configuration and Foundry project region. Don't infer end-to-end residency or compliance coverage solely from the user's tenant or the location of the original Microsoft 365 content.
+
+Direct traffic between Azure and Microsoft services is expected to use the Microsoft global network, as described in [Global routing and interconnection](/azure/networking/microsoft-global-network#global-routing-and-interconnection). Work IQ uses the public HTTPS endpoint `https://workiq.svc.cloud.microsoft`. Authentication and supported file operations can also require outbound HTTPS access to additional endpoints. A public endpoint can still be reached over the Microsoft global network and doesn't necessarily mean that traffic traverses the public internet. Review and allow the destinations required by your Work IQ scenario.
+
+When the Foundry project is configured for bring-your-own virtual network (BYO VNet) outbound integration, Work IQ tool calls route through the project's single-tenant data proxy. This platform-managed networking component is dedicated to the project and handles outbound tool connectivity, allowing customer-defined network controls to govern that traffic. For more information about the data proxy and request path, see [Deep dive into Foundry Agent Service networking](../../concepts/agents-networking-deep-dive.md#how-traffic-flows). For the available inbound and outbound configurations, see [Networking options for Foundry Agent Service](../../concepts/networking-options.md#networking-options).
+
+A private endpoint for Foundry provides private inbound access to Foundry. It doesn't configure outbound VNet integration or make the outbound connection to Work IQ private. Work IQ remains a public HTTPS destination in this configuration. Routing through the data proxy doesn't establish private ingress to Work IQ or change the service terms and data-handling requirements applicable to Work IQ processing.
 
 ### Data residency
 
-Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
+Microsoft 365 retrieval follows your tenant's permissions and residency configuration. End-to-end processing also depends on your Copilot billing configuration and Foundry project region. For details, see [Microsoft Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy).
 
 ### Privacy and data handling
 
-Review the [Microsoft 365 Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and the Foundry data handling requirements that apply to your deployment. Confirm the complete request path with your privacy and compliance teams.
+Review the [Microsoft Copilot privacy and data handling policies](/microsoft-365/copilot/microsoft-365-copilot-privacy) and the Foundry data handling requirements that apply to your deployment. Confirm the complete request path with your privacy and compliance teams.
 
 ### Access control and permissions
 

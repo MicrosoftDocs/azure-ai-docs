@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 08/31/2026
+ms.date: 10/02/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
 ---
@@ -175,7 +175,7 @@ async def pipeline(url: str) -> str:
 
 ### What `@step` does inside a workflow
 
-- **Caches results** — the result is stored by `(step_name, call_index)`. On HITL resume or checkpoint restore, a completed step returns its saved result instantly instead of re-executing.
+- **Caches results** — the result is stored with a replay identity derived from the step definition and its bound arguments. On HITL resume or checkpoint restore, a completed step returns its saved result instantly instead of re-executing.
 - **Emits events** — `executor_invoked` / `executor_completed` / `executor_failed` are emitted for observability. On a cache hit, `executor_bypassed` is emitted instead.
 - **Saves checkpoints** — if the built workflow has `checkpoint_storage`, a checkpoint is saved after each step completes.
 - **Injects `RunContext`** — if the step function declares a `ctx: RunContext` parameter, the active context is automatically injected.
@@ -214,6 +214,30 @@ workflow_instance = pipeline.build(checkpoint_storage=storage)
 async def transform_data(raw: dict) -> str:
     ...
 ```
+
+### Control replay identity
+
+Agent Framework automatically derives replay identity from canonical bound
+arguments. Concurrent calls with the same automatic identity must be
+interchangeable. Use `replay_key` when arguments are opaque, captured state
+affects the result, or otherwise identical arguments identify different
+logical calls:
+
+```python
+@step(replay_key=lambda connection, record_id: record_id)
+async def load_record(connection: object, record_id: str) -> dict:
+    return await connection.load(record_id)
+```
+
+The callback receives the original step arguments and must return a stable,
+unique, nonempty string for each logical invocation. Use the same key for the
+same logical work after a human-in-the-loop resume or checkpoint restore.
+
+Existing order-based checkpoints remain compatible for sequential replay.
+Agent Framework rejects a concurrent legacy cache hit when it can't prove the
+saved result belongs to the same logical call. Regenerate the checkpoint with
+the current workflow version and add `replay_key` when the arguments don't
+provide a stable identity.
 
 See [`python/samples/03-workflows/functional/steps_and_checkpointing.py`](https://github.com/microsoft/agent-framework/tree/main/python/samples/03-workflows/functional/steps_and_checkpointing.py) for a complete example.
 
@@ -256,6 +280,13 @@ async def review_pipeline(topic: str, ctx: RunContext) -> str:
 To resume, call `.run(responses={request_id: value})` on the same built workflow. The workflow re-executes from the top, and `request_info()` returns the provided value immediately.
 
 `@step`-decorated functions that ran before the suspension return their cached results on resume instead of re-executing.
+
+For a non-`None` response, `request_info()` coerces and validates the supplied
+value against `response_type` before returning it. A mapping can produce a
+declared model, and a string becomes `Content` when `response_type=Content`.
+If coercion can't produce the requested type, the resume raises `ValueError`.
+An explicit `None` keeps the existing behavior: the workflow logs a warning and
+returns `None`.
 
 **Handling the response:**
 
@@ -328,6 +359,8 @@ async def research_pipeline(topic: str) -> str:
 ```
 
 `asyncio.gather` also works when the functions are decorated with `@step`.
+Each branch is cached by its replay identity. Add `replay_key` when opaque
+arguments or captured state distinguish concurrent calls to the same step.
 
 See [`python/samples/03-workflows/functional/parallel_pipeline.py`](https://github.com/microsoft/agent-framework/tree/main/python/samples/03-workflows/functional/parallel_pipeline.py) for a complete example.
 

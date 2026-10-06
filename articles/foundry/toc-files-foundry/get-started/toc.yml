@@ -10,6 +10,8 @@ items:
   items:
   - name: Build a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md
+  - name: Build a prompt voice agent
+    href: ../../agents/quickstarts/prompt-voice-agent.md
   - name: Chat with an agent in code
     href: ../../quickstarts/get-started-code.md
   - name: Host an existing agent

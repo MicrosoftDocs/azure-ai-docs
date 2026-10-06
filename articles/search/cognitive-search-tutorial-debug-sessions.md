@@ -271,4 +271,4 @@ This tutorial touched on various aspects of skillset definition and processing. 
 
 + [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md)
 
-+ [How to configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)
++ [How to configure caching for incremental enrichment (preview)](enrichment-cache-how-to-configure.md)

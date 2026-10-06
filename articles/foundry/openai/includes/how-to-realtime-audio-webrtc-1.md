@@ -6,8 +6,9 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/29/2026
+ms.date: 09/21/2026
 ms.custom: include
+ai-usage: ai-assisted
 ---
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -36,6 +37,8 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime-mini` (version 2025-12-15)
 - `gpt-realtime-1.5` (version 2026-02-23)
 - `gpt-realtime-2` (version 2026-05-07)
+- `gpt-realtime-2.1` (version 2026-07-07)
+- `gpt-realtime-2.1-mini` (version 2026-07-07)
 - `gpt-realtime-translate` (version 2026-05-06)
 - `gpt-realtime-whisper` (version 2026-05-06)
 - `gpt-live-transcribe` (version 2026-07-29)

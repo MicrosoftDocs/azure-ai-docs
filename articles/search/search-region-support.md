@@ -16,8 +16,6 @@ ms.custom:
 
 [!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
 
-[!INCLUDE [search-fiq-banner](./includes/search-fiq-banner.md)]
-
 This article identifies the cloud regions in which Azure AI Search is available. It also lists which premium features are available in each region.
 
 ## Features subject to regional availability
@@ -56,14 +54,14 @@ You can create an Azure AI Search service in any of the following Azure public r
 | South Central US​ <sup>1 </sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ <sup>1, 2</sup> | ✅ | ✅ | ✅ | ✅ |  | ✅ |
 | West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| West US 3​ <sup>2</sup>| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ | ✅ | ✅ | ✅ |  |  |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 <sup>2</sup> This region is in high demand, which prevents the creation of new search services. Please choose a different region.
 
-<sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
+<sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md).
 
 ### Europe
 
@@ -76,12 +74,12 @@ You can create an Azure AI Search service in any of the following Azure public r
 | North Europe​ <sup>2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Poland Central​​ <sup>1</sup> |  | ✅ | ✅ |  |  | ✅ |
 | Spain Central <sup>3</sup> |  |  | ✅ |  | ✅ | ✅ |
-| Sweden Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Sweden Central​​ <sup>1,2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  | ✅ |  |
 | UK South​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  | ✅ | ✅ |  |  |  |
-| West Europe​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West Europe​​ <sup>1,2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 

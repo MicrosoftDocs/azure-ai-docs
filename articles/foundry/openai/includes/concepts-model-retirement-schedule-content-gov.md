@@ -8,6 +8,7 @@ ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 07/24/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
 This article lists the retirement schedule for Foundry Models in Azure Government - their current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy in Azure Government](../concepts/model-retirements-gov.md).
@@ -22,10 +23,9 @@ This section lists the retirement lifecycle for Foundry Models sold by Azure in 
 |-------|---------|-----------|-----------------|-------------|
 | gpt-4.1 | 2025-04-14 | Deprecated | 2027-04-14 | gpt-5.1 |
 | gpt-4.1-mini | 2025-04-14 | Deprecated | 2027-04-14 | — |
-| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-4.1 |
+| gpt-4o | 2024-11-20 | Deprecated | 2027-04-14 | gpt-5.1 |
 | gpt-5.1 | 2025-11-13 | GA | 2027-05-15 | — |
-| o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | gpt-5.1 |
-| o3-mini | 2025-01-31 | Deprecated | 2026-10-01 | gpt-5.1 |
+| o3-mini | 2025-01-31 | Deprecated | 2026-11-19 | gpt-5.6-terra |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
 | text-embedding-ada-002 | 2 | GA | 2027-04-15 | — |
