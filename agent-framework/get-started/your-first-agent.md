@@ -65,8 +65,10 @@ await foreach (var update in agent.RunStreamingAsync("Tell me a one-sentence fun
 :::zone pivot="programming-language-python"
 
 ```bash
-pip install agent-framework azure-identity
+pip install agent-framework-foundry azure-identity
 ```
+
+The `agent-framework-foundry` package installs `agent-framework-core` with the Microsoft Foundry integration. The `agent-framework` metapackage also installs `agent-framework-core`, together with many other optional integrations.
 
 Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az login`. In the following example, replace `project_endpoint` with your Microsoft Foundry project endpoint and `model` with your model deployment name.
 
