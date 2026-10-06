@@ -300,13 +300,14 @@ exact deployment name in `.env`.
 Create a file named `optimize_hosted_agent.py` in the same folder as `.env`:
 
 ```python
+
 """
 DESCRIPTION:
     Create an optimization job for a hosted agent using the latest agent
     optimization API, poll the job to completion, and list its candidates.
 
 USAGE:
-    python optimize_hosted_agent.py
+    python optimize_hosted_agent_v3.py
 
     Before running the sample:
 
@@ -322,12 +323,14 @@ USAGE:
     7) OPTIMIZATION_MODEL       - Optional. The optimization model. Defaults to "gpt-5".
     8) POLL_INTERVAL_SECONDS    - Optional. Seconds between status polls. Defaults to 10.
     9) OPTIMIZATION_JOB_ID      - Optional. An existing job ID to resume instead of creating a job.
+   10) OPTIMIZATION_LOCAL_DIR   - Optional. Path to the local .agent_configs directory.
+   11) CREDENTIAL_PROCESS_TIMEOUT_SECONDS
+                                - Optional. Credential subprocess timeout. Defaults to 60.
 """
 
 import os
 import time
 from pathlib import Path
-from typing import Any
 
 from azure.ai.agentserver.optimization import load_config, load_skills_from_dir
 from azure.ai.projects import AIProjectClient
@@ -363,6 +366,9 @@ eval_model = os.environ.get("EVAL_MODEL", "gpt-4o")
 optimization_model = os.environ.get("OPTIMIZATION_MODEL", "gpt-5")
 poll_interval_seconds = int(os.environ.get("POLL_INTERVAL_SECONDS", "10"))
 existing_job_id = os.environ.get("OPTIMIZATION_JOB_ID")
+credential_process_timeout_seconds = int(
+    os.environ.get("CREDENTIAL_PROCESS_TIMEOUT_SECONDS", "60")
+)
 
 # Reads the hosted agent's baseline config from .agent_configs/baseline/metadata.yaml.
 optimization_config = load_config()
@@ -396,7 +402,9 @@ if optimization_config:
     )
 
 with (
-    DefaultAzureCredential(process_timeout=60) as credential,
+    DefaultAzureCredential(
+        process_timeout=credential_process_timeout_seconds
+    ) as credential,
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
 ):
     job_request = AgentOptimizationJob(
@@ -427,28 +435,14 @@ with (
         ),
     )
 
-    job_details: dict[str, Any] = {}
-
-    def capture_job_details(
-        pipeline_response: Any,
-        result: Any,
-        _response_headers: Any,
-    ) -> Any:
-        response_body = pipeline_response.http_response.json()
-        job_details["id"] = response_body["id"]
-        job_details["warnings"] = response_body.get("warnings") or []
-        return result
-
     if existing_job_id:
         job_id = existing_job_id
     else:
         poller = project_client.agents.begin_create_optimization_job(
-            body=job_request,
+            job=job_request,
             polling=False,
-            cls=capture_job_details,
         )
-        poller.result()
-        job_id = job_details.get("id")
+        job_id = poller.details.get("job_id")
         if not isinstance(job_id, str):
             raise RuntimeError(
                 "The create operation did not return an optimization job ID."
@@ -504,6 +498,8 @@ with (
         if candidate.evaluation:
             if candidate.evaluation.score is not None:
                 details.append(f"score={candidate.evaluation.score:.4f}")
+            if candidate.evaluation.avg_tokens is not None:
+                details.append(f"avg_tokens={candidate.evaluation.avg_tokens:.0f}")
         print(", ".join(details))
 
 ```
