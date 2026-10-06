@@ -1,5 +1,5 @@
 ---
-title: "Agent optimizer in Foundry Agent Service overview (preview)"
+title: "Agent optimizer in Foundry Agent Service overview"
 description: "Improve prompt and hosted agents by evaluating behavior and generating better instructions, skills, tools, and model configurations."
 author: aahill
 ms.author: aahi
@@ -11,9 +11,7 @@ ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# What is the agent optimizer? (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# What is the agent optimizer?
 
 The agent optimizer in Foundry Agent Service automatically improves prompt agents and hosted agents by evaluating their behavior and generating better configurations. Depending on the agent type, these configurations can include improved instructions, skills, tool descriptions, and model selection.
 
@@ -186,7 +184,7 @@ For details about the pre-run cost range and post-run measured usage, see
 
 ## Limitations and availability
 
-- The agent optimizer supports prompt agents and hosted agents during preview.
+- The agent optimizer supports prompt agents and hosted agents.
 - Prompt-agent optimization runs start in the Foundry portal. You can promote a selected candidate to a new agent version from the completed run.
 - Hosted-agent optimization is available in all regions where [hosted agents are available](hosted-agents.md#region-availability), except Norway East.
 - Hosted-agent optimization requires the [Responses protocol](hosted-agents.md#protocols-responses-invocations-and-invocations-websocket).

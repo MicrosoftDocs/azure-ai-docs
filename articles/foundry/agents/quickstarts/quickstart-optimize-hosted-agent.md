@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Optimize a hosted agent (preview)"
+title: "Quickstart: Optimize a hosted agent"
 description: "Deploy and optimize a hosted agent by using the Azure Developer CLI, Python SDK, VS Code, or the Microsoft Foundry Skill."
 author: aahill
 ms.author: aahi
@@ -12,9 +12,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-optimize-quickstart-method
 ---
 
-# Quickstart: Optimize a hosted agent (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# Quickstart: Optimize a hosted agent
 
 In this quickstart, you deploy the optimization sample agent, run the agent optimizer to improve its instructions, and deploy the winning candidate.
 
@@ -135,9 +133,6 @@ Before you begin, you need:
 :::zone-end
 
 * Your Azure subscription must be on the allow list for the agent optimizer. Contact your Microsoft representative to request access.
-
-> [!NOTE]
-> The agent optimizer is currently in preview.
 
 :::zone pivot="azd"
 
@@ -581,8 +576,8 @@ models.
 
 Replace `Program.cs` with the following code.
 
-Agent optimization is a preview capability, so the request needs the
-`AgentsOptimization=V2Preview` feature header. The `FoundryFeaturesPolicy` class
+Agent optimization requires the
+`AgentsOptimization=V2Preview` feature header on every request. The `FoundryFeaturesPolicy` class
 in this example adds that header to every request the client sends:
 
 ```csharp
@@ -593,7 +588,7 @@ using Azure.Identity;
 
 #pragma warning disable AAIP001
 
-// Adds the preview feature header that agent optimization requires.
+// Adds the feature header that agent optimization requires.
 public sealed class FoundryFeaturesPolicy(string features) : PipelinePolicy
 {
     public override void Process(PipelineMessage message, IReadOnlyList<PipelinePolicy> pipeline, int index)
@@ -744,9 +739,9 @@ the best candidate.
 
 ### Step 2: Start an optimization run
 
-1. Select the **Optimize** tab, which is marked **Preview**.
+1. Select the **Optimize** tab.
 
-:::image type="content" source="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png" alt-text="Screenshot of a hosted agent in Foundry Toolkit with the Optimize preview tab selected and the New Optimization button available." lightbox="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png":::
+:::image type="content" source="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png" alt-text="Screenshot of a hosted agent in Foundry Toolkit with the Optimize tab selected and the New Optimization button available." lightbox="../media/quickstart/optimize-hosted-agent-vscode-optimize-tab.png":::
 
 1. Select **New Optimization**.
 1. In **Select Workspace**, choose the workspace that contains the selected
@@ -888,7 +883,7 @@ azd down --force --purge
 | Python script fails with `KeyError: 'DATASET_NAME'` or another missing variable | The script didn't load your `.env` file, or the variable is missing | Run the script from the same folder as `.env`, or export the required values in your shell before running `python optimize_hosted_agent.py`. |
 | Python script fails with `ResourceNotFound: The project does not exist` | `FOUNDRY_PROJECT_ENDPOINT` doesn't point to an existing Foundry project | Copy the project endpoint from the Foundry project's **Overview** page and update `FOUNDRY_PROJECT_ENDPOINT` in `.env`. |
 | Python script fails with `Optimization model deployment '<name>' not found` | `OPTIMIZATION_MODEL` is not the name of a deployed model in your Foundry project | Use the exact deployment name from **Build** > **Deployments**, such as an existing `gpt-5` family or DeepSeek deployment in your project. |
-| The job request fails with `evaluators is required and cannot be empty` | The `Foundry-Features` preview header is missing from the request | Add the `AgentsOptimization=V2Preview` header, as the `FoundryFeaturesPolicy` class in the C# path shows. |
+| The job request fails with `evaluators is required and cannot be empty` | The `Foundry-Features` header is missing from the request | Add the `AgentsOptimization=V2Preview` header, as the `FoundryFeaturesPolicy` class in the C# path shows. |
 | The job fails with `No optimizable element found for the hosted agent` | The request doesn't include an optimizable target | Supply at least one target in `optimization_config`, such as the baseline `system_prompt`, the tool definitions, or skills. |
 | The job fails with `AllEvaluatorsFailedError` | The evaluator is misconfigured, so every row fails to score | Open the evaluation run link in the error, and confirm the evaluator scores your agent's responses. Start with a built-in evaluator such as `builtin.task_adherence`. |
 | The **Optimize** section doesn't appear for a hosted agent | Foundry Toolkit is older than version 1.6.4, or the selected agent isn't a deployed hosted agent | Update [Foundry Toolkit](https://aka.ms/foundrytk), reload Visual Studio Code, and reopen the deployed agent from the **Agents** tab. |
