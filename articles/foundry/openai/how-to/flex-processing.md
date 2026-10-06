@@ -6,7 +6,7 @@ ms.author: shiyingfu
 manager: mcleans
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 09/24/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: how-to
@@ -152,6 +152,9 @@ Flex processing has limited model availability at launch. `gpt-5.6-sol` is the f
 | Model | Version | Deployment type | Region availability |
 | --- | --- | --- | --- |
 | `gpt-5.6-sol` | `2026-07-09` | Global Standard | All Azure regions where Global Standard is available |
+| `gpt-5.6-luna` | `2026-07-09` | Global Standard | All Azure regions where Global Standard is available |
+| `gpt-5.6-terra` | `2026-07-09` | Global Standard | All Azure regions where Global Standard is available |
+| `gpt-6-astra` | `2026-09-03` | Global Standard | All Azure regions where Global Standard is available |
 
 Check this table before you send a Flex request. Don't assume that a model or a new model version supports Flex processing because it supports Standard or Priority processing. An unsupported model returns HTTP 400. To avoid disrupting your application, implement an application-level fallback to Standard processing when Standard pricing and performance are acceptable.
 
