@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Optimize a prompt agent (preview)"
+title: "Quickstart: Optimize a prompt agent"
 titleSuffix: Microsoft Foundry
 description: "Optimize a prompt agent's instructions, function-calling tool descriptions, and model selection in the Foundry portal."
 author: aahill
@@ -13,9 +13,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to optimize a prompt agent so that I can improve its quality against representative tasks and evaluation criteria.
 ---
 
-# Quickstart: Optimize a prompt agent (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# Quickstart: Optimize a prompt agent
 
 In this quickstart, use the optimization wizard in the Foundry portal to
 improve a prompt agent's instructions, function-calling tool descriptions, and

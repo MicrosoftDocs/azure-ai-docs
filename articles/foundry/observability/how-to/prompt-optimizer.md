@@ -1,5 +1,5 @@
 ---
-title: Optimize agent prompts with Prompt Optimizer (preview)
+title: Optimize agent prompts with Prompt Optimizer
 description: Learn how to use Prompt Optimizer in Microsoft Foundry to automatically improve your agent's system instructions using AI-driven prompt engineering best practices.
 ms.reviewer: hanch
 ms.author: lagayhar
@@ -12,9 +12,7 @@ ms.subservice: foundry-observability
 ms.custom: references_regions
 ---
 
-# Optimize agent prompts by using Prompt Optimizer (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Optimize agent prompts by using Prompt Optimizer
 
 Use Prompt Optimizer in Microsoft Foundry to automatically improve your agent's system instructions. Prompt Optimizer applies [prompt-engineering best practices](../../openai/concepts/prompt-engineering.md) to restructure, clarify, and enhance your instructions. It provides transparent, paragraph-level reasoning for every change. You can iteratively refine results by adding suggestions and reoptimizing until satisfied, then apply the final output with a single click.
 

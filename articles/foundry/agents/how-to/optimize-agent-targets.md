@@ -1,5 +1,5 @@
 ---
-title: "Optimize agent instructions, skills, tools, and models in Foundry Agent Service (preview)"
+title: "Optimize agent instructions, skills, tools, and models in Foundry Agent Service"
 description: "Run instruction tuning, skill discovery, tool optimization, or model selection using the agent optimizer to automatically improve your hosted agent's performance in Foundry Agent Service."
 author: aahill
 ms.author: aahi
@@ -11,9 +11,7 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Optimize agent instructions, skills, tools, and models (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# Optimize agent instructions, skills, tools, and models
 
 The agent optimizer improves four aspects of your hosted agent: **instructions**, **skills**, **tools**, and **model selection**. It automatically detects which of these targets to optimize from your agent's baseline configuration.
 
@@ -112,7 +110,7 @@ You can optimize an existing hosted agent without running `azd ai agent init` an
    When prompted for the agent instruction, provide it inline or select a file such as `.agent_configs/baseline/instructions.md`.
 
    > [!NOTE]
-   > In the current preview, a standalone run doesn't expand `agent.config` from `eval.yaml`. Run the command interactively so you can provide the baseline instruction. Don't use `--no-prompt` for this flow. Loading file-based skill and tool baselines also requires an `azd` project.
+   > A standalone run doesn't expand `agent.config` from `eval.yaml`. Run the command interactively so you can provide the baseline instruction. Don't use `--no-prompt` for this flow. Loading file-based skill and tool baselines also requires an `azd` project.
 
    For a one-off command that shouldn't change your user-level config, pass `--project-endpoint`:
 
@@ -298,7 +296,7 @@ azd ai agent optimize deploy --candidate <candidate-id>
 > [!WARNING]
 > Direct deploy updates the agent service without changing your local files. Use the `apply` -> `deploy` workflow for production.
 >
-> In the current preview, direct deploy resolves the optimization job from an `azd` environment. For a standalone optimization that has no AZD environment, deploy the candidate from the Foundry portal.
+> Direct deploy resolves the optimization job from an `azd` environment. For a standalone optimization that has no AZD environment, deploy the candidate from the Foundry portal.
 
 If all candidates score lower than the baseline, don't deploy any candidate. The baseline configuration remains active.
 
@@ -363,7 +361,7 @@ The optimizer ranks each candidate model by composite score and token cost, so y
 | `could not resolve project endpoint` | No project endpoint is available from an `azd` environment or user-level config | Run `azd ai project set <project-endpoint>`, pass `--project-endpoint <project-endpoint>`, or set `FOUNDRY_PROJECT_ENDPOINT` |
 | `agent name is required` | The command is running outside an `azd` project and no deployed agent name was provided | Pass `--agent <deployed-agent-name>` or provide the agent name as a positional argument |
 | `operation ID is required` | A standalone run has no `azd` environment in which to persist the last operation ID | Copy the operation ID from the optimization output and pass it to `status` or `cancel` |
-| `instruction is required for optimization` in a standalone folder | A standalone run doesn't expand `agent.config` from `eval.yaml` in the current preview | Run without `--no-prompt`, then provide the baseline instruction inline or select the instruction file |
+| `instruction is required for optimization` in a standalone folder | A standalone run doesn't expand `agent.config` from `eval.yaml` | Run without `--no-prompt`, then provide the baseline instruction inline or select the instruction file |
 | `optimize apply` can't resolve an agent service | `apply` requires an `azure.yaml` hosted-agent service in an `azd` project | Deploy the candidate from the Foundry portal, or initialize an `azd` project before using `apply` |
 | Protocol validation error | Invalid `azure.yaml` agent service | Ensure the `azure.ai.agent` service includes `kind: hosted` and a `protocols:` list |
 | Job stuck at "running" | Service issue | Cancel with `azd ai agent optimize cancel <id>` and retry |

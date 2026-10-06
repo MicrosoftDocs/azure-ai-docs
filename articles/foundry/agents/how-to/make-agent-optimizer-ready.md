@@ -1,5 +1,5 @@
 ---
-title: "Make your hosted agent optimizer-ready in Foundry Agent Service (preview)"
+title: "Make your hosted agent optimizer-ready in Foundry Agent Service"
 description: "Add a few lines of code to your hosted agent to enable the agent optimizer for automatic improvement of system instructions, tools, and skills in Foundry Agent Service."
 author: aahill
 ms.author: aahi
@@ -11,9 +11,7 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Make your agent optimizer-ready (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# Make your agent optimizer-ready
 
 Adding support for the agent optimizer to your agent requires a few lines of code. No framework changes or conditional logic are needed. You install the optimization package, set up a configuration directory, and call `load_config()` at startup.
 
