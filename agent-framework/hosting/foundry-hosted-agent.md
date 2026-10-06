@@ -101,7 +101,9 @@ using Microsoft.Agents.AI.Foundry.Hosting;
 
 var projectEndpoint = new Uri(Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set."));
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var deployment = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+    ?? "gpt-4o";
 
 AIAgent agent = new AIProjectClient(projectEndpoint, new DefaultAzureCredential())
     .AsAIAgent(
@@ -133,7 +135,7 @@ from azure.identity import DefaultAzureCredential
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -414,7 +416,7 @@ from azure.identity import DefaultAzureCredential
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -567,7 +569,7 @@ _sessions: dict[str, AgentSession] = {}
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -650,7 +652,7 @@ azd ai agent init -m <path-to-agent.manifest.yaml>
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment>"
+export FOUNDRY_MODEL="<your-model-deployment>"
 ```
 
 ### Run the agent host
@@ -706,7 +708,7 @@ The Foundry hosting infrastructure automatically injects the following environme
 | Variable | Description |
 |----------|-------------|
 | `FOUNDRY_PROJECT_ENDPOINT` | The endpoint URL for the Foundry project. |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | The model deployment name (configured during `azd ai agent init`). |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | The azd-managed model deployment name configured during `azd ai agent init`. Python code can prefer `FOUNDRY_MODEL` locally and fall back to this hosted value. |
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | The Application Insights connection string for telemetry. |
 
 Once deployed, your agent is accessible through its dedicated Foundry endpoint and can also be tested from the Foundry portal.
