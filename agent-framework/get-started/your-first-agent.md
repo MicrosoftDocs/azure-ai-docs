@@ -74,7 +74,29 @@ Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az l
 
 Save the complete example as `hello_agent.py`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" highlight="19,21-31,36,43-45,50-51":::
+```python
+import asyncio
+
+from agent_framework import Agent
+from agent_framework.foundry import FoundryChatClient
+from azure.identity import AzureCliCredential
+
+
+async def main() -> None:
+    agent = Agent(
+        client=FoundryChatClient(
+            project_endpoint="https://your-project.services.ai.azure.com",
+            model="gpt-4o",
+            credential=AzureCliCredential(),
+        ),
+        instructions="You are a friendly assistant. Keep your answers brief.",
+    )
+    print(await agent.run("What is the largest city of France?"))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
 Run the example:
 
