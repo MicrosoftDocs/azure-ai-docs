@@ -118,9 +118,6 @@ app.MapA2AServer();
 app.Run();
 ```
 
-> [!TIP]
-> See the [Durable Agents samples](https://github.com/microsoft/agent-framework-durable-extension/tree/main/dotnet/samples/DurableAgents) for Azure Functions and self-hosted examples.
-
 :::zone-end
 
 :::zone pivot="programming-language-python"
