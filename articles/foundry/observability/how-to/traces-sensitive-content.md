@@ -93,13 +93,6 @@ Set the `AppGenAIContent` table's protection level to Protected. This imme
 > [!NOTE]
 >  If a custom role has one of two `AzMon DataActions` that allow access to the protected tables, customers that have these roles assigned get that access.
 
-## Grant read access to authorized identities
-
-After the table is protected, only identities with the **Privileged Monitoring Data Reader** role can read the content. Assign that role to the users, groups, or managed identities that need access, and leave everyone else on standard read roles so they remain denied by default. For the steps, see [Grant access to protected tables](/azure/azure-monitor/logs/protected-tables-configure#grant-access-to-protected-tables). 
-
-> [!NOTE]
-> If PIM is in place, you can use time-bound or JIT access.
-
 ## Verify your configuration 
 
 Confirm that a user with only the Log Analytics Reader role can't see the sensitive content within a trace, while the non-sensitive trace data remains visible to them, and that a user with the Privileged Monitoring Data Reader role can see the sensitive content. 
