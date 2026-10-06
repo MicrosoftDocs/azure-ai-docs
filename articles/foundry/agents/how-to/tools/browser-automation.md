@@ -962,6 +962,7 @@ Review the [responsible AI considerations](../../../responsible-ai/agents/transp
 
 - [Introducing the new Browser Automation Tool with Toolboxes in Foundry](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-the-new-browser-automation-tool-with-toolboxes-in-foundry/4522790)
 - [Why cloud browsers are becoming enterprise infrastructure for AI agents and automation](https://techcommunity.microsoft.com/blog/appsonazureblog/why-cloud-browsers-are-becoming-enterprise-infrastructure-for-ai-agents-and-auto/4547583)
+- [Manage and retrieve credentials securely inside Browser Automation Tool (BAT) using Azure Key Vault](https://techcommunity.microsoft.com/blog/appsonazureblog/manage-and-retrieve-credentials-securely-inside-browser-automation-tool-bat-usin/4550858)
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Computer use tool for agents](computer-use.md)
 - [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md)
