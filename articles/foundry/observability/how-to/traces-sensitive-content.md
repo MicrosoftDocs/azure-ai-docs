@@ -75,6 +75,17 @@ This opt-out is temporary and is discontinued on September 30, 2027. After that 
 az feature unregister --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
 ```
 
+## Grant read access to authorized identities
+
+After the table is protected, only identities with the **Privileged Monitoring Data Reader** role can read the content. Assign that role on the **Application Insights resource linked to the Foundry Project** to the users, groups, or managed identities that need access. This assignment is sufficient to view sensitive trace content in both Application Insights and Microsoft Foundry. Foundry queries through the Application Insights APIs, so a separate role assignment on the linked Log Analytics workspace isn't required.
+
+For identities that also need to run workspace-centric queries directly against the **Log Analytics workspace**, assign the role on that workspace. For example, workspace-centric queries can retrieve content across multiple Application Insights resources that share a workspace.
+
+Leave everyone else on standard read roles so they remain denied access to the protected content by default. For the steps, see [Grant access to protected tables](/azure/azure-monitor/logs/protected-tables-configure#grant-access-to-protected-tables).
+
+> [!NOTE]
+> If PIM is in place, you can use time-bound or JIT access.
+
 ## Set the table as protected 
 
 Set the `AppGenAIContent` table's protection level to Protected. This immediately prevents non-privileged standard read and custom roles from accessing the data. For the portal, Azure CLI, and REST API steps, see [Set a table's protection level](/azure/azure-monitor/logs/protected-tables-configure#set-a-tables-protection-level). 
