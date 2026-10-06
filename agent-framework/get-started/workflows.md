@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 5: Workflows
@@ -59,13 +60,9 @@ foreach (WorkflowEvent evt in run.NewEvents)
 
 :::zone pivot="programming-language-python"
 
-Define workflow steps (executors) and connect them with edges:
+The complete sample defines two executors, connects them with an edge, and runs the workflow:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_first_graph_workflow.py" id="create_workflow" highlight="22":::
-
-Build and run the workflow:
-
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_first_graph_workflow.py" id="run_workflow" highlight="3":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_first_graph_workflow.py" highlight="50,56,60,72-73":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/07_first_graph_workflow.py) for the complete runnable file.

@@ -13,16 +13,7 @@ ms.custom: update-code1
 
 # Step 7: Host Your Agent
 
-Once you've built your agent, you need to host it so users and other agents can interact with it.
-
-## Hosting Options
-
-| Option | Description | Best For |
-|--------|-------------|----------|
-| [A2A Protocol](../hosting/self-hosting/a2a/server.md) | Expose agents via the Agent-to-Agent protocol | Multi-agent systems |
-| [OpenAI-Compatible Endpoints](../hosting/self-hosting/openai-endpoints.md) | Expose agents via Chat Completions or Responses APIs | OpenAI-compatible clients |
-| [Durable Extension](../hosting/azure-functions.md) | Make C# and Python agents and workflows durable on Azure Functions or self-hosted compute | Long-running, reliable workloads |
-| [AG-UI Protocol](../integrations/by-component/ui/ag-ui/index.md) | Build web-based AI agent applications | Web frontends |
+For a comparison of Microsoft-managed Foundry Hosted Agents, self-hosting, and durable Azure Functions workloads, see [Hosting Agent Framework applications](../hosting/index.md).
 
 :::zone pivot="programming-language-csharp"
 
@@ -127,48 +118,37 @@ app.MapA2AServer();
 app.Run();
 ```
 
-> [!TIP]
-> See the [Durable Agents samples](https://github.com/microsoft/agent-framework/tree/main/dotnet/samples/04-hosting/DurableAgents) for Azure Functions and self-hosted examples.
-
 :::zone-end
 
 :::zone pivot="programming-language-python"
 
-Azure Functions is one self-managed hosting option. For a comparison of Microsoft-managed Foundry Hosted Agents, self-hosting, and durable Azure Functions workloads, see [Hosting Agent Framework applications](../hosting/index.md).
+Microsoft Foundry Hosted Agents is the primary managed hosting option. Complete the [Foundry Hosted Agents prerequisites](../hosting/foundry-hosted-agent.md#prerequisites), including the Azure Developer CLI AI agent extension and Azure CLI sign-in.
 
-Install the Azure Functions hosting package, Foundry client, and Azure authentication package:
+The maintained basic Responses sample creates an agent and starts a `ResponsesHostServer`:
+
+:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/basic/main.py" highlight="16-29,32-33":::
+
+Initialize a project from the sample manifest:
 
 ```bash
-pip install agent-framework-azurefunctions agent-framework-foundry azure-identity
+mkdir my-hosted-agent && cd my-hosted-agent
+azd ai agent init -m https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/agent.manifest.yaml
 ```
 
-Create an agent:
-
-:::code language="python" source="~/../agent-framework-durable-extension/python/samples/azure_functions/01_single_agent/function_app.py" range="24-35" highlight="4-9":::
-
-Register the agent with `AgentFunctionApp`:
-
-:::code language="python" source="~/../agent-framework-durable-extension/python/samples/azure_functions/01_single_agent/function_app.py" range="38-39" highlight="2":::
-
-Run locally with [Azure Functions Core Tools](/azure/azure-functions/functions-run-local):
+Run the agent host:
 
 ```bash
-az login
-pip install -r requirements.txt
-# Start Azurite and copy local.settings.json.template to local.settings.json first.
-func start
+azd ai agent run
 ```
 
-Then invoke:
+In another terminal, invoke the local agent:
 
 ```bash
-curl -X POST http://localhost:7071/api/agents/Joker/run \
-  -H "Content-Type: text/plain" \
-  -d "Tell me a short joke about cloud computing."
+azd ai agent invoke --local "Hello!"
 ```
 
 > [!TIP]
-> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/azure_functions/01_single_agent/function_app.py) for the complete runnable file, and the [Azure Functions hosting samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/azure_functions) for more patterns.
+> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/main.py) and the [Foundry Hosted Agents guide](../hosting/foundry-hosted-agent.md?pivots=programming-language-python) for environment setup and deployment.
 
 :::zone-end
 
@@ -245,8 +225,8 @@ http.ListenAndServe(":5000", mux)
 - [Durable Extension](../hosting/azure-functions.md) — durable C# and Python agent and workflow hosting
 - [AG-UI Protocol](../integrations/by-component/ui/ag-ui/index.md) — web-based agent UIs
 - [Hosting overview](../hosting/index.md) — choose Foundry Hosted Agents, self-hosting, or durable hosting
-- [Foundry Hosted Agents docs](/azure/ai-foundry/agents/concepts/hosted-agents) — understand hosted agents in Microsoft Foundry
-- [Foundry Hosted Agents sample (Python)](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/agent-framework) — run an end-to-end Agent Framework hosted-agent sample
+- [Foundry Hosted Agents](../hosting/foundry-hosted-agent.md) — deploy Agent Framework agents to managed hosting
+- [Foundry Hosted Agents sample (Python)](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic) — run the basic Responses sample
 
 ## See also
 
