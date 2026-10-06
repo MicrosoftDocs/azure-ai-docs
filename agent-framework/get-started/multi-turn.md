@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 3: Multi-Turn Conversations
@@ -53,11 +54,9 @@ Console.WriteLine(await agent.RunAsync("What do you remember about me?", session
 
 :::zone pivot="programming-language-python"
 
-Use `AgentSession` to maintain context across multiple calls:
+The complete sample creates an agent and reuses one `AgentSession` across multiple calls:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/03_multi_turn.py" id="create_agent":::
-
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/03_multi_turn.py" id="multi_turn" highlight="2,5,9":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/03_multi_turn.py" highlight="17,34,37,41,46-47":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/03_multi_turn.py) for the complete runnable file.

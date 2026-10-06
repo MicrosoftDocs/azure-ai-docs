@@ -4,7 +4,7 @@ description: In-depth look at Handoff Orchestrations in Microsoft Agent Framewor
 author: TaoChenOSU
 ms.topic: tutorial
 ms.author: taochen
-ms.date: 09/24/2026
+ms.date: 10/06/2026
 ms.service: agent-framework
 zone_pivot_groups: programming-languages
 ai-usage: ai-assisted
@@ -805,6 +805,7 @@ After broadcasting the response, the participant then checks whether it needs to
 
 - **Dynamic Routing**: Agents can decide which agent should handle the next interaction based on context
 - **HandoffBuilder**: Creates workflows with automatic handoff tool registration
+- **Handoff tool names**: Python derives each tool name from the target agent ID, replaces characters outside letters, digits, underscores, and hyphens with underscores, and limits the result to 64 characters. The resulting name must be unique and can't conflict with an existing tool.
 - **with_start_agent()**: Defines which agent receives user input first
 - **add_handoff()**: Configures specific handoff relationships between agents
 - **enable_return_to_previous()**: Controls whether user responses return to the requesting agent or route through the start agent.

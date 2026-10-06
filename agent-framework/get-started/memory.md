@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 4: Memory & Persistence
@@ -78,17 +79,9 @@ Console.WriteLine(await agent.RunAsync("What is my name?", session));
 
 :::zone pivot="programming-language-python"
 
-Define a context provider that stores user info in session state and injects personalization instructions:
+The complete sample defines a context provider, adds it to an agent, and uses one session to preserve personalization state:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" id="context_provider" highlight="4,15-20,39":::
-
-Create an agent with the context provider:
-
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" id="create_agent" highlight="11":::
-
-Run it — the agent now has access to the context:
-
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" id="run_with_memory" highlight="1,4,8,12,16":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" highlight="20,23,34-39,58,67,79,84,87,91,95,99,104-105":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/04_memory.py) for the complete runnable file.

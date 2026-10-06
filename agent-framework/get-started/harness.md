@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: westey
 ms.date: 07/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 6: Agent Harness
@@ -57,30 +58,14 @@ The harness handles planning, todo tracking, and history persistence for you acr
 
 :::zone pivot="programming-language-python"
 
-Create a harness agent with the `create_harness_agent` factory. Because a harness works through tasks interactively over many steps, you typically drive it from a conversation loop: keep a session so the harness state (plan, todos, and history) persists across turns, read the user's next instruction, and stream the agent's output as it's produced.
+The maintained sample creates a Foundry chat client, wraps it with `create_harness_agent`, and starts an interactive harness console with a persistent session. Set `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL`, then run `az login` before you start the sample.
 
-```python
-from agent_framework import create_harness_agent
-from agent_framework.openai import OpenAIChatClient
+:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/harness/build_your_own_claw/claw_step01_meet_your_claw.py" highlight="112,120,126-130,135-142,146-147":::
 
-agent = create_harness_agent(
-    OpenAIChatClient(model="gpt-4o"),
-)
+From the Agent Framework repository root, run the PEP 723 sample:
 
-# A session carries the harness state (plan, todos, history) across turns.
-session = agent.create_session()
-
-print("Harness agent ready. Type 'exit' to quit.")
-while True:
-    user_input = input("> ")
-    if user_input.strip().lower() in {"exit", "quit"}:
-        break
-
-    # Stream this turn's output as the harness plans and works through the request.
-    async for chunk in agent.run(user_input, session=session, stream=True):
-        if chunk.text:
-            print(chunk.text, end="", flush=True)
-    print()
+```bash
+uv run python/samples/02-agents/harness/build_your_own_claw/claw_step01_meet_your_claw.py
 ```
 
 The harness handles planning, todo tracking, and history persistence for you across the whole conversation. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).

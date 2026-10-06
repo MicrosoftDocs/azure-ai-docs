@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: moonbox3
 ms.topic: tutorial
 ms.author: evmattso
-ms.date: 09/21/2026
+ms.date: 10/06/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -689,6 +689,16 @@ Agents in Agent Framework rely on agent sessions ([`AgentSession`](../../concept
 ::: zone pivot="programming-language-python"
 
 Python preserves user text, inline data, URIs, hosted files, and hosted vector stores in synchronized group chat history. Non-user messages retain text only, and function calls, function results, approval payloads, and other tool-control content are filtered before broadcast.
+
+> [!TIP]
+> To redact or withhold participant text before it enters shared history or
+> reaches other participants, filter it in a custom `GroupChatOrchestrator`
+> participant-response handler. Filtering events returned by `workflow.run()`
+> is too late because the original response is already stored and broadcast.
+> See the [group chat response filtering sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/03-workflows/orchestrations/group_chat_message_filtering.py).
+> The sample protects the shared-history and broadcast boundary; it doesn't
+> remove the original content from the sending agent's session, tools, model
+> provider, telemetry, or earlier workflow lifecycle events.
 
 ::: zone-end
 

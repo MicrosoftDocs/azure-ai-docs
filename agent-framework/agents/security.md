@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 10/05/2026
+ms.date: 10/06/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -291,6 +291,32 @@ references or `default_integrity`. Embedded labels can make this fallback more
 restrictive, but they can't relax it. Use `source_integrity` for tools that
 *introduce* trust state (data fetchers and external APIs) rather than tools that
 *transform* already-labeled inputs.
+
+### Add trusted standing guidance to hidden results
+
+Use `standing_guidance` when a tool needs to explain the meaning of a hidden or
+untrusted result without trusting runtime output. Declare a fixed list of
+sentences in the tool's `additional_properties`:
+
+```python
+@tool(
+    additional_properties={
+        "source_integrity": "untrusted",
+        "standing_guidance": [
+            "A result you cannot read is not a clean validation.",
+        ],
+    },
+)
+async def validate_files(paths: list[str]) -> str:
+    return await compiler.validate(paths)
+```
+
+`LabelTrackingFunctionMiddleware` appends each sentence as a separate,
+framework-owned `Content` item with trusted integrity. It preserves the
+result's resolved confidentiality and principal scope. The declaration is
+frozen before the tool body first runs, so runtime inputs and tool output can't
+change the guidance. Use it only for invariant instructions that are safe to
+declare in source code, not for runtime data.
 
 ### Implicit propagation through arguments
 

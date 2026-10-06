@@ -31,6 +31,7 @@ The following table lists the *latency target value* for each model that support
 
 | Model | Latency target value | 
 | --- | --- |
+| gpt-6.1-sol, 2026-09-29 | 99% > 50 TPS |
 | gpt-6-sol, 2026-09-22 | 99% > 80 TPS |
 | gpt-5.6-terra, 2026-07-09 | 99% > 70 TPS |
 | gpt-5.6-sol, 2026-07-09 | 99% > 80 TPS |
@@ -42,5 +43,4 @@ The following table lists the *latency target value* for each model that support
 | gpt-4.1, 2025-04-14<sup>1</sup> | 99% > 80 TPS |
 
 <sup>1</sup> *Long context* for this model, that is, requests estimated to exceed **128k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
-
 

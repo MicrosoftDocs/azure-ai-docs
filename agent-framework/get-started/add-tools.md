@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.author: edvan
 ms.date: 07/01/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ms.custom: update-code1
 ---
 
@@ -62,13 +63,9 @@ Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?")
 
 :::zone pivot="programming-language-python"
 
-Define a tool with the `@tool` decorator:
+The complete sample defines a tool with the `@tool` decorator, creates an agent with the tool, and runs the agent:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/02_add_tools.py" id="define_tool" highlight="3":::
-
-Create an agent with the tool:
-
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/02_add_tools.py" id="create_agent_with_tools" highlight="4":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/02_add_tools.py" highlight="28-34,40-44,48-53,57-58,62-63":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/02_add_tools.py) for the complete runnable file.
