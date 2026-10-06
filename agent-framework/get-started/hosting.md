@@ -13,17 +13,7 @@ ms.custom: update-code1
 
 # Step 7: Host Your Agent
 
-Once you've built your agent, choose who operates its infrastructure. Start with Microsoft Foundry Hosted Agents for managed hosting, or choose a self-hosted or durable option when you need more infrastructure control.
-
-## Hosting Options
-
-| Option | Description | Best For |
-| --- | --- | --- |
-| [Foundry Hosted Agents](../hosting/foundry-hosted-agent.md) | Run containerized agents on Microsoft-managed infrastructure | Managed production hosting |
-| [A2A Protocol](../hosting/self-hosting/a2a/server.md) | Expose agents via the Agent-to-Agent protocol | Multi-agent systems |
-| [OpenAI-Compatible Endpoints](../hosting/self-hosting/openai-endpoints.md) | Expose agents via Chat Completions or Responses APIs | OpenAI-compatible clients |
-| [Durable Extension](../hosting/azure-functions.md) | Make C# and Python agents and workflows durable on Azure Functions or self-hosted compute | Long-running, reliable workloads |
-| [AG-UI Protocol](../integrations/by-component/ui/ag-ui/index.md) | Build web-based AI agent applications | Web frontends |
+For a comparison of Microsoft-managed Foundry Hosted Agents, self-hosting, and durable Azure Functions workloads, see [Hosting Agent Framework applications](../hosting/index.md).
 
 :::zone pivot="programming-language-csharp"
 
