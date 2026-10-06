@@ -7,7 +7,7 @@ ms.reviewer: liulewis
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 10/06/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -118,7 +118,7 @@ Install the required packages:
 npm install @azure/ai-projects @azure/identity
 ```
 
-Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
+Use Node.js 22 or later with `@azure/ai-projects` 2.8.0.
 
 :::zone-end
 

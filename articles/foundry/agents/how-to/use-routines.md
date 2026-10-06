@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2026
+ms.date: 10/06/2026
 author: zhuoqunli
 ms.author: zhuoqunli
 ms.custom:
@@ -229,7 +229,7 @@ To select creator identity from a C# application, use the [REST create request](
 <!-- markdownlint-disable-next-line MD044 -->
 :::zone pivot="programming-language-javascript"
 
-This example uses `@azure/ai-projects` version `2.7.0`, a verified version for creator-identity configuration, and `@azure/identity`. The same package includes TypeScript types. Access routines through `client.beta.routines`.
+This example uses `@azure/ai-projects` version `2.8.0` and `@azure/identity`. The same package includes TypeScript types. Access routines through `client.beta.routines`.
 
 Sign in with `az login` before using `AzureCliCredential`. Replace the endpoint and agent placeholders, and choose a routine name that doesn't already exist.
 
@@ -262,7 +262,7 @@ await client.beta.routines.createOrUpdate("my-creator-routine", {
 
 Reference: [RoutineAuthorization](/javascript/api/@azure/ai-projects/routineauthorization?view=azure-node-latest&preserve-view=true).
 
-In version `2.7.0`, the SDK's deserialized routine object omits `authorization`, even when the service stores it. Use a raw REST GET to verify the saved setting:
+In version `2.8.0`, the SDK's deserialized routine object omits `authorization`, even when the service stores it. Use a raw REST GET to verify the saved setting:
 
 ```bash
 PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"

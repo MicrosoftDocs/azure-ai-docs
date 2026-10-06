@@ -7,7 +7,8 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 09/28/2026
+ms.date: 10/06/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 # Convert agent traces into evaluation datasets (preview)
@@ -79,7 +80,7 @@ You can create a dataset from traces directly in the portal without writing code
 
 Drive your deployed agent with realistic traffic, and then use those conversations to build an evaluation dataset. The flow is: define a time window, point at your agent, set a cap on rows, and submit the job.
 
-First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
+First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`.
 
 # [Python](#tab/python)
 
@@ -111,6 +112,8 @@ const projectClient = new AIProjectClient(
   new DefaultAzureCredential(),
 );
 ```
+
+Use `@azure/ai-projects` 2.8.0 or later. Access data generation operations through `projectClient.datasets`; the SDK sends `foundry-features: DataGenerationJobs=V1Preview`.
 
 The JavaScript/TypeScript SDK samples don't yet demonstrate generating a dataset from traces with a time-window trace source. Use the Python SDK or the Foundry portal for that flow. The JavaScript/TypeScript SDK supports the job-management operations shown in [Manage data generation jobs](#manage-data-generation-jobs).
 
@@ -198,7 +201,7 @@ For the full evaluation flow, including selecting evaluators and reviewing resul
 
 ## Manage data generation jobs
 
-Use `project_client.beta.datasets` APIs to list, inspect, cancel, and delete data generation jobs.
+Use the job-management APIs to list, inspect, cancel, and delete data generation jobs.
 
 # [Python](#tab/python)
 
@@ -223,18 +226,18 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
-// List recent evaluation jobs.
-for await (const job of projectClient.beta.datasets.listGenerationJobs({
+// List recent generation jobs.
+for await (const job of projectClient.datasets.listGenerationJobs({
   limit: 20,
 })) {
-  console.log(`${job.id}  ${job.status}  ${job.inputs?.name}`);
+  console.log(`${job.id}  ${job.status}  ${job.name}`);
 }
 
 // Cancel a running job.
-await projectClient.beta.datasets.cancelGenerationJob("job_...");
+await projectClient.datasets.cancelGenerationJob("job_...");
 
 // Delete a job record (produced datasets are not deleted).
-await projectClient.beta.datasets.deleteGenerationJob("job_...");
+await projectClient.datasets.deleteGenerationJob("job_...");
 ```
 
 Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aiprojectclient)

@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/21/2026
+ms.date: 10/06/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -715,6 +715,8 @@ JSON
 ## Use Browser Automation tool with agents example
 
 The following TypeScript sample demonstrates how to create an agent with the Browser Automation tool, perform web browsing tasks, and process streaming responses with browser automation events. For a JavaScript version of this sample, see the [JavaScript sample for Browser Automation tool](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentBrowserAutomation.js) in the Azure SDK for JavaScript repository on GitHub.
+
+In `@azure/ai-projects` 2.8.0, `BrowserAutomationTool` and `BrowserAutomationToolboxTool` use the `browser_automation` discriminator and nested property. The preview contracts remain available, and the following example uses `browser_automation_preview`. For the GA agent contract, see the [released Browser Automation agent sample](https://github.com/Azure/azure-sdk-for-js/blob/%40azure%2Fai-projects_2.8.0/sdk/ai/ai-projects/samples-dev/agents/tools/agentBrowserAutomationGA.ts).
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";

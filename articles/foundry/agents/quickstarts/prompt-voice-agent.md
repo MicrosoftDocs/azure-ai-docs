@@ -3,11 +3,11 @@ title: "Quickstart: Create a voice-based prompt agent"
 description: "Create a managed voice-based prompt agent in Foundry Agent Service by using the Microsoft Foundry portal, the Microsoft Foundry SDK, or the Azure Developer CLI."
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/30/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
-ms.custom: preview
+ms.custom: preview, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: voice-agent-quickstart-tools
 # customer intent: As a developer, I want to create and connect to a voice-based prompt agent so that I can build a real-time spoken experience.
@@ -190,7 +190,7 @@ Confirm that:
 
 ## Install the packages
 
-These examples target version 2.7.0 or later of the Azure AI Projects client library.
+These examples target version 2.8.0 or later of the Azure AI Projects client library.
 
 Install the `voice` extra, which supplies `websockets` for synchronous connections and `aiohttp` for asynchronous connections.
 
@@ -565,7 +565,7 @@ Install `@azure/ai-projects` and `@azure/identity`. The client library includes 
 ```bash
 npm init --yes
 npm pkg set type=module
-npm install @azure/ai-projects@2.7.0 @azure/identity
+npm install @azure/ai-projects @azure/identity
 ```
 
 Voice session and conversation operations use `project.beta.voiceAgents`. When a standard `.agents` operation creates or modifies a voice agent, pass the `VoiceAgents=V1Preview` feature opt-in.
