@@ -174,7 +174,7 @@ Throughput can vary materially with document complexity and profile, chunking, t
 
 During the preview, Serverless indexers are designed to simplify ingestion for retrieval-augmented generation (RAG) and knowledge base scenarios:
 
-+ Indexer execution (excluding skills) is currently free. Writing documents to an index incurs a cost.
++ You [incur a cost](serverless-cost-optimization.md) for indexer execution (excluding skills) and writing documents to an index.
 
 + Skillset execution is billed the same way as on dedicated indexers. Calls to external services, such as the Azure OpenAI Embedding skill, GenAI Prompt skill, and Azure Content Understanding skill, are billed through the attached [Foundry or Azure AI services resource](cognitive-search-attach-cognitive-services.md).
 
