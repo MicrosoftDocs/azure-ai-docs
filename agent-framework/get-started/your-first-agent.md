@@ -86,7 +86,7 @@ async def main() -> None:
     agent = Agent(
         client=FoundryChatClient(
             project_endpoint="https://your-project.services.ai.azure.com",
-            model="gpt-4o",
+            model="gpt-6-luna",
             credential=AzureCliCredential(),
         ),
         instructions="You are a friendly assistant. Keep your answers brief.",
