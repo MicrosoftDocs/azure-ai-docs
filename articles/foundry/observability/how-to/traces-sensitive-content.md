@@ -88,7 +88,7 @@ Leave everyone else on standard read roles so they remain denied access to the p
 
 ## Set the table as protected 
 
-Set the `AppGenAIContent` table's protection level to Protected. This immediately prevents non-privileged standard read and custom roles from accessing the data. For the portal, Azure CLI, and REST API steps, see [Set a table's protection level](/azure/azure-monitor/logs/protected-tables-configure#set-a-tables-protection-level). 
+Set the `AppGenAIContent` table's protection level to Protected. This change immediately prevents non-privileged standard read and custom roles from accessing the data. For the portal, Azure CLI, and REST API steps, see [Set a table's protection level](/azure/azure-monitor/logs/protected-tables-configure#set-a-tables-protection-level). 
 
 > [!NOTE]
 >  If a custom role has one of two `AzMon DataActions` that allow access to the protected tables, customers that have these roles assigned get that access.
