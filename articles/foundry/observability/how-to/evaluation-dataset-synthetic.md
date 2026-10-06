@@ -118,9 +118,9 @@ const projectClient = new AIProjectClient(
 );
 ```
 
-Use `@azure/ai-projects` 2.8.0 or later. You can find all data generation
-operations under `projectClient.datasets`. These operations remain in
-preview; the SDK sends `foundry-features: DataGenerationJobs=V1Preview`.
+Use `@azure/ai-projects` 2.8.0 or later. Find all data generation
+operations under `projectClient.datasets`. These operations are in
+preview. The SDK sends `foundry-features: DataGenerationJobs=V1Preview`.
 The JavaScript/TypeScript SDK samples
 don't yet demonstrate how to generate a dataset from an agent
 definition or a reference file. For those source types, use the Python

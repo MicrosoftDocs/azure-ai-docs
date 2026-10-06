@@ -201,7 +201,7 @@ For the full evaluation flow, including selecting evaluators and reviewing resul
 
 ## Manage data generation jobs
 
-Use the job-management APIs to list, inspect, cancel, and delete data generation jobs.
+Use the job management APIs to list, inspect, cancel, and delete data generation jobs.
 
 # [Python](#tab/python)
 
