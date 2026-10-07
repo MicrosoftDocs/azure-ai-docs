@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -74,29 +74,7 @@ Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az l
 
 Save the complete example as `hello_agent.py`:
 
-```python
-import asyncio
-
-from agent_framework import Agent
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential
-
-
-async def main() -> None:
-    agent = Agent(
-        client=FoundryChatClient(
-            project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
-            model="gpt-6-luna",
-            credential=AzureCliCredential(),
-        ),
-        instructions="You are a friendly assistant. Keep your answers brief.",
-    )
-    print(await agent.run("What is the largest city of France?"))
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" range="10-30" highlight="9-17":::
 
 Run the example:
 

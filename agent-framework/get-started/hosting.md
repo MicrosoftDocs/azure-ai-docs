@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/08/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code2
@@ -124,11 +124,17 @@ app.Run();
 
 Microsoft Foundry Hosted Agents is the primary managed hosting option. Complete the [Foundry Hosted Agents prerequisites](../hosting/foundry-hosted-agent.md#prerequisites), including the Azure Developer CLI AI agent extension and Azure CLI sign-in.
 
-The maintained basic Responses sample creates an agent and starts a `ResponsesHostServer`:
+The get-started sample creates an agent with server-side model storage disabled and starts a `ResponsesHostServer`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/04-hosting/foundry-hosted-agents/responses/basic/main.py" highlight="16-29,32-33":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_hosting.py" range="18-37" highlight="14,16":::
 
-Initialize a project from the sample manifest:
+Replace the hardcoded project endpoint and model deployment name, then run the PEP 723 sample locally from the Agent Framework repository root:
+
+```bash
+uv run python/samples/01-get-started/07_hosting.py
+```
+
+To deploy a complete hosted-agent project, initialize it from the maintained hosting manifest:
 
 ```bash
 mkdir my-hosted-agent && cd my-hosted-agent
@@ -148,7 +154,8 @@ azd ai agent invoke --local "Hello!"
 ```
 
 > [!TIP]
-> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic/main.py) and the [Foundry Hosted Agents guide](../hosting/foundry-hosted-agent.md?pivots=programming-language-python) for environment setup and deployment.
+> See the [full get-started sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/07_hosting.py) and the [complete deployment sample](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/basic).
+> For deployment guidance, see [Foundry Hosted Agents](../hosting/foundry-hosted-agent.md?pivots=programming-language-python).
 
 :::zone-end
 
