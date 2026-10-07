@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 09/03/2026
+ms.date: 10/05/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -317,6 +317,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.7 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -369,6 +370,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.7 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -421,6 +423,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.6 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.7 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -473,6 +476,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | grok-4-20-reasoning | 1 | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ |
 | grok-4.6 | 1 | ✅ | ✅ |
+| grok-4.7 | 1 | ✅ | ✅ |
 | Kimi-K2.5 | 1 | ✅ | ✅ |
 | Kimi-K2.6 | 2026-04-20 | ✅ | ✅ |
 | Kimi-K2.7-Code | 2026-06-12 | ✅ | ✅ |
@@ -623,6 +627,7 @@ Not available
 | grok-4-20-non-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4-20-reasoning | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | grok-4.3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| grok-4.7 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mistral-Large-3 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | mistral-medium-3-5 | 1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 

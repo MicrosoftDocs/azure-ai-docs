@@ -8,8 +8,8 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 09/28/2026
-ms.custom: include, classic-and-new
+ms.date: 10/05/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

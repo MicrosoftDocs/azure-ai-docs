@@ -6,8 +6,9 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 07/17/2026
-ms.custom: include, classic-and-new
+ms.date: 10/05/2026
+ms.custom: include, classic-and-new, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
@@ -49,6 +50,27 @@ When an existing model is upgraded, its new Global or Data Zone quota limit is s
 - The total quota assigned to all existing deployments of that model within the quota scope.
 
 For example, if a model has Global Standard deployments across five regions, the new global quota limit equals the combined quota of those deployments if that total exceeds the tier limit. Otherwise, the tier limit applies.
+
+### Grok 4.7 quotas
+
+Grok 4.7 version `1` uses subscription-level quota management. The following table lists tokens per minute (TPM) quotas and corresponding requests per minute (RPM) limits by subscription tier. Each unit of deployment capacity provides 1,000 TPM and 1 RPM. Your deployment's rate limits depend on its configured capacity and allocated quota.
+
+| Deployment type | Subscription tier | TPM quota | Corresponding RPM |
+| --- | --- | ---: | ---: |
+| Global Standard | Free Tier | 0 | 0 |
+| Global Standard | Tier 1 | 80,000 | 80 |
+| Global Standard | Tier 2 | 315,000 | 315 |
+| Global Standard | Tier 3 | 1,000,000 | 1,000 |
+| Global Standard | Tier 4 | 2,000,000 | 2,000 |
+| Global Standard | Tier 5 | 10,000,000 | 10,000 |
+| Global Standard | Tier 6 | 15,000,000 | 15,000 |
+| Data Zone Standard (US) | Free Tier | 0 | 0 |
+| Data Zone Standard (US) | Tier 1 | 80,000 | 80 |
+| Data Zone Standard (US) | Tier 2 | 315,000 | 315 |
+| Data Zone Standard (US) | Tier 3 | 1,000,000 | 1,000 |
+| Data Zone Standard (US) | Tier 4 | 2,000,000 | 2,000 |
+| Data Zone Standard (US) | Tier 5 | 10,000,000 | 10,000 |
+| Data Zone Standard (US) | Tier 6 | 15,000,000 | 15,000 |
 
 ## Quotas and limits reference
 
