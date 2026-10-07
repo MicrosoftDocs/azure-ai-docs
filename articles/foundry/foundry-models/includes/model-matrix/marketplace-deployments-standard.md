@@ -19,6 +19,7 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | claude-fable-5 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
 | claude-fable-5-1 | 1 | - | - | - | - | - | ✅ | - | - | - | - | - | - |
+| claude-haiku-5-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-haiku-4-5 | 2 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-haiku-4-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | claude-opus-4-5 | 1 | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ |
@@ -50,6 +51,7 @@ For **global deployments**, Microsoft processes prompts and responses in any Azu
 | claude-fable-5-1 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-haiku-4-5 | 2 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-haiku-4-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
+| claude-haiku-5-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-5 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-6 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
 | claude-opus-4-7 | 1 | - | - | - | - | - | - | ✅ | - | - | - | - | - |
@@ -103,6 +105,7 @@ For **Data Zone** deployments, Microsoft processes prompts and responses anywher
 
 | **Model** | **Version** | **centralus** | **eastus** | **eastus2** | **northcentralus** | **southcentralus** | **westcentralus** | **westus** | **westus3** |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| claude-haiku-5-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-opus-4-8 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-opus-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | claude-opus-5-5 | 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |

@@ -24,6 +24,8 @@ The model supports live audio workloads such as call centers, voice assistants, 
 
 For the managed client-library integration, see [Use MAI-Transcribe-2-Streaming with Azure Speech SDK](mai-transcribe-2-streaming-speech-sdk.md).
 
+See the overview for [serving regions](mai-transcribe-2-streaming.md#availability-and-regions) and [supported languages](mai-transcribe-2-streaming.md#language-support).
+
 ## Prerequisites
 
 Before you can use MAI-Transcribe-2-Streaming, you need:
@@ -33,25 +35,9 @@ Before you can use MAI-Transcribe-2-Streaming, you need:
 - A deployment of a MAI-Transcribe-2-Streaming model in a supported region.
   - In the Foundry portal, load your project. Select **Build** in the upper-right menu, select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 
-
-## Supported models
-
-- `MAI-Transcribe-2-Streaming`
-
 ## Limitations
 
 - Each session can last up to one hour.
-
-## Availability and regions
-
-You can access MAI-Transcribe-2-Streaming globally. Azure serves the model from the following regions, and routes requests to them:
-
-| Region | Region identifier | Availability |
-| --- | --- | --- |
-| Sweden Central | `swedencentral` | Available |
-| Central US | `centralus` | Available |
-| East US 2 | `eastus2` | Coming soon |
-| South India | `southindia` | Available |
 
 ## Quickstart
 MAI-Transcribe-2-Streaming converts streamed audio into text over a WebSocket connection, using [OpenAI Realtime API-like protocol](https://developers.openai.com/api/docs/guides/realtime-transcription). Clients send audio; the server produces partial and final transcription hypotheses. Additionally, clients can explicitly request a final by sending a `commit` message, which produces `completed` transcription as soon as possible.
@@ -84,7 +70,7 @@ MAI-Transcribe-2-Streaming converts streamed audio into text over a WebSocket co
    | Setting under `session.audio.input` | Behavior |
    | --- | --- |
    | `format` | Raw signed little-endian PCM16, mono, 16000 or 24000 samples/second. |
-   | `transcription.language` | Optional language code, such as `"en"`. The model supports 60 languages (see the table below). Initially `null`: automatic detection. The current backend treats unrecognized values as unset. |
+   | `transcription.language` | Optional language code, such as `"en"`. The model supports 60 languages (see [Language support](mai-transcribe-2-streaming.md#language-support)). Initially `null`: automatic detection. The current backend treats unrecognized values as unset. |
    | `transcription.model` | The model deployment name in Foundry. |
    | `turn_detection`, `noise_reduction` | Only `null` is supported. There is no server-side speech detection or automatic commit. The service might initially create a session with turn detection enabled. When you specify the model in a `session.update` message, the service disables turn detection. |
 
@@ -402,10 +388,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         pass
 ```
-
-
-## Language support
-
-By default, the model operates in multilingual mode. The following languages are currently supported:
-
-[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]

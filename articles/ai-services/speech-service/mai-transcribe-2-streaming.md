@@ -30,3 +30,20 @@ The model supports live audio workloads such as call centers, voice assistants, 
 | Azure Speech SDK | You want a managed client library for connection management, retries, and audio streaming. | [Use MAI-Transcribe-2-Streaming with Azure Speech SDK](mai-transcribe-2-streaming-speech-sdk.md) |
 
 Both integration methods support the `MAI-Transcribe-2-Streaming` model and return intermediate and final transcription results.
+
+## Availability and regions
+
+You can access MAI-Transcribe-2-Streaming globally. Azure serves the model from the following regions and routes requests to them for each integration method.
+
+| Region | Region identifier | Availability |
+| --- | --- | --- |
+| Sweden Central | `swedencentral` | Available |
+| Central US | `centralus` | Available |
+| East US 2 | `eastus2` | Available |
+| Southeast Asia | `southeastasia` | Available |
+
+## Language support
+
+By default, the model operates in multilingual mode with language auto-detection. The following languages are currently supported:
+
+[!INCLUDE [MAI Transcribe language support](includes/language-support/mai-transcribe.md)]

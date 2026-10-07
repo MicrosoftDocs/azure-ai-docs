@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 10/06/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -24,11 +24,24 @@ FIDES is based on the [FIDES paper by Costa et al.](https://arxiv.org/abs/2505.2
 ::: zone pivot="programming-language-csharp"
 
 > [!NOTE]
-> FIDES is currently Python-only. A .NET implementation is coming soon. In the meantime, follow the general guidance in [Agent Safety](../concepts/agents/safety.md) for .NET agents and gate high-risk tools behind [Tool Approval](./tools/tool-approval.md).
+> FIDES is currently Python-only; its APIs aren't available in .NET. The .NET [Hyperlight](../integrations/by-component/context-providers/hyperlight.md) and [Local](../integrations/by-component/context-providers/local.md) CodeAct providers don't provide FIDES enforcement.
+>
+> These providers invoke registered `AIFunction` host tools directly rather than routing nested calls through the agent's per-function middleware pipeline. Checks on direct agent tools or the outer `execute_code` call don't cover code-internal intermediate values or file and network capabilities. Host tools must enforce their own authorization and destination controls. See [CodeAct's current limitations](code-act.md#current-limitations).
+>
+> For .NET agents, follow the general guidance in [Agent Safety](../concepts/agents/safety.md) and gate high-risk direct tools behind [Tool Approval](./tools/tool-approval.md).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
+
+> [!WARNING]
+> FIDES isn't currently supported with [Monty](../integrations/by-component/context-providers/monty.md) or [Hyperlight](../integrations/by-component/context-providers/hyperlight.md) CodeAct providers, including their standalone execution tools. Provider-managed host-tool calls inside generated code don't pass through the agent's per-function middleware pipeline.
+>
+> Policy checks on direct agent tools or the outer `execute_code` call don't establish FIDES enforcement for nested calls or code-internal intermediate values. They also don't cover file or network capabilities. Host tools must enforce their own authorization and destination controls.
+>
+> Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This compatibility boundary is a current integration limitation, not an inherent limitation of the [CodeAct pattern](code-act.md).
+>
+> Treat any metadata-based warning as diagnostic only. The absence of a warning doesn't imply support or safety, because FIDES also applies defaults to unannotated tools.
 
 ## The threat model
 
@@ -558,6 +571,7 @@ FIDES is shipping as experimental on purpose, so the team can iterate on the erg
 3. **Approvals are coarse.** `approval_on_violation=True` gates the violating tool call; it doesn't expose the full label algebra to the user. Richer UI surfaces for "why was I asked to approve this?" are in scope for future iterations.
 4. **Quarantined LLM is single-turn.** `quarantined_llm` is intentionally tools-free and one-shot. Multi-turn quarantined sub-agents are doable but not in this release.
 5. **MCP result labels require a trusted authority.** By default, FIDES combines labels from an MCP server with local policy, so the server can only make a label more restrictive. Set `trust_server_ifc=True` only after you verify who owns the MCP server and determine that you trust its identity, operation, and labeling policy. This setting makes complete, valid labels from the server authoritative, which can relax local labels. Treat labels from an unknown or untrusted MCP server as untrusted input.
+6. **CodeAct integration is unsupported.** Keep FIDES-dependent tools off current CodeAct providers. See [CodeAct's current limitations](code-act.md#current-limitations).
 
 If you hit a bug or have a feature request, open an issue on [the repository](https://github.com/microsoft/agent-framework/issues). For broader feedback on the security model — especially defaults, propagation, and approval ergonomics — join the conversation in [discussion #5624](https://github.com/microsoft/agent-framework/discussions/5624).
 
@@ -581,6 +595,7 @@ If you hit a bug or have a feature request, open an issue on [the repository](ht
 - [Tool Approval](./tools/tool-approval.md) — gate high-risk tools behind human confirmation
 - [Function Tools](./tools/function-tools.md)
 - [Context Providers](../concepts/agents/conversations/context-providers.md)
+- [CodeAct](code-act.md) — current compatibility boundary for generated-code workflows
 - [`agent_framework.security` source](https://github.com/microsoft/agent-framework/blob/main/python/packages/core/agent_framework/security.py)
 - [FIDES samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/security)
 - [FIDES Developer Guide](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/security/FIDES_DEVELOPER_GUIDE.md)

@@ -4,7 +4,7 @@ description: Add cross-platform CodeAct execution to Agent Framework Python agen
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/28/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -19,6 +19,13 @@ Use Monty when you need a cross-platform CodeAct runtime without Hyperlight's hy
 
 > [!NOTE]
 > `agent-framework-monty` is a beta package. Monty restricts operating-system, subprocess, and direct network access, but it isn't a hardware-isolated virtual machine.
+
+> [!WARNING]
+> `MontyCodeActProvider` and `MontyExecuteCodeTool` don't currently support [FIDES](../../../agents/security.md). Provider-managed host-tool calls don't pass through the agent's per-function middleware pipeline.
+>
+> Checks on direct agent tools or the outer `execute_code` call don't cover nested calls, code-internal intermediate values, or file and network capabilities. Host tools must enforce their own authorization and destination controls.
+>
+> Keep FIDES-dependent tools as direct agent tools, not Monty-managed tools, or leave CodeAct disabled for workflows requiring those guarantees. See [CodeAct's current limitations](../../../agents/code-act.md#current-limitations).
 
 ## Install the packages
 
