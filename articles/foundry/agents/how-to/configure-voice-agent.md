@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 09/25/2026
+ms.date: 10/07/2026
 ms.custom: preview
 ai-usage: ai-assisted
 zone_pivot_groups: voice-agent-config-method
@@ -106,6 +106,68 @@ A voice agent definition includes these parts:
 | Data | `store` | Controls whether conversations are persisted. |
 
 The values in `audio` and `avatar` are session defaults. A client can override supported fields with a `session.update` event when it connects.
+
+## Choose a managed or self-deployed model
+
+Choose a **managed model** to get started quickly without manually deploying a model or maintaining that deployment. Choose a **self-deployed model** for a broader choice of models, reuse of existing quota or provisioned capacity, or supported model customization.
+
+Both options use Foundry to run the voice agent and its speech pipeline. Self-deployed refers to the model deployment, not to hosting the voice agent yourself.
+
+| Customer need | Managed model | Self-deployed model |
+| --- | --- | --- |
+| Get started with less setup | Select a model and start building your voice experience without a separate model deployment. | Reuse a compatible deployment you already have. If you don't have one, deploy the model first. |
+| Use existing quota or capacity commitments | Use service-managed models when you don't need to reuse your own deployment's capacity. | Use available quota or provisioned throughput units (PTUs) on your model deployment, where supported. |
+| Access a broader choice of models | Choose from the service-managed models available to your resource. | Use compatible deployments beyond the managed selection, including Anthropic Claude, Fireworks models, and chat-completion models on managed compute. |
+| Customize the model for your scenario | Use the capabilities of the available service-managed models. | Use a supported fine-tuned model or custom weights to meet your application's requirements. |
+| Meet model data-processing requirements | Choose this option when the service-managed choices meet your requirements. | Choose supported deployment locations for your model. |
+| Customize safety for your voice experience | Configure custom guardrails in the voice-agent settings. | Configure custom guardrails in the voice-agent settings. |
+| Minimize ongoing maintenance | Let the service manage the model deployment so you can focus on the voice experience. | Manage model capacity and updates yourself in exchange for more control over the deployment. |
+
+Quota and PTU reuse apply to the model deployment; speech and other voice-agent charges still apply. For billing details, see [Pricing for voice-based agents](../concepts/voice-agent-pricing.md).
+
+With a supported deployment in the same Foundry resource as your project, Foundry handles the model connection and authentication. You don't need the additional resource-managed-identity role assignment used by direct Voice Live BYOM. Normal Foundry project and model access permissions still apply.
+
+### Choose the self-deployed model category
+
+Self-deployed models aren't limited to speech-to-speech models. The service derives the voice architecture from the selected model; you don't configure the architecture separately.
+
+| Model deployment | Voice architecture | Choose it when |
+| --- | --- | --- |
+| Azure OpenAI realtime models, such as `gpt-realtime` | Native speech-to-speech. | You want a realtime model to handle spoken input and output while using your own deployment. |
+| Azure OpenAI text models | Cascaded speech recognition, text generation, and speech synthesis. | You want to reuse an existing text model or choose its reasoning and tool-calling capabilities. |
+| [Anthropic Claude models in Foundry](../../foundry-models/how-to/use-foundry-models-claude.md) | Cascaded. | You want a supported Claude deployment to handle the conversation. |
+| Other compatible chat-completion models, including [Fireworks models](../../how-to/fireworks/enable-fireworks-models.md) | Cascaded. | You need another model provider, an open-source model, or supported custom weights. |
+| Chat-completion models on [managed compute](../../concepts/managed-compute-overview.md) | Cascaded. | You want an open-source model on dedicated GPU capacity that you configure in Foundry. |
+
+Managed compute is a model deployment type, not the voice agent's `managed` model option. Select `self_deployed` when you use your own compatible managed compute deployment.
+
+Confirm model availability, deployment type, streaming support, required tools, and compatible speech settings for your project. Not every model or deployment type supports the same capabilities. In particular, a managed compute deployment must expose a compatible chat-completion interface; a non-chat model isn't a conversation model.
+
+Use the deployment name in the configuration examples for your selected SDK or CLI below. For complete creation examples with connection, read-back, and cleanup steps, see the [Python self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=python#create-with-a-self-deployed-model) and the [JavaScript self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=javascript#create-with-a-self-deployed-model).
+
+### Reduce latency for self-deployed models
+
+For a cascaded voice agent, time to first token (TTFT) affects how soon speech synthesis can start. Measure time to first audio as well: transcription, turn detection, synthesis, and client playback also affect when the caller hears a response.
+
+- **Prefer nearby processing when available.** To reduce the network contribution to TTFT, evaluate a regional deployment colocated with your voice-agent resource, or a Data Zone deployment in the same geographic zone. Data Zone processing can span multiple regions; it doesn't pin inference to your resource's region. Compare measured latency with Global deployments under the same workload rather than assuming that a deployment type is always faster. Availability varies by model and provider. See [Deployment types](../../foundry-models/concepts/deployment-types.md).
+- **Use asynchronous output filtering where supported.** Synchronous content filtering buffers generated text before releasing it, which can delay the first text available for speech synthesis. Review the [asynchronous filtering guidance](#use-asynchronous-content-safety-and-guardrails) before configuring your deployment.
+- **Size capacity for concurrent conversations.** Monitor utilization, throttling, and tail latency at your expected load. Consider provisioned throughput where the model supports it, or an appropriate deployment template and instance count for managed compute. Model capacity doesn't reserve capacity for every stage of the voice pipeline.
+- **Keep prompts and responses focused.** Limit instructions, retrieved context, and tool definitions to what the conversation needs. Prefer short spoken answers and a model whose reasoning latency meets your requirements.
+
+Keep the model version, prompts, tools, audio settings, and concurrency the same when comparing deployments. After a deployment or guardrail change finishes applying, start new test sessions and compare both TTFT and time to first audio. See [Voice agent tracing, monitoring, and evaluation](../concepts/voice-agent-observability.md).
+
+### Use asynchronous content safety and guardrails
+
+Both managed and self-deployed models support custom guardrails configured on the voice agent. For configuration steps, see [Assign a guardrail](../../guardrails/how-to-create-guardrails.md#assign-a-guardrail).
+
+For latency-sensitive voice applications, use asynchronous output content filtering where your model supports it and your safety policy permits delayed moderation. This is especially important for cascaded models: buffering text for synchronous checks can delay speech even when model inference is fast.
+
+For Azure OpenAI text models, use a content-filtering configuration with **Asynchronous Filter** selected in the **Streaming** settings. Review the guardrail assigned to the voice agent, not only the model deployment's default. Follow [Asynchronous filtering](../../openai/concepts/content-streaming.md#asynchronous-filtering) for configuration and behavior.
+
+For Anthropic, Fireworks, and other providers, check the filtering options supported by that model and deployment. Don't assume that the Azure OpenAI setting applies to every provider. Managed compute has separate [content-filtering limitations](../../concepts/managed-compute-overview.md#limitations); configure the safety controls your application requires rather than assuming built-in filtering is present.
+
+> [!IMPORTANT]
+> Asynchronous filtering doesn't disable safety checks, but content can be spoken before a delayed policy-violation signal arrives. Spoken content can't be retracted. Keep required safety controls enabled and test how the application handles blocked responses. If your policy requires moderation before any output is heard, use synchronous checks and account for the added latency.
 
 ::: zone pivot="python"
 
@@ -1114,14 +1176,9 @@ Advanced settings are optional for a prompt voice agent. Use them when you need 
 
 For an existing voice service, edit `azure.yaml` rather than running initialization again to change the voice. The `--voice` initialization option is limited to creating a new prompt voice agent. Other initialization flows reject it.
 
-### Choose a managed or self-deployed model
+### Set the model in azure.yaml
 
 Set `modelType` and `model.id` together on the voice agent service. The service accepts both `kind: voice` and the compatibility alias `kind: prompt-voice`.
-
-| Model type | `model.id` value | Deployment requirement |
-| --- | --- | --- |
-| `managed` | A service-managed model name, such as `gpt-realtime`. | No separate model deployment is needed. |
-| `self_deployed` | The name of a compatible model deployment in your Foundry resource. | The deployment must exist before you deploy the voice agent. |
 
 For a managed model, use:
 

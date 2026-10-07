@@ -3,7 +3,7 @@ title: Bring Your Own Model (BYOM) with Voice Live API
 description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/06/2026
+ms.date: 10/06/2026
 ms.topic: how-to
 ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
@@ -18,6 +18,11 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 - **Any Foundry model not pre-deployed by Voice Live**: Use models from the [Foundry model catalog](/azure/foundry/foundry-models/concepts/models-from-partners) such as [Anthropic Claude](/azure/foundry/foundry-models/how-to/use-foundry-models-claude), Grok, [Fireworks](/azure/foundry/how-to/fireworks/enable-fireworks-models) custom weights, or a [model router](/azure/foundry/openai/how-to/model-router) deployment
 - **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
+
+> [!TIP]
+> For new applications, we recommend [Foundry voice agents with self-deployed models](../../foundry/agents/how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model). With a supported deployment in the same Foundry resource as your project, Foundry handles the model connection and authentication. You don't need the additional manual role assignment for the Voice Live resource's managed identity described below.
+>
+> Normal Foundry project and model access permissions still apply.
 
 > [!IMPORTANT]
 > You can integrate any model deployed in your Azure Foundry resource with the Voice Live API. To use model deployments from a different Foundry resource, see [Resource overrides](#resource-overrides).
