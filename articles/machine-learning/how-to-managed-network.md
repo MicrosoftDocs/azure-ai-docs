@@ -1265,6 +1265,28 @@ network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_ONLY_APPROVED_OUTBOU
 
 ::: zone-end
 
+### View managed network firewall logs
+
+To see which outbound connections were allowed or denied by the managed virtual network firewall, send the `ManagedNetworkEvent` diagnostic log category to a Log Analytics workspace.
+
+1. In the Azure portal, open your Azure Machine Learning workspace and select **Diagnostic settings**.
+1. Select **Add diagnostic setting**. Under **Logs**, select **Managed Network Events** (`ManagedNetworkEvent`).
+1. Under **Destination details**, select **Send to Log Analytics workspace**, choose a workspace, and select **Save**.
+
+In the selected Log Analytics workspace, open **Logs** and run:
+
+```kusto
+AMLManagedNetworkEvent
+| extend Fqdn = tostring(Properties.Fqdn),
+         Action = tostring(Properties.Action),
+         Rule = tostring(Properties.Rule),
+         Reason = tostring(Properties.ActionReason)
+| project TimeGenerated, Fqdn, Action, Rule, Reason, ResultType
+| order by TimeGenerated desc
+```
+
+For FQDN traffic, `Rule` identifies the matching rule when one exists. A denied connection with no matching rule has an empty `Rule` value. Logs aren't collected retroactively and might take a few minutes to appear after traffic occurs.
+
 ## Pricing
 
 The Azure Machine Learning managed virtual network feature is free. However, you're charged for the following resources that are used by the managed virtual network:
