@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 09/28/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -34,6 +34,13 @@ Hyperlight is the currently documented backend for CodeAct in Agent Framework. I
 This integration uses the CodeAct pattern: the provider contributes a code-execution tool and manages the execution environment around each run.
 
 For the pattern-level overview, see [CodeAct](../../../agents/code-act.md).
+
+> [!WARNING]
+> Hyperlight CodeAct providers and standalone execution tools don't currently support [FIDES](../../../agents/security.md). FIDES is Python-only and isn't available in the .NET integration.
+>
+> Provider-managed host-tool calls don't pass through the agent's per-function middleware pipeline. Checks on direct agent tools or the outer `execute_code` call don't cover nested calls, code-internal intermediate values, or file and network capabilities.
+>
+> Host tools must enforce their own authorization and destination controls. Keep FIDES-dependent tools as direct agent tools, not provider-managed tools, or leave CodeAct disabled for workflows requiring those guarantees. See [CodeAct's current limitations](../../../agents/code-act.md#current-limitations).
 
 ## Why Hyperlight CodeAct
 
