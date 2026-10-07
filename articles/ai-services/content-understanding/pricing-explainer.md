@@ -181,12 +181,12 @@ The following table summarizes the prebuilt analyzers and their applicable conte
 | prebuilt-receipt.hotel | Document Standard | Standard Contextualization |
 | prebuilt-creditCard | Document Basic | Standard Contextualization |
 | prebuilt-creditMemo | Document Standard | Standard Contextualization |
-| prebuilt-check.us | Document Standard | Standard Contextualization |
+| prebuilt-check.us | Document Basic | Standard Contextualization |
 | prebuilt-bankStatement.us | Document Standard | Standard Contextualization |
 | prebuilt-idDocument | Document Basic | Standard Contextualization |
 | prebuilt-idDocument.generic | Document Basic | Standard Contextualization |
 | prebuilt-idDocument.passport | Document Basic | Standard Contextualization |
-| prebuilt-healthInsuranceCard.us | Document Standard | Standard Contextualization |
+| prebuilt-healthInsuranceCard.us | Document Basic | Standard Contextualization |
 | prebuilt-tax.us | Document Standard | Standard/Advanced Contextualization |
 | prebuilt-tax.us.1040 | Document Standard | Advanced Contextualization |
 | prebuilt-tax.us.1040Senior | Document Standard | Advanced Contextualization |
