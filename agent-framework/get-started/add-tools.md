@@ -15,6 +15,8 @@ ms.custom: update-code2
 
 Tools let your agent call custom functions — like fetching weather data, querying a database, or calling an API.
 
+Before you add tools, review [tool approval security best practices](../concepts/agents/safety.md#require-approval-for-high-risk-tools) to decide which operations need human confirmation.
+
 :::zone pivot="programming-language-csharp"
 
 Define a tool as any method with a `[Description]` attribute:
