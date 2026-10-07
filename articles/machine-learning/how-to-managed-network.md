@@ -1267,7 +1267,7 @@ network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_ONLY_APPROVED_OUTBOU
 
 ### View managed network firewall logs
 
-To see which outbound connections were allowed or denied by the managed virtual network firewall, send the `ManagedNetworkEvent` diagnostic log category to a Log Analytics workspace.
+To see which outbound connections the managed virtual network firewall allowed or denied, send the `ManagedNetworkEvent` diagnostic log category to a Log Analytics workspace.
 
 1. In the Azure portal, open your Azure Machine Learning workspace and select **Diagnostic settings**.
 1. Select **Add diagnostic setting**. Under **Logs**, select **Managed Network Events** (`ManagedNetworkEvent`).
