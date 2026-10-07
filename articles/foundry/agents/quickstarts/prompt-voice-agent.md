@@ -3,7 +3,7 @@ title: "Quickstart: Create a voice-based prompt agent"
 description: "Create a managed voice-based prompt agent in Foundry Agent Service by using the Microsoft Foundry portal, the Microsoft Foundry SDK, or the Azure Developer CLI."
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/30/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: quickstart
@@ -17,11 +17,13 @@ zone_pivot_groups: voice-agent-quickstart-tools
 
 In this quickstart, you create a voice-based prompt agent, open a live session, complete a spoken turn, and read the conversation back. Foundry Agent Service manages the voice orchestration, so you don't host a speech pipeline of your own.
 
-Choose your development tool. The **Foundry portal** path creates and tests the agent in the browser with no code. The **Python SDK** and **JavaScript/TypeScript SDK** paths install the Microsoft Foundry SDK, create the agent in code, and connect to a live session over a WebSocket. The **Azure Developer CLI** path uses `azd` to scaffold, provision, deploy, and test the agent without writing runtime code. All paths create the same kind of managed prompt-based voice agent, which uses a managed real-time model.
+Choose your development tool. The **Foundry portal** path creates and tests the agent in the browser with no code. The **Python SDK** and **JavaScript/TypeScript SDK** paths install the Microsoft Foundry SDK, create the agent in code, and connect to a live session over a WebSocket. The **Azure Developer CLI** path uses `azd` to scaffold, provision, deploy, and test the agent without writing runtime code. The examples start with a managed real-time model. The SDK paths also include an example that uses your own model deployment.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 If you already use Voice Live with a Foundry text agent, see [Compare and migrate to Microsoft Foundry voice agents](../how-to/migrate-from-voice-live.md).
+
+To reuse your own model deployment or choose another model provider, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -220,11 +222,11 @@ $env:FOUNDRY_VOICE_AGENT_MODEL = "gpt-realtime"
 
 Find the project endpoint on the **Overview** page of your project in the Foundry portal.
 
-`FOUNDRY_VOICE_AGENT_MODEL` applies only to the explicit-definition example. The generation example lets the service choose the model.
+`FOUNDRY_VOICE_AGENT_MODEL` identifies the service-managed model in the managed example, or your existing deployment in the self-deployed example. The generation example lets the service choose the model.
 
 ## Create the voice agent
 
-A voice agent is an agent whose `kind` is `voice`. Its definition holds the model, instructions, and voice configuration. Both examples enable conversation storage by setting `store` to `true`, so you can read back the transcript and audio later.
+A voice agent is an agent whose `kind` is `voice`. Its definition holds the model, instructions, and voice configuration. The examples enable conversation storage by setting `store` to `true`, so you can read back the transcript and audio later.
 
 Choose one of the following creation methods, and use a unique agent name. Save the complete example, and then run it as described after the examples.
 
@@ -333,6 +335,72 @@ with (
 
 Reference: [Azure AI Projects client library for Python](https://aka.ms/azsdk/azure-ai-projects-v2/python/code).
 
+### Create with a self-deployed model
+
+Use this example instead of the managed-model example to reuse a compatible deployment in the Foundry resource that contains your project. Set `FOUNDRY_VOICE_AGENT_MODEL` to the **deployment name**, not the provider's model name. Keep the project endpoint and unique agent name from [Set environment variables](#set-environment-variables).
+
+For example, change the model setting in Bash:
+
+```bash
+export FOUNDRY_VOICE_AGENT_MODEL="<existing-model-deployment-name>"
+```
+
+Or in PowerShell:
+
+```powershell
+$env:FOUNDRY_VOICE_AGENT_MODEL = "<existing-model-deployment-name>"
+```
+
+The deployment must already exist. The following script creates a voice-agent version that uses it; it doesn't create or change the model deployment.
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    VoiceAgentAudioConfig,
+    VoiceAgentAudioOutputConfig,
+    VoiceAgentDefinition,
+    VoiceModelType,
+    VoiceOutputModality,
+    VoiceType,
+)
+from azure.identity import DefaultAzureCredential
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+agent_name = os.environ["FOUNDRY_VOICE_AGENT_NAME"]
+deployment_name = os.environ["FOUNDRY_VOICE_AGENT_MODEL"]
+
+definition = VoiceAgentDefinition(
+    model_type=VoiceModelType.SELF_DEPLOYED,
+    model=deployment_name,
+    instructions="You are a helpful voice assistant. Keep replies short.",
+    audio=VoiceAgentAudioConfig(
+        output=VoiceAgentAudioOutputConfig(
+            voice="en-US-AvaNeural",
+            voice_type=VoiceType.AZURE_STANDARD,
+        ),
+    ),
+    output_modalities=[VoiceOutputModality.AUDIO],
+    store=True,
+)
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    created = project_client.agents.create_version(
+        agent_name=agent_name, definition=definition
+    )
+    print(f"Created voice agent '{agent_name}', version {created.version}")
+```
+
+Reference: [Python voice-agent BYOM sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/voice-agents/voice_agent_with_tools.py).
+
+The same creation pattern works with supported real-time and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
+
 ### Run your chosen example
 
 Run the file that contains your chosen example.
@@ -343,9 +411,9 @@ Save the example as `create_voice_agent.py`.
 python create_voice_agent.py
 ```
 
-The explicit-definition example sets the model type to `managed` to use a service-hosted model. To use your own deployment instead, set the model type to `self_deployed` and set the model to the deployment name.
+Each create or update action produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
 
-Every create or update produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate deployment step. Continue with the same talk, read-back, and cleanup steps for either creation method.
+Cleanup removes the test agent and its conversation, but it doesn't remove your model deployment.
 
 ## Talk to the agent
 
@@ -590,11 +658,11 @@ $env:FOUNDRY_VOICE_AGENT_MODEL = "gpt-realtime"
 
 Find the project endpoint on the **Overview** page of your project in the Foundry portal.
 
-`FOUNDRY_VOICE_AGENT_MODEL` applies only to the explicit-definition example. The generation example lets the service choose the model.
+`FOUNDRY_VOICE_AGENT_MODEL` identifies the service-managed model in the managed example, or your existing deployment in the self-deployed example. The generation example lets the service choose the model.
 
 ## Create the voice agent
 
-A voice agent is an agent whose `kind` is `voice`. Its definition holds the model, instructions, and voice configuration. Both examples enable conversation storage by setting `store` to `true`, so you can read back the transcript and audio later.
+A voice agent is an agent whose `kind` is `voice`. Its definition holds the model, instructions, and voice configuration. The examples enable conversation storage by setting `store` to `true`, so you can read back the transcript and audio later.
 
 Choose one of the following creation methods, and use a unique agent name. Save the complete example, and then run it as described after the examples.
 
@@ -733,6 +801,83 @@ main().catch((error) => {
 
 Reference: [Configure a voice agent JavaScript sample](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/voice-agents/configure-voice-agent).
 
+### Create with a self-deployed model
+
+Use this example instead of the managed-model example to reuse a compatible deployment in the Foundry resource that contains your project. Set `FOUNDRY_VOICE_AGENT_MODEL` to the **deployment name**, not the provider's model name. Keep the project endpoint and unique agent name from [Set environment variables](#set-environment-variables).
+
+For example, change the model setting in Bash:
+
+```bash
+export FOUNDRY_VOICE_AGENT_MODEL="<existing-model-deployment-name>"
+```
+
+Or in PowerShell:
+
+```powershell
+$env:FOUNDRY_VOICE_AGENT_MODEL = "<existing-model-deployment-name>"
+```
+
+The deployment must already exist. The following script creates a voice-agent version that uses it; it doesn't create or change the model deployment.
+
+```javascript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT;
+const agentName = process.env.FOUNDRY_VOICE_AGENT_NAME;
+const deploymentName = process.env.FOUNDRY_VOICE_AGENT_MODEL;
+if (!projectEndpoint || !agentName || !deploymentName) {
+    throw new Error(
+        "Set FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_VOICE_AGENT_NAME, " +
+        "and set FOUNDRY_VOICE_AGENT_MODEL to your deployment name.",
+    );
+}
+
+/** @type {import("@azure/ai-projects").VoiceAgentDefinition} */
+const definition = {
+    kind: "voice",
+    model_type: "self_deployed",
+    model: deploymentName,
+    instructions: "You are a helpful voice assistant. Keep replies short.",
+    audio: {
+        output: {
+            voice: "en-US-AvaNeural",
+            voice_type: "azure-standard",
+        },
+    },
+    output_modalities: ["audio"],
+    store: true,
+};
+
+async function main() {
+    const project = new AIProjectClient(
+        projectEndpoint,
+        new DefaultAzureCredential(),
+    );
+    const created = await project.agents.createVersion(
+        agentName,
+        definition,
+        {
+            requestOptions: {
+                headers: { "foundry-features": "VoiceAgents=V1Preview" },
+            },
+        },
+    );
+    console.log(
+        `Created voice agent '${agentName}', version ${created.version}`,
+    );
+}
+
+main().catch((error) => {
+    console.error("Sample failed:", error);
+    process.exitCode = 1;
+});
+```
+
+Reference: [JavaScript self-deployed voice-agent sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/agentVoice.js).
+
+The same creation pattern works with supported real-time and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
+
 ### Run your chosen example
 
 Run the file that contains your chosen example.
@@ -743,9 +888,9 @@ Save the example as `create_voice_agent.js`, and run it with Node.js:
 node create_voice_agent.js
 ```
 
-The explicit-definition example sets the model type to `managed` to use a service-hosted model. To use your own deployment instead, set the model type to `self_deployed` and set the model to the deployment name.
+Each create or update action produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
 
-Every create or update produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate deployment step. Continue with the same talk, read-back, and cleanup steps for either creation method.
+Cleanup removes the test agent and its conversation, but it doesn't remove your model deployment.
 
 ## Talk to the agent
 

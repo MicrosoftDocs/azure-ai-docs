@@ -3,7 +3,7 @@ title: "Migrate from Voice Live with Foundry Agent Service to Microsoft Foundry 
 description: "Compare model support, hosting, and voice experiences in Voice Live with Foundry Agent Service and Microsoft Foundry voice agents, then plan your migration."
 author: yulin-li
 ms.author: yulili
-ms.date: 09/30/2026
+ms.date: 10/06/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
@@ -221,7 +221,7 @@ Before enabling microphone input, wait for `session.updated`. Match the input an
 
 If the definition includes a greeting, handle its response separately from the reply to the first user turn. Don't send the old proactive greeting as well.
 
-WebRTC isn't a drop-in substitute for WebSocket. The current voice-agent WebRTC transport doesn't support self-deployed models or hosted conversation engines. Use WebSocket for those configurations and validate each required browser or telephony path separately.
+Validate each required browser or telephony path separately.
 
 ## Configure history, recordings, and monitoring
 
@@ -270,7 +270,6 @@ Use the failing stage to narrow the configuration difference.
 | The first reply is missing or the greeting repeats | Separate the configured greeting's response from the first user response, and remove any duplicate client-side greeting trigger. |
 | A migrated tool never completes | Confirm its execution model. Native functions need client implementation; MCP, toolbox, and subagent dependencies need valid configuration and permissions. |
 | Stored conversation lookup returns `404` | Check the effective `store` setting, target voice agent, conversation ID, and caller access. An old text-agent conversation ID isn't the new voice conversation ID. |
-| A WebRTC connection rejects the model or engine | Check the transport restrictions. Use WebSocket for self-deployed models and hosted conversation engines. |
 
 ## Related content
 
