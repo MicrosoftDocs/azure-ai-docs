@@ -27,7 +27,7 @@ When configuring Azure Speech in your application:
 - Keys are region-scoped — using a key with a different region returns authentication errors.
 
 > [!NOTE]
-> Azure Speech stores and processes Speech data in the region where you create your resource. For Voice Live, this doesn't determine the model inference location. Model inference follows the selected global, data zone, or regional deployment. See [Voice Live region support](./regions.md?tabs=voice-live#regions).
+> Azure Speech stores and processes speech data in the region where you create your resource. For Voice Live, this region doesn't determine the model inference location. Model inference follows the selected global, data zone, or regional deployment. See [Voice Live region support](./regions.md?tabs=voice-live#regions).
 
 ## Regions
 
