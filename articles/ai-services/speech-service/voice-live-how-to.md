@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 09/24/2026
+ms.date: 10/07/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -39,7 +39,7 @@ A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech 
 ### WebSocket endpoint
 
 The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2026-04-10`.
-The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
+The endpoint path is the same for all models, but model availability depends on the resource's region. Select a model with the required `model` query parameter. When using the Agent service, use the `agent_id` and `project_id` parameters instead.
 
 For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&model=gpt-realtime`
 

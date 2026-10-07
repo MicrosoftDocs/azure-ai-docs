@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 09/29/2026
+ms.date: 10/07/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
@@ -69,17 +69,19 @@ To power the intelligence of your voice agent, you have flexibility and choice i
 
 All natively supported models are fully managed, so you don't need to deploy models, worry about capacity planning, or provision throughput. Use the model you need, and the Voice Live API takes care of the rest.
 
-The Voice Live API supports the following models. For supported regions, see the [Azure Speech service regions](./regions.md?tabs=voice-live#regions).
+The following table lists supported Voice Live models and their pricing tiers. For availability by Voice Live resource region and data processing (inference) scope, see [Voice Live region support](./regions.md?tabs=voice-live#regions).
 
 | Model | Pricing tier | Description |
 | ------------------------------ | ----------- | ----------- |
-| `gpt-realtime-2.1` | Pro | GPT real-time 2.1 + option to use Azure text to speech voices including custom voice for audio. |
-| `gpt-realtime-2.1-datazone` | Pro | GPT real-time 2.1 with Data Zone Standard processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-2.1` | Pro | GPT real-time 2.1 with global processing. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-2.1-datazone` | Pro | GPT real-time 2.1 with data zone processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-2.1-regional` | Pro | GPT real-time 2.1 with regional processing. Supports Azure text to speech voices, including custom voice. |
 | `gpt-realtime-2.1-mini` | Standard | GPT mini real-time 2.1 + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-realtime-1.5` | Pro | GPT real-time 1.5 + option to use Azure text to speech voices including custom voice for audio. |
-| `gpt-realtime-1.5-datazone` | Pro | GPT real-time 1.5 with Data Zone Standard processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
-| `gpt-realtime` | Pro | GPT real-time + option to use Azure text to speech voices including custom voice for audio. |
-| `gpt-realtime-datazone` | Pro | GPT real-time with Data Zone Standard processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-1.5-datazone` | Pro | GPT real-time 1.5 with data zone processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime` | Pro | GPT real-time with global processing. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-datazone` | Pro | GPT real-time with data zone processing. Prompts and responses stay within the data zone associated with the resource region. Supports Azure text to speech voices, including custom voice. |
+| `gpt-realtime-regional` | Pro | GPT real-time with regional processing. Supports Azure text to speech voices, including custom voice. |
 | `gpt-realtime-mini` | Standard | GPT mini real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o` | Pro | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4o-mini` | Standard | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
@@ -124,7 +126,7 @@ Pricing for the Voice Live API is tiered (**Pro**, **Standard**, and **Lite**) b
 
 | Pricing category | Models |
 | ----- | ------ |
-| Voice Live pro | `gpt-realtime-2.1`, `gpt-realtime-2.1-datazone`, `gpt-realtime`, `gpt-realtime-datazone`, `gpt-realtime-1.5`, `gpt-realtime-1.5-datazone`, `gpt-4o`, `gpt-4.1`, `gpt-5`, `gpt-5-chat`, `gpt-5.6-terra`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `azure-realtime` |
+| Voice Live pro | `gpt-realtime-2.1`, `gpt-realtime-2.1-datazone`, `gpt-realtime-2.1-regional`, `gpt-realtime`, `gpt-realtime-datazone`, `gpt-realtime-regional`, `gpt-realtime-1.5`, `gpt-realtime-1.5-datazone`, `gpt-4o`, `gpt-4.1`, `gpt-5`, `gpt-5-chat`, `gpt-5.6-terra`, `gpt-5.4`, `gpt-5.2`, `gpt-5.1`, `azure-realtime` |
 | Voice Live Standard | `gpt-realtime-2.1-mini`, `gpt-realtime-mini`, `gpt-4o-mini`, `gpt-4.1-mini`, `gpt-5.6-luna`, `gpt-5-mini` |
 | Voice Live lite | `gpt-4.1-nano`, `gpt-5-nano`, `phi4-mm-realtime` |
 
