@@ -133,7 +133,7 @@ Self-deployed models aren't limited to speech-to-speech models. The service deri
 
 | Model deployment | Voice architecture | Choose it when |
 | --- | --- | --- |
-| Azure OpenAI realtime models, such as `gpt-realtime` | Native speech-to-speech. | You want a realtime model to handle spoken input and output while using your own deployment. |
+| Azure OpenAI real-time models, such as `gpt-realtime` | Native speech-to-speech. | You want a real-time model to handle spoken input and output while using your own deployment. |
 | Azure OpenAI text models | Cascaded speech recognition, text generation, and speech synthesis. | You want to reuse an existing text model or choose its reasoning and tool-calling capabilities. |
 | [Anthropic Claude models in Foundry](../../foundry-models/how-to/use-foundry-models-claude.md) | Cascaded. | You want a supported Claude deployment to handle the conversation. |
 | Other compatible chat-completion models, including [Fireworks models](../../how-to/fireworks/enable-fireworks-models.md) | Cascaded. | You need another model provider, an open-source model, or supported custom weights. |
@@ -143,7 +143,7 @@ Managed compute is a model deployment type, not the voice agent's `managed` mode
 
 Confirm model availability, deployment type, streaming support, required tools, and compatible speech settings for your project. Not every model or deployment type supports the same capabilities. In particular, a managed compute deployment must expose a compatible chat-completion interface; a non-chat model isn't a conversation model.
 
-Use the deployment name in the configuration examples for your selected SDK or CLI below. For complete creation examples with connection, read-back, and cleanup steps, see the [Python self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=python#create-with-a-self-deployed-model) and the [JavaScript self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=javascript#create-with-a-self-deployed-model).
+Use the deployment name in the configuration examples for your selected SDK or CLI. For complete creation examples with connection, read-back, and cleanup steps, see the [Python self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=python#create-with-a-self-deployed-model) and the [JavaScript self-deployed model quickstart](../quickstarts/prompt-voice-agent.md?pivots=javascript#create-with-a-self-deployed-model).
 
 ### Reduce latency for self-deployed models
 
@@ -158,11 +158,11 @@ Keep the model version, prompts, tools, audio settings, and concurrency the same
 
 ### Use asynchronous content safety and guardrails
 
-Both managed and self-deployed models support custom guardrails configured on the voice agent. For configuration steps, see [Assign a guardrail](../../guardrails/how-to-create-guardrails.md#assign-a-guardrail).
+Both managed and self-deployed models support custom guardrails that you can configure on the voice agent. For configuration steps, see [Assign a guardrail](../../guardrails/how-to-create-guardrails.md#assign-a-guardrail).
 
-For latency-sensitive voice applications, use asynchronous output content filtering where your model supports it and your safety policy permits delayed moderation. This is especially important for cascaded models: buffering text for synchronous checks can delay speech even when model inference is fast.
+For latency-sensitive voice applications, use asynchronous output content filtering where your model supports it and your safety policy permits delayed moderation. This approach is especially important for cascaded models: buffering text for synchronous checks can delay speech even when model inference is fast.
 
-For Azure OpenAI text models, use a content-filtering configuration with **Asynchronous Filter** selected in the **Streaming** settings. Review the guardrail assigned to the voice agent, not only the model deployment's default. Follow [Asynchronous filtering](../../openai/concepts/content-streaming.md#asynchronous-filtering) for configuration and behavior.
+For Azure OpenAI text models, use a content-filtering configuration with **Asynchronous Filter** selected in the **Streaming** settings. Review the guardrail assigned to the voice agent, not only the model deployment's default. For configuration and behavior, see [Asynchronous filtering](../../openai/concepts/content-streaming.md#asynchronous-filtering).
 
 For Anthropic, Fireworks, and other providers, check the filtering options supported by that model and deployment. Don't assume that the Azure OpenAI setting applies to every provider. Managed compute has separate [content-filtering limitations](../../concepts/managed-compute-overview.md#limitations); configure the safety controls your application requires rather than assuming built-in filtering is present.
 

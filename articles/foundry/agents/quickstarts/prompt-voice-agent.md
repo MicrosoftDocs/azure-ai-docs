@@ -17,7 +17,7 @@ zone_pivot_groups: voice-agent-quickstart-tools
 
 In this quickstart, you create a voice-based prompt agent, open a live session, complete a spoken turn, and read the conversation back. Foundry Agent Service manages the voice orchestration, so you don't host a speech pipeline of your own.
 
-Choose your development tool. The **Foundry portal** path creates and tests the agent in the browser with no code. The **Python SDK** and **JavaScript/TypeScript SDK** paths install the Microsoft Foundry SDK, create the agent in code, and connect to a live session over a WebSocket. The **Azure Developer CLI** path uses `azd` to scaffold, provision, deploy, and test the agent without writing runtime code. The examples start with a managed realtime model. The SDK paths also include an example that uses your own model deployment.
+Choose your development tool. The **Foundry portal** path creates and tests the agent in the browser with no code. The **Python SDK** and **JavaScript/TypeScript SDK** paths install the Microsoft Foundry SDK, create the agent in code, and connect to a live session over a WebSocket. The **Azure Developer CLI** path uses `azd` to scaffold, provision, deploy, and test the agent without writing runtime code. The examples start with a managed real-time model. The SDK paths also include an example that uses your own model deployment.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -399,7 +399,7 @@ with (
 
 Reference: [Python voice-agent BYOM sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/voice-agents/voice_agent_with_tools.py).
 
-The same creation pattern works with supported realtime and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
+The same creation pattern works with supported real-time and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
 
 ### Run your chosen example
 
@@ -411,9 +411,9 @@ Save the example as `create_voice_agent.py`.
 python create_voice_agent.py
 ```
 
-Every create or update produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
+Each create or update action produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
 
-Cleanup removes the test agent and its conversation, not your model deployment.
+Cleanup removes the test agent and its conversation, but it doesn't remove your model deployment.
 
 ## Talk to the agent
 
@@ -876,7 +876,7 @@ main().catch((error) => {
 
 Reference: [JavaScript self-deployed voice-agent sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/agentVoice.js).
 
-The same creation pattern works with supported realtime and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
+The same creation pattern works with supported real-time and text-model deployments. Confirm that the selected deployment supports the voice settings in this example. For model choices and latency guidance, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
 
 ### Run your chosen example
 
@@ -888,9 +888,9 @@ Save the example as `create_voice_agent.js`, and run it with Node.js:
 node create_voice_agent.js
 ```
 
-Every create or update produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
+Each create or update action produces a new immutable version. The agent's endpoint is live as soon as the first version exists, with no separate agent deployment step. Continue with the same talk, read-back, and cleanup steps for any creation method.
 
-Cleanup removes the test agent and its conversation, not your model deployment.
+Cleanup removes the test agent and its conversation, but it doesn't remove your model deployment.
 
 ## Talk to the agent
 

@@ -20,7 +20,7 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 - **Content safety**: Apply customized content safety configurations with your LLM
 
 > [!TIP]
-> For new applications, we recommend [Foundry voice agents with self-deployed models](../../foundry/agents/how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model). With a supported deployment in the same Foundry resource as your project, Foundry handles the model connection and authentication. You don't need the additional manual role assignment for the Voice Live resource's managed identity described below.
+> For new applications, use [Foundry voice agents with self-deployed models](../../foundry/agents/how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model). With a supported deployment in the same Foundry resource as your project, Foundry handles the model connection and authentication. You don't need the extra manual role assignment for the Voice Live resource's managed identity described in [Authentication setup](#authentication-setup).
 >
 > Normal Foundry project and model access permissions still apply.
 
