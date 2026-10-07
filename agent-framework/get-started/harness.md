@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/08/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -58,20 +58,21 @@ The harness handles planning, todo tracking, and history persistence for you acr
 
 :::zone pivot="programming-language-python"
 
-The maintained sample creates a Foundry chat client, wraps it with `create_harness_agent`, and starts an interactive harness console with a persistent session. Set `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL`, then run `az login` before you start the sample.
+The complete sample creates a Microsoft Foundry chat client, wraps it with `create_harness_agent`, and reuses one session across two turns. The harness adds planning, todo tracking, and compaction while the sample disables file memory and web search to stay focused.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/02-agents/harness/build_your_own_claw/claw_step01_meet_your_claw.py" highlight="112,120,126-130,135-142,146-147":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/06_agent_harness.py" range="9-34" highlight="9-22":::
 
-From the Agent Framework repository root, run the PEP 723 sample:
+From the Agent Framework repository root, run the sample:
 
 ```bash
-uv run python/samples/02-agents/harness/build_your_own_claw/claw_step01_meet_your_claw.py
+python python/samples/01-get-started/06_agent_harness.py
 ```
 
-The harness handles planning, todo tracking, and history persistence for you across the whole conversation. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
+The shared session preserves the harness state across both calls. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
 
 > [!TIP]
-> See the [Python harness samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/harness) for full runnable applications.
+> See the [full get-started sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/06_agent_harness.py).
+> For more patterns, see the [Python harness samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/harness).
 
 :::zone-end
 

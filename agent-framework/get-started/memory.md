@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -82,7 +82,7 @@ Console.WriteLine(await agent.RunAsync("What is my name?", session));
 
 The complete sample defines a context provider, adds it to an agent, and uses one session to preserve personalization state:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" highlight="20,23,34-39,58,67,79,84,87,91,95,99,104-105":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/04_memory.py" range="8-69" highlight="9,11,21-25,35-41,44-58":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/04_memory.py) for the complete runnable file.

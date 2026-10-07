@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/08/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -62,10 +62,11 @@ foreach (WorkflowEvent evt in run.NewEvents)
 
 The complete sample defines two executors, connects them with an edge, and runs the workflow:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_first_graph_workflow.py" highlight="50,56,60,72-73":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/05c_first_graph_workflow.py" range="8-31" highlight="7-9,12-14,17-20":::
 
 > [!TIP]
-> See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/07_first_graph_workflow.py) for the complete runnable file.
+> See the [full graph workflow sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/05c_first_graph_workflow.py).
+> For functional alternatives, see the [basic functional workflow](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/05a_functional_workflow_basics.py) and the [functional workflow with agents](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/05b_functional_workflow_with_agents.py).
 
 :::zone-end
 
