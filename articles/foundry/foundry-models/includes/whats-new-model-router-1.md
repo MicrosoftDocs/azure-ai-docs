@@ -6,10 +6,23 @@ ms.reviewer: sgilley
 ms.author: pafarley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 09/09/2026
+ms.date: 10/06/2026
 ms.custom: include
 ai-usage: ai-assisted
 ---
+
+## October 2026
+
+### Eight new models added
+
+Model router version `2025-11-18` now supports 35 models. The routing pool adds the following models:
+
+- OpenAI: `gpt-6-astra` version `2026-09-03`.
+- Anthropic: `claude-fable-5-1`, `claude-opus-5`, and `claude-sonnet-5`, each at version `1`.
+- xAI: `grok-4.6` version `1`.
+- Fireworks: `FW-GLM-5.3`, `FW-GLM-5.3-Flash`, and `FW-Kimi-K3`, each at version `1`.
+
+To use the new Anthropic models with model router, first deploy them to your Foundry resource. For the complete routing pool and deployment requirements, see [Supported models](../../openai/concepts/model-router.md#supported-models).
 
 ## September 2026
 
