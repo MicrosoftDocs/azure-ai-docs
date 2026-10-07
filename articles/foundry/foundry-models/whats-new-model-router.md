@@ -4,7 +4,7 @@ description: "Learn about the latest model router releases in Microsoft Foundry 
 author: PatrickFarley
 ms.author: pafarley
 manager: mcleans
-ms.date: 09/09/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: whats-new
@@ -21,4 +21,3 @@ ms.custom:
 This article summarizes the latest model router releases and major documentation updates, including new supported models, routing features, deployment options, and observability.
 
 [!INCLUDE [whats-new-model-router 1](includes/whats-new-model-router-1.md)]
-

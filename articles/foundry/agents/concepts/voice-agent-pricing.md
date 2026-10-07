@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/31/2026
+ms.date: 10/06/2026
 ms.custom: preview
 ai-usage: ai-assisted
 ---
@@ -36,9 +36,11 @@ Five things determine what a voice agent costs:
 `model_type` determines where model usage is billed:
 
 - `managed`: the service hosts the model. Usage is billed as part of the voice agent.
-- `self_deployed`: the agent uses your own Foundry model deployment. Model usage is billed against that deployment, under the terms of the deployment type you chose, such as standard or provisioned throughput.
+- `self_deployed`: the agent uses your own Foundry model deployment. You pay for model usage according to that deployment's pricing model. Speech and other voice-agent features still contribute to the total cost.
 
-Self-deployed models let you apply existing capacity commitments to voice traffic. Managed models avoid deployment management. Neither choice changes the agent's behavior; it changes which resource carries the charge.
+Self-deployed models let you reuse existing deployment capacity, including provisioned throughput where supported. Managed models avoid managing a separate model deployment.
+
+For model support, deployment control, and latency recommendations, see [Choose a managed or self-deployed model](../how-to/configure-voice-agent.md#choose-a-managed-or-self-deployed-model).
 
 ## Reduce cost
 

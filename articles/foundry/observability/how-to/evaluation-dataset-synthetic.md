@@ -7,7 +7,8 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 09/25/2026
+ms.date: 10/06/2026
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -84,7 +85,7 @@ You can combine sources in a single job. A common pattern is to pair a reference
 
 This flow seeds generation from a deployed agent's instructions. The service fetches the agent's prompt and uses your configured model to synthesize question-and-answer pairs from it.
 
-First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`. You can find all data generation operations under `project_client.beta.datasets`.
+First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`.
 
 # [Python](#tab/python)
 
@@ -117,8 +118,10 @@ const projectClient = new AIProjectClient(
 );
 ```
 
-You can find all data generation operations under
-`projectClient.beta.datasets`. The JavaScript/TypeScript SDK samples
+Use `@azure/ai-projects` 2.8.0 or later. Find all data generation
+operations under `projectClient.datasets`. These operations are in
+preview. The SDK sends `foundry-features: DataGenerationJobs=V1Preview`.
+The JavaScript/TypeScript SDK samples
 don't yet demonstrate how to generate a dataset from an agent
 definition or a reference file. For those source types, use the Python
 SDK or the Foundry portal. For a prompt-based source, which the
@@ -265,29 +268,27 @@ result = poller.result()
 const modelName = "gpt-4.1-mini";
 const jobName = "contoso-refund-eval-set";
 
-const generationPoller = projectClient.beta.datasets.createGenerationJob({
-  inputs: {
-    name: jobName,
-    scenario: "evaluation",
-    sources: [
-      {
-        type: "prompt",
-        description: "Contoso refund policy",
-        prompt:
-          "Contoso offers a full refund within 30 days of purchase for " +
-          "any product returned in its original condition. After 30 " +
-          "days, store credit may be issued at the discretion of " +
-          "customer support. Digital goods are non-refundable once " +
-          "downloaded.",
-      },
-    ],
-    options: {
-      type: "simple_qna",
-      max_samples: 15,
-      model_options: { model: modelName },
+const generationPoller = projectClient.datasets.createGenerationJob({
+  name: jobName,
+  scenario: "evaluation",
+  sources: [
+    {
+      type: "prompt",
+      description: "Contoso refund policy",
+      prompt:
+        "Contoso offers a full refund within 30 days of purchase for " +
+        "any product returned in its original condition. After 30 " +
+        "days, store credit may be issued at the discretion of " +
+        "customer support. Digital goods are non-refundable once " +
+        "downloaded.",
     },
-    output_options: { name: jobName },
+  ],
+  generation_configuration: {
+    type: "simple_qna",
+    max_samples: 15,
+    model_options: { model: modelName },
   },
+  output_configuration: { name: jobName },
 });
 
 // Creating a data generation job is a long-running operation. Once
@@ -297,7 +298,7 @@ await generationPoller.submitted();
 console.log(`Created data generation job (id: ${generationPoller.operationState?.jobId})`);
 
 const result = await generationPoller.pollUntilDone();
-console.log(`Job status: ${result.status}`);
+console.log(`Generated samples: ${result.generated_samples}`);
 ```
 
 Reference: [datasets.createGenerationJob](/javascript/api/@azure/ai-projects/aiprojectclient)
@@ -455,7 +456,7 @@ The evaluation path depends on the task type:
 
 ## Manage data generation jobs
 
-Use `project_client.beta.datasets` job-management APIs to list, inspect, cancel, and delete synthetic generation jobs.
+Use the job-management APIs to list, inspect, cancel, and delete synthetic generation jobs.
 
 # [Python](#tab/python)
 
@@ -484,22 +485,22 @@ project_client.beta.datasets.delete_generation_job(job_id="job_...")
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
-// List recent evaluation jobs.
-for await (const job of projectClient.beta.datasets.listGenerationJobs({
+// List recent generation jobs.
+for await (const job of projectClient.datasets.listGenerationJobs({
   limit: 20,
 })) {
-  console.log(`${job.id}  ${job.status}  ${job.inputs?.name}`);
+  console.log(`${job.id}  ${job.status}  ${job.name}`);
 }
 
 // Inspect a specific job's status.
-const job = await projectClient.beta.datasets.getGenerationJob("job_...");
+const job = await projectClient.datasets.getGenerationJob("job_...");
 console.log(`${job.id}  ${job.status}`);
 
 // Cancel a running job.
-await projectClient.beta.datasets.cancelGenerationJob("job_...");
+await projectClient.datasets.cancelGenerationJob("job_...");
 
 // Delete a job record (produced datasets are not deleted).
-await projectClient.beta.datasets.deleteGenerationJob("job_...");
+await projectClient.datasets.deleteGenerationJob("job_...");
 ```
 
 Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aiprojectclient)
