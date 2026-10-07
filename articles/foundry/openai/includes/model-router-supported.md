@@ -5,7 +5,7 @@ ms.subservice: foundry-model-inference
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/12/2026
+ms.date: 10/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -17,8 +17,9 @@ ai-usage: ai-assisted
 
 ### Model router version `2025-11-18` (latest)
 
-| Format | Model | Version |
+| Provider | Model | Version |
 | :--- | :--- | :---: |
+| OpenAI | `gpt-6-astra` | `2026-09-03` |
 | OpenAI | `gpt-5.6-sol` | `2026-07-09` |
 | OpenAI | `gpt-5.6-terra` | `2026-07-09` |
 | OpenAI | `gpt-5.6-luna` | `2026-07-09` |
@@ -37,13 +38,20 @@ ai-usage: ai-assisted
 | OpenAI | `gpt-4o` | `2024-11-20` |
 | OpenAI | `gpt-4o-mini` | `2024-07-18` |
 | OpenAI | `gpt-oss-120b` | `1` |
+| Anthropic | `claude-fable-5-1` | `1` |
+| Anthropic | `claude-opus-5` | `1` |
+| Anthropic | `claude-sonnet-5` | `1` |
 | Anthropic | `claude-opus-4-8` | `1` |
 | Anthropic | `claude-opus-4-7` | `1` |
 | Anthropic | `claude-opus-4-6` | `1` |
 | Anthropic | `claude-sonnet-4-5` | `20250929` |
 | Anthropic | `claude-haiku-4-5` | `20251001` |
+| xAI | `grok-4.6` | `1` |
 | xAI | `grok-4-1-fast-reasoning` | `1` |
 | xAI | `grok-4` | `1` |
+| Fireworks | `FW-GLM-5.3` | `1` |
+| Fireworks | `FW-GLM-5.3-Flash` | `1` |
+| Fireworks | `FW-Kimi-K3` | `1` |
 | DeepSeek | `DeepSeek-V3.2` | `1` |
 | Meta | `Llama-4-Maverick-17B-128E-Instruct-FP8` | `1` |
 
