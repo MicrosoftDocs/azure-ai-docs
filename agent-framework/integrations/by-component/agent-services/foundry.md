@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -162,7 +162,8 @@ Because the Foundry agent definition is the source of truth, not every option pa
 | Option | Prompt Agent behavior |
 |---|---|
 | `model` | Ignored. The model comes from the Foundry agent definition. |
-| `tools`, `tool_choice`, `parallel_tool_calls` | Removed from the request. Tools must be declared on the Foundry agent definition. |
+| `tools` | Tool declarations are removed from the request. Matching local Python callables remain available for client-side execution when the Foundry agent requests them. |
+| `tool_choice`, `allow_multiple_tool_calls` | Caller-supplied values are ignored with a warning because the Foundry agent owns tool selection. The unrestricted `tool_choice="auto"` default is omitted silently. |
 | `instructions` and system or developer messages | Ignored. The stored Foundry instructions are authoritative. |
 | `conversation_id` | Used and mapped to the Foundry agent session when applicable. |
 | `extra_body` | Forwarded and merged with the framework-provided agent reference. |

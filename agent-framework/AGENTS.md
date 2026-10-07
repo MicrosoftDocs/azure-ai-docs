@@ -355,9 +355,9 @@ Every docs page maps to sample files in both repos:
 | `get-started/add-tools.md` | `01-get-started/02_add_tools.py` | `01-get-started/02_add_tools/Program.cs` |
 | `get-started/multi-turn.md` | `01-get-started/03_multi_turn.py` | `01-get-started/03_multi_turn/Program.cs` |
 | `get-started/memory.md` | `01-get-started/04_memory.py` | `01-get-started/04_memory/Program.cs` |
-| `get-started/workflows.md` | `01-get-started/07_first_graph_workflow.py` | `01-get-started/05_first_workflow/Program.cs` |
-| `get-started/harness.md` | `02-agents/harness/` | `02-agents/Harness/` |
-| `get-started/hosting.md` | `04-hosting/azure_functions/01_single_agent/function_app.py` | `01-get-started/06_host_your_agent/Program.cs` |
+| `get-started/workflows.md` | `01-get-started/05a_functional_workflow_basics.py`, `01-get-started/05b_functional_workflow_with_agents.py`, `01-get-started/05c_first_graph_workflow.py` | `01-get-started/05_first_workflow/Program.cs` |
+| `get-started/harness.md` | `01-get-started/06_agent_harness.py`, `02-agents/harness/` | `02-agents/Harness/` |
+| `get-started/hosting.md` | `01-get-started/07_hosting.py`, `04-hosting/foundry-hosted-agents/responses/basic/` | `01-get-started/06_host_your_agent/Program.cs` |
 | `agents/tools/function-tools.md` | `02-agents/tools/function_tool_with_explicit_schema.py`, `02-agents/tools/function_tool_with_kwargs.py`, `02-agents/tools/tool_in_class.py` | N/A (no dedicated .NET sample; see `dotnet/samples` generally) |
 | `agents/tools/web-search.md` | `02-agents/providers/openai/client_with_web_search.py` | `02-agents/AgentProviders/foundry/Agent_Step21_WebSearch/` |
 | `agents/tools/file-search.md` | `02-agents/providers/openai/client_with_file_search.py` | `02-agents/AgentProviders/foundry/Agent_Step16_FileSearch/` |
