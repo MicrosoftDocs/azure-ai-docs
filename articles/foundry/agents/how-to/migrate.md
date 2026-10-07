@@ -4,7 +4,7 @@ description: "Learn how to migrate Assistants API and classic agent workloads to
 author: aahill
 ms.author: aahi
 manager: mcleans
-ms.date: 09/11/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
@@ -64,7 +64,7 @@ npm install @azure/ai-projects
 npm install @azure/identity
 ```
 
-Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
+Use Node.js 22 or later with `@azure/ai-projects` 2.8.0.
 
 # [Java](#tab/java)
 
@@ -1675,7 +1675,7 @@ After you migrate your code, confirm that everything works correctly:
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
 | **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
-| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects` 2.4.0 or later: `npm install @azure/ai-projects`. |
+| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects` 2.8.0 or later: `npm install @azure/ai-projects`. |
 | **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.2.0` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |

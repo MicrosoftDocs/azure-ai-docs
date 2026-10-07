@@ -67,14 +67,14 @@ Pass `foundryFeatures: "VoiceAgents=V1Preview"` when you create a voice agent ve
 
 ::: zone pivot="javascript"
 
-Install version 2.7.0 or later of the Azure AI Projects client library as shown in [Install the packages](../quickstarts/prompt-voice-agent.md?pivots=javascript#install-the-packages).
+Install version 2.8.0 or later of the Azure AI Projects client library as shown in [Install the packages](../quickstarts/prompt-voice-agent.md?pivots=javascript#install-the-packages).
 
 Use Node.js 22 or later. Configure the project as an ECMAScript module and install the packages:
 
 ```bash
 npm init --yes
 npm pkg set type=module
-npm install @azure/ai-projects@2.7.0 @azure/identity
+npm install @azure/ai-projects @azure/identity
 ```
 
 Reference: [Voice Agents JavaScript samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/javascript/voice-agents).

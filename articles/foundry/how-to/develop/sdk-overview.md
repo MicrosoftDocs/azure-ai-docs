@@ -11,7 +11,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/05/2026
+ms.date: 10/06/2026
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -62,10 +62,10 @@ pip install "azure-ai-projects>=2.3.0" "openai>=3.0.0"
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.4.0 | Foundry (new)   | Stable | `@azure/ai-projects` |
+| 2.8.0 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
-Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
+Use Node.js 22 or later with `@azure/ai-projects` 2.8.0.
 
 ::: zone-end
 
