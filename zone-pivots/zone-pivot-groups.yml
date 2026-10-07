@@ -753,6 +753,19 @@ groups:
     title: JavaScript SDK
   - id: azd
     title: Azure Developer CLI
+- id: voice-agent-image-input-language
+# Owner: sgilley
+  title: Programming language
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: javascript
+    title: JavaScript/TypeScript
+  - id: java
+    title: Java
 - id: foundry-speech-studio
 # Owner: eur
   title: Programming languages
