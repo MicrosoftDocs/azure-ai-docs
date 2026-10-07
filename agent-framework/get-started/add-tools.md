@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code2
@@ -14,6 +14,8 @@ ms.custom: update-code2
 # Step 2: Add Tools
 
 Tools let your agent call custom functions — like fetching weather data, querying a database, or calling an API.
+
+Before you add tools, review the [tool approval security best practices](../concepts/agents/safety.md#require-approval-for-high-risk-tools) to decide which operations need human confirmation.
 
 :::zone pivot="programming-language-csharp"
 
@@ -65,7 +67,7 @@ Console.WriteLine(await agent.RunAsync("What is the weather like in Amsterdam?")
 
 The complete sample defines a tool with the `@tool` decorator, creates an agent with the tool, and runs the agent:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/02_add_tools.py" highlight="28-34,40-44,48-53,57-58,62-63":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/02_add_tools.py" range="9-37" highlight="8-12,15-25":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/02_add_tools.py) for the complete runnable file.

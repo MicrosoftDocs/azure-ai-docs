@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ms.custom: update-code1
@@ -57,7 +57,7 @@ Console.WriteLine(await agent.RunAsync("What do you remember about me?", session
 
 The complete sample creates an agent and reuses one `AgentSession` across multiple calls:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/03_multi_turn.py" highlight="17,34,37,41,46-47":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/03_multi_turn.py" range="8-31" highlight="17,19-20":::
 
 > [!TIP]
 > See the [full sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/03_multi_turn.py) for the complete runnable file.
