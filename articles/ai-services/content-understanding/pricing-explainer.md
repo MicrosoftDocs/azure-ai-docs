@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-content-understanding-foundry-tools
 ms.topic: concept-article
-ms.date: 07/22/2026
+ms.date: 10/07/2026
 ai-usage: ai-assisted
 ms.custom:
   - build-2025
@@ -188,23 +188,23 @@ The following table summarizes the prebuilt analyzers and their applicable conte
 | prebuilt-idDocument.passport | Document Basic | Standard Contextualization |
 | prebuilt-healthInsuranceCard.us | Document Standard | Standard Contextualization |
 | prebuilt-tax.us | Document Standard | Standard/Advanced Contextualization |
-| prebuilt-tax.us.1040 | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040Senior | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040Schedule1 | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040Schedule2 | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040Schedule3 | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040Schedule8812 | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleA | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleB | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleC | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleD | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleE | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleEIC | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleF | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleH | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleJ | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleR | Document Standard | Standard Contextualization |
-| prebuilt-tax.us.1040ScheduleSE | Document Standard | Standard Contextualization |
+| prebuilt-tax.us.1040 | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040Senior | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040Schedule1 | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040Schedule2 | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040Schedule3 | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040Schedule8812 | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleA | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleB | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleC | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleD | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleE | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleEIC | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleF | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleH | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleJ | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleR | Document Standard | Advanced Contextualization |
+| prebuilt-tax.us.1040ScheduleSE | Document Standard | Advanced Contextualization |
 | prebuilt-tax.us.1099Combo | Document Standard | Standard Contextualization |
 | prebuilt-tax.us.1099A | Document Standard | Standard Contextualization |
 | prebuilt-tax.us.1099B | Document Standard | Standard Contextualization |
