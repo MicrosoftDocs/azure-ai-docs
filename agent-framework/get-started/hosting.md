@@ -126,7 +126,7 @@ Microsoft Foundry Hosted Agents is the primary managed hosting option. Complete 
 
 The get-started sample creates an agent with service-side model storage disabled and starts a `ResponsesHostServer`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_hosting.py" range="18-37" highlight="7-16":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_hosting.py" range="18-37" highlight="14,16":::
 
 Replace the hardcoded project endpoint and model deployment name, then run the PEP 723 sample locally from the Agent Framework repository root:
 
