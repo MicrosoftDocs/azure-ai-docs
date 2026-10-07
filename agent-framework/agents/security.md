@@ -39,7 +39,7 @@ FIDES is based on the [FIDES paper by Costa et al.](https://arxiv.org/abs/2505.2
 >
 > Policy checks on direct agent tools or the outer `execute_code` call don't establish FIDES enforcement for nested calls or code-internal intermediate values. They also don't cover file or network capabilities. Host tools must enforce their own authorization and destination controls.
 >
-> Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This is a current integration limitation, not an inherent limitation of the [CodeAct pattern](code-act.md).
+> Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This compatibility boundary is a current integration limitation, not an inherent limitation of the [CodeAct pattern](code-act.md).
 >
 > Treat any metadata-based warning as diagnostic only. The absence of a warning doesn't imply support or safety, because FIDES also applies defaults to unannotated tools.
 

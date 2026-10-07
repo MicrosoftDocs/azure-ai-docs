@@ -66,11 +66,11 @@ Because the connector owns the runtime configuration, the exact setup details de
 ## Current limitations
 
 > [!WARNING]
-> Combining FIDES with current CodeAct providers is unsupported. FIDES is currently Python-only and isn't available in .NET CodeAct providers.
+> Combining FIDES with current CodeAct providers isn't supported. FIDES is currently Python-only and isn't available in .NET CodeAct providers.
 >
 > Provider-managed host-tool calls inside generated code don't pass through the agent's per-function middleware pipeline. Checks on direct agent tools or the outer `execute_code` call don't establish FIDES enforcement for nested calls or code-internal intermediate values. They also don't cover file or network capabilities.
 >
-> Host tools must enforce their own authorization and destination controls. Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This is a current integration limitation, not an inherent limitation of the CodeAct pattern. See [Agent security with FIDES](security.md).
+> Host tools must enforce their own authorization and destination controls. Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This compatibility boundary is a current integration limitation, not an inherent limitation of the CodeAct pattern. See [Agent security with FIDES](security.md).
 
 CodeAct is a good fit for tool-heavy workflows, but keep in mind the following constraints:
 
