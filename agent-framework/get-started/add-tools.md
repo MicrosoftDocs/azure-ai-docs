@@ -8,7 +8,7 @@ ms.author: edvan
 ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
-ms.custom: update-code2
+ms.custom: update-code3
 ---
 
 # Step 2: Add Tools
