@@ -7,7 +7,7 @@ ms.reviewer: shivankgoel
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 09/11/2026
+ms.date: 09/30/2026
 ms.custom: preview
 ai-usage: ai-assisted
 ---
@@ -28,6 +28,21 @@ This article describes only what is different for voice-based agents. For standa
 | **Monitoring** | Voice dashboards emphasize time to first audio and provide separate charts for overall, model, speech-to-text, and text-to-speech latency. |
 | **Evaluation** | Voice-based agents support dataset-based and trace-based evaluation with the standard transcript-based evaluators. Simulation-based evaluation adds voice synthesis, audio effects, and simulated interruption behavior. |
 | **Conversation storage** | Tracing and conversation storage are separate. To read transcripts, event timelines, and audio from the agent endpoint after a session, [enable conversation storage](../how-to/configure-voice-agent.md#persist-conversations) on the agent. |
+
+### Check access boundaries
+
+Tracing, trace viewing, annotation writes, evaluation submission, and service-side trace reads are separate authorization operations:
+
+- The signed-in user or application identity submits an evaluation and invokes its target.
+- The Foundry project managed identity emits Foundry Agent Service server-side traces when the Application Insights connection uses project managed identity authentication.
+- A hosted agent can use its own agent identity when its code emits telemetry.
+- Human trace viewing requires **Log Analytics Reader**. Protected tables also require **Privileged Monitoring Data Reader** at the applicable scope.
+
+Use [Foundry RBAC](../../concepts/rbac-foundry.md) for project and agent access, [trace setup](../../observability/how-to/trace-agent-setup.md) for Application Insights access, and [Microsoft Entra-authenticated trace ingestion](../../observability/how-to/trace-ingestion-entra-authentication.md) for telemetry-writer permissions. Protected trace content requires the additional access described in [Manage sensitive content in traces](../../observability/how-to/traces-sensitive-content.md).
+
+Viewing a trace doesn't grant permission to save an annotation. Builder annotations are submitted from the trace detail page in the Foundry portal and are automatically tagged with a source of `builder`.
+
+For trace evaluations, assign **Reader** to the project managed identity on the connected Application Insights resource. For protected trace tables, also assign **Privileged Monitoring Data Reader**. If the linked workspace requires workspace permissions, assign the applicable Log Analytics reader role on that workspace. For detailed role requirements, see [Add permissions for trace-based workflows](../../observability/how-to/evaluation-permissions.md#add-permissions-for-trace-based-workflows).
 
 ## Trace a voice-based agent
 
@@ -78,6 +93,7 @@ Application Insights setup, trace search, time filters, annotations, tool-call i
 | Understand agent trace structure and semantics | [Agent tracing overview](../../observability/concepts/trace-agent-concept.md) |
 | Understand trace data and storage | [Trace data](../../observability/concepts/trace-data.md) |
 | Control sensitive-content capture | [Manage sensitive content in traces](../../observability/how-to/traces-sensitive-content.md) |
+| Add human feedback to a trace | [Annotate traces](../../observability/how-to/trace-annotations.md) |
 | Use trace replay | [Replay agent traces](../../observability/how-to/trace-agent-replay.md) |
 | Troubleshoot tracing | [Troubleshoot observability](../../observability/how-to/troubleshooting.md) |
 
@@ -142,7 +158,15 @@ Voice-based agents support three evaluation workflows:
 
 Each eligible voice trace is treated as one conversation row. Telemetry typically takes several minutes to ingest. If a recent conversation isn't listed, wait for ingestion and extend the selected time range beyond the conversation time.
 
+> [!NOTE]
+> **No trace data found** doesn't uniquely identify a permissions problem. Check the connected Application Insights resource, ingestion delay, time range, agent and version filters, and the identity used to read traces before changing role assignments.
+
 ### Enhanced user conversation simulation
+
+> [!NOTE]
+> Each identity that runs conversation simulation needs the [Foundry User role](../../concepts/rbac-foundry.md), or equivalent permissions, at the Foundry account scope.
+
+[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
 
 Voice simulation uses the same scenario-driven workflow as text conversation simulation, with additional configuration for spoken interactions:
 
@@ -151,6 +175,10 @@ Voice simulation uses the same scenario-driven workflow as text conversation sim
 - **Interruption behavior**: Simulate a user speaking while the agent responds to test how the agent handles interruptions.
 
 For scenario sources, conversation controls, test-case overrides, generated datasets, and request examples, see [Simulate conversations with the Microsoft Foundry SDK](../../observability/how-to/cloud-evaluation-simulate-conversations.md).
+
+Voice-agent availability doesn't guarantee that every simulator or evaluator model is available in the same region. Check [evaluation regions and limits](../../concepts/evaluation-regions-limits-virtual-network.md), and then confirm deployment availability, SKU, and quota for the target voice model, simulated-user model, and evaluator model in your project.
+
+Synthetic text-to-voice simulation doesn't establish microphone capture, speech-recognition quality, playback quality, or interruption timing on a real device.
 
 ### What's the same as other agents
 
@@ -175,7 +203,15 @@ Tracing and conversation storage are separate. Traces describe how a session beh
 
 [Set `store` to `true`](../how-to/configure-voice-agent.md#persist-conversations) on the agent definition to persist the transcript, event timeline, and raw audio. The default is `false`. Read stored conversations from `/agents/{agent_name}/endpoint/protocols/voice/conversations`, including per-turn transcripts, per-turn audio, and a merged stereo recording with the caller on the left channel and the agent on the right.
 
+A client can override `store` for one session by using the `store` query parameter when it connects.
+
 Deleting a stored conversation also deletes its responses, items, and audio. If you use bring-your-own storage, the service returns recordings as a URI in your storage account, and Azure RBAC on that account governs access.
+
+Application Insights retention controls trace telemetry, not the lifecycle of separately stored voice conversations and audio.
+
+The `store` query parameter controls storage for the session being connected. This session override doesn't create or update an agent version.
+
+Stored voice conversations and Microsoft-managed audio are retained for 60 days. For more information, see [Default service limits](limits-quotas-regions.md#default-service-limits).
 
 ## Related content
 

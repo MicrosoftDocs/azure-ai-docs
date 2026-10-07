@@ -4,7 +4,7 @@ description: Learn how to annotate traces with thumbs up or thumbs down feedback
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 06/15/2026
+ms.date: 09/30/2026
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.service: microsoft-foundry
@@ -33,6 +33,7 @@ All annotations are **appended** to the trace—adding a builder annotation neve
   ```bash
   pip install "azure-ai-projects>=2.0.0" azure-monitor-opentelemetry python-dotenv
   ```
+- For programmatic annotations that use Microsoft Entra-authenticated Application Insights ingestion: the identity that emits telemetry has the **Monitoring Metrics Publisher** role on the connected Application Insights resource. For setup and identity-specific guidance, see [Configure Microsoft Entra authentication for trace ingestion](trace-ingestion-entra-authentication.md).
 
 ## Default scoring template
 
@@ -41,7 +42,7 @@ Every Foundry project is preseeded with a default thumbs up/down scoring templat
 - **Thumbs up** = score `1.0`, label `pass`
 - **Thumbs down** = score `0.0`, label `fail`
 
-Each scoring template requires a `gen_ai.evaluation.name attribute` to have value `task_completion` so every annotation is attributable to a specific evaluation dimension. `task_completion` supports thumbs up and down.  
+Each scoring template requires the `gen_ai.evaluation.name` attribute to have the value `task_completion` so every annotation is attributable to a specific evaluation dimension. `task_completion` supports thumbs up and down.
 
 ## Annotate traces in the Foundry portal
 
@@ -55,17 +56,20 @@ Add annotations directly from the trace detail page to record your assessment of
 
 :::image type="content" source="../../media/observability/trace-annotations.png" alt-text="Screenshot of the Annotations tab on the trace detail page in the Foundry portal." lightbox="../../media/observability/trace-annotations.png":::
 
+> [!NOTE]
+> Viewing a trace and saving an annotation are separate authorization operations. If the trace is visible but the annotation can't be saved, verify the annotation destination, actual write identity, and authentication path. Another trace-reader role doesn't grant telemetry-write access.
+
 Annotations you add from the portal are automatically tagged with:
 
 - `microsoft.gen_ai.human_evaluation.source` = `"builder"`
-- Records will be with `microsoft.gen_ai.evaluation.actor.type` as `"human"`
+- `microsoft.gen_ai.evaluation.actor.type` = `"human"`
 
 ### Score editing
 
-Each user can annotate multiple times, however:
+Each user can annotate multiple times:
 
 - Multiple users can each have their own annotation of the same type on the same trace.
-- Prior annotations are never deleted in Application Insights, new annotations are appended, and the portal displays all annotations in *Annotation History* section of annotation panel.
+- Prior annotations aren't deleted in Application Insights. New annotations are appended, and the portal displays all annotations in the **Annotation history** section of the annotation panel.
 
 ## Log end user feedback as trace annotations
 
@@ -155,9 +159,19 @@ customEvents
 | order by timestamp desc
 ```
 
+## Troubleshoot annotation writes
+
+| Symptom | Check |
+| --- | --- |
+| You can view a trace, but saving a builder annotation fails with an authorization error | Treat the save as a separate write operation. Confirm the connected Application Insights resource, the identity used for the write, and the connection authentication mode. Don't add another Reader role as a generic fix. |
+| A programmatic annotation returns `401` or `403` | Confirm that the application sends telemetry to the expected Application Insights resource. For Microsoft Entra-authenticated ingestion, grant **Monitoring Metrics Publisher** to the telemetry-emitting identity on that resource. |
+| The application reports success, but the annotation doesn't appear | Confirm that the evaluation event uses the original trace and span context, that it was sent to the same Application Insights resource as the trace, and that ingestion has completed. |
+| An annotation appears on the wrong trace | Verify `operation_Id`, `operation_ParentId`, and `gen_ai.response.id` before emitting the event. |
+
 ## Related content
 
 - [Log end user feedback](log-end-user-feedback.md)
+- [Configure Microsoft Entra authentication for trace ingestion](trace-ingestion-entra-authentication.md)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)
 - [Review agent interactions with Trace Replay](trace-agent-replay.md)
 - [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
