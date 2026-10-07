@@ -92,14 +92,19 @@ The complete sample defines a context provider, adds it to an agent, and uses on
 > `RawAgent` may auto-add `InMemoryHistoryProvider()` in specific cases (for example, when using a session with no configured context providers and no service-side storage indicators), but this is not guaranteed in all scenarios.
 > If you always want local persistence, add an `InMemoryHistoryProvider` explicitly. Also make sure only one history provider has `load_messages=True`, so you don't replay multiple stores into the same invocation.
 >
-> You can also add an audit store by appending another history provider at the end of the list of `context_providers` with `store_context_messages=True`:
+> Create a project client and memory store by following [Microsoft Foundry managed semantic memory](../integrations/by-component/context-providers/microsoft-foundry.md#add-managed-semantic-memory).
+> Then combine local transcript history, managed memory, and an audit store:
 >
 > ```python
 > from agent_framework import InMemoryHistoryProvider
-> from agent_framework.mem0 import Mem0ContextProvider
+> from agent_framework.foundry import FoundryMemoryProvider
 >
-> memory_store = InMemoryHistoryProvider(load_messages=True) # add local history for a reused or serialized session
-> agent_memory = Mem0ContextProvider("user-memory", api_key=..., agent_id="my-agent")  # add Mem0 provider for agent memory
+> history = InMemoryHistoryProvider(load_messages=True)
+> memory = FoundryMemoryProvider(
+>     project_client=project_client,
+>     memory_store_name="user-memory",
+>     scope="user-123",
+> )
 > audit_store = InMemoryHistoryProvider(
 >     "audit",
 >     load_messages=False,
@@ -109,7 +114,7 @@ The complete sample defines a context provider, adds it to an agent, and uses on
 > agent = client.as_agent(
 >     name="MemoryAgent",
 >     instructions="You are a friendly assistant.",
->     context_providers=[memory_store, agent_memory, audit_store],  # audit store last
+>     context_providers=[history, memory, audit_store],  # audit store last
 > )
 > ```
 
