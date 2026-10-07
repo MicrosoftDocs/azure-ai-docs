@@ -58,11 +58,11 @@ The harness handles planning, todo tracking, and history persistence for you acr
 
 :::zone pivot="programming-language-python"
 
-The complete sample creates a Microsoft Foundry chat client, wraps it with `create_harness_agent`, and reuses one session across two turns. The harness adds planning, todo tracking, and compaction while the sample disables file memory and web search to stay focused.
+The complete sample creates a Microsoft Foundry chat client, wraps it with `create_harness_agent`, and reuses one session across two turns. The harness adds planning, to-do tracking, and compaction while the sample disables file memory and web search to stay focused.
 
 :::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/06_agent_harness.py" range="9-34" highlight="9-18":::
 
-The shared session preserves the harness state across both calls. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
+The shared session preserves the harness state across both calls. For a full-featured console - with tool-approval prompts, to-do and mode rendering, and slash commands - see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
 
 > [!TIP]
 > See the [full get-started sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/06_agent_harness.py).

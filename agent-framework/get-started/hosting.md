@@ -124,7 +124,7 @@ app.Run();
 
 Microsoft Foundry Hosted Agents is the primary managed hosting option. Complete the [Foundry Hosted Agents prerequisites](../hosting/foundry-hosted-agent.md#prerequisites), including the Azure Developer CLI AI agent extension and Azure CLI sign-in.
 
-The get-started sample creates an agent with service-side model storage disabled and starts a `ResponsesHostServer`:
+The get-started sample creates an agent with server-side model storage disabled and starts a `ResponsesHostServer`:
 
 :::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/07_hosting.py" range="18-37" highlight="14,16":::
 
