@@ -62,12 +62,6 @@ The complete sample creates a Microsoft Foundry chat client, wraps it with `crea
 
 :::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/06_agent_harness.py" range="9-34" highlight="9-18":::
 
-From the Agent Framework repository root, run the sample:
-
-```bash
-python python/samples/01-get-started/06_agent_harness.py
-```
-
 The shared session preserves the harness state across both calls. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
 
 > [!TIP]
