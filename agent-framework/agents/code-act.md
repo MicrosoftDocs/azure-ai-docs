@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 05/27/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 <!--
   Language parity table - keep in sync when adding/removing sections.
@@ -17,7 +18,7 @@ ms.service: agent-framework
   | Good fit for CodeAct       | ✅ |   ✅   | ❌ | Shared decision guidance               |
   | How CodeAct fits           | ✅ |   ✅   | ❌ | Shared framework model                 |
   | Current limitations        | ✅ |   ✅   | ❌ | Shared current-state guidance          |
-  | Getting started            | ✅ |   ✅   | ❌ | C#/Python document Hyperlight          |
+  | Getting started            | ✅ |   ✅   | ❌ | Language-specific provider choices     |
   | Hyperlight integration     | ✅ |   ✅   | ❌ | No Go CodeAct backend documented       |
 -->
 
@@ -64,9 +65,16 @@ Because the connector owns the runtime configuration, the exact setup details de
 
 ## Current limitations
 
+> [!WARNING]
+> Combining FIDES with current CodeAct providers is unsupported. FIDES is currently Python-only and isn't available in .NET CodeAct providers.
+>
+> Provider-managed host-tool calls inside generated code don't pass through the agent's per-function middleware pipeline. Checks on direct agent tools or the outer `execute_code` call don't establish FIDES enforcement for nested calls or code-internal intermediate values. They also don't cover file or network capabilities.
+>
+> Host tools must enforce their own authorization and destination controls. Keep FIDES-dependent tools as direct agent tools, not CodeAct-managed tools, or leave CodeAct disabled for workflows that require these guarantees. This is a current integration limitation, not an inherent limitation of the CodeAct pattern. See [Agent security with FIDES](security.md).
+
 CodeAct is a good fit for tool-heavy workflows, but keep in mind the following constraints:
 
-- The documented Agent Framework connector is [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md), available for both Python and .NET (in preview).
+- [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) supports Python and .NET. [Monty](../integrations/by-component/context-providers/monty.md) is Python-only; [Local CodeAct](../integrations/by-component/context-providers/local.md) is .NET-only.
 - Approvals currently apply to the `execute_code` call as a whole. If you need individual operations to be approved one by one, keep those operations as direct agent tools instead of relying on `call_tool(...)`.
 - Tools reached through `call_tool(...)` still execute in the host process. Use narrow, reviewed host tools for sensitive I/O instead of broadening sandbox access unnecessarily.
 - CodeAct works best when orchestration overhead dominates. For small tasks with only one or two tool calls, the added abstraction might not be worth it.
@@ -76,9 +84,9 @@ CodeAct is a good fit for tool-heavy workflows, but keep in mind the following c
 
 ## Get started
 
-For .NET, the documented connector today is [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md), shipped as the `Microsoft.Agents.AI.Hyperlight` package.
+For .NET, [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) ships as the `Microsoft.Agents.AI.Hyperlight` package. [Local CodeAct](../integrations/by-component/context-providers/local.md) runs generated Python in a subprocess and relies on external isolation.
 
-The package provides:
+The Hyperlight package provides:
 
 - `HyperlightCodeActProvider` — an `AIContextProvider` that injects `execute_code` and CodeAct guidance for every run
 - `HyperlightExecuteCodeFunction` — a standalone `AIFunction` for static/manual wiring when the sandbox configuration is fixed
@@ -97,7 +105,7 @@ See [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlig
 
 ## Get started
 
-For Python, the documented connector today is [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md).
+For Python, use [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md) for an isolated sandbox or [Monty](../integrations/by-component/context-providers/monty.md) for a cross-platform restricted interpreter.
 
 The Hyperlight package provides:
 
@@ -125,6 +133,9 @@ See [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlig
 ### Related content
 
 - [Hyperlight CodeAct](../integrations/by-component/context-providers/hyperlight.md)
+- [Monty](../integrations/by-component/context-providers/monty.md)
+- [Local CodeAct (.NET)](../integrations/by-component/context-providers/local.md)
+- [Agent security with FIDES](security.md)
 - [CodeAct paper](https://arxiv.org/abs/2402.01030)
 - [Code Interpreter](./tools/code-interpreter.md)
 - [Tool Approval](./tools/tool-approval.md)
