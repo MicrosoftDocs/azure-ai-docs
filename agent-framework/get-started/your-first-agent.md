@@ -74,7 +74,7 @@ Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az l
 
 Save the complete example as `hello_agent.py`:
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" range="10-30" highlight="8-17":::
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" range="10-30" highlight="9-17":::
 
 Run the example:
 
