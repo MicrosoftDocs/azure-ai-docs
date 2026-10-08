@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
@@ -26,7 +26,7 @@ Unless otherwise noted, the Voice Live API uses the [same events](/azure/ai-foun
 
 ## Supported models and regions
 
-For a table of supported models and regions, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions).
+For supported models, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions). For regional availability and separate processing scopes for LLMs, HD voices, and transcription models, see [Voice Live region support](./regions.md?tabs=voice-live#regions).
 
 ## Authentication
 
@@ -201,7 +201,9 @@ The Voice Live API supports multiple transcription models for input audio. Set t
 | `gpt-4o-mini-transcribe` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o mini based transcription model. |
 | `gpt-4o-transcribe-diarize` | `gpt-realtime`, `gpt-realtime-mini` | GPT-4o transcription with diarization. |
 
-For supported languages per model, see [Voice Live API supported languages](./voice-live-language-support.md?tabs=speechinput).
+You can also select `mai-transcribe-2-streaming` (preview) by setting `input_audio_transcription.model` to `mai-transcribe-2-streaming`. Regional availability differs from `mai-transcribe-2`. Check [Speech feature availability and processing scope](./regions.md?tabs=voice-live#speech-feature-availability-and-processing-scope) before selecting a transcription model.
+
+For supported languages per model, see [Voice Live API supported languages](./voice-live-language-support.md?tabs=speechinput) and [MAI-Transcribe-2-Streaming language support](./mai-transcribe-2-streaming.md#language-support).
 
 ### Azure speech to text
 
@@ -301,6 +303,8 @@ When using `gpt-realtime` or `gpt-realtime-mini`, you can use OpenAI transcripti
 ## Audio output through Azure text to speech
 
 You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
+
+Standard HD voices are available in all supported Voice Live resource regions, including regions without local HD voice support in standalone Azure Speech. Voice Live routes HD voice synthesis to a supported speech region. See [Speech feature availability and processing scope](./regions.md?tabs=voice-live#speech-feature-availability-and-processing-scope).
 
 The `voice` object has the following properties:
 
