@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 09/25/2026
+ms.date: 09/30/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 ms.topic: reference
@@ -40,7 +40,7 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Tool Input Accuracy | Process evaluation | Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Binary: Pass/Fail |
 | Tool Output Utilization | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Binary: Pass/Fail |
 | Tool Call Success | Process evaluation | Monitoring tool reliability, detecting API failures, timeout issues, or technical errors in tool execution | Measures if tool calls succeeded or resulted in technical errors or exceptions | Binary: Pass/Fail |
-| Quality Grader (preview) | Quality evaluation | Assesses overall response quality at the turn level, including relevance, abstention, answer completeness, and optionally groundedness and context coverage | Enables quality evaluation across multiple dimensions in a single evaluator instead of running individual evaluators separately | Binary: Pass/Fail |
+| Quality Grader (deprecated) | Quality evaluation | Reviewing existing Quality Grader configurations | Previously enabled quality evaluation across multiple dimensions in a single evaluator instead of running individual evaluators separately. It can no longer be run in an evaluation. | Not available |
 | Output Quality (preview) | System and quality evaluation | Assessing response quality and task outcomes across several dimensions while reducing evaluation cost and latency | Batches Fluency, Coherence, Intent Resolution, Task Adherence, Groundedness, and Task Completion into one LLM judge call | Composite: component scores with Pass/Fail |
 | Tool Use Quality (preview) | Process evaluation | Assessing the complete tool-use process while reducing evaluation cost and latency | Batches Tool Call Accuracy, Tool Call Success, Tool Input Accuracy, Tool Output Utilization, and Tool Selection into one LLM judge call | Composite: component scores with Pass/Fail |
 
@@ -81,22 +81,21 @@ Examples:
 - [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
-## Quality evaluation (preview)
+## Quality evaluation (deprecated)
 
-Quality evaluation assesses the overall quality of an AI assistant's response at the turn level. The Quality Grader evaluator is the same quality evaluator used in [Microsoft Copilot Studio agent evaluation](/microsoft-copilot-studio/analytics-agent-evaluation-overview#general-quality). It examines multiple dimensions of response quality:
+> [!IMPORTANT]
+> Quality Grader is deprecated and can no longer be run in an evaluation.
+
+Quality Grader assessed the overall quality of an AI assistant's response at the turn level. It examined multiple dimensions of response quality:
 
 - **Relevance** - Is the response relevant to the user's query?
 - **Abstention** - Does the agent appropriately abstain when it cannot or should not answer?
 - **Answer completeness** - Does the response fully address the user's question?
 
-When context is provided, the Quality Grader additionally evaluates:
+When context was provided, Quality Grader also evaluated:
 
 - **Groundedness** - Is the response grounded in the provided context?
 - **Context coverage** - Does the response make use of the relevant information in the context?
-
-Examples:
-
-- [Quality grader sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_quality_grader.py)
 
 ## Composite evaluators (preview)
 

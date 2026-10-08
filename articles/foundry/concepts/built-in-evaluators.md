@@ -127,12 +127,17 @@ Each evaluator supports specific evaluation levels, indicated by the `supported_
 | `turn` | Evaluates individual agent responses (default) |
 | `conversation` | Evaluates entire multi-turn conversations |
 
-When creating an evaluation run, set `evaluation_level` to match your evaluators' supported levels. If omitted, the default is `turn`.
+When creating an evaluation run, set `evaluation_level` to control whether evaluators score individual turns or the full conversation. If omitted, the default is `turn`.
 
 **Conversation-level evaluators** score the full interaction rather than individual turns. Use them to measure outcomes like user satisfaction, task completion across multiple steps, or conversation-wide coherence.
 
 > [!IMPORTANT]
-> All evaluators in a run must support the specified `evaluation_level`. You can't mix evaluators with incompatible levels in the same evaluation run.
+> When your evaluation data uses the `messages` format, you can include evaluators with different supported evaluation levels in the same run:
+>
+> - With `evaluation_level="turn"`, evaluators score the conversation one turn at a time.
+> - With `evaluation_level="conversation"`, the service runs evaluators that support conversation-level evaluation and skips turn-only evaluators.
+>
+> Conversation-level evaluation requires the `messages` format. Query-and-response data doesn't support `evaluation_level="conversation"`.
 
 ## Combining evaluators
 
