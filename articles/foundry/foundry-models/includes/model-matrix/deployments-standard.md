@@ -3,7 +3,7 @@ title: Model region availability for Standard deployment (All Geographies)
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for standard deployment options
 manager: mcleans
-ms.date: 10/05/2026
+ms.date: 10/08/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -75,6 +75,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-image-2 | 2026-04-21 | - | - | - | - | - | ✅ | - | - | - | ✅ |
+| gpt-image-2.5-flare | 2026-09-08 | - | - | - | - | - | ✅ | - | - | - | ✅ |
 | gpt-realtime | 2025-08-28 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime-2 | 2026-05-06 | - | ✅ | - | ✅ | - | ✅ | - | - | - | - |
@@ -152,6 +153,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-image-1-mini | 2025-10-06 | - | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-1.5 | 2025-12-16 | - | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-image-2 | 2026-04-21 | - | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
+| gpt-image-2.5-flare | 2026-09-08 | - | - | - | - | - | ✅ | - | ✅ | - | - | - | - |
 | gpt-realtime | 2025-08-28 | ✅ | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-1.5 | 2026-02-23 | ✅ | - | - | - | - | - | - | ✅ | - | - | - | - |
 | gpt-realtime-2 | 2026-05-06 | ✅ | - | - | - | - | - | - | ✅ | - | - | - | - |
@@ -281,6 +283,7 @@ For **global deployments**, Azure OpenAI can process prompts and responses in an
 | gpt-image-1-mini | 2025-10-06 | - | ✅ |
 | gpt-image-1.5 | 2025-12-16 | - | ✅ |
 | gpt-image-2 | 2026-04-21 | - | ✅ |
+| gpt-image-2.5-flare | 2026-09-08 | - | ✅ |
 | o1 | 2024-12-17 | ✅ | ✅ |
 | o3 | 2025-04-16 | ✅ | ✅ |
 | o3-mini | 2025-01-31 | ✅ | ✅ |
