@@ -3252,6 +3252,11 @@
       "source_path": "articles/foundry/concepts/choose-build-approach.md",
       "redirect_url": "/azure/foundry/what-is-foundry",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/how-to/configure-capability-settings.md",
+      "redirect_url": "/azure/foundry/agents/environment-setup",
+      "redirect_document_id": false
     }
   ]
 }
