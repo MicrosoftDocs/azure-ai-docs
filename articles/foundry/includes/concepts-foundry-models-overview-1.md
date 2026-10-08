@@ -5,6 +5,7 @@ ms.author: mopeakande
 author: msakande
 ms.service: microsoft-foundry
 ms.topic: include
+ai-usage: ai-assisted
 ms.date: 07/28/2026
 ms.custom: include
 ---
@@ -235,6 +236,10 @@ To set the public network access flag for the Foundry hub:
 
 ## Fine-tuning models
 
+In the current Foundry experience, use managed fine-tuning jobs or interactive training (preview), where you control a Python training loop. Compatible fine-tuned models use model-specific serverless deployment types, managed compute adapter serving (preview), or Fireworks on Foundry adapter serving (preview). See [Fine-tuning in Microsoft Foundry](../fine-tuning/overview.md) for the path decision, model availability, and deployment guidance.
+
+The following fine-tuning experiences apply to hub-based projects in Foundry (classic).
+
 Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see [Fine-tune models with Microsoft Foundry (classic)](../../foundry-classic/concepts/fine-tuning-overview.md).
  
 ## Model lifecycle: deprecation and retirement
@@ -247,6 +252,7 @@ AI models evolve fast. When a new version or a new model with updated capabiliti
  
 ## Related content
 
+- [Fine-tuning overview](../fine-tuning/overview.md)
 - [Instant access to models in Microsoft Foundry (preview)](../concepts/instant-models.md)
 - [Data, privacy, and security for Models sold by Azure in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
 - [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)

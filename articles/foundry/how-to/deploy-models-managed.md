@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-managed-compute-deployment
 #CustomerIntent: As a Microsoft Foundry developer, I want to deploy an open-source model onto managed compute, call it from my application code, use it in an agent, scale and monitor it, and request additional quota, so that I can run open-source models in production behind the same Foundry endpoint I already use.
 ---
 
-# Deploy open-source models with managed compute (Preview)
+# Deploy open-source models with managed compute (preview)
 
 > [!NOTE]
 > Managed compute in Foundry is currently in preview.
@@ -34,7 +34,7 @@ In this article, you learn how to:
 - Scale and monitor the deployment
 - Request more quota
 
-For an overview of managed compute deployment in Foundry, including model instances, deployment templates, runtimes, accelerator families, billing, and current limitations, see [Managed compute in Microsoft Foundry (Preview)](../concepts/managed-compute-overview.md).
+For an overview of managed compute deployment in Foundry, including model instances, deployment templates, runtimes, accelerator families, billing, and current limitations, see [Managed compute in Microsoft Foundry (preview)](../concepts/managed-compute-overview.md).
 
 ## Prerequisites
 
@@ -382,6 +382,8 @@ Some larger models take longer than the typical 10–15 minutes to come up. If `
 
 ## Related content
 
+- [Deploy fine-tuned models with managed compute (preview)](../fine-tuning/deploy-fine-tuned-models.md#deploy-with-managed-compute-preview)
+- [Fine-tuning overview](../fine-tuning/overview.md)
 - [Managed compute in Microsoft Foundry](../concepts/managed-compute-overview.md)
 - [Deployment overview for Microsoft Foundry Models](../concepts/deployments-overview.md)
 - [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)

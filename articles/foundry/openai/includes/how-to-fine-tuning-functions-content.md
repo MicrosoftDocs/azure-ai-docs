@@ -5,6 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: microsoft-foundry
 ms.topic: include
+ai-usage: ai-assisted
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
 ---
@@ -182,5 +183,6 @@ As with the example before, this example is artificially expanded for readabilit
 ## Next steps
 
 * [Function calling fine-tuning scenarios](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968).
-* Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../../../foundry-classic/openai/tutorials/fine-tune.md).
+* Explore the fine-tuning capabilities in the [fine-tuning tutorial in Foundry (classic)](../../../foundry-classic/openai/tutorials/fine-tune.md?context=/azure/foundry/context/context).
+* [Fine-tuning overview](../../fine-tuning/overview.md).
 * Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

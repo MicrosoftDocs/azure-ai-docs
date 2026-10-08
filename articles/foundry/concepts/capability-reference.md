@@ -49,7 +49,7 @@ Model selection, deployment, and lifecycle.
 | [Instant access models](instant-models.md) (preview) | Use selected models without provisioning a deployment first. |
 | [Model router](../openai/concepts/model-router.md) | Route requests automatically to the best model for cost and quality. |
 | [Model benchmarks and leaderboards](model-benchmarks.md) | Compare model quality, cost, and performance before you commit. |
-| [Fine-tuning](../fine-tuning/fine-tune-cli.md) | Customize models on your own data, including synthetic data generation. |
+| [Fine-tuning](../openai/how-to/fine-tuning.md#use-the-azure-developer-cli) | Customize models on your own data, including synthetic data generation. |
 | [Model versions and lifecycle](../foundry-models/concepts/model-versions.md) | Track versions, automatic updates, retirement schedules, and support policy. |
 | [Healthcare AI models](../how-to/healthcare-ai/healthcare-ai-models.md) | Domain-specific models for medical imaging and reporting scenarios. |
 | [Hugging Face models](../foundry-models/how-to/hugging-face-models.md) | Deploy open models from Hugging Face into Foundry. |

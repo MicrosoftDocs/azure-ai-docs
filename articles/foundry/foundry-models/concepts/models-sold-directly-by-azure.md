@@ -24,6 +24,8 @@ zone_pivot_groups: models-sold-directly-by-azure
 
 # Foundry Models sold by Azure
 
+For open-weight fine-tuning support and per-model deployment options, see [Model availability](../../fine-tuning/overview.md#supported-models). Existing model and region tables remain below.
+
 [!INCLUDE [models-azure-direct-openai-intro](../../openai/includes/models-azure-direct-openai-intro.md)]
 
 ::: zone pivot="azure-openai"
@@ -37,3 +39,10 @@ zone_pivot_groups: models-sold-directly-by-azure
 [!INCLUDE [models-azure-direct-others](../includes/models-azure-direct-others.md)]
 
 ::: zone-end
+
+<a id="fine-tuning-and-post-training"></a>
+
+## Fine-tuning and interactive training
+
+- [Fine-tuning overview](../../fine-tuning/overview.md).
+- [Model availability](../../fine-tuning/overview.md#supported-models).

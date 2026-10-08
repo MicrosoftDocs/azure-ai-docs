@@ -12,11 +12,12 @@ ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 ROBOTS: NOINDEX, NOFOLLOW
+ai-usage: ai-assisted
 ---
 
 # Deploy a fine-tuned model for inferencing (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/fine-tuning-deploy.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/fine-tuning/deploy-fine-tuned-models.md)
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 

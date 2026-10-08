@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="390"
+     viewBox="0 0 960 390" role="img"
+     aria-labelledby="boundary-title boundary-description">
+  <title id="boundary-title">Your training driver and Foundry model execution</title>
+  <desc id="boundary-description">Your Python driver owns data rendering, token
+    masks, rollout coordination, rewards, advantages, objectives, update schedules,
+    evaluation, and experiment state. It sends tokens and operation requests to
+    Microsoft Foundry and receives samples, log probabilities, metrics, and
+    checkpoint IDs. Foundry maintains the base model and LoRA adapter state,
+    executes sampling, forward and backward passes, and optimizer updates, and
+    manages training and sampler checkpoints.</desc>
+  <defs>
+    <marker id="boundary-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#605e5c"/>
+    </marker>
+    <style>
+      text {
+        font-family: "Segoe UI", Arial, sans-serif;
+        text-anchor: middle;
+        fill: #242424;
+      }
+      .heading { font-size: 22px; font-weight: 600; }
+      .label { font-size: 18px; }
+      .detail { font-size: 16px; fill: #605e5c; }
+      .arrow {
+        fill: none;
+        stroke: #605e5c;
+        stroke-width: 2;
+        marker-end: url(#boundary-arrow);
+      }
+    </style>
+  </defs>
+  <rect x="0.75" y="0.75" width="958.5" height="388.5"
+        fill="#f5f5f5" stroke="#d2d0ce" stroke-width="1.5"/>
+  <text class="heading" x="194" y="48">Your Python driver</text>
+  <text class="detail" x="194" y="74">Research logic on your compute</text>
+  <text class="heading" x="766" y="48">Microsoft Foundry</text>
+  <text class="detail" x="766" y="74">Serverless GPU model execution</text>
+  <rect x="24" y="98" width="340" height="232"
+        fill="#ffffff" stroke="#c8c6c4" stroke-width="1.5"/>
+  <rect x="596" y="98" width="340" height="232"
+        fill="#eef6fc" stroke="#0067b8" stroke-width="1.5"/>
+  <text class="label" x="194" y="139">Data rendering and token masks</text>
+  <text class="label" x="194" y="176">Rollouts, rewards, advantages</text>
+  <text class="label" x="194" y="213">Objective and update schedule</text>
+  <text class="label" x="194" y="250">Evaluation and checkpoint cadence</text>
+  <text class="label" x="194" y="287">Dataset position and run state</text>
+  <text class="label" x="766" y="139">Base model and LoRA adapter state</text>
+  <text class="label" x="766" y="176">Model sampling</text>
+  <text class="label" x="766" y="213">Forward and backward passes</text>
+  <text class="label" x="766" y="250">Gradient accumulation and updates</text>
+  <text class="label" x="766" y="287">Training and sampler checkpoints</text>
+  <text class="detail" x="480" y="145">Tokens + operations</text>
+  <path class="arrow" d="M 364 166 H 590"/>
+  <text class="detail" x="480" y="227">Samples, log probabilities,</text>
+  <text class="detail" x="480" y="251">metrics + checkpoint IDs</text>
+  <path class="arrow" d="M 596 272 H 370"/>
+  <text class="detail" x="480" y="364">
+    Your driver coordinates the loop; Foundry executes the model operations.
+  </text>
+</svg>

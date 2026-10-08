@@ -145,7 +145,7 @@ az rest --method get \
 | Custom [guardrails](../guardrails/guardrails-overview.md) per model | Deployment |
 | Endpoint-specific configuration (for example, version locks per endpoint) | Deployment |
 | Fine-grained [quota](../how-to/quota.md) partitioning across teams | Deployment |
-| [Fine-tuned models](../fine-tuning/fine-tune-cli.md) | Deployment |
+| [Fine-tuned models](../openai/how-to/fine-tuning.md#use-the-azure-developer-cli) | Deployment |
 
 Instant access and deployments can coexist in the same project. You can start with instant access model and create a deployment later as your requirements evolve.
 

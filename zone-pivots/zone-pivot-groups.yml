@@ -1291,10 +1291,10 @@ groups:
     title: Portal
   - id: programming-language-python
     title: Python
-  - id: programming-language-javascript
-    title: JavaScript
   - id: rest-api
     title: REST
+  - id: azd
+    title: CLI
 # Owner: mbullwin
 - id: URL-test-interface
   title: URL Test tool

@@ -1,6 +1,6 @@
 ---
-title: "Fine-tuning function calls with Azure OpenAI in Microsoft Foundry Models"
-description: "Learn how to improve tool calling performance with Azure OpenAI fine-tuning"
+title: "Improve tool calling with fine-tuning in Microsoft Foundry"
+description: "Learn how to improve tool calling performance with fine-tuning in Microsoft Foundry."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai

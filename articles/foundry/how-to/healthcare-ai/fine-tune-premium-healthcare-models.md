@@ -27,7 +27,7 @@ To fine-tune a model, you prepare and upload a model-specific training file, cre
 > Premium healthcare models use the OpenAI Python client's Files and
 > fine-tuning interfaces after you obtain the client through the Foundry
 > project SDK. [Customize a model with fine-tuning](../../openai/how-to/fine-tuning.md)
-> covers fine-tuning OpenAI models with the Foundry SDK; this article covers
+> covers fine-tuning supported Foundry Models with the Foundry SDK; this article covers
 > premium healthcare models. Model names, schemas, supported training types,
 > hyperparameters, and deployment details differ for premium healthcare
 > models. Use the fine-tuning page for your selected healthcare model for

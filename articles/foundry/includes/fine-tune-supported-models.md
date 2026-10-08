@@ -1,34 +1,45 @@
 ---
-title: Support fine-tune models
+title: Fine-tuning model support
 titleSuffix: Microsoft Foundry
-description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
+description: Compare model support for managed fine-tuning, interactive training, training types, and deployment types.
 ms.author: wujohn
-ms.date: 03/05/2026
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
-The following models are supported for fine-tuning:
 
-|  Model ID  | Standard regions | Data Zone | Global | Developer | Methods | Status | Modality |
-|  --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT | GA | Text to text |
-| `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | US | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | US | ✅ | ✅ | RFT | GA | Text to text |
-| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | US | ✅ | ❌ | RFT | GA<sup>*</sup> | Text to text |
-| `Ministral-3B` <br> (2411) | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
-| `Qwen-32B` | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
-| `Llama-3.3-70B-Instruct` | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
-| `gpt-oss-20b` | Not supported | US | ✅ | ❌ | SFT | GA | Text to text |
+For supported serverless deployments, Global Standard, Data Zone Standard, and Developer are available unless a legend states otherwise. Check [Standard deployment regions](#supported-standard-deployment-regions) and [Provisioned Throughput deployment regions](#supported-provisioned-throughput-deployment-regions) for those deployment types.
 
-<sup>*</sup> GPT-5 support for reinforcement fine-tuning is generally available, but access is gated and available by invitation only. Contact your Microsoft account team if you're interested in enrollment.
+| Model ID | Approach | Training types | Deployment options |
+| --- | --- | --- | --- |
+| `MAI-Code-1.1-Flash`<br>(preview) | Managed: ✅ (RFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `Muse-Glimmer-30B`<br>(preview) | Managed: ✅ (SFT, RFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ❌<br>Managed compute: ✅<br>Fireworks: ✅<sup>1</sup> |
+| `Llama-3.3-70B-Instruct` | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `Qwen3-32B` | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `Qwen3.6-35B-A3B`<br>(preview) | Managed: ✅ (SFT, RFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ❌<br>Managed compute: ✅<br>Fireworks: ✅<sup>1</sup> |
+| `Qwen3.8-27B`<br>(preview) | Managed: ✅ (SFT, RFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ❌<br>Managed compute: ✅<br>Fireworks: ✅<sup>1</sup> |
+| `gpt-oss-20b` | Managed: ✅ (SFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-oss-120b`<br>(preview) | Managed: ✅ (SFT, RFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ❌<br>Managed compute: ✅<br>Fireworks: ✅<sup>1</sup> |
+| `Ministral-3B`<br>(2411) | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-4o-mini`<br>(2024-07-18) | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<sup>5</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-4o`<br>(2024-08-06) | Managed: ✅ (SFT, DPO)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<sup>5</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-4.1`<br>(2025-04-14) | Managed: ✅ (SFT, DPO)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-4.1-mini`<br>(2025-04-14) | Managed: ✅ (SFT, DPO)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-4.1-nano`<br>(2025-04-14) | Managed: ✅ (SFT, DPO)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<br>Managed compute: ❌<br>Fireworks: ❌ |
+| `o4-mini`<br>(2025-04-16) | Managed: ✅ (RFT)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<br>Managed compute: ❌<br>Fireworks: ❌ |
+| `gpt-5`<br>(2025-08-07)<sup>3</sup> | Managed: ✅ (RFT)<br>Interactive: ❌ | Standard: ✅<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>4</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `MedImageInsight-Premium`<br>(preview) | Managed: ✅ (SFT)<br>Interactive: ❌ | Global | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
+| `CXRReportgen-Premium`<br>(preview) | Managed: ✅ (SFT)<br>Interactive: ❌ | Global | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
 
-For Azure OpenAI models, you can also fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+<a id="serverless-deployment-skus"></a>
 
-> [!NOTE]
-> Open-source models (Ministral-3B, Qwen-32B, Llama-3.3-70B-Instruct, gpt-oss-20b) are only supported on Foundry resources and in the new Foundry UI. 
+**Legend**
+
+- <sup>1</sup> Only Provisioned Throughput deployment type is supported.
+- <sup>2</sup> Only Global Standard deployment type is supported.
+- <sup>3</sup> GPT-5 reinforcement fine-tuning requires an invitation. Contact your Microsoft account team for enrollment.
+- <sup>4</sup> Only Standard deployment type is supported. See [Standard deployment regions](#supported-standard-deployment-regions).
+- <sup>5</sup> Developer deployment type is not supported.
