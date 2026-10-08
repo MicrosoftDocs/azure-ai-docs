@@ -1,21 +1,23 @@
 ---
 title: Call Center Voice Agent Accelerator 
 titleSuffix: Foundry Tools
-description: Learn how to use the Voice Live API with telephony systems.
+description: Connect call centers with Microsoft Foundry voice agents and native telephony, or use the Voice Live API accelerator for application-managed integration.
 manager: mcleans
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 10/08/2026
 ai-usage: ai-assisted
 ---
 
 # Use the Call Center Voice Agent Accelerator 
 
-The Call Center Voice Agent Accelerator is a solution template designed to help developers build real-time speech-to-speech voice agents that deliver personalized self-service experiences for call centers. It lets you develop conversational interactions that feel fast and natural, and it integrates seamlessly with telephony systems, making it ideal for modern contact centers looking to enhance customer interactions. 
+For call center solutions, use **Microsoft Foundry voice agents (preview)** with native telephony integration, especially for **Teams Phone extensibility (TPE)** and **Twilio**. Foundry manages the telephony integration for inbound and outbound calls, rather than requiring your application to implement it.
 
-You can find the solution template on GitHub: [Call Center Voice Agent Accelerator with Azure Voice Live API](https://github.com/Azure-Samples/call-center-voice-agent-accelerator). 
+For existing Voice Live telephony solutions, including accelerator-based applications, migrate to Foundry voice agents for native telephony integration. Start by [creating a voice-based prompt agent](../../foundry/agents/quickstarts/prompt-voice-agent.md). Then follow [Integrate telephony channels with a voice agent](../../foundry/agents/how-to/voice-agent-telephony-channels.md) to configure TPE or Twilio and connect your phone number.
+
+If you need application-managed telephony integration with the Voice Live API, use the [Call Center Voice Agent Accelerator](https://github.com/Azure-Samples/call-center-voice-agent-accelerator). This solution template helps you build real-time speech-to-speech agents for call center self-service scenarios. The following overview describes this accelerator approach, not the native Foundry telephony integration.
 
 ## Solution overview
 
