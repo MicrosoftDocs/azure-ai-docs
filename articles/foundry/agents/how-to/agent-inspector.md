@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 The Agent Inspector is a browser-based UI for poking at a Microsoft Foundry agent running on your local machine. It connects to the local agent's HTTP / SSE endpoint, shows requests and responses, and lets you replay messages while you iterate on prompts, tools, and code.
 
+This article covers launching Inspector with the Azure Developer CLI. For the VS Code extension's connection controls, debugger integration, and diagnostic exports, see [Agent Inspector in Microsoft Foundry Toolkit](../../how-to/develop/vs-code-agent-inspector.md). For stored OpenTelemetry spans rather than live response events, see [Tracing in Foundry Toolkit](../../how-to/develop/vs-code-tracing.md).
+
 ## Prerequisites
 
 - An initialized hosted agent project. To create one, see [Initialize an agent project](init-agent-project.md).

@@ -31,6 +31,10 @@ items:
     href: ../../how-to/develop/vs-code-agents-workflow-pro-code.md
   - name: Use and migrate declarative agent workflows
     href: ../../how-to/develop/vs-code-agents-workflow-low-code.md
+  - name: Debug agents with Agent Inspector
+    href: ../../how-to/develop/vs-code-agent-inspector.md
+  - name: Collect and inspect traces
+    href: ../../how-to/develop/vs-code-tracing.md
 - name: Coding agents
   items:
   - name: Build with AI and coding agents
@@ -45,7 +49,6 @@ items:
     href: ../../foundry-models/how-to/configure-claude-code.md
   - name: Configure Claude Desktop with Microsoft Foundry
     href: ../../foundry-models/how-to/configure-claude-desktop.md
-
 # SDKs and APIs
 - name: SDKs and APIs
   href: ../api-sdk/toc.yml
