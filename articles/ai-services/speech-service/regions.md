@@ -72,7 +72,7 @@ The regions in the following tables support most of the core features of Azure S
 | US | West US 3 | `westus3` |
 
 > [!NOTE]
-> The following regions supported by an `AIServices` resource are currently not supported for standalone speech processing: `southindia`, `spaincentral`. For Voice Live availability, see the [Voice Live tab](./regions.md?tabs=voice-live#regions).
+> The following regions supported by an `AIServices` resource aren't currently supported for standalone speech processing: `southindia`, `spaincentral`. For Voice Live availability, see the [Voice Live tab](./regions.md?tabs=voice-live#regions).
 
 # [Speech to text](#tab/stt)
 

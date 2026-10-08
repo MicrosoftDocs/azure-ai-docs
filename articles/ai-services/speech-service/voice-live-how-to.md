@@ -304,7 +304,7 @@ When using `gpt-realtime` or `gpt-realtime-mini`, you can use OpenAI transcripti
 
 You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
 
-Standard HD voices are available in all supported Voice Live resource regions, including regions without local HD voice support in standalone Azure Speech. Voice Live routes HD voice synthesis to a supported speech region. See [Speech feature availability and processing scope](./regions.md?tabs=voice-live#speech-feature-availability-and-processing-scope).
+Voice Live provides standard HD voices in all supported resource regions, including regions without local HD voice support in standalone Azure Speech. Voice Live routes HD voice synthesis to a supported speech region. See [Speech feature availability and processing scope](./regions.md?tabs=voice-live#speech-feature-availability-and-processing-scope).
 
 The `voice` object has the following properties:
 
