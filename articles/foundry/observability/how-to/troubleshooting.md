@@ -82,63 +82,6 @@ az role assignment create \
 > [!NOTE]
 > Role assignments can take up to 10 minutes to propagate. Wait a few minutes after assigning the role before retrying the evaluation.
 
-## Storage account network access restrictions
-
-When you use Microsoft Entra ID authentication, the storage account must have public network access enabled. If network access is restricted, the Foundry evaluation service might not be able to reach the storage account.
-
-**Symptoms:**
-
-- Evaluations fail with network-related errors or timeouts.
-- You see `403 Forbidden` errors even though RBAC roles are correctly assigned.
-- Connections to the storage account are refused.
-
-### Verify the storage account network configuration
-
-Use the following Azure CLI command to check the network access settings of your storage account:
-
-```azurecli
-az storage account show \
-  --resource-group <resource-group> \
-  --name <storage-account-name> \
-  --query "{publicNetworkAccess: publicNetworkAccess, defaultAction: networkRuleSet.defaultAction, virtualNetworkRules: networkRuleSet.virtualNetworkRules, ipRules: networkRuleSet.ipRules}" \
-  --output json
-```
-
-Check the output for the following values:
-
-| Property | Expected value | Description |
-|---|---|---|
-| `publicNetworkAccess` | `Enabled` | Public network access must be enabled. |
-| `defaultAction` | `Allow` | The default network rule should allow access. |
-
-If `publicNetworkAccess` is set to `Disabled` or `defaultAction` is set to `Deny`, the evaluation service can't reach the storage account. 
-
-> [!NOTE]
-> For virtual network based (network-isolated) agent setups where resources are expected to operate with public network access disabled and rely on private endpoints connectivity virtual network instead, see [Set up private networking](../../agents/how-to/virtual-networks.md).
-
-### Enable public network access
-
-Enable public network access on the storage account:
-
-```azurecli
-az storage account update \
-  --resource-group <resource-group> \
-  --name <storage-account-name> \
-  --public-network-access Enabled
-```
-
-If you need to keep the firewall enabled but allow access, set the default action to **Allow**:
-
-```azurecli
-az storage account update \
-  --resource-group <resource-group> \
-  --name <storage-account-name> \
-  --default-action Allow
-```
-
-> [!IMPORTANT]
-> Enabling public network access or setting the default action to **Allow** makes the storage account accessible from all networks. Evaluate this change against your organization's security requirements.
-
 ## Troubleshooting checklist
 
 Use this checklist to quickly verify your evaluation setup:
@@ -155,16 +98,6 @@ Use this checklist to quickly verify your evaluation setup:
      --assignee <principal-id> \
      --query "[].{Role:roleDefinitionName, Principal:principalId}" \
      --output table
-   ```
-
-1. **Network access**: Verify that the storage account has public network access enabled.
-
-   ```azurecli
-   az storage account show \
-     --resource-group <resource-group> \
-     --name <storage-account-name> \
-     --query "publicNetworkAccess" \
-     --output tsv
    ```
 
 1. **Propagation delay**: If you recently made RBAC or network changes, wait at least 10 minutes before retrying.

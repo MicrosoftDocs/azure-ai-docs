@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/21/2026
+ms.date: 10/08/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -832,6 +832,7 @@ Add the dependency to your `pom.xml`:
 Keep these constraints in mind when using the Azure AI Search tool:
 
 - A Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+- If your Foundry agent runs without virtual network injection, the Azure AI Search tool can fail to connect to a search service with a private endpoint. Enabling public network access on the search service doesn't guarantee connectivity in this configuration.
 - **Private virtual network access**: If you use a private virtual network with the Azure AI Search tool, you must use Microsoft Entra project managed identity (keyless authentication) in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking. If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity instead of an API key.
 - The Azure AI Search tool can only target one index.
 - Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.

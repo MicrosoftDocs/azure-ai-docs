@@ -86,6 +86,11 @@ hosted-agent samples, and Copilot-assisted coding.
 | Configure a model, instructions, and tools without a hosted-agent code project. | [Create a prompt agent](create-prompt-agent-visual-studio-code.md). |
 | Develop, inspect, and deploy code-based orchestration with Microsoft Agent Framework. | [Create hosted agents](vs-code-agents-workflow-pro-code.md). |
 | Maintain an existing declarative workflow and prepare its migration. | [Use and migrate declarative agent workflows](vs-code-agents-workflow-low-code.md). |
+| Send local requests, inspect tool calls, and debug agent code. | [Debug agents with Agent Inspector](vs-code-agent-inspector.md). |
+| Collect local OpenTelemetry spans or view hosted-agent telemetry in Application Insights. | [Collect and inspect traces](vs-code-tracing.md). |
+
+Live Inspector events and stored traces are separate data sources. Use Inspector
+for interactive local debugging and tracing for recorded telemetry.
 
 Agent Builder also supports locally stored prompts. Their tools, structured
 output, and dataset evaluation options differ from those of Foundry prompt

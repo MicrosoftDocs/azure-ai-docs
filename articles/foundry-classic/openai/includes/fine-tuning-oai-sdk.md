@@ -22,8 +22,6 @@ ai-usage: ai-assisted
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
 - Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them.
-
-  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models

@@ -23,8 +23,6 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 > [!IMPORTANT]
 > To deploy models, you need to be assigned the `Foundry Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
 
-[!INCLUDE [role-rename-note](../../includes/role-rename-note.md)]
-
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
@@ -388,9 +386,9 @@ Data Zone Standard fine-tuned deployments are available in the following data zo
 
 ### Global Standard
 
-[Global standard](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
+[Global Standard](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). Custom model weights might temporarily be stored outside the geography of your Azure OpenAI resource.
 
-All Foundry regions offer global standard deployments for the following models:
+All Foundry regions offer Global Standard deployments for the following models:
 
 * o4-mini
 * GPT-4.1
@@ -403,7 +401,7 @@ All Foundry regions offer global standard deployments for the following models:
 * Llama-3.3-70B-Instruct
 * gpt-oss-20b
 
-:::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
+:::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the Global Standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
 
 ### Developer Tier
 
@@ -426,7 +424,10 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 | GPT-4o       | ✅               | ✅             |
 | GPT-4o-mini  | ✅               | ✅             |
 
-[Provisioned throughput](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+[Provisioned Throughput](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+
+> [!NOTE]
+> For deployment options in the new Foundry portal, see [Deploy fine-tuned models](../../fine-tuning/deploy-fine-tuned-models.md). For open-weight models, see [managed compute (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-managed-compute-preview) or [Fireworks on Foundry (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-fireworks-on-foundry-preview). For model compatibility, see the [fine-tuning overview](../../fine-tuning/overview.md#deployment-types).
 
 ## Clean up your deployment
 

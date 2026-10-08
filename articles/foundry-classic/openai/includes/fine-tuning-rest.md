@@ -20,8 +20,6 @@ ai-usage: ai-assisted
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - Fine-tuning requires the **Foundry Owner** role. While Foundry Users may train (fine-tune) models, only AI Owners may deploy them.
-
-  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models

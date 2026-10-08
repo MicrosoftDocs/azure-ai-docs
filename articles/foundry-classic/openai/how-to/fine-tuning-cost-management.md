@@ -9,6 +9,7 @@ ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 show_latex: true
+ai-usage: ai-assisted
 ms.custom:
   - ignite2025
   - classic-and-new
@@ -17,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Cost management for fine-tuning (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/fine-tuning-cost-management.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/fine-tuning/cost-management.md)
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 

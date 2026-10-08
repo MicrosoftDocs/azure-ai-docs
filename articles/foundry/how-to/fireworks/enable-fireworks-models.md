@@ -26,6 +26,8 @@ All of these capabilities are available directly within your Foundry project, wi
 
 ## Prerequisites
 
+<!-- TODO(PM): Reconcile Foundry Owner here, Azure AI Developer in troubleshooting, and Cognitive Services Contributor in the import guide; retain existing role claims until approved. -->
+
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the feature.
@@ -248,7 +250,7 @@ No, you need to create new deployments in Foundry. If you'd like to shift consum
 
 ### Can I deploy LoRA or adapter-based models?
 
-LoRA support is in public preview. See [import custom Fireworks modesl](./import-custom-models.md) for details.
+LoRA support is in public preview. See [import custom Fireworks models](./import-custom-models.md) for details. For compatible adapters trained in Foundry, see [Deploy fine-tuned models with Fireworks on Foundry (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-fireworks-on-foundry-preview); use the import guide for adapters trained elsewhere.
 
 ### How do I import and deploy a custom model?
 
@@ -282,6 +284,8 @@ For other queries, see the [frequently asked questions](#frequently-asked-questi
 
 ## Related content
 
+* [Fine-tuning overview](../../fine-tuning/overview.md)
+* [Deploy fine-tuned models with Fireworks on Foundry (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-fireworks-on-foundry-preview)
 * [Import custom models into Foundry](import-custom-models.md)
 * [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md)
 * [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)

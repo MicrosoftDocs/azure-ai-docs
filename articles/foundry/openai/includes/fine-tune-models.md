@@ -1,48 +1,33 @@
 ---
-title: Fine-Tuning Model Guidance
-titleSuffix: Azure OpenAI
+title: Fine-tuning model guidance
+titleSuffix: Microsoft Foundry
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
 author: alvinashcraft
 ms.author: aashcraft
 manager: mcleans
-ms.date: 02/06/2025
+ms.date: 10/06/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
   - references_regions
 ---
 
 
+For training and deployment type definitions and shared limits, see [Training types](../../fine-tuning/overview.md#training-types) and [Deployment options](../../fine-tuning/overview.md#deployment-options).
+
 [!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
-> [!NOTE]
-> Global training provides [more affordable](https://aka.ms/aoai-pricing) training per token, but doesn't offer [data residency](https://aka.ms/data-residency). It's currently available to Foundry resources in the following regions:
->
->- Australia East
->- Brazil South
->- Canada Central
->- Canada East
->- East US
->- East US2
->- France Central
->- Germany West Central
->- Italy North
->- Japan East _(no vision support)_
->- Korea Central
->- North Central US
->- Norway East
->- Poland Central _(no 4.1-nano support)_
->- Southeast Asia
->- South Africa North
->- South Central US
->- South India
->- Spain Central
->- Sweden Central
->- Switzerland West
->- Switzerland North
->- UK South
->- West Europe
->- West US
->- West US3
+### Supported regions
+
+[!INCLUDE [Fine-tuning region support](fine-tune-global-training-regions.md)]
+
+### Supported Standard deployment regions
+
+[!INCLUDE [Standard deployment region support](../../includes/fine-tune-standard-deployment-regions.md)]
+
+### Supported Provisioned Throughput deployment regions
+
+[!INCLUDE [Provisioned Throughput deployment region support](../../includes/fine-tune-provisioned-throughput-deployment-regions.md)]

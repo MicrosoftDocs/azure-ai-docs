@@ -13,11 +13,12 @@ ms.custom:
   - ignite2025
   - classic-and-new
 ROBOTS: NOINDEX, NOFOLLOW
+ai-usage: ai-assisted
 ---
 
 # Microsoft Foundry fine-tuning considerations (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/fine-tuning-considerations.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/fine-tuning/overview.md)
 
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 

@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-speech-foundry-tools
 ms.topic: overview
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
@@ -69,7 +69,9 @@ To power the intelligence of your voice agent, you have flexibility and choice i
 
 All natively supported models are fully managed, so you don't need to deploy models, worry about capacity planning, or provision throughput. Use the model you need, and the Voice Live API takes care of the rest.
 
-The following table lists supported Voice Live models and their pricing tiers. For availability by Voice Live resource region and data processing (inference) scope, see [Voice Live region support](./regions.md?tabs=voice-live#regions).
+The following table lists supported Voice Live models and their pricing tiers. For LLM availability by Voice Live resource region and data processing (inference) scope, see [Voice Live region support](./regions.md?tabs=voice-live#regions).
+
+Speech features have separate availability and processing scopes. Standard HD voices and `mai-transcribe-2` are available in all supported Voice Live resource regions; `mai-transcribe-2-streaming` is available in a subset. See [Speech feature availability and processing scope](./regions.md?tabs=voice-live#speech-feature-availability-and-processing-scope).
 
 | Model | Pricing tier | Description |
 | ------------------------------ | ----------- | ----------- |

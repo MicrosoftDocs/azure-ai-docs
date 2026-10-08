@@ -707,6 +707,8 @@ pip install -r requirements.txt
 
 Press **F5** to start the local HTTP server with debugging enabled. The Foundry Toolkit Agent Inspector opens for interactive testing, and you can set breakpoints in your code.
 
+For connection settings, tool-call details, and diagnostic exports, see [Debug agents with Agent Inspector](../../how-to/develop/vs-code-agent-inspector.md). To collect stored spans separately from live Inspector events, [configure local tracing](../../how-to/develop/vs-code-tracing.md#set-up-instrumentation).
+
 To run the server without debugging:
 
 ```bash
@@ -736,6 +738,8 @@ When deployment finishes, the agent appears under **Hosted Agents** in the Found
 
 1. In the Foundry Toolkit explorer, expand **Hosted Agents** and select your agent. The detail page shows the status under **Deployment Details**.
 1. Select the **Playground** tab and send a test prompt such as `Write a haiku about deploying cloud applications.`.
+
+To investigate the deployed request, [view hosted-agent traces](../../how-to/develop/vs-code-tracing.md#view-hosted-agent-traces). Cloud traces use the project's connected Application Insights resource, not your local trace database.
 
 :::zone-end
 

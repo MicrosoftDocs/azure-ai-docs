@@ -21,7 +21,7 @@ ms.custom: doc-kit-assisted
 
 Use Microsoft Foundry Toolkit for Visual Studio Code to create a code-based
 workflow from a Microsoft Agent Framework sample. Run it locally with
-Agent Inspector, then deploy its source code to Foundry Agent Service as a
+[Agent Inspector](vs-code-agent-inspector.md), then deploy its source code to Foundry Agent Service as a
 hosted agent. You maintain the code and its dependencies. Foundry manages the
 hosting infrastructure and scaling.
 
@@ -232,6 +232,11 @@ or [credential chains for .NET](/dotnet/azure/sdk/authentication/credential-chai
 
 Use the generated debug configuration to start the HTTP server and open
 **Agent Inspector**. Opening Agent Inspector alone doesn't start the server.
+
+For connection settings, tool approvals, workflow diagnostics, and event
+exports, see [Debug agents with Agent Inspector](vs-code-agent-inspector.md#connect-and-debug).
+Live Inspector events don't require an OTLP collector. To save OpenTelemetry
+spans for later analysis, configure [local tracing](vs-code-tracing.md#set-up-instrumentation).
 
 ::: zone pivot="python"
 
@@ -458,6 +463,10 @@ follow [Migrate from the hosted-agent preview](../../agents/how-to/migrate-hoste
 
 A successful create request doesn't prove that the runtime is ready or that
 its model and tools are reachable. Test the exact deployed version.
+
+To investigate a deployed request, [view hosted-agent traces](vs-code-tracing.md#view-hosted-agent-traces).
+Cloud traces use the project's connected Application Insights resource, not
+your local trace database.
 
 1. Under **My Resources** > **Agents** > **Hosted Agent**, select the agent name.
 1. Select the numbered version you just deployed.

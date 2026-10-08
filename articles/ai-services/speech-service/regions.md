@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -27,7 +27,7 @@ When configuring Azure Speech in your application:
 - Keys are region-scoped — using a key with a different region returns authentication errors.
 
 > [!NOTE]
-> Azure Speech stores and processes speech data in the region where you create your resource. For Voice Live, this region doesn't determine the model inference location. Model inference follows the selected global, data zone, or regional deployment. See [Voice Live region support](./regions.md?tabs=voice-live#regions).
+> Azure Speech stores and processes speech data in the region where you create your resource. Voice Live is an exception: speech recognition, HD voice synthesis, and LLM inference have separate processing scopes. Processing can occur outside your resource region. See [Voice Live region support](./regions.md?tabs=voice-live#regions).
 
 ## Regions
 
@@ -72,7 +72,7 @@ The regions in the following tables support most of the core features of Azure S
 | US | West US 3 | `westus3` |
 
 > [!NOTE]
-> The following regions supported by an `AIServices` resource are currently not supported for speech processing: `southindia`, `spaincentral`.
+> The following regions supported by an `AIServices` resource aren't currently supported for standalone speech processing: `southindia`, `spaincentral`. For Voice Live availability, see the [Voice Live tab](./regions.md?tabs=voice-live#regions).
 
 # [Speech to text](#tab/stt)
 
@@ -223,7 +223,55 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Voice Live](#tab/voice-live)
 
-The following table lists model availability by Voice Live resource region. Each model cell shows the data processing (inference) scope: Global, Data zone, or Regional. A dash (`-`) means the model isn't available in that resource region.
+Voice Live speech features and large language models (LLMs) have separate regional availability and data processing (inference) scopes. Check both tables when you choose a resource region.
+
+### Speech feature availability and processing scope
+
+Azure Speech standard high-definition (HD) voices are available in all Voice Live resource regions listed in the following table. Voice Live routes synthesis to an HD-capable region when HD voices aren't available locally. The **Text to speech** tab describes standalone Speech availability, not HD voice availability through Voice Live.
+
+`mai-transcribe-2` is also available in all listed regions. `mai-transcribe-2-streaming` is available only in the indicated regions. The `mai-transcribe` alias uses the same availability and processing scope as `mai-transcribe-2`.
+
+Each cell shows the feature's processing scope: Global, Data zone, or Regional. A dash (`-`) means the feature isn't available through Voice Live in that resource region. These scopes apply to speech input or output, independently of the LLM scope.
+
+| Voice Live resource region | HD voices | `mai-transcribe-2` (preview) | `mai-transcribe-2-streaming` (preview) |
+| ----- | ----- | ----- | ----- |
+| `australiaeast` | Global | Global | - |
+| `brazilsouth` | Global | Global | - |
+| `canadacentral` | Regional | Global | - |
+| `canadaeast` | Regional | Global | - |
+| `centralindia` | Regional | Global | - |
+| `centralus` | Data zone | Data zone | Data zone |
+| `eastus` | Data zone | Data zone | Data zone |
+| `eastus2` | Data zone | Data zone | Data zone |
+| `francecentral` | Regional | Data zone | - |
+| `germanywestcentral` | Data zone | Data zone | - |
+| `italynorth` | Data zone | Data zone | - |
+| `japaneast` | Global | Global | - |
+| `japanwest` | Global | Global | - |
+| `koreacentral` | Global | Global | - |
+| `northcentralus` | Data zone | Data zone | Data zone |
+| `northeurope` | Data zone | Data zone | - |
+| `norwayeast` | Data zone | Data zone | - |
+| `southafricanorth` | Global | Global | - |
+| `southcentralus` | Data zone | Data zone | Data zone |
+| `southeastasia` | Regional | Global | - |
+| `southindia` | Regional | Global | Global |
+| `swedencentral` | Regional | Data zone | Global |
+| `switzerlandnorth` | Data zone | Data zone | - |
+| `uaenorth` | Global | Global | - |
+| `uksouth` | Global | Global | - |
+| `ukwest` | Global | Global | - |
+| `westcentralus` | Data zone | Data zone | Data zone |
+| `westeurope` | Regional | Data zone | - |
+| `westus` | Data zone | Data zone | Data zone |
+| `westus2` | Data zone | Data zone | Data zone |
+| `westus3` | Data zone | Data zone | Data zone |
+
+For configuration details, see [Audio input transcription](./voice-live-how-to.md#audio-input-transcription) and [Audio output through Azure text to speech](./voice-live-how-to.md#audio-output-through-azure-text-to-speech).
+
+### LLM availability and processing scope
+
+The following table lists predeployed LLM availability by Voice Live resource region. Each model cell shows the LLM's data processing (inference) scope: Global, Data zone, or Regional. A dash (`-`) means the model isn't available in that resource region. This table doesn't describe speech recognition or HD voice synthesis availability.
 
 | Voice Live resource region | azure-realtime | gpt-realtime-2.1 | gpt-realtime-2.1-datazone | gpt-realtime-2.1-regional | gpt-realtime-2.1-mini | gpt-realtime-1.5 | gpt-realtime-1.5-datazone | gpt-realtime | gpt-realtime-datazone | gpt-realtime-regional | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-4.1-nano | gpt-5.6-terra | gpt-5.6-luna | gpt-5.4 | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | phi4-mm-realtime (preview) |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |

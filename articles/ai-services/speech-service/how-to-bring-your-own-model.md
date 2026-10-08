@@ -3,7 +3,7 @@ title: Bring Your Own Model (BYOM) with Voice Live API
 description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 10/06/2026
+ms.date: 10/08/2026
 ms.topic: how-to
 ms.service: azure-speech-foundry-tools
 ms.custom: ai-speech, voice-live, byom
@@ -32,7 +32,11 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` or `byom-foundry-anthropic-messages` mode, you need to configure proper permissions for your Foundry resource. Since tokens expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for these BYOM modes.
+For Microsoft Entra ID authentication, configure the Foundry resource's system-assigned managed identity to access your model deployments. This setup is required for the following BYOM modes so Voice Live can continue accessing the model after your token expires:
+
+- `byom-foundry-openai-responses`
+- `byom-azure-openai-chat-completion`
+- `byom-foundry-anthropic-messages`
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
@@ -90,13 +94,18 @@ az role assignment create \
 
 ## Choose BYOM integration mode
 
-The Voice Live API supports three BYOM integration modes:
+The Voice Live API supports four BYOM integration modes:
 
-| Mode                                | Description                                                                                           | Example Models                          |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                        | `gpt-realtime`, `gpt-realtime-mini`     |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `grok-4`                     |
-| `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
+| Mode | Description | Example models |
+| --- | --- | --- |
+| `byom-azure-openai-realtime` | Azure OpenAI realtime models for streaming voice interactions | `gpt-realtime`, `gpt-realtime-mini` |
+| `byom-foundry-openai-responses` | Azure OpenAI text models deployed in Foundry, using the Responses API | `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano` |
+| `byom-azure-openai-chat-completion` | Models that use the Chat Completions API, including other Foundry models | `gpt-4.1`, `grok-4` |
+| `byom-foundry-anthropic-messages` | Anthropic Claude models deployed in Foundry, using the Messages API (preview) | `claude-sonnet-4.6`, `claude-haiku-4.5` |
+
+For Azure OpenAI text models that support the [Responses API](../../foundry/openai/how-to/responses.md), use `byom-foundry-openai-responses`, especially with GPT-5.4 and later. Voice Live uses Responses for model requests while continuing to handle speech recognition and speech synthesis.
+
+Use the Responses profile for [reasoning with function tools](../../foundry/openai/how-to/reasoning.md#tool-calling-with-reasoning-models). For GPT-5.6 models, Chat Completions only supports function tools when `reasoning_effort` is `none`. Keep `byom-azure-openai-chat-completion` for models that don't support Responses or existing compatible integrations that don't need reasoning with tools.
 
 > [!NOTE]
 > The `byom-foundry-anthropic-messages` mode is currently in preview. Preview features are subject to change and might have limited availability.
@@ -112,6 +121,12 @@ wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-vers
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
+
+For an Azure OpenAI model that supports Responses, such as GPT-5.4, use the recommended Responses profile:
+
+```curl
+wss://<your-foundry-resource>.services.ai.azure.com/voice-live/realtime?api-version=2026-04-10&profile=byom-foundry-openai-responses&model=<your-model-deployment>
+```
 
 For example, to use an Anthropic Claude model deployed in Azure Foundry:
 
@@ -140,8 +155,15 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         "--byom",
         help="BYOM (Bring Your Own Model) profile type",
         type=str,
-        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"],
-        default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
+        choices=[
+            "byom-azure-openai-realtime",
+            "byom-foundry-openai-responses",
+            "byom-azure-openai-chat-completion",
+            "byom-foundry-anthropic-messages",
+        ],
+        default=os.environ.get(
+            "VOICELIVE_BYOM_MODE", "byom-foundry-openai-responses"
+        ),
     )
    parser.add_argument(
         "--foundry-resource-override",
@@ -176,7 +198,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         model: str,
         voice: str,
         instructions: str,
-        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"] | None = None,
+        byom: Literal[
+            "byom-azure-openai-realtime",
+            "byom-foundry-openai-responses",
+            "byom-azure-openai-chat-completion",
+            "byom-foundry-anthropic-messages",
+        ] | None = None,
         foundry_resource_override: str | None = None
     ):
 
@@ -210,10 +237,10 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
             ) as connection:
             ...
     ```
-1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For an Azure OpenAI model that supports Responses:
 
     ```shell
-    python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    python voice-live-quickstart.py --byom "byom-foundry-openai-responses" --model "your-model-deployment"
     ```
 
     To use an Anthropic Claude model:
@@ -225,7 +252,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
 
     ```shell
-    python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name" --foundry-resource-override "my-foundry-resource"
+    python voice-live-quickstart.py --byom "byom-foundry-openai-responses" --model "your-model-deployment" --foundry-resource-override "my-foundry-resource"
     ```
 
 #### [C# SDK](#tab/csharp)
@@ -264,8 +291,11 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
 
         var byomOption = new Option<string>(
             "--byom",
-            () => "byom-azure-openai-chat-completion",
-            "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion, byom-foundry-anthropic-messages");
+            () => "byom-foundry-openai-responses",
+            "BYOM integration mode. Supported modes: "
+                + "byom-azure-openai-realtime, byom-foundry-openai-responses, "
+                + "byom-azure-openai-chat-completion, "
+                + "byom-foundry-anthropic-messages");
 
         var foundryResourceOverrideOption = new Option<string?>(
             "--foundry-resource-override",
@@ -456,10 +486,10 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
     ...
     ```
 
-1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For an Azure OpenAI model that supports Responses:
 
     ```shell
-    dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    dotnet run --byom "byom-foundry-openai-responses" --model "your-model-deployment"
     ```
 
     To use an Anthropic Claude model:
@@ -471,7 +501,8 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
 
     ```shell
-    dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name" --foundry-resource-override "my-foundry-resource"
+    dotnet run --byom "byom-foundry-openai-responses" --model "your-model-deployment" --foundry-resource-override "my-foundry-resource"
+    ```
 
 #### [Java SDK](#tab/java)
 
@@ -627,10 +658,10 @@ Use the [Java SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ckey
     }
     ```
 
-1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For an Azure OpenAI model that supports Responses:
 
     ```shell
-    mvn exec:java -Dexec.args="--byom byom-azure-openai-chat-completion --model your-model-name"
+    mvn exec:java -Dexec.args="--byom byom-foundry-openai-responses --model your-model-deployment"
     ```
 
 
@@ -703,10 +734,10 @@ Use the [JavaScript SDK quickstart code](./voice-live-quickstart.md?tabs=windows
       ...
     ```
 
-1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For an Azure OpenAI model that supports Responses:
 
     ```shell
-    node model-quickstart.js --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    node model-quickstart.js --byom "byom-foundry-openai-responses" --model "your-model-deployment"
     ```
 
 ---

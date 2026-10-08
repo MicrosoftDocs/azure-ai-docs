@@ -1,3 +1,7 @@
+---
+ai-usage: ai-assisted
+---
+
 # Copilot Instructions
 
 This file provides central guidance for GitHub Copilot in this repository.
@@ -24,6 +28,12 @@ ai-usage: ai-assisted
 - ALWAYS check specification documents and official references before making suggestions.
 - When a recommendation is based on another instruction file or linked source, cite it inline (for example: "(Source: edit_instructions.md)").
 - If the required information is missing or unclear, insert a placeholder with `[TO VERIFY]`—do not guess.
+
+### Fine-tuning pricing
+
+- Always link fine-tuning pricing information to <https://aka.ms/oai/pricing>.
+- Don't list numerical prices, rates, discount percentages, or monetary totals in fine-tuning documentation, including hypothetical examples.
+- Explain billing models and use sample usage quantities with symbolic rates for cost breakdowns. Direct readers to the pricing page to supply current rates.
 
 ### Internal Reference Protection
 
@@ -105,6 +115,8 @@ Instructions for the pattern are contained in comments in the referenced file.
 
 
 ## Referencing sources
+
+Don't link readers to OpenAI or other competitors' documentation or reference repositories. Use repo-local articles, Microsoft Learn, or Microsoft-owned documentation and sample repositories for product guidance.
 
 When basing content on:
 - Internal instruction files: cite the filename inline.

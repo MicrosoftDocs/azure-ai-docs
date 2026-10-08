@@ -121,9 +121,9 @@ the console, see [Configure client-side tracing](trace-agent-client-side.md).
 
 The Microsoft Foundry Toolkit for Visual Studio Code extension lets you trace locally in VS Code by using a local OTLP-compatible collector. This approach is ideal for development and debugging.
 
-The toolkit supports AI frameworks such as Foundry Agent Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
+The toolkit receives spans from supported SDK and framework instrumentation, including Foundry Projects, OpenAI, Anthropic, and LangChain. Local collection doesn't require Application Insights, but model and tool calls can still use cloud services and incur charges.
 
-For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+For collector setup, SDK-specific examples, and hosted-agent trace queries, see [Tracing in Foundry Toolkit](../../how-to/develop/vs-code-tracing.md). For live local requests, tool events, and breakpoints instead of stored spans, use [Agent Inspector](../../how-to/develop/vs-code-agent-inspector.md).
 
 ## View and analyze traces
 

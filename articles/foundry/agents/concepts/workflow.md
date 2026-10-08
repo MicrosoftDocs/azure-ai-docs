@@ -352,7 +352,7 @@ Your workflow's YAML definition is the portable artifact you carry to any of the
 1. Switch to the **YAML** view to see the full configuration.
 1. Copy or export the YAML file so you can reuse it in your new environment.
 
-The Agent Inspector in the Foundry AI Toolkit for Visual Studio Code lets you visualize and run Foundry workflow definitions, which is helpful while you validate a migration.
+Agent Inspector in Microsoft Foundry Toolkit for Visual Studio Code helps you test a local workflow while you validate a migration. Supported Agent Framework development servers provide the diagnostics needed for workflow visualization and source navigation. For setup and limitations, see [Inspect workflows and source code](../../how-to/develop/vs-code-agent-inspector.md#inspect-workflows-and-source-code). To compare recorded spans across runs, configure [local tracing](../../how-to/develop/vs-code-tracing.md#set-up-instrumentation).
 
 ### Option 1: Microsoft Agent Framework (recommended)
 

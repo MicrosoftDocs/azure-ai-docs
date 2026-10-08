@@ -1,6 +1,6 @@
 ---
-title: "Generate synthetic data with Microsoft Foundry (Preview)"
-description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview)."
+title: "Generate synthetic data with Microsoft Foundry (preview)"
+description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (preview)."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
@@ -13,7 +13,7 @@ ms.reviewer: williamliang
 ai-usage: ai-assisted
 ---
 
-# Generate synthetic data for fine-tuning in Microsoft Foundry (Preview)
+# Generate synthetic data for fine-tuning in Microsoft Foundry (preview)
 Learn to generate synthetic data in Microsoft Foundry for fine-tuning. Synthetic data helps you:
 
 - Create large, diverse datasets when real data is scarce
@@ -40,8 +40,6 @@ This article covers:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Foundry project. For more information, see [create a project with Foundry](../how-to/create-projects.md)
 - A minimum role assignment of `Foundry User` or optionally `Foundry Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../concepts/rbac-foundry.md)
-
-  [!INCLUDE [role-rename-note](../includes/role-rename-note.md)]
 
 - Use a [supported region for synthetic data generation](../concepts/evaluation-regions-limits-virtual-network.md#supported-regions-for-data-generation).
 
@@ -198,3 +196,7 @@ In some cases, combining synthetic data with real-world data can lead to better 
 ### Monitor and audit model performance
 After fine-tuning your model with synthetic data, it's important to monitor and audit its performance on real-world tasks. Evaluate the model using relevant benchmarks and metrics to ensure that it meets your performance requirements. Regularly assess the model's behavior to identify any potential issues or biases that may arise from training on synthetic data.
 
+## Related content
+
+- [Fine-tuning overview](overview.md).
+- [Customize a model with supervised fine-tuning](../openai/how-to/fine-tuning.md).

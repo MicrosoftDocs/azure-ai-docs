@@ -1,0 +1,59 @@
+# Fine-tuning in Microsoft Foundry
+items:
+- name: Overview
+  href: ../../fine-tuning/overview.md
+  displayName: fine-tuning, finetuning, interactive training, LoRA, SFT, DPO, RFT, reinforcement learning, customize model
+- name: Managed fine-tuning
+  items:
+  - name: Supervised fine-tuning
+    href: ../../openai/how-to/fine-tuning.md
+    displayName: SFT, finetuning, fine-tuning, portal, SDK, REST, Azure Developer CLI
+  - name: Preference fine-tuning
+    href: ../../openai/how-to/fine-tuning-direct-preference-optimization.md
+    displayName: DPO, direct preference optimization, fine-tuning
+  - name: Reinforcement fine-tuning
+    href: ../../openai/how-to/reinforcement-fine-tuning.md
+    displayName: RFT, graders, finetuning, fine-tuning
+  - name: Healthcare models
+    items:
+    - name: Fine-tune a healthcare AI premium model
+      displayName: Customize a premium healthcare AI model by fine-tuning it in Foundry
+      href: ../../how-to/healthcare-ai/fine-tune-premium-healthcare-models.md
+    - name: Fine-tune MedImageInsight premium model
+      displayName: Fine-tune MedImageInsight premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/fine-tune-medimageinsight-premium.md
+    - name: Fine-tune CXRReportGen premium model
+      displayName: Fine-tune CXRReportGen premium healthcare AI model in Foundry
+      href: ../../how-to/healthcare-ai/fine-tune-cxrreportgen-premium.md
+  - name: Vision fine-tuning
+    href: ../../openai/how-to/fine-tuning-vision.md
+    displayName: finetuning, fine-tuning
+  - name: Tool calling
+    href: ../../openai/how-to/fine-tuning-functions.md
+    displayName: finetuning, fine-tuning, function calling
+  - name: Synthetic data generation
+    href: ../../fine-tuning/data-generation.md
+    displayName: generate synthetic training data, finetuning, fine-tuning
+- name: Interactive training
+  items:
+  - name: Overview
+    href: ../../fine-tuning/interactive-post-training/overview.md
+    displayName: interactive training, code-first training, training loop, training session, LoRA, RL, GRPO
+  - name: Get started
+    href: ../../fine-tuning/interactive-post-training/quickstart.md
+  - name: SDK cheatsheet
+    href: ../../fine-tuning/interactive-post-training/sdk-cheatsheet.md
+    displayName: Python SDK, forward_backward, optim_step, sampling, checkpoints
+  - name: Key concepts
+    href: ../../fine-tuning/interactive-post-training/concepts.md
+  - name: Troubleshoot
+    href: ../../fine-tuning/interactive-post-training/troubleshoot.md
+- name: Deploy fine-tuned models
+  href: ../../fine-tuning/deploy-fine-tuned-models.md
+  displayName: deploy fine-tuned model, LoRA adapter deployment, multi-LoRA, Fireworks
+- name: Cost management
+  href: ../../fine-tuning/cost-management.md
+  displayName: pricing, billing, training tokens, prefill, cached prefill, sampling, hosting, GPU hours, PTU
+- name: Safety evaluation
+  href: ../../openai/how-to/fine-tuning-safety-evaluation.md
+  displayName: finetuning, fine-tuning

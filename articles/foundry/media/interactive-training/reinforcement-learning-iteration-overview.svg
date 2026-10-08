@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="340"
+     viewBox="0 0 960 340" role="img"
+     aria-labelledby="iteration-title iteration-description">
+  <title id="iteration-title">One grouped-rollout reinforcement learning iteration</title>
+  <desc id="iteration-description">Your driver requests a sampler refresh and
+    collects model rollouts from Foundry. It computes rewards, advantages, and
+    assistant-token masks, then requests gradient computation and an optimizer
+    update in Foundry. Before collecting the next rollouts, refresh sampler weights
+    to use the updated adapter.</desc>
+  <defs>
+    <marker id="iteration-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#605e5c"/>
+    </marker>
+    <style>
+      text {
+        font-family: "Segoe UI", Arial, sans-serif;
+        text-anchor: middle;
+        fill: #242424;
+      }
+      .heading { font-size: 22px; font-weight: 600; }
+      .label { font-size: 20px; }
+      .detail { font-size: 18px; fill: #605e5c; }
+      .service { fill: #eef6fc; stroke: #0067b8; stroke-width: 1.5; }
+      .driver { fill: #ffffff; stroke: #c8c6c4; stroke-width: 1.5; }
+      .arrow {
+        fill: none;
+        stroke: #605e5c;
+        stroke-width: 2;
+        marker-end: url(#iteration-arrow);
+      }
+    </style>
+  </defs>
+  <rect x="0.75" y="0.75" width="958.5" height="338.5"
+        fill="#f5f5f5" stroke="#d2d0ce" stroke-width="1.5"/>
+  <text class="heading" x="480" y="40">One grouped-rollout RL iteration</text>
+  <rect class="service" x="24" y="72" width="260" height="154"/>
+  <rect class="driver" x="350" y="72" width="260" height="154"/>
+  <rect class="service" x="676" y="72" width="260" height="154"/>
+  <text class="heading" x="154" y="107">Sample the policy</text>
+  <text class="label" x="154" y="143">Refresh sampler weights</text>
+  <text class="label" x="154" y="175">Collect rollouts + logprobs</text>
+  <text class="detail" x="154" y="209">Foundry</text>
+  <text class="heading" x="480" y="107">Score the rollouts</text>
+  <text class="label" x="480" y="143">Rewards + advantages</text>
+  <text class="label" x="480" y="175">Assistant-token masks</text>
+  <text class="detail" x="480" y="209">Your Python driver</text>
+  <text class="heading" x="806" y="107">Update the adapter</text>
+  <text class="label" x="806" y="143">Compute gradients</text>
+  <text class="label" x="806" y="175">Apply optimizer step</text>
+  <text class="detail" x="806" y="209">Foundry</text>
+  <path class="arrow" d="M 284 149 H 344"/>
+  <path class="arrow" d="M 610 149 H 670"/>
+  <path class="arrow" d="M 806 226 V 268 H 154 V 232"
+        stroke-dasharray="6 4"/>
+  <text class="label" x="480" y="309">Repeat with updated sampler weights.</text>
+</svg>
