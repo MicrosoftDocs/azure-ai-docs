@@ -229,6 +229,14 @@ The toolbox MCP endpoint doesn't block `tools/call` when `require_approval` is `
 
 Use `require_approval: never` unless your runtime can pause the pending tool call, collect the user's decision, and resume or reject that exact call. To configure the value on a toolbox tool, see [Configure tool approval](toolbox.md#configure-require_approval-on-a-tool).
 
+## Return generated images
+
+When Code Interpreter generates an image, toolbox file metadata and assistant
+file annotations are separate parts of delivery. Your hosted agent must preserve
+the file reference in Responses output, and the client must retrieve the bytes
+with authentication. For the response contract, client download example, and
+Teams image-viewer checks, see [Return generated images from hosted agents](../return-generated-images.md).
+
 ## Troubleshoot the connection
 
 | Symptom | Cause and resolution |

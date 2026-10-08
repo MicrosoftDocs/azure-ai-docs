@@ -136,6 +136,8 @@ items:
       href: ../../agents/how-to/author-azure-yaml.md
     - name: Use a toolbox with a hosted agent
       href: ../../agents/how-to/tools/use-toolbox-hosted-agent.md
+    - name: Return generated images
+      href: ../../agents/how-to/return-generated-images.md
     - name: Configure environment variables
       href: ../../agents/how-to/configure-hosted-agent-env-variables.md
     - name: Set the model

@@ -368,7 +368,8 @@ Continue to allow the destinations your agent needs, such as model endpoints, to
 | --- | --- |
 | File uploads and image generation in Microsoft 365 | These features don't work for agents published to Microsoft 365. They work in Microsoft Teams. |
 | Private Link | Microsoft 365 and Teams channel traffic doesn't use Private Link. It uses the source-IP-filtered public Activity Protocol route enabled by `enable_m365_public_endpoint`. |
-| Streaming and citations | Published agents don't support streaming responses or citations. |
+| Streaming | Published agents don't support streaming responses. |
+| Generated-image attachments in Teams | Test image display and native downloads separately from general citation presentation. Container-file annotations aren't clickable download URLs. Verify private-network channel and file retrieval in your environment; see [Return generated images from hosted agents](return-generated-images.md). |
 
 ## Troubleshooting
 

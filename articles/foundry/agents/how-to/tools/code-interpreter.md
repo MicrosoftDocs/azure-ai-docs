@@ -905,7 +905,7 @@ For the current list of supported regions and models for Code Interpreter, see [
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | Code Interpreter doesn't run. | Tool not enabled or model doesn't support it in your region. | Confirm Code Interpreter is enabled on the agent. Verify your model deployment supports the tool in your region. See [Check regional and model availability](#check-regional-and-model-availability). |
-| No file is generated. | Agent returned text-only response without file annotation. | Check response annotations for `container_file_citation`. If none exist, the agent didn't generate a file. Rephrase the prompt to explicitly request file output. |
+| No generated file appears in the response. | No file was created, or a hosted agent didn't preserve its file annotation. | Check Code Interpreter output and assistant annotations separately. Request file output if no file was created. If a hosted agent's tool result contains file metadata but its assistant message doesn't, see [Return generated images from hosted agents](../return-generated-images.md). |
 | File upload fails. | Unsupported file type or wrong purpose. | Confirm the file type is in the [supported file types](#supported-file-types) list. Upload with `purpose="assistants"`. |
 | Generated file is corrupt or empty. | Code execution error or incomplete processing. | Check the agent's response for error messages. Verify the input data is valid. Try a simpler request first. |
 | Session timeout or high latency. | Code Interpreter sessions have time limits. | Sessions have a 1-hour active timeout and 30-minute idle timeout. Reduce the complexity of operations or split into smaller tasks. |
@@ -939,5 +939,6 @@ If you need more control over the sandbox runtime or you need a different isolat
 
 ## Related content
 
+- [Return generated images from hosted agents](../return-generated-images.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Custom code interpreter tool for agents (preview)](custom-code-interpreter.md)
