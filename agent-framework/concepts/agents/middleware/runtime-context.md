@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: reference
 ms.author: edvan
-ms.date: 09/15/2026
+ms.date: 10/08/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -442,7 +442,17 @@ research_tool = research_agent.as_tool(
 )
 ```
 
-With `propagate_session=True`, the delegated agent sees the same `ctx.session` state as the caller. Leave it `False` to isolate the child agent in its own session.
+With `propagate_session=True`, application-owned session state flows to the
+delegated agent, and its application-state changes merge back into the caller.
+Framework approval state and provider-owned continuation handles remain scoped
+to the agent that owns them. Leave `propagate_session=False` to isolate the
+child agent in its own session.
+
+The automatic function-calling loop identifies the parent provider's owned
+state. If a custom loop invokes an agent tool directly with a non-empty shared
+session, set `FunctionInvocationContext.parent_service_session_state_keys`.
+The call fails before the child runs when the custom loop doesn't establish
+that ownership.
 
 ### Custom chat clients and agents
 

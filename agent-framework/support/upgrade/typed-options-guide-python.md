@@ -4,8 +4,9 @@ description: Guide on upgrading chat client and chat agent options to use TypedD
 author: eavanvalkenburg
 ms.topic: upgrade-and-migration-article
 ms.author: edvan
-ms.date: 04/01/2026
+ms.date: 10/08/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Upgrade Guide: Chat Options as TypedDict with Generics
@@ -315,7 +316,9 @@ class OpenAIReasoningChatOptions(OpenAIChatOptions, total=False):
     """Chat options for OpenAI reasoning models (o1, o3, o4-mini, etc.)."""
 
     # Reasoning-specific parameters
-    reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh"]
+    reasoning_effort: Literal[
+        "none", "minimal", "low", "medium", "high", "xhigh", "max"
+    ]
 
     # Unsupported parameters for reasoning models (override with None)
     temperature: None
