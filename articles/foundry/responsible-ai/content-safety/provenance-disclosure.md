@@ -106,11 +106,16 @@ The following table lists the current availability of provenance capabilities.
 
 Text provenance support varies by model. Where available, the underlying model provides invisible watermarking and surfaces it through Microsoft Foundry. Microsoft partners closely with model providers and shares the latest updates on supported models as they become available.  
 
-The following models support invisible watermarking for text output.
+For Anthropic models, please refer to [Anthropic's documentation](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) for the most up to date list of which Claude models support watermarking. 
+
+For Azure OpenAI models, select models will be supported. The models targeted for text watermarking are limited to model families gpt-5.2 to gpt-5.6. There are no confirmed plans to support model families gpt-5.1 and older. This page will be updated as models with text watermarking become available.
+
+The following table lists invisible watermarking support for models with text output.
 
 | Model Provider | Models |
 | --- | --- |
-| Anthropic | Claude Fable 5.1<br>Claude Mythos 5.1<br>Claude Opus 5<br>Claude Opus 5.5 |
+| Anthropic | [Anthropic Help Center documentation](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content)<br>See "Text watermarks in cloud partner output" for list of supported models|
+| Azure OpenAI | Planned support for:<br>gpt-5.2<br>gpt-5.4<br>gpt-5.4-mini<br>gpt-5.4-nano<br>gpt-5.5-reasoning<br>gpt-5.5-chat<br>gpt-5.6-sol<br>gpt-5.6-chat<br>gpt-5.6-luna<br>gpt-5.6-terra |
 
 ## What are the limitations?  
 Content provenance technologies can improve transparency around AI-generated content, but it's important to understand their limitations. 
