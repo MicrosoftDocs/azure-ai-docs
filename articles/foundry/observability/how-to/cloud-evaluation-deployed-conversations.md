@@ -6,7 +6,7 @@ ms.subservice: foundry-observability
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 08/31/2026
+ms.date: 10/07/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -21,6 +21,7 @@ Evaluate complete production conversations captured in Application Insights to i
 ## Prerequisites
 
 - Complete the [cloud evaluation prerequisites](cloud-evaluation.md#prerequisites) and [client setup](cloud-evaluation.md#set-up-the-sdk-client).
+- For the preview trace-evaluation workflow, use Python SDK version `2.7.0` (`pip install "azure-ai-projects==2.7.0"`) or JavaScript SDK version `2.7.0` (`npm install "@azure/ai-projects@2.7.0"`).
 - Traced production conversations in Application Insights.
 - Conversation-level evaluators that support the selected evaluation level.
 
@@ -47,7 +48,8 @@ Find conversation IDs in:
 |-----------|----------|-------------|
 | `conversation_ids` | Yes | Array of conversation IDs to evaluate. |
 | `lookback_hours` | No | Hours to search back from `end_time`. Defaults to seven days (168 hours). |
-| `end_time` | No | End of the search window (ISO 8601 format). Defaults to the current time. |
+| `start_time` | No | Start of an explicit search window (ISO 8601 format). For ID-based lookup, provide both `start_time` and `end_time` to use an explicit window instead of `lookback_hours`. |
+| `end_time` | No | End of the search window (ISO 8601 format). Defaults to the current time. Provide it with `start_time` to use an explicit window. |
 
 # [Python](#tab/python)
 
@@ -77,7 +79,51 @@ with (
     testing_criteria = [
         TestingCriterionAzureAIEvaluator(
             type="azure_ai_evaluator",
-            name="conversation_coherence",
+            name="output_quality",
+            evaluator_name="builtin.output_quality",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="tool_use_quality",
+            evaluator_name="builtin.tool_use_quality",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="deflection_rate",
+            evaluator_name="builtin.deflection_rate",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="customer_satisfaction",
+            evaluator_name="builtin.customer_satisfaction",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="task_completion",
+            evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="coherence",
             evaluator_name="builtin.coherence",
             initialization_parameters={"model": model_deployment_name},
             data_mapping={"messages": "{{item.messages}}"},
@@ -160,7 +206,69 @@ Reference: [`EvaluationClient` protocol methods](https://github.com/openai/opena
 
 # [JavaScript/TypeScript](#tab/javascript)
 
-The current JavaScript/TypeScript SDK samples don't demonstrate conversation lookup by trace ID. Use the Python or cURL tab for this flow.
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  process.env.AZURE_AI_PROJECT_ENDPOINT ?? "<project endpoint>";
+const modelDeploymentName =
+  process.env.AZURE_AI_MODEL_DEPLOYMENT_NAME ?? "<model deployment name>";
+const conversationIds = ["conversation_1234", "conversation_5678"];
+
+const projectClient = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+const openAIClient = projectClient.getOpenAIClient();
+
+const evaluator = (name: string, includeToolDefinitions = false) => ({
+  type: "azure_ai_evaluator",
+  name,
+  evaluator_name: `builtin.${name}`,
+  initialization_parameters: { model: modelDeploymentName },
+  data_mapping: includeToolDefinitions
+    ? {
+        messages: "{{item.messages}}",
+        tool_definitions: "{{item.tool_definitions}}",
+      }
+    : { messages: "{{item.messages}}" },
+});
+
+const testingCriteria = [
+  evaluator("output_quality", true),
+  evaluator("tool_use_quality", true),
+  evaluator("deflection_rate", true),
+  evaluator("customer_satisfaction"),
+  evaluator("task_completion"),
+  evaluator("coherence"),
+  evaluator("groundedness"),
+];
+
+const evaluation = await openAIClient.evals.create({
+  name: "Multi-turn Trace Evaluation (by ID)",
+  data_source_config: {
+    type: "azure_ai_source",
+    scenario: "traces",
+  } as any,
+  testing_criteria: testingCriteria as any,
+});
+
+const evaluationRun = await openAIClient.evals.runs.create(evaluation.id, {
+  name: "multiturn-trace-by-id-run",
+  data_source: {
+    type: "azure_ai_trace_data_source_preview",
+    trace_source: {
+      type: "conversation_id_source",
+      conversation_ids: conversationIds,
+      lookback_hours: 24,
+    },
+  },
+  evaluation_level: "conversation",
+} as any);
+
+console.log(`Evaluation run created: ${evaluationRun.id}`);
+```
 
 # [cURL](#tab/curl)
 
@@ -188,9 +296,9 @@ curl --request POST \
 
 > [!NOTE]
 > - Application Insights data ingestion can cause a delay between when traces are generated and when they're available for evaluation. If the query doesn't find traces, wait a few minutes and retry.
-> - The maximum lookback is **7 days (168 hours)**. To access older traces, use `start_time` and `end_time` within your App Insights retention limits.
+> - Trace queries default to the last **7 days (168 hours)** when you don't provide an explicit time window. To query an older or custom interval, provide `start_time` and `end_time`, subject to Application Insights retention.
 
-For a complete runnable example, see [sample_multiturn_trace_evaluation_by_id.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py) on GitHub.
+For a complete runnable example, see [sample_multiturn_trace_evaluation_by_id.py](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-projects_2.7.0/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py) from Python SDK version 2.7.0 on GitHub.
 
 ## Evaluate sampled conversations by agent filter
 
@@ -225,7 +333,7 @@ Specify the agent to filter by using one of these formats:
 | `agent_version` | No | The agent version. If omitted, uses the latest version. |
 | `agent_id` | No | Alternative to `agent_name` + `agent_version`. Single string in format `"name:version"`. |
 | `start_time` | Yes | Start of the time window (Unix epoch seconds, UTC). |
-| `end_time` | Yes | End of the time window (Unix epoch seconds, UTC). Pad by +600 seconds to avoid ingestion delay. |
+| `end_time` | No | End of the time window (Unix epoch seconds, UTC). Defaults to the current UTC time. Pad by +600 seconds to avoid ingestion delay at the edge of the window. |
 | `max_traces` | No | Maximum conversations to sample. Defaults to 1,000. |
 | `filter_strategy` | No | `"random_sampling"` (default) or `"smart_filtering"` (service-managed heuristic that biases toward interesting traces). |
 
@@ -260,6 +368,36 @@ with (
     testing_criteria = [
         TestingCriterionAzureAIEvaluator(
             type="azure_ai_evaluator",
+            name="output_quality",
+            evaluator_name="builtin.output_quality",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="tool_use_quality",
+            evaluator_name="builtin.tool_use_quality",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="deflection_rate",
+            evaluator_name="builtin.deflection_rate",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={
+                "messages": "{{item.messages}}",
+                "tool_definitions": "{{item.tool_definitions}}",
+            },
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
             name="customer_satisfaction",
             evaluator_name="builtin.customer_satisfaction",
             initialization_parameters={"model": model_deployment_name},
@@ -269,6 +407,20 @@ with (
             type="azure_ai_evaluator",
             name="task_completion",
             evaluator_name="builtin.task_completion",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="coherence",
+            evaluator_name="builtin.coherence",
+            initialization_parameters={"model": model_deployment_name},
+            data_mapping={"messages": "{{item.messages}}"},
+        ),
+        TestingCriterionAzureAIEvaluator(
+            type="azure_ai_evaluator",
+            name="groundedness",
+            evaluator_name="builtin.groundedness",
             initialization_parameters={"model": model_deployment_name},
             data_mapping={"messages": "{{item.messages}}"},
         ),
@@ -372,7 +524,77 @@ Reference: [`EvaluationClient` protocol methods](https://github.com/openai/opena
 
 # [JavaScript/TypeScript](#tab/javascript)
 
-The current JavaScript/TypeScript SDK samples don't demonstrate conversation sampling by agent filter. Use the Python or cURL tab for this flow.
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const projectEndpoint =
+  process.env.AZURE_AI_PROJECT_ENDPOINT ?? "<project endpoint>";
+const modelDeploymentName =
+  process.env.AZURE_AI_MODEL_DEPLOYMENT_NAME ?? "<model deployment name>";
+const agentName = process.env.FOUNDRY_AGENT_NAME ?? "<agent name>";
+const agentVersion = process.env.FOUNDRY_AGENT_VERSION ?? "";
+
+const projectClient = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+const openAIClient = projectClient.getOpenAIClient();
+
+const evaluator = (name: string, includeToolDefinitions = false) => ({
+  type: "azure_ai_evaluator",
+  name,
+  evaluator_name: `builtin.${name}`,
+  initialization_parameters: { model: modelDeploymentName },
+  data_mapping: includeToolDefinitions
+    ? {
+        messages: "{{item.messages}}",
+        tool_definitions: "{{item.tool_definitions}}",
+      }
+    : { messages: "{{item.messages}}" },
+});
+
+const testingCriteria = [
+  evaluator("output_quality", true),
+  evaluator("tool_use_quality", true),
+  evaluator("deflection_rate", true),
+  evaluator("customer_satisfaction"),
+  evaluator("task_completion"),
+  evaluator("coherence"),
+  evaluator("groundedness"),
+];
+
+const evaluation = await openAIClient.evals.create({
+  name: "Multi-turn Trace Evaluation (Agent Filter)",
+  data_source_config: {
+    type: "azure_ai_source",
+    scenario: "traces",
+  } as any,
+  testing_criteria: testingCriteria as any,
+});
+
+const now = Math.floor(Date.now() / 1000);
+const traceSource: Record<string, unknown> = {
+  type: "agent_filter",
+  agent_name: agentName,
+  start_time: now - 24 * 60 * 60,
+  end_time: now + 10 * 60,
+  max_traces: 100,
+  filter_strategy: "random_sampling",
+  ...(agentVersion ? { agent_version: agentVersion } : {}),
+};
+
+const evaluationRun = await openAIClient.evals.runs.create(evaluation.id, {
+  name: "multiturn-agent-filter-run",
+  data_source: {
+    type: "azure_ai_trace_data_source_preview",
+    trace_source: traceSource,
+  },
+  evaluation_level: "conversation",
+} as any);
+
+console.log(`Evaluation run created: ${evaluationRun.id}`);
+```
 
 # [cURL](#tab/curl)
 
@@ -402,11 +624,11 @@ curl --request POST \
 ---
 
 > [!NOTE]
-> The App Insights query timespan is currently limited to a maximum of **7 days (168 hours)**. You can't access traces older than 7 days without explicitly providing `start_time` and `end_time` within App Insights retention limits.
+> Trace queries default to the last **7 days (168 hours)** when you don't provide an explicit time window. Agent-filter queries honor `start_time` exactly. If you omit `end_time`, the service uses the current UTC time. You can query older or custom intervals within Application Insights retention limits.
 
 ## Next steps
 
 - To poll for completion and interpret results, see [Get cloud evaluation results](cloud-evaluation-results.md).
-- For a complete runnable example, see [sample_multiturn_trace_evaluation_agent_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py) on GitHub.
+- For a complete runnable example, see [sample_multiturn_trace_evaluation_agent_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-projects_2.7.0/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py) from Python SDK version 2.7.0 on GitHub.
 - To evaluate stored conversations, see [Evaluate conversation datasets](cloud-evaluation-conversations.md).
 - To generate synthetic conversations, see [Simulate agent conversations](cloud-evaluation-simulate-conversations.md).

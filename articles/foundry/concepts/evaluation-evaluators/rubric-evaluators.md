@@ -5,15 +5,13 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 07/21/2026
+ms.date: 09/30/2026
 ms.service: microsoft-foundry
 ms.topic: reference
 
 ---
 
-# Rubric evaluators (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Rubric evaluators
 
 A rubric evaluator scores an agent or model response against custom, weighted criteria that you define, using an LLM as the judge. It gives you full control over what "good" means for your use case while applying that judgment consistently at scale.
 

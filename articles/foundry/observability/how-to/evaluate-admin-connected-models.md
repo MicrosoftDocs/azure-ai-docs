@@ -49,7 +49,7 @@ The following table shows common evaluation surfaces and the field that accepts 
 |----------|-------|
 | AI-assisted evaluator (judge) | `initialization_parameters.model` |
 | Model target | `target.model` |
-| Conversation simulation | `item_generation_params.model` |
+| Conversation simulation | `model_configuration.model` |
 
 ## Use an admin-connected model as an evaluator judge model
 
@@ -181,7 +181,7 @@ Use this target with the [model target evaluation flow described in Run evaluati
 
 ## Use other evaluation scenarios
 
-Other model-based scenarios in [Run evaluations in the cloud by using the Microsoft Foundry SDK](cloud-evaluation.md) work similarly with admin-connected models. Wherever the scenario accepts a supported model deployment, replace the deployment name with `<connection-name>/<deployment-name>`. For example, conversation simulation accepts this reference in `item_generation_params.model`.
+Other model-based scenarios in [Run evaluations in the cloud by using the Microsoft Foundry SDK](cloud-evaluation.md) work similarly with admin-connected models. Wherever the scenario accepts a supported model deployment, replace the deployment name with `<connection-name>/<deployment-name>`. For example, conversation simulation accepts this reference in `model_configuration.model`.
 
 Keep the Foundry project endpoint unchanged, and don't add the gateway endpoint or credentials to the evaluation request. Foundry resolves those values from the admin-connected model connection.
 

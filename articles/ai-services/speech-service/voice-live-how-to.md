@@ -619,7 +619,10 @@ Refer to this sample code [use avatar in Voice live API](https://github.com/micr
 
 ### Use a photo avatar
 
-A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (currently `vasa-1`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Talking heads](./text-to-speech-avatar/standard-avatars.md#talking-heads)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+A [photo avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) generates a talking-head video from a single image. Voice Live supports both standard photo avatars (provided by Microsoft) and custom photo avatars (created from your own image). To use a photo avatar, set `type` to `photo-avatar` and `model` to the base model that drives it (`vasa-1` or `vasa-2`). For a standard photo avatar, set `character` to the photo avatar character name (for the list, see [Photo avatars](./text-to-speech-avatar/standard-avatars.md#photo-avatars)). For a custom photo avatar, set `character` to your custom photo avatar name and set `customized` to `true`.
+
+> [!NOTE]
+> `vasa-2` is in preview and supports only the characters listed for it in [Supported standard avatars](./text-to-speech-avatar/standard-avatars.md).
 
 A standard photo avatar generates a talking-head video from a single photo, and the expected source photo resolution is 512x512.
 

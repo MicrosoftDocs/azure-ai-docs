@@ -7,7 +7,9 @@ reviewer: patrickfarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: how-to
-ms.date: 11/5/2025
+ms.custom: references_regions
+ms.date: 09/22/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ms.reviewer: pafarley
 ---
@@ -15,18 +17,20 @@ ms.reviewer: pafarley
 # Supported standard text to speech avatar
 This article contains the full list of standard avatars with their preview images.
 - Full body avatars
-- Talking heads
+- Photo avatars
 
 ## Full body avatars
 These avatars are full-bodied. Many of them also allow users to add gestures when processing videos in batch.
 
 > [!IMPORTANT]
-> Some of our full-bodied avatars are created based on real human actors. These actors have licensing agreements with Microsoft, and access to the associated avatars is subject to the validity of these agreements.
-> 
-> Avatars in this category include Harry, Jeff, Lisa, Lori, Max, and Meg. **Please note that the Jeff avatar will be retired and become unavailable starting December 2026.**
+> **The following avatars and styles are deprecated and will be unavailable starting December 2026:**
 >
-> When an actor’s contract expires, the corresponding avatar will no longer be available. We will provide advance notice before any such changes. At that time, users may choose to switch to another standard avatar, create a custom avatar, or continue with a system-selected fallback avatar.
-
+> - The **Jeff** avatars.
+> - The **Lisa** styles `graceful-sitting`, `graceful-standing`, `technical-sitting`, and `technical-standing`.
+>
+> Before that date, switch to another standard avatar, create a custom avatar, or use a system-selected fallback avatar.
+>
+> Harry, Jeff, Lisa, Lori, Max, and Meg are based on real human actors. Their availability depends on the validity of Microsoft's licensing agreements with those actors. Microsoft provides advance notice of availability changes.
 
 | Characters | Styles          | Preview Image         |Gestures|
 |------------|----------------------------|-------------------|--------|
@@ -38,10 +42,10 @@ These avatars are full-bodied. Many of them also allow users to add gestures whe
 | **Harry** | casual | <img src="media/harry-casual.png" width="300" height="450" alt="Image of the Harry Avatar (casual style)."> | 123</br>come-on</br>five-star-reviews</br>good</br>happy-new-year</br>hello</br>please</br>welcome</br> |
 | **Harry** | youthful | <img src="media/harry-youthful.png" width="300" height="450" alt="Image of the Harry Avatar (youthful style)."> | 123</br>come-on</br>down</br>five-star</br>good</br>hello</br>invite</br>show-right-up-down</br>welcome</br> |
 | **Lisa** | casual-sitting | <img src="media/lisa-casual-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (casual sitting style)."> | numeric1-left-1</br>numeric2-left-1</br>numeric3-left-1</br>thumbsup-left-1</br>show-front-1</br>show-front-2</br>show-front-3</br>show-front-4</br>show-front-5</br>think-twice-1</br>show-front-6</br>show-front-7</br>show-front-8</br>show-front-9</br> |
-| **Lisa** | graceful-sitting | <img src="media/lisa-graceful-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (graceful sitting style)."> | wave-left-1</br>wave-left-2</br>thumbsup-left</br>show-left-1</br>show-left-2</br>show-left-3</br>show-left-4</br>show-left-5</br>show-right-1</br>show-right-2</br>show-right-3</br>show-right-4</br>show-right-5</br> |
-| **Lisa** | graceful-standing | <img src="media/lisa-graceful-standing.png" width="250" height="600" alt="Image of the Lisa Avatar (graceful standing style)."> | |
-| **Lisa** | technical-sitting | <img src="media/lisa-technical-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (technical sitting style)."> | wave-left-1</br>wave-left-2</br>show-left-1</br>show-left-2</br>point-left-1</br>point-left-2</br>point-left-3</br>point-left-4</br>point-left-5</br>point-left-6</br>show-right-1</br>show-right-2</br>show-right-3</br>point-right-1</br>point-right-2</br>point-right-3</br>point-right-4</br>point-right-5</br>point-right-6</br> |
-| **Lisa** | technical-standing | <img src="media/lisa-technical-standing.png" width="250" height="600" alt="Image of the Lisa Avatar (technical standing style)."> | |
+| **Lisa** | graceful-sitting<br/>**Deprecated** | <img src="media/lisa-graceful-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (graceful sitting style)."> | wave-left-1</br>wave-left-2</br>thumbsup-left</br>show-left-1</br>show-left-2</br>show-left-3</br>show-left-4</br>show-left-5</br>show-right-1</br>show-right-2</br>show-right-3</br>show-right-4</br>show-right-5</br> |
+| **Lisa** | graceful-standing<br/>**Deprecated** | <img src="media/lisa-graceful-standing.png" width="250" height="600" alt="Image of the Lisa Avatar (graceful standing style)."> | |
+| **Lisa** | technical-sitting<br/>**Deprecated** | <img src="media/lisa-technical-sitting.png" width="300" height="450" alt="Image of the Lisa Avatar (technical sitting style)."> | wave-left-1</br>wave-left-2</br>show-left-1</br>show-left-2</br>point-left-1</br>point-left-2</br>point-left-3</br>point-left-4</br>point-left-5</br>point-left-6</br>show-right-1</br>show-right-2</br>show-right-3</br>point-right-1</br>point-right-2</br>point-right-3</br>point-right-4</br>point-right-5</br>point-right-6</br> |
+| **Lisa** | technical-standing<br/>**Deprecated** | <img src="media/lisa-technical-standing.png" width="250" height="600" alt="Image of the Lisa Avatar (technical standing style)."> | |
 | **Lori** | casual | <img src="media/lori-casual.png" width="250" height="450" alt="Image of the Lori Avatar (casual style)."> | 123-left</br>a-little</br>beg</br>calm-down</br>come-on</br>five-star-reviews</br>good</br>hello</br>open</br>please</br>thanks</br> |
 | **Lori** | graceful | <img src="media/lori-graceful.png" width="250" height="450" alt="Image of the Lori Avatar (graceful style)."> | 123-left</br>applaud</br>come-on</br>introduce</br>nod</br>please</br>show-left</br>show-right</br>thanks</br>welcome</br> |
 | **Lori** | formal | <img src="media/lori-formal.png" width="250" height="450" alt="Image of the Lori Avatar (formal style)."> | 123</br>come-on</br>come-on-left</br>down</br>five-star</br>good</br>hands-triangle</br>hands-up</br>hi</br>hopeful</br>thanks</br> |
@@ -54,36 +58,46 @@ These avatars are full-bodied. Many of them also allow users to add gestures whe
 
 All styles except lisa-graceful-sitting, lisa-graceful-standing, lisa-technical-sitting, and lisa-technical-standing are supported via the real-time text to speech API. Gestures are only supported with the batch synthesis API and aren't supported via the real-time API.
 
-## Talking heads
-| Characters | Preview Image |
-|------------|----------------------------|
-| **Adrian** | <img src="media/adrian.png" width="256" height="256" alt="Image of the Adrian Avatar."> |
-| **Amara** | <img src="media/amara.png" width="256" height="256" alt="Image of the Amara Avatar."> |
-| **Amira** | <img src="media/amira-avatar.png" width="256" height="256" alt="Image of the Amira Avatar."> |
-| **Anika** | <img src="media/anika-avatar.png" width="256" height="256" alt="Image of the Anika Avatar."> |
-| **Bianca** | <img src="media/bianca.png" width="256" height="256" alt="Image of the Bianca Avatar."> |
-| **Camila** | <img src="media/camila.png" width="256" height="256" alt="Image of the Camila Avatar."> |
-| **Carlos** | <img src="media/carlos.png" width="256" height="256" alt="Image of the Carlos Avatar."> |
-| **Clara** | <img src="media/clara.png" width="256" height="256" alt="Image of the Clara Avatar."> |
-| **Darius** | <img src="media/darius.png" width="256" height="256" alt="Image of the Darius Avatar."> |
-| **Diego** | <img src="media/diego.png" width="256" height="256" alt="Image of the Diego Avatar."> |
-| **Elise** | <img src="media/elise.png" width="256" height="256" alt="Image of the Elise Avatar."> |
-| **Farhan** | <img src="media/farhan-avatar.png" width="256" height="256" alt="Image of the Farhan Avatar."> |
-| **Faris** | <img src="media/faris-avatar.png" width="256" height="256" alt="Image of the Faris Avatar."> |
-| **Gabrielle** | <img src="media/gabrielle.png" width="256" height="256" alt="Image of the Gabrielle Avatar."> |
-| **Hyejin** | <img src="media/hyejin-avatar.png" width="256" height="256" alt="Image of the Hyejin Avatar."> |
-| **Imran** | <img src="media/imran-avatar.png" width="256" height="256" alt="Image of the Imran Avatar."> |
-| **Isabella** | <img src="media/isabella.png" width="256" height="256" alt="Image of the Isabella Avatar."> |
-| **Layla** | <img src="media/layla.png" width="256" height="256" alt="Image of the Layla Avatar."> |
-| **Liwei** | <img src="media/liwei-avatar.png" width="256" height="256" alt="Image of the Liwei Avatar."> |
-| **Ling** | <img src="media/ling.png" width="256" height="256" alt="Image of the Ling Avatar."> |
-| **Marcus** | <img src="media/marcus.png" width="256" height="256" alt="Image of the Marcus Avatar."> |
-| **Matteo** | <img src="media/matteo.png" width="256" height="256" alt="Image of the Matteo Avatar."> |
-| **Rahul** | <img src="media/rahul-avatar.png" width="256" height="256" alt="Image of the Rahul Avatar."> |
-| **Rana** | <img src="media/rana.png" width="256" height="256" alt="Image of the Rana Avatar."> |
-| **Ren** | <img src="media/ren-avatar.png" width="256" height="256" alt="Image of the Ren Avatar."> |
-| **Riya** | <img src="media/riya-avatar.png" width="256" height="256" alt="Image of the Riya Avatar."> |
-| **Sakura** | <img src="media/sakura-avatar.png" width="256" height="256" alt="Image of the Sakura Avatar."> |
-| **Simone** | <img src="media/simone.png" width="256" height="256" alt="Image of the Simone Avatar."> |
-| **Zayd** | <img src="media/zayd-avatar.png" width="256" height="256" alt="Image of the Zayd Avatar."> |
-| **Zoe** | <img src="media/zoe.png" width="256" height="256" alt="Image of the Zoe Avatar."> |
+<a id="talking-heads"></a>
+
+## Photo avatars
+
+| Characters | Preview image | Avatar base model |
+| --- | --- | --- |
+| **Leonie** | <img src="media/leonie-casual.png" width="256" height="256" alt="Image of the Leonie Avatar."> | `vasa-2` |
+| **Leonie Professional** | <img src="media/leonie-business.png" width="256" height="256" alt="Image of the Leonie Professional avatar."> | `vasa-2` |
+| **George** | <img src="media/george.png" width="256" height="256" alt="Image of the George Avatar."> | `vasa-2` |
+| **Marcel** | <img src="media/marcel.png" width="256" height="256" alt="Image of the Marcel Avatar."> | `vasa-2` |
+| **Adrian** | <img src="media/adrian.png" width="256" height="256" alt="Image of the Adrian Avatar."> | `vasa-1` |
+| **Amara** | <img src="media/amara.png" width="256" height="256" alt="Image of the Amara Avatar."> | `vasa-1` |
+| **Amira** | <img src="media/amira-avatar.png" width="256" height="256" alt="Image of the Amira Avatar."> | `vasa-1` |
+| **Anika** | <img src="media/anika-avatar.png" width="256" height="256" alt="Image of the Anika Avatar."> | `vasa-1` |
+| **Bianca** | <img src="media/bianca.png" width="256" height="256" alt="Image of the Bianca Avatar."> | `vasa-1` |
+| **Camila** | <img src="media/camila.png" width="256" height="256" alt="Image of the Camila Avatar."> | `vasa-1` |
+| **Carlos** | <img src="media/carlos.png" width="256" height="256" alt="Image of the Carlos Avatar."> | `vasa-1` |
+| **Clara** | <img src="media/clara.png" width="256" height="256" alt="Image of the Clara Avatar."> | `vasa-1` |
+| **Darius** | <img src="media/darius.png" width="256" height="256" alt="Image of the Darius Avatar."> | `vasa-1` |
+| **Diego** | <img src="media/diego.png" width="256" height="256" alt="Image of the Diego Avatar."> | `vasa-1` |
+| **Elise** | <img src="media/elise.png" width="256" height="256" alt="Image of the Elise Avatar."> | `vasa-1` |
+| **Farhan** | <img src="media/farhan-avatar.png" width="256" height="256" alt="Image of the Farhan Avatar."> | `vasa-1` |
+| **Faris** | <img src="media/faris-avatar.png" width="256" height="256" alt="Image of the Faris Avatar."> | `vasa-1` |
+| **Gabrielle** | <img src="media/gabrielle.png" width="256" height="256" alt="Image of the Gabrielle Avatar."> | `vasa-1` |
+| **Hyejin** | <img src="media/hyejin-avatar.png" width="256" height="256" alt="Image of the Hyejin Avatar."> | `vasa-1` |
+| **Imran** | <img src="media/imran-avatar.png" width="256" height="256" alt="Image of the Imran Avatar."> | `vasa-1` |
+| **Isabella** | <img src="media/isabella.png" width="256" height="256" alt="Image of the Isabella Avatar."> | `vasa-1` |
+| **Layla** | <img src="media/layla.png" width="256" height="256" alt="Image of the Layla Avatar."> | `vasa-1` |
+| **Liwei** | <img src="media/liwei-avatar.png" width="256" height="256" alt="Image of the Liwei Avatar."> | `vasa-1` |
+| **Ling** | <img src="media/ling.png" width="256" height="256" alt="Image of the Ling Avatar."> | `vasa-1` |
+| **Marcus** | <img src="media/marcus.png" width="256" height="256" alt="Image of the Marcus Avatar."> | `vasa-1` |
+| **Matteo** | <img src="media/matteo.png" width="256" height="256" alt="Image of the Matteo Avatar."> | `vasa-1` |
+| **Rahul** | <img src="media/rahul-avatar.png" width="256" height="256" alt="Image of the Rahul Avatar."> | `vasa-1` |
+| **Rana** | <img src="media/rana.png" width="256" height="256" alt="Image of the Rana Avatar."> | `vasa-1` |
+| **Ren** | <img src="media/ren-avatar.png" width="256" height="256" alt="Image of the Ren Avatar."> | `vasa-1` |
+| **Riya** | <img src="media/riya-avatar.png" width="256" height="256" alt="Image of the Riya Avatar."> | `vasa-1` |
+| **Sakura** | <img src="media/sakura-avatar.png" width="256" height="256" alt="Image of the Sakura Avatar."> | `vasa-1` |
+| **Simone** | <img src="media/simone.png" width="256" height="256" alt="Image of the Simone Avatar."> | `vasa-1` |
+| **Zayd** | <img src="media/zayd-avatar.png" width="256" height="256" alt="Image of the Zayd Avatar."> | `vasa-1` |
+| **Zoe** | <img src="media/zoe.png" width="256" height="256" alt="Image of the Zoe Avatar."> | `vasa-1` |
+
+> [!NOTE]
+> The `vasa-2` avatars are in preview and available only in West US 2, Central India, Southeast Asia, and Sweden Central. Batch synthesis doesn't support `vasa-2`.

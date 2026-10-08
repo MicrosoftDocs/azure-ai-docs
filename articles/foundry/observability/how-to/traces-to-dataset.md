@@ -1,38 +1,43 @@
 ---
-title: Convert agent traces into evaluation datasets (preview)
-description: Learn how to use data generation in Microsoft Foundry to turn production agent traces into evaluation and fine-tuning datasets.
+title: Convert agent traces into evaluation datasets
+description: Learn how to use data generation in Microsoft Foundry to turn production agent traces into evaluation datasets.
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: fishah
+ms.reviewer: ychen
 ms.topic: how-to
-ms.date: 10/06/2026
+ms.date: 10/07/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
-# Convert agent traces into evaluation datasets (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Convert agent traces into evaluation datasets
 
 This article covers trace-based dataset generation. For all dataset preparation
 options and the standard field names, see
 [Evaluation datasets in Microsoft Foundry](evaluation-datasets.md) and
 [Evaluation dataset schema](evaluation-dataset-schema.md).
 
-Production traces are the most representative source of how your agent behaves with real users. This article shows you how to use data generation in Microsoft Foundry to turn the traces your agent already emits into a curated, versioned dataset you can evaluate against. Then run an evaluation on the result. When you select traces, Foundry uses intelligent sampling to autoselect a representative set, so you get a high-value dataset without manual cleanup.
+Production traces are the most representative source of how your agent behaves
+with real users. This article shows you how to use data generation in Microsoft
+Foundry to turn the traces your agent already emits into a curated, versioned
+dataset you can evaluate against. Set `max_samples` to use intelligent sampling
+to select a representative subset, omit it to process matching traces without
+sampling, or provide specific trace IDs.
 
-Converting traces into a dataset closes the observability loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality. The same job can also produce fine-tuning data.
+Converting traces into a dataset closes the agent improvement loop: the production behavior you capture through tracing becomes the test set you use to measure and improve quality.
 
 Trace-based and synthetic generation are complementary: production traces reflect real user behavior, while synthetic generation covers prelaunch scenarios and edge cases. If your agent doesn't have production traces yet, or you want to extend coverage beyond what production traffic exercises, see [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md).
 
 ## Intelligent sampling
 
-When you select a time range of traces, the service doesn't just randomly sample from that window. It autoselects a representative set by using intelligent sampling, which curates a high-value set of traces from raw, noisy production data. You don't configure individual filter stages; the service handles selection for you. Intelligent sampling does the following tasks:
+When you set `max_samples`, the service doesn't just randomly sample from the
+selected window. It autoselects a representative subset by using intelligent
+sampling. You don't configure individual filter stages; the service handles
+selection for you. Intelligent sampling does the following tasks:
 
 - **Filters out uninteresting traces** such as single-character messages and other low-intent traffic that add no evaluation signal.
 - **Selects a diverse, representative sample** by using MinHash so the result covers the range of your agent's scenarios rather than overindexing on frequent, near-identical prompts.
-- **Handles sensitive content** including personal data.
 
 This process matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
 
@@ -42,11 +47,19 @@ Intelligent sampling uses the same trace-selection algorithm across three experi
 - **Creating a trace-based evaluation** - evaluate against existing traces with a representative sample from the selected time range.
 - **Generating a rubric evaluator from production traces** - the same sampling algorithm selects traces used as input.
 
-In the trace-based dataset flow, the **Intelligent sampling** option appears in the time-range UI and is on by default.
+Set `max_samples` from 1 through 1,000 to cap the generated dataset. Omit
+`max_samples` to turn off sampling. To select specific traces, provide a
+nonempty list of nonblank trace IDs in `trace_ids` on the trace source.
+
+Private-content redaction is separate from sampling. By default, the service
+redacts private content from traces. Set `redact_private_content` to `false`
+only when your privacy, retention, and dataset-access requirements allow the
+generated dataset to retain that content.
 
 ## Prerequisites
 
-- Python SDK version `2.4.0` or later: `pip install "azure-ai-projects>=2.4.0" azure-identity` (SDK path only)
+- Python SDK version `2.8.0` or later: `pip install "azure-ai-projects>=2.8.0" azure-identity` (SDK path only)
+- JavaScript SDK version `2.8.0` or later: `npm install "@azure/ai-projects@^2.8.0" @azure/identity`
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`
 - Foundry User role or higher on the project.
 - Set up tracing for a deployed agent that emits traces. Foundry agents emit traces automatically, and OpenTelemetry-instrumented third-party agents are also supported. For setup steps, see [Set up tracing for your agent](trace-agent-setup.md).
@@ -60,27 +73,48 @@ You can create a dataset from traces directly in the portal without writing code
 
 1. In the portal, open the **Data Generation** tab. Select **Create dataset** > **From traces**.
 
-1. In the **Create dataset** dialog, confirm the subtitle **Curate a dataset from production traces for evaluation or fine-tuning.** Then configure the dataset:
+1. In the **Create from traces** dialog, configure the dataset:
 
-    - **Dataset usage**: Set to **Evaluation**.
-    - **Name**: Enter a dataset name.
     - **Agent**: Select the deployed agent whose traces you want to use.
+    - **Dataset**: Select an existing dataset or create a dataset.
+    - **Create dataset for**: Set to **Evaluation**.
     - **Date range**: Choose the window to pull traces from, such as the last day or last seven days.
-    - **Maximum samples**: Set the cap on rows in the dataset. Use at least 15 samples.
+    - **Sampling**: Enable sampling to select a representative subset of matching traces.
+    - **Maximum samples**: When sampling is enabled, set a cap from 1 through 1,000 rows.
 
-    :::image type="content" source="../../media/observability/data-generation-from-traces.png" alt-text="Screenshot of the Create dataset from traces dialog showing Dataset usage, Name, Agent, Date range, and Maximum samples.":::
+    :::image type="content" source="../../media/observability/data-generation-from-traces.png" alt-text="Screenshot of the Create from traces dialog showing the agent, dataset, evaluation usage, date range, sampling, and maximum samples settings.":::
 
 1. Select **Create** to submit the job. Dataset generation runs as a background job. You can track its status on the **Data Generation** tab.
 
 1. When the job finishes, go to the **Data** tab and select the dataset to preview the generated rows, including the description, query, and response for each. From there you can download or delete the dataset.
 
-1. Use the dataset. Finished generation jobs link directly to the next step: evaluation jobs link to starting an evaluation run, and fine-tuning jobs link to starting a fine-tuning job.
+1. Use the dataset. Finished evaluation data generation jobs link directly to starting an evaluation run.
+
+## Manually add traces to a dataset (portal)
+
+To curate specific agent interactions, select traces from the traces table and add them to a new or existing dataset.
+
+1. In the Foundry portal, open your project and agent, and then select **Traces/Trace view**.
+1. In the traces table, use the available filters to narrow the trace list and select the traces that you want to add.
+1. Select **Add to dataset**.
+1. Choose whether to create a new dataset or add the traces to an existing dataset:
+
+    - For a new dataset, enter the required dataset details.
+    - For an existing dataset, select the dataset that you want to update.
+
+1. Review and select **Create** to add the traces.
+1. When the dataset is ready, a dataset creation notification appears. Select the dataset link in the notification to open the dataset and view the added rows.
 
 ## Generate an evaluation dataset from traces (SDK)
 
-Drive your deployed agent with realistic traffic, and then use those conversations to build an evaluation dataset. The flow is: define a time window, point at your agent, set a cap on rows, and submit the job.
+Drive your deployed agent with realistic traffic, and then use those
+conversations to build an evaluation dataset. Define a time window or explicit
+trace IDs, point at your agent, configure sampling and private-content
+redaction, choose how to write the output dataset, and submit the job.
 
-First, create an `AIProjectClient` by using your project endpoint and `DefaultAzureCredential`.
+First, create an `AIProjectClient` by using your project endpoint and
+`DefaultAzureCredential`. You can find all data generation operations under
+`project_client.datasets`.
 
 # [Python](#tab/python)
 
@@ -98,7 +132,7 @@ project_client = AIProjectClient(
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects @azure/identity
+npm install "@azure/ai-projects@^2.8.0" @azure/identity
 ```
 
 ```javascript
@@ -113,7 +147,7 @@ const projectClient = new AIProjectClient(
 );
 ```
 
-Use `@azure/ai-projects` 2.8.0 or later. Access data generation operations through `projectClient.datasets`; the SDK sends `foundry-features: DataGenerationJobs=V1Preview`.
+Use `@azure/ai-projects` 2.8.0 or later. Access data generation operations through `projectClient.datasets`.
 
 The JavaScript/TypeScript SDK samples don't yet demonstrate generating a dataset from traces with a time-window trace source. Use the Python SDK or the Foundry portal for that flow. The JavaScript/TypeScript SDK supports the job-management operations shown in [Manage data generation jobs](#manage-data-generation-jobs).
 
@@ -129,11 +163,10 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from azure.ai.projects.models import (
-    DataGenerationJob,
-    DataGenerationJobInputs,
-    DataGenerationJobOutputOptions,
-    DataGenerationJobScenario,
+    DataGenerationJobOutputWriteMode,
     DatasetDataGenerationJobOutput,
+    EvaluationDataGenerationJobInputs,
+    EvaluationDataGenerationJobOutputTarget,
     TracesDataGenerationJobOptions,
     TracesDataGenerationJobSource,
 )
@@ -145,30 +178,38 @@ poll_interval_seconds = 10
 end_time = datetime.now(tz=timezone.utc)
 start_time = end_time - timedelta(days=7)
 
-# 2. Define the job. Note the EVALUATION scenario.
-job = DataGenerationJob(
-    inputs=DataGenerationJobInputs(
-        name="retail-agent-eval-set",
-        scenario=DataGenerationJobScenario.EVALUATION,
-        sources=[
-            TracesDataGenerationJobSource(
-                description="Application Insights conversation traces for the Foundry agent.",
-                agent_name=AGENT_NAME,
-                start_time=start_time,
-                end_time=end_time,
-                # agent_version="3",   # pin to a specific version (recommended)
+# 2. Define an evaluation job. The class sets scenario="evaluation".
+job = EvaluationDataGenerationJobInputs(
+    name="retail-agent-eval-set",
+    sources=[
+        TracesDataGenerationJobSource(
+            description=(
+                "Application Insights conversation traces for the Foundry "
+                "agent."
             ),
-        ],
-        options=TracesDataGenerationJobOptions(
-            # Service requires max_samples to be between 15 and 1000.
-            max_samples=100,
+            agent_name=AGENT_NAME,
+            start_time=start_time,
+            end_time=end_time,
+            # agent_version="3",  # Pin to a specific version.
+            # trace_ids=["trace-id-1", "trace-id-2"],  # Select exact traces.
         ),
-        output_options=DataGenerationJobOutputOptions(name="retail-agent-eval-set"),
+    ],
+    generation_configuration=TracesDataGenerationJobOptions(
+        # Omit max_samples to turn off intelligent sampling.
+        max_samples=100,
+        # Private content is redacted by default.
+        redact_private_content=True,
+    ),
+    output_configuration=EvaluationDataGenerationJobOutputTarget(
+        name="retail-agent-eval-set",
+        description="Representative production traces for agent evaluation.",
+        tags={"source": "production-traces"},
+        write_mode=DataGenerationJobOutputWriteMode.OVERWRITE,
     ),
 )
 
 # 3. Submit and wait for completion.
-poller = project_client.beta.datasets.begin_create_generation_job(job=job)
+poller = project_client.datasets.begin_create_generation_job(job=job)
 while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)
@@ -189,7 +230,17 @@ if result is not None and result.generated_samples is not None:
     print(f"Generated samples: {result.generated_samples}")
 ```
 
-The job produces a versioned dataset registered in your project. The number of rows is capped by `max_samples` but might be lower if the window doesn't contain enough distinct, high-quality traces after intelligent sampling.
+The job produces a versioned dataset registered in your project. When you set
+`max_samples`, the number of rows is capped by that value but might be lower if
+the window doesn't contain enough distinct, high-quality traces after
+intelligent sampling.
+
+The default write mode is `DataGenerationJobOutputWriteMode.OVERWRITE`, which
+creates the next dataset version using only the newly generated rows. Set
+`write_mode` to `DataGenerationJobOutputWriteMode.MERGE` to create the next
+version by combining the new rows with the latest existing dataset version and
+deduplicating trace rows. Neither mode modifies an existing dataset version in
+place.
 
 Whether you created the dataset from the portal or the SDK, you can preview it on the **Data** tab to inspect the generated rows before evaluating. You can also download or delete it from there.
 
@@ -197,46 +248,53 @@ Whether you created the dataset from the portal or the SDK, you can preview it o
 
 After the dataset exists, evaluate your agent against it. The generated dataset uses the standard query-response schema, so it works directly with the evaluation APIs. Pass the dataset's `name` and `version` (or its `id`) to your evaluation run.
 
-For the full evaluation flow, including selecting evaluators and reviewing results, see [Evaluate an agent target](cloud-evaluation-targets.md#evaluate-an-agent-target). For a complete runnable example that filters traces, generates an evaluation dataset, and scores it, see [sample_agent_trace_evaluation_smart_filter.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py) on GitHub.
+For the full evaluation flow, including selecting evaluators and reviewing results, see [Evaluate an agent target](cloud-evaluation-targets.md#evaluate-an-agent-target). For a complete runnable example that generates an evaluation dataset from traces, see [sample_dataset_generation_job_traces_for_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/datasets/sample_dataset_generation_job_traces_for_evaluation.py) on GitHub.
 
 ## Manage data generation jobs
 
-Use the job management APIs to list, inspect, cancel, and delete data generation jobs.
+Use `project_client.datasets` APIs to list, inspect, cancel, and delete data
+generation jobs.
 
 # [Python](#tab/python)
 
 ```python
-from azure.ai.projects.models import DataGenerationJobScenario
-
 # List recent evaluation jobs.
-for job in project_client.beta.datasets.list_generation_jobs(
+for job in project_client.datasets.list_generation_jobs(
     limit=20,
     order="desc",
-    scenario=DataGenerationJobScenario.EVALUATION,
 ):
-    print(f"{job.id}  {job.status:<12}  {job.inputs.name}")
+    if job.scenario == "evaluation":
+        print(f"{job.id}  {job.status:<12}  {job.name}")
+
+# Get a job.
+job = project_client.datasets.get_generation_job(job_id="job_...")
 
 # Cancel a running job.
-project_client.beta.datasets.cancel_generation_job(job_id="job_...")
+project_client.datasets.cancel_generation_job(job_id="job_...")
 
-# Delete a job record (produced datasets are not deleted).
-project_client.beta.datasets.delete_generation_job(job_id="job_...")
+# Delete a job record. Generated datasets remain available.
+project_client.datasets.delete_generation_job(job_id="job_...")
 ```
 
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```javascript
-// List recent generation jobs.
+// List recent evaluation jobs.
 for await (const job of projectClient.datasets.listGenerationJobs({
   limit: 20,
 })) {
-  console.log(`${job.id}  ${job.status}  ${job.name}`);
+  if (job.scenario === "evaluation") {
+    console.log(`${job.id}  ${job.status}  ${job.scenario}  ${job.name}`);
+  }
 }
+
+// Get a job.
+const job = await projectClient.datasets.getGenerationJob("job_...");
 
 // Cancel a running job.
 await projectClient.datasets.cancelGenerationJob("job_...");
 
-// Delete a job record (produced datasets are not deleted).
+// Delete a job record. Generated datasets remain available.
 await projectClient.datasets.deleteGenerationJob("job_...");
 ```
 
@@ -252,7 +310,7 @@ Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aipr
 ## Best practices
 
 - **Pin `agent_version` for trace jobs.** Without it, the job mixes spans from every active version, which can include stale behavior and weaken your evaluation signal.
-- **Check `generated_samples` after every job.** `max_samples` is a ceiling, not a guarantee. Intelligent sampling removes duplicates and low-quality traces, so you can get fewer rows than the cap.
+- **Check `generated_samples` after sampled jobs.** When you set `max_samples`, it is a ceiling, not a guarantee. Intelligent sampling removes duplicates and low-quality traces, so you can get fewer rows than the cap.
 - **Use a representative time window.** A seven-day window usually captures enough variety. Narrow windows around a known incident are useful for building targeted regression sets.
 
 ## Related content
@@ -260,6 +318,5 @@ Reference: [datasets.listGenerationJobs](/javascript/api/@azure/ai-projects/aipr
 - [Generate a synthetic evaluation dataset](evaluation-dataset-synthetic.md)—bootstrap an evaluation dataset without production traces.
 - [Agent tracing in Microsoft Foundry](../concepts/trace-agent-concept.md)
 - [Run cloud evaluations](cloud-evaluation.md)
-- [Multi-turn trace evaluation by ID sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_by_id.py)
-- [Multi-turn trace evaluation by agent filter sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_multiturn_trace_evaluation_agent_filter.py)
-- [Trace-based evaluation with intelligent sampling sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_trace_evaluation_smart_filter.py)
+- [Trace-to-dataset generation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/datasets/sample_dataset_generation_job_traces_for_evaluation.py)
+- [Evaluate deployed conversations from traces (preview)](cloud-evaluation-deployed-conversations.md)
