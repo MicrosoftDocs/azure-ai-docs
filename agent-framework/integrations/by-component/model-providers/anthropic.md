@@ -261,9 +261,7 @@ async def explicit_config_example():
     print(result.text)
 ```
 
-Anthropic SDK 1.x doesn't support the `temperature`, `top_p`, or `top_k`
-options. Agent Framework ignores these options and logs a warning if you
-supply them.
+Anthropic SDK 1.x doesn't support the `temperature`, `top_p`, or `top_k` options. Agent Framework ignores these options and logs a warning if you supply them.
 
 ### Using a Custom Base URL
 
