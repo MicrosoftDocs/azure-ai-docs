@@ -2612,7 +2612,7 @@ Models with vision capabilities support PDF input. You can provide a PDF file in
 - A file ID created with the Files API
 - An external file URL (`file_url`)
 
-To help models interpret PDF content, both the extracted text and an image of each page are included in the model's context. This is useful when key information is conveyed through diagrams or non-textual content.
+To help models interpret PDF content, the model's context includes both the extracted text and an image of each page. This feature is useful when key information is conveyed through diagrams or non-textual content.
 
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
