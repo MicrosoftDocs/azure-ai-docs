@@ -15,7 +15,6 @@ For supported serverless deployments, Global Standard, Data Zone Standard, and D
 
 | Model ID | Approach | Training types | Deployment options |
 | --- | --- | --- | --- |
-| `MAI-Code-1.1-Flash`<br>(preview) | Managed: ✅ (RFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
 | `Muse-Glimmer-30B`<br>(preview) | Managed: ✅ (SFT, RFT)<br>Interactive: ✅ | Standard: ❌<br>Data zone: ❌<br>Global: ✅<br>Developer: ✅ | Serverless: ❌<br>Managed compute: ✅<br>Fireworks: ✅<sup>1</sup> |
 | `Llama-3.3-70B-Instruct` | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
 | `Qwen3-32B` | Managed: ✅ (SFT)<br>Interactive: ❌ | Standard: ❌<br>Data zone: ✅<br>Global: ✅<br>Developer: ❌ | Serverless: ✅<sup>2</sup><br>Managed compute: ❌<br>Fireworks: ❌ |
