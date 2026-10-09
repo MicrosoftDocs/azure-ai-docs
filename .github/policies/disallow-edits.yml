@@ -52,8 +52,6 @@ configuration:
           - not:
               or:
                 - isActivitySender:
-                    user: mcleans
-                - isActivitySender:
                     user: nitinme
                 - isActivitySender:
                     user: sdgilley
@@ -65,7 +63,6 @@ configuration:
                 ${issueAuthor} - Please don't sign off on this PR. The area owners will sign off once they've reviewed your contribution.
           - mentionUsers:
               mentionees:
-                - mcleans
                 - nitinme
                 - sdgilley
                 - alvinashcraft
