@@ -48,6 +48,7 @@ The following table shows which actions each provider supports:
 |Configure deployments|✅|✅|
 |Configure projects|✅|✅|
 |Configure a connection to knowledge and tools|✅|✅|
+|Configure capability host for BYO resource configurations|✅| No, use AzAPI |
 
 [!INCLUDE [create-resource-terraform 1](../includes/how-to-create-resource-terraform-1.md)]
 
