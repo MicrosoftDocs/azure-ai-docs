@@ -49,7 +49,7 @@ The run uses the `azure_ai_user_conversation_simulation` data source. Put settin
 ## Prepare scenario data
 
 > [!TIP]
-> Instead of authoring scenarios by hand, generate them by using the **Simulation seed (multi-turn)** task type. Before using an existing generated dataset with this API, normalize `id` to `test_case_id` and move `desired_num_turns` into `simulation_configuration`. See [Generate a simulation seed dataset](evaluation-dataset-synthetic.md#generate-a-simulation-seed-dataset-sdk).
+> Instead of authoring scenarios by hand, generate them by using the **Simulation seed (multi-turn)** task type. Before using an existing generated dataset with this API, normalize `id` to `test_case_id` and move `desired_num_turns` into `simulation_configuration`. See [Generate a simulation seed dataset](evaluation-dataset-synthetic.md#generate-a-simulation-seed-dataset).
 
 Supply test cases by using one of these source types:
 
