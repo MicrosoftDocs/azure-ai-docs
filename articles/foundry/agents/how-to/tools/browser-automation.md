@@ -34,8 +34,8 @@ Browser Automation Tool (BAT) provides a comprehensive platform for browser auto
 - Flexible orchestration layers
 
 
-> [!WARNING]
-> Browser Automation Tool controls web browsers on your behalf and can take unintended actions. Testing and monitoring are recommended. See the [Foundry Agent Service transparency note](/azure/foundry/responsible-ai/agents/transparency-note) to learn more.
+> [!IMPORTANT]
+> Browser Automation Tool controls web browsers on your behalf and can take unintended actions. Testing and monitoring are recommended. See [Transparency Note for Foundry Agent Service - Microsoft Foundry | Microsoft Learn](/azure/foundry/responsible-ai/agents/transparency-note) to learn more.
 
 ## Use cases
 
@@ -956,7 +956,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 ## Transparency note
 
-Review the [transparency note](../../../responsible-ai/agents/transparency-note.md) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+Browser Automation Tool carries security risks. Both errors in judgement by the AI and the presence of malicious or confusing instructions on web pages encountered by agents may cause them to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial or enterprise systems. Testing and monitoring of agents' actions is recommended to reduce risk.
 
 Review the [responsible AI considerations](../../../responsible-ai/agents/transparency-note.md) when using this tool.
 
