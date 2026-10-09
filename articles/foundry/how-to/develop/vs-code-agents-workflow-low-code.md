@@ -125,6 +125,12 @@ Code conversion doesn't deploy a hosted agent or guarantee equivalent
 behavior. Keep the original definition until you complete migration and
 confirm that dependent applications use the replacement.
 
+Use [Agent Inspector](vs-code-agent-inspector.md#inspect-workflows-and-source-code)
+to inspect a supported local Agent Framework workflow. To collect spans from
+that code or investigate a deployed hosted agent, see
+[Tracing in Foundry Toolkit](vs-code-tracing.md). These local inspection steps
+don't replace the remote playground for a declarative workflow.
+
 For other migration choices, including Agent Framework declarative YAML,
 Azure Logic Apps, and direct A2A connections, see the
 [workflow migration guide](../../agents/concepts/workflow.md#migration-guide).

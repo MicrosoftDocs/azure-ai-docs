@@ -1,6 +1,61 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/foundry/openai/how-to/fine-tuning-cost-management.md",
+      "redirect_url": "/azure/foundry/fine-tuning/cost-management",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/interactive-post-training/recipes.md",
+      "redirect_url": "https://github.com/microsoft-foundry/fine-tuning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/concepts/fine-tuning-considerations.md",
+      "redirect_url": "/azure/foundry/fine-tuning/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/models.md",
+      "redirect_url": "/azure/foundry/fine-tuning/overview#supported-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/managed-fine-tuning-overview.md",
+      "redirect_url": "/azure/foundry/fine-tuning/overview#choose-your-training-approach",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/fine-tune-cli.md",
+      "redirect_url": "/azure/foundry/openai/how-to/fine-tuning#use-the-azure-developer-cli",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/samples.md",
+      "redirect_url": "/azure/foundry/openai/how-to/fine-tuning#samples-and-reference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/how-to/fine-tuning-deploy.md",
+      "redirect_url": "/azure/foundry/fine-tuning/deploy-fine-tuned-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/evaluate-fine-tuned-models.md",
+      "redirect_url": "/azure/foundry/how-to/evaluate-generative-ai-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/deploy-lora-managed-compute.md",
+      "redirect_url": "/azure/foundry/fine-tuning/deploy-fine-tuned-models#deploy-with-managed-compute-preview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/fine-tuning/deploy-lora-fireworks.md",
+      "redirect_url": "/azure/foundry/fine-tuning/deploy-fine-tuned-models#deploy-with-fireworks-on-foundry-preview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/foundry/agents/how-to/vs-code-agents-workflow-pro-code.md",
       "redirect_url": "/azure/foundry/how-to/develop/vs-code-agents-workflow-pro-code",
       "redirect_document_id": false
@@ -3532,7 +3587,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/fine-tuning-cost-management.md",
-      "redirect_url": "/azure/foundry/openai/how-to/fine-tuning-cost-management",
+      "redirect_url": "/azure/foundry/fine-tuning/cost-management",
       "redirect_document_id": true
     },
     {
@@ -4444,6 +4499,11 @@
       "source_path_from_root": "/articles/foundry/agents/how-to/tools/shell.md",
       "redirect_url": "/azure/foundry/",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/concepts/default-safety-policies.md",
+      "redirect_url": "/azure/foundry/guardrails/default-safety-policies",
+      "redirect_document_id": true
     }
   ]
 }

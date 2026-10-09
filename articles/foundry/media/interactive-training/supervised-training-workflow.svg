@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="204" viewBox="0 0 1280 204" role="img" aria-labelledby="sft-title sft-description">
+  <title id="sft-title">Supervised fine-tuning workflow with the Foundry SDK</title>
+  <desc id="sft-description">Create a fine-tuning session, prepare tokens and loss masks, compute gradients with forward_backward and cross_entropy, update the adapter with optim_step, refresh sampler weights, and sample responses.</desc>
+  <defs>
+    <marker id="sft-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8a8886"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; text-anchor: middle; fill: #242424; }
+      .node { fill: #ffffff; stroke: #c8c6c4; stroke-width: 1.5; }
+      .training { fill: #fff4ce; stroke: #b66a00; stroke-width: 1.5; }
+      .label { font-size: 18px; font-weight: 600; }
+      .code { font-family: Consolas, "Courier New", monospace; font-size: 15px; }
+      .method { font-family: Consolas, "Courier New", monospace; font-size: 16px; font-weight: 700; }
+      .detail { font-size: 15px; fill: #605e5c; }
+      .training-text { fill: #7a4100; }
+      .arrow { fill: none; stroke: #8a8886; stroke-width: 2; marker-end: url(#sft-arrow); }
+    </style>
+  </defs>
+  <rect x="0.75" y="0.75" width="1278.5" height="202.5" fill="#f5f5f5" stroke="#d2d0ce" stroke-width="1.5"/>
+  <path class="arrow" d="M 244 96 H 264"/>
+  <path class="arrow" d="M 418 96 H 438"/>
+  <path class="arrow" d="M 634 96 H 654"/>
+  <path class="arrow" d="M 818 96 H 838"/>
+  <path class="arrow" d="M 1082 96 H 1102"/>
+  <g transform="translate(24,40)">
+    <rect class="node" width="220" height="112"/>
+    <text class="label" x="110" y="33">Create session</text>
+    <text class="code" x="110" y="62" style="font-size: 14px">FineTuningSession.create</text>
+    <text class="detail" x="110" y="88">client + LoRA adapter</text>
+  </g>
+  <g transform="translate(268,40)">
+    <rect class="node" width="150" height="112"/>
+    <text class="label" x="75" y="33">Prepare data</text>
+    <text class="code" x="75" y="62">tokens + masks</text>
+    <text class="detail" x="75" y="88">supervised Datum</text>
+  </g>
+  <g transform="translate(442,40)">
+    <rect class="training" width="192" height="112"/>
+    <text class="method training-text" x="96" y="33">forward_backward</text>
+    <text class="code training-text" x="96" y="62">cross_entropy</text>
+    <text class="detail" x="96" y="88">compute gradients</text>
+  </g>
+  <g transform="translate(658,40)">
+    <rect class="training" width="160" height="112"/>
+    <text class="method training-text" x="80" y="33">optim_step</text>
+    <text class="detail" x="80" y="62">update adapter</text>
+    <text class="detail" x="80" y="88">apply gradients</text>
+  </g>
+  <g transform="translate(842,40)">
+    <rect class="node" width="240" height="112"/>
+    <text class="label" x="120" y="33">Refresh sampler</text>
+    <text class="code" x="120" y="62">save_weights_for_sampler</text>
+    <text class="detail" x="120" y="88">record checkpoint ID</text>
+  </g>
+  <g transform="translate(1106,40)">
+    <rect class="node" width="150" height="112"/>
+    <text class="method" x="75" y="33">sample</text>
+    <text class="detail" x="75" y="62">use checkpoint ID</text>
+    <text class="detail" x="75" y="88">check responses</text>
+  </g>
+  <text class="detail" x="640" y="184">Highlighted steps compute gradients and update the adapter.</text>
+</svg>

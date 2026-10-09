@@ -6,7 +6,7 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: overview
 ms.author: westey
-ms.date: 09/30/2026
+ms.date: 10/09/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -229,6 +229,7 @@ connector families aren't interchangeable.
 | Azure DocumentDB | `agent-framework-azure-documentdb`; alpha package | Not available | Dense vector with portable metadata filters | Keys must be strings or integers. Generated ObjectIds, hybrid and full-text search, and nested filter paths aren't supported. |
 | DuckDB | `agent-framework-duckdb`; alpha package | Not available | Exact dense vector with portable filters | Requires Python 3.10+ and DuckDB 1.4.1–1.5.x. Approximate indexes, keyword and hybrid search, full-text search, and server-side vectorization aren't supported. Local files allow only one writing process at a time. |
 | MongoDB | `agent-framework-mongodb`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/mongodb-connector) | Approximate or exact dense vector with portable filters | Requires PyMongo 4.13.2+ and a deployment with MongoDB Vector Search. Keyword and hybrid search, nested filter paths, provider-side embedding generation, and automatic schema migration aren't supported. Models that declare `is_full_text_indexed` are rejected, and newly written records become searchable asynchronously. |
+| Oracle Database | `agent-framework-oracle`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/oracle-connector) | Dense vector with portable filters | Requires Oracle Database 23ai or newer with `COMPATIBLE` set to 23.4.0 or higher and `python-oracledb` 2.2.x or 3.x. Index management, keyword and hybrid search, JSON and nested filters, server-side vectorization, and schema migration aren't supported. |
 | PostgreSQL with pgvector | `agent-framework-postgres`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Exact dense vector, HNSW, and IVFFlat | Requires PostgreSQL 13+, pgvector 0.8.0+, an existing schema, and the enabled extension. Keyword and hybrid search aren't supported. |
 | Qdrant | `agent-framework-qdrant`; alpha package | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/qdrant-connector) | Dense vector with server-side portable filters | Server mode requires Qdrant 1.16.2+. Keys must be unsigned 64-bit integers or UUIDs. Keyword and hybrid search aren't supported, and filters aren't available in local SDK mode. |
 | Redis | `agent-framework-redis`; beta package with experimental vector APIs | [Available](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/redis-connector) | Dense vector over HASH or JSON records | Requires Redis 8.0.3+ with Search; JSON records also require RedisJSON. Redis Cluster, keyword search, and hybrid search aren't supported. |
@@ -242,6 +243,7 @@ pip install agent-framework-azure-cosmos --pre
 pip install agent-framework-azure-documentdb --pre
 pip install agent-framework-duckdb --pre
 pip install agent-framework-mongodb --pre
+pip install agent-framework-oracle --pre
 pip install agent-framework-postgres --pre
 pip install agent-framework-qdrant --pre
 pip install agent-framework-redis --pre
@@ -257,6 +259,7 @@ For complete examples, see the
 [DuckDB](https://github.com/microsoft/agent-framework/blob/main/python/packages/duckdb/samples/duckdb_vectors.py),
 [MongoDB vector operations](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_vectors.py),
 [MongoDB agent RAG](https://github.com/microsoft/agent-framework/blob/main/python/packages/mongodb/samples/mongodb_agent_rag.py),
+[Oracle Database](https://github.com/microsoft/agent-framework/blob/main/python/packages/oracle/samples/oracle_vectors.py),
 [Postgres](https://github.com/microsoft/agent-framework/blob/main/python/packages/postgres/samples/postgres_vectors.py),
 [Qdrant](https://github.com/microsoft/agent-framework/blob/main/python/packages/qdrant/samples/qdrant_vectors.py),
 [Redis](https://github.com/microsoft/agent-framework/blob/main/python/samples/02-agents/vector_stores/redis_store.py),
@@ -277,7 +280,6 @@ implementations don't currently have a native Agent Framework connector:
 | Elasticsearch | Planned | Not applicable | Not applicable |
 | [Faiss](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/faiss-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | [Neon Serverless Postgres](https://neon.com/) | Use the [Postgres implementation](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector) | Yes | Microsoft Semantic Kernel project |
-| [Oracle](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/oracle-connector) | Available | Yes | Oracle |
 | [Pinecone](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/pinecone-connector) | Available | Yes | Microsoft Semantic Kernel project |
 | SQLite | Planned | Not applicable | Microsoft Semantic Kernel project |
 | [Weaviate](/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/weaviate-connector) | Available | Yes | Microsoft Semantic Kernel project |

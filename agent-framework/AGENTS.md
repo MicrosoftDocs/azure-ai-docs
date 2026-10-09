@@ -68,6 +68,7 @@ agent-framework/
 │       └── magentic.md
 ├── integrations/              # Named external things; usually outside services
 │   ├── index.md               # Integrations overview & landing
+│   ├── community-projects.md  # Externally maintained projects by component
 │   ├── by-provider/           # Cross-component provider ecosystem landing pages
 │   │   ├── index.md
 │   │   ├── microsoft-foundry.md
@@ -210,6 +211,7 @@ implementation package lives.
 | **R11: User-managed hosting uses `self-hosting`** | Local and user-managed hosting guides use `hosting/self-hosting/`. | `hosting/self-hosting/responses.md` |
 | **R12: Apps are assembled applications** | Reserve a future `apps/` area for complete applications. External integrations remain in their component area even when their samples are end-to-end. | GitHub Copilot → `integrations/by-component/agent-services/`; Purview → `integrations/by-component/middleware/` |
 | **R13: Move in phases** | Lock taxonomy and mapping, audit inbound links, move concept pages, move integrations, then remove old paths only after redirects and links are ready. | Preserve Learn, blog, and Foundry links during migration |
+| **R14: Separate community-owned projects** | List externally maintained projects only in `integrations/community-projects.md`, organized by component. The Python and .NET community-project pages in the `microsoft/agent-framework` repository are authoritative. Do not list services that only require an OpenAI-compatible base URL or standard OpenTelemetry configuration. | Engram, MemorySync |
 
 For context-provider integrations, use one flat page per external provider.
 When a provider supports multiple patterns, add a short comparison before
@@ -221,6 +223,18 @@ across components for a named platform. Keep implementation guidance in the
 canonical `by-component` pages and use provider pages only for navigation and
 scenario selection. Provider pages can be added for ecosystems that readers
 commonly select first, even when current coverage is limited to one component.
+
+Community-owned projects are the exception to the canonical `by-component`
+implementation-page structure. Keep them on the direct
+`integrations/community-projects.md` catalog so their ownership and support
+boundary remains explicit. Synchronize its rows from
+`python/samples/community-projects.md` and
+`dotnet/samples/community-projects.md` in the `microsoft/agent-framework`
+repository. Use the standard programming-language pivots: map the .NET catalog
+to the C# pivot, map the Python catalog to the Python pivot, and keep the Go
+pivot non-empty with an availability statement until a Go source catalog
+exists. Don't add a community project to provider pages or official component
+integration tables.
 
 Model-provider pages should consistently document installation, verified
 environment variables, explicit client and agent construction, supported tools,
@@ -355,9 +369,9 @@ Every docs page maps to sample files in both repos:
 | `get-started/add-tools.md` | `01-get-started/02_add_tools.py` | `01-get-started/02_add_tools/Program.cs` |
 | `get-started/multi-turn.md` | `01-get-started/03_multi_turn.py` | `01-get-started/03_multi_turn/Program.cs` |
 | `get-started/memory.md` | `01-get-started/04_memory.py` | `01-get-started/04_memory/Program.cs` |
-| `get-started/workflows.md` | `01-get-started/07_first_graph_workflow.py` | `01-get-started/05_first_workflow/Program.cs` |
-| `get-started/harness.md` | `02-agents/harness/` | `02-agents/Harness/` |
-| `get-started/hosting.md` | `04-hosting/azure_functions/01_single_agent/function_app.py` | `01-get-started/06_host_your_agent/Program.cs` |
+| `get-started/workflows.md` | `01-get-started/05a_functional_workflow_basics.py`, `01-get-started/05b_functional_workflow_with_agents.py`, `01-get-started/05c_first_graph_workflow.py` | `01-get-started/05_first_workflow/Program.cs` |
+| `get-started/harness.md` | `01-get-started/06_agent_harness.py`, `02-agents/harness/` | `02-agents/Harness/` |
+| `get-started/hosting.md` | `01-get-started/07_hosting.py`, `04-hosting/foundry-hosted-agents/responses/basic/` | `01-get-started/06_host_your_agent/Program.cs` |
 | `agents/tools/function-tools.md` | `02-agents/tools/function_tool_with_explicit_schema.py`, `02-agents/tools/function_tool_with_kwargs.py`, `02-agents/tools/tool_in_class.py` | N/A (no dedicated .NET sample; see `dotnet/samples` generally) |
 | `agents/tools/web-search.md` | `02-agents/providers/openai/client_with_web_search.py` | `02-agents/AgentProviders/foundry/Agent_Step21_WebSearch/` |
 | `agents/tools/file-search.md` | `02-agents/providers/openai/client_with_file_search.py` | `02-agents/AgentProviders/foundry/Agent_Step16_FileSearch/` |
@@ -382,6 +396,7 @@ Every docs page maps to sample files in both repos:
 | `concepts/workflows/advanced/resettable-executors.md` | N/A | `03-workflows/Agents/WorkflowAsAnAgent/` |
 | `concepts/workflows/{index,builder-and-execution,events,executors,state}.md`, `concepts/workflows/advanced/{execution-modes,sub-workflows}.md` | N/A (conceptual pages; no dedicated 1:1 sample) | N/A (conceptual pages; no dedicated 1:1 sample) |
 | `workflows/<capability>.md` | `03-workflows/<matching>.py` | `03-workflows/<matching>.cs` |
+| `integrations/community-projects.md` | `community-projects.md` | `community-projects.md` |
 | `integrations/by-component/model-providers/foundry-local.md` | `02-agents/providers/foundry/foundry_local_agent.py` | N/A |
 | `integrations/by-component/model-providers/microsoft-foundry.md` | `02-agents/providers/foundry/` | `02-agents/AgentProviders/foundry/` |
 | `integrations/by-component/model-providers/azure-openai.md` | `02-agents/providers/azure/` | `02-agents/AgentProviders/azure/` |

@@ -6,7 +6,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 08/21/2026
+ms.date: 10/06/2026
 author: mattwojo
 reviewer: lindazqli
 ms.author: mattwoj
@@ -83,10 +83,10 @@ Because the browser runs remotely in Playwright Workspaces, the agent doesn't ne
 
 This architecture enables agents to perform workflows such as navigating websites, retrieving and validating information, completing forms, interacting with authenticated applications, and carrying out multi-step browser processes.
 
-## Regional support 
+## Regional support
 
 To use the Browser Automation tool with hosted agents, you need a Playwright Workspace in a region that also supports hosted agents. Browser Automation is currently available in the following regions:
- 
+
 | Region | Status |
 |---|---|
 | `australiaeast` | Available |
@@ -96,7 +96,6 @@ To use the Browser Automation tool with hosted agents, you need a Playwright Wor
 | `switzerlandnorth` | Available |
 | `westeurope` | Available |
 | `westus3` | Available |
-
 
 ## Choose your setup path
 
@@ -717,6 +716,8 @@ JSON
 
 The following TypeScript sample demonstrates how to create an agent with the Browser Automation tool, perform web browsing tasks, and process streaming responses with browser automation events. For a JavaScript version of this sample, see the [JavaScript sample for Browser Automation tool](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2/javascript/agents/tools/agentBrowserAutomation.js) in the Azure SDK for JavaScript repository on GitHub.
 
+In `@azure/ai-projects` 2.8.0, `BrowserAutomationTool` and `BrowserAutomationToolboxTool` use the `browser_automation` discriminator and nested property. The preview contracts remain available, and the following example uses `browser_automation_preview`. For the GA agent contract, see the [released Browser Automation agent sample](https://github.com/Azure/azure-sdk-for-js/blob/%40azure%2Fai-projects_2.8.0/sdk/ai/ai-projects/samples-dev/agents/tools/agentBrowserAutomationGA.ts).
+
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
@@ -960,6 +961,16 @@ Review the [transparency note](../../../responsible-ai/agents/transparency-note.
 Review the [responsible AI considerations](../../../responsible-ai/agents/transparency-note.md) when using this tool.
 
 ## Related content
+
+### Blogs and resources
+
+- [Introducing the new Browser Automation Tool with Toolboxes in Foundry](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-the-new-browser-automation-tool-with-toolboxes-in-foundry/4522790)
+- [Announcing the Playwright Workspaces Remote MCP Server for Agentic Browser Automation](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-the-playwright-workspaces-remote-mcp-server-for-agentic-browser-autom/4555698?previewMessage=true)
+- [Bring managed browser automation to your agent applications](https://techcommunity.microsoft.com/blog/AppsonAzureBlog/bring-managed-browser-automation-to-your-agent-applications/4561184)
+- [Why cloud browsers are becoming enterprise infrastructure for AI agents and automation](https://techcommunity.microsoft.com/blog/appsonazureblog/why-cloud-browsers-are-becoming-enterprise-infrastructure-for-ai-agents-and-auto/4547583)
+- [Manage and retrieve credentials securely inside Browser Automation Tool (BAT) using Azure Key Vault](https://techcommunity.microsoft.com/blog/appsonazureblog/manage-and-retrieve-credentials-securely-inside-browser-automation-tool-bat-usin/4550858)
+
+### Related documentation
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Computer use tool for agents](computer-use.md)

@@ -2606,7 +2606,13 @@ Vision-enabled models have the following limitations:
 
 ## File input
 
-Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model's context. This is useful when key information is conveyed through diagrams or non-textual content.
+Models with vision capabilities support PDF input. You can provide a PDF file in any of the following ways:
+
+- Base64-encoded data
+- A file ID created with the Files API
+- An external file URL (`file_url`)
+
+To help models interpret PDF content, the model's context includes both the extracted text and an image of each page. This feature is useful when key information is conveyed through diagrams or non-textual content.
 
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
@@ -2985,6 +2991,176 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
         "content": [
           {"type": "input_file", "file_id": "<file_id>"},
           {"type": "input_text", "text": "Summarize this PDF."}
+        ]
+      }
+    ]
+  }'
+```
+
+---
+
+### Analyze a PDF from an external file URL
+
+Reference a PDF hosted at a publicly accessible URL by using the `file_url` property of an `input_file` content item. You don't need to download, encode, or upload the file first.
+
+# [Python](#tab/python)
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
+)
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_text",
+                    "text": "Analyze the letter and provide a summary of the key points.",
+                },
+                {
+                    "type": "input_file",
+                    "file_url": "https://www.berkshirehathaway.com/letters/2024ltr.pdf",
+                },
+            ],
+        },
+    ]
+)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+```csharp
+#pragma warning disable OPENAI001
+using Azure.Identity;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+
+string endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+// API key authentication
+ResponsesClient openAIClient = new(
+    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!),
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+// Microsoft Entra ID authentication (recommended)
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://ai.azure.com/.default");
+ResponsesClient openAIClientEntra = new(
+    authenticationPolicy: tokenPolicy,
+    options: new ResponsesClientOptions { Endpoint = new Uri(endpoint) });
+
+CreateResponseOptions options = new()
+{
+    Model = "MODEL_NAME",
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem(
+        [
+            ResponseContentPart.CreateInputTextPart("Analyze the letter and provide a summary of the key points."),
+            ResponseContentPart.CreateInputFilePart(new Uri("https://www.berkshirehathaway.com/letters/2024ltr.pdf"))
+        ])
+    }
+};
+
+ResponseResult response = await openAIClient.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "MODEL_NAME",
+  input: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "input_text",
+          text: "Analyze the letter and provide a summary of the key points.",
+        },
+        {
+          type: "input_file",
+          file_url: "https://www.berkshirehathaway.com/letters/2024ltr.pdf",
+        },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputFile;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+String endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+    .baseUrl(endpoint)
+    .credential(AzureApiKeyCredential.create(System.getenv("AZURE_OPENAI_API_KEY")))
+    .build();
+
+ResponseInputFile file = ResponseInputFile.builder()
+    .fileUrl("https://www.berkshirehathaway.com/letters/2024ltr.pdf")
+    .build();
+
+ResponseInputItem userMsg = ResponseInputItem.ofMessage(
+    ResponseInputItem.Message.builder()
+        .role(ResponseInputItem.Message.Role.USER)
+        .addInputTextContent("Analyze the letter and provide a summary of the key points.")
+        .addContent(file)
+        .build());
+
+Response response = openAIClient.responses().create(
+    ResponseCreateParams.builder()
+        .model("MODEL_NAME")
+        .inputOfResponse(List.of(userMsg))
+        .build());
+
+System.out.println(response.outputText());
+```
+
+# [REST](#tab/rest)
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "MODEL_NAME",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "Analyze the letter and provide a summary of the key points."
+          },
+          {
+            "type": "input_file",
+            "file_url": "https://www.berkshirehathaway.com/letters/2024ltr.pdf"
+          }
         ]
       }
     ]

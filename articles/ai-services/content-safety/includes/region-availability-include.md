@@ -165,4 +165,4 @@ See the following list for the input requirements for each feature.
 
 
 ## Language availability
-The Azure AI Content Safety features for content harms were trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, and Portuguese. You tested prompt shields, protected material, groundedness detection, task adherence, and custom categories (standard) with English only. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+The Azure AI Content Safety features for content harms were trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, and Portuguese. Prompt shields, protected material, groundedness detection, task adherence, and custom categories (standard) were tested with English only. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.

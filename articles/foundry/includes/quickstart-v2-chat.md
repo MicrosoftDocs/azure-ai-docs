@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/05/2025
-ms.custom: include, update-code5
+ms.custom: include, update-code6
 ---
 
 Interacting with a model is the basic building block of AI applications.  Send an input and receive a response from the model:

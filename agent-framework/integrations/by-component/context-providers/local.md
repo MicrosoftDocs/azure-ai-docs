@@ -4,8 +4,10 @@ description: Run Agent Framework CodeAct in a local Python subprocess from .NET.
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
+ms.custom: update-code1
+ai-usage: ai-assisted
 ---
 
 # Local (.NET)
@@ -16,6 +18,10 @@ This integration uses the CodeAct pattern and relies on the host environment for
 
 > [!WARNING]
 > Local CodeAct is **not a security sandbox**. Run it only where an external container, virtual machine, or managed hosting environment provides process, filesystem, network, and credential isolation.
+>
+> [FIDES](../../../agents/security.md) is currently Python-only and isn't available in this .NET provider. Its host bridge invokes registered `AIFunction` tools directly, without the agent's per-function middleware pipeline.
+>
+> Checks on direct agent tools or the outer `execute_code` call don't cover nested calls, code-internal intermediate values, or file and network capabilities. Host tools must enforce their own authorization and destination controls. Use direct agent tools when you need individual middleware checks; don't rely on Local CodeAct for FIDES guarantees. See [CodeAct's current limitations](../../../agents/code-act.md#current-limitations).
 
 ## Install the package
 

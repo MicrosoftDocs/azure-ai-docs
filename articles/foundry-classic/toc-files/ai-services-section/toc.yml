@@ -52,8 +52,6 @@ items:
     href: ../../../ai-services/speech-service/overview.md?context=/azure/foundry-classic/context/context
   - name: Voice live with Foundry models quickstart
     href: ../../../ai-services/speech-service/voice-live-quickstart.md?context=/azure/foundry-classic/context/context
-  - name: Voice live with Foundry agents quickstart
-    href: ../../../ai-services/speech-service/voice-live-agents-quickstart-classic.md?context=/azure/foundry-classic/context/context
   - name: Real-time speech to text
     href: ../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/foundry-classic/context/context
   - name: Fast transcription
@@ -74,6 +72,10 @@ items:
     href: ../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/foundry-classic/context/context
   - name: Audio content creation
     href: ../../../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/foundry-classic/context/context
+  - name: Deprecated
+    items:
+    - name: Voice Live with Agent Service (classic) quickstart
+      href: ../../../ai-services/speech-service/voice-live-agents-quickstart-classic.md?context=/azure/foundry-classic/context/context
 - name:  Translator
   items:
   - name: What is Translator in Foundry Tools?

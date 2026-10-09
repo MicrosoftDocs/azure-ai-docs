@@ -7,16 +7,17 @@ ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
+ai-usage: ai-assisted
 ---
 
-Learn how to fine-tune Azure OpenAI models with image data to customize visual understanding for your use case. Vision fine-tuning lets you include image inputs in your training examples, following the same chat completions format used for text fine-tuning.
+Learn how to fine-tune GPT-4o and GPT-4.1 models in Microsoft Foundry with image data to customize visual understanding for your use case. Vision fine-tuning lets you include image inputs in your training examples, following the same chat completions format used for text fine-tuning.
 
 Images can be provided either as publicly accessible URLs or data URIs containing [base64 encoded images](/azure/ai-foundry/openai/how-to/gpt-with-vision?tabs=rest#call-the-chat-completion-apis).
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
+- A Microsoft Foundry resource. See [Create a Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
 - Familiarity with the [fine-tuning workflow](../how-to/fine-tuning.md). Vision fine-tuning follows the same process with image-specific data formatting.
 - Fine-tuning access for the supported models in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
@@ -103,7 +104,7 @@ After preparing your dataset with image examples, follow the standard fine-tunin
 2. Create a fine-tuning job specifying your uploaded file and a [supported vision model](#model-support).
 3. Monitor the job until completion.
 
-For detailed steps, see [Fine-tune an Azure OpenAI model](../how-to/fine-tuning.md).
+For detailed steps, see [Supervised fine-tuning in Foundry](../how-to/fine-tuning.md).
 
 ## Content moderation policy
 

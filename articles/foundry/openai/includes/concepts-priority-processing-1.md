@@ -42,5 +42,3 @@ The following table lists the *latency target value* for each model that support
 | gpt-4.1, 2025-04-14<sup>1</sup> | 99% > 80 TPS |
 
 <sup>1</sup> *Long context* for this model, that is, requests estimated to exceed **128k prompt tokens** are downgraded to standard processing and charged at the standard tier rate.
-
-

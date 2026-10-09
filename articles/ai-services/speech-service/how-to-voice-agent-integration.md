@@ -93,7 +93,7 @@ session_options = VoiceLiveSessionOptions(
 )
 ```
 
-For complete code examples, see the [new agent quickstart](voice-live-agents-quickstart.md). The [classic quickstart](voice-live-agents-quickstart-classic.md) remains available.
+For complete code examples, see the [Voice Live with Foundry Agent Service quickstart](voice-live-agents-quickstart.md). The [classic quickstart (deprecated)](voice-live-agents-quickstart-classic.md) remains available.
 
 ## Related content
 

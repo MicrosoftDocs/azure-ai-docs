@@ -5,9 +5,10 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: article
 ms.author: edvan
-ms.date: 07/28/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
+ms.custom: update-code1
 ---
 
 <!--
@@ -108,7 +109,7 @@ pip install agent-framework-foundry
 ## Configuration
 
 ```bash
-FOUNDRY_PROJECT_ENDPOINT="https://<your-project>.services.ai.azure.com"
+FOUNDRY_PROJECT_ENDPOINT="https://<your-account>.services.ai.azure.com/api/projects/<your-project>"
 FOUNDRY_AGENT_NAME="my-agent"
 FOUNDRY_AGENT_VERSION="1.0"
 ```
@@ -161,7 +162,8 @@ Because the Foundry agent definition is the source of truth, not every option pa
 | Option | Prompt Agent behavior |
 |---|---|
 | `model` | Ignored. The model comes from the Foundry agent definition. |
-| `tools`, `tool_choice`, `parallel_tool_calls` | Removed from the request. Tools must be declared on the Foundry agent definition. |
+| `tools` | Tool declarations are removed from the request. Matching local Python callables remain available for client-side execution when the Foundry agent requests them. |
+| `tool_choice`, `allow_multiple_tool_calls` | Caller-supplied values are ignored with a warning because the Foundry agent owns tool selection. The unrestricted `tool_choice="auto"` default is omitted silently. |
 | `instructions` and system or developer messages | Ignored. The stored Foundry instructions are authoritative. |
 | `conversation_id` | Used and mapped to the Foundry agent session when applicable. |
 | `extra_body` | Forwarded and merged with the framework-provided agent reference. |
@@ -192,7 +194,7 @@ from agent_framework.foundry import FoundryAgent
 from azure.identity import AzureCliCredential
 
 agent = FoundryAgent(
-    project_endpoint="https://your-project.services.ai.azure.com",
+    project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
     agent_name="my-prompt-agent",
     credential=AzureCliCredential(),
     timeout=120.0,

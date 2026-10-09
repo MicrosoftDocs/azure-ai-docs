@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: taochen
 ms.topic: article
 ms.author: taochen
-ms.date: 10/02/2026
+ms.date: 10/08/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -101,7 +101,9 @@ using Microsoft.Agents.AI.Foundry.Hosting;
 
 var projectEndpoint = new Uri(Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set."));
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var deployment = Environment.GetEnvironmentVariable("FOUNDRY_MODEL")
+    ?? Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+    ?? "gpt-4o";
 
 AIAgent agent = new AIProjectClient(projectEndpoint, new DefaultAzureCredential())
     .AsAIAgent(
@@ -133,7 +135,7 @@ from azure.identity import DefaultAzureCredential
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -167,19 +169,27 @@ acknowledge any safety checks. For the complete flow, see
 
 ### Choose an agent instance or factory
 
-Both `ResponsesHostServer` and `InvocationsHostServer` accept either an agent instance or a zero-argument synchronous or asynchronous callable through the `agent` parameter. The host reuses an instance for its lifetime. A callable runs once per request, and the returned agent belongs to that request.
+Both `ResponsesHostServer` and `InvocationsHostServer` accept either an agent
+instance or a zero-argument synchronous or asynchronous callable through the
+`agent` parameter. The host reuses an instance for its lifetime. A callable
+runs once per request, and the returned agent belongs to that request.
 
-Use a callable when the agent retains mutable state outside `AgentSession`. In particular, create a `WorkflowAgent` from a factory that builds a fresh workflow, executors, and wrapped agents:
+Use a callable when a regular agent retains mutable state outside
+`AgentSession`. The hosts persist only their supported session, checkpoint,
+and function-approval stores, not arbitrary fields on a request-scoped agent.
 
-```python
-def create_workflow_agent():
-    return build_workflow().as_agent(name="support-workflow")
-
-
-server = ResponsesHostServer(agent=create_workflow_agent)
-```
-
-Keep the workflow name and executor IDs stable so later Responses requests can locate saved checkpoints. `ResponsesHostServer` continues supported state through its session, checkpoint, and function-approval stores; it doesn't persist arbitrary fields on a request-scoped agent. See the [workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/workflows) and [resilient long-running workflow](https://github.com/microsoft/agent-framework/tree/main/python/samples/04-hosting/foundry-hosted-agents/responses/resilient_long_running_workflow) samples.
+> [!WARNING]
+> Hosting a `WorkflowAgent`, such as `workflow.as_agent()`, through `agent=` is
+> deprecated. A `WorkflowAgent` keeps workflow state in memory between runs, so
+> one instance must never serve requests from different users or conversations.
+> Host the workflow natively through `workflow=` and a request-aware factory.
+>
+> Until you migrate a Responses host, a factory that creates a fresh workflow,
+> executors, wrapped agents, clients, providers, and tools for every request is
+> the safe legacy form. Keep the workflow name and executor IDs stable so the
+> host can restore checkpoints. For an Invocations host, this legacy factory
+> form only suits stateless, single-turn workflows because agent hosting doesn't
+> restore workflow checkpoints.
 
 Also use a factory when an integration carries request identity or owns
 request-specific resources. For example, create MCP connections, Toolboxes,
@@ -414,7 +424,7 @@ from azure.identity import DefaultAzureCredential
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -567,7 +577,7 @@ _sessions: dict[str, AgentSession] = {}
 
 client = FoundryChatClient(
     project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+    model=os.environ.get("FOUNDRY_MODEL") or os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
     credential=DefaultAzureCredential(),
 )
 
@@ -650,7 +660,7 @@ azd ai agent init -m <path-to-agent.manifest.yaml>
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://<account>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment>"
+export FOUNDRY_MODEL="<your-model-deployment>"
 ```
 
 ### Run the agent host
@@ -706,7 +716,7 @@ The Foundry hosting infrastructure automatically injects the following environme
 | Variable | Description |
 |----------|-------------|
 | `FOUNDRY_PROJECT_ENDPOINT` | The endpoint URL for the Foundry project. |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | The model deployment name (configured during `azd ai agent init`). |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | The azd-managed model deployment name configured during `azd ai agent init`. Python code can prefer `FOUNDRY_MODEL` locally and fall back to this hosted value. |
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | The Application Insights connection string for telemetry. |
 
 Once deployed, your agent is accessible through its dedicated Foundry endpoint and can also be tested from the Foundry portal.

@@ -5,8 +5,9 @@ zone_pivot_groups: programming-languages
 author: westey-m
 ms.topic: tutorial
 ms.author: westey
-ms.date: 07/08/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
+ai-usage: ai-assisted
 ---
 
 # Step 6: Agent Harness
@@ -57,36 +58,15 @@ The harness handles planning, todo tracking, and history persistence for you acr
 
 :::zone pivot="programming-language-python"
 
-Create a harness agent with the `create_harness_agent` factory. Because a harness works through tasks interactively over many steps, you typically drive it from a conversation loop: keep a session so the harness state (plan, todos, and history) persists across turns, read the user's next instruction, and stream the agent's output as it's produced.
+The complete sample creates a Microsoft Foundry chat client, wraps it with `create_harness_agent`, and reuses one session across two turns. The harness adds planning, to-do tracking, and compaction while the sample disables file memory and web search to stay focused.
 
-```python
-from agent_framework import create_harness_agent
-from agent_framework.openai import OpenAIChatClient
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/06_agent_harness.py" range="9-34" highlight="9-18":::
 
-agent = create_harness_agent(
-    OpenAIChatClient(model="gpt-4o"),
-)
-
-# A session carries the harness state (plan, todos, history) across turns.
-session = agent.create_session()
-
-print("Harness agent ready. Type 'exit' to quit.")
-while True:
-    user_input = input("> ")
-    if user_input.strip().lower() in {"exit", "quit"}:
-        break
-
-    # Stream this turn's output as the harness plans and works through the request.
-    async for chunk in agent.run(user_input, session=session, stream=True):
-        if chunk.text:
-            print(chunk.text, end="", flush=True)
-    print()
-```
-
-The harness handles planning, todo tracking, and history persistence for you across the whole conversation. For a full-featured console — with tool-approval prompts, todo/mode rendering, and slash commands — see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
+The shared session preserves the harness state across both calls. For a full-featured console - with tool-approval prompts, to-do and mode rendering, and slash commands - see the [sample terminal UX](../concepts/harness.md#sample-terminal-ux).
 
 > [!TIP]
-> See the [Python harness samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/harness) for full runnable applications.
+> See the [full get-started sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/01-get-started/06_agent_harness.py).
+> For more patterns, see the [Python harness samples](https://github.com/microsoft/agent-framework/tree/main/python/samples/02-agents/harness).
 
 :::zone-end
 

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="260" viewBox="0 0 1280 260" role="img" aria-labelledby="rl-title rl-description">
+  <title id="rl-title">Reinforcement learning workflow with the Foundry SDK</title>
+  <desc id="rl-description">Create a fine-tuning session, refresh sampler weights, sample rollouts with token log probabilities, score responses and prepare advantages in your program, compute gradients with importance_sampling, and update the adapter. Repeat from refreshing sampler weights after each update.</desc>
+  <defs>
+    <marker id="rl-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8a8886"/>
+    </marker>
+    <marker id="rl-loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7a4100"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; text-anchor: middle; fill: #242424; }
+      .node { fill: #ffffff; stroke: #c8c6c4; stroke-width: 1.5; }
+      .training { fill: #fff4ce; stroke: #b66a00; stroke-width: 1.5; }
+      .label { font-size: 18px; font-weight: 600; }
+      .code { font-family: Consolas, "Courier New", monospace; font-size: 15px; }
+      .method { font-family: Consolas, "Courier New", monospace; font-size: 16px; font-weight: 700; }
+      .detail { font-size: 15px; fill: #605e5c; }
+      .training-text { fill: #7a4100; }
+      .arrow { fill: none; stroke: #8a8886; stroke-width: 2; marker-end: url(#rl-arrow); }
+    </style>
+  </defs>
+  <rect x="0.75" y="0.75" width="1278.5" height="258.5" fill="#f5f5f5" stroke="#d2d0ce" stroke-width="1.5"/>
+  <path class="arrow" d="M 212 96 H 232"/>
+  <path class="arrow" d="M 476 96 H 496"/>
+  <path class="arrow" d="M 644 96 H 664"/>
+  <path class="arrow" d="M 852 96 H 872"/>
+  <path class="arrow" d="M 1072 96 H 1092"/>
+  <g transform="translate(24,40)">
+    <rect class="node" width="188" height="112"/>
+    <text class="label" x="94" y="33">Create session</text>
+    <text class="code" x="94" y="62">FineTuningSession</text>
+    <text class="code" x="94" y="88">.create(...)</text>
+  </g>
+  <g transform="translate(236,40)">
+    <rect class="node" width="240" height="112"/>
+    <text class="label" x="120" y="33">Refresh sampler</text>
+    <text class="code" x="120" y="62">save_weights_for_sampler</text>
+    <text class="detail" x="120" y="88">current adapter weights</text>
+  </g>
+  <g transform="translate(500,40)">
+    <rect class="node" width="144" height="112"/>
+    <text class="label" x="72" y="33" style="font-size: 17px">Sample rollouts</text>
+    <text class="method" x="72" y="62">sample</text>
+    <text class="detail" x="72" y="88" style="font-size: 14px">tokens + logprobs</text>
+  </g>
+  <g transform="translate(668,40)">
+    <rect class="node" width="184" height="112"/>
+    <text class="label" x="92" y="33">Score + prepare</text>
+    <text class="code" x="92" y="62" style="font-size: 14px">reward + advantage</text>
+    <text class="detail" x="92" y="88">RL Datum in your code</text>
+  </g>
+  <g transform="translate(876,40)">
+    <rect class="training" width="196" height="112"/>
+    <text class="method training-text" x="98" y="33">forward_backward</text>
+    <text class="code training-text" x="98" y="62">importance_sampling</text>
+    <text class="detail" x="98" y="88">compute gradients</text>
+  </g>
+  <g transform="translate(1096,40)">
+    <rect class="training" width="160" height="112"/>
+    <text class="method training-text" x="80" y="33">optim_step</text>
+    <text class="detail" x="80" y="62">update adapter</text>
+    <text class="detail" x="80" y="88">apply gradients</text>
+  </g>
+  <path d="M 1176 152 V 198 H 356 V 156" fill="none" stroke="#7a4100" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#rl-loop-arrow)"/>
+  <text class="training-text" x="766" y="235" font-size="16">Repeat: refresh sampler weights before the next rollouts.</text>
+</svg>

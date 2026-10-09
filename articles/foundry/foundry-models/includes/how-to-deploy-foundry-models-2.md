@@ -52,3 +52,4 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 - [Instant access to models in Microsoft Foundry (preview)](../../concepts/instant-models.md)
 - [Deploy models using Azure CLI and Bicep](../how-to/create-model-deployments.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
+- [Configure Guardrails for Foundry Models](../../guardrails/how-to-create-guardrails.md)

@@ -345,6 +345,8 @@ items:
           href: integrations/by-component/ui/devui/security.md
         - name: Samples
           href: integrations/by-component/ui/devui/samples.md
+  - name: Community Projects
+    href: integrations/community-projects.md
 - name: Hosting
   items:
   - name: Overview

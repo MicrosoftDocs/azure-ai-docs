@@ -136,7 +136,7 @@ Given the configuration above, here's how Violence detection works at each stage
 
 ## Default guardrails
 
-By default, models are assigned the **Microsoft.DefaultV2** guardrail. For more information about what controls are included, see [Content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
+By default, models are assigned the **Microsoft.DefaultV2** guardrail. For more information about what controls are included, see [default safety policies](default-safety-policies.md).
 
 Default guardrail assignment for agents follows these rules:
 

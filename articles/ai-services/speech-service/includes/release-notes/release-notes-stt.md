@@ -3,11 +3,17 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-speech-foundry-tools
 ms.topic: include
-ms.date: 08/25/2026
+ms.date: 10/08/2026
 ms.author: pafarley
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
+
+### October 2026 release
+
+#### Multilingual speech-to-text model for Indic languages
+
+A new multilingual speech-to-text model for Indic languages is now available in Fast Transcription and Voice Live. Our most advanced Multilingual Indic model to date delivers faster, more accurate, and more natural transcription across 13 Indic locales. It improves accuracy by approximately 10% TERR over the prior generation, supports seamless language mixing across conversation turns, and generates display-ready text for numbers, currencies, times, mathematical expressions, URLs, email addresses, and more. An optimized inference architecture further improves transcription speed. The model became available in all supported regions on October 5, 2026.
 
 ### September 2026 release
 

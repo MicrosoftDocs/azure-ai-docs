@@ -7,7 +7,7 @@ ms.reviewer: aahill
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 09/23/2026
+ms.date: 10/06/2026
 ms.custom: pilot-ai-workflow-jan-2026, dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer who runs a Microsoft Foundry agent inside a virtual network, I want to publish it to Microsoft 365 Copilot and Teams so that users can reach it even though public network access is disabled.
@@ -117,7 +117,7 @@ Save both values for the next step.
 The Azure Bot Service resource proxies messages between the Microsoft channel adapters (Teams and Copilot) and your agent. Create the bot with public network access disabled and connect it to the Microsoft Teams channel. The bot's `endpoint` is the agent's activity protocol endpoint, in this form:
 
 ```
-https://<resource-name>.services.ai.azure.com/api/projects/<project-name>/agents/<agent-name>/endpoint/protocols/activityProtocol?api-version=2025-05-15-preview
+https://<resource-name>.services.ai.azure.com/api/projects/<project-name>/agents/<agent-name>/endpoint/protocols/activityProtocol
 ```
 
 1. Save the following template as `bot-service.bicep`:

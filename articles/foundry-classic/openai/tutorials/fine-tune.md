@@ -10,6 +10,7 @@ author: alvinashcraft
 ms.author: aashcraft
 recommendations: false
 ms.custom: "devx-track-python,ai-learning-hub"
+ai-usage: ai-assisted
 ---
 
 # Azure OpenAI GPT-4o-mini fine-tuning tutorial (classic)
@@ -36,8 +37,6 @@ In this tutorial you learn how to:
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../../foundry-models/concepts/models-sold-directly-by-azure.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Foundry User** role.
-
-  [!INCLUDE [role-rename-note](../../../foundry/includes/role-rename-note.md)]
 - If you don't already have access to view quota and deploy models in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]

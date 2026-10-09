@@ -5,7 +5,7 @@ manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: concept-article
-ms.date: 08/19/2026
+ms.date: 10/06/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -74,7 +74,7 @@ npm install @azure/ai-projects
 npm install @azure/identity
 ```
 
-Use Node.js 22 or later with `@azure/ai-projects` 2.4.0.
+Use Node.js 22 or later with `@azure/ai-projects` 2.8.0.
 
 # [Java](#tab/java)
 

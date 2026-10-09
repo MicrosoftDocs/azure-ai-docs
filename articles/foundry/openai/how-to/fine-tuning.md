@@ -1,6 +1,6 @@
 ---
-title: "Customize a model with fine-tuning"
-description: "Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets."
+title: Fine-tune a model with supervised fine-tuning in Microsoft Foundry
+description: Prepare supervised data, create and monitor an SFT job with the portal, SDK, REST, or Azure Developer CLI, and evaluate the resulting model.
 manager: mcleans
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
@@ -10,32 +10,57 @@ ms.custom:
   - doc-kit-assisted
   - dev-focus
 ms.topic: how-to
-ms.date: 07/30/2026
+ms.date: 10/05/2026
 author: ssalgadodev
 ms.author: ssalgado
 zone_pivot_groups: foundry-fine-tuning
 ai-usage: ai-assisted
 ---
 
-# Customize a model with fine-tuning
+# Fine-tune a model with supervised fine-tuning in Microsoft Foundry
 
-Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
+Prepare your data and create a supervised fine-tuning (SFT) job in Microsoft Foundry. For method comparisons and training concepts, see the [fine-tuning overview](../../fine-tuning/overview.md).
 
-- Higher-quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md).
-- The ability to train on more examples than what can fit into a model's request context limit.
-- Token savings due to shorter prompts.
-- Lower-latency requests, particularly when you're using smaller models.
+## Prerequisites
 
-In contrast to few-shot learning, fine-tuning improves the model by training on more examples than what fits in a prompt. Because weights adapt to your task, you include fewer examples or instructions. Including less reduces tokens per call and potentially lowers cost and latency.
+- A Foundry resource or project with an [SFT-supported model and training region](../../fine-tuning/overview.md#supported-models).
+- The **Foundry User** role for training, or the **Foundry Owner** role if you also deploy the fine-tuned model.
 
-We use low-rank adaptation (LoRA) to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower-rank one. Fine-tuning a smaller subset of important parameters during the supervised training phase makes the model more manageable and efficient. For users, it also makes training faster and more affordable than other techniques.
+::: zone pivot="programming-language-python"
 
-In this article, you learn how to:
+- The client packages and credentials described in the [Python procedure](#create-an-sft-job-with-python).
 
-- Choose appropriate datasets and formats for fine-tuning.
-- Trigger a fine-tuning job, monitor the status, and fetch results.
-- Deploy and evaluate a fine-tuned model.
-- Clean up your resources when you no longer need them.
+::: zone-end
+
+::: zone pivot="rest-api"
+
+- Your resource endpoint and credentials, and a Bash-compatible shell for the REST examples.
+
+::: zone-end
+
+::: zone pivot="azd"
+
+- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.22.1 or later.
+
+::: zone-end
+
+[!INCLUDE [Role rename note](../../includes/role-rename-note.md)]
+
+## Prepare your data
+
+Start with the [text-only GSM8K sample dataset on GitHub](https://github.com/microsoft-foundry/fine-tuning/tree/main/Sample_Datasets/Supervised_Fine_Tuning/Text-GSM8K), or prepare your own data.
+
+Save separate `training.jsonl` and `validation.jsonl` files with one conversation per line. Include the prompt and the desired assistant response in each example:
+
+```json
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the biggest city in France?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already."}]}
+```
+
+Reference: [Chat Completions message format](chatgpt.md).
+
+Check the data-format, file-size, and minimum-example requirements for your selected model. Keep validation and final test examples out of the training set.
+
+For specialized data formats, see [vision fine-tuning](fine-tuning-vision.md) or [tool calling](fine-tuning-functions.md).
 
 ::: zone pivot="programming-language-studio"
 
@@ -45,19 +70,7 @@ In this article, you learn how to:
 
 ::: zone pivot="programming-language-python"
 
-# [OpenAI SDK](#tab/oai-sdk)
-
-[!INCLUDE [Microsoft Foundry fine-tuning OAI SDK](../includes/fine-tuning-oai-sdk.md)]
-
-# [Foundry SDK](#tab/foundry-sdk)
-
-[!INCLUDE [Microsoft Foundry fine-tuning Foundry SDK](../includes/fine-tuning-foundry-sdk.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-[!INCLUDE [Microsoft Foundry fine-tuning Foundry SDK](../includes/fine-tuning-foundry-sdk.md)]
+[!INCLUDE [Python SDK fine-tuning](../includes/fine-tuning-oai-sdk.md)]
 
 ::: zone-end
 
@@ -67,4 +80,38 @@ In this article, you learn how to:
 
 ::: zone-end
 
-[!INCLUDE [fine-tuning 1](../includes/how-to-fine-tuning-1.md)]
+::: zone pivot="azd"
+
+[!INCLUDE [SFT Azure Developer CLI job workflow](../../includes/supervised-fine-tuning-command-line.md)]
+
+::: zone-end
+
+## Review training metrics
+
+SFT measures how well the model predicts the target responses in your examples. Compare training and validation results rather than judging the model on training performance alone.
+
+Metric availability depends on your model. Use the metrics reported for your job:
+
+| Metrics | What to look for |
+| --- | --- |
+| Training loss. | Loss on the current training batch. Look for a decreasing trend. |
+| Full validation loss. | Loss across the validation set at the end of an epoch. If training loss falls but validation loss rises, inspect failing validation examples. |
+| Training mean token accuracy. | The fraction of target tokens correctly predicted in the training batch. Look for an increasing trend. |
+| Full validation mean token accuracy. | Token accuracy across the validation set at the end of an epoch. Confirm that improvements also help your task. |
+
+::: zone pivot="programming-language-python,rest-api"
+
+The corresponding metric names are `train_loss`, `full_valid_loss`, `train_mean_token_accuracy`, and `full_valid_mean_token_accuracy`. Batch validation metrics, when reported, aren't the same as full-validation metrics.
+
+::: zone-end
+
+Compare the available checkpoints using validation metrics and held-out task results. Checkpoint creation and retention depend on the model and training workflow.
+
+For explanations of overfitting and evaluation risks, see [challenges and limitations](../../fine-tuning/overview.md#challenges-and-limitations).
+
+[!INCLUDE [Managed job monitoring](../../includes/fine-tuning-job-management.md)]
+
+## Related content
+
+- [End-to-end SFT examples](https://github.com/microsoft-foundry/fine-tuning/tree/main/Demos).
+- [Generate training data](../../fine-tuning/data-generation.md).

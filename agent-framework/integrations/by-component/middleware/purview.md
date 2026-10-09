@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: reezaali149
 ms.topic: article
 ms.author: v-reezaali
-ms.date: 09/18/2026
+ms.date: 10/05/2026
 ms.service: purview
 ai-usage: ai-assisted
 ---
@@ -125,6 +125,23 @@ content and `usage` content are omitted.
 Policy evaluation fails closed when the middleware can't resolve a user ID, tenant, or application location. Derive
 identity from a validated server-side token rather than caller-controlled message fields. Set `ignore_exceptions` only
 when you deliberately prefer availability over enforcement; this setting bypasses enforcement for every error.
+
+### Choose Python middleware placement
+
+`PurviewPolicyMiddleware` and `PurviewChatPolicyMiddleware` enforce the same policies at different pipeline boundaries:
+
+| Behavior | Agent middleware | Chat middleware |
+|---|---|---|
+| Evaluation scope | Evaluates the caller's input and final response once per agent run. | Evaluates the prepared request and response on every model call. |
+| Tool and context data | Doesn't evaluate context-provider output or a model tool call before the tool runs. | Evaluates context-provider output, replayed history, and model tool calls before execution. Tool results are evaluated on the next model call. |
+| Blocked response history | The original response might already be stored before the middleware replaces it for the caller. | The replacement is available before Agent Framework stores the turn. Provider-managed storage might still retain the original response. |
+
+Use `PurviewChatPolicyMiddleware` for data loss prevention when policy must cover the complete model request. Use
+`PurviewPolicyMiddleware` when a single check at the agent run boundary is sufficient. In either middleware list,
+place the Purview middleware last so that later middleware can't replace content after Purview evaluates it.
+
+Both middleware types buffer a streamed response in full and evaluate it before releasing any update. Streaming
+therefore doesn't deliver content incrementally while Purview middleware is attached.
 
 ::: zone-end
 

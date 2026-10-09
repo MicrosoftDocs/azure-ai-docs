@@ -1,5 +1,5 @@
 ---
-title: "Create an evaluation dataset and evaluators for the agent optimizer (preview)"
+title: "Create an evaluation dataset and evaluators for the agent optimizer"
 description: "Generate or manually define evaluation datasets and evaluators used by the agent optimizer to evaluate and improve your hosted agent in Foundry Agent Service."
 author: aahill
 ms.author: aahi
@@ -11,9 +11,7 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Create an evaluation dataset and evaluators (preview)
-
-[!INCLUDE [agent-optimizer-limited-preview](../../includes/agent-optimizer-limited-preview.md)]
+# Create an evaluation dataset and evaluators
 
 The agent optimizer evaluates your agent against a *dataset* - a collection of tasks - scored by *evaluators*. You can generate both automatically from the CLI or create a dataset manually for full control.
 

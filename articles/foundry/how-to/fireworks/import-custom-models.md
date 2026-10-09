@@ -74,6 +74,9 @@ Your model directory must include the files required for the model weight type y
 
 ### LoRA requirements (preview)
 
+> [!TIP]
+> For a compatible adapter trained in Foundry, start from the completed managed fine-tuning job or the registered model, rather than uploading the same weights again. Interactive training (preview) first requires registration of a persisted sampler checkpoint; it doesn't create a managed job. See [Deploy fine-tuned models with Fireworks on Foundry (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-fireworks-on-foundry-preview).
+
 Fireworks automatically merge the LoRA weights into a full-weight version of the model for LoRA deployments to Fireworks. This approach provides predictable performance.
 
 All Fireworks base models support LoRA deployment with the following exceptions:
@@ -239,6 +242,8 @@ For more troubleshooting guidance, see [Troubleshoot Fireworks on Foundry](enabl
 Explore the following resources to learn more about Fireworks models, deployment options, and authentication on Foundry.
 
 * [Fireworks models on Foundry](enable-fireworks-models.md)
+* [Fine-tuning overview](../../fine-tuning/overview.md)
+* [Deploy fine-tuned models with Fireworks on Foundry (preview)](../../fine-tuning/deploy-fine-tuned-models.md#deploy-with-fireworks-on-foundry-preview)
 * [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md)
 * [Deploy models using Azure CLI and Bicep](../../foundry-models/how-to/create-model-deployments.md)
 * [Deployment types](../../foundry-models/concepts/deployment-types.md)

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: mcleans
 ms.service: azure-speech-foundry-tools
 ms.topic: concept-article
-ms.date: 09/30/2026
+ms.date: 10/08/2026
 ms.author: pafarley
 ms.custom: references_regions, dev-focus
 ai-usage: ai-assisted
@@ -27,7 +27,7 @@ When configuring Azure Speech in your application:
 - Keys are region-scoped — using a key with a different region returns authentication errors.
 
 > [!NOTE]
-> Azure Speech doesn't store or process your data outside the region of your Azure Speech resource. The data is stored or processed only in the region where the resource is created. For example, if you create a Foundry resource for speech in the `westus` region, the data is only in the `westus` region.
+> Azure Speech stores and processes speech data in the region where you create your resource. Voice Live is an exception: speech recognition, HD voice synthesis, and LLM inference have separate processing scopes. Processing can occur outside your resource region. See [Voice Live region support](./regions.md?tabs=voice-live#regions).
 
 ## Regions
 
@@ -72,7 +72,7 @@ The regions in the following tables support most of the core features of Azure S
 | US | West US 3 | `westus3` |
 
 > [!NOTE]
-> The following regions supported by an `AIServices` resource are currently not supported for speech processing: `southindia`, `spaincentral`.
+> The following regions supported by an `AIServices` resource aren't currently supported for standalone speech processing: `southindia`, `spaincentral`. For Voice Live availability, see the [Voice Live tab](./regions.md?tabs=voice-live#regions).
 
 # [Speech to text](#tab/stt)
 
@@ -223,39 +223,89 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Voice Live](#tab/voice-live)
 
-| Region | azure-realtime | gpt-realtime-2.1 | gpt-realtime-2.1-datazone | gpt-realtime-2.1-mini | gpt-realtime-1.5 | gpt-realtime-1.5-datazone | gpt-realtime | gpt-realtime-datazone | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-4.1-nano | gpt-5.6-terra | gpt-5.6-luna | gpt-5.4 | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | phi4-mm-realtime (preview) | Agent support |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| `australiaeast` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `brazilsouth` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `canadacentral` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | Global standard | - | - | Global standard | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
-| `canadaeast` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | - | - | - | Global standard | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `centralindia` | Global standard | Global standard | - | Global standard | Global standard | - | Standard | - | Global standard | Standard | Global standard | Global standard | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
-| `centralus` | Global standard | Data zone standard | Data zone standard | Global standard | Global standard | Data zone standard | Global standard | - | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - |
-| `eastus` | - | Global standard | Data zone standard | Global standard | - | Data zone standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `eastus2` | Global standard | Global standard | Data zone standard | Global standard | Global standard | Data zone standard | Global standard | - | Global standard | Standard | Data zone standard | Standard | Standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | ✅ |
-| `francecentral` | Global standard | Global standard | - | Global standard | Global standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `germanywestcentral` | - | - | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `italynorth` | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `japaneast` | Global standard | Global standard | - | Global standard | - | - | - | - | - | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Regional | ✅ |
-| `japanwest` | - | - | - | - | - | - | - | - | - | Standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
-| `koreacentral` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
-| `northcentralus` | - | Global standard | Data zone standard | Global standard | - | Data zone standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - |
-| `norwayeast` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `southafricanorth` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `southcentralus` | - | - | Data zone standard | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `southeastasia` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Regional | ✅ |
-| `swedencentral` | Global standard | Global standard | Data zone standard | Global standard | Global standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Standard | Standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | ✅ |
-| `switzerlandnorth` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Standard | Global standard | Global standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `uaenorth` | - | - | - | - | - | - | - | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | - |
-| `uksouth` | Global standard | Global standard | - | Global standard | Global standard | - | Global standard | - | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | Global standard | - | ✅ |
-| `westcentralus` | - | - | Data zone standard | - | - | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | - | Global standard | Global standard | - | - | - | - | - |
-| `westeurope` | - | - | - | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `westus` | - | - | Data zone standard | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
-| `westus2` | Global standard | Global standard | Data zone standard | Global standard | Global standard | Data zone standard | Global standard | - | Global standard | Data zone standard | Standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Standard | Data zone standard | Data zone standard | Data zone standard | Regional | ✅ |
-| `westus3` | - | - | Data zone standard | - | - | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | ✅ |
+Voice Live speech features and large language models (LLMs) have separate regional availability and data processing (inference) scopes. Check both tables when you choose a resource region.
+
+### Speech feature availability and processing scope
+
+Azure Speech standard high-definition (HD) voices are available in all Voice Live resource regions listed in the following table. Voice Live routes synthesis to an HD-capable region when HD voices aren't available locally. The **Text to speech** tab describes standalone Speech availability, not HD voice availability through Voice Live.
+
+`mai-transcribe-2` is also available in all listed regions. `mai-transcribe-2-streaming` is available only in the indicated regions. The `mai-transcribe` alias uses the same availability and processing scope as `mai-transcribe-2`.
+
+Each cell shows the feature's processing scope: Global, Data zone, or Regional. A dash (`-`) means the feature isn't available through Voice Live in that resource region. These scopes apply to speech input or output, independently of the LLM scope.
+
+| Voice Live resource region | HD voices | `mai-transcribe-2` (preview) | `mai-transcribe-2-streaming` (preview) |
+| ----- | ----- | ----- | ----- |
+| `australiaeast` | Global | Global | - |
+| `brazilsouth` | Global | Global | - |
+| `canadacentral` | Regional | Global | - |
+| `canadaeast` | Regional | Global | - |
+| `centralindia` | Regional | Global | - |
+| `centralus` | Data zone | Data zone | Data zone |
+| `eastus` | Data zone | Data zone | Data zone |
+| `eastus2` | Data zone | Data zone | Data zone |
+| `francecentral` | Regional | Data zone | - |
+| `germanywestcentral` | Data zone | Data zone | - |
+| `italynorth` | Data zone | Data zone | - |
+| `japaneast` | Global | Global | - |
+| `japanwest` | Global | Global | - |
+| `koreacentral` | Global | Global | - |
+| `northcentralus` | Data zone | Data zone | Data zone |
+| `northeurope` | Data zone | Data zone | - |
+| `norwayeast` | Data zone | Data zone | - |
+| `southafricanorth` | Global | Global | - |
+| `southcentralus` | Data zone | Data zone | Data zone |
+| `southeastasia` | Regional | Global | - |
+| `southindia` | Regional | Global | Global |
+| `swedencentral` | Regional | Data zone | Global |
+| `switzerlandnorth` | Data zone | Data zone | - |
+| `uaenorth` | Global | Global | - |
+| `uksouth` | Global | Global | - |
+| `ukwest` | Global | Global | - |
+| `westcentralus` | Data zone | Data zone | Data zone |
+| `westeurope` | Regional | Data zone | - |
+| `westus` | Data zone | Data zone | Data zone |
+| `westus2` | Data zone | Data zone | Data zone |
+| `westus3` | Data zone | Data zone | Data zone |
+
+For configuration details, see [Audio input transcription](./voice-live-how-to.md#audio-input-transcription) and [Audio output through Azure text to speech](./voice-live-how-to.md#audio-output-through-azure-text-to-speech).
+
+### LLM availability and processing scope
+
+The following table lists predeployed LLM availability by Voice Live resource region. Each model cell shows the LLM's data processing (inference) scope: Global, Data zone, or Regional. A dash (`-`) means the model isn't available in that resource region. This table doesn't describe speech recognition or HD voice synthesis availability.
+
+| Voice Live resource region | azure-realtime | gpt-realtime-2.1 | gpt-realtime-2.1-datazone | gpt-realtime-2.1-regional | gpt-realtime-2.1-mini | gpt-realtime-1.5 | gpt-realtime-1.5-datazone | gpt-realtime | gpt-realtime-datazone | gpt-realtime-regional | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-4.1-nano | gpt-5.6-terra | gpt-5.6-luna | gpt-5.4 | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | phi4-mm-realtime (preview) |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| `australiaeast` | Global | Global | - | - | Global | Global | - | Global | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `brazilsouth` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `canadacentral` | Global | Global | - | - | Global | Global | - | Global | - | - | Global | - | - | Global | Regional | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `canadaeast` | Global | Global | - | - | Global | Global | - | Global | - | - | - | - | - | Global | Regional | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `centralindia` | Global | Global | - | Regional | Global | Global | - | Global | - | Regional | Global | Regional | Global | Global | Regional | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `centralus` | Global | Global | Data zone | - | Global | Global | Data zone | Global | - | - | Global | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | - |
+| `eastus` | - | Global | Data zone | - | Global | - | Data zone | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Data zone | Data zone | Data zone | Data zone | - |
+| `eastus2` | Global | Global | Data zone | - | Global | Global | Data zone | Global | - | - | Global | Regional | Data zone | Regional | Regional | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Regional |
+| `francecentral` | Global | Global | - | - | Global | Global | Data zone | Global | Data zone | - | Global | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Global | Data zone | Data zone | Data zone | Data zone | - |
+| `germanywestcentral` | - | - | - | - | - | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Global | Global | Data zone | Data zone | Data zone | - |
+| `italynorth` | - | - | - | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Global | Global | Data zone | Data zone | Data zone | - |
+| `japaneast` | Global | Global | - | - | Global | - | - | - | - | - | - | Regional | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Regional |
+| `japanwest` | - | - | - | - | - | - | - | - | - | - | - | Regional | Global | Global | Global | Global | Global | Global | - | Global | Global | Global | Global | Global | - |
+| `koreacentral` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `northcentralus` | - | Global | Data zone | - | Global | - | Data zone | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Data zone | Data zone | Data zone | Data zone | - |
+| `norwayeast` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Global | Global | Global | Data zone | Data zone | Global | Global | Global | Global | Global | Global | - |
+| `southafricanorth` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `southcentralus` | - | - | Data zone | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Data zone | Data zone | Data zone | Data zone | - |
+| `southeastasia` | Global | Global | - | - | Global | Global | - | Global | - | - | Global | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Regional |
+| `swedencentral` | Global | Global | Data zone | - | Global | Global | Data zone | Global | Data zone | - | Global | Data zone | Data zone | Regional | Regional | Data zone | Data zone | Data zone | Global | Global | Data zone | Data zone | Data zone | Data zone | Regional |
+| `switzerlandnorth` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Regional | Global | Global | Data zone | Data zone | Global | Global | Global | Global | Global | Global | - |
+| `uaenorth` | - | - | - | - | - | - | - | - | - | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `uksouth` | Global | Global | - | - | Global | Global | - | Global | - | - | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | Global | - |
+| `westcentralus` | - | - | Data zone | - | - | - | - | - | - | - | - | - | - | - | - | - | Data zone | Data zone | - | Global | Global | - | - | - | - |
+| `westeurope` | - | - | - | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Global | Global | Data zone | Data zone | Data zone | - |
+| `westus` | - | - | Data zone | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Data zone | Data zone | Data zone | Data zone | - |
+| `westus2` | Global | Global | Data zone | - | Global | Global | Data zone | Global | - | - | Global | Data zone | Regional | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Regional | Data zone | Data zone | Data zone | Regional |
+| `westus3` | - | - | Data zone | - | - | - | - | - | - | - | - | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Data zone | Global | Data zone | Data zone | Data zone | Data zone | - |
 
 > [!NOTE]
-> The `gpt-realtime-datazone`, `gpt-realtime-1.5-datazone`, and `gpt-realtime-2.1-datazone` models use Data Zone Standard deployments. Prompts and responses are processed only within the data zone associated with your resource's region.
+> The `gpt-realtime-datazone`, `gpt-realtime-1.5-datazone`, and `gpt-realtime-2.1-datazone` models use data zone processing. Prompts and responses are processed only within the data zone associated with your resource's region.
 
 > [!NOTE]
 > Models `gpt-5.5`, `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).

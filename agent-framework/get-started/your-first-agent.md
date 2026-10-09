@@ -5,7 +5,7 @@ zone_pivot_groups: programming-languages
 author: eavanvalkenburg
 ms.topic: tutorial
 ms.author: edvan
-ms.date: 07/01/2026
+ms.date: 10/07/2026
 ms.service: agent-framework
 ai-usage: ai-assisted
 ---
@@ -65,18 +65,22 @@ await foreach (var update in agent.RunStreamingAsync("Tell me a one-sentence fun
 :::zone pivot="programming-language-python"
 
 ```bash
-pip install agent-framework azure-identity
+pip install agent-framework-foundry azure-identity
 ```
 
-Create and run an agent:
+The `agent-framework-foundry` package installs `agent-framework-core` with the Microsoft Foundry integration. The `agent-framework` metapackage also installs `agent-framework-core`, together with many other optional integrations.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="create_agent" highlight="8-11":::
+Sign in with the [Azure CLI](/cli/azure/authenticate-azure-cli) by running `az login`. In the following example, replace `project_endpoint` with your Microsoft Foundry project endpoint and `model` with your model deployment name.
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent" highlight="2":::
+Save the complete example as `hello_agent.py`:
 
-Or stream the response:
+:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" range="10-30" highlight="9-17":::
 
-:::code language="python" source="~/../agent-framework-code/python/samples/01-get-started/01_hello_agent.py" id="run_agent_streaming" highlight="3-5":::
+Run the example:
+
+```bash
+python hello_agent.py
+```
 
 > [!NOTE]
 > Agent Framework does **not** automatically load `.env` files. To use a `.env` file for configuration, call `load_dotenv()` at the start of your script:

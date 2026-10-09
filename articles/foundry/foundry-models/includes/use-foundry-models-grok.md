@@ -5,18 +5,16 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 08/31/2026
+ms.date: 10/05/2026
 ai-usage: ai-assisted
-ms.custom: classic-and-new
+ms.custom: classic-and-new, doc-kit-assisted
 ---
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-SpaceXAI's Grok models are available as Foundry Models sold by Azure and support coding, data extraction, summarization, and agentic applications. This article focuses on `grok-4.6` (preview), which provides a 200,000 token context window, multimodal input (text and image), tool calling, and advanced reasoning for coding, agentic workflows, and knowledge-work scenarios.
+SpaceXAI's Grok models are available as Foundry Models sold by Azure. Use `grok-4.7` for coding, data extraction, summarization, and agentic applications. This generally available model supports multimodal input (text and image), tool calling, and advanced reasoning, with a context window of up to 500,000 tokens.
 
 In this article, you learn how to:
 
-- Deploy Grok 4.6 (preview) in Microsoft Foundry.
+- Deploy Grok 4.7 in Microsoft Foundry.
 - Authenticate by using Microsoft Entra ID or an API key.
 - Generate output with the Chat Completions and Responses APIs.
 - Use configurable reasoning effort levels.
@@ -30,7 +28,7 @@ Before you begin, you need:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) in a region supported for Grok 4.6 (preview) deployment. For more information, see [Supported deployment types and regions](#supported-deployment-types-and-regions).
+- A [Microsoft Foundry project](../../how-to/create-projects.md) in a region supported for Grok 4.7 deployment. For more information, see [Supported deployment types and regions](#supported-deployment-types-and-regions).
 - The **Cognitive Services Contributor** role on the Foundry resource, to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 - An authentication method: Microsoft Entra ID (recommended) or an API key.
 - Install the required dependencies to run the examples with Microsoft Entra ID authentication.
@@ -57,44 +55,48 @@ Before you begin, you need:
 
 Foundry Models sold by Azure include the following SpaceXAI Grok models.
 
-| Model | Model Version | Deployment Type | API Type |
-| --- | --- | --- | --- |
-| `grok-4.6` (preview) | 1 | Global Standard | Chat Completions, Responses |
-| `grok-4.3` (preview) | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-4-20-reasoning` (preview) | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-4-20-non-reasoning` (preview) | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-4.1-fast-reasoning` | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-4.1-fast-non-reasoning` | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-4`<sup>1</sup> | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
-| `grok-code-fast-1`<sup>1</sup> | 1 | Global Standard, Data Zone Standard (US) | Chat Completions, Responses |
+| Model | Model Version | API Type |
+| --- | --- | --- |
+| `grok-4.7` | 1 | Chat Completions, Responses |
+| `grok-4.6` (preview) | 1 | Chat Completions, Responses |
+| `grok-4.3` (preview) | 1 | Chat Completions, Responses |
+| `grok-4-20-reasoning` (preview) | 1 | Chat Completions, Responses |
+| `grok-4-20-non-reasoning` (preview) | 1 | Chat Completions, Responses |
+| `grok-4.1-fast-reasoning` | 1 | Chat Completions, Responses |
+| `grok-4.1-fast-non-reasoning` | 1 | Chat Completions, Responses |
+| `grok-4`<sup>1</sup> | 1 | Chat Completions, Responses |
+| `grok-code-fast-1`<sup>1</sup> | 1 | Chat Completions, Responses |
 
 <sup>1</sup> [Registration is required for access to](https://aka.ms/xai/grok-4) `grok-code-fast-1` and `grok-4`.
 
-This article focuses on `grok-4.6`. For full capability details on all Grok models, see [SpaceXAI models sold by Azure](../concepts/models-sold-directly-by-azure.md#spacexai-models-sold-by-azure).
+This article focuses on `grok-4.7`. For full capability details on all Grok models, see [SpaceXAI models sold by Azure](../concepts/models-sold-directly-by-azure.md#spacexai-models-sold-by-azure).
 
-## Deploy Grok 4.6
+> [!NOTE]
+> Generally available SpaceXAI Grok models starting with Grok 4.7 are available for a minimum of six months. For model-specific retirement dates, see the [Model retirement schedule](../../openai/concepts/model-retirement-schedule.md).
 
-To deploy Grok 4.6 (preview), follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md), and select the `grok-4.6` model to deploy.
+<a id="deploy-grok-46"></a>
+
+## Deploy Grok 4.7
+
+To deploy Grok 4.7, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md), and select the `grok-4.7` model to deploy.
 
 Alternatively, deploy the model by using the Azure CLI as shown in the following code.
 
 Replace `<ACCOUNT_NAME>`, `<RESOURCE_GROUP>`, and `<DEPLOYMENT_NAME>` with your values.
+
+Set `<DEPLOYMENT_SKU>` to the SKU name for your chosen deployment type. Check the [region availability tables](../concepts/models-sold-directly-by-azure-region-availability.md) for the current deployment types and regions.
 
 ```azurecli
 az cognitiveservices account deployment create \
   --name <ACCOUNT_NAME> \
   --resource-group <RESOURCE_GROUP> \
   --deployment-name <DEPLOYMENT_NAME> \
-  --model-name "grok-4.6" \
+  --model-name "grok-4.7" \
   --model-format "xAI" \
   --model-version "1" \
-  --sku-name GlobalStandard \
+  --sku-name "<DEPLOYMENT_SKU>" \
   --sku-capacity 1
 ```
-
-Use `--sku-name GlobalStandard` to deploy in any supported region. Grok 4.6 (preview) currently supports only Global Standard deployment. 
-
-To deploy a Grok model that is [available for Data Zone Standard (US) deployment](#grok-models-available-in-foundry), use `--sku-name DataZoneStandard` to keep processing within the United States data zone.
 
 **Reference:** [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create)
 
@@ -102,7 +104,7 @@ For more on the CLI deployment workflow, see [Add and configure models to Foundr
 
 ## Generate output with the Chat Completions API
 
-Use the Chat Completions API to send messages to Grok 4.6 (preview). The `model` value is your deployment name, not the underlying model name.
+Use the Chat Completions API to send messages to Grok 4.7. The `model` value is your deployment name, not the underlying model name.
 
 Set the following environment variables. The endpoint takes the form `https://<resource-name>.services.ai.azure.com`.
 
@@ -225,7 +227,7 @@ To use an API key instead of Microsoft Entra ID, replace the `Authorization: Bea
 
 ## Generate a response with the Responses API
 
-Grok 4.6 (preview) also supports the [Responses API](../how-to/generate-responses.md), which offers a simplified interface for stateful, multi-turn interactions and built-in tool orchestration.
+Grok 4.7 also supports the [Responses API](../how-to/generate-responses.md), which offers a simplified interface for stateful, multi-turn interactions and built-in tool orchestration.
 
 # [Python](#tab/python)
 
@@ -304,7 +306,7 @@ To use an API key instead of Microsoft Entra ID, replace the `Authorization: Bea
 
 ## Use function calling and tools
 
-Grok 4.6 (preview) supports function calling, using both the Chat completions API and the Responses API. Use function calling when your application needs the model to select a tool, provide structured arguments, or coordinate multiple steps.
+Grok 4.7 supports function calling, using both the Chat Completions API and the Responses API. Use function calling when your application needs the model to select a tool, provide structured arguments, or coordinate multiple steps.
 
 ### Chat Completions API
 
@@ -482,9 +484,11 @@ To use an API key instead of Microsoft Entra ID, replace the `Authorization: Bea
 
 ---
 
-## When to use Grok 4.6
+<a id="when-to-use-grok-46"></a>
 
-Use Grok 4.6 (Preview) for complex enterprise workloads that require reasoning, tool use, and multi-step execution. Grok 4.6 is optimized for coding, agentic workflows, technical problem solving, and knowledge-work applications that benefit from sustained reasoning across extended tasks.
+## When to use Grok 4.7
+
+Use Grok 4.7 for complex enterprise workloads that require reasoning, tool use, and multistep execution. Grok 4.7 supports coding, agentic workflows, technical problem solving, and knowledge-work applications that benefit from sustained reasoning across extended tasks.
 
 Common use cases include:
 
@@ -496,7 +500,7 @@ Common use cases include:
 
 ## API endpoints
 
-After you deploy Grok 4.6 (preview), call one of the following endpoints on your Foundry resource:
+After you deploy Grok 4.7, call one of the following endpoints on your Foundry resource:
 
 - **Chat Completions**: `https://<resource-name>.services.ai.azure.com/openai/v1/chat/completions`
 - **Responses**: `https://<resource-name>.services.ai.azure.com/openai/v1/responses`
@@ -522,7 +526,7 @@ For more information about the Responses API, see [Use the Azure OpenAI Response
 
 ### Response format
 
-The response format depends on which API you call. Grok 4.6 (preview) returns an OpenAI-compatible object for both the Chat Completions API and the Responses API.
+The response format depends on which API you call. Grok 4.7 returns an OpenAI-compatible object for both the Chat Completions API and the Responses API.
 
 #### Chat Completions API
 
@@ -649,27 +653,23 @@ When the model requests a tool, the `output` array contains a `function_call` it
 
 ### Token limits and context window
 
-Grok 4.6 (preview) has a context window of 200,000 tokens. Output is capped at 128,000 tokens, or the remaining context budget after input, whichever is smaller.
+Grok 4.7 has a context window of 500,000 tokens.
 
 Input and generated output both count against the context window:
 
-- **Input tokens**: The messages (Chat Completions) or input (Responses) in your request count toward the input token budget.
-- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, up to the 128,000-token output cap, and includes reasoning tokens.
-- **Total**: Input and output tokens must fit within the 200,000-token context window. If a request exceeds the context window, it fails.
+- **Input tokens**: The messages (Chat Completions) or input (Responses) in your request can contain up to 500,000 tokens.
+- **Output tokens**: `max_completion_tokens` (Chat Completions) or `max_output_tokens` (Responses) bounds the generated response, including reasoning tokens. Output uses the context budget remaining after input.
+- **Total**: Input and output tokens must fit within the 500,000-token context window. If a request exceeds the context window, it fails.
+
+For current rates and billing details, see [Grok model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/grok/).
 
 ## Supported deployment types and regions
 
-Grok 4.6 supports **Global Standard deployment** type in all regions. For supported deployment regions, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
+For the current deployment types and regions available for Grok models, see [Region availability for Foundry Models sold by Azure](../concepts/models-sold-directly-by-azure-region-availability.md).
 
 ## API quotas and limits
 
-Grok 4.6 (preview) in Foundry has the following rate limits measured in requests per minute (RPM) and tokens per minute (TPM). The tier available to you depends on your subscription and deployment configuration.
-
-| Deployment Type | Tier    | TPM     | RPM |
-|-----------------|---------|:-------:|:---:|
-| Global Standard | Low     | 0       | 0   |
-| Global Standard | Medium  | 50,000 | 50 |
-| Global Standard | High    | 5,000,000 | 5,000 |
+Your deployment's rate limits depend on its configured capacity and allocated quota. For current tokens per minute (TPM) quotas and corresponding requests per minute (RPM) limits, see [Grok 4.7 quotas](../quotas-limits.md#grok-47-quotas).
 
 You can request more quota if needed. For more information, see [Request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
@@ -688,13 +688,17 @@ Use the following table to identify common errors and resolutions.
 
 ## Responsible AI considerations
 
-Before you use Grok 4.6 in an application, evaluate the model for your intended scenario. Follow these recommended practices:
+Before you use Grok 4.7 in an application, evaluate the model for your intended scenario. Follow these recommended practices:
 
 - Validate model behavior on realistic prompts.
 - Test for task-specific quality, safety, and reliability.
-- Use human review for high-impact workflows.
+- Use human oversight and domain-expert validation for high-impact workflows.
 - Log and monitor failures according to your application requirements.
 - Apply appropriate content safety and abuse monitoring.
+
+Don't use Grok 4.7 for autonomous high-stakes decisions in medicine, law, finance, or safety-critical systems without human oversight and domain-expert validation.
+
+For capability and safety evaluations, see the [Grok 4.7 model card](https://media.x.ai/v1/website/card4p7-3a96f40b.pdf).
 
 Grok models on Microsoft Foundry expose an OpenAI-compatible Chat Completions and Responses API surface. For the complete request and response schema, see SpaceXAI's [Chat Completions and Responses API reference](https://docs.x.ai/developers/rest-api-reference/inference/chat). Some parameters described there, such as live search options, don't apply to Azure-hosted deployments.
 

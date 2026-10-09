@@ -4,7 +4,7 @@ description: "Learn how to evaluate AI agents using built-in evaluators for qual
 ms.topic: how-to
 ms.service: microsoft-foundry
 ms.subservice: foundry-observability
-ms.date: 09/25/2026
+ms.date: 10/01/2026
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: dlozier
@@ -47,7 +47,7 @@ Install the Foundry SDK and set up authentication:
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.4.0" azure-identity
+pip install "azure-ai-projects>=2.8.0" azure-identity
 ```
 
 Create the project client. The following code samples assume you run them in this context:
@@ -112,21 +112,18 @@ import uuid
 from azure.ai.projects.models import (
     AgentEvaluatorGenerationJobSource,
     EvaluatorGenerationInputs,
-    EvaluatorGenerationJob,
 )
 
 AGENT_NAME = "my-agent"  # Replace with your agent name
 poll_interval_seconds = 10
 
-job = EvaluatorGenerationJob(
-    inputs=EvaluatorGenerationInputs(
-        model=model_deployment,
-        evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
-        evaluator_display_name="Agent Quality",
-        sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
-    ),
+job = EvaluatorGenerationInputs(
+    model=model_deployment,
+    evaluator_name=f"agent-quality-{uuid.uuid4().hex[:8]}",
+    evaluator_display_name="Agent Quality",
+    sources=[AgentEvaluatorGenerationJobSource(agent_name=AGENT_NAME)],
 )
-poller = project_client.beta.evaluators.begin_create_generation_job(job=job)
+poller = project_client.evaluators.begin_create_generation_job(job=job)
 
 # Optional: While SDK is polling, periodically print the job status until the job is complete
 while not poller.done():

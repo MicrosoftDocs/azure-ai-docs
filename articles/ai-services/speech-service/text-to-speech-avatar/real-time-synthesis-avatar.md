@@ -102,6 +102,9 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
 avatarConfig.photoAvatarBaseModel = "vasa-1"; // Set photo avatar base model here.
 ```
 
+> [!NOTE]
+> `vasa-2` is in preview and supports only the characters listed for it in [Supported standard avatars](standard-avatars.md).
+
 ## Set up connection to real-time avatar
 
 Real-time avatar uses the WebRTC protocol to stream video. Set up the connection with the avatar service using a WebRTC peer connection.

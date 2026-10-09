@@ -1,6 +1,6 @@
 items:
 # Fundamentals
-- name: Optimize agents overview (preview)
+- name: Optimize agents overview
   href: ../../agents/concepts/agent-optimizer-overview.md
 - name: Understand optimizer costs and token usage
   href: ../../agents/concepts/agent-optimizer-costs.md

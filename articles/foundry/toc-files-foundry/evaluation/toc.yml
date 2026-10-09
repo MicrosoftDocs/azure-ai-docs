@@ -76,6 +76,8 @@ items:
          href: ../../observability/how-to/cloud-evaluation-deployed-conversations.md
        - name: Simulate agent conversations
          href: ../../observability/how-to/cloud-evaluation-simulate-conversations.md
+     - name: Generate and evaluate synthetic conversations
+       href: ../../observability/how-to/cloud-evaluation-synthetic-conversations.md
      - name: Get evaluation results
        href: ../../observability/how-to/cloud-evaluation-results.md
      - name: Use admin-connected models
