@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: fishah
 ms.topic: how-to
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -63,6 +63,7 @@ difficulty.
 ## Prerequisites
 
 - Python SDK version `2.8.0` or later: `pip install "azure-ai-projects>=2.8.0" azure-identity`.
+- JavaScript SDK version `2.8.0` or later: `npm install "@azure/ai-projects@^2.8.0" @azure/identity`.
 - A Microsoft Foundry project endpoint URL in the format `https://<your-resource>.services.ai.azure.com/api/projects/<your-project>`.
 - Foundry User role or higher on the project.
 - For all evaluation role requirements, see [Set up permissions for evaluation workflows](evaluation-permissions.md).
@@ -105,7 +106,7 @@ project_client = AIProjectClient(
 # [JavaScript/TypeScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects @azure/identity
+npm install "@azure/ai-projects@^2.8.0" @azure/identity
 ```
 
 ```javascript
@@ -121,18 +122,16 @@ const projectClient = new AIProjectClient(
 ```
 
 Use `@azure/ai-projects` 2.8.0 or later. You can find all data generation operations under
-`projectClient.datasets`. The JavaScript/TypeScript SDK samples
-don't yet demonstrate how to generate a dataset from an agent
-definition or a reference file. For those source types, use the Python
-SDK or the Foundry portal. For a prompt-based source, which the
-JavaScript/TypeScript SDK supports, see [Generate a dataset from a
-prompt (SDK)](#generate-a-dataset-from-a-prompt-sdk).
+`projectClient.datasets`. The agent, prompt, and reference-file sections
+include JavaScript/TypeScript examples.
 
 Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
 
 ---
 
 Then submit a `SimpleQnA` job whose source is an agent reference. If you already have a deployed agent, skip the `create_version` call and pass its existing `name` and `version` to `AgentDataGenerationJobSource`.
+
+# [Python](#tab/python)
 
 ```python
 import time
@@ -141,9 +140,9 @@ from azure.ai.projects.models import (
     DataGenerationModelOptions,
     DatasetDataGenerationJobOutput,
     EvaluationDataGenerationJobInputs,
-    EvaluationDataGenerationJobOutputTarget,
+    EvaluationDataGenerationJobOutputConfiguration,
     PromptAgentDefinition,
-    SimpleQnADataGenerationJobOptions,
+    SimpleQnADataGenerationJobConfiguration,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
@@ -173,12 +172,12 @@ job = EvaluationDataGenerationJobInputs(
             agent_version=agent.version,
         ),
     ],
-    generation_configuration=SimpleQnADataGenerationJobOptions(
+    generation_configuration=SimpleQnADataGenerationJobConfiguration(
         # Evaluation jobs support max_samples from 1 through 1,000.
         max_samples=15,
         model_options=DataGenerationModelOptions(model=MODEL_NAME),
     ),
-    output_configuration=EvaluationDataGenerationJobOutputTarget(
+    output_configuration=EvaluationDataGenerationJobOutputConfiguration(
         name="retail-agent-eval-set"
     ),
 )
@@ -199,9 +198,78 @@ for output in (result.outputs if result is not None else None) or []:
         output_version = output.version or ""
         break
 
+if not output_name or not output_version:
+    raise RuntimeError("The data generation job didn't return a dataset output.")
+
 dataset = project_client.datasets.get(name=output_name, version=output_version)
 print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})")
 ```
+
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const modelName = "gpt-4.1-mini";
+const jobName = "retail-agent-eval-set";
+
+// 1. Reference (or create) a prompt agent whose instructions seed generation.
+const agent = await projectClient.agents.createVersion("retail-agent", {
+  kind: "prompt",
+  model: modelName,
+  instructions:
+    "You are a customer support assistant for Contoso Retail. " +
+    "Answer questions about the product catalog, loyalty program, store hours, " +
+    "and the return policy. If a question falls outside this scope, say you " +
+    "don't have that information.",
+});
+
+// 2. Define and submit a SimpleQnA evaluation job.
+const generationPoller = projectClient.datasets.createGenerationJob({
+  name: jobName,
+  scenario: "evaluation",
+  sources: [
+    {
+      type: "agent",
+      description: "Agent definition used to seed QnA generation.",
+      agent_name: agent.name,
+      agent_version: agent.version,
+    },
+  ],
+  generation_configuration: {
+    type: "simple_qna",
+    max_samples: 15,
+    model_options: { model: modelName },
+  },
+  output_configuration: {
+    name: jobName,
+    write_mode: "overwrite",
+  },
+});
+
+await generationPoller.submitted();
+const result = await generationPoller.pollUntilDone();
+
+// 3. Resolve the generated dataset.
+const datasetOutput = result.outputs?.find((output) => output.type === "dataset");
+if (
+  !datasetOutput ||
+  !("name" in datasetOutput) ||
+  !("version" in datasetOutput) ||
+  !datasetOutput.name ||
+  !datasetOutput.version
+) {
+  throw new Error("The data generation job didn't return a dataset output.");
+}
+
+const dataset = await projectClient.datasets.get(
+  datasetOutput.name,
+  datasetOutput.version,
+);
+console.log(
+  `Generated dataset: ${dataset.name} v${dataset.version} (id: ${dataset.id})`,
+);
+```
+
+---
 
 The job produces a versioned dataset with single-turn `query` and `ground_truth` fields. Preview it on the **Data** tab in the portal to spot-check the generated rows before evaluating.
 
@@ -215,10 +283,11 @@ If you don't have a deployed agent yet, or if you want to generate data from a s
 import time
 from azure.ai.projects.models import (
     DataGenerationModelOptions,
+    DatasetDataGenerationJobOutput,
     EvaluationDataGenerationJobInputs,
-    EvaluationDataGenerationJobOutputTarget,
+    EvaluationDataGenerationJobOutputConfiguration,
     PromptDataGenerationJobSource,
-    SimpleQnADataGenerationJobOptions,
+    SimpleQnADataGenerationJobConfiguration,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
@@ -237,22 +306,36 @@ job = EvaluationDataGenerationJobInputs(
             ),
         ),
     ],
-    generation_configuration=SimpleQnADataGenerationJobOptions(
+    generation_configuration=SimpleQnADataGenerationJobConfiguration(
         max_samples=15,
         model_options=DataGenerationModelOptions(model=MODEL_NAME),
     ),
-    output_configuration=EvaluationDataGenerationJobOutputTarget(
+    output_configuration=EvaluationDataGenerationJobOutputConfiguration(
         name="contoso-refund-eval-set"
     ),
 )
 
 poller = project_client.datasets.begin_create_generation_job(job=job)
-# Optional: While SDK is polling, periodically print the job status until the job is complete
+# Submit and wait for completion.
 print("Periodically check job status:")
 while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)
 result = poller.result()
+
+output_name = ""
+output_version = ""
+for output in (result.outputs if result is not None else None) or []:
+    if isinstance(output, DatasetDataGenerationJobOutput):
+        output_name = output.name or ""
+        output_version = output.version or ""
+        break
+
+if not output_name or not output_version:
+    raise RuntimeError("The data generation job didn't return a dataset output.")
+
+dataset = project_client.datasets.get(name=output_name, version=output_version)
+print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})")
 ```
 
 # [JavaScript/TypeScript](#tab/javascript)
@@ -281,7 +364,10 @@ const generationPoller = projectClient.datasets.createGenerationJob({
     max_samples: 15,
     model_options: { model: modelName },
   },
-  output_configuration: { name: jobName },
+  output_configuration: {
+    name: jobName,
+    write_mode: "overwrite",
+  },
 });
 
 // Creating a data generation job is a long-running operation. Once
@@ -291,15 +377,33 @@ await generationPoller.submitted();
 console.log(`Created data generation job (id: ${generationPoller.operationState?.jobId})`);
 
 const result = await generationPoller.pollUntilDone();
-console.log(`Generated samples: ${result.generated_samples}`);
+if (result.generated_samples !== undefined) {
+  console.log(`Generated samples: ${result.generated_samples}`);
+}
+
+const datasetOutput = result.outputs?.find((output) => output.type === "dataset");
+if (
+  !datasetOutput ||
+  !("name" in datasetOutput) ||
+  !("version" in datasetOutput) ||
+  !datasetOutput.name ||
+  !datasetOutput.version
+) {
+  throw new Error("The data generation job didn't return a dataset output.");
+}
+
+const dataset = await projectClient.datasets.get(
+  datasetOutput.name,
+  datasetOutput.version,
+);
+console.log(
+  `Generated dataset: ${dataset.name} v${dataset.version} (id: ${dataset.id})`,
+);
 ```
 
 Reference: [datasets.createGenerationJob](/javascript/api/@azure/ai-projects/aiprojectclient)
 
 ---
-
-Resolve the dataset by using the same pattern shown in the previous section.
-
 
 ## Generate a dataset from reference files (SDK)
 
@@ -313,16 +417,21 @@ The file must be in the `processed` state before the data generation service can
 Supported reference file extensions are:
 `.txt`, `.md`, `.csv`, `.json`, `.xml`, `.html`, `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.tiff`, `.tif`, `.svg`.
 
+The JavaScript/TypeScript example uses Node.js to read the local file.
+
+# [Python](#tab/python)
+
 ```python
 import io
 import time
 from azure.ai.projects.models import (
     DataGenerationModelOptions,
+    DatasetDataGenerationJobOutput,
     EvaluationDataGenerationJobInputs,
-    EvaluationDataGenerationJobOutputTarget,
+    EvaluationDataGenerationJobOutputConfiguration,
     FileDataGenerationJobSource,
     PromptDataGenerationJobSource,
-    SimpleQnADataGenerationJobOptions,
+    SimpleQnADataGenerationJobConfiguration,
 )
 
 MODEL_NAME = "gpt-4.1-mini"
@@ -359,69 +468,125 @@ job = EvaluationDataGenerationJobInputs(
             id=seed_file.id,
         ),
     ],
-    generation_configuration=SimpleQnADataGenerationJobOptions(
+    generation_configuration=SimpleQnADataGenerationJobConfiguration(
         max_samples=15,
         model_options=DataGenerationModelOptions(model=MODEL_NAME),
     ),
-    output_configuration=EvaluationDataGenerationJobOutputTarget(
+    output_configuration=EvaluationDataGenerationJobOutputConfiguration(
         name="retail-agent-file-eval-set"
     ),
 )
 
 poller = project_client.datasets.begin_create_generation_job(job=job)
-# Optional: While SDK is polling, periodically print the job status until the job is complete
+# Submit and wait for completion.
 print("Periodically check job status:")
 while not poller.done():
     print(f"\tstatus=`{poller.status()}`")
     time.sleep(poll_interval_seconds)
 result = poller.result()
+
+output_name = ""
+output_version = ""
+for output in (result.outputs if result is not None else None) or []:
+    if isinstance(output, DatasetDataGenerationJobOutput):
+        output_name = output.name or ""
+        output_version = output.version or ""
+        break
+
+if not output_name or not output_version:
+    raise RuntimeError("The data generation job didn't return a dataset output.")
+
+dataset = project_client.datasets.get(name=output_name, version=output_version)
+print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})")
 ```
 
-## Generate a simulation seed dataset (SDK)
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+import fs from "node:fs";
+
+const modelName = "gpt-4.1-mini";
+const jobName = "retail-agent-file-eval-set";
+
+// 1. Upload the reference document via the Azure OpenAI Files API.
+const openAIClient = projectClient.getOpenAIClient();
+let seedFile = await openAIClient.files.create({
+  file: fs.createReadStream("retail-agent-reference.md"),
+  purpose: "user_data",
+});
+
+// 2. Wait for the file to finish processing.
+seedFile = await openAIClient.files.waitForProcessing(seedFile.id);
+if (seedFile.status !== "processed") {
+  throw new Error(`File failed to process: ${seedFile.status}`);
+}
+
+// 3. Submit a SimpleQnA job with prompt context and file grounding.
+const generationPoller = projectClient.datasets.createGenerationJob({
+  name: jobName,
+  scenario: "evaluation",
+  sources: [
+    {
+      type: "prompt",
+      description: "Instructions for the generated evaluation data.",
+      prompt:
+        "Generate questions that test a support agent's knowledge of " +
+        "the Contoso Retail catalog and return policy.",
+    },
+    {
+      type: "file",
+      description: "Contoso Retail product catalog and policy reference.",
+      id: seedFile.id,
+    },
+  ],
+  generation_configuration: {
+    type: "simple_qna",
+    max_samples: 15,
+    model_options: { model: modelName },
+  },
+  output_configuration: {
+    name: jobName,
+    write_mode: "overwrite",
+  },
+});
+
+await generationPoller.submitted();
+const result = await generationPoller.pollUntilDone();
+
+const datasetOutput = result.outputs?.find((output) => output.type === "dataset");
+if (
+  !datasetOutput ||
+  !("name" in datasetOutput) ||
+  !("version" in datasetOutput) ||
+  !datasetOutput.name ||
+  !datasetOutput.version
+) {
+  throw new Error("The data generation job didn't return a dataset output.");
+}
+
+const dataset = await projectClient.datasets.get(
+  datasetOutput.name,
+  datasetOutput.version,
+);
+console.log(
+  `Generated dataset: ${dataset.name} v${dataset.version} (id: ${dataset.id})`,
+);
+```
+
+---
+
+## Generate a simulation seed dataset
 
 Simulation seed jobs produce a dataset of scenario descriptions that feed the [Simulate conversations](cloud-evaluation-simulate-conversations.md) flow. Generated rows can contain `id`, `category`, `test_case_description`, and `desired_num_turns`. Only `test_case_description` is required.
 
-Simulation seed uses the same evaluation input model as Simple Q&A, but it uses
-`SimulationSeedDataGenerationJobOptions`. The configuration requires
-`max_samples` and `model_options`. Use an agent or prompt source and optionally
-add reference files for grounding.
+> [!NOTE]
+> In SDK version 2.8.0, the generated Python and JavaScript simulation-seed
+> configuration models don't expose the service-required `max_samples` field.
+> Use the portal to create simulation seed datasets until the SDK and service
+> contract are aligned.
 
-This example assumes a deployed agent named `retail-agent`. If you don't have one yet, create it first with the `create_version` pattern shown in [Generate a dataset from an agent definition (SDK)](#generate-a-dataset-from-an-agent-definition-sdk).
-
-```python
-from azure.ai.projects.models import (
-    AgentDataGenerationJobSource,
-    DataGenerationModelOptions,
-    EvaluationDataGenerationJobInputs,
-    EvaluationDataGenerationJobOutputTarget,
-    SimulationSeedDataGenerationJobOptions,
-)
-
-MODEL_NAME = "gpt-4.1-mini"
-
-job = EvaluationDataGenerationJobInputs(
-    name="retail-agent-simulation-seeds",
-    sources=[
-        AgentDataGenerationJobSource(
-            description="Agent definition used to seed simulation scenarios.",
-            agent_name="retail-agent",
-            agent_version="1",
-        ),
-    ],
-    generation_configuration=SimulationSeedDataGenerationJobOptions(
-        max_samples=15,
-        model_options=DataGenerationModelOptions(model=MODEL_NAME),
-    ),
-    output_configuration=EvaluationDataGenerationJobOutputTarget(
-        name="retail-agent-simulation-seeds"
-    ),
-)
-
-poller = project_client.datasets.begin_create_generation_job(job=job)
-result = poller.result()
-```
-
-Resolve the generated dataset from `result` by using the output-handling pattern shown in [Generate a dataset from an agent definition (SDK)](#generate-a-dataset-from-an-agent-definition-sdk).
+Use an agent or prompt source in the portal, and optionally add reference files
+for grounding.
 
 ### Generated dataset schema
 
@@ -478,7 +643,7 @@ print(f"{job.id}  {job.status}")
 # Cancel a running job.
 project_client.datasets.cancel_generation_job(job_id="job_...")
 
-# Delete a job record (produced datasets are not deleted).
+# Delete a job record.
 project_client.datasets.delete_generation_job(job_id="job_...")
 ```
 
@@ -501,7 +666,7 @@ console.log(`${job.id}  ${job.status}`);
 // Cancel a running job.
 await projectClient.datasets.cancelGenerationJob("job_...");
 
-// Delete a job record (produced datasets are not deleted).
+// Delete a job record.
 await projectClient.datasets.deleteGenerationJob("job_...");
 ```
 

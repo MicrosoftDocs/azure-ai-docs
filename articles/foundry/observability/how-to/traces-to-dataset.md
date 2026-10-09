@@ -7,7 +7,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.topic: how-to
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -39,7 +39,7 @@ selection for you. Intelligent sampling does the following tasks:
 - **Filters out uninteresting traces** such as single-character messages and other low-intent traffic that add no evaluation signal.
 - **Selects a diverse, representative sample** by using MinHash so the result covers the range of your agent's scenarios rather than overindexing on frequent, near-identical prompts.
 
-This process matters because evaluations are expensive and most raw traces add little signal. Recent research shows that careful selection can reach the same evaluation quality with a small fraction of the original traces. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling is the mechanism that makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
+This process matters because evaluations are expensive and most raw traces add little signal. A representative set produces better signal at lower cost than evaluating everything. Intelligent sampling makes trace selection practical at production scale, so you get evaluation-ready datasets without writing custom filtering or deduplication code.
 
 Intelligent sampling uses the same trace-selection algorithm across three experiences in Foundry:
 
@@ -81,8 +81,6 @@ You can create a dataset from traces directly in the portal without writing code
     - **Date range**: Choose the window to pull traces from, such as the last day or last seven days.
     - **Sampling**: Enable sampling to select a representative subset of matching traces.
     - **Maximum samples**: When sampling is enabled, set a cap from 1 through 1,000 rows.
-
-    :::image type="content" source="../../media/observability/data-generation-from-traces.png" alt-text="Screenshot of the Create from traces dialog showing the agent, dataset, evaluation usage, date range, sampling, and maximum samples settings.":::
 
 1. Select **Create** to submit the job. Dataset generation runs as a background job. You can track its status on the **Data Generation** tab.
 
@@ -149,7 +147,8 @@ const projectClient = new AIProjectClient(
 
 Use `@azure/ai-projects` 2.8.0 or later. Access data generation operations through `projectClient.datasets`.
 
-The JavaScript/TypeScript SDK samples don't yet demonstrate generating a dataset from traces with a time-window trace source. Use the Python SDK or the Foundry portal for that flow. The JavaScript/TypeScript SDK supports the job-management operations shown in [Manage data generation jobs](#manage-data-generation-jobs).
+The following examples submit the same time-window trace source in Python and
+JavaScript/TypeScript.
 
 Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectclient)
 
@@ -157,6 +156,8 @@ Reference: [AIProjectClient class](/javascript/api/@azure/ai-projects/aiprojectc
 
 > [!NOTE]
 > Application Insights takes 30–90 seconds to ingest spans. If you submit the job too quickly after capturing traffic, the job runs against an empty window and produces no samples.
+
+# [Python](#tab/python)
 
 ```python
 import time
@@ -166,8 +167,8 @@ from azure.ai.projects.models import (
     DataGenerationJobOutputWriteMode,
     DatasetDataGenerationJobOutput,
     EvaluationDataGenerationJobInputs,
-    EvaluationDataGenerationJobOutputTarget,
-    TracesDataGenerationJobOptions,
+    EvaluationDataGenerationJobOutputConfiguration,
+    TracesDataGenerationJobConfiguration,
     TracesDataGenerationJobSource,
 )
 
@@ -194,13 +195,13 @@ job = EvaluationDataGenerationJobInputs(
             # trace_ids=["trace-id-1", "trace-id-2"],  # Select exact traces.
         ),
     ],
-    generation_configuration=TracesDataGenerationJobOptions(
+    generation_configuration=TracesDataGenerationJobConfiguration(
         # Omit max_samples to turn off intelligent sampling.
         max_samples=100,
         # Private content is redacted by default.
         redact_private_content=True,
     ),
-    output_configuration=EvaluationDataGenerationJobOutputTarget(
+    output_configuration=EvaluationDataGenerationJobOutputConfiguration(
         name="retail-agent-eval-set",
         description="Representative production traces for agent evaluation.",
         tags={"source": "production-traces"},
@@ -224,23 +225,98 @@ for output in (result.outputs if result is not None else None) or []:
         output_version = output.version or ""
         break
 
+if not output_name or not output_version:
+    raise RuntimeError("The data generation job didn't return a dataset output.")
+
 dataset = project_client.datasets.get(name=output_name, version=output_version)
 print(f"Generated dataset: {dataset.name} v{dataset.version} (id: {dataset.id})")
 if result is not None and result.generated_samples is not None:
     print(f"Generated samples: {result.generated_samples}")
 ```
 
+# [JavaScript/TypeScript](#tab/javascript)
+
+```javascript
+const agentName = "retail-agent";
+const jobName = "retail-agent-eval-set";
+
+// 1. Record the window around your traffic.
+const endTime = new Date();
+endTime.setMilliseconds(0);
+const startTime = new Date(endTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+// 2. Define and submit the evaluation job.
+const generationPoller = projectClient.datasets.createGenerationJob({
+  name: jobName,
+  scenario: "evaluation",
+  sources: [
+    {
+      type: "traces",
+      description:
+        "Application Insights conversation traces for the Foundry agent.",
+      agent_name: agentName,
+      start_time: startTime,
+      end_time: endTime,
+      // agent_version: "3", // Pin to a specific version.
+      // trace_ids: ["trace-id-1", "trace-id-2"], // Select exact traces.
+    },
+  ],
+  generation_configuration: {
+    type: "traces",
+    // Omit max_samples to turn off intelligent sampling.
+    max_samples: 100,
+    // Private content is redacted by default.
+    redact_private_content: true,
+  },
+  output_configuration: {
+    name: jobName,
+    description: "Representative production traces for agent evaluation.",
+    tags: { source: "production-traces" },
+    write_mode: "overwrite",
+  },
+});
+
+await generationPoller.submitted();
+const result = await generationPoller.pollUntilDone();
+
+// 3. Resolve the generated dataset.
+const datasetOutput = result.outputs?.find((output) => output.type === "dataset");
+if (
+  !datasetOutput ||
+  !("name" in datasetOutput) ||
+  !("version" in datasetOutput) ||
+  !datasetOutput.name ||
+  !datasetOutput.version
+) {
+  throw new Error("The data generation job didn't return a dataset output.");
+}
+
+const dataset = await projectClient.datasets.get(
+  datasetOutput.name,
+  datasetOutput.version,
+);
+console.log(
+  `Generated dataset: ${dataset.name} v${dataset.version} (id: ${dataset.id})`,
+);
+if (result.generated_samples !== undefined) {
+  console.log(`Generated samples: ${result.generated_samples}`);
+}
+```
+
+---
+
 The job produces a versioned dataset registered in your project. When you set
 `max_samples`, the number of rows is capped by that value but might be lower if
 the window doesn't contain enough distinct, high-quality traces after
 intelligent sampling.
 
-The default write mode is `DataGenerationJobOutputWriteMode.OVERWRITE`, which
-creates the next dataset version using only the newly generated rows. Set
-`write_mode` to `DataGenerationJobOutputWriteMode.MERGE` to create the next
-version by combining the new rows with the latest existing dataset version and
-deduplicating trace rows. Neither mode modifies an existing dataset version in
-place.
+The default write mode is Python
+`DataGenerationJobOutputWriteMode.OVERWRITE` or JavaScript/TypeScript
+`"overwrite"`, which creates the next dataset version using only the newly
+generated rows. To combine the new rows with the latest existing dataset
+version and deduplicate trace rows, set `write_mode` to Python
+`DataGenerationJobOutputWriteMode.MERGE` or JavaScript/TypeScript `"merge"`.
+Neither mode modifies an existing dataset version in place.
 
 Whether you created the dataset from the portal or the SDK, you can preview it on the **Data** tab to inspect the generated rows before evaluating. You can also download or delete it from there.
 
@@ -272,7 +348,7 @@ job = project_client.datasets.get_generation_job(job_id="job_...")
 # Cancel a running job.
 project_client.datasets.cancel_generation_job(job_id="job_...")
 
-# Delete a job record. Generated datasets remain available.
+# Delete a job record.
 project_client.datasets.delete_generation_job(job_id="job_...")
 ```
 
@@ -294,7 +370,7 @@ const job = await projectClient.datasets.getGenerationJob("job_...");
 // Cancel a running job.
 await projectClient.datasets.cancelGenerationJob("job_...");
 
-// Delete a job record. Generated datasets remain available.
+// Delete a job record.
 await projectClient.datasets.deleteGenerationJob("job_...");
 ```
 

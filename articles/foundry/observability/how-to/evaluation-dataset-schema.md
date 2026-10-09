@@ -277,7 +277,7 @@ not the seed row.
 For the simulation procedure, see
 [Simulate conversations](cloud-evaluation-simulate-conversations.md).
 To generate seed rows instead of authoring them, see
-[Generate a simulation seed dataset](evaluation-dataset-synthetic.md#generate-a-simulation-seed-dataset-sdk).
+[Generate a simulation seed dataset](evaluation-dataset-synthetic.md#generate-a-simulation-seed-dataset).
 
 ## Separate query and response format
 
