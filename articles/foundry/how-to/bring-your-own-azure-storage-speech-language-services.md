@@ -1,5 +1,5 @@
 ---
-title: "Connect your own storage to Speech/Language (Preview)"
+title: "Connect your own storage to Speech/Language"
 description: "Configure customer-managed storage for Speech and Language capabilities in a Microsoft Foundry resource at creation time."
 #customer intent: As a developer, I want to use my own storage account for Speech and Language so I can apply security and compliance policies.
 author: s-polly
@@ -16,6 +16,6 @@ ms.date: 08/19/2026
 ai-usage: ai-assisted
 ---
 
-# Connect your own storage for Speech and Language services (Preview)
+# Connect your own storage for Speech and Language services
 
 [!INCLUDE [bring-your-own-azure-storage-speech-language-services content](../includes/how-to-bring-your-own-azure-storage-speech-language-services-content.md)]
