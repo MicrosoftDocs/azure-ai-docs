@@ -133,7 +133,8 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 # [Foundry portal](#tab/portal)
 
-1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. Select **Build** in the upper-right navigation, then **Models** in the left pane.
+1. Select **Deploy** > **Deploy a base model** to view available models.
 1. Search for **gpt-5-mini**.
 1. Select **Deploy** > **Default settings** to add it to your project.
 1. Note the deployment name (for example, `gpt-5-mini`). Your team needs this name to use the model.
