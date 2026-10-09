@@ -11,8 +11,6 @@ ms.custom: include, classic-and-new
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [feature-preview](feature-preview.md)]
-
 Configure bring-your-own-storage (BYOS) for Speech and Language capabilities in a Foundry resource by setting the `userOwnedStorage` binding at creation time. This binding routes Speech and Language data to your Azure Storage account while maintaining backward compatibility with earlier standalone resource patterns.
 
 > [!TIP]
