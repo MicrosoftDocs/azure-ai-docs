@@ -4499,6 +4499,11 @@
       "source_path_from_root": "/articles/foundry/agents/how-to/tools/shell.md",
       "redirect_url": "/azure/foundry/",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/foundry/openai/concepts/default-safety-policies.md",
+      "redirect_url": "/azure/foundry/guardrails/default-safety-policies",
+      "redirect_document_id": true
     }
   ]
 }

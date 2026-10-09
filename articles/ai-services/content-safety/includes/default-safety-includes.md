@@ -1,28 +1,20 @@
 ---
-title: "Default Guardrail policies for Azure OpenAI"
-description: "Learn about the default Guardrail policies that Azure OpenAI uses to flag content and ensure responsible use of the service."
-author: PatrickFarley
-ms.author: pafarley
-manager: mcleans
-ms.date: 05/31/2026
-ms.service: microsoft-foundry
-ms.subservice: foundry-openai
-ms.topic: concept-article
-ms.custom:
-  - classic-and-new
-  - build-2025
-  - doc-kit-assisted
-  - dev-focus
+title: "Default safety settings"
+description: Foundry default safety guardrail
+author: meyetman
+manager: pchapman
+ms.service: azure-ai-content-safety
+ms.topic: include
+ms.date: 10/08/2026
+ms.author: meyetman
 ai-usage: ai-assisted
 ---
 
-# Default Guardrail policies for Azure OpenAI
+Azure OpenAI in Microsoft Foundry Models includes default safety policies that apply to all models, excluding transcription models. These configurations provide a responsible experience by default, including [content harms](../../../foundry/openai/concepts/content-filter-severity-levels.md), [prompt shields](../../../foundry/openai/concepts/content-filter-prompt-shields.md), block lists, and other features.
 
-Azure OpenAI in Microsoft Foundry Models includes default safety policies that apply to all models, excluding transcription models. These configurations provide a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
+Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides Guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more, see [categories and severity levels](../../../foundry/openai/concepts/content-filter-severity-levels.md).
 
-Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides Guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more, see [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
-
-All safety policies are configurable. To learn more about configurability, see [configuring Guardrails](/azure/ai-foundry/openai/how-to/content-filters).
+All safety policies are configurable. To learn more about configurability, see [configuring Guardrails](../../../foundry/guardrails/how-to-create-guardrails.md).
 
 When content is detected that exceeds the severity threshold for a risk category, the API request is blocked and returns an error response indicating which category triggered the filter. This applies to both user prompts (input) and model completions (output).
 
@@ -121,8 +113,5 @@ Replace `[test prompt]` with content that exceeds one of the configured severity
 
 ## Next steps
 
-- [Configure custom safety policies](../../../foundry-classic/openai/how-to/content-filters.md)
-- [Content filtering concepts](../../../foundry-classic/foundry-models/concepts/content-filter.md)
-- [Content credentials](../../../foundry-classic/openai/concepts/content-credentials.md)
-- [Prompt transformation for image generation](prompt-transformation.md)
-
+- [Configure custom guardrails](../../../foundry/guardrails/how-to-create-guardrails.md)
+- [Guardrails concepts](../../../foundry/guardrails/guardrails-overview.md)

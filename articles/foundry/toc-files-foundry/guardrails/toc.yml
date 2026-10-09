@@ -35,7 +35,7 @@ items:
 - name: Content streaming
   href: ../../openai/concepts/content-streaming.md
 - name: Default safety policies
-  href: ../../openai/concepts/default-safety-policies.md
+  href: ../../guardrails/default-safety-policies.md
 - name: Safety system messages
   href: ../../openai/concepts/safety-system-message-templates.md
 - name: Third-party guardrail integrations
