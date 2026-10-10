@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: haakar
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 10/05/2026
+ms.date: 10/09/2026
 ms.custom: include, classic-and-new, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -72,6 +72,25 @@ Grok 4.7 version `1` uses subscription-level quota management. The following tab
 | Data Zone Standard (US) | Tier 5 | 10,000,000 | 10,000 |
 | Data Zone Standard (US) | Tier 6 | 15,000,000 | 15,000 |
 
+### Microsoft-Decision-1 quotas
+
+The following table lists requests per minute (RPM) limits for Microsoft-Decision-1 Global Standard and Data Zone Standard deployments by subscription tier. Your deployment's rate limits depend on its configured capacity and allocated quota.
+
+| Deployment type | Subscription tier | RPM |
+| --- | --- | ---: |
+| Global Standard | Tier 1 | 60 |
+| Global Standard | Tier 2 | 150 |
+| Global Standard | Tier 3 | 225 |
+| Global Standard | Tier 4 | 360 |
+| Global Standard | Tier 5 | 500 |
+| Global Standard | Tier 6 | 900 |
+| Data Zone Standard | Tier 1 | 60 |
+| Data Zone Standard | Tier 2 | 150 |
+| Data Zone Standard | Tier 3 | 225 |
+| Data Zone Standard | Tier 4 | 360 |
+| Data Zone Standard | Tier 5 | 500 |
+| Data Zone Standard | Tier 6 | 900 |
+
 ## Quotas and limits reference
 
 > [!IMPORTANT]
@@ -88,6 +107,8 @@ The following sections provide a quick guide to the default quotas and limits th
 | Max deployments per resource (model deployments within a Foundry resource) | 32 | 
 
 ### Rate limits
+
+For Microsoft-Decision-1 rate limits, see [Microsoft-Decision-1 quotas](#microsoft-decision-1-quotas).
 
 The following table lists limits for Foundry Models for the following rates:
 
