@@ -11,6 +11,7 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
 ms.date: 08/13/2025
+ai-usage: ai-assisted
 # customer intent: To create a compute instance in Azure Machine Learning for development and testing purposes.
 ---
 
@@ -602,6 +603,10 @@ RStudio is one of the most popular IDEs among R developers for ML and data scien
 
 
 ### Setup RStudio (open source)
+
+RStudio runs inside the custom application's Docker container, which has its own R, RStudio, and R package versions. Updating software on the compute instance host doesn't update those versions in the container.
+
+Before using the example image, verify that its R, RStudio, and R package versions meet your requirements. The `latest` tag doesn't guarantee the newest upstream releases. If you need different versions, build and test your own image, then follow [Set up other custom applications](#setup-other-custom-applications).
 
 To use RStudio, set up a custom application as follows:
 
